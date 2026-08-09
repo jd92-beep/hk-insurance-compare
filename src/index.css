@@ -217,4 +217,64 @@
   .marquee-track:hover .animate-marquee {
     animation-play-state: paused;
   }
+
+  /* 漂浮裝飾（hero 關鍵字 / 盾形慢速漂移） */
+  @keyframes float-drift {
+    0% { transform: translate3d(0, 0, 0) rotate(-2deg); }
+    50% { transform: translate3d(6px, -14px, 0) rotate(2deg); }
+    100% { transform: translate3d(-6px, 8px, 0) rotate(-1deg); }
+  }
+  .animate-float {
+    animation: float-drift 10s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  /* 卡片掃光（hover 時一道光掃過） */
+  .shine-sweep {
+    position: relative;
+  }
+  .shine-sweep::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.55) 50%, transparent 58%);
+    transform: translateX(-130%);
+    transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .shine-sweep:hover::after {
+    transform: translateX(130%);
+  }
+
+  /* 連結 hover 底線掃入 */
+  .link-sweep {
+    position: relative;
+  }
+  .link-sweep::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-sweep:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* 圖片載入 fade-in */
+  @keyframes img-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .img-fade {
+    animation: img-fade 0.7s ease both;
+  }
 }

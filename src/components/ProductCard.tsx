@@ -38,7 +38,7 @@ export default function ProductCard({
       }}
       tabIndex={0}
       className={cn(
-        "group relative flex cursor-pointer flex-col overflow-hidden rounded-card border bg-paper shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift",
+        "group relative flex cursor-pointer flex-col overflow-hidden rounded-card border bg-paper shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift shine-sweep",
         className,
       )}
       style={{ borderColor: "var(--line)" }}

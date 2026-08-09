@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- 盾形輪廓：2.5px 墨藍描邊，圓角 -->
+  <path
+    d="M32 7 L53 14 V31 C53 44.5 44 53.5 32 58 C20 53.5 11 44.5 11 31 V14 Z"
+    stroke="#181D2E"
+    stroke-width="2.5"
+    stroke-linejoin="round"
+  />
+  <!-- 田字格右上格：實心香港紅 -->
+  <rect x="32" y="20" width="12" height="12" fill="#C8102E" />
+  <!-- 內嵌 2×2 田字格（象徵「格價」） -->
+  <rect x="20" y="20" width="24" height="24" rx="2" stroke="#181D2E" stroke-width="2.5" />
+  <path d="M32 20 V44 M20 32 H44" stroke="#181D2E" stroke-width="2.5" />
+</svg>

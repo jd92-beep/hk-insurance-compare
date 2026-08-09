@@ -21,14 +21,14 @@ export default function CategoryCard({
     <Link
       to={`/category/${category.id}`}
       className={cn(
-        "group relative flex flex-col gap-3 overflow-hidden rounded-card border bg-paper p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift",
+        "group relative flex flex-col gap-3 overflow-hidden rounded-card border bg-paper p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift shine-sweep",
         className,
       )}
       style={{ borderColor: "var(--line)" }}
     >
-      {/* 頂部類別色條 */}
+      {/* 頂部類別色條：hover 時由短變長掃過 */}
       <div
-        className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-100 transition-transform duration-500 group-hover:h-[5px]"
+        className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-[.3] transition-transform duration-500 ease-out group-hover:h-[5px] group-hover:scale-x-100"
         style={{ background: color }}
       />
       <span

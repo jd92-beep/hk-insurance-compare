@@ -172,11 +172,20 @@ export default function Navbar() {
             aria-label={`比較托盤（已選 ${compare.items.length} 份產品）`}
           >
             <Scale size={16} />
-            {compare.items.length > 0 && (
-              <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-red px-1 font-grotesk text-[10px] font-bold text-paper">
-                {compare.items.length}
-              </span>
-            )}
+            <AnimatePresence mode="popLayout">
+              {compare.items.length > 0 && (
+                <motion.span
+                  key={compare.items.length}
+                  initial={{ scale: 0.4 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 18 }}
+                  className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-red px-1 font-grotesk text-[10px] font-bold text-paper"
+                >
+                  {compare.items.length}
+                </motion.span>
+              )}
+            </AnimatePresence>
           </Link>
           <button
             type="button"

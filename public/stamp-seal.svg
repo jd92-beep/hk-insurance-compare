@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <!-- 手蓋印感：極輕微粗糙邊 -->
+    <filter id="seal-rough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" />
+    </filter>
+    <path id="seal-arc" d="M60 60 m-40 0 a40 40 0 1 1 80 0 a40 40 0 1 1 -80 0" />
+  </defs>
+  <g filter="url(#seal-rough)">
+    <!-- 雙環 -->
+    <circle cx="60" cy="60" r="54" stroke="currentColor" stroke-width="2" />
+    <circle cx="60" cy="60" r="30" stroke="currentColor" stroke-width="1" />
+    <!-- 環內弧排英文 -->
+    <text
+      fill="currentColor"
+      font-family="'Space Grotesk', sans-serif"
+      font-size="9.5"
+      font-weight="700"
+      letter-spacing="2.4"
+    >
+      <textPath href="#seal-arc" startOffset="4%">OFFICIAL SOURCE · VERIFIED · 官方文件核實 ·</textPath>
+    </text>
+    <!-- 中心直排「官方文件」 -->
+    <text x="60" y="56" text-anchor="middle" fill="currentColor" font-family="'Noto Serif TC', serif" font-weight="900" font-size="17">官方</text>
+    <text x="60" y="76" text-anchor="middle" fill="currentColor" font-family="'Noto Serif TC', serif" font-weight="900" font-size="17">文件</text>
+    <!-- 小星 -->
+    <path d="M60 26.5l1.5 3.2 3.4.4-2.5 2.4.7 3.4-3.1-1.7-3.1 1.7.7-3.4-2.5-2.4 3.4-.4L60 26.5Z" fill="currentColor" />
+  </g>
+</svg>

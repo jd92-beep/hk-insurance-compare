@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { useCategories, useInsuranceData, useInsurers, useProducts } from "@/providers/InsuranceDataProvider";
 import StampBadge from "@/components/StampBadge";
+import { StampSealIcon } from "@/components/StampSealIcon";
 
 /**
  * 全站免責聲明橫帶（§7.2）：Footer 上方常駐。
@@ -55,8 +56,12 @@ export default function Footer() {
     <footer>
       <DisclaimerBand />
       <FooterMarquee />
-      <div className="border-t-4 border-red bg-ink text-paper">
-        <div className="site-container grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
+      <div className="relative overflow-hidden border-t-4 border-red bg-ink text-paper">
+        {/* 低透明度水印印章慢旋（填補深色區塊空白） */}
+        <div className="pointer-events-none absolute -bottom-40 -right-24" aria-hidden="true">
+          <StampSealIcon size={480} className="animate-spin-slow text-paper opacity-[.06]" />
+        </div>
+        <div className="site-container relative grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
           {/* ① 品牌 */}
           <div className="flex flex-col gap-4">
             <Link to="/" className="flex items-center gap-2.5">
@@ -75,7 +80,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-2 text-[14px]">
               {categories.map((c) => (
                 <li key={c.id}>
-                  <Link to={`/category/${c.id}`} className="text-paper/75 transition-colors hover:text-paper">
+                  <Link to={`/category/${c.id}`} className="link-sweep text-paper/75 transition-colors hover:text-paper">
                     {c.name_zh}
                     <span className="ml-2 font-grotesk text-[11px] text-paper/40">{c.count}</span>
                   </Link>
@@ -88,11 +93,11 @@ export default function Footer() {
           <div>
             <p className="eyebrow mb-4 text-paper/50">網站</p>
             <ul className="flex flex-col gap-2 text-[14px]">
-              <li><Link to="/categories" className="text-paper/75 transition-colors hover:text-paper">全部類別</Link></li>
-              <li><Link to="/compare" className="text-paper/75 transition-colors hover:text-paper">比較工具</Link></li>
-              <li><Link to="/insurers" className="text-paper/75 transition-colors hover:text-paper">保險公司名錄</Link></li>
-              <li><Link to="/guides" className="text-paper/75 transition-colors hover:text-paper">投保指南・詞彙</Link></li>
-              <li><Link to="/about" className="text-paper/75 transition-colors hover:text-paper">關於數據</Link></li>
+              <li><Link to="/categories" className="link-sweep text-paper/75 transition-colors hover:text-paper">全部類別</Link></li>
+              <li><Link to="/compare" className="link-sweep text-paper/75 transition-colors hover:text-paper">比較工具</Link></li>
+              <li><Link to="/insurers" className="link-sweep text-paper/75 transition-colors hover:text-paper">保險公司名錄</Link></li>
+              <li><Link to="/guides" className="link-sweep text-paper/75 transition-colors hover:text-paper">投保指南・詞彙</Link></li>
+              <li><Link to="/about" className="link-sweep text-paper/75 transition-colors hover:text-paper">關於數據</Link></li>
             </ul>
           </div>
 

@@ -50,7 +50,7 @@ export default function GuidesTeaser() {
               <img
                 src="/guides-hero.svg"
                 alt="保單文件、放大鏡同紅色批註嘅紙雕插畫"
-                className="h-auto w-full max-w-[360px] rounded-[12px] border md:w-[360px]"
+                className="img-fade h-auto w-full max-w-[360px] rounded-[12px] border md:w-[360px]"
                 style={{ borderColor: "var(--line)" }}
               />
             </motion.div>

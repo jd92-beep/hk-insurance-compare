@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import { scrollToElement } from "@/lib/lenis";
+import Magnetic from "@/components/Magnetic";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -58,10 +59,12 @@ export default function FinalCTA() {
           transition={{ duration: 0.7, delay: 0.3, ease: EASE_OUT_EXPO }}
           className="mt-9 flex flex-wrap items-center justify-center gap-4"
         >
-          <button type="button" onClick={() => scrollToElement("#categories-grid")} className="btn-primary group">
-            開始比較
-            <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </button>
+          <Magnetic>
+            <button type="button" onClick={() => scrollToElement("#categories-grid")} className="btn-primary group">
+              開始比較
+              <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+          </Magnetic>
           <Link to="/insurers" className="btn-ghost">
             瀏覽保險公司名錄
           </Link>

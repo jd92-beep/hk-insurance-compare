@@ -6,13 +6,9 @@ import type { Product } from "@/types/insurance";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-function shorten(text: string, max = 34): string {
-  return text.length > max ? `${text.slice(0, max)}…` : text;
-}
-
 function findCoverage(p: Product, keyword: string): string {
   const hit = p.coverage.find((c) => c.item.includes(keyword));
-  return hit ? shorten(hit.limit, 30) : "—";
+  return hit ? hit.limit : "—";
 }
 
 const FEATURED_IDS = ["travel-aig", "travel-blue-cross", "travel-axa"];
@@ -25,8 +21,9 @@ export default function FeaturedCompare() {
     (p): p is Product => Boolean(p),
   );
 
+  // 金額係格價站核心數據：完整顯示，換行都唔准截斷成「HK$3…」
   const rows: { label: string; render: (p: Product) => string }[] = [
-    { label: "保費", render: (p) => (p.premium_available ? shorten(p.premium_range, 36) : "官網即時報價") },
+    { label: "保費", render: (p) => (p.premium_available ? p.premium_range : "官網即時報價") },
     { label: "醫療保障上限", render: (p) => findCoverage(p, "醫療") },
     { label: "行程取消", render: (p) => findCoverage(p, "取消") },
     { label: "官方文件", render: (p) => `${p.documents_found.length} 份` },
@@ -89,7 +86,7 @@ export default function FeaturedCompare() {
                         >
                           {p.insurer} {p.insurer_zh}
                         </Link>
-                        <span className="block max-w-[160px] truncate text-[12px] font-normal text-ink-faint">
+                        <span className="line-clamp-2 block max-w-[170px] text-[12px] font-normal leading-[1.5] text-ink-faint">
                           {p.product_name_zh || p.product_name}
                         </span>
                       </th>
@@ -107,9 +104,9 @@ export default function FeaturedCompare() {
                       className="border-b transition-colors last:border-b-0 hover:bg-paper-2"
                       style={{ borderColor: "var(--line)", background: ri % 2 === 1 ? "rgba(24,29,46,.025)" : "transparent" }}
                     >
-                      <td className="px-5 py-3.5 text-small font-bold text-ink">{row.label}</td>
+                      <td className="px-5 py-3.5 align-top text-small font-bold text-ink">{row.label}</td>
                       {featured.map((p) => (
-                        <td key={p.id} className="px-5 py-3.5 text-small text-ink-soft" title={row.render(p)}>
+                        <td key={p.id} className="whitespace-normal break-words px-5 py-3.5 align-top text-small leading-[1.6] text-ink-soft">
                           {row.render(p)}
                         </td>
                       ))}

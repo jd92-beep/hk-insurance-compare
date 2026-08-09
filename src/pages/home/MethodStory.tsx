@@ -73,10 +73,11 @@ export default function MethodStory() {
       }
 
       let current = 0;
+      const pinInner = rootRef.current?.querySelector<HTMLElement>(".method-pin-inner");
       ScrollTrigger.create({
         trigger: rootRef.current,
         start: "top top",
-        end: "+=180%",
+        end: "+=130%",
         pin: ".method-pin",
         pinSpacing: true,
         onUpdate: (self) => {
@@ -87,6 +88,11 @@ export default function MethodStory() {
             setStep(idx);
             showScene(idx);
           }
+          // 解 pin 前 fade out 內容，消除收尾純黑死位
+          if (pinInner) {
+            const outro = gsap.utils.clamp(0, 1, (p - 0.84) / 0.14);
+            gsap.set(pinInner, { autoAlpha: 1 - outro, y: -32 * outro });
+          }
         },
       });
     },
@@ -96,7 +102,22 @@ export default function MethodStory() {
   return (
     <section ref={rootRef} className="relative bg-ink text-paper">
       <div className="method-pin flex h-[100dvh] items-center overflow-hidden">
-        <div className="site-container grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-12">
+        <div className="method-pin-inner site-container relative grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-12">
+          {/* 進度指示 dots */}
+          <div
+            className="absolute -left-2 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-3 lg:flex"
+            aria-hidden="true"
+          >
+            {STEPS.map((s, i) => (
+              <span
+                key={s.title}
+                className={cn(
+                  "block rounded-full transition-all duration-500",
+                  step === i ? "h-6 w-2 bg-red" : "h-2 w-2 bg-paper/30",
+                )}
+              />
+            ))}
+          </div>
           {/* 左 5 欄：步驟 */}
           <div className="lg:col-span-5">
             <p className="eyebrow mb-4 text-red">OUR METHOD · 數據點嚟</p>
@@ -214,7 +235,7 @@ export default function MethodStory() {
                       <span className="font-grotesk font-bold text-red">{r.premium}</span>
                       <span className="font-grotesk">{r.med}</span>
                       {i === 2 && (
-                        <span className="method-source-chip absolute -right-3 -top-3 inline-flex items-center gap-1 rounded-full bg-jade px-2.5 py-1 text-[11px] font-bold text-paper">
+                        <span className="method-source-chip absolute -top-2.5 right-3 inline-flex items-center gap-1 rounded-full bg-jade px-2.5 py-1 text-[11px] font-bold text-paper">
                           附官方來源 <ExternalLink size={10} />
                         </span>
                       )}

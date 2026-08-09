@@ -4,6 +4,13 @@ import { InsuranceDataProvider } from "@/providers/InsuranceDataProvider";
 import { CompareProvider } from "@/providers/CompareProvider";
 import { SearchProvider } from "@/providers/SearchProvider";
 import Home from "@/pages/Home";
+import Categories from "@/pages/Categories";
+import CategoryDetail from "@/pages/CategoryDetail";
+import ProductDetail from "@/pages/ProductDetail";
+import Compare from "@/pages/Compare";
+import Insurers from "@/pages/Insurers";
+import Guides from "@/pages/Guides";
+import About from "@/pages/About";
 import Placeholder from "@/pages/Placeholder";
 
 export default function App() {
@@ -14,13 +21,13 @@ export default function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route index element={<Home />} />
-              <Route path="categories" element={<Placeholder title="保險類別" />} />
-              <Route path="category/:categoryId" element={<Placeholder title="類別詳情" />} />
-              <Route path="product/:productId" element={<Placeholder title="產品詳情" />} />
-              <Route path="compare" element={<Placeholder title="比較工具" />} />
-              <Route path="insurers" element={<Placeholder title="保險公司名錄" />} />
-              <Route path="guides" element={<Placeholder title="投保指南" />} />
-              <Route path="about" element={<Placeholder title="關於數據" />} />
+              <Route path="categories" element={<Categories />} />
+              <Route path="category/:categoryId" element={<CategoryDetail />} />
+              <Route path="product/:productId" element={<ProductDetail />} />
+              <Route path="compare" element={<Compare />} />
+              <Route path="insurers" element={<Insurers />} />
+              <Route path="guides" element={<Guides />} />
+              <Route path="about" element={<About />} />
               <Route
                 path="*"
                 element={<Placeholder title="404" description="呢一頁唔存在。" />}

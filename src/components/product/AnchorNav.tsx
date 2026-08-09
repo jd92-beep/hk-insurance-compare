@@ -16,7 +16,8 @@ export const PRODUCT_SECTIONS: AnchorSection[] = [
   { id: "pd-tiers", num: "03", label: "計劃層級" },
   { id: "pd-terms", num: "04", label: "主要條款" },
   { id: "pd-exclusions", num: "05", label: "不保事項" },
-  { id: "pd-sources", num: "06", label: "官方來源" },
+  { id: "pd-citations", num: "06", label: "資料出處" },
+  { id: "pd-sources", num: "07", label: "官方來源" },
 ];
 
 const NAV_OFFSET = 100;

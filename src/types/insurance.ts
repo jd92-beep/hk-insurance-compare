@@ -3,6 +3,22 @@ export interface CoverageItem {
   limit: string;
 }
 
+/** 單條資料引文：claim 嚟自邊份官方文件、邊頁、邊句原文 */
+export interface Citation {
+  /** 對應產品欄位：premium_range | premium_notes | coverage | key_terms | exclusions | ... */
+  claim_field: string;
+  /** 本站展示嘅資料摘要（用嚟對應頁面 section） */
+  claim_summary: string;
+  /** 官方文件名稱 */
+  document: string;
+  /** 文件頁碼；null = 嚟自官方網頁（無頁碼） */
+  page: number | null;
+  /** 官方文件原文句子 */
+  quote: string;
+  /** 官方文件／網頁 URL */
+  url: string;
+}
+
 export interface Product {
   id: string;
   category: string;
@@ -19,6 +35,8 @@ export interface Product {
   exclusions: string[];
   source_urls: string[];
   documents_found: string[];
+  /** 逐條資料出處引文（頁尾「資料出處」section） */
+  citations?: Citation[];
 }
 
 export interface Category {

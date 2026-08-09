@@ -12,8 +12,8 @@ function domainOf(url: string): string {
 }
 
 /**
- * S2.6 官方來源：全部 source_urls（jade「官方」chip + 連結全文 + 域名小字）
- * + documents_found 文件 chips。
+ * S2.7 官方來源：全部 source_urls（jade「官方」chip + 連結全文 + 域名小字）
+ * + documents_found 文件 chips。逐條引文出處喺 06「資料出處」。
  */
 export default function SourcesSection({ product }: { product: Product }) {
   const sources = product.source_urls ?? [];
@@ -21,7 +21,7 @@ export default function SourcesSection({ product }: { product: Product }) {
 
   return (
     <div>
-      <SectionHeading index="06" title="官方來源" />
+      <SectionHeading index="07" title="官方來源" />
       <motion.ul
         initial="hidden"
         whileInView="show"

@@ -1,15 +1,27 @@
 import { motion } from "framer-motion";
 import { TriangleAlert } from "lucide-react";
 import SectionHeading, { EASE_OUT_EXPO } from "@/components/product/SectionHeading";
+import CitationRef from "@/components/product/citation/CitationRef";
+import type { CitationEntry } from "@/components/product/citation/citation-utils";
 
 /**
  * S2.5 不保事項：--amber-wash 提示卡（左 4px amber 邊）。
- * exclusions 原樣呈現。
+ * exclusions 原樣呈現。標題旁可掛引文標記（citationEntries）。
  */
-export default function ExclusionsSection({ exclusions }: { exclusions: string[] }) {
+export default function ExclusionsSection({
+  exclusions,
+  citationEntries,
+}: {
+  exclusions: string[];
+  citationEntries?: CitationEntry[];
+}) {
   return (
     <div>
-      <SectionHeading index="05" title="不保事項" />
+      <SectionHeading
+        index="05"
+        title="不保事項"
+        aside={citationEntries && <CitationRef entries={citationEntries} />}
+      />
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}

@@ -19,6 +19,11 @@ import PlanTiersSection from "@/components/product/PlanTiersSection";
 import KeyTermsSection from "@/components/product/KeyTermsSection";
 import ExclusionsSection from "@/components/product/ExclusionsSection";
 import SourcesSection from "@/components/product/SourcesSection";
+import CitationsSection from "@/components/product/citation/CitationsSection";
+import {
+  buildCitationEntries,
+  entriesForGroup,
+} from "@/components/product/citation/citation-utils";
 import RelatedProducts from "@/components/product/RelatedProducts";
 import CompareCTA from "@/components/product/CompareCTA";
 import { EASE_OUT_EXPO } from "@/components/product/SectionHeading";
@@ -95,6 +100,10 @@ export default function ProductDetail() {
 
   const color = categoryColor(product.category);
 
+  // 引文：全頁編號 + 按 claim_field 分組，分畀各 section 標題旁嘅內文標記
+  const citationEntries = buildCitationEntries(product.citations);
+  const hasCitations = citationEntries.length > 0;
+
   return (
     <>
       {/* S1 產品頁首 */}
@@ -106,20 +115,39 @@ export default function ProductDetail() {
           <AnchorNav className="sticky top-[140px] hidden self-start lg:block" />
           <div className="flex w-full max-w-[780px] flex-col gap-14">
             <section id="pd-coverage" style={SECTION_SCROLL_MARGIN}>
-              <CoverageSection coverage={product.coverage ?? []} />
+              <CoverageSection
+                coverage={product.coverage ?? []}
+                citationEntries={entriesForGroup(citationEntries, "coverage")}
+              />
             </section>
             <section id="pd-premium" style={SECTION_SCROLL_MARGIN}>
-              <PremiumSection product={product} color={color} />
+              <PremiumSection
+                product={product}
+                color={color}
+                citationEntries={entriesForGroup(citationEntries, "premium")}
+              />
             </section>
             <section id="pd-tiers" style={SECTION_SCROLL_MARGIN}>
               <PlanTiersSection product={product} color={color} />
             </section>
             <section id="pd-terms" style={SECTION_SCROLL_MARGIN}>
-              <KeyTermsSection terms={product.key_terms ?? []} />
+              <KeyTermsSection
+                terms={product.key_terms ?? []}
+                citationEntries={entriesForGroup(citationEntries, "terms")}
+              />
             </section>
             <section id="pd-exclusions" style={SECTION_SCROLL_MARGIN}>
-              <ExclusionsSection exclusions={product.exclusions ?? []} />
+              <ExclusionsSection
+                exclusions={product.exclusions ?? []}
+                citationEntries={entriesForGroup(citationEntries, "exclusions")}
+              />
             </section>
+            {/* 頁尾「資料出處」：逐條官方文件原文引文（無引文時唔顯示） */}
+            {hasCitations && (
+              <section id="pd-citations" style={SECTION_SCROLL_MARGIN}>
+                <CitationsSection citations={product.citations ?? []} />
+              </section>
+            )}
             <section id="pd-sources" style={SECTION_SCROLL_MARGIN}>
               <SourcesSection product={product} />
             </section>

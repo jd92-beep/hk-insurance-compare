@@ -5,6 +5,8 @@ import SectionHeading, {
   EASE_IN_OUT_QUART,
   EASE_OUT_EXPO,
 } from "@/components/product/SectionHeading";
+import CitationRef from "@/components/product/citation/CitationRef";
+import type { CitationEntry } from "@/components/product/citation/citation-utils";
 import { cn } from "@/lib/utils";
 
 const PREVIEW_LEN = 40;
@@ -15,7 +17,13 @@ const QUART_CSS = `cubic-bezier(${EASE_IN_OUT_QUART.join(",")})`;
  * 其餘收合顯示前 40 字；左側紅色「§」；「+」旋轉 45°。
  * 展開態顯示 JSON 完整原文，唔截斷。
  */
-export default function KeyTermsSection({ terms }: { terms: string[] }) {
+export default function KeyTermsSection({
+  terms,
+  citationEntries,
+}: {
+  terms: string[];
+  citationEntries?: CitationEntry[];
+}) {
   const [open, setOpen] = useState<ReadonlySet<number>>(() => new Set([0]));
 
   const toggle = (i: number) => {
@@ -29,7 +37,11 @@ export default function KeyTermsSection({ terms }: { terms: string[] }) {
 
   return (
     <div>
-      <SectionHeading index="04" title="主要條款" />
+      <SectionHeading
+        index="04"
+        title="主要條款"
+        aside={citationEntries && <CitationRef entries={citationEntries} />}
+      />
       <motion.ul
         initial="hidden"
         whileInView="show"

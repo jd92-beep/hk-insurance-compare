@@ -1,15 +1,28 @@
 import { motion } from "framer-motion";
 import type { CoverageItem } from "@/types/insurance";
 import SectionHeading, { EASE_OUT_EXPO } from "@/components/product/SectionHeading";
+import CitationRef from "@/components/product/citation/CitationRef";
+import type { CitationEntry } from "@/components/product/citation/citation-utils";
 
 /**
  * S2.1 保障項目：左保障項目 + 右賠償上限，髮線分行。
  * 右欄 max-width 60%，長文自動折行（附錄 3）。
+ * 標題旁可掛引文標記（citationEntries）。
  */
-export default function CoverageSection({ coverage }: { coverage: CoverageItem[] }) {
+export default function CoverageSection({
+  coverage,
+  citationEntries,
+}: {
+  coverage: CoverageItem[];
+  citationEntries?: CitationEntry[];
+}) {
   return (
     <div>
-      <SectionHeading index="01" title="保障項目" />
+      <SectionHeading
+        index="01"
+        title="保障項目"
+        aside={citationEntries && <CitationRef entries={citationEntries} />}
+      />
       <motion.ul
         initial="hidden"
         whileInView="show"

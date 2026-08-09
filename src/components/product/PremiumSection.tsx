@@ -3,21 +3,30 @@ import type { Product } from "@/types/insurance";
 import PriceRangeBar from "@/components/PriceRangeBar";
 import PremiumChip from "@/components/product/PremiumChip";
 import SectionHeading, { EASE_OUT_EXPO } from "@/components/product/SectionHeading";
+import CitationRef from "@/components/product/citation/CitationRef";
+import type { CitationEntry } from "@/components/product/citation/citation-utils";
 
 /**
  * S2.2 保費資料：--paper-2 紙卡（左 4px 類別色邊）。
  * premium_range / premium_notes 原樣呈現；有公開保費 → 附對數尺規。
+ * 標題旁可掛引文標記（citationEntries）。
  */
 export default function PremiumSection({
   product,
   color,
+  citationEntries,
 }: {
   product: Product;
   color: string;
+  citationEntries?: CitationEntry[];
 }) {
   return (
     <div>
-      <SectionHeading index="02" title="保費資料" />
+      <SectionHeading
+        index="02"
+        title="保費資料"
+        aside={citationEntries && <CitationRef entries={citationEntries} />}
+      />
       <motion.div
         initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0.4 }}
         whileInView={{ clipPath: "inset(0 0% 0 0)", opacity: 1 }}

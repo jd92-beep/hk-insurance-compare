@@ -7,16 +7,34 @@ import { useCategories, useInsurers, useProducts } from "@/providers/InsuranceDa
 import { useSearch } from "@/providers/SearchProvider";
 import { CATEGORY_META } from "@/lib/categories";
 
-/** 簡易中英文模糊匹配：query 逐字順序出現即命中 */
+/**
+ * 中英文模糊匹配：先試子字串；後備係「收緊版」子序列——
+ * 每個命中字之間最多隔 1 個字（容忍空格，例如 "bluecross" 中 "blue cross"），
+ * 唔准成條 query 打散晒跨詞命中（之前搜 "Bowtie" 會誤中 Blue WeCare）。
+ */
 function fuzzyMatch(text: string, query: string): boolean {
   const t = text.toLowerCase();
   const q = query.toLowerCase().trim();
   if (!q) return true;
   if (t.includes(q)) return true;
-  let i = 0;
-  for (const ch of t) {
-    if (ch === q[i]) i += 1;
+  let start = t.indexOf(q[0]);
+  while (start !== -1) {
+    let i = 1;
+    let ti = start + 1;
+    while (i < q.length && ti < t.length) {
+      if (t[ti] === q[i]) {
+        i += 1;
+        ti += 1;
+      } else if (ti + 1 < t.length && t[ti + 1] === q[i]) {
+        // 容忍隔 1 個字（空格／連字符）
+        i += 1;
+        ti += 2;
+      } else {
+        break;
+      }
+    }
     if (i >= q.length) return true;
+    start = t.indexOf(q[0], start + 1);
   }
   return false;
 }

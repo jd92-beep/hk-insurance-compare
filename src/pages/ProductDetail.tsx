@@ -110,7 +110,7 @@ export default function ProductDetail() {
       <ProductHeader product={product} />
 
       {/* S2 內容雙欄：錨點導航 + 主欄 */}
-      <section className="pb-20 pt-8 max-md:pb-14 max-md:pt-6">
+      <section className="pb-20 pt-4 max-md:pb-14 max-md:pt-3">
         <div className="site-container flex gap-12">
           <AnchorNav className="sticky top-[140px] hidden self-start lg:block" />
           <div className="flex w-full max-w-[780px] flex-col gap-14">

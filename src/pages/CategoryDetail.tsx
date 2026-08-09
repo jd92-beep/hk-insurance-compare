@@ -17,7 +17,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { CATEGORY_META, categorySpectrum, parsePremiumAmounts } from "@/lib/categories";
+import { CATEGORY_META, categorySpectrum, premiumSortKey } from "@/lib/categories";
 import {
   useCategories,
   useInsuranceData,
@@ -80,11 +80,9 @@ export default function CategoryDetail() {
 
   const spectrum = useMemo(() => categorySpectrum(products), [products]);
 
-  const premiumKey = (p: (typeof products)[number]): number => {
-    if (!p.premium_available) return Number.POSITIVE_INFINITY;
-    const amounts = parsePremiumAmounts(p.premium_range);
-    return amounts.length > 0 ? Math.min(...amounts) : Number.POSITIVE_INFINITY;
-  };
+  // 排序 key 統一年繳化（/月 ×12、/日 ×365），避免月繳價同年繳價直接比大細
+  const premiumKey = (p: (typeof products)[number]): number =>
+    p.premium_available ? premiumSortKey(p.premium_range) : Number.POSITIVE_INFINITY;
 
   const filtered = useMemo(() => {
     let list = products;
@@ -94,9 +92,15 @@ export default function CategoryDetail() {
     if (onlyPremium) list = list.filter((p) => p.premium_available);
     const sorted = [...list];
     if (sort === "premium") {
-      sorted.sort((a, b) =>
-        premiumDir === "asc" ? premiumKey(a) - premiumKey(b) : premiumKey(b) - premiumKey(a),
-      );
+      sorted.sort((a, b) => {
+        const ka = premiumKey(a);
+        const kb = premiumKey(b);
+        // 無公開保費永遠排尾（升序降序都係），先至貼合「有公開保費先」
+        const aNone = !Number.isFinite(ka);
+        const bNone = !Number.isFinite(kb);
+        if (aNone !== bNone) return aNone ? 1 : -1;
+        return premiumDir === "asc" ? ka - kb : kb - ka;
+      });
     } else if (sort === "insurer") {
       sorted.sort((a, b) => a.insurer.localeCompare(b.insurer) || a.id.localeCompare(b.id));
     } else if (sort === "coverage") {
@@ -312,6 +316,7 @@ export default function CategoryDetail() {
           onlyPremium={onlyPremium}
           onTogglePremium={() => setOnlyPremium((v) => !v)}
           sort={sort}
+          premiumDir={premiumDir}
           onSortChange={handleSortChange}
           view={effectiveView}
           onViewChange={setView}

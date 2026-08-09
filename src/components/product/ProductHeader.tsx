@@ -115,7 +115,7 @@ export default function ProductHeader({ product }: { product: Product }) {
   const productType = (product as Product & { product_type?: string }).product_type;
 
   return (
-    <header className="pb-8 pt-16 max-md:pb-6 max-md:pt-12">
+    <header className="pb-4 pt-16 max-md:pb-4 max-md:pt-12">
       <div className="site-container">
         <motion.div
           initial={{ opacity: 0 }}
@@ -295,8 +295,9 @@ export default function ProductHeader({ product }: { product: Product }) {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: EASE_OUT_EXPO, delay: 0.5 }}
-            className="lg:col-span-4"
+            className="lg:col-span-4 lg:-mb-24"
           >
+            {/* 負 margin 令檔案卡向下延伸入 S2 右側空位，避免 hero CTA 同內容區之間出現大片空白帶 */}
             <div className="paper-card overflow-hidden lg:sticky lg:top-[100px]">
               <div className="h-[3px] w-full" style={{ background: color }} />
               <div className="p-7">

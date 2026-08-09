@@ -166,7 +166,8 @@ export default function Hero() {
 
   return (
     <section ref={rootRef} className="relative overflow-hidden" onMouseMove={onMouseMove}>
-      <div className="site-container relative grid min-h-[92dvh] grid-cols-1 items-center gap-12 pb-16 pt-24 lg:grid-cols-12 lg:gap-8">
+      {/* mobile 底部加多啲 padding：首訪免責聲明 toast（fixed 底條）唔會冚住 9/85/27 統計行 */}
+      <div className="site-container relative grid min-h-[92dvh] grid-cols-1 items-center gap-12 pb-16 pt-24 max-md:pb-36 lg:grid-cols-12 lg:gap-8">
         {/* 漂浮裝飾層（左欄文字後面，近/遠兩層） */}
         {!reduced && (
           <>
@@ -189,9 +190,10 @@ export default function Hero() {
 
         {/* 左 7 欄 */}
         <div className="relative lg:col-span-7">
-          <p data-hero-eyebrow className="eyebrow mb-6 flex items-center gap-2.5 text-ink-soft">
-            <span className="h-2 w-2 bg-red" aria-hidden="true" />
-            <span className="eyebrow-zh">香港保險比較</span>
+          <p data-hero-eyebrow className="eyebrow mb-6 flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-ink-soft">
+            <span className="h-2 w-2 shrink-0 bg-red" aria-hidden="true" />
+            {/* zh 段唔准斷字（390px 下「香港保險比/較」好肉酸），英文段先准獨立折行 */}
+            <span className="eyebrow-zh whitespace-nowrap">香港保險比較</span>
             <span className="text-ink-faint">· HONG KONG INSURANCE COMPARE</span>
           </p>
           <h1 className="display-hero font-serif text-ink">

@@ -18,12 +18,16 @@ export interface InsurerOption {
   name_zh: string;
 }
 
-const SORT_LABELS: Record<SortKey, string> = {
+const SORT_LABELS: Record<Exclude<SortKey, "premium">, string> = {
   default: "預設排序",
-  premium: "保費由低至高（有公開保費先）",
   insurer: "公司名 A–Z",
   coverage: "保障項目數量",
 };
+
+/** 保費排序 label 跟埋方向（升序/降序即時反映） */
+function premiumSortLabel(dir: "asc" | "desc"): string {
+  return dir === "asc" ? "保費由低至高（有公開保費先）" : "保費由高至低（有公開保費先）";
+}
 
 /**
  * 類別詳情頁 sticky 篩選工具列（category.md S2）
@@ -37,6 +41,7 @@ export default function FilterBar({
   onlyPremium,
   onTogglePremium,
   sort,
+  premiumDir,
   onSortChange,
   view,
   onViewChange,
@@ -53,6 +58,7 @@ export default function FilterBar({
   onlyPremium: boolean;
   onTogglePremium: () => void;
   sort: SortKey;
+  premiumDir: "asc" | "desc";
   onSortChange: (s: SortKey) => void;
   view: ViewMode;
   onViewChange: (v: ViewMode) => void;
@@ -123,11 +129,18 @@ export default function FilterBar({
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {(Object.keys(SORT_LABELS) as SortKey[]).map((key) => (
-              <SelectItem key={key} value={key} className="text-small">
-                {SORT_LABELS[key]}
-              </SelectItem>
-            ))}
+            <SelectItem value="default" className="text-small">
+              {SORT_LABELS.default}
+            </SelectItem>
+            <SelectItem value="premium" className="text-small">
+              {premiumSortLabel(premiumDir)}
+            </SelectItem>
+            <SelectItem value="insurer" className="text-small">
+              {SORT_LABELS.insurer}
+            </SelectItem>
+            <SelectItem value="coverage" className="text-small">
+              {SORT_LABELS.coverage}
+            </SelectItem>
           </SelectContent>
         </Select>
 
@@ -179,9 +192,9 @@ export default function FilterBar({
           )}
         </div>
       </div>
-        {/* 右緣漸隱：提示 pills 行可以橫向滑動 */}
+        {/* 右緣漸隱：提示 pills 行可以橫向滑動（夠闊先睇得清楚） */}
         <div
-          className="pointer-events-none absolute inset-y-0 right-0 w-14 bg-gradient-to-l from-paper via-paper/70 to-transparent"
+          className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-paper via-paper/85 to-transparent"
           aria-hidden="true"
         />
       </div>

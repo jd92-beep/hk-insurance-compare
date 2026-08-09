@@ -73,11 +73,14 @@ export default function MethodStory() {
       }
 
       let current = 0;
-      const pinInner = rootRef.current?.querySelector<HTMLElement>(".method-pin-inner");
       ScrollTrigger.create({
         trigger: rootRef.current,
         start: "top top",
-        end: "+=130%",
+        // pin 距離收短至 +=100%：解 pin 後 pinned 元素即刻自然向上捲走，
+        // 下一段（淺色）緊接其下——任何 scroll 位置都唔會成版純黑。
+        // 唔做「解 pin 前 fade out」：fade 完成後元素仍然覆蓋 viewport，
+        // 先係之前成版黑屏嘅根因；內容保持可見直到自然捲離視口。
+        end: "+=100%",
         pin: ".method-pin",
         pinSpacing: true,
         onUpdate: (self) => {
@@ -87,11 +90,6 @@ export default function MethodStory() {
             current = idx;
             setStep(idx);
             showScene(idx);
-          }
-          // 解 pin 前 fade out 內容，消除收尾純黑死位
-          if (pinInner) {
-            const outro = gsap.utils.clamp(0, 1, (p - 0.84) / 0.14);
-            gsap.set(pinInner, { autoAlpha: 1 - outro, y: -32 * outro });
           }
         },
       });

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import type { Product } from "@/types/insurance";
-import { categoryColor, categorySpectrum, parsePremiumAmounts } from "@/lib/categories";
+import { categoryColor, categorySpectrum, parsePremiumAmounts, premiumUnitHint } from "@/lib/categories";
 import type { PremiumSpectrum } from "@/lib/categories";
 import { useProducts } from "@/providers/InsuranceDataProvider";
 import { cn } from "@/lib/utils";
@@ -40,6 +40,10 @@ export default function PriceRangeBar({
     if (amounts.length === 0) return null;
     return { min: Math.min(...amounts), max: Math.max(...amounts) };
   }, [product]);
+
+  // 最低價係月繳／日繳時喺金額旁標明單位（同年繳價並排唔會誤導）
+  const unitHint = product.premium_available ? premiumUnitHint(product.premium_range) : null;
+  const unitSuffix = unitHint === "按月繳計" ? "/月" : unitHint === "按日繳計" ? "/日" : "";
 
   const color = categoryColor(product.category);
 
@@ -84,7 +88,10 @@ export default function PriceRangeBar({
         <div className="absolute top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 bg-paper" style={{ left: `${left + width}%`, borderColor: color }} />
       </div>
       <div className="flex items-baseline justify-between font-grotesk text-[13px] font-medium text-ink-soft">
-        <span>{formatHKD(range.min)}</span>
+        <span>
+          {formatHKD(range.min)}
+          {unitSuffix && <span className="font-sans text-[11px] text-ink-faint">{unitSuffix}</span>}
+        </span>
         {range.max !== range.min && <span>{formatHKD(range.max)}</span>}
       </div>
     </div>

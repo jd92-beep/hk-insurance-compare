@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CompareTray from "@/components/CompareTray";
 import SearchPalette from "@/components/SearchPalette";
+import { useCompare } from "@/providers/CompareProvider";
 import { destroyLenis, getLenis, initLenis } from "@/lib/lenis";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -32,6 +33,10 @@ function ScrollProgress() {
 export default function Layout() {
   const location = useLocation();
   const outlet = useOutlet();
+  const { items } = useCompare();
+  // CompareTray 係 fixed 底欄：出現時頁底要預留空間，避免遮 Footer／頁尾內容
+  // （tray 高 ~60px + bottom-6 浮位；同 DisclaimerToast 嘅 spacer 做法統一）
+  const trayVisible = items.length > 0 && location.pathname !== "/compare";
 
   // Lenis 平滑滾動（全站）
   useEffect(() => {
@@ -80,6 +85,7 @@ export default function Layout() {
           </AnimatePresence>
         </main>
         <Footer />
+        {trayVisible && <div aria-hidden="true" className="h-[104px]" />}
         <CompareTray />
         <SearchPalette />
       </div>

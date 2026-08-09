@@ -44,13 +44,20 @@ export function groupKeyOf(claimField: string): CitationGroupKey {
   }
 }
 
-/** 將產品引文陣列變成帶編號、分組嘅條目（保持原本次序編號） */
+/**
+ * 將產品引文陣列變成帶編號、分組嘅條目。
+ * 編號跟展示次序（CITATION_GROUPS 分組順序 → 組內原次序），
+ * 頁尾引文卡先至會 01→N 順住落（之前按原次序編號，展示分組後會跳號）。
+ */
 export function buildCitationEntries(citations: Citation[] | undefined): CitationEntry[] {
-  return (citations ?? []).map((citation, i) => ({
-    citation,
-    num: i + 1,
-    group: groupKeyOf(citation.claim_field),
-  }));
+  const groupOrder = new Map(CITATION_GROUPS.map((g, i) => [g.key, i]));
+  return (citations ?? [])
+    .map((citation, index) => ({ citation, index, group: groupKeyOf(citation.claim_field) }))
+    .sort(
+      (a, b) =>
+        (groupOrder.get(a.group) ?? 99) - (groupOrder.get(b.group) ?? 99) || a.index - b.index,
+    )
+    .map(({ citation, group }, i) => ({ citation, num: i + 1, group }));
 }
 
 /** 按 CITATION_GROUPS 次序分組；唔會出現空組 */

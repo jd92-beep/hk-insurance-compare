@@ -13,7 +13,7 @@ import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 import type { CoverageItem, Product } from "@/types/insurance";
 import type { PremiumSpectrum } from "@/lib/categories";
-import { parsePremiumAmounts } from "@/lib/categories";
+import { parsePremiumAmounts, premiumUnitHint } from "@/lib/categories";
 import PriceRangeBar from "@/components/PriceRangeBar";
 import StampBadge from "@/components/StampBadge";
 import { useCompare } from "@/providers/CompareProvider";
@@ -216,6 +216,7 @@ export default function ProductTable({
             const inTray = compare.has(p.id);
             const expanded = expandedId === p.id;
             const amounts = p.premium_available ? parsePremiumAmounts(p.premium_range) : [];
+            const unitHint = p.premium_available ? premiumUnitHint(p.premium_range) : null;
             const keyCoverage = pickKeyCoverage(p.coverage ?? [], coverageKeywords);
             const tiers = p.plan_tiers ?? [];
             const sourceUrl = p.source_urls?.[0];
@@ -284,6 +285,11 @@ export default function ProductTable({
                           {formatHKD(Math.min(...amounts))}
                           {Math.max(...amounts) !== Math.min(...amounts) && (
                             <span className="text-ink-faint"> 起</span>
+                          )}
+                          {unitHint && (
+                            <span className="ml-1.5 font-sans text-[11.5px] font-medium text-ink-faint">
+                              {unitHint}
+                            </span>
                           )}
                         </span>
                         <PriceRangeBar product={p} spectrum={spectrum} className="mt-1 h-12" />

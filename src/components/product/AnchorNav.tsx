@@ -50,7 +50,9 @@ export default function AnchorNav({ className }: { className?: string }) {
     let raf = 0;
     const update = () => {
       raf = 0;
-      const probe = NAV_OFFSET + 60;
+      // spy 觸發線放喺 viewport 上半部（約 40% 高）：
+      // 淨係用 navbar offset 的話，用戶睇緊下一節中間都仲會 highlight 上一節（慢半拍）
+      const probe = Math.max(NAV_OFFSET + 60, Math.round(window.innerHeight * 0.4));
       let current = PRODUCT_SECTIONS[0].id;
       let firstTop: number | null = null;
       let lastBottom: number | null = null;

@@ -11,6 +11,8 @@ interface CompareState {
   remove: (id: string) => void;
   toggle: (id: string) => void;
   clear: () => void;
+  /** 一次性替換成指定清單（分享連結 ?ids= 載入用，避免 clear+add 逐下觸發） */
+  replace: (ids: string[]) => void;
   has: (id: string) => boolean;
   isFull: boolean;
 }
@@ -61,11 +63,15 @@ export function CompareProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const clear = useCallback(() => setItems([]), []);
+  const replace = useCallback(
+    (ids: string[]) => setItems([...new Set(ids)].slice(0, COMPARE_LIMIT)),
+    [],
+  );
   const has = useCallback((id: string) => items.includes(id), [items]);
 
   const value = useMemo<CompareState>(
-    () => ({ items, add, remove, toggle, clear, has, isFull: items.length >= COMPARE_LIMIT }),
-    [items, add, remove, toggle, clear, has],
+    () => ({ items, add, remove, toggle, clear, replace, has, isFull: items.length >= COMPARE_LIMIT }),
+    [items, add, remove, toggle, clear, replace, has],
   );
 
   return <CompareContext.Provider value={value}>{children}</CompareContext.Provider>;

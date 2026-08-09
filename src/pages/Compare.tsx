@@ -189,6 +189,9 @@ export default function Compare() {
   const [copied, setCopied] = useState(false);
   const initialized = useRef(false);
   const toastTimer = useRef<number | null>(null);
+  // URL ids 替換次數：作為產品欄 AnimatePresence 嘅 key，
+  // 令舊 tray 產品即時消失（skip exit 動畫），唔會新舊 6 卡同屏
+  const [urlSwapCount, setUrlSwapCount] = useState(0);
 
   const products = useMemo(
     () =>
@@ -207,8 +210,8 @@ export default function Compare() {
         .filter((id) => data.products.some((p) => p.id === id))
         .slice(0, COMPARE_LIMIT);
       if (ids.join(",") !== compare.items.join(",")) {
-        compare.clear();
-        ids.forEach((id) => compare.add(id));
+        compare.replace(ids);
+        setUrlSwapCount((n) => n + 1);
       }
     }
     initialized.current = true;
@@ -349,7 +352,7 @@ export default function Compare() {
               >
                 官方文件節錄對照
               </div>
-              <AnimatePresence mode="popLayout">
+              <AnimatePresence mode="popLayout" key={urlSwapCount}>
                 {products.map((p) => (
                   <FilledSlot key={p.id} product={p} onRemove={() => compare.remove(p.id)} />
                 ))}

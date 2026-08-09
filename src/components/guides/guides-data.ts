@@ -226,6 +226,8 @@ export interface GlossaryTerm {
   /** 英文／同義詞（紅色 Grotesk 小字） */
   en: string;
   definition: string;
+  /** 例句（hover／點擊展開顯示） */
+  example: string;
   tag: GlossaryTag;
 }
 
@@ -241,60 +243,70 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "保費",
     en: "Premium",
     definition: "你畀保險公司嘅錢。可以年繳、月繳，繳費期越長總額通常越高。",
+    example: "「份醫保年繳保費 HK$3,600，月繳就每月 HK$310。」",
     tag: "錢",
   },
   {
     term: "保額 / 賠償上限",
     en: "Sum Insured / Benefit Limit",
     definition: "出事時保險公司最多賠幾多。分總額同分項上限，貴重物品成日有獨立上限。",
+    example: "「家居財物保額 HK$500,000，但單件首飾上限得 HK$10,000。」",
     tag: "賠償",
   },
   {
     term: "自負額 / 墊底費",
     en: "Deductible / Excess",
     definition: "索償時你要先自己孭嘅部分。墊底費越高，保費一般越平。",
+    example: "「水浸索償墊底費 HK$5,000，即係首 HK$5,000 要自己孭。」",
     tag: "錢",
   },
   {
     term: "等候期",
     en: "Waiting Period",
     definition: "保單生效後一段時間內，指定保障唔賠（常見於危疾、醫療）。",
+    example: "「危疾保等候期 90 日，期間確診唔賠。」",
     tag: "時間",
   },
   {
     term: "不保事項",
     en: "Exclusions",
     definition: "保單列明唔賠嘅情況，例如先天性疾病、高危活動。投保前必讀。",
+    example: "「條款列明滑雪受傷屬不保事項，要買附加保障先包。」",
     tag: "賠償",
   },
   {
     term: "自付費（自願醫保）",
     en: "Deductible, VHIS",
     definition: "自願醫保靈活計劃常見：每年自付 HK$0–50,000 不等，自付費越高保費越平。",
+    example: "「揀 HK$16,000 自付費，保費平過零自付費版本成截。」",
     tag: "錢",
   },
   {
     term: "NCD 無索償折扣",
     en: "No-Claim Discount",
     definition: "汽車保險術語：連續年份冇索償，續保保費逐年打折。",
+    example: "「連續 5 年冇索償，NCD 去到 60%，續保平好多。」",
     tag: "錢",
   },
   {
     term: "第三者責任",
     en: "Third-Party Liability",
     definition: "你令他人受傷或財物損失時嘅法律賠償責任，家居、汽車、寵物保險都常見。",
+    example: "「漏水浸到樓下，第三者責任保障幫你賠維修費。」",
     tag: "賠償",
   },
   {
     term: "冷靜期",
     en: "Cooling-off Period",
     definition: "長期保單（人壽、危疾）簽發後一段時間內取消可全數退款（扣除市值調整）。",
+    example: "「人壽保單冷靜期 21 日內取消，可以全數退款。」",
     tag: "時間",
   },
   {
     term: "即時報價",
     en: "Instant Quote",
     definition: "部分公司唔公開統一保費表，要輸入個人資料先報價。本站會如實標示，唔會估。",
+    example: "「汽車保險多數要即時報價，輸入車齡同駕駛年資先有價。」",
     tag: "錢",
   },
 ];

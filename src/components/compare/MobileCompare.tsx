@@ -5,7 +5,7 @@ import type { Product } from "@/types/insurance";
 import { categoryColor, categoryName } from "@/lib/categories";
 import { useCategories } from "@/providers/InsuranceDataProvider";
 import { cn } from "@/lib/utils";
-import { coverageLimit, unionCoverageItems } from "@/components/compare/coverage";
+import { resolveCoverage } from "@/components/compare/canonical-benefits";
 import {
   CoverageLimitCell,
   DocumentsCell,
@@ -76,7 +76,7 @@ export default function MobileCompare({
 
   // 已移除嘅產品 → 自動落返第一份（唔使 effect，直接 derive）
   const active = products.find((p) => p.id === activeId) ?? products[0];
-  const union = active ? unionCoverageItems([active]) : [];
+  const resolved = active ? resolveCoverage([active]) : { matched: [], others: [] };
   const multi = products.length > 1;
 
   if (!active) return null;
@@ -148,14 +148,26 @@ export default function MobileCompare({
         </Group>
 
         <Group en="COVERAGE" zh="保障項目" multi={multi}>
-          {union.length === 0 && (
+          {resolved.matched.length === 0 && resolved.others.length === 0 && (
             <Block label="保障項目"><span className="text-ink-faint">—</span></Block>
           )}
-          {union.map((item) => (
-            <Block key={item} label={item}>
-              <CoverageLimitCell limit={coverageLimit(active, item)} highlight={false} />
+          {resolved.matched.map((row) => (
+            <Block key={row.key} label={row.label}>
+              <CoverageLimitCell limit={row.limits[0]} highlight={false} />
             </Block>
           ))}
+          {resolved.others.length > 0 && (
+            <>
+              <p className="border-b bg-paper-3/60 px-4 py-2 text-[12px] font-bold text-ink-faint">
+                其他保障
+              </p>
+              {resolved.others.map((row) => (
+                <Block key={row.key} label={row.label}>
+                  <CoverageLimitCell limit={row.limits[0]} highlight={false} />
+                </Block>
+              ))}
+            </>
+          )}
         </Group>
 
         <Group en="PLANS" zh="計劃層級" multi={multi}>

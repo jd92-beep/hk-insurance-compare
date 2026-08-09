@@ -64,13 +64,14 @@ export default function FilterBar({
 }) {
   return (
     <motion.div
-      className="sticky top-[72px] z-40 border-b bg-paper/90 backdrop-blur-[10px]"
+      className="sticky top-[72px] z-40 border-b bg-paper"
       style={{ borderColor: "var(--line)" }}
       initial={{ opacity: 0, y: -12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
     >
-      <div className="site-container flex items-center gap-3 overflow-x-auto py-3.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="relative">
+        <div className="site-container flex items-center gap-3 overflow-x-auto py-3.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {/* 保險公司 chips */}
         <div className="flex shrink-0 items-center gap-1.5" role="group" aria-label="保險公司篩選">
           <FilterChip
@@ -177,6 +178,12 @@ export default function FilterBar({
             </button>
           )}
         </div>
+      </div>
+        {/* 右緣漸隱：提示 pills 行可以橫向滑動 */}
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 w-14 bg-gradient-to-l from-paper via-paper/70 to-transparent"
+          aria-hidden="true"
+        />
       </div>
     </motion.div>
   );

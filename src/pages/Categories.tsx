@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Search } from "lucide-react";
+import { ArrowRight, Scale, Search } from "lucide-react";
 import { Link } from "react-router";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import StampBadge from "@/components/StampBadge";
@@ -13,10 +13,18 @@ import {
   useInsurers,
   useProducts,
 } from "@/providers/InsuranceDataProvider";
+import { useCompare, COMPARE_LIMIT } from "@/providers/CompareProvider";
 import { useSearch } from "@/providers/SearchProvider";
 import { CATEGORY_ORDER } from "@/lib/categories";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
+
+/** 熱門比較組合（一撳直入比較工具） */
+const POPULAR_COMBOS: { label: string; ids: string[] }[] = [
+  { label: "旅遊保險：AIG · Blue Cross · AXA", ids: ["travel-aig", "travel-blue-cross", "travel-axa"] },
+  { label: "自願醫保：Bowtie · 保柏 · AIA", ids: ["medical-bowtie", "medical-bupa", "medical-aia"] },
+  { label: "家居保險：AXA · Avo · 蘇黎世", ids: ["home-axa", "home-avo", "home-zurich"] },
+];
 
 /** h1 詞級／字級進場 */
 function AnimatedTitle({ text }: { text: string }) {
@@ -59,6 +67,16 @@ export default function Categories() {
   const insurers = useInsurers();
   const allProducts = useProducts();
   const search = useSearch();
+  const compare = useCompare();
+
+  /** 比較籃入面嘅產品（動態顯示喺比較工具卡） */
+  const basketProducts = useMemo(
+    () =>
+      compare.items
+        .map((id) => allProducts.find((p) => p.id === id))
+        .filter((p): p is NonNullable<typeof p> => Boolean(p)),
+    [compare.items, allProducts],
+  );
 
   const premiumTotal = useMemo(
     () => allProducts.filter((p) => p.premium_available).length,
@@ -186,7 +204,7 @@ export default function Categories() {
                 );
               })}
 
-              {/* 宣傳卡：去比較工具 */}
+              {/* 宣傳卡：比較工具（比較籃狀態＋熱門組合） */}
               <motion.div
                 className="lg:col-span-8"
                 initial={{ opacity: 0, y: 40 }}
@@ -194,24 +212,73 @@ export default function Categories() {
                 viewport={{ once: true, margin: "-15% 0px" }}
                 transition={{ duration: 0.7, ease: EASE_OUT_EXPO }}
               >
-                <Link
-                  to="/compare"
-                  className="group flex h-full flex-col justify-between gap-6 rounded-card bg-ink p-8 text-paper shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
-                >
+                <div className="flex h-full flex-col justify-between gap-6 rounded-card bg-ink p-8 text-paper shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
                   <div>
                     <p className="eyebrow mb-4 text-paper/50">COMPARE TOOL</p>
                     <h3 className="font-serif text-[26px] font-bold leading-[1.25] max-md:text-[22px]">
                       心水產品，並排對照
                     </h3>
-                    <p className="mt-3 max-w-[32em] text-small text-paper/70">
-                      喺任何類別揀最多 3 份產品，一個表睇晒分別。
+
+                    {basketProducts.length > 0 ? (
+                      <div className="mt-4">
+                        <p className="text-small text-paper/70">
+                          你嘅比較籃有{" "}
+                          <span className="font-grotesk font-bold text-paper">
+                            {basketProducts.length}/{COMPARE_LIMIT}
+                          </span>{" "}
+                          份產品：
+                        </p>
+                        <div className="mt-2.5 flex flex-wrap gap-1.5">
+                          {basketProducts.map((p) => (
+                            <span
+                              key={p.id}
+                              className="chip border border-white/20 bg-white/10 text-paper/90"
+                            >
+                              {p.insurer_zh} {p.product_name_zh || p.product_name}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="mt-3 max-w-[32em] text-small text-paper/70">
+                        喺任何類別揀最多 {COMPARE_LIMIT} 份產品，保障逐項對齊，一個表睇晒分別。
+                      </p>
+                    )}
+
+                    {/* 熱門比較組合 */}
+                    <p className="mt-5 text-[12px] font-bold uppercase tracking-[0.14em] text-paper/40">
+                      熱門比較組合
                     </p>
+                    <ul className="mt-2.5 flex flex-col gap-2">
+                      {POPULAR_COMBOS.map((combo) => (
+                        <li key={combo.label}>
+                          <Link
+                            to={`/compare?ids=${combo.ids.join(",")}`}
+                            className="group/link inline-flex items-center gap-2 text-small font-medium text-paper/80 transition-colors hover:text-paper"
+                          >
+                            <span className="h-1 w-1 rounded-full bg-red" aria-hidden="true" />
+                            <span className="underline-offset-4 group-hover/link:underline">
+                              {combo.label}
+                            </span>
+                            <ArrowRight
+                              size={13}
+                              className="text-paper/40 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:text-red"
+                            />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <span className="inline-flex w-fit items-center gap-2 rounded-[10px] bg-red px-6 py-3 font-bold text-paper transition-colors duration-300 group-hover:bg-red-deep">
-                    去比較工具
+
+                  <Link
+                    to="/compare"
+                    className="group inline-flex w-fit items-center gap-2 rounded-[10px] bg-red px-6 py-3 font-bold text-paper transition-colors duration-300 hover:bg-red-deep"
+                  >
+                    <Scale size={16} />
+                    {basketProducts.length > 0 ? `繼續比較（${basketProducts.length} 份）` : "去比較工具"}
                     <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </Link>
+                  </Link>
+                </div>
               </motion.div>
             </div>
           )}

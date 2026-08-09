@@ -9,7 +9,6 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import CompareCTA from "@/components/product/CompareCTA";
 import PremiumChip from "@/components/product/PremiumChip";
 import { EASE_OUT_EXPO } from "@/components/product/SectionHeading";
-import { cn } from "@/lib/utils";
 
 /** 類別英文名（eyebrow 用） */
 const CATEGORY_EN: Record<string, string> = {
@@ -24,8 +23,37 @@ const CATEGORY_EN: Record<string, string> = {
   pet: "PET INSURANCE",
 };
 
-/** 超長產品名（醫療類四計劃並列）門檻 — product.md 附錄 4 */
+/** 超長產品名（多計劃並列）門檻 — product.md 附錄 4 */
 const LONG_NAME = 40;
+
+/** 自願醫保認可編號（例如 F00040 / S00013） */
+const CERT_CODE = /[SF]\d{5}/g;
+
+/** 系列產品資訊（多計劃並列名 → 主標短名＋計劃全名列表） */
+export function deriveSeriesInfo(product: Product, catName: string): {
+  isSeries: boolean;
+  /** 主標題：系列產品 → 「公司中文名 + 拉丁名 + 系列短名」，否則產品原名 */
+  title: string;
+  /** 各計劃全名（系列產品先用） */
+  planNames: string[];
+  /** 認可編號列表（自願醫保） */
+  certCodes: string[];
+} {
+  const nameZh = product.product_name_zh || product.product_name;
+  const isSeries = nameZh.length > LONG_NAME;
+  const certCodes = [...new Set(nameZh.match(CERT_CODE) ?? [])];
+  if (!isSeries) {
+    return { isSeries, title: nameZh, planNames: [], certCodes };
+  }
+  const seriesBase =
+    product.category === "medical" ? "自願醫保系列" : `${catName.replace(/（.*?）/g, "")}系列`;
+  const title = `${product.insurer_zh} ${product.insurer} ${seriesBase}`.trim();
+  const planNames = nameZh
+    .split("／")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return { isSeries, title, planNames, certCodes };
+}
 
 function domainOf(url: string): string {
   try {
@@ -78,7 +106,8 @@ export default function ProductHeader({ product }: { product: Product }) {
   const meta = CATEGORY_META[product.category];
 
   const nameZh = product.product_name_zh || product.product_name;
-  const isLongName = nameZh.length > LONG_NAME;
+  const series = deriveSeriesInfo(product, catName);
+  const { isSeries } = series;
   const tiers = product.plan_tiers ?? [];
   const docs = product.documents_found ?? [];
   const sources = product.source_urls ?? [];
@@ -86,7 +115,7 @@ export default function ProductHeader({ product }: { product: Product }) {
   const productType = (product as Product & { product_type?: string }).product_type;
 
   return (
-    <header className="pb-12 pt-20">
+    <header className="pb-8 pt-16 max-md:pb-6 max-md:pt-12">
       <div className="site-container">
         <motion.div
           initial={{ opacity: 0 }}
@@ -97,7 +126,7 @@ export default function ProductHeader({ product }: { product: Product }) {
             items={[
               { label: "首頁", to: "/" },
               { label: catName, to: `/category/${product.category}` },
-              { label: nameZh },
+              { label: series.title },
             ]}
             className="mb-8"
           />
@@ -142,16 +171,11 @@ export default function ProductHeader({ product }: { product: Product }) {
               />
             </p>
 
-            {/* h1（超長醫療產品名 → 縮細字級，附錄 4） */}
-            <h1
-              className={cn(
-                "display-2 font-black text-ink",
-                isLongName && "text-[clamp(26px,3.4vw,40px)]",
-              )}
-            >
-              <SplitWords text={nameZh} delay={0.2} />
+            {/* h1：系列產品 → 「公司 + 系列短名」；單一產品 → 原名 */}
+            <h1 className="display-2 font-black text-ink">
+              <SplitWords text={series.title} delay={0.2} />
             </h1>
-            {product.product_name && product.product_name !== nameZh && (
+            {product.product_name && product.product_name !== nameZh && !isSeries && (
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -162,19 +186,44 @@ export default function ProductHeader({ product }: { product: Product }) {
               </motion.p>
             )}
 
-            {/* 超長醫療產品名：TierChips 預覽各計劃（附錄 4） */}
-            {isLongName && tiers.length > 1 && (
+            {/* 系列產品：各計劃全名 chips 列表（副標區） */}
+            {isSeries && (
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: EASE_OUT_EXPO, delay: 0.35 }}
-                className="mt-4 flex flex-wrap gap-1.5"
+                className="mt-5"
               >
-                {tiers.map((t) => (
-                  <span key={t} className="chip bg-paper-3 text-ink-soft">
-                    {t}
-                  </span>
-                ))}
+                <p className="mb-2.5 text-small font-bold text-ink-faint">
+                  系列包括 {series.planNames.length > 0 ? series.planNames.length : tiers.length} 個計劃
+                </p>
+                <ol className="flex flex-col gap-1.5">
+                  {(series.planNames.length > 0 ? series.planNames : tiers).map((name, i) => (
+                    <li key={name} className="flex items-start gap-2.5 text-small leading-[1.7]">
+                      <span className="mt-0.5 shrink-0 font-grotesk text-[12px] font-bold text-ink-faint">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="font-medium text-ink-soft">{name}</span>
+                    </li>
+                  ))}
+                </ol>
+                {/* metadata definition list */}
+                <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-2 border-t pt-4 text-small" style={{ borderColor: "var(--line)" }}>
+                  <div className="flex items-baseline gap-2">
+                    <dt className="text-ink-faint">計劃數目</dt>
+                    <dd className="font-grotesk font-bold text-ink">
+                      {series.planNames.length > 0 ? series.planNames.length : tiers.length}
+                    </dd>
+                  </div>
+                  {series.certCodes.length > 0 && (
+                    <div className="flex items-baseline gap-2">
+                      <dt className="text-ink-faint">認可編號</dt>
+                      <dd className="font-grotesk font-bold text-ink">
+                        {series.certCodes.join("、")}
+                      </dd>
+                    </div>
+                  )}
+                </dl>
               </motion.div>
             )}
 
@@ -292,6 +341,14 @@ export default function ProductHeader({ product }: { product: Product }) {
                       {tiers.length} 個
                     </dd>
                   </div>
+                  {series.certCodes.length > 0 && (
+                    <div className="flex justify-between gap-4">
+                      <dt className="shrink-0 text-ink-faint">認可編號</dt>
+                      <dd className="text-right font-grotesk font-bold text-ink">
+                        {series.certCodes.join("、")}
+                      </dd>
+                    </div>
+                  )}
                   <div className="flex justify-between gap-4">
                     <dt className="shrink-0 text-ink-faint">官方文件</dt>
                     <dd className="text-right font-grotesk font-bold text-ink">

@@ -1,0 +1,236 @@
+import type { Product } from "@/types/insurance";
+
+/**
+ * Canonical benefit mapping（比較頁逐項對齊用）。
+ *
+ * 各保險公司對同一保障嘅命名唔同（例如「緊急醫療費用及支援—醫療費用」vs
+ * 「醫療費用」），直接用條目原文做 row key 會令等值保障永遠唔同一行。
+ * 呢度按類別定義標準保障項目（canonical benefits），用關鍵字匹配將各產品
+ * coverage 條目歸入標準行；對唔到嘅歸入「其他保障」組。
+ */
+
+export interface CanonicalBenefit {
+  id: string;
+  /** 標準行名（顯示用） */
+  label: string;
+  /** 關鍵字（條目名包含其中一個即歸入；按順序首個命中為準） */
+  keywords: string[];
+}
+
+/** 一行對齊後嘅保障：limits[i] = 第 i 份產品嘅 limit 原文（冇 → undefined） */
+export interface CanonicalRow {
+  key: string;
+  label: string;
+  limits: (string | undefined)[];
+}
+
+export interface ResolvedCoverage {
+  /** 標準保障行（按類別定義順序，只保留至少一份產品有值嘅行） */
+  matched: CanonicalRow[];
+  /** 對唔到標準項目嘅條目（以原文名做 key） */
+  others: CanonicalRow[];
+}
+
+/* ── 各類別標準保障項目（keywords 順序＝匹配優先順序） ───────────── */
+
+const TRAVEL: CanonicalBenefit[] = [
+  { id: "medical", label: "海外醫療費用", keywords: ["醫療費用", "海外醫療", "醫療及相關", "覆診", "入院保證金", "住院現金", "海外住院"] },
+  { id: "evacuation", label: "緊急醫療運送 / 遺體運返", keywords: ["醫療運送", "遺體運返", "緊急援助", "緊急支援", "24小時", "24/7", "環球支援"] },
+  { id: "cancellation", label: "取消 / 縮短旅程", keywords: ["取消旅程", "取消/縮短", "提早結束", "任何原因取消", "縮短旅程", "旅程中斷"] },
+  { id: "trip-delay", label: "旅程延誤 / 阻礙", keywords: ["旅程延誤", "旅程阻礙", "超額訂票", "行程改道"] },
+  { id: "baggage-delay", label: "行李延誤", keywords: ["行李延誤"] },
+  { id: "baggage", label: "行李及個人物品", keywords: ["行李", "個人物品", "個人財物", "旅遊證件"] },
+  { id: "personal-accident", label: "個人意外", keywords: ["個人意外", "人身意外"] },
+  { id: "rental-car", label: "租車自負額 / 自駕遊", keywords: ["租車自負額", "自駕遊", "租車"] },
+  { id: "liability", label: "個人責任", keywords: ["個人責任"] },
+  { id: "money", label: "個人錢財 / 信用卡", keywords: ["個人錢財", "信用卡"] },
+  { id: "cruise", label: "郵輪保障", keywords: ["郵輪"] },
+  { id: "home-contents", label: "家居物品保障（旅程期間）", keywords: ["家居物品"] },
+  { id: "activities", label: "危險 / 冬季運動 / 消閒活動", keywords: ["危險活動", "冬季運動", "業餘", "消閒活動", "高爾夫", "Golfer"] },
+];
+
+const HOME: CanonicalBenefit[] = [
+  { id: "moving", label: "搬遷保障", keywords: ["搬遷"] },
+  { id: "renovation", label: "裝修 / 翻新工程", keywords: ["裝修", "翻新"] },
+  { id: "contents", label: "家居財物", keywords: ["家居財物", "家居物品"] },
+  { id: "liability", label: "第三者 / 公眾責任", keywords: ["第三者", "公眾", "法律責任", "個人責任"] },
+  { id: "accommodation", label: "臨時住宿 / 租金損失", keywords: ["臨時住宿", "臨時居所", "臨時住所", "租金損失", "庇護住宿"] },
+  { id: "building", label: "樓宇結構", keywords: ["樓宇"] },
+  { id: "valuables", label: "貴重物品", keywords: ["貴重物品"] },
+  { id: "worldwide", label: "全球個人物品", keywords: ["全球個人物品", "個人物品（全球）", "全球個人責任", "個人物品"] },
+  { id: "hotline", label: "24小時家居支援", keywords: ["24小時"] },
+  { id: "debris", label: "清理碎礫", keywords: ["清理碎礫", "碎礫"] },
+  { id: "frozen-food", label: "冷凍食品", keywords: ["冷凍食品"] },
+];
+
+const LIFE: CanonicalBenefit[] = [
+  { id: "death", label: "身故賠償", keywords: ["身故"] },
+  { id: "age", label: "投保 / 繕發年齡", keywords: ["投保年齡", "繕發年齡"] },
+  { id: "term", label: "保障年期 / 續保", keywords: ["保障年期", "保障期", "保險保障期", "續保"] },
+  { id: "sum-insured", label: "保額 / 投保額", keywords: ["保額", "投保額", "保障額"] },
+  { id: "premium-structure", label: "保費結構 / 繳費", keywords: ["保費", "繳費"] },
+  { id: "underwriting", label: "核保", keywords: ["核保"] },
+  { id: "conversion", label: "轉換權益", keywords: ["轉換"] },
+  { id: "currency", label: "保單貨幣", keywords: ["保單貨幣"] },
+  { id: "terminal-illness", label: "末期疾病保障", keywords: ["末期疾病"] },
+  { id: "cash-value", label: "現金價值 / 紅利", keywords: ["紅利", "支取現金"] },
+];
+
+const CRITICAL_ILLNESS: CanonicalBenefit[] = [
+  { id: "severe", label: "嚴重危疾 / 嚴重疾病", keywords: ["嚴重危疾", "嚴重疾病（", "主要危疾", "危疾保障（涵蓋", "3-in-1", "3大危疾", "3大疾病"] },
+  { id: "early", label: "早期危疾 / 早期嚴重疾病", keywords: ["早期危疾", "早期嚴重疾病"] },
+  { id: "special", label: "特別 / 非嚴重疾病", keywords: ["特別疾病", "非嚴重疾病"] },
+  { id: "children", label: "兒童疾病", keywords: ["兒童", "子女"] },
+  { id: "multi", label: "多重 / 持續賠償", keywords: ["多重", "持續", "延伸嚴重疾病", "額外癌症", "額外賠償", "賠償升級", "額外保障", "加強"] },
+  { id: "icu", label: "深切治療（ICU）", keywords: ["ICU", "深切治療", "維生"] },
+  { id: "death", label: "身故賠償", keywords: ["身故"] },
+  { id: "refund", label: "保費回贈", keywords: ["保費回贈", "回贈", "退回"] },
+  { id: "annuity", label: "終身年金", keywords: ["年金"] },
+  { id: "mental", label: "精神健康保障", keywords: ["精神健康"] },
+];
+
+const ACCIDENT: CanonicalBenefit[] = [
+  { id: "double", label: "雙倍 / 三倍賠償", keywords: ["雙倍", "三倍"] },
+  { id: "death", label: "意外身故及永久傷殘", keywords: ["意外身故", "意外身亡", "死亡及永久傷殘", "永久傷殘", "永久完全傷殘", "斷肢", "人身意外"] },
+  { id: "medical", label: "意外醫療費用", keywords: ["意外醫療", "醫療費用", "醫療保障"] },
+  { id: "hospital-cash", label: "住院現金 / 入息保障", keywords: ["住院", "入息", "每週"] },
+  { id: "tcm", label: "跌打 / 中醫治療", keywords: ["跌打", "中醫", "針灸"] },
+  { id: "emergency", label: "24小時緊急支援", keywords: ["24小時", "緊急支援", "緊急援助", "緊急服務", "全球支援", "全球緊急"] },
+  { id: "liability", label: "個人責任", keywords: ["個人責任"] },
+  { id: "fracture", label: "骨折保障", keywords: ["骨折"] },
+  { id: "burns", label: "燒傷 / 疤痕 / 毀容", keywords: ["燒傷", "疤痕", "毀容"] },
+  { id: "funeral", label: "殯葬 / 火化費用", keywords: ["殯葬", "火葬", "火化", "運返"] },
+  { id: "credit-card", label: "信用卡欠款保障", keywords: ["信用卡"] },
+  { id: "income", label: "收入 / 付款保障", keywords: ["收入", "付款保障"] },
+];
+
+const MEDICAL: CanonicalBenefit[] = [
+  { id: "annual-limit", label: "每年保障限額", keywords: ["每年保障限額", "年度保額", "最高保障", "保障限額", "年度限額"] },
+  { id: "area", label: "保障地域", keywords: ["保障地域", "保障地區"] },
+  { id: "main-medical", label: "主要醫療費用（住院及手術）", keywords: ["主要項目", "主要醫療費用", "住院醫療", "涵蓋項目", "住院"] },
+  { id: "cancer", label: "癌症治療", keywords: ["癌症"] },
+  { id: "psychiatric", label: "精神科治療", keywords: ["精神科"] },
+  { id: "prepost", label: "入院前及出院後門診護理", keywords: ["入院前", "出院後", "門診"] },
+  { id: "deductible", label: "自付費選項", keywords: ["自付費"] },
+  { id: "age", label: "投保年齡 / 資格", keywords: ["投保年齡", "投保資格"] },
+  { id: "cash", label: "現金保障", keywords: ["現金"] },
+  { id: "nursing", label: "私人看護 / 復康支援", keywords: ["私人看護", "復康"] },
+  { id: "maternity", label: "產科保障", keywords: ["產科"] },
+  { id: "reconstruction", label: "乳房重建手術", keywords: ["乳房重建"] },
+];
+
+const MOTOR: CanonicalBenefit[] = [
+  { id: "tp-injury", label: "第三者人身傷亡責任", keywords: ["第三者死", "第三者人身", "第三者身體", "第三者責任 - 身體"] },
+  { id: "tp-property", label: "第三者財物損毀責任", keywords: ["第三者財"] },
+  { id: "new-for-old", label: "新車替換 / 以新換舊", keywords: ["新換舊", "以新換舊", "新車替換", "新車賠償", "全新車", "新車"] },
+  { id: "depreciation", label: "維修零件折舊", keywords: ["折舊"] },
+  { id: "own-damage", label: "自身汽車損毀", keywords: ["自身汽車", "車輛本身", "受保車輛", "汽車自身"] },
+  { id: "medical", label: "醫療費用", keywords: ["醫療費用"] },
+  { id: "personal-accident", label: "個人意外保障", keywords: ["個人意外", "人身意外", "交通意外人壽"] },
+  { id: "windscreen", label: "擋風玻璃保障", keywords: ["擋風玻璃"] },
+  { id: "ncd", label: "無索償折扣（NCD）保障", keywords: ["無索償", "NCD"] },
+  { id: "assistance", label: "24小時緊急援助 / 拖車", keywords: ["24小時", "拖車", "緊急", "路邊", "路面", "禮賓", "車輛移除", "事故通知", "汽車支援"] },
+  { id: "rental-car", label: "租車 / 代用車輛", keywords: ["租車", "代用"] },
+  { id: "recovery", label: "第三者責任追討服務", keywords: ["追討"] },
+  { id: "keys", label: "遺失車匙保障", keywords: ["車匙"] },
+  { id: "cross-border", label: "跨境 / 港粵通保障", keywords: ["港粵通", "跨境"] },
+  { id: "belongings", label: "車內個人物品", keywords: ["個人物品"] },
+];
+
+const DOMESTIC_HELPER: CanonicalBenefit[] = [
+  { id: "employer-liability", label: "僱主責任（僱員補償）", keywords: ["僱員補償", "僱主責任"] },
+  { id: "outpatient", label: "門診費用", keywords: ["門診"] },
+  { id: "hospital", label: "住院及手術費用", keywords: ["住院", "手術"] },
+  { id: "dental", label: "牙科費用", keywords: ["牙科", "牙醫"] },
+  { id: "interruption", label: "服務中斷津貼", keywords: ["服務中斷", "中斷服務", "臨時替工"] },
+  { id: "repatriation", label: "遣返 / 送返費用", keywords: ["遣返", "送返"] },
+  { id: "replacement", label: "補聘家傭費用", keywords: ["補聘"] },
+  { id: "fidelity", label: "家傭誠信保障", keywords: ["誠信", "不誠實", "忠誠"] },
+  { id: "personal-accident", label: "個人意外（休假期間）", keywords: ["個人意外", "人身意外"] },
+  { id: "liability", label: "第三者責任", keywords: ["第三者", "個人責任"] },
+  { id: "critical", label: "危疾保障（自選）", keywords: ["危疾", "嚴重疾病"] },
+  { id: "loan", label: "僱主借貸保障", keywords: ["借貸"] },
+  { id: "family", label: "家庭成員保障", keywords: ["家庭成員"] },
+];
+
+const PET: CanonicalBenefit[] = [
+  { id: "surgery", label: "手術保障", keywords: ["手術"] },
+  { id: "medical", label: "醫療保障（診症及住院）", keywords: ["醫療", "診症", "診金", "門診", "獸醫", "住房"] },
+  { id: "chemo", label: "化療 / 癌症保障", keywords: ["化療", "癌症"] },
+  { id: "liability", label: "第三者責任", keywords: ["第三者"] },
+  { id: "death", label: "身故 / 殮葬服務", keywords: ["身故", "殮葬", "火化", "人道毀滅"] },
+  { id: "boarding", label: "緊急寄宿 / 寄養", keywords: ["寄宿", "寄養"] },
+  { id: "overseas", label: "海外保障", keywords: ["海外"] },
+  { id: "hereditary", label: "遺傳及先天性疾病", keywords: ["遺傳", "先天"] },
+  { id: "chronic", label: "慢性疾病保障", keywords: ["慢性"] },
+  { id: "mri-ct", label: "MRI / CT 保障", keywords: ["MRI", "CT"] },
+];
+
+const CANONICAL_BY_CATEGORY: Record<string, CanonicalBenefit[]> = {
+  travel: TRAVEL,
+  home: HOME,
+  life: LIFE,
+  "critical-illness": CRITICAL_ILLNESS,
+  accident: ACCIDENT,
+  medical: MEDICAL,
+  motor: MOTOR,
+  "domestic-helper": DOMESTIC_HELPER,
+  pet: PET,
+};
+
+/** 該類別嘅標準保障項目（未知類別 → 空陣列，全部落入「其他保障」） */
+export function canonicalBenefitsFor(category: string): CanonicalBenefit[] {
+  return CANONICAL_BY_CATEGORY[category] ?? [];
+}
+
+/** 條目名命中嘅首個標準保障（按定義順序） */
+function matchBenefit(itemName: string, benefits: CanonicalBenefit[]): CanonicalBenefit | undefined {
+  return benefits.find((b) => b.keywords.some((kw) => itemName.includes(kw)));
+}
+
+/**
+ * 將多份產品嘅 coverage 條目對齊到標準保障行。
+ * limit 保留官方原文；同一產品多條目命中同一行 → 以「；」串起原文。
+ */
+export function resolveCoverage(products: Product[]): ResolvedCoverage {
+  const benefits = canonicalBenefitsFor(products[0]?.category ?? "");
+
+  // benefitId -> per-product limits
+  const matchedLimits = new Map<string, (string | undefined)[]>();
+  // others: itemName -> per-product limits（保留首次出現順序）
+  const otherOrder: string[] = [];
+  const otherLimits = new Map<string, (string | undefined)[]>();
+
+  products.forEach((p, pi) => {
+    for (const c of p.coverage ?? []) {
+      const benefit = matchBenefit(c.item, benefits);
+      if (benefit) {
+        const arr = matchedLimits.get(benefit.id) ?? products.map(() => undefined);
+        arr[pi] = arr[pi] ? `${arr[pi]}；${c.limit}` : c.limit;
+        matchedLimits.set(benefit.id, arr);
+      } else {
+        if (!otherLimits.has(c.item)) {
+          otherOrder.push(c.item);
+          otherLimits.set(c.item, products.map(() => undefined));
+        }
+        const arr = otherLimits.get(c.item)!;
+        arr[pi] = arr[pi] ? `${arr[pi]}；${c.limit}` : c.limit;
+      }
+    }
+  });
+
+  const matched: CanonicalRow[] = benefits
+    .filter((b) => {
+      const arr = matchedLimits.get(b.id);
+      return arr?.some((v) => v !== undefined);
+    })
+    .map((b) => ({ key: b.id, label: b.label, limits: matchedLimits.get(b.id)! }));
+
+  const others: CanonicalRow[] = otherOrder.map((item) => ({
+    key: `other-${item}`,
+    label: item,
+    limits: otherLimits.get(item)!,
+  }));
+
+  return { matched, others };
+}

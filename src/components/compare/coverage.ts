@@ -48,11 +48,11 @@ export function parseLimitValue(limit: string | undefined): number | null {
 }
 
 /**
- * 最優高亮：同一行可解析出 HK$ 上限嘅欄位之中，搵出最高值嘅欄位 index。
+ * 最優高亮（limits 陣列版）：可解析出 HK$ 上限嘅欄位之中，搵出最高值嘅欄位 index。
  * 要少於 2 個可解析欄位、或者全部數值一樣 → 唔高亮（避免誤導）。
  */
-export function bestValueColumns(products: Product[], item: string): Set<number> {
-  const values = products.map((p) => parseLimitValue(coverageLimit(p, item)));
+export function bestValueColumnsFromLimits(limits: (string | undefined)[]): Set<number> {
+  const values = limits.map((l) => parseLimitValue(l));
   const parseable = values.filter((v): v is number => v !== null);
   if (parseable.length < 2) return new Set();
   const max = Math.max(...parseable);
@@ -63,6 +63,14 @@ export function bestValueColumns(products: Product[], item: string): Set<number>
     if (v === max) best.add(i);
   });
   return best;
+}
+
+/**
+ * 最優高亮：同一行可解析出 HK$ 上限嘅欄位之中，搵出最高值嘅欄位 index。
+ * 要少於 2 個可解析欄位、或者全部數值一樣 → 唔高亮（避免誤導）。
+ */
+export function bestValueColumns(products: Product[], item: string): Set<number> {
+  return bestValueColumnsFromLimits(products.map((p) => coverageLimit(p, item)));
 }
 
 /** 保費公開狀態各欄唔一致 → 該行淡 amber 提示（compare.md S3 組 1 差異高亮） */

@@ -301,29 +301,48 @@ export default function CategoryDetail() {
         </div>
       </section>
 
-      {/* ── S2 篩選工具列 ───────────────────────────────────── */}
-      <FilterBar
-        insurers={insurerOptions}
-        selectedInsurers={selectedInsurers}
-        onToggleInsurer={toggleInsurer}
-        onClearInsurers={() => setSelectedInsurers([])}
-        onlyPremium={onlyPremium}
-        onTogglePremium={() => setOnlyPremium((v) => !v)}
-        sort={sort}
-        onSortChange={handleSortChange}
-        view={effectiveView}
-        onViewChange={setView}
-        showViewToggle={!isMobile}
-        shown={filtered.length}
-        total={products.length}
-        onReset={resetFilters}
-        hasActiveFilters={hasActiveFilters}
-      />
+      {/* ── S2+S3 篩選＋產品列表（同一容器，FilterBar sticky 範圍只限呢段） ── */}
+      <div>
+        {/* ── S2 篩選工具列 ───────────────────────────────────── */}
+        <FilterBar
+          insurers={insurerOptions}
+          selectedInsurers={selectedInsurers}
+          onToggleInsurer={toggleInsurer}
+          onClearInsurers={() => setSelectedInsurers([])}
+          onlyPremium={onlyPremium}
+          onTogglePremium={() => setOnlyPremium((v) => !v)}
+          sort={sort}
+          onSortChange={handleSortChange}
+          view={effectiveView}
+          onViewChange={setView}
+          showViewToggle={!isMobile}
+          shown={filtered.length}
+          total={products.length}
+          onReset={resetFilters}
+          hasActiveFilters={hasActiveFilters}
+        />
 
-      {/* ── S3 產品列表 ─────────────────────────────────────── */}
-      <section className="py-10 max-md:py-8">
-        <div className="site-container">
-          {filtered.length === 0 ? (
+        {/* ── S3 產品列表 ─────────────────────────────────────── */}
+        <section className="py-10 max-md:py-8">
+          <div className="site-container">
+            {/* 保費公開狀況 summary chip（表格頂一眼睇晒） */}
+            <div className="mb-5 flex flex-wrap items-center gap-2.5">
+              {premiumCount === 0 ? (
+                <span className="chip bg-amber-wash font-bold text-amber">
+                  呢個類別全部 {products.length} 間公司採用即時報價，冇公開保費表
+                </span>
+              ) : (
+                <span className="chip bg-jade-wash font-bold text-jade">
+                  {premiumCount}/{products.length} 間有公開保費
+                </span>
+              )}
+              {premiumCount > 0 && premiumCount < products.length && (
+                <span className="chip bg-amber-wash text-amber">
+                  其餘 {products.length - premiumCount} 間需官網即時報價
+                </span>
+              )}
+            </div>
+            {filtered.length === 0 ? (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
               <EmptyState
                 title="呢個組合搵唔到產品"
@@ -377,8 +396,9 @@ export default function CategoryDetail() {
               )}
             </AnimatePresence>
           )}
-        </div>
-      </section>
+          </div>
+        </section>
+      </div>
 
       {/* ── S4 類別選購重點 ─────────────────────────────────── */}
       <section

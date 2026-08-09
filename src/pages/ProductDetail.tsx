@@ -11,7 +11,7 @@ import {
 import { categoryColor } from "@/lib/categories";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import EmptyState from "@/components/EmptyState";
-import ProductHeader from "@/components/product/ProductHeader";
+import ProductHeader, { deriveSeriesInfo } from "@/components/product/ProductHeader";
 import AnchorNav from "@/components/product/AnchorNav";
 import CoverageSection from "@/components/product/CoverageSection";
 import PremiumSection from "@/components/product/PremiumSection";
@@ -36,19 +36,19 @@ export default function ProductDetail() {
   const categories = useCategories();
   const categoryProducts = useProducts(product?.category);
 
-  const nameZh = product ? product.product_name_zh || product.product_name : "";
   const category = categories.find((c) => c.id === product?.category);
   const catName = category?.name_zh ?? product?.category ?? "";
+  const displayTitle = product ? deriveSeriesInfo(product, catName).title : "";
 
   // SEO：<title> = 「{產品名}｜{公司} — 保險格價站」（附錄 6）
   useEffect(() => {
     if (!product) return;
     const prev = document.title;
-    document.title = `${nameZh}｜${product.insurer_zh || product.insurer} — 保險格價站`;
+    document.title = `${displayTitle}｜${product.insurer_zh || product.insurer} — 保險格價站`;
     return () => {
       document.title = prev;
     };
-  }, [product, nameZh]);
+  }, [product, displayTitle]);
 
   // 載入中
   if (loading) {
@@ -101,10 +101,10 @@ export default function ProductDetail() {
       <ProductHeader product={product} />
 
       {/* S2 內容雙欄：錨點導航 + 主欄 */}
-      <section className="pb-32 pt-16">
+      <section className="pb-20 pt-8 max-md:pb-14 max-md:pt-6">
         <div className="site-container flex gap-12">
           <AnchorNav className="sticky top-[140px] hidden self-start lg:block" />
-          <div className="flex w-full max-w-[780px] flex-col gap-[72px]">
+          <div className="flex w-full max-w-[780px] flex-col gap-14">
             <section id="pd-coverage" style={SECTION_SCROLL_MARGIN}>
               <CoverageSection coverage={product.coverage ?? []} />
             </section>
@@ -135,7 +135,7 @@ export default function ProductDetail() {
       />
 
       {/* S4 底部 CTA 帶 */}
-      <section className="py-20">
+      <section className="py-14 max-md:py-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

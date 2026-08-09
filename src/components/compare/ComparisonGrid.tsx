@@ -3,11 +3,10 @@ import { motion } from "framer-motion";
 import type { Product } from "@/types/insurance";
 import { cn } from "@/lib/utils";
 import {
-  bestValueColumns,
-  coverageLimit,
+  bestValueColumnsFromLimits,
   premiumStatusDiffers,
-  unionCoverageItems,
 } from "@/components/compare/coverage";
+import { resolveCoverage } from "@/components/compare/canonical-benefits";
 import {
   CoverageLimitCell,
   DocumentsCell,
@@ -127,13 +126,16 @@ export default function ComparisonGrid({
   spare?: boolean;
 }) {
   const columns = `200px repeat(${products.length + (spare ? 1 : 0)}, minmax(0, 1fr))`;
-  const union = useMemo(() => unionCoverageItems(products), [products]);
+  // canonical benefit mapping：等值保障對齊同一行；對唔到嘅歸「其他保障」
+  const resolved = useMemo(() => resolveCoverage(products), [products]);
   const bestMap = useMemo(() => {
     const map = new Map<string, Set<number>>();
-    for (const item of union) map.set(item, bestValueColumns(products, item));
+    for (const row of resolved.matched) map.set(row.key, bestValueColumnsFromLimits(row.limits));
     return map;
-  }, [products, union]);
+  }, [resolved]);
   const priceDiffers = premiumStatusDiffers(products);
+  const noCoverage =
+    resolved.matched.length === 0 && resolved.others.length === 0;
 
   return (
     <div className="overflow-x-auto">
@@ -157,22 +159,22 @@ export default function ComparisonGrid({
           </Row>
         </GroupReveal>
 
-        {/* 組 2 — 保障項目（聯集逐行對齊） */}
+        {/* 組 2 — 保障項目（canonical 標準行對齊） */}
         <GroupReveal en="COVERAGE" zh="保障項目" index={1}>
-          {union.length === 0 && (
+          {noCoverage && (
             <Row label="保障項目" columns={columns} spare={spare}>
               {products.map((p) => (
                 <Cell key={p.id}><span className="text-ink-faint">—</span></Cell>
               ))}
             </Row>
           )}
-          {union.map((item) => (
-            <Row key={item} label={item} columns={columns} spare={spare}>
+          {resolved.matched.map((row) => (
+            <Row key={row.key} label={row.label} columns={columns} spare={spare}>
               {products.map((p, i) => (
                 <Cell key={p.id}>
                   <CoverageLimitCell
-                    limit={coverageLimit(p, item)}
-                    highlight={bestMap.get(item)?.has(i) ?? false}
+                    limit={row.limits[i]}
+                    highlight={bestMap.get(row.key)?.has(i) ?? false}
                   />
                 </Cell>
               ))}
@@ -180,8 +182,23 @@ export default function ComparisonGrid({
           ))}
         </GroupReveal>
 
+        {/* 組 2b — 其他保障（命名對唔到標準項目嘅條目，以原文列出） */}
+        {resolved.others.length > 0 && (
+          <GroupReveal en="OTHER BENEFITS" zh="其他保障" index={2}>
+            {resolved.others.map((row) => (
+              <Row key={row.key} label={row.label} columns={columns} spare={spare}>
+                {products.map((p, i) => (
+                  <Cell key={p.id}>
+                    <CoverageLimitCell limit={row.limits[i]} highlight={false} />
+                  </Cell>
+                ))}
+              </Row>
+            ))}
+          </GroupReveal>
+        )}
+
         {/* 組 3 — 計劃層級 */}
-        <GroupReveal en="PLANS" zh="計劃層級" index={2}>
+        <GroupReveal en="PLANS" zh="計劃層級" index={3}>
           <Row label="計劃層級" columns={columns} spare={spare}>
             {products.map((p) => (
               <Cell key={p.id}><PlanTiersCell product={p} /></Cell>
@@ -190,7 +207,7 @@ export default function ComparisonGrid({
         </GroupReveal>
 
         {/* 組 4 — 主要條款 */}
-        <GroupReveal en="KEY TERMS" zh="主要條款" index={3}>
+        <GroupReveal en="KEY TERMS" zh="主要條款" index={4}>
           <Row label="主要條款" columns={columns} spare={spare}>
             {products.map((p) => (
               <Cell key={p.id}><KeyTermsCell product={p} /></Cell>
@@ -199,7 +216,7 @@ export default function ComparisonGrid({
         </GroupReveal>
 
         {/* 組 5 — 不保事項與文件 */}
-        <GroupReveal en="EXCLUSIONS & DOCS" zh="不保事項與文件" index={4}>
+        <GroupReveal en="EXCLUSIONS & DOCS" zh="不保事項與文件" index={5}>
           <Fragment>
             <Row label="不保事項" columns={columns} spare={spare}>
               {products.map((p) => (

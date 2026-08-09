@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 640" fill="none">
+  <defs>
+    <filter id="gh-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.53  0 0 0 0 0.48  0 0 0 0.05 0"/>
+    </filter>
+  </defs>
+  <rect width="1920" height="640" fill="#F4F0E8"/>
+
+  <!-- 攤開嘅保單文件（紙雕層疊） -->
+  <g>
+    <rect x="180" y="120" width="460" height="400" rx="10" fill="#EFEAE0" stroke="#181D2E" stroke-opacity="0.25" transform="rotate(-5 410 320)"/>
+    <rect x="240" y="96" width="460" height="400" rx="10" fill="#F9F6F0" stroke="#181D2E" stroke-opacity="0.4" transform="rotate(2 470 296)"/>
+    <g transform="rotate(2 470 296)" stroke="#181D2E" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round">
+      <path d="M300 170 H610 M300 210 H640 M300 250 H560 M300 290 H630 M300 330 H590 M300 370 H620"/>
+    </g>
+    <!-- 紅色批註線 -->
+    <g transform="rotate(2 470 296)" stroke="#C8102E" stroke-width="5" stroke-linecap="round">
+      <path d="M296 216 q170 10 350 4"/>
+      <path d="M296 336 q160 8 300 2" opacity="0.85"/>
+    </g>
+    <g transform="rotate(2 470 296)">
+      <circle cx="650" cy="212" r="16" fill="none" stroke="#C8102E" stroke-width="4"/>
+    </g>
+  </g>
+
+  <!-- 放大鏡 -->
+  <g transform="translate(1050 250)">
+    <circle cx="0" cy="0" r="110" fill="#F7F4EE" fill-opacity="0.35" stroke="#181D2E" stroke-width="14"/>
+    <rect x="78" y="78" width="150" height="30" rx="15" fill="#181D2E" transform="rotate(45 78 78)"/>
+    <g stroke="#181D2E" stroke-opacity="0.45" stroke-width="6" stroke-linecap="round">
+      <path d="M-58 -26 H40 M-58 4 H58 M-58 34 H20"/>
+    </g>
+  </g>
+
+  <!-- 第二疊文件 + 印章 -->
+  <g>
+    <rect x="1330" y="150" width="380" height="330" rx="10" fill="#EFEAE0" stroke="#181D2E" stroke-opacity="0.25" transform="rotate(4 1520 315)"/>
+    <rect x="1360" y="130" width="380" height="330" rx="10" fill="#F9F6F0" stroke="#181D2E" stroke-opacity="0.4" transform="rotate(-3 1550 295)"/>
+    <g transform="rotate(-3 1550 295)" stroke="#181D2E" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round">
+      <path d="M1420 190 H1690 M1420 230 H1660 M1420 270 H1700 M1420 310 H1650"/>
+    </g>
+    <g transform="translate(1620 380) rotate(-12)">
+      <circle r="78" fill="none" stroke="#C8102E" stroke-width="5"/>
+      <circle r="44" fill="none" stroke="#C8102E" stroke-width="2.5"/>
+      <text fill="#C8102E" font-family="'Noto Serif TC', serif" font-weight="900" font-size="26" text-anchor="middle">
+        <tspan x="0" y="-4">官方</tspan><tspan x="0" y="26">文件</tspan>
+      </text>
+    </g>
+  </g>
+
+  <!-- 細碎點綴：小盾 + 菱形 -->
+  <path d="M850 120 l24 36 -24 36 -24 -36 Z" fill="#C8102E" opacity="0.85"/>
+  <path d="M1180 520 l18 28 -18 28 -18 -28 Z" fill="#0E7C66" opacity="0.85"/>
+  <g transform="translate(760 470) rotate(8) scale(0.7)">
+    <path d="M0 0 44 10.6v26c0 20-18.5 33-44 40-25.5-7-44-20-44-40v-26L0 0Z" fill="#0E7C66" opacity="0.9"/>
+  </g>
+
+  <rect width="1920" height="640" filter="url(#gh-grain)"/>
+</svg>

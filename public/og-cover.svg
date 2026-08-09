@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#F7F4EE"/>
+  <rect x="24" y="24" width="1152" height="582" rx="20" fill="none" stroke="#181D2E" stroke-opacity="0.25" stroke-width="2"/>
+  <g transform="translate(90 200)">
+    <path d="M32 0 52 7.1v17.2c0 13.4-8.4 22.7-20 27.7-11.6-5-20-14.3-20-27.7V7.1L32 0Z" stroke="#181D2E" stroke-width="2.5" fill="none"/>
+    <rect x="20" y="14.5" width="11" height="11" rx="1.5" stroke="#181D2E" stroke-width="2" fill="none"/>
+    <rect x="33" y="14.5" width="11" height="11" rx="1.5" fill="#C8102E"/>
+    <rect x="20" y="27.5" width="11" height="11" rx="1.5" stroke="#181D2E" stroke-width="2" fill="none"/>
+    <rect x="33" y="27.5" width="11" height="11" rx="1.5" stroke="#181D2E" stroke-width="2" fill="none"/>
+  </g>
+  <text x="90" y="330" font-family="'Noto Serif TC', serif" font-weight="900" font-size="72" fill="#181D2E">保險格價站</text>
+  <text x="90" y="400" font-family="'Noto Sans TC', sans-serif" font-weight="500" font-size="30" fill="#4B5165">逐份官方文件幫你睇</text>
+  <text x="90" y="470" font-family="'Space Grotesk', 'Noto Sans TC', sans-serif" font-weight="700" font-size="20" letter-spacing="2" fill="#8A8FA0">9 大類別 · 85 份保單 · 27 間保險公司</text>
+  <g transform="translate(950 160) rotate(-12)">
+    <circle r="120" fill="none" stroke="#C8102E" stroke-width="6"/>
+    <circle r="70" fill="none" stroke="#C8102E" stroke-width="3"/>
+    <text fill="#C8102E" font-family="'Noto Serif TC', serif" font-weight="900" font-size="40" text-anchor="middle">
+      <tspan x="0" y="-8">官方</tspan><tspan x="0" y="40">文件</tspan>
+    </text>
+  </g>
+  <circle cx="830" cy="480" r="120" fill="#C8102E" opacity="0.12"/>
+</svg>

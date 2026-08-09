@@ -4,64 +4,62 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.625rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+    /* ── 保險格價站 brand tokens ─────────────────────────── */
+    --paper: #F7F4EE;
+    --paper-2: #EFEAE0;
+    --paper-3: #E7E1D4;
+    --ink: #181D2E;
+    --ink-soft: #4B5165;
+    --ink-faint: #8A8FA0;
+    --line: rgba(24, 29, 46, 0.12);
+    --line-strong: rgba(24, 29, 46, 0.28);
+    --red: #C8102E;
+    --red-deep: #9E0C24;
+    --red-wash: #FBEAEC;
+    --jade: #0E7C66;
+    --jade-wash: #E4F2EE;
+    --amber: #D98E04;
+    --amber-wash: #FBF1DC;
 
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --cat-home: #B5533C;
+    --cat-travel: #2E6FDB;
+    --cat-life: #5B4FA6;
+    --cat-critical-illness: #C8102E;
+    --cat-accident: #D98E04;
+    --cat-medical: #0E7C66;
+    --cat-motor: #3C4A63;
+    --cat-domestic-helper: #7A4FB5;
+    --cat-pet: #E0662B;
+
+    /* ── shadcn/ui variables (remapped to brand) ────────── */
+    --background: 43 30% 95%;
+    --foreground: 229 32% 14%;
+    --card: 43 30% 95%;
+    --card-foreground: 229 32% 14%;
+    --popover: 43 30% 95%;
+    --popover-foreground: 229 32% 14%;
+    --primary: 349 86% 42%;
+    --primary-foreground: 43 30% 97%;
+    --secondary: 40 21% 91%;
+    --secondary-foreground: 229 32% 14%;
+    --muted: 40 21% 91%;
+    --muted-foreground: 229 14% 34%;
+    --accent: 40 21% 91%;
+    --accent-foreground: 229 32% 14%;
+    --destructive: 349 86% 42%;
+    --destructive-foreground: 43 30% 97%;
+    --border: 229 32% 14% / 0.12;
+    --input: 229 32% 14% / 0.2;
+    --ring: 349 86% 42%;
+    --radius: 0.625rem;
+    --sidebar-background: 43 30% 95%;
+    --sidebar-foreground: 229 32% 14%;
+    --sidebar-primary: 349 86% 42%;
+    --sidebar-primary-foreground: 43 30% 97%;
+    --sidebar-accent: 40 21% 91%;
+    --sidebar-accent-foreground: 229 32% 14%;
+    --sidebar-border: 229 32% 14% / 0.12;
+    --sidebar-ring: 349 86% 42%;
   }
 }
 
@@ -69,7 +67,154 @@
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: auto;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-paper text-ink font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+  }
+
+  /* 全站紙紋疊加 */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    background-image: url("/grain-texture.svg");
+    background-size: 512px 512px;
+    mix-blend-mode: multiply;
+    opacity: 0.5;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+
+  ::selection {
+    background: var(--red);
+    color: var(--paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* 全站容器：max-width 1280px，左右 padding clamp(20px, 4vw, 48px) */
+  .site-container {
+    @apply mx-auto w-full max-w-site;
+    padding-left: clamp(20px, 4vw, 48px);
+    padding-right: clamp(20px, 4vw, 48px);
+  }
+  .site-container-wide {
+    @apply mx-auto w-full max-w-wide;
+    padding-left: clamp(20px, 4vw, 48px);
+    padding-right: clamp(20px, 4vw, 48px);
+  }
+
+  .eyebrow {
+    @apply font-grotesk font-bold uppercase;
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.18em;
+  }
+  .eyebrow-zh {
+    letter-spacing: 0.3em;
+  }
+
+  .display-hero {
+    font-weight: 900;
+    font-size: clamp(46px, 7.5vw, 92px);
+    line-height: 1.08;
+    letter-spacing: 0.02em;
+  }
+  .display-2 {
+    font-weight: 700;
+    font-size: clamp(32px, 4.6vw, 54px);
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+  }
+  .h3-style {
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+  }
+  @media (max-width: 768px) {
+    .h3-style { font-size: 22px; }
+  }
+
+  .text-small {
+    font-size: 13.5px;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
+  .text-price {
+    @apply font-grotesk font-bold;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+  .text-stat {
+    @apply font-grotesk font-bold;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1;
+  }
+
+  .hairline-b { border-bottom: 1px solid var(--line); }
+  .hairline-t { border-top: 1px solid var(--line); }
+
+  .paper-card {
+    @apply rounded-card border bg-paper shadow-card;
+    border-color: var(--line);
+  }
+
+  .btn-primary {
+    @apply inline-flex h-[52px] items-center justify-center gap-2 rounded-[10px] bg-red px-8 font-sans font-bold text-paper transition-colors duration-300;
+  }
+  .btn-primary:hover { background: var(--red-deep); }
+  .btn-ghost {
+    @apply inline-flex h-[52px] items-center justify-center gap-2 rounded-[10px] border bg-transparent px-8 font-sans font-bold text-ink transition-colors duration-300;
+    border-color: var(--line-strong);
+  }
+  .btn-ghost:hover { background: var(--paper-3); }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-small font-medium;
+  }
+
+  /* 類別 icon（mask 上色） */
+  .cat-icon {
+    display: inline-block;
+    background-color: currentColor;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+  }
+
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(to right, black 82%, transparent);
+    mask-image: linear-gradient(to right, black 82%, transparent);
+  }
+  .marquee-track:hover .animate-marquee {
+    animation-play-state: paused;
   }
 }

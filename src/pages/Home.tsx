@@ -1,20 +1,26 @@
-import { useState } from 'react'
-import '../App.css'
+import Hero from "@/pages/home/Hero";
+import InsurerMarquee from "@/pages/home/InsurerMarquee";
+import CategoryGrid from "@/pages/home/CategoryGrid";
+import MethodStory from "@/pages/home/MethodStory";
+import FeaturedCompare from "@/pages/home/FeaturedCompare";
+import Promises from "@/pages/home/Promises";
+import GuidesTeaser from "@/pages/home/GuidesTeaser";
+import FinalCTA from "@/pages/home/FinalCTA";
+import DisclaimerToast from "@/pages/home/DisclaimerToast";
 
+/** 首頁 `/`（design/home.md S0–S8） */
 export default function Home() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
+      <Hero />
+      <InsurerMarquee />
+      <CategoryGrid />
+      <MethodStory />
+      <FeaturedCompare />
+      <Promises />
+      <GuidesTeaser />
+      <FinalCTA />
+      <DisclaimerToast />
     </>
-  )
+  );
 }

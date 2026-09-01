@@ -1,73 +1,32 @@
-# React + TypeScript + Vite
+# 保險格價站 HK InsureCompare
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+香港保險產品比較網站 — 一站式比較 9 大保險類別、85 份真實保單、27 間保險公司。
 
-Currently, two official plugins are available:
+**所有數據來自保險公司官方文件**（產品冊子、保單條款、保費表 PDF），每個產品附官方來源連結，並設逐條引文系統（文件名 + 頁碼 + 原文句子，一撳直達官方出處，共 879 條引文）。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 功能
 
-## React Compiler
+- **9 大保險類別**：家居、旅遊、人壽、危疾、意外、醫療（自願醫保）、汽車、家傭、寵物
+- **類別比較表**：篩選（保險公司／有無公開保費）、排序（保費年繳化排序）、表格⇄卡片切換、行展開詳情
+- **85 個產品詳情頁**：保障上限、保費、計劃層級、主要條款、不保事項、資料出處（逐條引文）、官方來源
+- **比較工具**：2–3 份產品並排對照，canonical 保障項目對齊、最高賠償高亮、可分享連結
+- **全域搜尋**（⌘K）、保險公司名錄、投保指南（詞彙表 + FAQ）、數據方法說明
+- 全站繁體中文（香港用語）
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 技術棧
 
-## Expanding the ESLint configuration
+React 19 · TypeScript · Vite 7 · Tailwind CSS 3.4 · shadcn/ui · GSAP (ScrollTrigger) · Framer Motion · Lenis · cmdk
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 本地開發
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+數據檔：`public/data/insurance-data.json`（85 產品結構化數據 + 引文）
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 免責聲明
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+本網站資料僅供參考，所有保障內容、保費及條款以保險公司官方文件為準。投保前請向持牌保險中介人或保險公司查詢。資料快照日期：2026-08-09。

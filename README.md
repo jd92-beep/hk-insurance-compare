@@ -28,7 +28,9 @@ npm run build
 
 ## 部署
 
-託管於 Cloudflare Pages（Git 整合，push 上 `master` 自動 build + 部署）：https://hk-insurance-compare-ejh.pages.dev
+託管於 Cloudflare Pages（Git 整合，push 上 `master` 自動 build + 部署）：
+- 正式網域：https://insurance.tommychu2025.dpdns.org
+- 後備：https://hk-insurance-compare-ejh.pages.dev
 Build：`npm run build`，輸出 `dist/`；SPA 路由靠 `public/_redirects`。
 
 數據檔：

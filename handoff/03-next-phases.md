@@ -2,10 +2,8 @@
 
 Suggested roadmap, in priority order. Each phase is independently shippable.
 
-## Phase 1 — Deploy & verify in production (small)
-- Pick hosting (GitHub Pages / Vercel / Cloudflare Pages). If GitHub Pages: set `base` in `vite.config.ts` to `/hk-insurance-compare/` and add a SPA 404 fallback (`404.html` copy of `index.html`).
-- Add GitHub Actions: `npm ci && npm run build` on push; deploy on master.
-- Smoke-test all routes after deploy (`/`, `/category/medical`, `/product/medical-avo`, `/compare`, `/vhis`).
+## Phase 1 — ~~Deploy & verify in production~~ ✅ DONE (2026-09-02)
+Deployed to Cloudflare Pages with git auto-deploy (push → build → live), custom domain `insurance.tommychu2025.dpdns.org`, Full (Strict) SSL, Always-HTTPS, Access-protected preview deployments. Details: `01-what-has-been-done.md` §8. All key routes verified 200 in production.
 
 ## Phase 2 — Flexi plan depth (the big data win)
 - Extract per-level benefit limits and premiums from official flexi PlanDoc / StandardPremium PDFs (URLs already in `vhis-plans.json`, all verified 200).

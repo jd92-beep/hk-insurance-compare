@@ -49,3 +49,13 @@ Full certified-products registry UI: filters (type/provider/search), status badg
 - `npm run build` passes (tsc + vite).
 - `npm run lint`: 22 errors, **all pre-existing baseline** (confirmed by stash test before changes); zero in new/touched files.
 - No automated test suite exists.
+
+## 8. Deployment (2026-09-02, live)
+- **Hosting**: Cloudflare Pages, project `hk-insurance-compare`, $0 free tier.
+- **URLs**: production custom domain https://insurance.tommychu2025.dpdns.org (zone `tommychu2025.dpdns.org`, CNAME → Pages, proxied); fallback https://hk-insurance-compare-ejh.pages.dev.
+- **Git integration**: Cloudflare Workers & Pages GitHub App installed, scoped to ONLY `jd92-beep/hk-insurance-compare` (installation id 158465073). Push to `master` → auto `npm run build` → auto deploy. Verified end-to-end (commit `76d0eff` auto-built and went live).
+- **Build config**: build command `npm run build`, output `dist/`, production branch `master`, Node pinned to 22 via `.nvmrc`.
+- **SPA routing**: `public/_redirects` (`/* /index.html 200`) — deep routes like `/vhis` verified 200.
+- **Security hardening** (verified live): SSL/TLS mode **Full (Strict)**; **Always Use HTTPS** (http → 301 https); **preview deployments protected by Cloudflare Access** — policy allows only `ftjdfr@gmail.com` (one-time PIN). Production stays public.
+- Repo visibility: **private** (was public until 2026-09-02; user made it private).
+- Commits pushed: `8cfdf2c` (VHIS integration + UI), `bd3cbb0` (handoff docs), `3336a20` (_redirects), `76d0eff` (git integration + .nvmrc), `c9ea504` (README custom domain).

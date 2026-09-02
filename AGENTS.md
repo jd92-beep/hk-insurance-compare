@@ -16,6 +16,10 @@ python3 scripts/build_vhis.py               # refresh VHIS data from official so
 python3 scripts/build_vhis.py --skip-download  # reuse scripts/.cache/
 ```
 
+## Deployment
+
+Cloudflare Pages, git auto-deploy on push to `master`. Production: https://insurance.tommychu2025.dpdns.org (fallback: https://hk-insurance-compare-ejh.pages.dev). Build `npm run build` → `dist/`, Node 22 (`.nvmrc`), SPA fallback `public/_redirects`. Previews are Access-protected (user's email only). Details: `handoff/01-what-has-been-done.md` §8.
+
 ## Stack
 
 React 19 · TypeScript · Vite 7 · Tailwind CSS 3.4 · shadcn/ui · Framer Motion · GSAP · Lenis · cmdk · react-router 7. No backend, no tests (yet).

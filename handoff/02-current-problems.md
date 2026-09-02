@@ -16,7 +16,11 @@ Known gaps and open issues as of commit `8cfdf2c`. Ordered roughly by importance
 9. **AnchorNav hidden at `lg` (1024–1279px)** on product pages to make room for the side rail; it reappears at `xl`. Deliberate trade-off — revisit if it feels wrong.
 
 ## Process / ops
-10. **Git identity not configured** on this machine — commit `8cfdf2c` used auto-generated `Tonyc <Tonyc@TonydeMac-mini.local>`. Set `git config --global user.name/user.email` before future commits (amend + force-push if the author must change).
+10. **Git identity not configured** on this machine — commits so far used auto-generated `Tonyc <Tonyc@TonydeMac-mini.local>`. Set `git config --global user.name/user.email` before future commits (amend + force-push if the author must change).
 11. **Data staleness**: VHIS data is a snapshot (`fetched_at` in `vhis-plans.json`). Re-run `python3 scripts/build_vhis.py` (without `--skip-download`) to refresh; insurers update premiums periodically.
 12. **Pre-existing oddity**: an insurer key `"Blue"` (zh "Blue") exists in non-medical categories — likely a truncated duplicate of "Blue Cross". Not touched (out of scope), worth investigating.
-13. **No deployment configured** — no CI, no hosting (GitHub Pages/Vercel). `vite.config.ts` base path not set for GitHub Pages.
+13. ~~No deployment configured~~ — **resolved 2026-09-02**: Cloudflare Pages + git auto-deploy + custom domain (see `01-what-has-been-done.md` §8).
+
+## Environment quirks (this machine)
+14. **Local DNS interception/poisoning**: plain-DNS queries (`dig`) on this Mac get intercepted (answers carry `rd ra` flags even from authoritative NS; stale NXDOMAIN caches). Trust DoH instead: `curl -H "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=X&type=A"`. Also broke npm installs once via a dead mirror (`npm.mirrors.msh.team`) — if registry fetches fail with ENOTFOUND, check for network-level rewriting.
+15. **Wrangler OAuth token scopes are limited** (no `dns_records:*`, no zone settings write). API calls for DNS/zone settings return 9109/10000 — use the browser dashboard (ego-browser) for those, or mint a scoped API token.

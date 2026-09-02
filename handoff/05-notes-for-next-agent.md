@@ -4,9 +4,16 @@ Practical knowledge that will save you time. Read `AGENTS.md` (repo root) first,
 
 ## Environment quirks (this machine)
 - **npm registry**: the original `package-lock.json` pinned a dead mirror (`npm.mirrors.msh.team`). Fixed to `registry.npmjs.org` — if you ever regenerate the lockfile, re-check the resolved URLs.
+- **Local DNS is intercepted** on this Mac: plain `dig` returns stale/poisoned answers (fake NXDOMAINs). Verify DNS via DoH instead (`curl -H "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=…&type=A"`), and test live sites with `curl --resolve host:443:104.21.8.231`.
 - **Python**: system `python3` works for `scripts/build_vhis.py` (stdlib only). For PDF work, create a venv (never install into system Python). A throwaway venv with `pypdf` existed at `/tmp/vhis-venv` — recreate if gone.
 - **Git identity** is not configured; commits get an auto-generated local identity. Fix before committing if the user cares.
 - Repo lives under a path **with a space**: `Documents/Projects/Insurance comparison/...` — quote paths in shell commands.
+
+## Cloudflare / deployment
+- **Wrangler CLI** is installed (`~/.local/bin/wrangler`, OAuth logged in as ftjdfr@gmail.com). Token scopes are limited (no DNS/zone-settings writes — expect 9109/10000 from the API); use the dashboard (ego-browser, user is logged in there) for those.
+- Manual redeploy: `npm run build && wrangler pages deploy dist --project-name hk-insurance-compare` — but normally unneeded: **push to `master` auto-deploys** (GitHub App id 158465073, scoped to this repo only).
+- Pages project: `hk-insurance-compare`, account id `08089b1718dcf47d4b21c90f9181b92c`, zone `tommychu2025.dpdns.org` (id `383678d0a94354de769318055ab603b8`).
+- Previews are Access-protected (allow ftjdfr@gmail.com via OTP). Manage: Pages project → Settings → Preview access.
 
 ## Data flow (who generates what)
 ```

@@ -26,6 +26,11 @@ npm run dev
 npm run build
 ```
 
+## 部署
+
+託管於 Cloudflare Pages（Git 整合，push 上 `master` 自動 build + 部署）：https://hk-insurance-compare-ejh.pages.dev
+Build：`npm run build`，輸出 `dist/`；SPA 路由靠 `public/_redirects`。
+
 數據檔：
 - `public/data/insurance-data.json`（101 產品結構化數據 + 引文）
 - `public/data/vhis-plans.json`（自願醫保認可產品名單，由 `scripts/build_vhis.py` 從 vhis.gov.hk 官方公開數據生成：`python3 scripts/build_vhis.py`）

@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { label: "保險類別", to: "/categories", match: (p: string) => p.startsWith("/categor"), mega: true },
   { label: "比較工具", to: "/compare", match: (p: string) => p.startsWith("/compare") },
   { label: "保險公司", to: "/insurers", match: (p: string) => p.startsWith("/insurers") },
+  { label: "自願醫保名單", to: "/vhis", match: (p: string) => p.startsWith("/vhis") },
   { label: "投保指南", to: "/guides", match: (p: string) => p.startsWith("/guides") },
   { label: "關於數據", to: "/about", match: (p: string) => p.startsWith("/about") },
 ];

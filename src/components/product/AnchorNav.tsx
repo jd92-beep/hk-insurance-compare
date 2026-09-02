@@ -11,7 +11,7 @@ export interface AnchorSection {
 
 /** product.md S2 錨點導航分節 */
 export const PRODUCT_SECTIONS: AnchorSection[] = [
-  { id: "pd-coverage", num: "01", label: "保障項目" },
+  { id: "pd-coverage", num: "01", label: "保障一覽" },
   { id: "pd-premium", num: "02", label: "保費資料" },
   { id: "pd-tiers", num: "03", label: "計劃層級" },
   { id: "pd-terms", num: "04", label: "主要條款" },

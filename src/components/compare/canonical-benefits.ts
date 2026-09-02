@@ -105,16 +105,28 @@ const ACCIDENT: CanonicalBenefit[] = [
 ];
 
 const MEDICAL: CanonicalBenefit[] = [
-  { id: "annual-limit", label: "每年保障限額", keywords: ["每年保障限額", "年度保額", "最高保障", "保障限額", "年度限額"] },
+  // 順序＝匹配優先次序（首個命中為準）：
+  // 終身限額必須排喺每年限額之前，否則「終身保障限額」會被「保障限額」關鍵字攔截；
+  // 現金行排喺主要醫療費用之前，等「住院現金」唔會被「住院」攔截。
+  { id: "lifetime-limit", label: "終身保障限額", keywords: ["終身保障限額"] },
+  { id: "annual-limit", label: "每年保障限額", keywords: ["每年保障限額", "年度保額", "最高保障", "年度限額", "保障限額"] },
+  { id: "plan-level", label: "靈活計劃保障級別", keywords: ["保障級別", "靈活計劃"] },
   { id: "area", label: "保障地域", keywords: ["保障地域", "保障地區"] },
+  // VHIS 標準化住院項目（vhis.gov.hk 認可產品統一命名）
+  { id: "room-board", label: "病房及膳食", keywords: ["病房及膳食", "病房膳食"] },
+  { id: "misc-expenses", label: "雜項開支", keywords: ["雜項開支"] },
+  { id: "ward-round", label: "主診醫生巡房費", keywords: ["巡房"] },
+  { id: "specialist", label: "專科醫生費", keywords: ["專科醫生"] },
+  { id: "icu", label: "深切治療", keywords: ["深切治療"] },
+  { id: "imaging", label: "訂明診斷成像檢測", keywords: ["診斷成像", "成像檢測"] },
+  { id: "cash", label: "現金保障", keywords: ["現金"] },
   { id: "main-medical", label: "主要醫療費用（住院及手術）", keywords: ["主要項目", "主要醫療費用", "住院醫療", "涵蓋項目", "住院"] },
   { id: "cancer", label: "癌症治療", keywords: ["癌症"] },
   { id: "psychiatric", label: "精神科治療", keywords: ["精神科"] },
+  { id: "nursing", label: "私人看護 / 復康支援", keywords: ["私人看護", "私家看護", "復康"] },
   { id: "prepost", label: "入院前及出院後門診護理", keywords: ["入院前", "出院後", "門診"] },
   { id: "deductible", label: "自付費選項", keywords: ["自付費"] },
   { id: "age", label: "投保年齡 / 資格", keywords: ["投保年齡", "投保資格"] },
-  { id: "cash", label: "現金保障", keywords: ["現金"] },
-  { id: "nursing", label: "私人看護 / 復康支援", keywords: ["私人看護", "復康"] },
   { id: "maternity", label: "產科保障", keywords: ["產科"] },
   { id: "reconstruction", label: "乳房重建手術", keywords: ["乳房重建"] },
 ];

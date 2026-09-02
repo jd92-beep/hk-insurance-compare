@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import type { Product } from "@/types/insurance";
 import SectionHeading, { EASE_OUT_EXPO } from "@/components/product/SectionHeading";
+import { renderTierText } from "@/components/product/tier-text";
 import { cn } from "@/lib/utils";
 
 /** tab 短名：括號前嘅主名（太長就截短） */
@@ -32,6 +33,7 @@ function TierSourceLink({ url, className }: { url?: string; className?: string }
 /**
  * S2.3 計劃層級。
  * 1–3 個層級：每個 tier 一張橫向紙卡；多過 3 個：tabs 分層展示（附錄 2 / UX 建議 4）。
+ * 行內 S/F 認可編號 → monospace chip；「（只供現有保單續保）」→ amber badge。
  */
 export default function PlanTiersSection({
   product,
@@ -103,8 +105,8 @@ export default function PlanTiersSection({
             <p className="font-grotesk text-small font-bold text-ink-faint">
               層級 {String(active + 1).padStart(2, "0")} / {String(tiers.length).padStart(2, "0")}
             </p>
-            <p className="mt-2 font-sans text-[17px] font-medium leading-[1.7] text-ink">
-              {tiers[active]}
+            <p className="mt-2 font-sans text-[17px] font-medium leading-[1.9] text-ink">
+              {renderTierText(tiers[active])}
             </p>
             <TierSourceLink url={sourceUrl} className="mt-4" />
           </motion.div>
@@ -159,8 +161,8 @@ export default function PlanTiersSection({
                   {String(i + 1).padStart(2, "0")}
                 </span>
               )}
-              <span className="flex-1 font-sans text-[16px] font-medium leading-[1.7] text-ink">
-                {tier}
+              <span className="flex-1 font-sans text-[16px] font-medium leading-[1.9] text-ink">
+                {renderTierText(tier)}
               </span>
               <ArrowRight
                 size={18}

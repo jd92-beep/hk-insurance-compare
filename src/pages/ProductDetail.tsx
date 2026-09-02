@@ -12,6 +12,9 @@ import { categoryColor } from "@/lib/categories";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import EmptyState from "@/components/EmptyState";
 import ProductHeader, { deriveSeriesInfo } from "@/components/product/ProductHeader";
+import KeyFactsCard from "@/components/product/KeyFactsCard";
+import ProductSideRail from "@/components/product/ProductSideRail";
+import { isStandardBenefitTable } from "@/components/product/vhis-utils";
 import AnchorNav from "@/components/product/AnchorNav";
 import CoverageSection from "@/components/product/CoverageSection";
 import PremiumSection from "@/components/product/PremiumSection";
@@ -109,14 +112,22 @@ export default function ProductDetail() {
       {/* S1 產品頁首 */}
       <ProductHeader product={product} />
 
-      {/* S2 內容雙欄：錨點導航 + 主欄 */}
+      {/* 重點一覽卡（medical 專用：認可編號 + 關鍵數字 + 保證亮點，有數據先顯示） */}
+      <KeyFactsCard product={product} />
+
+      {/* S2 內容：錨點導航（xl+）+ 主欄 + 重點側欄（lg+） */}
       <section className="pb-20 pt-4 max-md:pb-14 max-md:pt-3">
-        <div className="site-container flex gap-12">
-          <AnchorNav className="sticky top-[140px] hidden self-start lg:block" />
-          <div className="flex w-full max-w-[780px] flex-col gap-14">
+        <div className="site-container flex gap-8 xl:gap-10">
+          {/* lg 闊度擺唔落三欄，呢個範圍由右側重點欄取代錨點導航 */}
+          <AnchorNav className="sticky top-[140px] hidden self-start xl:block" />
+          <div className="flex w-full min-w-0 max-w-[780px] flex-col gap-14">
             <section id="pd-coverage" style={SECTION_SCROLL_MARGIN}>
               <CoverageSection
                 coverage={product.coverage ?? []}
+                standardTable={
+                  product.category === "medical" &&
+                  isStandardBenefitTable(product.coverage ?? [])
+                }
                 citationEntries={entriesForGroup(citationEntries, "coverage")}
               />
             </section>
@@ -152,6 +163,8 @@ export default function ProductDetail() {
               <SourcesSection product={product} />
             </section>
           </div>
+          {/* 右側 sticky 重點欄：關鍵數字 + 加入比較 + 官方文件快連 */}
+          <ProductSideRail product={product} color={color} className="hidden lg:block" />
         </div>
       </section>
 

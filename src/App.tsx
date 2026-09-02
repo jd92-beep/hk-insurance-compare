@@ -10,6 +10,7 @@ import ProductDetail from "@/pages/ProductDetail";
 import Compare from "@/pages/Compare";
 import Insurers from "@/pages/Insurers";
 import Guides from "@/pages/Guides";
+import Vhis from "@/pages/Vhis";
 import About from "@/pages/About";
 import Placeholder from "@/pages/Placeholder";
 
@@ -27,6 +28,7 @@ export default function App() {
               <Route path="compare" element={<Compare />} />
               <Route path="insurers" element={<Insurers />} />
               <Route path="guides" element={<Guides />} />
+              <Route path="vhis" element={<Vhis />} />
               <Route path="about" element={<About />} />
               <Route
                 path="*"

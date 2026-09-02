@@ -47,6 +47,17 @@ export default function ProductPicker({
       list.push(p);
       byCat.set(p.category, list);
     }
+    // 類別內按保險公司＋產品名排序：醫療類有 28 份產品，同一公司嘅計劃要黐埋一齊先易揀
+    for (const list of byCat.values()) {
+      list.sort(
+        (a, b) =>
+          a.insurer_zh.localeCompare(b.insurer_zh, "zh-Hant-HK") ||
+          (a.product_name_zh || a.product_name).localeCompare(
+            b.product_name_zh || b.product_name,
+            "zh-Hant-HK",
+          ),
+      );
+    }
     return CATEGORY_ORDER.filter((id) => byCat.has(id)).map((id) => ({
       id,
       name: categories.find((c) => c.id === id)?.name_zh ?? id,

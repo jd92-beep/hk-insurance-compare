@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Scale, TriangleAlert } from "lucide-react";
+import { ArrowRight, Scale, ShieldCheck, TriangleAlert } from "lucide-react";
 import { Link, useParams } from "react-router";
 import { Toaster } from "@/components/ui/sonner";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -299,6 +299,29 @@ export default function CategoryDetail() {
                   全部需即時報價
                 </span>
                 汽車保險一般按車輛及車主資料即時報價，各公司鮮有公開統一保費表——本站如實標示。
+              </p>
+            </motion.div>
+          )}
+
+          {/* 醫療類 jade banner：官方認可產品名單 */}
+          {category.id === "medical" && (
+            <motion.div
+              className="mt-7 flex items-start gap-3 rounded-[10px] border-l-4 bg-jade-wash px-5 py-4"
+              style={{ borderColor: "var(--jade)" }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: EASE_OUT_EXPO, delay: 0.7 }}
+            >
+              <ShieldCheck size={18} className="mt-0.5 shrink-0 text-jade" />
+              <p className="text-small text-ink-soft">
+                想對照官方認可產品？
+                <Link
+                  to="/vhis"
+                  className="ml-1.5 inline-flex items-center gap-1 font-bold text-jade transition-colors hover:underline"
+                >
+                  自願醫保認可產品名單（官方）：33 標準 + 70 靈活計劃
+                  <ArrowRight size={13} />
+                </Link>
               </p>
             </motion.div>
           )}

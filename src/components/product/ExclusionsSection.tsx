@@ -3,6 +3,7 @@ import { TriangleAlert } from "lucide-react";
 import SectionHeading, { EASE_OUT_EXPO } from "@/components/product/SectionHeading";
 import CitationRef from "@/components/product/citation/CitationRef";
 import type { CitationEntry } from "@/components/product/citation/citation-utils";
+import { cn } from "@/lib/utils";
 
 /**
  * S2.5 不保事項：--amber-wash 提示卡（左 4px amber 邊）。
@@ -34,7 +35,12 @@ export default function ExclusionsSection({
           <TriangleAlert size={16} className="mt-[2px] shrink-0 text-amber" aria-hidden="true" />
           以下為節錄，完整不保事項以保單條款為準。
         </p>
-        <ul className="mt-4 flex flex-col gap-3">
+        <ul
+          className={cn(
+            "mt-4 flex flex-col gap-3",
+            exclusions.length >= 4 && "sm:grid sm:grid-cols-2 sm:gap-x-8",
+          )}
+        >
           {exclusions.map((e, i) => (
             <li key={i} className="flex gap-3 text-[15px] leading-[1.8] text-ink">
               <span

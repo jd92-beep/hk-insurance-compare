@@ -32,9 +32,14 @@ export function PremiumStatusCell({ product }: { product: Product }) {
   return <span className="chip bg-amber-wash font-bold text-amber">官網即時報價</span>;
 }
 
+/** 超過呢個長度嘅 limit 預設 clamp 3 行，撳「展開全文」睇晒 */
+const LONG_LIMIT_CHARS = 110;
+
 /**
  * 保障項目 limit 儲存格。
  * highlight=true → jade 底 chip 包裹（最優高亮，附 tooltip）。
+ * 長文（多層級限額串聯可過百字）預設 clamp 3 行 + 展開／收合，
+ * 保持行高一致、左右欄易掃讀。
  */
 export function CoverageLimitCell({
   limit,
@@ -43,21 +48,40 @@ export function CoverageLimitCell({
   limit: string | undefined;
   highlight: boolean;
 }) {
+  const [expanded, setExpanded] = useState(false);
   if (!limit) return <span className="text-ink-faint">—</span>;
-  if (highlight) {
-    return (
-      <motion.span
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
-        className="inline-flex rounded-[8px] bg-jade-wash px-2.5 py-1 text-[14px] font-medium leading-[1.55] text-jade"
-        title="按官方文件所示上限比較"
-      >
-        {limit}
-      </motion.span>
-    );
-  }
-  return <span className="text-[14px] leading-[1.55] text-ink">{limit}</span>;
+  const isLong = limit.length > LONG_LIMIT_CHARS;
+  const text = (
+    <span className={cn("break-words", isLong && !expanded && "line-clamp-3")}>
+      {limit}
+    </span>
+  );
+  return (
+    <span className="flex flex-col items-start gap-1">
+      {highlight ? (
+        <motion.span
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+          className="inline-flex rounded-[8px] bg-jade-wash px-2.5 py-1 text-[14px] font-medium leading-[1.55] text-jade"
+          title="按官方文件所示上限比較"
+        >
+          {text}
+        </motion.span>
+      ) : (
+        <span className="text-[14px] leading-[1.55] text-ink">{text}</span>
+      )}
+      {isLong && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="text-[12px] font-bold text-red transition-colors hover:text-red-deep hover:underline"
+        >
+          {expanded ? "收合" : "展開全文"}
+        </button>
+      )}
+    </span>
+  );
 }
 
 /** 計劃層級 TierChips（可換行，全部列出） */

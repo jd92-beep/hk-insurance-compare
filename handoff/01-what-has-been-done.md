@@ -57,5 +57,6 @@ Full certified-products registry UI: filters (type/provider/search), status badg
 - **Build config**: build command `npm run build`, output `dist/`, production branch `master`, Node pinned to 22 via `.nvmrc`.
 - **SPA routing**: `public/_redirects` (`/* /index.html 200`) — deep routes like `/vhis` verified 200.
 - **Security hardening** (verified live): SSL/TLS mode **Full (Strict)**; **Always Use HTTPS** (http → 301 https); **preview deployments protected by Cloudflare Access** — policy allows only `ftjdfr@gmail.com` (one-time PIN). Production stays public.
+- **Post-deploy incident (resolved)**: user's Chrome showed "Server IP address could not be found" — root cause was the local machine (Surfshark VPN DNS + stuck mDNSResponder negative cache), NOT the site (verified globally via DoH + `curl --resolve`). Fixed browser-side by enabling Chrome secure DNS → Cloudflare (1.1.1.1). System-wide fix still pending user action: `sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder`.
 - Repo visibility: **private** (was public until 2026-09-02; user made it private).
 - Commits pushed: `8cfdf2c` (VHIS integration + UI), `bd3cbb0` (handoff docs), `3336a20` (_redirects), `76d0eff` (git integration + .nvmrc), `c9ea504` (README custom domain).

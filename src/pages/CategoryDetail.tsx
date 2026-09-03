@@ -10,6 +10,7 @@ import FilterBar from "@/components/category/FilterBar";
 import type { SortKey, ViewMode } from "@/components/category/FilterBar";
 import ProductTable from "@/components/category/ProductTable";
 import UniversalComparisonChart from "@/components/category/UniversalComparisonChart";
+import TravelFlagshipBanner from "@/components/category/TravelFlagshipBanner";
 import { categoryCopy } from "@/components/category/copy";
 import {
   Accordion,
@@ -321,6 +322,14 @@ export default function CategoryDetail() {
             )}
           </motion.div>
 
+          {/* 旅遊保險專屬旗艦頂部 Banner */}
+          {category.id === "travel" && (
+            <TravelFlagshipBanner
+              productCount={products.length}
+              premiumCount={premiumCount}
+            />
+          )}
+
           {/* 汽車類 amber banner */}
           {isMotor && (
             <motion.div
@@ -483,7 +492,7 @@ export default function CategoryDetail() {
       </section>
 
       {/* ── S1.5 全類別視覺化保障限額圖表 ──────────────────────── */}
-      <section className="border-b border-line/60 bg-paper-2/30 py-8">
+      <section id="chart-section" className="border-b border-line/60 bg-paper-2/30 py-8">
         <div className="site-container">
           <UniversalComparisonChart
             products={products}
@@ -594,8 +603,9 @@ export default function CategoryDetail() {
         </section>
       </div>
 
-      {/* ── S4 類別選購重點 ─────────────────────────────────── */}
+      {/* ── S4 點揀重點 ─────────────────────────────────────── */}
       <section
+        id="tips-section"
         className="border-y bg-paper-2 py-24 max-md:py-16"
         style={{ borderColor: "var(--line)" }}
       >
@@ -609,7 +619,7 @@ export default function CategoryDetail() {
           >
             <p className="eyebrow mb-4 text-ink-faint">HOW TO CHOOSE</p>
             <h2 className="display-2 text-ink">
-              揀{category.name_zh.replace("（自願醫保）", "")}，睇呢 4 樣。
+              揀{category.name_zh.replace("（自願醫保）", "")}，睇呢 {copy.highlights.length} 樣。
             </h2>
             <Link
               to={`/guides#${category.id}`}

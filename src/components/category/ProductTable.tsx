@@ -16,6 +16,7 @@ import type { PremiumSpectrum } from "@/lib/categories";
 import { parsePremiumAmounts, premiumUnitHint } from "@/lib/categories";
 import PriceRangeBar from "@/components/PriceRangeBar";
 import StampBadge from "@/components/StampBadge";
+import PdfViewerDrawer from "@/components/product/PdfViewerDrawer";
 import { useCompare } from "@/providers/CompareProvider";
 import { cn } from "@/lib/utils";
 
@@ -46,15 +47,85 @@ export function pickKeyCoverage(coverage: CoverageItem[], keywords: string[]): C
   return picked;
 }
 
+/** 表格細項條款組件：支援點擊直達官方 PDF 頁碼與原文佐證 */
+function TableCoverageItem({
+  item,
+  productId,
+  color,
+  onOpenDoc,
+}: {
+  item: CoverageItem;
+  productId: string;
+  color: string;
+  onOpenDoc: (c: CoverageItem, productId: string) => void;
+}) {
+  const hasDoc = Boolean(item.source_url);
+  const pageText = item.page != null ? `P.${item.page}` : null;
+
+  return (
+    <li className="group/cov flex items-start gap-2 text-small leading-[1.65]">
+      <span
+        className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full transition-transform group-hover/cov:scale-125"
+        style={{ background: color }}
+      />
+      <div className="flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5">
+        {hasDoc ? (
+          <div className="inline-flex flex-wrap items-center gap-1">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpenDoc(item, productId);
+              }}
+              className="inline-flex items-center gap-1 text-left font-semibold text-ink transition-colors duration-200 hover:text-jade hover:underline cursor-pointer"
+              title={`點擊於內置抽屜查閱「${item.item}」官方條款${
+                item.document_name ? `（${item.document_name}${item.page ? ` · 第 ${item.page} 頁` : ""}）` : ""
+              }`}
+            >
+              <span>{item.item}</span>
+              <FileText
+                size={12}
+                className="shrink-0 text-jade/70 transition-transform duration-200 group-hover/cov:scale-110 group-hover/cov:text-jade"
+                aria-hidden="true"
+              />
+            </button>
+            {pageText && (
+              <span className="rounded bg-paper-3 px-1.5 py-0.5 text-[10px] font-mono font-medium text-ink-faint">
+                {pageText}
+              </span>
+            )}
+            <a
+              href={item.source_url}
+              target={`doc_viewer_${productId.replace(/[^a-zA-Z0-9_-]/g, "_")}`}
+              rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="text-ink-faint transition-colors duration-200 hover:text-jade"
+              title="在新分頁獨立開啟官方文件"
+            >
+              <ExternalLink size={11} className="shrink-0" />
+            </a>
+          </div>
+        ) : (
+          <span className="font-medium text-ink">{item.item}</span>
+        )}
+        <span className="text-ink-faint">·</span>
+        <span className="whitespace-normal break-words text-ink-soft">{item.limit}</span>
+      </div>
+    </li>
+  );
+}
+
 /** 展開行：全部保障項目 + 主要條款 + 前往產品頁 */
 function ExpandedRow({
   product,
   color,
   colSpan,
+  onOpenDoc,
 }: {
   product: Product;
   color: string;
   colSpan: number;
+  onOpenDoc: (c: CoverageItem, productId: string) => void;
 }) {
   const coverage = product.coverage ?? [];
   const terms = product.key_terms ?? [];
@@ -81,17 +152,13 @@ function ExpandedRow({
               ) : (
                 <ul className="flex flex-col gap-2">
                   {coverage.map((c) => (
-                    <li key={c.item} className="flex gap-2 text-small leading-[1.65]">
-                      <span
-                        className="mt-[8px] h-1 w-1 shrink-0 rounded-full"
-                        style={{ background: color }}
-                      />
-                      <span>
-                        <span className="font-medium text-ink">{c.item}</span>
-                        <span className="mx-1.5 text-ink-faint">·</span>
-                        <span className="text-ink-soft">{c.limit}</span>
-                      </span>
-                    </li>
+                    <TableCoverageItem
+                      key={c.item}
+                      item={c}
+                      productId={product.id}
+                      color={color}
+                      onOpenDoc={onOpenDoc}
+                    />
                   ))}
                 </ul>
               )}
@@ -162,6 +229,34 @@ export default function ProductTable({
   const navigate = useNavigate();
   const compare = useCompare();
   const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  // 內置 PDF 抽屜閱讀器狀態（支援同份文件無感跳頁與新分頁獨立開啟）
+  const [activeDoc, setActiveDoc] = useState<{
+    isOpen: boolean;
+    pdfUrl?: string;
+    documentName?: string;
+    page?: number | null;
+    itemTitle?: string;
+    limitText?: string;
+    quote?: string;
+    productId?: string;
+  }>({
+    isOpen: false,
+  });
+
+  const handleOpenDoc = (c: CoverageItem, productId: string) => {
+    if (!c.source_url) return;
+    setActiveDoc({
+      isOpen: true,
+      pdfUrl: c.source_url,
+      documentName: c.document_name,
+      page: c.page,
+      itemTitle: c.item,
+      limitText: c.limit,
+      quote: c.quote,
+      productId,
+    });
+  };
 
   const handleCompare = (e: MouseEvent, id: string) => {
     e.stopPropagation();
@@ -330,19 +425,13 @@ export default function ProductTable({
                   <td className="px-4 py-4 align-top">
                     <ul className="flex flex-col gap-1.5">
                       {keyCoverage.map((c) => (
-                        <li key={c.item} className="flex gap-2">
-                          <span
-                            className="mt-[9px] h-1 w-1 shrink-0 rounded-full"
-                            style={{ background: color }}
-                          />
-                          <span>
-                            <span className="font-medium text-ink">{c.item}</span>
-                            <span className="mx-1 text-ink-faint">·</span>
-                            <span className="whitespace-normal break-words text-ink-soft">
-                              {c.limit}
-                            </span>
-                          </span>
-                        </li>
+                        <TableCoverageItem
+                          key={c.item}
+                          item={c}
+                          productId={p.id}
+                          color={color}
+                          onOpenDoc={handleOpenDoc}
+                        />
                       ))}
                     </ul>
                     {(p.coverage?.length ?? 0) > keyCoverage.length && (
@@ -408,6 +497,7 @@ export default function ProductTable({
                       product={p}
                       color={color}
                       colSpan={COL_SPAN}
+                      onOpenDoc={handleOpenDoc}
                     />
                   )}
                 </AnimatePresence>
@@ -416,6 +506,19 @@ export default function ProductTable({
           })}
         </tbody>
       </table>
+
+      {/* 內置官方 PDF 原生抽屜閱讀器 */}
+      <PdfViewerDrawer
+        isOpen={activeDoc.isOpen}
+        onClose={() => setActiveDoc((prev) => ({ ...prev, isOpen: false }))}
+        pdfUrl={activeDoc.pdfUrl}
+        documentName={activeDoc.documentName}
+        page={activeDoc.page}
+        itemTitle={activeDoc.itemTitle}
+        limitText={activeDoc.limitText}
+        quote={activeDoc.quote}
+        productId={activeDoc.productId}
+      />
     </div>
   );
 }

@@ -113,11 +113,14 @@ def main():
 
     data["products"] = all_products
 
-    # 6. 回寫檔案
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-
     print(f"\nSuccessfully wrote enriched data to {DATA_FILE}!")
+
+    # 7. 自動執行深度鏈接注入（PDF 頁碼與官方出處）
+    import subprocess
+    enrich_script = REPO_ROOT / "scripts" / "enrich_coverage_links.py"
+    if enrich_script.exists():
+        print("\nExecuting deep link enrichment pipeline...")
+        subprocess.run([sys.executable, str(enrich_script)], check=True)
 
 if __name__ == "__main__":
     main()

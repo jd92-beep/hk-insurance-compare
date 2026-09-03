@@ -24,6 +24,20 @@ export const CATEGORY_ORDER = [
   "pet",
 ] as const;
 
+export const DEFAULT_CATEGORIES: Category[] = [
+  { id: "travel", name_zh: "旅遊保險", count: 19, insurers_with_premium: 16 },
+  { id: "medical", name_zh: "醫療保險（自願醫保）", count: 28, insurers_with_premium: 28 },
+  { id: "high-end-medical", name_zh: "高端醫療保險", count: 8, insurers_with_premium: 8 },
+  { id: "top-up-medical", name_zh: "Top-up 醫療保險", count: 7, insurers_with_premium: 7 },
+  { id: "home", name_zh: "家居保險", count: 12, insurers_with_premium: 7 },
+  { id: "life", name_zh: "人壽保險", count: 12, insurers_with_premium: 4 },
+  { id: "critical-illness", name_zh: "危疾保險", count: 10, insurers_with_premium: 5 },
+  { id: "accident", name_zh: "意外保險", count: 10, insurers_with_premium: 5 },
+  { id: "motor", name_zh: "汽車保險", count: 9, insurers_with_premium: 0 },
+  { id: "domestic-helper", name_zh: "家傭保險", count: 7, insurers_with_premium: 6 },
+  { id: "pet", name_zh: "寵物保險", count: 4, insurers_with_premium: 1 },
+];
+
 export const CATEGORY_META: Record<string, CategoryMeta> = {
   home: {
     id: "home",

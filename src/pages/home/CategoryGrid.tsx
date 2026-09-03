@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import { useCategories } from "@/providers/InsuranceDataProvider";
-import { CATEGORY_ORDER } from "@/lib/categories";
+import { CATEGORY_ORDER, DEFAULT_CATEGORIES } from "@/lib/categories";
 import CategoryCard from "@/components/CategoryCard";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -10,14 +10,15 @@ const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 /** S3 類別九宮格 —「你想比較邊一類？」 */
 export default function CategoryGrid() {
   const categories = useCategories();
-  const sortedCategories = [...categories].sort(
+  const displayCategories = categories.length > 0 ? categories : DEFAULT_CATEGORIES;
+  const sortedCategories = [...displayCategories].sort(
     (a, b) =>
       CATEGORY_ORDER.indexOf(a.id as (typeof CATEGORY_ORDER)[number]) -
       CATEGORY_ORDER.indexOf(b.id as (typeof CATEGORY_ORDER)[number])
   );
 
   return (
-    <section id="categories-grid" className="py-24 md:py-32">
+    <section id="categories-grid" className="relative z-10 bg-paper py-24 md:py-32">
       <div className="site-container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

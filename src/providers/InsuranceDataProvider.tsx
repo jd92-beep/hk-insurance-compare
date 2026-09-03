@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { Category, InsuranceData, Insurer, Product } from "@/types/insurance";
-import { deriveInsurers } from "@/lib/categories";
+import { DEFAULT_CATEGORIES, deriveInsurers } from "@/lib/categories";
 
 interface InsuranceDataState {
   data: InsuranceData | null;
@@ -18,7 +19,7 @@ const InsuranceDataContext = createContext<InsuranceDataState>({
   generatedAt: "2026-08-09",
 });
 
-const EMPTY: InsuranceData = { generated_at: "2026-08-09", categories: [], products: [] };
+const EMPTY: InsuranceData = { generated_at: "2026-08-09", categories: DEFAULT_CATEGORIES, products: [] };
 
 export function InsuranceDataProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<InsuranceData | null>(null);
@@ -37,6 +38,12 @@ export function InsuranceDataProvider({ children }: { children: ReactNode }) {
         if (!cancelled) {
           setData(json);
           setLoading(false);
+          if (typeof window !== "undefined") {
+            requestAnimationFrame(() => {
+              ScrollTrigger.refresh();
+              setTimeout(() => ScrollTrigger.refresh(), 100);
+            });
+          }
         }
       })
       .catch((err: unknown) => {

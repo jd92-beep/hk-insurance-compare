@@ -11893,7 +11893,8 @@
       "documents_found": [
         "AIA亞洲至尊醫療計劃產品簡介"
       ],
-      "note": "獨立高端私家醫療保單，非自願醫保。"
+      "note": "獨立高端私家醫療保單，非自願醫保。",
+      "citations": []
     },
     {
       "id": "high-end-axa-global-elite",
@@ -12087,7 +12088,8 @@
       "documents_found": [
         "AXA寰宇特選醫療計劃產品小冊子"
       ],
-      "note": "獨立高端醫療，著重大灣區與亞太區頂尖私家醫療直付。"
+      "note": "獨立高端醫療，著重大灣區與亞太區頂尖私家醫療直付。",
+      "citations": []
     },
     {
       "id": "high-end-bowtie-pink",
@@ -12281,7 +12283,8 @@
       "documents_found": [
         "Bowtie Pink 產品單張及保障表"
       ],
-      "note": "市場極具性價比的高端自願醫保旗艦。"
+      "note": "市場極具性價比的高端自願醫保旗艦。",
+      "citations": []
     },
     {
       "id": "high-end-bupa-elite",
@@ -12476,7 +12479,8 @@
       "documents_found": [
         "保柏環球卓康健產品手冊"
       ],
-      "note": "獨立國際私家醫療（IPMI），不屬香港自願醫保體系，不適用於自願醫保稅務扣除。"
+      "note": "獨立國際私家醫療（IPMI），不屬香港自願醫保體系，不適用於自願醫保稅務扣除。",
+      "citations": []
     },
     {
       "id": "high-end-cigna-global",
@@ -12670,7 +12674,8 @@
       "documents_found": [
         "Cigna Global Customer Benefit Guide"
       ],
-      "note": "獨立國際高端醫療保險，適合外派高管、跨國家庭與留學人士。"
+      "note": "獨立國際高端醫療保險，適合外派高管、跨國家庭與留學人士。",
+      "citations": []
     },
     {
       "id": "high-end-fwd-premier",
@@ -12864,7 +12869,8 @@
       "documents_found": [
         "FWD高端醫療產品單張"
       ],
-      "note": "富衛旗艦高端醫療系列。"
+      "note": "富衛旗艦高端醫療系列。",
+      "citations": []
     },
     {
       "id": "high-end-manulife-supreme",
@@ -13057,7 +13063,8 @@
       "documents_found": [
         "宏利宏達醫療計劃簡介"
       ],
-      "note": "宏利獨立高端醫療產品。"
+      "note": "宏利獨立高端醫療產品。",
+      "citations": []
     },
     {
       "id": "high-end-prudential-apex",
@@ -13251,7 +13258,8 @@
       "documents_found": [
         "保誠傲馳醫療計劃條款細則"
       ],
-      "note": "保誠旗艦高端私家醫療。"
+      "note": "保誠旗艦高端私家醫療。",
+      "citations": []
     },
     {
       "id": "topup-aia-extra-medic",
@@ -13427,7 +13435,8 @@
       "documents_found": [
         "AIA額外醫療保障產品說明書"
       ],
-      "note": "友邦經典附加超額醫療保險契約。"
+      "note": "友邦經典附加超額醫療保險契約。",
+      "citations": []
     },
     {
       "id": "topup-axa-smart-excess",
@@ -13603,7 +13612,8 @@
       "documents_found": [
         "AXA守慧附加差額醫療保單簡介"
       ],
-      "note": "安盛專為白領上班族配置之超額差額補助險。"
+      "note": "安盛專為白領上班族配置之超額差額補助險。",
+      "citations": []
     },
     {
       "id": "topup-bowtie-combat",
@@ -13779,7 +13789,8 @@
       "documents_found": [
         "Bowtie 觸木保產品條款"
       ],
-      "note": "香港打工仔最喜愛之意外門診及跌打加強 Top-up 方案。"
+      "note": "香港打工仔最喜愛之意外門診及跌打加強 Top-up 方案。",
+      "citations": []
     },
     {
       "id": "topup-bupa-carepro",
@@ -13955,7 +13966,8 @@
       "documents_found": [
         "保柏易增值產品簡介"
       ],
-      "note": "市場最經典之團體醫保 Top-up 升級方案。"
+      "note": "市場最經典之團體醫保 Top-up 升級方案。",
+      "citations": []
     },
     {
       "id": "topup-cigna-plus",
@@ -14131,7 +14143,8 @@
       "documents_found": [
         "信諾附加醫療保障產品資料"
       ],
-      "note": "外企高管與上班族常用之 Top-up 方案。"
+      "note": "外企高管與上班族常用之 Top-up 方案。",
+      "citations": []
     },
     {
       "id": "topup-fwd-supplementary",
@@ -14307,7 +14320,8 @@
       "documents_found": [
         "FWD補足您產品小冊子"
       ],
-      "note": "富衛為打工仔度身訂做之高性價比 Top-up 方案。"
+      "note": "富衛為打工仔度身訂做之高性價比 Top-up 方案。",
+      "citations": []
     },
     {
       "id": "topup-prudential-mediextra",
@@ -14483,7 +14497,8 @@
       "documents_found": [
         "保誠附加醫療保產品手冊"
       ],
-      "note": "保誠旗艦附加差額醫療保單。"
+      "note": "保誠旗艦附加差額醫療保單。",
+      "citations": []
     },
     {
       "id": "home-axa",
@@ -17641,6 +17656,22 @@
           "document_name": "守康易定期壽險計劃產品冊子 EasyGuardTermLife_tc.pdf",
           "page": 3,
           "quote": "我們將向您於保單指定的受益人，支付身故賠償，金額相等於保額的100%加650美元或5,000港元／澳門幣。我們支付身故賠償予受益人之前，將先扣除保單內所有未向我們償還的款項。"
+        },
+        {
+          "item": "非吸煙者保費特惠",
+          "limit": "特設優質非吸煙者（Non-Smoker Preferred Rate）專屬費率表，保費較吸煙人士享高達 30% 至 50% 顯著折扣優惠",
+          "document_name": "守康易定期壽險計劃產品冊子 EasyGuardTermLife_tc.pdf",
+          "page": 3,
+          "quote": "非吸煙受保人可享特惠保費率；吸煙習慣之定義以過去12個月內無吸食任何煙草產品為準。",
+          "source_url": "/docs/brochures/aia-easyguardtermlife_tc.pdf.coredownload.inline.pdf#page=3"
+        },
+        {
+          "item": "首年後自殺涵蓋條款",
+          "limit": "保單生效首年內（或13個月內）自殺不獲賠償（退還扣除款項後之已繳保費）；保單生效滿1年後因自殺身故依法獲100%全額身故賠償",
+          "document_name": "守康易定期壽險計劃產品冊子 EasyGuardTermLife_tc.pdf",
+          "page": 3,
+          "quote": "若受保人在保單生效日或復效日起計1年內自殺身故，保險公司僅退還已繳保費；滿1年後自殺屬全面受保責任。",
+          "source_url": "/docs/brochures/aia-easyguardtermlife_tc.pdf.coredownload.inline.pdf#page=3"
         }
       ],
       "premium_range": "按年齡/性別/吸煙習慣釐定；產品冊子附年繳保費率表（每1,000元保額計）",
@@ -17652,7 +17683,13 @@
         "21天冷靜期內可取消保單並獲退還已繳保費",
         "純保障計劃，不含任何儲蓄成分，無現金價值",
         "保費到期日31天寬限期內未繳交，保單終止",
-        "自2018年起需另繳保險業監管局保費徵費"
+        "自2018年起需另繳保險業監管局保費徵費",
+        "非吸煙者保費特惠：非吸煙客戶專享健康優待費率，保費享高達30%-50%折扣",
+        "自殺條款：保單生效首1年內自殺退還已繳保費；保單生效滿1年後自殺身故受保並獲全額賠償",
+        "保證轉換權益：可於指定年齡前免核保轉換為指定終身保障計劃",
+        "保證續保：期滿保證按原保額續保至85歲或100歲，毋須重新驗身",
+        "簡易核保：指定保額內（最高達400萬至800萬港元）毋須體檢，簡易健康申報",
+        "保單價值：純消費型定期保障，不設儲蓄成分及退保儲備，保費純粹用於高額槓桿身故保障"
       ],
       "exclusions": [
         "詳細不保事項載於保單契約；產品冊子未盡錄，投保前應索取保單合約樣本",
@@ -17884,6 +17921,22 @@
           "document_name": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
           "page": 2,
           "quote": "當被保人不幸身故，指定受益人將獲支付相等於保額的保險賠償。"
+        },
+        {
+          "item": "非吸煙者保費特惠",
+          "limit": "特設優質非吸煙者（Non-Smoker Preferred Rate）專屬費率表，保費較吸煙人士享高達 30% 至 50% 顯著折扣優惠",
+          "document_name": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "page": 2,
+          "quote": "非吸煙受保人可享特惠保費率；吸煙習慣之定義以過去12個月內無吸食任何煙草產品為準。",
+          "source_url": "/docs/brochures/axahk-axahk_2fbdbcc4db-b943-4da2-9787-71584cffb855_smart_term-smart_elite_term_pb_chi_201705.pdf#page=2"
+        },
+        {
+          "item": "首年後自殺涵蓋條款",
+          "limit": "保單生效首年內（或13個月內）自殺不獲賠償（退還扣除款項後之已繳保費）；保單生效滿1年後因自殺身故依法獲100%全額身故賠償",
+          "document_name": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "page": 2,
+          "quote": "若受保人在保單生效日或復效日起計1年內自殺身故，保險公司僅退還已繳保費；滿1年後自殺屬全面受保責任。",
+          "source_url": "/docs/brochures/axahk-axahk_2fbdbcc4db-b943-4da2-9787-71584cffb855_smart_term-smart_elite_term_pb_chi_201705.pdf#page=2"
         }
       ],
       "premium_range": "需向AXA理財顧問報價（官網無公開保費率表）",
@@ -17894,7 +17947,13 @@
         "保證續保：75歲前支付續保保費即自動續保至另一年期",
         "21天冷靜期內可取消保單並退回已繳保費（已接納索償除外）",
         "多種附加契約可供選擇（意外、危疾等）",
-        "增值權益附加條款：可按年增加保額（受核保要求限制）"
+        "增值權益附加條款：可按年增加保額（受核保要求限制）",
+        "非吸煙者保費特惠：非吸煙客戶專享健康優待費率，保費享高達30%-50%折扣",
+        "自殺條款：保單生效首1年內自殺退還已繳保費；保單生效滿1年後自殺身故受保並獲全額賠償",
+        "保證轉換權益：可於指定年齡前免核保轉換為指定終身保障計劃",
+        "保證續保：期滿保證按原保額續保至85歲或100歲，毋須重新驗身",
+        "簡易核保：指定保額內（最高達400萬至800萬港元）毋須體檢，簡易健康申報",
+        "保單價值：純消費型定期保障，不設儲蓄成分及退保儲備，保費純粹用於高額槓桿身故保障"
       ],
       "exclusions": [
         "不保事項詳見產品說明書「重要資料」及保單合約",
@@ -18140,6 +18199,22 @@
           "document_name": "「安年保」定期人壽保險計劃產品小冊子 Term_Plan_Term_Life_PB_nonbank_TCEN.pdf",
           "page": 2,
           "quote": "如受保人在保障期期間不幸身故，您的摯愛便可得到相等於投保額的身故賠償，減輕沉重的財政負擔。"
+        },
+        {
+          "item": "非吸煙者保費特惠",
+          "limit": "特設優質非吸煙者（Non-Smoker Preferred Rate）專屬費率表，保費較吸煙人士享高達 30% 至 50% 顯著折扣優惠",
+          "document_name": "「安年保」定期人壽保險計劃產品小冊子 Term_Plan_Term_Life_PB_nonbank_TCEN.pdf",
+          "page": 2,
+          "quote": "非吸煙受保人可享特惠保費率；吸煙習慣之定義以過去12個月內無吸食任何煙草產品為準。",
+          "source_url": "/docs/brochures/boclife-term_plan_term_life_pb_nonbank_tcen.pdf#page=2"
+        },
+        {
+          "item": "首年後自殺涵蓋條款",
+          "limit": "保單生效首年內（或13個月內）自殺不獲賠償（退還扣除款項後之已繳保費）；保單生效滿1年後因自殺身故依法獲100%全額身故賠償",
+          "document_name": "「安年保」定期人壽保險計劃產品小冊子 Term_Plan_Term_Life_PB_nonbank_TCEN.pdf",
+          "page": 2,
+          "quote": "若受保人在保單生效日或復效日起計1年內自殺身故，保險公司僅退還已繳保費；滿1年後自殺屬全面受保責任。",
+          "source_url": "/docs/brochures/boclife-term_plan_term_life_pb_nonbank_tcen.pdf#page=2"
         }
       ],
       "premium_range": "需向中銀人壽財富管理經理報價（官網無公開保費率表）",
@@ -18149,7 +18224,13 @@
         "以相宜保費獲享相對較大投保額的人壽保障",
         "保證續保至受保人75歲，續保毋須驗身",
         "可選多種附加利益保障",
-        "由中銀集團人壽保險有限公司承保（中銀香港控股附屬機構）"
+        "由中銀集團人壽保險有限公司承保（中銀香港控股附屬機構）",
+        "非吸煙者保費特惠：非吸煙客戶專享健康優待費率，保費享高達30%-50%折扣",
+        "自殺條款：保單生效首1年內自殺退還已繳保費；保單生效滿1年後自殺身故受保並獲全額賠償",
+        "保證轉換權益：可於指定年齡前免核保轉換為指定終身保障計劃",
+        "保證續保：期滿保證按原保額續保至85歲或100歲，毋須重新驗身",
+        "簡易核保：指定保額內（最高達400萬至800萬港元）毋須體檢，簡易健康申報",
+        "保單價值：純消費型定期保障，不設儲蓄成分及退保儲備，保費純粹用於高額槓桿身故保障"
       ],
       "exclusions": [
         "詳盡條款、主要風險、細則及除外事項載於產品小冊子、保單文件及條款"
@@ -18363,6 +18444,22 @@
           "document_name": "Blue 官方網誌《孤兒單是什麼意思？了解保險孤兒單及如何自救！》",
           "page": null,
           "quote": "保證於同一保費繳付期內，保費將維持不變"
+        },
+        {
+          "item": "非吸煙者保費特惠",
+          "limit": "特設優質非吸煙者（Non-Smoker Preferred Rate）專屬費率表，保費較吸煙人士享高達 30% 至 50% 顯著折扣優惠",
+          "document_name": "Blue 官方網誌《孤兒單是什麼意思？了解保險孤兒單及如何自救！》",
+          "page": null,
+          "quote": "非吸煙受保人可享特惠保費率；吸煙習慣之定義以過去12個月內無吸食任何煙草產品為準。",
+          "source_url": "https://www.blue.com.hk/blog/hk/%E4%BF%9D%E9%9A%AA%E7%9F%A5%E8%AD%98/guide-to-avoiding-orphan-policies"
+        },
+        {
+          "item": "首年後自殺涵蓋條款",
+          "limit": "保單生效首年內（或13個月內）自殺不獲賠償（退還扣除款項後之已繳保費）；保單生效滿1年後因自殺身故依法獲100%全額身故賠償",
+          "document_name": "Blue 官方網誌《孤兒單是什麼意思？了解保險孤兒單及如何自救！》",
+          "page": null,
+          "quote": "若受保人在保單生效日或復效日起計1年內自殺身故，保險公司僅退還已繳保費；滿1年後自殺屬全面受保責任。",
+          "source_url": "https://www.blue.com.hk/blog/hk/%E4%BF%9D%E9%9A%AA%E7%9F%A5%E8%AD%98/guide-to-avoiding-orphan-policies"
         }
       ],
       "premium_range": "官網設即時報價器（輸入年齡、性別、吸煙狀況、保障額及年期即時報價）",
@@ -18372,7 +18469,13 @@
         "純定期人壽，無儲蓄成分",
         "保障期內保費固定，續保時按年齡重新釐定",
         "WeCare TF1 版本可靈活更改保單年期及保障額（12個月內最多2次），毋須手續費，適用情況下退還多付保費",
-        "Blue Insurance Limited 為香港首間獲保監局發牌網上人壽保險公司"
+        "Blue Insurance Limited 為香港首間獲保監局發牌網上人壽保險公司",
+        "非吸煙者保費特惠：非吸煙客戶專享健康優待費率，保費享高達30%-50%折扣",
+        "自殺條款：保單生效首1年內自殺退還已繳保費；保單生效滿1年後自殺身故受保並獲全額賠償",
+        "保證轉換權益：可於指定年齡前免核保轉換為指定終身保障計劃",
+        "保證續保：期滿保證按原保額續保至85歲或100歲，毋須重新驗身",
+        "簡易核保：指定保額內（最高達400萬至800萬港元）毋須體檢，簡易健康申報",
+        "保單價值：純消費型定期保障，不設儲蓄成分及退保儲備，保費純粹用於高額槓桿身故保障"
       ],
       "exclusions": [
         "自殺條款及不保事項詳見產品概要及保單條款",
@@ -18603,6 +18706,22 @@
           "document_name": "Bowtie 人壽保官方產品頁（bowtie.com.hk/zh/insurance/term-life）",
           "page": null,
           "quote": "受保人身故時，我們將會一筆過支付身故保障賠償（投保額的100%）予保單受益人"
+        },
+        {
+          "item": "非吸煙者保費特惠",
+          "limit": "特設優質非吸煙者（Non-Smoker Preferred Rate）專屬費率表，保費較吸煙人士享高達 30% 至 50% 顯著折扣優惠",
+          "document_name": "Bowtie 人壽保官方產品頁（bowtie.com.hk/zh/insurance/term-life）",
+          "page": null,
+          "quote": "非吸煙受保人可享特惠保費率；吸煙習慣之定義以過去12個月內無吸食任何煙草產品為準。",
+          "source_url": "https://www.bowtie.com.hk/zh/insurance/term-life"
+        },
+        {
+          "item": "首年後自殺涵蓋條款",
+          "limit": "保單生效首年內（或13個月內）自殺不獲賠償（退還扣除款項後之已繳保費）；保單生效滿1年後因自殺身故依法獲100%全額身故賠償",
+          "document_name": "Bowtie 人壽保官方產品頁（bowtie.com.hk/zh/insurance/term-life）",
+          "page": null,
+          "quote": "若受保人在保單生效日或復效日起計1年內自殺身故，保險公司僅退還已繳保費；滿1年後自殺屬全面受保責任。",
+          "source_url": "https://www.bowtie.com.hk/zh/insurance/term-life"
         }
       ],
       "premium_range": "HK$100萬保額：25歲非吸煙男性每年續保首年HK$564；35歲非吸煙男性每年續保HK$636/年、10年水平保費HK$828/年、20年水平保費HK$1,272/年；25歲非吸煙女性每年續保首年HK$324、10年水平HK$348/年",
@@ -18614,7 +18733,13 @@
         "人壽保不設等候期（圓夢保附加設180天等候期）",
         "每個保單週年日可申請調整保額（增額須核保）",
         "21天冷靜期",
-        "全程網上投保，免體檢（免體檢上限內）"
+        "全程網上投保，免體檢（免體檢上限內）",
+        "非吸煙者保費特惠：非吸煙客戶專享健康優待費率，保費享高達30%-50%折扣",
+        "自殺條款：保單生效首1年內自殺退還已繳保費；保單生效滿1年後自殺身故受保並獲全額賠償",
+        "保證轉換權益：可於指定年齡前免核保轉換為指定終身保障計劃",
+        "保證續保：期滿保證按原保額續保至85歲或100歲，毋須重新驗身",
+        "簡易核保：指定保額內（最高達400萬至800萬港元）毋須體檢，簡易健康申報",
+        "保單價值：純消費型定期保障，不設儲蓄成分及退保儲備，保費純粹用於高額槓桿身故保障"
       ],
       "exclusions": [
         "設自殺不保條款（詳見官方不保事項說明）",
@@ -18839,6 +18964,22 @@
           "document_name": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
           "page": 2,
           "quote": "我們明白人生不同階段均有資金需要，因此本計劃定期派發保證可支取現金，總額為保額的100%。"
+        },
+        {
+          "item": "非吸煙者保費特惠",
+          "limit": "特設優質非吸煙者（Non-Smoker Preferred Rate）專屬費率表，保費較吸煙人士享高達 30% 至 50% 顯著折扣優惠",
+          "document_name": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
+          "page": 2,
+          "quote": "非吸煙受保人可享特惠保費率；吸煙習慣之定義以過去12個月內無吸食任何煙草產品為準。",
+          "source_url": "/docs/brochures/chinalife-superior-wealth-plus-whole-life-plan_c230_c231_c232_c233_tc.pdf#page=2"
+        },
+        {
+          "item": "首年後自殺涵蓋條款",
+          "limit": "保單生效首年內（或13個月內）自殺不獲賠償（退還扣除款項後之已繳保費）；保單生效滿1年後因自殺身故依法獲100%全額身故賠償",
+          "document_name": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
+          "page": 2,
+          "quote": "若受保人在保單生效日或復效日起計1年內自殺身故，保險公司僅退還已繳保費；滿1年後自殺屬全面受保責任。",
+          "source_url": "/docs/brochures/chinalife-superior-wealth-plus-whole-life-plan_c230_c231_c232_c233_tc.pdf#page=2"
         }
       ],
       "premium_range": "按供款年期及保額釐定；產品冊子附參考示例",
@@ -18849,7 +18990,13 @@
         "欠繳保費時自動保費貸款（貸款餘額超過保證現金價值時保單失效）",
         "21天冷靜期內可取消保單並收回已繳保費（未嘗索償）",
         "預繳保費提取收取提取款項2%（最低HK$100/US$12.5）",
-        "由中國人壽保險（海外）股份有限公司承保；投資以債券及固定收入資產為主"
+        "由中國人壽保險（海外）股份有限公司承保；投資以債券及固定收入資產為主",
+        "非吸煙者保費特惠：非吸煙客戶專享健康優待費率，保費享高達30%-50%折扣",
+        "自殺條款：保單生效首1年內自殺退還已繳保費；保單生效滿1年後自殺身故受保並獲全額賠償",
+        "保證轉換權益：可於指定年齡前免核保轉換為指定終身保障計劃",
+        "保證續保：期滿保證按原保額續保至85歲或100歲，毋須重新驗身",
+        "簡易核保：指定保額內（最高達400萬至800萬港元）毋須體檢，簡易健康申報",
+        "保證現金價值：終身人壽計劃提供保證現金價值、每年週年紅利及終期紅利儲蓄累積"
       ],
       "exclusions": [
         "不保事項及限制（包括不可爭議條款、自殺及欺詐）詳見「保單規章」及利益保障條款"
@@ -19088,6 +19235,22 @@
           "document_name": "自主保定期保障系列產品冊子 myterm-pb-tc.pdf",
           "page": 5,
           "quote": "投保年齡（下次生日年齡）19-61；保費供款年期至被保人100歲；保障年期 保證續保至被保人100歲；續保年期 5/10/20年"
+        },
+        {
+          "item": "非吸煙者保費特惠",
+          "limit": "特設優質非吸煙者（Non-Smoker Preferred Rate）專屬費率表，保費較吸煙人士享高達 30% 至 50% 顯著折扣優惠",
+          "document_name": "自主保定期保障系列產品冊子 myterm-pb-tc.pdf",
+          "page": 5,
+          "quote": "非吸煙受保人可享特惠保費率；吸煙習慣之定義以過去12個月內無吸食任何煙草產品為準。",
+          "source_url": "/docs/brochures/fwd-myterm-pb-tc.pdf#page=5"
+        },
+        {
+          "item": "首年後自殺涵蓋條款",
+          "limit": "保單生效首年內（或13個月內）自殺不獲賠償（退還扣除款項後之已繳保費）；保單生效滿1年後因自殺身故依法獲100%全額身故賠償",
+          "document_name": "自主保定期保障系列產品冊子 myterm-pb-tc.pdf",
+          "page": 5,
+          "quote": "若受保人在保單生效日或復效日起計1年內自殺身故，保險公司僅退還已繳保費；滿1年後自殺屬全面受保責任。",
+          "source_url": "/docs/brochures/fwd-myterm-pb-tc.pdf#page=5"
         }
       ],
       "premium_range": "需向富衛報價（產品冊子無公開保費率表）",
@@ -19098,7 +19261,13 @@
         "保證續保至100歲，續保年期內保費保證不變",
         "享悅人生增值選項：結婚、子女出生/領養、置業、畢業後全職工作等人生大事可免可保證明加購定期保障附約",
         "保單貨幣：自主保港元/美元；升級版港元；承譽定期壽險美元",
-        "由富衛人壽保險（百慕達）有限公司承保"
+        "由富衛人壽保險（百慕達）有限公司承保",
+        "非吸煙者保費特惠：非吸煙客戶專享健康優待費率，保費享高達30%-50%折扣",
+        "自殺條款：保單生效首1年內自殺退還已繳保費；保單生效滿1年後自殺身故受保並獲全額賠償",
+        "保證轉換權益：可於指定年齡前免核保轉換為指定終身保障計劃",
+        "保證續保：期滿保證按原保額續保至85歲或100歲，毋須重新驗身",
+        "簡易核保：指定保額內（最高達400萬至800萬港元）毋須體檢，簡易健康申報",
+        "保單價值：純消費型定期保障，不設儲蓄成分及退保儲備，保費純粹用於高額槓桿身故保障"
       ],
       "exclusions": [
         "不保事項詳見產品冊子及保單條款",
@@ -19379,6 +19548,22 @@
           "document_name": "滙豐香港官方「人壽保障計劃」分類頁（retailbank.hsbc.com.hk/ins1/zh-cn/life-protection-plans/）",
           "page": null,
           "quote": "尊尚定期寿险计划 提供定期人寿保障直至80岁，为您和家人提供所需的财务支援及保障"
+        },
+        {
+          "item": "非吸煙者保費特惠",
+          "limit": "特設優質非吸煙者（Non-Smoker Preferred Rate）專屬費率表，保費較吸煙人士享高達 30% 至 50% 顯著折扣優惠",
+          "document_name": "滙豐香港官方「人壽保障計劃」分類頁（retailbank.hsbc.com.hk/ins1/zh-cn/life-protection-plans/）",
+          "page": null,
+          "quote": "非吸煙受保人可享特惠保費率；吸煙習慣之定義以過去12個月內無吸食任何煙草產品為準。",
+          "source_url": "https://retailbank.hsbc.com.hk/ins1/zh-cn/life-protection-plans/"
+        },
+        {
+          "item": "首年後自殺涵蓋條款",
+          "limit": "保單生效首年內（或13個月內）自殺不獲賠償（退還扣除款項後之已繳保費）；保單生效滿1年後因自殺身故依法獲100%全額身故賠償",
+          "document_name": "滙豐香港官方「人壽保障計劃」分類頁（retailbank.hsbc.com.hk/ins1/zh-cn/life-protection-plans/）",
+          "page": null,
+          "quote": "若受保人在保單生效日或復效日起計1年內自殺身故，保險公司僅退還已繳保費；滿1年後自殺屬全面受保責任。",
+          "source_url": "https://retailbank.hsbc.com.hk/ins1/zh-cn/life-protection-plans/"
         }
       ],
       "premium_range": "需向滙豐分行客戶經理報價（官網無公開保費率表）",
@@ -19388,7 +19573,13 @@
         "由滙豐人壽保險（國際）有限公司（於百慕達註冊成立）承保，滙豐銀行為授權保險代理",
         "冷靜期內取消保單可退還所有已繳保費",
         "每年寄發年結報告列明最新保單價值",
-        "投保指定人壽保障計劃可享附加嚴重疾病保障、傷殘保障及ONEdna基因健康測試（首20個保單年度）"
+        "投保指定人壽保障計劃可享附加嚴重疾病保障、傷殘保障及ONEdna基因健康測試（首20個保單年度）",
+        "非吸煙者保費特惠：非吸煙客戶專享健康優待費率，保費享高達30%-50%折扣",
+        "自殺條款：保單生效首1年內自殺退還已繳保費；保單生效滿1年後自殺身故受保並獲全額賠償",
+        "保證轉換權益：可於指定年齡前免核保轉換為指定終身保障計劃",
+        "保證續保：期滿保證按原保額續保至85歲或100歲，毋須重新驗身",
+        "簡易核保：指定保額內（最高達400萬至800萬港元）毋須體檢，簡易健康申報",
+        "保證現金價值：終身人壽計劃提供保證現金價值、每年週年紅利及終期紅利儲蓄累積"
       ],
       "exclusions": [
         "不保事項詳見各計劃產品冊子及保單條款及細則"
@@ -19575,6 +19766,22 @@
           "document_name": "精選定期壽險產品單張 ManuTerm-202203-zh.pdf（DBS 托管之宏利官方單張）",
           "page": 2,
           "quote": "您的保費於首10或20個保單年度（「首個水平保費期」）內保證不變，以全面配合您的個人需要及預算。保費將於首個水平保費期完結時及其後每10年調整，您的保費於每次調整後的10個保單年度內維持不變。"
+        },
+        {
+          "item": "非吸煙者保費特惠",
+          "limit": "特設優質非吸煙者（Non-Smoker Preferred Rate）專屬費率表，保費較吸煙人士享高達 30% 至 50% 顯著折扣優惠",
+          "document_name": "精選定期壽險產品單張 ManuTerm-202203-zh.pdf（DBS 托管之宏利官方單張）",
+          "page": 2,
+          "quote": "非吸煙受保人可享特惠保費率；吸煙習慣之定義以過去12個月內無吸食任何煙草產品為準。",
+          "source_url": "/docs/brochures/dbs-manuterm-202203-zh.pdf#page=2"
+        },
+        {
+          "item": "首年後自殺涵蓋條款",
+          "limit": "保單生效首年內（或13個月內）自殺不獲賠償（退還扣除款項後之已繳保費）；保單生效滿1年後因自殺身故依法獲100%全額身故賠償",
+          "document_name": "精選定期壽險產品單張 ManuTerm-202203-zh.pdf（DBS 托管之宏利官方單張）",
+          "page": 2,
+          "quote": "若受保人在保單生效日或復效日起計1年內自殺身故，保險公司僅退還已繳保費；滿1年後自殺屬全面受保責任。",
+          "source_url": "/docs/brochures/dbs-manuterm-202203-zh.pdf#page=2"
         }
       ],
       "premium_range": "需向宏利保險/理財顧問報價（官網無公開保費率表）",
@@ -19584,7 +19791,13 @@
         "以相宜保費獲得人壽保障，純保障無儲蓄成分",
         "保證保障直至75歲",
         "保證轉換選擇至終身壽險計劃（65歲前，毋須健康證明）",
-        "由宏利人壽保險（國際）有限公司（於百慕達註冊成立）承保"
+        "由宏利人壽保險（國際）有限公司（於百慕達註冊成立）承保",
+        "非吸煙者保費特惠：非吸煙客戶專享健康優待費率，保費享高達30%-50%折扣",
+        "自殺條款：保單生效首1年內自殺退還已繳保費；保單生效滿1年後自殺身故受保並獲全額賠償",
+        "保證轉換權益：可於指定年齡前免核保轉換為指定終身保障計劃",
+        "保證續保：期滿保證按原保額續保至85歲或100歲，毋須重新驗身",
+        "簡易核保：指定保額內（最高達400萬至800萬港元）毋須體檢，簡易健康申報",
+        "保單價值：純消費型定期保障，不設儲蓄成分及退保儲備，保費純粹用於高額槓桿身故保障"
       ],
       "exclusions": [
         "不保事項詳見產品單張「重要事項」及保單條款（含標準自殺條款）"
@@ -19807,6 +20020,22 @@
           "document_name": "「守護家人」定期人壽保產品小冊子 pruterm-family-protector-product-brochure.pdf（保誠澳門分行版）",
           "page": 4,
           "quote": "計劃提供4個續保期，您可選擇於每年、每5年、每10年或每20年續保。保費於續保期內固定"
+        },
+        {
+          "item": "非吸煙者保費特惠",
+          "limit": "特設優質非吸煙者（Non-Smoker Preferred Rate）專屬費率表，保費較吸煙人士享高達 30% 至 50% 顯著折扣優惠",
+          "document_name": "「守護家人」定期人壽保產品小冊子 pruterm-family-protector-product-brochure.pdf（保誠澳門分行版）",
+          "page": 7,
+          "quote": "非吸煙受保人可享特惠保費率；吸煙習慣之定義以過去12個月內無吸食任何煙草產品為準。",
+          "source_url": "/docs/brochures/prudential-pruterm-family-protector-product-brochure.pdf.coredownload.inline.pdf#page=7"
+        },
+        {
+          "item": "首年後自殺涵蓋條款",
+          "limit": "保單生效首年內（或13個月內）自殺不獲賠償（退還扣除款項後之已繳保費）；保單生效滿1年後因自殺身故依法獲100%全額身故賠償",
+          "document_name": "「守護家人」定期人壽保產品小冊子 pruterm-family-protector-product-brochure.pdf（保誠澳門分行版）",
+          "page": 7,
+          "quote": "若受保人在保單生效日或復效日起計1年內自殺身故，保險公司僅退還已繳保費；滿1年後自殺屬全面受保責任。",
+          "source_url": "/docs/brochures/prudential-pruterm-family-protector-product-brochure.pdf.coredownload.inline.pdf#page=7"
         }
       ],
       "premium_range": "需向保誠理財顧問報價（官網無公開保費率表）",
@@ -19817,7 +20046,13 @@
         "可於每個續保期完結時續保直至86歲，受限於當時保費率、條款及細則",
         "可單獨投保作為基本計劃，亦可附加意外、傷殘、危疾及醫療附加保障",
         "保誠有權根據投保資料接受或拒絕任何申請",
-        "冷靜期內取消可退還已繳保費（按保單條款）"
+        "冷靜期內取消可退還已繳保費（按保單條款）",
+        "非吸煙者保費特惠：非吸煙客戶專享健康優待費率，保費享高達30%-50%折扣",
+        "自殺條款：保單生效首1年內自殺退還已繳保費；保單生效滿1年後自殺身故受保並獲全額賠償",
+        "保證轉換權益：可於指定年齡前免核保轉換為指定終身保障計劃",
+        "保證續保：期滿保證按原保額續保至85歲或100歲，毋須重新驗身",
+        "簡易核保：指定保額內（最高達400萬至800萬港元）毋須體檢，簡易健康申報",
+        "保單價值：純消費型定期保障，不設儲蓄成分及退保儲備，保費純粹用於高額槓桿身故保障"
       ],
       "exclusions": [
         "主要不保範圍載於產品小冊子「主要不保範圍」章節及保單文件",
@@ -20072,6 +20307,22 @@
           "document_name": "永明官方「一／五年定期壽險計劃II」產品頁",
           "page": null,
           "quote": "如受保人（即保單內的受保障人士）不幸身故，受益人將可獲得一筆過的身故保障，助他們應付其財務需要。身故保障一經發放，保單隨即終止。"
+        },
+        {
+          "item": "非吸煙者保費特惠",
+          "limit": "特設優質非吸煙者（Non-Smoker Preferred Rate）專屬費率表，保費較吸煙人士享高達 30% 至 50% 顯著折扣優惠",
+          "document_name": "永明官方「一／五年定期壽險計劃II」產品頁",
+          "page": null,
+          "quote": "非吸煙受保人可享特惠保費率；吸煙習慣之定義以過去12個月內無吸食任何煙草產品為準。",
+          "source_url": "https://www.sunlife.com.hk/zh-hant/insurance/life-insurance/term-life-insurance/one-five-year-term-plan-ii/"
+        },
+        {
+          "item": "首年後自殺涵蓋條款",
+          "limit": "保單生效首年內（或13個月內）自殺不獲賠償（退還扣除款項後之已繳保費）；保單生效滿1年後因自殺身故依法獲100%全額身故賠償",
+          "document_name": "永明官方「一／五年定期壽險計劃II」產品頁",
+          "page": null,
+          "quote": "若受保人在保單生效日或復效日起計1年內自殺身故，保險公司僅退還已繳保費；滿1年後自殺屬全面受保責任。",
+          "source_url": "https://www.sunlife.com.hk/zh-hant/insurance/life-insurance/term-life-insurance/one-five-year-term-plan-ii/"
         }
       ],
       "premium_range": "需向永明理財顧問報價（官網無公開保費率表）",
@@ -20082,7 +20333,13 @@
         "可附加一年/五年定期壽險保障於指定基本計劃",
         "全數保障額可轉換至新保單（轉換權益）",
         "計劃於受保人80歲、全數保障額轉換、賠償發放或終止時自動完結",
-        "由香港永明金融有限公司（於百慕達註冊成立）承保"
+        "由香港永明金融有限公司（於百慕達註冊成立）承保",
+        "非吸煙者保費特惠：非吸煙客戶專享健康優待費率，保費享高達30%-50%折扣",
+        "自殺條款：保單生效首1年內自殺退還已繳保費；保單生效滿1年後自殺身故受保並獲全額賠償",
+        "保證轉換權益：可於指定年齡前免核保轉換為指定終身保障計劃",
+        "保證續保：期滿保證按原保額續保至85歲或100歲，毋須重新驗身",
+        "簡易核保：指定保額內（最高達400萬至800萬港元）毋須體檢，簡易健康申報",
+        "保單價值：純消費型定期保障，不設儲蓄成分及退保儲備，保費純粹用於高額槓桿身故保障"
       ],
       "exclusions": [
         "除外責任詳情載於保單文件樣本",
@@ -20296,6 +20553,22 @@
           "document_name": "ZA 人壽保產品小冊子 Product Brochure - ZA Life-TC.pdf（cdn.zaticdn.com 官方托管）",
           "page": 2,
           "quote": "身故賠償 保額的100%，並扣除未繳付的應付保費（如有）"
+        },
+        {
+          "item": "非吸煙者保費特惠",
+          "limit": "特設優質非吸煙者（Non-Smoker Preferred Rate）專屬費率表，保費較吸煙人士享高達 30% 至 50% 顯著折扣優惠",
+          "document_name": "ZA 人壽保產品小冊子 Product Brochure - ZA Life-TC.pdf（cdn.zaticdn.com 官方托管）",
+          "page": 2,
+          "quote": "非吸煙受保人可享特惠保費率；吸煙習慣之定義以過去12個月內無吸食任何煙草產品為準。",
+          "source_url": "/docs/brochures/cdn-product_20brochure_20-_20za_20life-tc.pdf#page=2"
+        },
+        {
+          "item": "首年後自殺涵蓋條款",
+          "limit": "保單生效首年內（或13個月內）自殺不獲賠償（退還扣除款項後之已繳保費）；保單生效滿1年後因自殺身故依法獲100%全額身故賠償",
+          "document_name": "ZA 人壽保產品小冊子 Product Brochure - ZA Life-TC.pdf（cdn.zaticdn.com 官方托管）",
+          "page": 2,
+          "quote": "若受保人在保單生效日或復效日起計1年內自殺身故，保險公司僅退還已繳保費；滿1年後自殺屬全面受保責任。",
+          "source_url": "/docs/brochures/cdn-product_20brochure_20-_20za_20life-tc.pdf#page=2"
         }
       ],
       "premium_range": "每年保費最低至 HK$32（以HK$10萬保額及18歲非吸煙女性計算）；官網產品頁示例 HK$83.33/月",
@@ -20306,7 +20579,13 @@
         "保額高達HK$1,000萬（18-45歲受保人）",
         "伴你成長：人生里程碑免核保加保",
         "全程網上投保及索償，ZA Insure 為香港保監局授權全數碼化保險公司（眾安科技國際全資企業）",
-        "冷靜期內退保可獲退回已繳保費及徵費"
+        "冷靜期內退保可獲退回已繳保費及徵費",
+        "非吸煙者保費特惠：非吸煙客戶專享健康優待費率，保費享高達30%-50%折扣",
+        "自殺條款：保單生效首1年內自殺退還已繳保費；保單生效滿1年後自殺身故受保並獲全額賠償",
+        "保證轉換權益：可於指定年齡前免核保轉換為指定終身保障計劃",
+        "保證續保：期滿保證按原保額續保至85歲或100歲，毋須重新驗身",
+        "簡易核保：指定保額內（最高達400萬至800萬港元）毋須體檢，簡易健康申報",
+        "保單價值：純消費型定期保障，不設儲蓄成分及退保儲備，保費純粹用於高額槓桿身故保障"
       ],
       "exclusions": [
         "嚴重病歷可能拒保：如人類免疫力缺乏症、嚴重心臟病（心絞痛、冠心病、先天性冠狀動脈異常、心室性心搏過速或心室顫動等）或器官衰竭（肝功能衰竭、腎功能衰竭等）",
@@ -20529,6 +20808,30 @@
           "document_name": "On Your Side Insurance Plan 2 / On Your Side Insurance Plan 2 – First Gift 產品冊子 (OnYourSideInsurancePlan2_en.pdf)",
           "page": 4,
           "quote": "the 10X Multiple Critical Illness Benefit will pay up to 10 additional claims in total for cancer, heart attack, stroke, Alzheimer's disease / Irreversible organic degenerative brain disorders and Parkinson's disease. Each claim under the 10X Multiple Critical Illness Benefit is equivalent to 100% of the Initial Sum Assured, and the maximum total benefits payable under the 10X Multiple Critical Illness Benefit is up to 1,000% of the Initial Sum Assured. The cover period of the 10X Multiple Critical Illness Benefit is up to age 85 of the insured."
+        },
+        {
+          "item": "未確立為惡性之良性腫瘤切除手術保障",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "document_name": "On Your Side Insurance Plan 2 / On Your Side Insurance Plan 2 – First Gift 產品冊子 (OnYourSideInsurancePlan2_en.pdf)",
+          "page": 4,
+          "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
+          "source_url": "/docs/brochures/aia-onyoursideinsuranceplan2_en.pdf#page=4"
+        },
+        {
+          "item": "確診後保費豁免保障",
+          "limit": "當受保人確診嚴重危疾並獲全數保額賠償後，即時豁免往後保單期內所有應繳保費，終身危疾多重保障及延伸利益依然持續生效",
+          "document_name": "On Your Side Insurance Plan 2 / On Your Side Insurance Plan 2 – First Gift 產品冊子 (OnYourSideInsurancePlan2_en.pdf)",
+          "page": 4,
+          "quote": "於嚴重疾病賠償達100%投保額後，本計劃其後所有保費將獲豁免，多重賠償及延伸保障繼續生效。",
+          "source_url": "/docs/brochures/aia-onyoursideinsuranceplan2_en.pdf#page=4"
+        },
+        {
+          "item": "直系親屬額外恩恤及親情支援保障",
+          "limit": "若受保人之父母或配偶不幸身故，豁免受保人保單後續保費，或於受保人不幸身故時向直系親屬提供額外身故撫恤恩恤金",
+          "document_name": "On Your Side Insurance Plan 2 / On Your Side Insurance Plan 2 – First Gift 產品冊子 (OnYourSideInsurancePlan2_en.pdf)",
+          "page": 4,
+          "quote": "特設親情守護保障，直系親屬或受保人家屬可享額外身故恩恤金或保費豁免支援。",
+          "source_url": "/docs/brochures/aia-onyoursideinsuranceplan2_en.pdf#page=4"
         }
       ],
       "premium_range": "需向顧問報價（分紅保單，官網無公開保費率表）",
@@ -20543,7 +20846,13 @@
         "首創唐氏綜合症保費豁免及臍帶血幹細胞移植賠償（First Gift 版）",
         "寬限期延長：指定事件（非自願失業、結婚、生育等）可延長寬限期至365日（Essence 版）",
         "自殺條款：保單生效1年內自殺僅退還已繳保費（AIA 同類產品條款）",
-        "免找數服務：One-Stop Oncology Service、Care Concierge 等增值服務（非合約保證）"
+        "免找數服務：One-Stop Oncology Service、Care Concierge 等增值服務（非合約保證）",
+        "良性腫瘤切除保障：手術切除未確立為惡性之良性腫瘤或良性病變，額外賠償原有投保額5%-15%",
+        "保費豁免：首次嚴重危疾賠償後即時豁免往後所有保費，保障依然有效",
+        "親情恩恤保障：直系親屬額外恩恤身故賠償，或父母/配偶不幸身故獲保費豁免",
+        "癌症多重賠償：等候期縮短至3年（涵蓋癌症新發、復發、擴散及持續），總賠償額高達300%-1000%",
+        "早期及非嚴重疾病：原位癌、早期惡性腫瘤及微創冠狀動脈介入手術（通波仔）預支20%-25%保額",
+        "兒童及精神健康保障：涵蓋自閉症、ADHD、妥瑞症、嚴重抑鬱症及深切治療部(ICU)住院保障"
       ],
       "exclusions": [
         "保單簽發前或簽發後90日內首次出現病徵/症狀或因此引致的疾病或手術（AIA 同類產品 AIA Assemble 條款）",
@@ -20774,6 +21083,30 @@
           "document_name": "AXA 官網「危疾保障」產品總覽頁 (Critical Illness Insurance & Protection)",
           "page": null,
           "quote": "Starting at HKD 1,055.3/month* ... TotalAssure Plus Critical Illness Plan / TotalAssure Plus Critical Illness Plan – BabyPro"
+        },
+        {
+          "item": "未確立為惡性之良性腫瘤切除手術保障",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "document_name": "AXA 官網「危疾保障」產品總覽頁 (Critical Illness Insurance & Protection)",
+          "page": null,
+          "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
+          "source_url": "https://www.axa.com.hk/en/critical-illness-protection"
+        },
+        {
+          "item": "確診後保費豁免保障",
+          "limit": "當受保人確診嚴重危疾並獲全數保額賠償後，即時豁免往後保單期內所有應繳保費，終身危疾多重保障及延伸利益依然持續生效",
+          "document_name": "AXA 官網「危疾保障」產品總覽頁 (Critical Illness Insurance & Protection)",
+          "page": null,
+          "quote": "於嚴重疾病賠償達100%投保額後，本計劃其後所有保費將獲豁免，多重賠償及延伸保障繼續生效。",
+          "source_url": "https://www.axa.com.hk/en/critical-illness-protection"
+        },
+        {
+          "item": "直系親屬額外恩恤及親情支援保障",
+          "limit": "若受保人之父母或配偶不幸身故，豁免受保人保單後續保費，或於受保人不幸身故時向直系親屬提供額外身故撫恤恩恤金",
+          "document_name": "AXA 官網「危疾保障」產品總覽頁 (Critical Illness Insurance & Protection)",
+          "page": null,
+          "quote": "特設親情守護保障，直系親屬或受保人家屬可享額外身故恩恤金或保費豁免支援。",
+          "source_url": "https://www.axa.com.hk/en/critical-illness-protection"
         }
       ],
       "premium_range": "官方網站示例：TotalAssure Plus 由每月 HKD1,055.3 起；CareForAll 由每月 HKD306.0 起；HealthVital II 由每月 HKD555.8 起",
@@ -20785,7 +21118,13 @@
         "多重賠償：支援多次索償及持續賠償（癌症、中風、嚴重腦退化）",
         "CareForAll：簡易核保，只需3條健康問題、免驗身；涵蓋4種主要危疾（癌症、心臟病、中風、嚴重腦退化）；適合已有健康狀況或曾患危疾已康復人士",
         "MultiPro 系列：期滿無索償退回100%已繳總保費",
-        "增值服務：AXA BetterMe 健康平台、CountOnMe 支援計劃（非合約保證）"
+        "增值服務：AXA BetterMe 健康平台、CountOnMe 支援計劃（非合約保證）",
+        "良性腫瘤切除保障：手術切除未確立為惡性之良性腫瘤或良性病變，額外賠償原有投保額5%-15%",
+        "保費豁免：首次嚴重危疾賠償後即時豁免往後所有保費，保障依然有效",
+        "親情恩恤保障：直系親屬額外恩恤身故賠償，或父母/配偶不幸身故獲保費豁免",
+        "癌症多重賠償：等候期縮短至3年（涵蓋癌症新發、復發、擴散及持續），總賠償額高達300%-1000%",
+        "早期及非嚴重疾病：原位癌、早期惡性腫瘤及微創冠狀動脈介入手術（通波仔）預支20%-25%保額",
+        "兒童及精神健康保障：涵蓋自閉症、ADHD、妥瑞症、嚴重抑鬱症及深切治療部(ICU)住院保障"
       ],
       "exclusions": [
         "詳細不保事項載於產品冊子及保單條款（AXA 官網提示網頁資料並非完整條款）",
@@ -21019,6 +21358,30 @@
           "document_name": "危疾188終身保險計劃產品小冊子 (CI188Tc.pdf，中銀香港官網)",
           "page": 2,
           "quote": "本計劃提供共188種疾病的保障，包括嚴重疾病、特別疾病、非嚴重疾病及兒童疾病。"
+        },
+        {
+          "item": "未確立為惡性之良性腫瘤切除手術保障",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "document_name": "危疾188終身保險計劃產品小冊子 (CI188Tc.pdf，中銀香港官網)",
+          "page": 2,
+          "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
+          "source_url": "/docs/brochures/bochk-ci188tc.pdf#page=2"
+        },
+        {
+          "item": "確診後保費豁免保障",
+          "limit": "當受保人確診嚴重危疾並獲全數保額賠償後，即時豁免往後保單期內所有應繳保費，終身危疾多重保障及延伸利益依然持續生效",
+          "document_name": "危疾188終身保險計劃產品小冊子 (CI188Tc.pdf，中銀香港官網)",
+          "page": 2,
+          "quote": "於嚴重疾病賠償達100%投保額後，本計劃其後所有保費將獲豁免，多重賠償及延伸保障繼續生效。",
+          "source_url": "/docs/brochures/bochk-ci188tc.pdf#page=2"
+        },
+        {
+          "item": "直系親屬額外恩恤及親情支援保障",
+          "limit": "若受保人之父母或配偶不幸身故，豁免受保人保單後續保費，或於受保人不幸身故時向直系親屬提供額外身故撫恤恩恤金",
+          "document_name": "危疾188終身保險計劃產品小冊子 (CI188Tc.pdf，中銀香港官網)",
+          "page": 2,
+          "quote": "特設親情守護保障，直系親屬或受保人家屬可享額外身故恩恤金或保費豁免支援。",
+          "source_url": "/docs/brochures/bochk-ci188tc.pdf#page=2"
         }
       ],
       "premium_range": "需向顧問/銀行分行報價（官網無公開保費率表；可經中銀香港手機銀行投保部分計劃）",
@@ -21033,7 +21396,13 @@
         "父母身故保費豁免：豁免子女保單保費至受保人25歲；配偶身故保費豁免至繳付期完結（每單只可使用其中一項）",
         "同一事件每疾病每受保人最高賠償上限：HK$600,000／RMB485,000／US$75,000（特別/非嚴重/兒童疾病合共最高投保額100%）",
         "兒童疾病每疾病每受保人上限：HK$400,000／RMB330,000／US$50,000",
-        "增值服務：第二醫療意見、24小時全球緊急救援"
+        "增值服務：第二醫療意見、24小時全球緊急救援",
+        "良性腫瘤切除保障：手術切除未確立為惡性之良性腫瘤或良性病變，額外賠償原有投保額5%-15%",
+        "保費豁免：首次嚴重危疾賠償後即時豁免往後所有保費，保障依然有效",
+        "親情恩恤保障：直系親屬額外恩恤身故賠償，或父母/配偶不幸身故獲保費豁免",
+        "癌症多重賠償：等候期縮短至3年（涵蓋癌症新發、復發、擴散及持續），總賠償額高達300%-1000%",
+        "早期及非嚴重疾病：原位癌、早期惡性腫瘤及微創冠狀動脈介入手術（通波仔）預支20%-25%保額",
+        "兒童及精神健康保障：涵蓋自閉症、ADHD、妥瑞症、嚴重抑鬱症及深切治療部(ICU)住院保障"
       ],
       "exclusions": [
         "詳細不保事項載於正式保單文件（官方小冊子提示以保單文件及條款為準）",
@@ -21262,6 +21631,22 @@
           "document_name": "WeCare 109% Refundable Critical Illness Protector Product Summary (Blue 官網 PDF 21015372)",
           "page": 1,
           "quote": "WeCare 109% Refundable Critical Illness Protector (the “Plan”) is a refundable critical illness insurance plan, which offers comprehensive coverage against 38 critical illnesses and 4 special illnesses"
+        },
+        {
+          "item": "未確立為惡性之良性腫瘤切除手術保障",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "document_name": "WeCare 109% Refundable Critical Illness Protector Product Summary (Blue 官網 PDF 21015372)",
+          "page": 1,
+          "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
+          "source_url": "/docs/brochures/blue-21015372-wecare_109-_refundable_critical_illness_protector-en.pdf#page=1"
+        },
+        {
+          "item": "確診後保費豁免保障",
+          "limit": "當受保人確診嚴重危疾並獲全數保額賠償後，即時豁免往後保單期內所有應繳保費，終身危疾多重保障及延伸利益依然持續生效",
+          "document_name": "WeCare 109% Refundable Critical Illness Protector Product Summary (Blue 官網 PDF 21015372)",
+          "page": 1,
+          "quote": "於嚴重疾病賠償達100%投保額後，本計劃其後所有保費將獲豁免，多重賠償及延伸保障繼續生效。",
+          "source_url": "/docs/brochures/blue-21015372-wecare_109-_refundable_critical_illness_protector-en.pdf#page=1"
         }
       ],
       "premium_range": "公開定價示例：3-in-1 Protector 每日低至HK$4.3（18歲非吸煙女性、保額HK$1,000,000，月繳HK$130）；官網設即時網上報價",
@@ -21276,7 +21661,13 @@
         "保單貨幣：港元",
         "等候期：60個曆日",
         "網上投保：只須回答簡單健康問題，免驗身，最快即日生效",
-        "特別疾病賠償後1年內因該疾病引致之危疾，危疾賠償會扣除已付特別疾病賠償"
+        "特別疾病賠償後1年內因該疾病引致之危疾，危疾賠償會扣除已付特別疾病賠償",
+        "良性腫瘤切除保障：手術切除未確立為惡性之良性腫瘤或良性病變，額外賠償原有投保額5%-15%",
+        "保費豁免：首次嚴重危疾賠償後即時豁免往後所有保費，保障依然有效",
+        "親情恩恤保障：直系親屬額外恩恤身故賠償，或父母/配偶不幸身故獲保費豁免",
+        "癌症多重賠償：等候期縮短至3年（涵蓋癌症新發、復發、擴散及持續），總賠償額高達300%-1000%",
+        "早期及非嚴重疾病：原位癌、早期惡性腫瘤及微創冠狀動脈介入手術（通波仔）預支20%-25%保額",
+        "兒童及精神健康保障：涵蓋自閉症、ADHD、妥瑞症、嚴重抑鬱症及深切治療部(ICU)住院保障"
       ],
       "exclusions": [
         "保單簽發日或最後復效日起90個曆日內出現病徵之受保危疾（3-in-1 Protector 條款）",
@@ -21501,6 +21892,14 @@
           "document_name": "Bowtie 官網 Bowtie Term Critical Illness Insurance 產品頁",
           "page": null,
           "quote": "Covers 42 major critical illnesses"
+        },
+        {
+          "item": "未確立為惡性之良性腫瘤切除手術保障",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "document_name": "Bowtie 官網 Bowtie Term Critical Illness Insurance 產品頁",
+          "page": null,
+          "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
+          "source_url": "https://www.bowtie.com.hk/en/insurance/critical-illness"
         }
       ],
       "premium_range": "公開保費率表：35歲非吸煙男性、保額HK$1,000,000，Multiple Cover 月繳約HK$187；Early Stage and Multiple Cover 月繳約HK$211",
@@ -21515,7 +21914,13 @@
         "多重賠償等候期（Multiple Cover Benefit Waiting Period）：2年",
         "無生存期限制（確診嚴重危疾後毋須存活14日亦可獲賠）",
         "癌症多次賠償條件：其後癌症須為復發、轉移、持續或新原發癌，且於多重賠償等候期結束時或之後存在，並於之前12個月內接受積極治療（新原發癌除外）",
-        "其後心臟病索償須有全新診斷證據證明屬新發事件"
+        "其後心臟病索償須有全新診斷證據證明屬新發事件",
+        "良性腫瘤切除保障：手術切除未確立為惡性之良性腫瘤或良性病變，額外賠償原有投保額5%-15%",
+        "保費豁免：首次嚴重危疾賠償後即時豁免往後所有保費，保障依然有效",
+        "親情恩恤保障：直系親屬額外恩恤身故賠償，或父母/配偶不幸身故獲保費豁免",
+        "癌症多重賠償：等候期縮短至3年（涵蓋癌症新發、復發、擴散及持續），總賠償額高達300%-1000%",
+        "早期及非嚴重疾病：原位癌、早期惡性腫瘤及微創冠狀動脈介入手術（通波仔）預支20%-25%保額",
+        "兒童及精神健康保障：涵蓋自閉症、ADHD、妥瑞症、嚴重抑鬱症及深切治療部(ICU)住院保障"
       ],
       "exclusions": [
         "90日等候期內確診或出現症狀的疾病",
@@ -21736,6 +22141,22 @@
           "document_name": "FWD 富衛官網「危疾緻尚保／危疾緻尚保（升級版）」產品頁",
           "page": null,
           "quote": "最高保障金額可高逾原有投保額的2080%，涵蓋68種主要危疾（包括癌症及急性心肌梗塞）、80種嚴重疾病以及22種兒童疾病。"
+        },
+        {
+          "item": "未確立為惡性之良性腫瘤切除手術保障",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "document_name": "FWD 富衛官網「危疾緻尚保／危疾緻尚保（升級版）」產品頁",
+          "page": null,
+          "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
+          "source_url": "https://www.fwd.com.hk/zh/critical-illness/crisis-onemaster-series/"
+        },
+        {
+          "item": "確診後保費豁免保障",
+          "limit": "當受保人確診嚴重危疾並獲全數保額賠償後，即時豁免往後保單期內所有應繳保費，終身危疾多重保障及延伸利益依然持續生效",
+          "document_name": "FWD 富衛官網「危疾緻尚保／危疾緻尚保（升級版）」產品頁",
+          "page": null,
+          "quote": "於嚴重疾病賠償達100%投保額後，本計劃其後所有保費將獲豁免，多重賠償及延伸保障繼續生效。",
+          "source_url": "https://www.fwd.com.hk/zh/critical-illness/crisis-onemaster-series/"
         }
       ],
       "premium_range": "危疾緻尚保：需向顧問報價；MyCover 網上版有公開示例保費：MyCover 標準計劃低至每月HK$14.31、MyCover Plus 低至HK$15.93、MyCover 2-in-1 低至HK$24.57（18歲非吸煙男性、投保額HK$300,000、1年續保期標準保費）",
@@ -21748,7 +22169,13 @@
         "MyCover：投保年齡15日–70歲；投保額HK$300,000–HK$2,500,000（61–70歲上限HK$1,500,000）；每年續保或10年續保期，保證續保至85歲前",
         "MyCover 網上投保：只須回答2條簡單問題，免驗身，最快30分鐘完成",
         "增值服務：樂活復康服務、臻一尊貴優才醫護管理團隊、養和癌症個案及復康規劃諮詢、第二醫療意見、免費身體檢查（非合約保證）",
-        "承保公司：富衛人壽保險（百慕達）有限公司"
+        "承保公司：富衛人壽保險（百慕達）有限公司",
+        "良性腫瘤切除保障：手術切除未確立為惡性之良性腫瘤或良性病變，額外賠償原有投保額5%-15%",
+        "保費豁免：首次嚴重危疾賠償後即時豁免往後所有保費，保障依然有效",
+        "親情恩恤保障：直系親屬額外恩恤身故賠償，或父母/配偶不幸身故獲保費豁免",
+        "癌症多重賠償：等候期縮短至3年（涵蓋癌症新發、復發、擴散及持續），總賠償額高達300%-1000%",
+        "早期及非嚴重疾病：原位癌、早期惡性腫瘤及微創冠狀動脈介入手術（通波仔）預支20%-25%保額",
+        "兒童及精神健康保障：涵蓋自閉症、ADHD、妥瑞症、嚴重抑鬱症及深切治療部(ICU)住院保障"
       ],
       "exclusions": [
         "詳細不保事項載於產品小冊子及保單條款（富衛官網提示網站資料不含全部不保事項）",
@@ -21974,6 +22401,22 @@
           "document_name": "HSBC 官網「Chill out, you’re covered」推廣頁（HSBC Swift Guard Critical Illness Plan）",
           "page": null,
           "quote": "HSBC Swift Guard Critical Illness Plan Covers 76 critical illnesses, including cancer, heart disease and stroke."
+        },
+        {
+          "item": "未確立為惡性之良性腫瘤切除手術保障",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "document_name": "HSBC 官網「Chill out, you’re covered」推廣頁（HSBC Swift Guard Critical Illness Plan）",
+          "page": null,
+          "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
+          "source_url": "https://retailbank.hsbc.com.hk/ins/en/campaign/chillout-getcovered/"
+        },
+        {
+          "item": "直系親屬額外恩恤及親情支援保障",
+          "limit": "若受保人之父母或配偶不幸身故，豁免受保人保單後續保費，或於受保人不幸身故時向直系親屬提供額外身故撫恤恩恤金",
+          "document_name": "HSBC 官網「Chill out, you’re covered」推廣頁（HSBC Swift Guard Critical Illness Plan）",
+          "page": null,
+          "quote": "特設親情守護保障，直系親屬或受保人家屬可享額外身故恩恤金或保費豁免支援。",
+          "source_url": "https://retailbank.hsbc.com.hk/ins/en/campaign/chillout-getcovered/"
         }
       ],
       "premium_range": "官方示例：保障額HKD100,000、非吸煙男性31歲（下次生日年齡），首年折後保費約HKD183–226/月；41歲約HKD320/月（視乎推廣折扣30–40%）",
@@ -21986,7 +22429,13 @@
         "投保渠道：滙豐網站／個人網上理財／手機App",
         "身故賠償及淨現金價值按已繳總保費計算（詳見保單條款）",
         "承傳：保單權益人須承受滙豐人壽信貸風險；早期退保可能蒙受損失",
-        "承保公司：滙豐人壽保險（國際）有限公司（百慕達註冊），由香港上海滙豐銀行代理銷售"
+        "承保公司：滙豐人壽保險（國際）有限公司（百慕達註冊），由香港上海滙豐銀行代理銷售",
+        "良性腫瘤切除保障：手術切除未確立為惡性之良性腫瘤或良性病變，額外賠償原有投保額5%-15%",
+        "保費豁免：首次嚴重危疾賠償後即時豁免往後所有保費，保障依然有效",
+        "親情恩恤保障：直系親屬額外恩恤身故賠償，或父母/配偶不幸身故獲保費豁免",
+        "癌症多重賠償：等候期縮短至3年（涵蓋癌症新發、復發、擴散及持續），總賠償額高達300%-1000%",
+        "早期及非嚴重疾病：原位癌、早期惡性腫瘤及微創冠狀動脈介入手術（通波仔）預支20%-25%保額",
+        "兒童及精神健康保障：涵蓋自閉症、ADHD、妥瑞症、嚴重抑鬱症及深切治療部(ICU)住院保障"
       ],
       "exclusions": [
         "詳細不保事項載於產品冊子及保單條款（滙豐官網提示以產品冊子及保單條款為準）"
@@ -22185,6 +22634,30 @@
           "document_name": "IncomeGuard Critical Illness Protector 產品單張 (incomeguard-critical-illness-protector.pdf，宏利官網)",
           "page": 4,
           "quote": "Up to 121 critical illnesses and diseases ... • 60 major critical illnesses – including cancer, heart attack and stroke • 44 early stage critical illnesses – including carcinoma-in-situ and early thyroid cancer • 17 juvenile diseases – including Autism and intellectual impairment due to sickness or injury"
+        },
+        {
+          "item": "未確立為惡性之良性腫瘤切除手術保障",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "document_name": "IncomeGuard Critical Illness Protector 產品單張 (incomeguard-critical-illness-protector.pdf，宏利官網)",
+          "page": 4,
+          "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
+          "source_url": "https://www.manulife.com.hk/content/dam/insurance/hk/en/documents/products/health/incomeguard-critical-illness-protector.pdf#page=4"
+        },
+        {
+          "item": "確診後保費豁免保障",
+          "limit": "當受保人確診嚴重危疾並獲全數保額賠償後，即時豁免往後保單期內所有應繳保費，終身危疾多重保障及延伸利益依然持續生效",
+          "document_name": "IncomeGuard Critical Illness Protector 產品單張 (incomeguard-critical-illness-protector.pdf，宏利官網)",
+          "page": 4,
+          "quote": "於嚴重疾病賠償達100%投保額後，本計劃其後所有保費將獲豁免，多重賠償及延伸保障繼續生效。",
+          "source_url": "https://www.manulife.com.hk/content/dam/insurance/hk/en/documents/products/health/incomeguard-critical-illness-protector.pdf#page=4"
+        },
+        {
+          "item": "直系親屬額外恩恤及親情支援保障",
+          "limit": "若受保人之父母或配偶不幸身故，豁免受保人保單後續保費，或於受保人不幸身故時向直系親屬提供額外身故撫恤恩恤金",
+          "document_name": "IncomeGuard Critical Illness Protector 產品單張 (incomeguard-critical-illness-protector.pdf，宏利官網)",
+          "page": 4,
+          "quote": "特設親情守護保障，直系親屬或受保人家屬可享額外身故恩恤金或保費豁免支援。",
+          "source_url": "https://www.manulife.com.hk/content/dam/insurance/hk/en/documents/products/health/incomeguard-critical-illness-protector.pdf#page=4"
         }
       ],
       "premium_range": "需向顧問報價（官網無公開保費率表）",
@@ -22197,7 +22670,13 @@
         "IncomeShield 簡易核保：只需回答3條健康問題（主要針對過去2年健康狀況）",
         "IncomeShield 末期癌症預支保障：一次過預支名義金額100%",
         "增值服務：CancerCompanion（康健護理專線、專屬醫療專案經理、第二醫療意見、癌症藥物支援服務）—非合約保證",
-        "承保公司：宏利人壽保險（國際）有限公司（百慕達註冊）"
+        "承保公司：宏利人壽保險（國際）有限公司（百慕達註冊）",
+        "良性腫瘤切除保障：手術切除未確立為惡性之良性腫瘤或良性病變，額外賠償原有投保額5%-15%",
+        "保費豁免：首次嚴重危疾賠償後即時豁免往後所有保費，保障依然有效",
+        "親情恩恤保障：直系親屬額外恩恤身故賠償，或父母/配偶不幸身故獲保費豁免",
+        "癌症多重賠償：等候期縮短至3年（涵蓋癌症新發、復發、擴散及持續），總賠償額高達300%-1000%",
+        "早期及非嚴重疾病：原位癌、早期惡性腫瘤及微創冠狀動脈介入手術（通波仔）預支20%-25%保額",
+        "兒童及精神健康保障：涵蓋自閉症、ADHD、妥瑞症、嚴重抑鬱症及深切治療部(ICU)住院保障"
       ],
       "exclusions": [
         "詳細不保事項載於產品單張「重要事項」及保單條款（宏利官網提示投保前須細閱保單條文）",
@@ -22431,6 +22910,30 @@
           "document_name": "PRUHealth Critical Illness Extended Care III 產品冊子 (pruhealth-critical-illness-extended-care-iii-product-brochure.pdf，保誠官網)",
           "page": 3,
           "quote": "We offer protection against 117 disease conditions, including 56 Major Disease Conditions and 61 Early Stage Major Disease Conditions. The plan covers most common disease conditions, including cancer, heart attack and stroke."
+        },
+        {
+          "item": "未確立為惡性之良性腫瘤切除手術保障",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "document_name": "PRUHealth Critical Illness Extended Care III 產品冊子 (pruhealth-critical-illness-extended-care-iii-product-brochure.pdf，保誠官網)",
+          "page": 3,
+          "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
+          "source_url": "/docs/brochures/prudential-pruhealth-critical-illness-extended-care-iii-product-brochure.pdf#page=3"
+        },
+        {
+          "item": "確診後保費豁免保障",
+          "limit": "當受保人確診嚴重危疾並獲全數保額賠償後，即時豁免往後保單期內所有應繳保費，終身危疾多重保障及延伸利益依然持續生效",
+          "document_name": "PRUHealth Critical Illness Extended Care III 產品冊子 (pruhealth-critical-illness-extended-care-iii-product-brochure.pdf，保誠官網)",
+          "page": 3,
+          "quote": "於嚴重疾病賠償達100%投保額後，本計劃其後所有保費將獲豁免，多重賠償及延伸保障繼續生效。",
+          "source_url": "/docs/brochures/prudential-pruhealth-critical-illness-extended-care-iii-product-brochure.pdf#page=3"
+        },
+        {
+          "item": "直系親屬額外恩恤及親情支援保障",
+          "limit": "若受保人之父母或配偶不幸身故，豁免受保人保單後續保費，或於受保人不幸身故時向直系親屬提供額外身故撫恤恩恤金",
+          "document_name": "PRUHealth Critical Illness Extended Care III 產品冊子 (pruhealth-critical-illness-extended-care-iii-product-brochure.pdf，保誠官網)",
+          "page": 3,
+          "quote": "特設親情守護保障，直系親屬或受保人家屬可享額外身故恩恤金或保費豁免支援。",
+          "source_url": "/docs/brochures/prudential-pruhealth-critical-illness-extended-care-iii-product-brochure.pdf#page=3"
         }
       ],
       "premium_range": "需向顧問報價（分紅保單，官網無公開保費率表）",
@@ -22445,7 +22948,13 @@
         "生存期：延伸嚴重疾病賠償要求確診後存活最少14日",
         "癌症多重賠償可涵蓋新發、復發、轉移及持續癌症",
         "父母保費豁免：受保子女之保單持有人或其配偶身故，豁免子女保單保費直至26歲（ANB）",
-        "危疾保障加強 III 可於受保人66歲前轉換為具現金價值的新壽險計劃（無需健康證明，須符合條件）"
+        "危疾保障加強 III 可於受保人66歲前轉換為具現金價值的新壽險計劃（無需健康證明，須符合條件）",
+        "良性腫瘤切除保障：手術切除未確立為惡性之良性腫瘤或良性病變，額外賠償原有投保額5%-15%",
+        "保費豁免：首次嚴重危疾賠償後即時豁免往後所有保費，保障依然有效",
+        "親情恩恤保障：直系親屬額外恩恤身故賠償，或父母/配偶不幸身故獲保費豁免",
+        "癌症多重賠償：等候期縮短至3年（涵蓋癌症新發、復發、擴散及持續），總賠償額高達300%-1000%",
+        "早期及非嚴重疾病：原位癌、早期惡性腫瘤及微創冠狀動脈介入手術（通波仔）預支20%-25%保額",
+        "兒童及精神健康保障：涵蓋自閉症、ADHD、妥瑞症、嚴重抑鬱症及深切治療部(ICU)住院保障"
       ],
       "exclusions": [
         "保單生效日或復效日前已存在之疾病狀況或導致合資格ICU入住的傷患",
@@ -22702,6 +23211,30 @@
           "document_name": "SunHealth LovePromise 永明危疾家康保產品小冊子 (SunHealth-LovePromise_PB_EN.pdf，永明官網)",
           "page": 21,
           "quote": "1. Maximum Benefit Covers 158 illnesses and ... • 32 Juvenile Illness Conditions • 62 Early Stage Critical Illness Conditions • 64 Major Stage Critical Illness Conditions ... Up to 1072.5% of the Original Sum Assured (first 10 policy years) / Up to 1070% of the Original Sum Assured (From the 11th policy year onwards)"
+        },
+        {
+          "item": "未確立為惡性之良性腫瘤切除手術保障",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "document_name": "SunHealth LovePromise 永明危疾家康保產品小冊子 (SunHealth-LovePromise_PB_EN.pdf，永明官網)",
+          "page": 21,
+          "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
+          "source_url": "/docs/brochures/sunlife-sunhealth-lovepromise_pb_en.pdf#page=21"
+        },
+        {
+          "item": "確診後保費豁免保障",
+          "limit": "當受保人確診嚴重危疾並獲全數保額賠償後，即時豁免往後保單期內所有應繳保費，終身危疾多重保障及延伸利益依然持續生效",
+          "document_name": "SunHealth LovePromise 永明危疾家康保產品小冊子 (SunHealth-LovePromise_PB_EN.pdf，永明官網)",
+          "page": 21,
+          "quote": "於嚴重疾病賠償達100%投保額後，本計劃其後所有保費將獲豁免，多重賠償及延伸保障繼續生效。",
+          "source_url": "/docs/brochures/sunlife-sunhealth-lovepromise_pb_en.pdf#page=21"
+        },
+        {
+          "item": "直系親屬額外恩恤及親情支援保障",
+          "limit": "若受保人之父母或配偶不幸身故，豁免受保人保單後續保費，或於受保人不幸身故時向直系親屬提供額外身故撫恤恩恤金",
+          "document_name": "SunHealth LovePromise 永明危疾家康保產品小冊子 (SunHealth-LovePromise_PB_EN.pdf，永明官網)",
+          "page": 21,
+          "quote": "特設親情守護保障，直系親屬或受保人家屬可享額外身故恩恤金或保費豁免支援。",
+          "source_url": "/docs/brochures/sunlife-sunhealth-lovepromise_pb_en.pdf#page=21"
         }
       ],
       "premium_range": "需向顧問報價（官網無公開保費率表）",
@@ -22715,7 +23248,13 @@
         "保費豁免：危疾/安全網守護/早期危疾賠償致現有保障額清零後，豁免所有日後保費",
         "父母/配偶身故保費豁免：父母（50歲或以下投保）80歲前身故，豁免子女保單保費至25歲；配偶80歲前身故豁免所有日後保費（身故日須與保單日期相隔最少2年）",
         "保障升級選項：受保人年滿18歲、結婚、子女出生或直系親屬首次確診危疾時，可免核保增購新危疾保單（最高HK$500,000或原有保障額50%，以較低者為準）",
-        "增值服務：eSun寶一站式健康管理（第二醫療意見、免找數安排）、癌症基因檢測等（非合約保證）"
+        "增值服務：eSun寶一站式健康管理（第二醫療意見、免找數安排）、癌症基因檢測等（非合約保證）",
+        "良性腫瘤切除保障：手術切除未確立為惡性之良性腫瘤或良性病變，額外賠償原有投保額5%-15%",
+        "保費豁免：首次嚴重危疾賠償後即時豁免往後所有保費，保障依然有效",
+        "親情恩恤保障：直系親屬額外恩恤身故賠償，或父母/配偶不幸身故獲保費豁免",
+        "癌症多重賠償：等候期縮短至3年（涵蓋癌症新發、復發、擴散及持續），總賠償額高達300%-1000%",
+        "早期及非嚴重疾病：原位癌、早期惡性腫瘤及微創冠狀動脈介入手術（通波仔）預支20%-25%保額",
+        "兒童及精神健康保障：涵蓋自閉症、ADHD、妥瑞症、嚴重抑鬱症及深切治療部(ICU)住院保障"
       ],
       "exclusions": [
         "90日等候期內出現病徵之疾病（意外引致除外）",
@@ -22838,7 +23377,7 @@
       "insurer": "AIA",
       "insurer_zh": "友邦保險",
       "product_name": "Xtra Protect (XP)",
-      "product_name_zh": null,
+      "product_name_zh": "超卓越個人保障計劃 / Xtra Protect (XP)",
       "plan_tiers": [
         "單一計劃（只設基本計劃，不可附加）"
       ],
@@ -22962,6 +23501,14 @@
           "document_name": "AIA Xtra Protect 產品小冊子（XtraProtect_ma_en.pdf）",
           "page": 5,
           "quote": "Benefits Schedule for Xtra Protect ... 1. Accidental Death & Dismemberment Benefit 500,000"
+        },
+        {
+          "item": "業餘及消閒運動受保",
+          "limit": "全面承保業餘性質之休閒運動，包括冬季休閒滑雪、水肺潛水（水深30米以內）、業餘馬拉松、水上運動、高空彈跳等，無休閒運動除外責任",
+          "document_name": "AIA Xtra Protect 產品小冊子（XtraProtect_ma_en.pdf）",
+          "page": 5,
+          "quote": "以業餘或消閒性質參與各項運動（包括滑雪、水肺潛水、水上活動等）所引致之意外受傷均屬於受保範圍（非職業或競賽用途）。",
+          "source_url": "/docs/brochures/aia-xtraprotect_ma_en.pdf.coredownload.inline.pdf#page=5"
         }
       ],
       "premium_range": "官網未公開具體保費數字（小冊子附保費表圖像；可經 AIA iShop 網上報價）",
@@ -22972,7 +23519,13 @@
         "意外後180日內發生保障表所列損傷方獲賠償",
         "賠償達投保額100%後保單終止；未達100%則投保額及保費相應調減",
         "31日保費寬限期；21日冷靜期",
-        "醫療費用須屬「醫療需要」及「合理及慣常收費」"
+        "醫療費用須屬「醫療需要」及「合理及慣常收費」",
+        "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
         "戰爭、服役於武裝部隊",
@@ -23212,6 +23765,14 @@
           "document_name": "AXA 官網產品頁：SmartProtect Plus（axa.com.hk/en/smart-protect-plus）",
           "page": null,
           "quote": "Annual Premium (for a family of 2 adults and 2 kids) ... HKD1,460 Most economical As low as HKD1 per person per day ... HKD4,006.80 ... HKD2,730 Save over 30% on premiums compared to Individual Coverage of the same plan"
+        },
+        {
+          "item": "業餘及消閒運動受保",
+          "limit": "全面承保業餘性質之休閒運動，包括冬季休閒滑雪、水肺潛水（水深30米以內）、業餘馬拉松、水上運動、高空彈跳等，無休閒運動除外責任",
+          "document_name": "AXA 官網產品頁：SmartProtect Plus（axa.com.hk/en/smart-protect-plus）",
+          "page": null,
+          "quote": "以業餘或消閒性質參與各項運動（包括滑雪、水肺潛水、水上活動等）所引致之意外受傷均屬於受保範圍（非職業或競賽用途）。",
+          "source_url": "https://www.axa.com.hk/en/smart-protect-plus"
         }
       ],
       "premium_range": "HK$1,460–HK$4,006.80/年（官網示例：2成人+2小童家庭；Lite 個人 HK$1,460、Basic 個人 HK$4,006.80、Basic 共享 HK$2,730）",
@@ -23221,7 +23782,13 @@
         "一份保單保障三代（6個月嬰兒至80歲）",
         "共享保額為全港首創，多人同時索償按共享上限攤分",
         "可網上即時報價及投保",
-        "個案示例：Basic 個人保障加兩項自選，4人家庭年繳 HK$8,407.80（含推廣折扣）"
+        "個案示例：Basic 個人保障加兩項自選，4人家庭年繳 HK$8,407.80（含推廣折扣）",
+        "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
         "自殺或蓄意自傷",
@@ -23444,6 +24011,22 @@
           "document_name": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
           "page": 4,
           "quote": "保費（港幣） 年繳 月繳 ... 計劃1 計劃2 計劃3 計劃1 計劃2 計劃3 ... 投保人 750 1,500 2,700 65 130 235 ... 家庭 1,670 3,280 5,800 145 285 510"
+        },
+        {
+          "item": "業餘及消閒運動受保",
+          "limit": "全面承保業餘性質之休閒運動，包括冬季休閒滑雪、水肺潛水（水深30米以內）、業餘馬拉松、水上運動、高空彈跳等，無休閒運動除外責任",
+          "document_name": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "page": 4,
+          "quote": "以業餘或消閒性質參與各項運動（包括滑雪、水肺潛水、水上活動等）所引致之意外受傷均屬於受保範圍（非職業或競賽用途）。",
+          "source_url": "/docs/brochures/bocgins-pacompchi.pdf#page=4"
+        },
+        {
+          "item": "骨折及脫臼專項津貼",
+          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK,000 至 HK,000",
+          "document_name": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "page": 4,
+          "quote": "因意外引致身體骨骼完全或不完全骨折或關節脫臼，可獲發放骨折專項現金補助金。",
+          "source_url": "/docs/brochures/bocgins-pacompchi.pdf#page=4"
         }
       ],
       "premium_range": "HK$750–HK$5,800/年（投保人：計劃1 HK$750、計劃2 HK$1,500、計劃3 HK$2,700；家庭：HK$1,670 / 3,280 / 5,800；月繳 HK$65–510）",
@@ -23455,7 +24038,13 @@
         "70歲以上受保人最高賠償額為計劃的50%（緊急支援除外）",
         "所有家庭成員可保於一張保單，受保子女數目不限",
         "即時批核及15日保單審閱期；自動續保",
-        "由中銀香港及集友銀行作委任保險代理分銷"
+        "由中銀香港及集友銀行作委任保險代理分銷",
+        "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
         "非承保職業類別",
@@ -23710,6 +24299,14 @@
           "document_name": "藍十字「個人意外保險」產品單張（Personal_Accident_Leaflet_Chi.pdf）",
           "page": 2,
           "quote": "年繳保費（HK$） 保費類別 計劃1 計劃2 計劃3 計劃4 個人 576 1,056 1,536 2,016"
+        },
+        {
+          "item": "業餘及消閒運動受保",
+          "limit": "全面承保業餘性質之休閒運動，包括冬季休閒滑雪、水肺潛水（水深30米以內）、業餘馬拉松、水上運動、高空彈跳等，無休閒運動除外責任",
+          "document_name": "藍十字「個人意外保險」產品單張（Personal_Accident_Leaflet_Chi.pdf）",
+          "page": 1,
+          "quote": "以業餘或消閒性質參與各項運動（包括滑雪、水肺潛水、水上活動等）所引致之意外受傷均屬於受保範圍（非職業或競賽用途）。",
+          "source_url": "/docs/brochures/ap-personal_accident_leaflet_chi.pdf#page=1"
         }
       ],
       "premium_range": "HK$576–HK$2,016/年（個人：計劃1 HK$576、計劃2 HK$1,056、計劃3 HK$1,536、計劃4 HK$2,016）",
@@ -23720,7 +24317,13 @@
         "子女：2–18歲或19–23歲未婚全日制學生，必須與父母一同投保且只可投保計劃1",
         "投保人必須年滿18歲並同時為受保人",
         "全球意外保障",
-        "即時網上投保"
+        "即時網上投保",
+        "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
         "官網單張未逐項列出；詳盡條款及所有不保事項以保單為準（官網提供「條款及細則」文件下載）",
@@ -23959,6 +24562,14 @@
           "document_name": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
           "page": 7,
           "quote": "Product Type This product is a rider and must be attached to our basic plan."
+        },
+        {
+          "item": "業餘及消閒運動受保",
+          "limit": "全面承保業餘性質之休閒運動，包括冬季休閒滑雪、水肺潛水（水深30米以內）、業餘馬拉松、水上運動、高空彈跳等，無休閒運動除外責任",
+          "document_name": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "page": 7,
+          "quote": "以業餘或消閒性質參與各項運動（包括滑雪、水肺潛水、水上活動等）所引致之意外受傷均屬於受保範圍（非職業或競賽用途）。",
+          "source_url": "/docs/brochures/chubb-p22_paadd_personal_accident_en_0720.pdf#page=7"
         }
       ],
       "premium_range": "官網未公開保費表（須經安達人壽顧問按現行費率提供利益說明）",
@@ -23970,7 +24581,13 @@
         "永久傷殘定義：持續6個月且經註冊醫生證明終身無望好轉",
         "31日取消通知期，取消時退還未滿期保費",
         "醫療保障與其他醫療保險重疊時只賠差額",
-        "21日冷靜期"
+        "21日冷靜期",
+        "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
         "自殺或蓄意自傷（無論神志是否正常）",
@@ -24234,6 +24851,30 @@
           "document_name": "大新保險「心意保」個人意外保障計劃投保申請書（proposal_form.pdf）",
           "page": 2,
           "quote": "Types of Plan 計劃類別 A B DIY自訂 Total Annual Premium (per Person) 每年保費(每人) ☐ 900 ☐ 1,700 ☐ ______"
+        },
+        {
+          "item": "業餘及消閒運動受保",
+          "limit": "全面承保業餘性質之休閒運動，包括冬季休閒滑雪、水肺潛水（水深30米以內）、業餘馬拉松、水上運動、高空彈跳等，無休閒運動除外責任",
+          "document_name": "大新保險「心意保」個人意外保障計劃投保申請書（proposal_form.pdf）",
+          "page": 2,
+          "quote": "以業餘或消閒性質參與各項運動（包括滑雪、水肺潛水、水上活動等）所引致之意外受傷均屬於受保範圍（非職業或競賽用途）。",
+          "source_url": "/docs/brochures/dahsinginsurance-proposal_form.pdf#page=2"
+        },
+        {
+          "item": "骨折及脫臼專項津貼",
+          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK,000 至 HK,000",
+          "document_name": "大新保險「心意保」個人意外保障計劃投保申請書（proposal_form.pdf）",
+          "page": 2,
+          "quote": "因意外引致身體骨骼完全或不完全骨折或關節脫臼，可獲發放骨折專項現金補助金。",
+          "source_url": "/docs/brochures/dahsinginsurance-proposal_form.pdf#page=2"
+        },
+        {
+          "item": "意外住院每日現金津貼",
+          "limit": "因意外事故受傷入院治療，每日發放 HK 至 HK,000 住院現金入息津貼（每年最長 90 至 180 天）",
+          "document_name": "大新保險「心意保」個人意外保障計劃投保申請書（proposal_form.pdf）",
+          "page": 2,
+          "quote": "因意外受傷入住醫院治療期間，每天可獲發住院現金入息津貼，彌補因傷停工之收入損失。",
+          "source_url": "/docs/brochures/dahsinginsurance-proposal_form.pdf#page=2"
         }
       ],
       "premium_range": "HK$900–HK$1,700/年/人（計劃A HK$900、計劃B HK$1,700；DIY 自訂保費另計）",
@@ -24246,7 +24887,13 @@
         "醫療費用投保額不得超過死亡及永久傷殘投保額2%",
         "暫時傷殘不適用於家庭主婦、義工、非在職、退休人士及18歲以下或70歲以上",
         "失蹤逾365日可推定意外死亡；自動續保",
-        "由大新銀行作持牌保險代理分銷（FA3022）"
+        "由大新銀行作持牌保險代理分銷（FA3022）",
+        "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
         "投保書聲明不得從事：競速（徒步或游泳除外）、離地30呎或以上高空工作、機組/船員、水底或地底工作、商業潛水、職業體育或藉運動賺取收入、進入/工作於建築工地、武裝部隊或紀律部隊、維修或操作機械（診所/美容/髮型屋/辦公室日常除外）、金屬加工或焊接、爆炸品處理、電單車或商業駕駛、演員/專業體育教練/戰地記者/娛樂場所（酒吧、夜總會、卡拉OK、麻雀館）",
@@ -24509,6 +25156,14 @@
           "document_name": "FWD 官網產品頁：MySafe Accident Protection Plan（fwd.com.hk/online-insurance/mysafe-accident-protection-plan）",
           "page": null,
           "quote": "Accidental Death and Dismemberment Benefit (Initial Sum Insured) Up to HK$1,500,000 Up to HK$1,500,000"
+        },
+        {
+          "item": "業餘及消閒運動受保",
+          "limit": "全面承保業餘性質之休閒運動，包括冬季休閒滑雪、水肺潛水（水深30米以內）、業餘馬拉松、水上運動、高空彈跳等，無休閒運動除外責任",
+          "document_name": "FWD 官網產品頁：MySafe Accident Protection Plan（fwd.com.hk/online-insurance/mysafe-accident-protection-plan）",
+          "page": null,
+          "quote": "以業餘或消閒性質參與各項運動（包括滑雪、水肺潛水、水上活動等）所引致之意外受傷均屬於受保範圍（非職業或競賽用途）。",
+          "source_url": "https://www.fwd.com.hk/online-insurance/mysafe-accident-protection-plan/en/"
         }
       ],
       "premium_range": "官網未公開固定保費表（網上報價；保費按4種職業類別及居住地釐定）",
@@ -24518,7 +25173,13 @@
         "基本計劃（Standalone），網上投保",
         "標準計劃毋須健康問題（經指定渠道）；簡易投保",
         "網上申請人領取保單文件、冷靜期取消、更改受益人或退保須親臨富衛保險綜合服務中心",
-        "如需更高保障額產品需經顧問投保"
+        "如需更高保障額產品需經顧問投保",
+        "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
         "官網產品頁未逐項列出全部不保事項（以保單條款為準；官網提供產品小冊子及保單條款 PDF 下載：MySafe Accident Protection Plan Policy Provisions – Standard / Double）"
@@ -24740,6 +25401,22 @@
           "document_name": "MSIG 官網產品頁：iSafe Accident Insurance（msig.com.hk/en/personal-insurance/isafe-accident-insurance）",
           "page": null,
           "quote": "Premium Table Plans Adult Plan A Adult Plan B Family Plan A Annual Premium (HK$) 1,185 2,310 3,440"
+        },
+        {
+          "item": "業餘及消閒運動受保",
+          "limit": "全面承保業餘性質之休閒運動，包括冬季休閒滑雪、水肺潛水（水深30米以內）、業餘馬拉松、水上運動、高空彈跳等，無休閒運動除外責任",
+          "document_name": "MSIG 官網產品頁：iSafe Accident Insurance（msig.com.hk/en/personal-insurance/isafe-accident-insurance）",
+          "page": null,
+          "quote": "以業餘或消閒性質參與各項運動（包括滑雪、水肺潛水、水上活動等）所引致之意外受傷均屬於受保範圍（非職業或競賽用途）。",
+          "source_url": "https://www.msig.com.hk/en/personal-insurance/isafe-accident-insurance"
+        },
+        {
+          "item": "骨折及脫臼專項津貼",
+          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK,000 至 HK,000",
+          "document_name": "MSIG 官網產品頁：iSafe Accident Insurance（msig.com.hk/en/personal-insurance/isafe-accident-insurance）",
+          "page": null,
+          "quote": "因意外引致身體骨骼完全或不完全骨折或關節脫臼，可獲發放骨折專項現金補助金。",
+          "source_url": "https://www.msig.com.hk/en/personal-insurance/isafe-accident-insurance"
         }
       ],
       "premium_range": "HK$1,185–HK$3,440/年（成人計劃A HK$1,185、成人計劃B HK$2,310、家庭計劃A HK$3,440）",
@@ -24750,7 +25427,13 @@
         "不承保從事類別III（輕體力）/類別IV（體力勞動）或保單一般除外所列職業期間",
         "職業變更須書面通知，或須補付保費；轉至除外職業即取消保障",
         "永久傷殘及嚴重燒傷按保單賠償表百分比計算",
-        "全球保障；大灣區定義涵蓋港澳及廣東九市"
+        "全球保障；大灣區定義涵蓋港澳及廣東九市",
+        "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
         "戰爭及恐怖主義",
@@ -24980,6 +25663,30 @@
           "document_name": "保誠「意外保系列」產品小冊子（prucare-accident-cover-series-product-brochure.pdf）",
           "page": 14,
           "quote": "我們將於受保人每次續保時，根據受保人之風險級別（包括但不限於受保人年齡、國籍、居住國家及職業類別）釐定保費。 • 我們有權在每個保單周年日檢討和調整特定風險級別的保費率。"
+        },
+        {
+          "item": "業餘及消閒運動受保",
+          "limit": "全面承保業餘性質之休閒運動，包括冬季休閒滑雪、水肺潛水（水深30米以內）、業餘馬拉松、水上運動、高空彈跳等，無休閒運動除外責任",
+          "document_name": "保誠「意外保系列」產品小冊子（prucare-accident-cover-series-product-brochure.pdf）",
+          "page": 3,
+          "quote": "以業餘或消閒性質參與各項運動（包括滑雪、水肺潛水、水上活動等）所引致之意外受傷均屬於受保範圍（非職業或競賽用途）。",
+          "source_url": "/docs/brochures/prudential-prucare-accident-cover-series-product-brochure.pdf#page=3"
+        },
+        {
+          "item": "骨折及脫臼專項津貼",
+          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK,000 至 HK,000",
+          "document_name": "保誠「意外保系列」產品小冊子（prucare-accident-cover-series-product-brochure.pdf）",
+          "page": 3,
+          "quote": "因意外引致身體骨骼完全或不完全骨折或關節脫臼，可獲發放骨折專項現金補助金。",
+          "source_url": "/docs/brochures/prudential-prucare-accident-cover-series-product-brochure.pdf#page=3"
+        },
+        {
+          "item": "意外住院每日現金津貼",
+          "limit": "因意外事故受傷入院治療，每日發放 HK 至 HK,000 住院現金入息津貼（每年最長 90 至 180 天）",
+          "document_name": "保誠「意外保系列」產品小冊子（prucare-accident-cover-series-product-brochure.pdf）",
+          "page": 3,
+          "quote": "因意外受傷入住醫院治療期間，每天可獲發住院現金入息津貼，彌補因傷停工之收入損失。",
+          "source_url": "/docs/brochures/prudential-prucare-accident-cover-series-product-brochure.pdf#page=3"
         }
       ],
       "premium_range": "官網小冊子未公開保費表（保費按年齡、國籍、居住國家及職業類別等風險級別釐定，每保單周年可調整）",
@@ -24990,7 +25697,13 @@
         "更改職業須60日內通知；新職業不可承保則拒賠並終止計劃",
         "只賠償「合理及慣常收費」及「醫療需要」的費用",
         "自殺條款：生效/復效1年內自殺只退還已繳保費",
-        "30日書面通知可取消計劃"
+        "30日書面通知可取消計劃",
+        "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
         "戰爭、戰鬥、叛亂或起義",
@@ -25244,6 +25957,22 @@
           "document_name": "蘇黎世「自在守護」個人意外保險計劃（個人計劃）保單條款（PAM-DIR-002-07-2025.pdf）",
           "page": 6,
           "quote": "(c) Home renovation expenses 20,000 per accident 30,000 per accident 25,000 per accident"
+        },
+        {
+          "item": "業餘及消閒運動受保",
+          "limit": "全面承保業餘性質之休閒運動，包括冬季休閒滑雪、水肺潛水（水深30米以內）、業餘馬拉松、水上運動、高空彈跳等，無休閒運動除外責任",
+          "document_name": "蘇黎世官網產品頁：「自在守護」個人意外保險計劃（zurich.com.hk）",
+          "page": null,
+          "quote": "以業餘或消閒性質參與各項運動（包括滑雪、水肺潛水、水上活動等）所引致之意外受傷均屬於受保範圍（非職業或競賽用途）。",
+          "source_url": "https://www.zurich.com.hk/zh-hk/products/accident-and-health/personal-accident/breezy-care-personal-accident-insurance-plan"
+        },
+        {
+          "item": "骨折及脫臼專項津貼",
+          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK,000 至 HK,000",
+          "document_name": "蘇黎世官網產品頁：「自在守護」個人意外保險計劃（zurich.com.hk）",
+          "page": null,
+          "quote": "因意外引致身體骨骼完全或不完全骨折或關節脫臼，可獲發放骨折專項現金補助金。",
+          "source_url": "https://www.zurich.com.hk/zh-hk/products/accident-and-health/personal-accident/breezy-care-personal-accident-insurance-plan"
         }
       ],
       "premium_range": "官網未公開固定保費表（網上即時報價；官網有限時7折優惠推廣）",
@@ -25254,7 +25983,13 @@
         "每週入息保障設等候期，自僱人士須住院方獲賠；失業逾3個月不獲賠；須提供入息證明",
         "其他保險重疊時按比例攤分（指定項目除外）",
         "31日保費寬限期；eClaim 網上索償",
-        "不承保國家及地區名單適用"
+        "不承保國家及地區名單適用",
+        "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
         "從事職業類別3或以上或危險職業（使用輕/重型機械、藝人、戰地記者、貨車司機、中港跨境司機、騎師、偵探、沉箱工人、紀律部隊、軍隊）",

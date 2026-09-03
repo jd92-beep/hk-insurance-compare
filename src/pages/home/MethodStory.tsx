@@ -83,6 +83,7 @@ export default function MethodStory() {
         end: "+=100%",
         pin: ".method-pin",
         pinSpacing: true,
+        anticipatePin: 1,
         onUpdate: (self) => {
           const p = self.progress;
           const idx = p < 0.33 ? 0 : p < 0.66 ? 1 : 2;

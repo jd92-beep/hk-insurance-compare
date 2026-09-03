@@ -131,6 +131,28 @@ const MEDICAL: CanonicalBenefit[] = [
   { id: "reconstruction", label: "乳房重建手術", keywords: ["乳房重建"] },
 ];
 
+const HIGH_END_MEDICAL: CanonicalBenefit[] = [
+  // 順序＝匹配優先次序（具體關鍵字在前，避免被通用關鍵字如「自付費」攔截）
+  { id: "full-cover", label: "全數賠償保障範圍", keywords: ["全數賠償", "全額賠償", "全額", "全數", "Full Cover"] },
+  { id: "annual-lifetime-limit", label: "每年及終身保障限額", keywords: ["終身保障限額", "每年保障限額", "終身保額", "每年最高", "終身最高", "年度保額", "保障限額", "終身限額", "年度限額"] },
+  { id: "room-level", label: "涵蓋病房級別（私家房 / 半私家房）", keywords: ["病房級別", "病房級數", "標準私家房", "半私家房", "私家房", "半私家", "私家病房", "病房及膳食", "病房"] },
+  { id: "cashless", label: "全球出院免找數直付網絡", keywords: ["出院免找數", "免找數", "醫療費用直付", "直付", "醫療網絡", "Cashless"] },
+  { id: "ncd-deductible", label: "無索償墊底費折扣", keywords: ["無索償", "扣減自付費", "減免自付費", "墊底費扣減", "墊底費折扣", "自付費折扣", "NCD"] },
+  { id: "deductible", label: "自付費（墊底費）選項", keywords: ["自付費", "墊底費", "自負額", "Deductible"] },
+  { id: "area", label: "保障地域（亞洲 / 全球除美 / 環球）", keywords: ["保障地域", "保障地區", "地域", "亞洲", "全球除美", "環球", "全球"] },
+  { id: "evacuation", label: "緊急醫療運送與海外專車/包機", keywords: ["醫療運送", "遺體運返", "海外專車", "專車", "包機", "緊急支援", "緊急援助", "緊急運送"] },
+];
+
+const TOP_UP_MEDICAL: CanonicalBenefit[] = [
+  { id: "group-coordination", label: "公司醫保銜接機制 / 墊底費抵銷", keywords: ["團體醫保", "公司醫保", "銜接", "墊底費抵銷", "自付額抵銷", "自付費抵銷", "其他保險", "僱主醫保"] },
+  { id: "smm-ratio", label: "超額醫療差額賠償比率（80%–100% SMM）", keywords: ["超額醫療", "SMM", "差額賠償", "賠償比率", "超額賠償", "補助醫療", "差額"] },
+  { id: "annual-limit", label: "每年最高賠償限額", keywords: ["每年最高", "年度最高", "每年保障限額", "每年限額", "年度保額", "最高保障", "保障限額"] },
+  { id: "simplified-underwriting", label: "免核保加入條件", keywords: ["免核保", "簡易核保", "免驗身", "加入條件", "投保資格", "核保"] },
+  { id: "guaranteed-conversion", label: "離職 / 退休保證轉保個人醫保權限（Guaranteed Conversion）", keywords: ["保證轉保", "保證轉換", "轉保權", "離職轉保", "退休轉保", "轉換權益", "轉換至個人", "Guaranteed Conversion"] },
+  { id: "outpatient-followup", label: "門診手術及專科覆診", keywords: ["門診手術", "日間手術", "專科覆診", "出院後覆診", "出院後", "門診護理", "覆診", "門診"] },
+  { id: "hospital-surgical", label: "住院及手術涵蓋項目", keywords: ["住院及手術", "主要醫療", "住院費用", "外科手術", "手術費用", "病房及膳食", "住院醫療", "住院"] },
+];
+
 const MOTOR: CanonicalBenefit[] = [
   { id: "tp-injury", label: "第三者人身傷亡責任", keywords: ["第三者死", "第三者人身", "第三者身體", "第三者責任 - 身體"] },
   { id: "tp-property", label: "第三者財物損毀責任", keywords: ["第三者財"] },
@@ -185,6 +207,8 @@ const CANONICAL_BY_CATEGORY: Record<string, CanonicalBenefit[]> = {
   "critical-illness": CRITICAL_ILLNESS,
   accident: ACCIDENT,
   medical: MEDICAL,
+  "high-end-medical": HIGH_END_MEDICAL,
+  "top-up-medical": TOP_UP_MEDICAL,
   motor: MOTOR,
   "domestic-helper": DOMESTIC_HELPER,
   pet: PET,

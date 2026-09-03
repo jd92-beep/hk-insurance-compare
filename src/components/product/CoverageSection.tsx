@@ -1,3 +1,4 @@
+import { ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import type { CoverageItem } from "@/types/insurance";
 import SectionHeading, { EASE_OUT_EXPO } from "@/components/product/SectionHeading";
@@ -18,6 +19,102 @@ function groupBenefitRows(coverage: CoverageItem[]): { label: string; rows: Cove
     { label: "基本保障", rows: basic },
     { label: "靈活計劃", rows: flexi },
   ].filter((g) => g.rows.length > 0);
+}
+
+/** 智能解析來源 URL 與官方出處佐證 */
+function resolveSourceInfo(c: CoverageItem, citationEntries?: CitationEntry[]) {
+  if (c.source_url) {
+    return {
+      sourceUrl: c.source_url,
+      documentName: c.document_name,
+      page: c.page,
+    };
+  }
+  // 智能 fallback：如果 citationEntries 有對應保障項目，自動對齊
+  if (citationEntries && citationEntries.length > 0) {
+    const match = citationEntries.find((entry) => {
+      const summary = entry.citation.claim_summary || "";
+      const quote = entry.citation.quote || "";
+      return summary.includes(c.item) || c.item.includes(summary) || quote.includes(c.item);
+    });
+    if (match) {
+      return {
+        sourceUrl: match.citation.url,
+        documentName: match.citation.document,
+        page: match.citation.page,
+      };
+    }
+  }
+  return {
+    sourceUrl: undefined,
+    documentName: c.document_name,
+    page: c.page,
+  };
+}
+
+/**
+ * 保障項目標題渲染組件：
+ * 支援 source_url 外連深度跳轉、ExternalLink 視覺圖示與 hover 過渡效果，
+ * 以及官方出處與頁碼微型標註。
+ */
+function CoverageItemTitle({
+  item,
+  headline = false,
+  sourceUrl,
+  documentName,
+  page,
+  textSizeClass = "text-[15px]",
+}: {
+  item: string;
+  headline?: boolean;
+  sourceUrl?: string;
+  documentName?: string;
+  page?: number | null;
+  textSizeClass?: string;
+}) {
+  const hasDoc = Boolean(documentName || page != null);
+
+  return (
+    <div className="flex flex-col items-start gap-1">
+      {sourceUrl ? (
+        <a
+          href={sourceUrl}
+          target="_blank"
+          rel="noreferrer"
+          className={cn(
+            "group/cov inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-jade hover:underline cursor-pointer",
+            textSizeClass,
+            headline ? "font-bold text-ink" : "font-medium text-ink"
+          )}
+          title={`前往官方來源查看「${item}」佐證文件`}
+        >
+          <span>{item}</span>
+          <ExternalLink
+            size={14}
+            className="shrink-0 text-jade/70 transition-transform duration-200 group-hover/cov:translate-x-0.5 group-hover/cov:-translate-y-0.5 group-hover/cov:text-jade"
+            aria-hidden="true"
+          />
+        </a>
+      ) : (
+        <span
+          className={cn(
+            textSizeClass,
+            headline ? "font-bold text-ink" : "font-medium text-ink"
+          )}
+        >
+          {item}
+        </span>
+      )}
+      {hasDoc && (
+        <span className="inline-flex items-center gap-1 text-[11px] font-normal leading-normal text-ink-faint">
+          <span>
+            📄 官方出處：{documentName ?? "官方文件"}
+            {page != null ? ` · 第 ${page} 頁` : ""}
+          </span>
+        </span>
+      )}
+    </div>
+  );
 }
 
 /**
@@ -75,6 +172,7 @@ export default function CoverageSection({
                 </tr>
                 {group.rows.map((c, i) => {
                   const headline = c.item === "每年保障限額";
+                  const info = resolveSourceInfo(c, citationEntries);
                   return (
                     <tr
                       key={`${c.item}-${i}`}
@@ -90,7 +188,14 @@ export default function CoverageSection({
                           headline ? "font-bold text-ink" : "font-medium text-ink",
                         )}
                       >
-                        {c.item}
+                        <CoverageItemTitle
+                          item={c.item}
+                          headline={headline}
+                          sourceUrl={info.sourceUrl}
+                          documentName={info.documentName}
+                          page={info.page}
+                          textSizeClass="text-[15px]"
+                        />
                       </td>
                       <td
                         className={cn(
@@ -117,23 +222,30 @@ export default function CoverageSection({
           transition={{ staggerChildren: 0.05 }}
           className="hairline-t"
         >
-          {coverage.map((c, i) => (
-            <motion.li
-              key={`${c.item}-${i}`}
-              variants={{
-                hidden: { opacity: 0, x: -16 },
-                show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE_OUT_EXPO } },
-              }}
-              className="hairline-b flex flex-col gap-1 px-2 py-4 transition-colors duration-300 hover:bg-paper-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
-            >
-              <span className="font-sans text-[16px] font-medium leading-[1.7] text-ink">
-                {c.item}
-              </span>
-              <span className="text-[15px] leading-[1.7] text-ink-soft sm:max-w-[60%] sm:shrink-0 sm:text-right">
-                {c.limit}
-              </span>
-            </motion.li>
-          ))}
+          {coverage.map((c, i) => {
+            const info = resolveSourceInfo(c, citationEntries);
+            return (
+              <motion.li
+                key={`${c.item}-${i}`}
+                variants={{
+                  hidden: { opacity: 0, x: -16 },
+                  show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE_OUT_EXPO } },
+                }}
+                className="hairline-b flex flex-col gap-1 px-2 py-4 transition-colors duration-300 hover:bg-paper-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+              >
+                <CoverageItemTitle
+                  item={c.item}
+                  sourceUrl={info.sourceUrl}
+                  documentName={info.documentName}
+                  page={info.page}
+                  textSizeClass="text-[16px]"
+                />
+                <span className="text-[15px] leading-[1.7] text-ink-soft sm:max-w-[60%] sm:shrink-0 sm:text-right">
+                  {c.limit}
+                </span>
+              </motion.li>
+            );
+          })}
         </motion.ul>
       )}
       {standardTable && (

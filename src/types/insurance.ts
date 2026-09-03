@@ -1,6 +1,10 @@
 export interface CoverageItem {
   item: string;
   limit: string;
+  source_url?: string;
+  document_name?: string;
+  page?: number | null;
+  quote?: string;
 }
 
 /** 單條資料引文：claim 嚟自邊份官方文件、邊頁、邊句原文 */

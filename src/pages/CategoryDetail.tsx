@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Scale, ShieldCheck, TriangleAlert } from "lucide-react";
+import { ArrowRight, Scale, ShieldAlert, ShieldCheck, Sparkles, TriangleAlert } from "lucide-react";
 import { Link, useParams } from "react-router";
 import { Toaster } from "@/components/ui/sonner";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -53,8 +53,29 @@ export default function CategoryDetail() {
   const { categoryId } = useParams<{ categoryId: string }>();
   const { loading, generatedAt } = useInsuranceData();
   const categories = useCategories();
-  const products = useProducts(categoryId);
+  const directProducts = useProducts(categoryId);
+  const allMedicalProducts = useProducts("medical");
   const isMobile = useIsMobile();
+
+  // 若 categoryId 為高端醫療或 Top-up 醫療且尚無專屬獨立產品，智能由自願醫保中提取對應高端／靈活或差額計劃
+  const products = useMemo(() => {
+    if (directProducts.length > 0) return directProducts;
+    if (categoryId === "high-end-medical") {
+      const highEndKeywords = ["高端", "尊耀", "尊衛您", "非凡", "Pink", "優越", "尚賓", "晉悅", "智尊守慧", "靈活"];
+      return allMedicalProducts.filter((p) => {
+        const text = `${p.product_name} ${p.product_name_zh} ${(p.plan_tiers || []).join(" ")}`;
+        return highEndKeywords.some((kw) => text.includes(kw));
+      });
+    }
+    if (categoryId === "top-up-medical") {
+      const topUpKeywords = ["差額", "SMM", "附加", "自付", "靈活配", "更衛您", "守護"];
+      return allMedicalProducts.filter((p) => {
+        const text = `${p.product_name} ${p.product_name_zh} ${(p.plan_tiers || []).join(" ")} ${p.premium_notes || ""}`;
+        return topUpKeywords.some((kw) => text.includes(kw));
+      });
+    }
+    return directProducts;
+  }, [directProducts, categoryId, allMedicalProducts]);
 
   const [selectedInsurers, setSelectedInsurers] = useState<string[]>([]);
   const [onlyPremium, setOnlyPremium] = useState(false);
@@ -62,9 +83,24 @@ export default function CategoryDetail() {
   const [premiumDir, setPremiumDir] = useState<"asc" | "desc">("asc");
   const [view, setView] = useState<ViewMode>("table");
 
-  const category = categories.find((c) => c.id === categoryId);
+  const rawCategory = categories.find((c) => c.id === categoryId);
   const copy = categoryCopy(categoryId);
   const meta = categoryId ? CATEGORY_META[categoryId] : undefined;
+  const category =
+    rawCategory ??
+    (meta && copy
+      ? {
+          id: categoryId!,
+          name_zh:
+            categoryId === "high-end-medical"
+              ? "高端醫療"
+              : categoryId === "top-up-medical"
+                ? "Top-up 醫療"
+                : copy.h1.replace("格價", ""),
+          count: products.length,
+          insurers_with_premium: products.filter((p) => p.premium_available).length,
+        }
+      : undefined);
   const color = meta?.color ?? "#181D2E";
   const effectiveView: ViewMode = isMobile ? "cards" : view;
 
@@ -287,8 +323,7 @@ export default function CategoryDetail() {
           {/* 汽車類 amber banner */}
           {isMotor && (
             <motion.div
-              className="mt-7 flex items-start gap-3 rounded-[10px] border-l-4 bg-amber-wash px-5 py-4"
-              style={{ borderColor: "var(--amber)" }}
+              className="mt-7 flex items-start gap-3 rounded-[10px] border border-amber/40 bg-amber-wash px-5 py-4"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: EASE_OUT_EXPO, delay: 0.7 }}
@@ -303,26 +338,144 @@ export default function CategoryDetail() {
             </motion.div>
           )}
 
-          {/* 醫療類 jade banner：官方認可產品名單 */}
+          {/* 醫療類 jade banner：官方認可產品名單 + 高端／Top-up 導覽 chips */}
           {category.id === "medical" && (
+            <>
+              <motion.div
+                className="mt-7 flex items-start gap-3 rounded-[10px] border border-jade/40 bg-jade-wash px-5 py-4"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: EASE_OUT_EXPO, delay: 0.7 }}
+              >
+                <ShieldCheck size={18} className="mt-0.5 shrink-0 text-jade" />
+                <p className="text-small text-ink-soft">
+                  想對照官方認可產品？
+                  <Link
+                    to="/vhis"
+                    className="ml-1.5 inline-flex items-center gap-1 font-bold text-jade transition-colors hover:underline"
+                  >
+                    自願醫保認可產品名單（官方）：33 標準 + 70 靈活計劃
+                    <ArrowRight size={13} />
+                  </Link>
+                </p>
+              </motion.div>
+
+              {/* 前往「高端醫療」與「Top-up 醫保」精美導覽晶片橫帶 */}
+              <motion.div
+                className="mt-3.5 flex flex-wrap items-center gap-2.5 rounded-[10px] border bg-paper-2/70 px-4 py-3 text-small"
+                style={{ borderColor: "var(--line)" }}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: EASE_OUT_EXPO, delay: 0.8 }}
+              >
+                <span className="font-medium text-ink-soft">按保障定位細看：</span>
+                <Link
+                  to="/category/high-end-medical"
+                  className="group inline-flex items-center gap-1.5 rounded-full border border-sky-600/30 bg-paper px-3.5 py-1 text-small font-bold text-sky-900 shadow-sm transition-all hover:border-sky-600 hover:bg-sky-50 dark:text-sky-300"
+                >
+                  <span className="h-2 w-2 rounded-full bg-amber-500" />
+                  <span>高端醫療專區（全數賠償・私家房）</span>
+                  <ArrowRight size={13} className="text-sky-600 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+                <Link
+                  to="/category/top-up-medical"
+                  className="group inline-flex items-center gap-1.5 rounded-full border border-teal-600/30 bg-paper px-3.5 py-1 text-small font-bold text-teal-900 shadow-sm transition-all hover:border-teal-600 hover:bg-teal-50 dark:text-teal-300"
+                >
+                  <span className="h-2 w-2 rounded-full bg-teal-500" />
+                  <span>Top-up 醫保（打工仔填補 Shortfall）</span>
+                  <ArrowRight size={13} className="text-teal-600 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              </motion.div>
+            </>
+          )}
+
+          {/* 高端醫療專屬藍金色頂部 Banner */}
+          {category.id === "high-end-medical" && (
             <motion.div
-              className="mt-7 flex items-start gap-3 rounded-[10px] border-l-4 bg-jade-wash px-5 py-4"
-              style={{ borderColor: "var(--jade)" }}
+              className="mt-7 overflow-hidden rounded-[12px] border border-amber-400/40 bg-gradient-to-r from-[#0F2038] via-[#162D4D] to-[#1E3A5F] p-5 text-paper shadow-card"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: EASE_OUT_EXPO, delay: 0.7 }}
             >
-              <ShieldCheck size={18} className="mt-0.5 shrink-0 text-jade" />
-              <p className="text-small text-ink-soft">
-                想對照官方認可產品？
-                <Link
-                  to="/vhis"
-                  className="ml-1.5 inline-flex items-center gap-1 font-bold text-jade transition-colors hover:underline"
-                >
-                  自願醫保認可產品名單（官方）：33 標準 + 70 靈活計劃
-                  <ArrowRight size={13} />
-                </Link>
-              </p>
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-start gap-3.5">
+                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-400/20 text-amber-300 ring-1 ring-amber-400/50">
+                    <Sparkles size={17} />
+                  </div>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="rounded bg-amber-400/20 px-2 py-0.5 font-grotesk text-[11px] font-bold tracking-wider text-amber-300 ring-1 ring-amber-400/30">
+                        FLAGSHIP MEDICAL
+                      </span>
+                      <span className="font-serif text-[15px] font-bold text-paper sm:text-[16px]">
+                        全數賠償（無細項上限） · 終身千萬保額 · 全球私家房與免找數網絡
+                      </span>
+                    </div>
+                    <p className="mt-1 text-small text-paper/80">
+                      專門對照頂級私家病房、環球頂尖名醫結算及高自付費（Deductible）槓桿千萬保額的旗艦計劃。
+                    </p>
+                  </div>
+                </div>
+                <div className="flex shrink-0 flex-wrap items-center gap-2 pt-2 sm:pt-0">
+                  <Link
+                    to="/category/medical"
+                    className="inline-flex items-center gap-1 rounded-lg border border-white/20 bg-white/10 px-3 py-1.5 text-small font-medium text-paper transition-all hover:bg-white/20"
+                  >
+                    ← 自願醫保
+                  </Link>
+                  <Link
+                    to="/category/top-up-medical"
+                    className="inline-flex items-center gap-1 rounded-lg border border-amber-400/40 bg-amber-400/20 px-3 py-1.5 text-small font-medium text-amber-200 transition-all hover:bg-amber-400/30"
+                  >
+                    Top-up 醫保 →
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Top-up 醫療專屬頂部 Banner */}
+          {category.id === "top-up-medical" && (
+            <motion.div
+              className="mt-7 overflow-hidden rounded-[12px] border border-sky-500/40 bg-gradient-to-r from-[#0E3554] via-[#13446B] to-[#185382] p-5 text-paper shadow-card"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: EASE_OUT_EXPO, delay: 0.7 }}
+            >
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-start gap-3.5">
+                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sky-400/20 text-sky-300 ring-1 ring-sky-400/50">
+                    <ShieldAlert size={17} />
+                  </div>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="rounded bg-sky-400/20 px-2 py-0.5 font-grotesk text-[11px] font-bold tracking-wider text-sky-300 ring-1 ring-sky-400/30">
+                        SHORTFALL SHIELD
+                      </span>
+                      <span className="font-serif text-[15px] font-bold text-paper sm:text-[16px]">
+                        打工仔專用 · 填補公司團體醫保 Shortfall · 免核保銜接與離職保證轉保權
+                      </span>
+                    </div>
+                    <p className="mt-1 text-small text-paper/80">
+                      專門承保超出公司團體醫療上限的差額開支，並保留離職或退休時免驗身轉保權利。
+                    </p>
+                  </div>
+                </div>
+                <div className="flex shrink-0 flex-wrap items-center gap-2 pt-2 sm:pt-0">
+                  <Link
+                    to="/category/medical"
+                    className="inline-flex items-center gap-1 rounded-lg border border-white/20 bg-white/10 px-3 py-1.5 text-small font-medium text-paper transition-all hover:bg-white/20"
+                  >
+                    ← 自願醫保
+                  </Link>
+                  <Link
+                    to="/category/high-end-medical"
+                    className="inline-flex items-center gap-1 rounded-lg border border-sky-400/40 bg-sky-400/20 px-3 py-1.5 text-small font-medium text-sky-200 transition-all hover:bg-sky-400/30"
+                  >
+                    高端醫療 →
+                  </Link>
+                </div>
+              </div>
             </motion.div>
           )}
         </div>

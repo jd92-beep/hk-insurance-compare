@@ -23,6 +23,8 @@ const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 const POPULAR_COMBOS: { label: string; ids: string[] }[] = [
   { label: "旅遊保險：AIG · Blue Cross · AXA", ids: ["travel-aig", "travel-blue-cross", "travel-axa"] },
   { label: "自願醫保：Bowtie · 保柏 · AIA", ids: ["medical-bowtie", "medical-bupa", "medical-aia"] },
+  { label: "高端醫療：保柏環球 · 友邦 · 信諾", ids: ["high-end-bupa-elite", "high-end-aia-ceo", "high-end-cigna-global"] },
+  { label: "Top-up 醫保：保柏 · 信諾 · 友邦", ids: ["topup-bupa-carepro", "topup-cigna-plus", "topup-aia-smm"] },
   { label: "家居保險：AXA · Avo · 蘇黎世", ids: ["home-axa", "home-avo", "home-zurich"] },
 ];
 
@@ -47,10 +49,12 @@ function AnimatedTitle({ text }: { text: string }) {
   );
 }
 
-/** 大卡網格排位（categories.md S2）：home 跨 7、medical 跨 5、其餘 4，宣傳卡跨 8 */
+/** 大卡網格排位（categories.md S2）：home 跨 7、medical 跨 5、高端跨 6、Top-up 跨 6、其餘 4，宣傳卡跨 8 */
 const GRID_ORDER: { id: string; span: string }[] = [
   { id: "home", span: "lg:col-span-7" },
   { id: "medical", span: "lg:col-span-5" },
+  { id: "high-end-medical", span: "lg:col-span-6" },
+  { id: "top-up-medical", span: "lg:col-span-6" },
   { id: "travel", span: "lg:col-span-4" },
   { id: "life", span: "lg:col-span-4" },
   { id: "critical-illness", span: "lg:col-span-4" },

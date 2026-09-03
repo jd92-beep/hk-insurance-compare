@@ -17,6 +17,8 @@ export const CATEGORY_ORDER = [
   "critical-illness",
   "accident",
   "medical",
+  "high-end-medical",
+  "top-up-medical",
   "motor",
   "domestic-helper",
   "pet",
@@ -58,6 +60,18 @@ export const CATEGORY_META: Record<string, CategoryMeta> = {
     color: "#0E7C66",
     icon: "/cat-medical.svg",
     tagline: "自願醫保標準計劃 vs 靈活計劃，自付費點揀？",
+  },
+  "high-end-medical": {
+    id: "high-end-medical",
+    color: "#0F4C81",
+    icon: "/cat-medical.svg",
+    tagline: "全數賠償、終身千萬保額、全球名醫免找數，私家病房點樣揀？",
+  },
+  "top-up-medical": {
+    id: "top-up-medical",
+    color: "#0284C7",
+    icon: "/cat-medical.svg",
+    tagline: "打工仔填補公司醫保 Shortfall，超額賠償、離職保證轉保權一次過睇。",
   },
   motor: {
     id: "motor",

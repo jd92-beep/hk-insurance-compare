@@ -8,6 +8,38 @@ import { useSearch } from "@/providers/SearchProvider";
 import { CATEGORY_META } from "@/lib/categories";
 import { cn } from "@/lib/utils";
 
+interface MedicalSubcat {
+  id: string;
+  name_zh: string;
+  desc: string;
+  badge: string;
+  color: string;
+}
+
+const MEDICAL_SUBCATS: MedicalSubcat[] = [
+  {
+    id: "medical",
+    name_zh: "自願醫保",
+    desc: "標準及靈活計劃 · 可扣稅",
+    badge: "VHIS",
+    color: "#0E7C66",
+  },
+  {
+    id: "high-end-medical",
+    name_zh: "高端醫療",
+    desc: "全數賠償 · 終身千萬保額",
+    badge: "全數賠償",
+    color: "#0F4C81",
+  },
+  {
+    id: "top-up-medical",
+    name_zh: "Top-up 醫療",
+    desc: "填補公司 Shortfall · 轉保權",
+    badge: "打工仔",
+    color: "#0284C7",
+  },
+];
+
 const NAV_LINKS = [
   { label: "首頁", to: "/", match: (p: string) => p === "/" },
   { label: "保險類別", to: "/categories", match: (p: string) => p.startsWith("/categor"), mega: true },
@@ -26,6 +58,7 @@ export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerCatsOpen, setDrawerCatsOpen] = useState(false);
   const categories = useCategories();
+  const otherCategories = categories.filter((c) => c.id !== "medical");
   const compare = useCompare();
   const search = useSearch();
 
@@ -109,40 +142,105 @@ export default function Navbar() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute left-1/2 top-full w-[560px] -translate-x-1/2 pt-3"
+                      className="absolute left-1/2 top-full w-[640px] -translate-x-1/2 pt-3"
                     >
                       <div
-                        className="grid grid-cols-3 gap-1 rounded-card border bg-paper p-3 shadow-lift"
+                        className="rounded-card border bg-paper p-4 shadow-lift"
                         style={{ borderColor: "var(--line)" }}
                       >
-                        {categories.map((c) => {
-                          const meta = CATEGORY_META[c.id];
-                          return (
+                        {/* 醫療保險板塊（自願醫保／高端醫療／Top-up 醫療） */}
+                        <div
+                          className="mb-3 rounded-lg border bg-paper-2/50 p-3"
+                          style={{ borderColor: "var(--line)" }}
+                        >
+                          <div className="mb-2 flex items-center justify-between px-1">
+                            <span className="text-[11px] font-bold tracking-wider text-ink-faint">
+                              醫療保險系列 · MEDICAL COVERAGE
+                            </span>
                             <Link
-                              key={c.id}
-                              to={`/category/${c.id}`}
-                              className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 transition-colors hover:bg-paper-2"
+                              to="/vhis"
+                              className="text-[11px] font-medium text-jade hover:underline"
                             >
-                              <span
-                                className="cat-icon h-6 w-6 shrink-0"
-                                style={{
-                                  color: meta?.color ?? "#181D2E",
-                                  WebkitMaskImage: `url(${meta?.icon ?? "/cat-home.svg"})`,
-                                  maskImage: `url(${meta?.icon ?? "/cat-home.svg"})`,
-                                }}
-                                aria-hidden="true"
-                              />
-                              <span className="min-w-0">
-                                <span className="block truncate text-[14px] font-medium text-ink">
-                                  {c.name_zh}
-                                </span>
-                                <span className="block font-grotesk text-[11px] text-ink-faint">
-                                  {c.count} 份產品
-                                </span>
-                              </span>
+                              官方認可名單（33+70）→
                             </Link>
-                          );
-                        })}
+                          </div>
+                          <div className="grid grid-cols-3 gap-2">
+                            {MEDICAL_SUBCATS.map((sub) => (
+                              <Link
+                                key={sub.id}
+                                to={`/category/${sub.id}`}
+                                className="group flex flex-col justify-between rounded-lg border bg-paper p-2.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-jade/40 hover:shadow-sm"
+                                style={{ borderColor: "var(--line)" }}
+                              >
+                                <div className="flex items-center justify-between gap-1">
+                                  <span className="text-[14px] font-bold text-ink transition-colors group-hover:text-jade">
+                                    {sub.name_zh}
+                                  </span>
+                                  <span
+                                    className="rounded px-1.5 py-0.5 font-grotesk text-[10px] font-bold"
+                                    style={{
+                                      backgroundColor: `${sub.color}15`,
+                                      color: sub.color,
+                                    }}
+                                  >
+                                    {sub.badge}
+                                  </span>
+                                </div>
+                                <span className="mt-1 text-[11px] leading-tight text-ink-faint">
+                                  {sub.desc}
+                                </span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* 生活與人身保障類別 */}
+                        <div className="px-1 py-1">
+                          <span className="mb-2 block text-[11px] font-bold tracking-wider text-ink-faint">
+                            其他保障類別
+                          </span>
+                          <div className="grid grid-cols-4 gap-1">
+                            {otherCategories.map((c) => {
+                              const meta = CATEGORY_META[c.id];
+                              return (
+                                <Link
+                                  key={c.id}
+                                  to={`/category/${c.id}`}
+                                  className="flex items-center gap-2 rounded-lg px-2.5 py-2 transition-colors hover:bg-paper-2"
+                                >
+                                  <span
+                                    className="cat-icon h-5 w-5 shrink-0"
+                                    style={{
+                                      color: meta?.color ?? "#181D2E",
+                                      WebkitMaskImage: `url(${meta?.icon ?? "/cat-home.svg"})`,
+                                      maskImage: `url(${meta?.icon ?? "/cat-home.svg"})`,
+                                    }}
+                                    aria-hidden="true"
+                                  />
+                                  <span className="min-w-0">
+                                    <span className="block truncate text-[13px] font-medium text-ink">
+                                      {c.name_zh}
+                                    </span>
+                                    <span className="block font-grotesk text-[10px] text-ink-faint">
+                                      {c.count} 份產品
+                                    </span>
+                                  </span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* 底部全類別連結 */}
+                        <div
+                          className="mt-3 flex items-center justify-between border-t px-1 pt-2.5 text-[12px] text-ink-faint"
+                          style={{ borderColor: "var(--line)" }}
+                        >
+                          <span>所有數據依據官方條款原樣對照</span>
+                          <Link to="/categories" className="font-bold text-red hover:underline">
+                            瀏覽全部 9+ 保險類別 →
+                          </Link>
+                        </div>
                       </div>
                     </motion.div>
                   )}
@@ -257,34 +355,81 @@ export default function Navbar() {
                             transition={{ duration: 0.35, ease: [0.76, 0, 0.24, 1] }}
                             className="overflow-hidden"
                           >
-                            <div className="grid grid-cols-2 gap-1 py-3">
+                            <div className="flex flex-col gap-3 py-3">
                               <Link
                                 to="/categories"
-                                className="col-span-2 rounded-lg px-3 py-2 text-[15px] font-bold text-red"
+                                className="rounded-lg px-2 py-1 text-[15px] font-bold text-red"
                               >
-                                全部類別 →
+                                全部類別總覽 →
                               </Link>
-                              {categories.map((c) => {
-                                const meta = CATEGORY_META[c.id];
-                                return (
+
+                              {/* 醫療保險板塊 */}
+                              <div
+                                className="rounded-lg border bg-paper-2/60 p-3"
+                                style={{ borderColor: "var(--line)" }}
+                              >
+                                <div className="mb-2 flex items-center justify-between">
+                                  <span className="text-[11px] font-bold tracking-wider text-ink-faint">
+                                    醫療保險系列
+                                  </span>
                                   <Link
-                                    key={c.id}
-                                    to={`/category/${c.id}`}
-                                    className="flex items-center gap-2 rounded-lg px-3 py-2 text-[14px] text-ink"
+                                    to="/vhis"
+                                    className="text-[11px] font-medium text-jade hover:underline"
                                   >
-                                    <span
-                                      className="cat-icon h-5 w-5 shrink-0"
-                                      style={{
-                                        color: meta?.color ?? "#181D2E",
-                                        WebkitMaskImage: `url(${meta?.icon ?? "/cat-home.svg"})`,
-                                        maskImage: `url(${meta?.icon ?? "/cat-home.svg"})`,
-                                      }}
-                                      aria-hidden="true"
-                                    />
-                                    <span className="truncate">{c.name_zh}</span>
+                                    VHIS 名單 →
                                   </Link>
-                                );
-                              })}
+                                </div>
+                                <div className="flex flex-col gap-1.5">
+                                  {MEDICAL_SUBCATS.map((sub) => (
+                                    <Link
+                                      key={sub.id}
+                                      to={`/category/${sub.id}`}
+                                      className="flex items-center justify-between rounded-lg bg-paper px-3 py-2 text-[14px] font-medium text-ink transition-colors hover:bg-paper-2"
+                                    >
+                                      <span>{sub.name_zh}</span>
+                                      <span
+                                        className="rounded px-1.5 py-0.5 font-grotesk text-[10px] font-bold"
+                                        style={{
+                                          backgroundColor: `${sub.color}15`,
+                                          color: sub.color,
+                                        }}
+                                      >
+                                        {sub.badge}
+                                      </span>
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+
+                              {/* 其他保險類別 */}
+                              <div>
+                                <span className="mb-2 block px-1 text-[11px] font-bold tracking-wider text-ink-faint">
+                                  其他保險類別
+                                </span>
+                                <div className="grid grid-cols-2 gap-1">
+                                  {otherCategories.map((c) => {
+                                    const meta = CATEGORY_META[c.id];
+                                    return (
+                                      <Link
+                                        key={c.id}
+                                        to={`/category/${c.id}`}
+                                        className="flex items-center gap-2 rounded-lg px-3 py-2 text-[14px] text-ink transition-colors hover:bg-paper-2"
+                                      >
+                                        <span
+                                          className="cat-icon h-5 w-5 shrink-0"
+                                          style={{
+                                            color: meta?.color ?? "#181D2E",
+                                            WebkitMaskImage: `url(${meta?.icon ?? "/cat-home.svg"})`,
+                                            maskImage: `url(${meta?.icon ?? "/cat-home.svg"})`,
+                                          }}
+                                          aria-hidden="true"
+                                        />
+                                        <span className="truncate">{c.name_zh}</span>
+                                      </Link>
+                                    );
+                                  })}
+                                </div>
+                              </div>
                             </div>
                           </motion.div>
                         )}

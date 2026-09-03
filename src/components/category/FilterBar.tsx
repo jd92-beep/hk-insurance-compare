@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { Check, LayoutGrid, RotateCcw, Table2 } from "lucide-react";
+import { Check, Globe, LayoutGrid, Plane, RotateCcw, Sparkles, Table2 } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -12,6 +12,8 @@ import { cn } from "@/lib/utils";
 
 export type SortKey = "default" | "premium" | "insurer" | "coverage";
 export type ViewMode = "table" | "cards";
+export type TravelTripType = "all" | "single" | "annual";
+export type TravelRegion = "all" | "asia" | "worldwide" | "gba";
 
 export interface InsurerOption {
   name: string;
@@ -32,6 +34,7 @@ function premiumSortLabel(dir: "asc" | "desc"): string {
 /**
  * 類別詳情頁 sticky 篩選工具列（category.md S2）
  * 保險公司 chips（多選）＋ 保費開關 ＋ 排序 ＋ 表格⇄卡片 ＋ 結果數／重設
+ * 當 isTravel 為真時，加載專屬旅遊維度（旅程類型、覆蓋地區、即時折扣）
  */
 export default function FilterBar({
   insurers,
@@ -50,6 +53,13 @@ export default function FilterBar({
   total,
   onReset,
   hasActiveFilters,
+  isTravel = false,
+  travelTripType = "all",
+  onTravelTripTypeChange,
+  travelRegion = "all",
+  onTravelRegionChange,
+  onlyPromo = false,
+  onTogglePromo,
 }: {
   insurers: InsurerOption[];
   selectedInsurers: string[];
@@ -67,6 +77,13 @@ export default function FilterBar({
   total: number;
   onReset: () => void;
   hasActiveFilters: boolean;
+  isTravel?: boolean;
+  travelTripType?: TravelTripType;
+  onTravelTripTypeChange?: (v: TravelTripType) => void;
+  travelRegion?: TravelRegion;
+  onTravelRegionChange?: (v: TravelRegion) => void;
+  onlyPromo?: boolean;
+  onTogglePromo?: () => void;
 }) {
   return (
     <motion.div
@@ -76,6 +93,98 @@ export default function FilterBar({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
     >
+      {/* 旅遊專屬維度篩選條（旅程類型 + 覆蓋地區 + 即時折扣） */}
+      {isTravel && (
+        <div
+          className="border-b bg-paper-2/50 py-2.5"
+          style={{ borderColor: "var(--line)" }}
+        >
+          <div className="site-container flex items-center gap-3 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {/* 旅程類型 */}
+            <div className="flex shrink-0 items-center gap-1.5" role="group" aria-label="旅程類型篩選">
+              <span className="inline-flex items-center gap-1 pr-1 text-[12px] font-bold text-ink-soft">
+                <Plane size={13} className="text-sky-600" />
+                旅程：
+              </span>
+              <FilterChip
+                active={travelTripType === "all"}
+                onClick={() => onTravelTripTypeChange?.("all")}
+              >
+                全部
+              </FilterChip>
+              <FilterChip
+                active={travelTripType === "single"}
+                onClick={() => onTravelTripTypeChange?.("single")}
+              >
+                單次旅程
+              </FilterChip>
+              <FilterChip
+                active={travelTripType === "annual"}
+                onClick={() => onTravelTripTypeChange?.("annual")}
+              >
+                全年多次 (Annual)
+              </FilterChip>
+            </div>
+
+            <span className="h-5 w-px shrink-0" style={{ background: "var(--line)" }} aria-hidden="true" />
+
+            {/* 覆蓋地區 */}
+            <div className="flex shrink-0 items-center gap-1.5" role="group" aria-label="覆蓋地區篩選">
+              <span className="inline-flex items-center gap-1 pr-1 text-[12px] font-bold text-ink-soft">
+                <Globe size={13} className="text-indigo-600" />
+                地區：
+              </span>
+              <FilterChip
+                active={travelRegion === "all"}
+                onClick={() => onTravelRegionChange?.("all")}
+              >
+                全部
+              </FilterChip>
+              <FilterChip
+                active={travelRegion === "asia"}
+                onClick={() => onTravelRegionChange?.("asia")}
+              >
+                亞洲短途
+              </FilterChip>
+              <FilterChip
+                active={travelRegion === "worldwide"}
+                onClick={() => onTravelRegionChange?.("worldwide")}
+              >
+                全球通用
+              </FilterChip>
+              <FilterChip
+                active={travelRegion === "gba"}
+                onClick={() => onTravelRegionChange?.("gba")}
+              >
+                大灣區 (GBA)
+              </FilterChip>
+            </div>
+
+            <span className="h-5 w-px shrink-0" style={{ background: "var(--line)" }} aria-hidden="true" />
+
+            {/* 即時折扣開關 */}
+            <button
+              type="button"
+              onClick={onTogglePromo}
+              aria-pressed={onlyPromo}
+              className={cn(
+                "chip shrink-0 border font-bold transition-all duration-300 active:scale-[0.94]",
+                onlyPromo
+                  ? "border-amber-500 bg-amber-500 text-white shadow-sm ring-2 ring-amber-400/30"
+                  : "border-transparent bg-paper-3 text-ink-soft hover:border-amber-300 hover:text-ink",
+              )}
+            >
+              <Sparkles
+                size={13}
+                className={cn(onlyPromo ? "animate-pulse text-white" : "text-amber-500")}
+                aria-hidden="true"
+              />
+              <span>只睇有優惠折扣</span>
+              {onlyPromo && <Check size={13} />}
+            </button>
+          </div>
+        </div>
+      )}
       <div className="relative">
         <div className="site-container flex items-center gap-3 overflow-x-auto py-3.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {/* 保險公司 chips */}

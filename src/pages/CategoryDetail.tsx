@@ -7,7 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import EmptyState from "@/components/EmptyState";
 import ProductCard from "@/components/ProductCard";
 import FilterBar from "@/components/category/FilterBar";
-import type { SortKey, ViewMode } from "@/components/category/FilterBar";
+import type { SortKey, ViewMode, TravelTripType, TravelRegion } from "@/components/category/FilterBar";
 import ProductTable from "@/components/category/ProductTable";
 import UniversalComparisonChart from "@/components/category/UniversalComparisonChart";
 import TravelFlagshipBanner from "@/components/category/TravelFlagshipBanner";
@@ -79,11 +79,17 @@ export default function CategoryDetail() {
     return directProducts;
   }, [directProducts, categoryId, allMedicalProducts]);
 
+  const isTravel = categoryId === "travel";
   const [selectedInsurers, setSelectedInsurers] = useState<string[]>([]);
   const [onlyPremium, setOnlyPremium] = useState(false);
   const [sort, setSort] = useState<SortKey>("default");
   const [premiumDir, setPremiumDir] = useState<"asc" | "desc">("asc");
   const [view, setView] = useState<ViewMode>("table");
+
+  // 旅遊保險專屬篩選維度（旅程類型、覆蓋地區、即時折扣）
+  const [travelTripType, setTravelTripType] = useState<TravelTripType>("all");
+  const [travelRegion, setTravelRegion] = useState<TravelRegion>("all");
+  const [onlyPromo, setOnlyPromo] = useState(false);
 
   const rawCategory = categories.find((c) => c.id === categoryId);
   const copy = categoryCopy(categoryId);
@@ -128,6 +134,28 @@ export default function CategoryDetail() {
       list = list.filter((p) => selectedInsurers.includes(p.insurer));
     }
     if (onlyPremium) list = list.filter((p) => p.premium_available);
+
+    // 旅遊保險專屬維度過濾
+    if (isTravel) {
+      if (travelTripType === "single") {
+        list = list.filter((p) => p.trip_type === "single" || p.trip_type === "both" || !p.trip_type);
+      } else if (travelTripType === "annual") {
+        list = list.filter((p) => p.trip_type === "annual" || p.trip_type === "both");
+      }
+
+      if (travelRegion === "asia") {
+        list = list.filter((p) => (p.destination_scope ? p.destination_scope.includes("asia") : true));
+      } else if (travelRegion === "worldwide") {
+        list = list.filter((p) => (p.destination_scope ? p.destination_scope.includes("worldwide") : true));
+      } else if (travelRegion === "gba") {
+        list = list.filter((p) => (p.destination_scope ? p.destination_scope.includes("gba") : false));
+      }
+
+      if (onlyPromo) {
+        list = list.filter((p) => Boolean(p.promo));
+      }
+    }
+
     const sorted = [...list];
     if (sort === "premium") {
       sorted.sort((a, b) => {
@@ -146,15 +174,24 @@ export default function CategoryDetail() {
     }
     return sorted;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [products, selectedInsurers, onlyPremium, sort, premiumDir]);
+  }, [products, selectedInsurers, onlyPremium, isTravel, travelTripType, travelRegion, onlyPromo, sort, premiumDir]);
 
-  const hasActiveFilters = selectedInsurers.length > 0 || onlyPremium || sort !== "default";
+  const hasActiveFilters =
+    selectedInsurers.length > 0 ||
+    onlyPremium ||
+    sort !== "default" ||
+    (isTravel && (travelTripType !== "all" || travelRegion !== "all" || onlyPromo));
 
   const resetFilters = () => {
     setSelectedInsurers([]);
     setOnlyPremium(false);
     setSort("default");
     setPremiumDir("asc");
+    if (isTravel) {
+      setTravelTripType("all");
+      setTravelRegion("all");
+      setOnlyPromo(false);
+    }
   };
 
   const toggleInsurer = (name: string) => {
@@ -523,6 +560,13 @@ export default function CategoryDetail() {
           total={products.length}
           onReset={resetFilters}
           hasActiveFilters={hasActiveFilters}
+          isTravel={isTravel}
+          travelTripType={travelTripType}
+          onTravelTripTypeChange={setTravelTripType}
+          travelRegion={travelRegion}
+          onTravelRegionChange={setTravelRegion}
+          onlyPromo={onlyPromo}
+          onTogglePromo={() => setOnlyPromo((v) => !v)}
         />
 
         {/* ── S3 產品列表 ─────────────────────────────────────── */}

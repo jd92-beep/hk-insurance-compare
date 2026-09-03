@@ -328,7 +328,18 @@
           "quote": "No benefits will be provided: 1. In respect of any form of the plastic money (including any credit card, Octopus cards, etc) or securities.",
           "url": "https://www.aig.com.hk/content/dam/aig/apac/hong-kong/documents/motis/pw-travelwise-25-10-19-v1.pdf"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "gba",
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "全年無限次出遊",
+        "discount": "年費優惠",
+        "note": "特設中國內地及澳門計劃，全年計劃無限次出發"
+      }
     },
     {
       "id": "travel-axa",
@@ -631,7 +642,17 @@
           "quote": "9 因無人看管以致財產遺失。… 12 使用中的運動及潛水設備的任何損毀。",
           "url": "https://hk-axa-web-2020.cdn.axa-contento-118412.eu/hk-axa-web-2020/2b54400f-0a48-4ae9-b32a-c7f99c7790b4_H902+STV+-+SmartTraveller+Plus+-+Policy+%28Agent+Broker%29+-+STV0324A_V1+%28N-H902%29.pdf"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "限時高達 65 折",
+        "discount": "高達 35% OFF",
+        "note": "網上投保指定旅遊保險計劃享高達 35% 折扣優惠"
+      }
     },
     {
       "id": "travel-allianz",
@@ -791,7 +812,17 @@
           "quote": "全球自有救援中心，醫療額最高 2,000,000 港元，申根簽證合規證明即時簽發",
           "url": "https://www.allianz-assistance.com.hk/zh_HK.html"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "申根簽證 100% 合規",
+        "discount": "官方認可",
+        "note": "安聯全球直營救援，歐洲申根簽證官方 100% 認可合規"
+      }
     },
     {
       "id": "travel-avo",
@@ -942,7 +973,18 @@
           "quote": "保障延伸至電話及平板，海外租車自負額亦受保，更涵蓋露營車",
           "url": "https://www.heyavo.com/zh-hk/products/travel"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "限時 7 折優惠",
+        "code": "TRAVELFLASH30",
+        "discount": "30% OFF",
+        "note": "數碼純線上投保，輸入優惠碼即享 7 折；手機平板同享保障"
+      }
     },
     {
       "id": "travel-boc-group-insurance",
@@ -1204,7 +1246,17 @@
           "quote": "7. 因已存在的病狀引致的索償。",
           "url": "https://www.bochk.com/dam/document/TnC/INS/utravelins_tc_2016.pdf"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "中銀客戶 85 折",
+        "discount": "15% OFF",
+        "note": "中銀信用卡或手機銀行客戶投保享保費 85 折優惠"
+      }
     },
     {
       "id": "travel-blue-cross",
@@ -1452,7 +1504,18 @@
           "quote": "主要不保事項 1. 戰爭（無論已宣戰與否）、侵略、外敵行動、內戰、叛亂、革命、暴動、內亂、軍事或篡奪行動… 2. 任何受保人、直屬家庭成員或同行夥伴蓄意、惡意、非法或故意的行為。 3. 核裂變、核聚變或輻射污染。",
           "url": "https://ap.bluecross.com.hk/shared/leaflets/TravelSmart_Leaflet_Chi.pdf"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "至醒會 8 折推廣",
+        "code": "BC80",
+        "discount": "20% OFF",
+        "note": "「至醒會」會員投保單次或全年計劃即享 8 折"
+      }
     },
     {
       "id": "travel-cntaiping",
@@ -1605,7 +1668,18 @@
           "quote": "全球尊尚醫療額 1,000,000 港元，內地與海外緊急救援無上限",
           "url": "/docs/brochures/cntaiping-13193012hytf.pdf#page=1"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "gba",
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "大灣區每日 $28 起",
+        "discount": "快閃特惠",
+        "note": "特設大灣區短途專屬保障與全國免押金住院直付"
+      }
     },
     {
       "id": "travel-chubb",
@@ -1870,7 +1944,18 @@
           "quote": "如受保人在同一次旅程中購買多於一份由安達保險香港有限公司承保之「安達旅遊保險」，則安達保險香港有限公司只會根據最高保額的一份作出賠償。",
           "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "gba",
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "廣東澳門專項",
+        "discount": "短途特惠",
+        "note": "涵蓋廣東及澳門計劃與環球郵輪專屬升級，家庭同行特惠"
+      }
     },
     {
       "id": "travel-dah-sing",
@@ -2133,7 +2218,17 @@
           "quote": "COVID-19／大流行病不保事項 儘管當中有相反規定，但本保單不承保由下列各項（包括其引起的恐懼或威脅（無論是實際或感覺上））直接或間接造成、與之相關、或在任何方面牽涉其中或由其引起的任何損失、損害、責任、費用、罰款，罰金或任何其他金額：• 新冠病毒（COVID-19），包括其任何突變或變異；或 • 世界衛生組織或任何政府機構宣佈的大流行病或流行病。",
           "url": "https://www.dahsinginsurance.com/b2c/api/fileCenter/file/TP/policy_wordings.pdf"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "家庭計劃買二送全家",
+        "discount": "子女免費",
+        "note": "2名家長保費即可全包不限數目隨行18歲以下子女"
+      }
     },
     {
       "id": "travel-fwd",
@@ -2294,7 +2389,18 @@
           "quote": "年齡由60日至80歲：頭等計劃 1,500,000 ... 因任何原因取消旅程 (50%自負額) 25,000",
           "url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=2"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "官網限時 75 折",
+        "code": "FWDTRAVEL",
+        "discount": "25% OFF",
+        "note": "官網輸入優惠碼享 75 折；長幼同價保額不縮水"
+      }
     },
     {
       "id": "travel-generali",
@@ -2454,7 +2560,17 @@
           "quote": "醫療費用高達 HK$1,200,000，租車自負額達 HK$6,000",
           "url": "https://www.generali.com.hk/zh_HK/travel-insurance"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "申根合規全額承保",
+        "discount": "歐遊首選",
+        "note": "符合申根簽證嚴格要求，歐洲最大跨國保險直接承保"
+      }
     },
     {
       "id": "travel-hsbc",
@@ -2605,7 +2721,17 @@
           "quote": "公共交通意外雙倍賠償達 2,400,000 港元，租車自負額高達 5,000 港元",
           "url": "https://www.hsbc.com.hk/zh-hk/insurance/products/travel/"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "理財客戶尊享 8 折",
+        "discount": "20% OFF",
+        "note": "滙豐網上理財客戶尊享投保保費 8 折優惠"
+      }
     },
     {
       "id": "travel-hang-seng",
@@ -2756,7 +2882,17 @@
           "quote": "優越計劃醫療達 HK$1,200,000，租車自負額高達 HK$5,000",
           "url": "https://www.hangseng.com/zh-hk/personal/insurance-planning/travel-insurance/"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "信用卡專屬 85 折",
+        "discount": "15% OFF",
+        "note": "恒生信用卡客戶網上投保享 85 折優惠"
+      }
     },
     {
       "id": "travel-msig",
@@ -3033,7 +3169,18 @@
           "quote": "4. 本公司不負責受保人在旅途中從事體力勞動工作而引致的任何索償。 5. 任何使用生物劑、化學劑或核子裝置之恐怖活動並不受保障。",
           "url": "https://www.msig.com.hk/sites/msig_hk/files/H1044_iTravel_Go_%28Single%29_23.4.2026_4.pdf"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "單次55折 / 全年65折",
+        "code": "MSIG10 / MSIG15",
+        "discount": "最高 45% OFF",
+        "note": "單次優惠碼「MSIG10」享55折；全年「MSIG15」享65折"
+      }
     },
     {
       "id": "travel-prudential",
@@ -3200,7 +3347,17 @@
           "quote": "不設自負金額，賠償額不扣除墊底費；購入兩年內之行李財物按新換舊不扣折舊",
           "url": "https://www.prudential.com.hk/tc/general-insurance/travel-insurance/pruchoice-travel/"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "零自負額·全線免找數",
+        "discount": "免自付費",
+        "note": "全線保障項目零自負金額 (Excess-free)，無隱藏自付門檻"
+      }
     },
     {
       "id": "travel-starr",
@@ -3352,7 +3509,18 @@
           "quote": "水肺潛水不設深度限制，滑雪等業餘運動均受保；租車自負額高達 10,000 港元",
           "url": "https://www.starrinsurance.com.hk/zh-hk/products/travel/travelead"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "網上投保 8 折",
+        "code": "STARR80",
+        "discount": "20% OFF",
+        "note": "高性價比網上常設 8 折；單次旅程不設投保年齡上限"
+      }
     },
     {
       "id": "travel-zurich",
@@ -3629,7 +3797,17 @@
           "quote": "本保險不適用於持有中華人民共和國護照及以此往返中國之人士，除非該受保人同時擁有由其他海外國家政府（中國除外）所簽發的法定文件證明為該地合法居民。",
           "url": "https://www.fubonbank.com.hk/tc/insurance/general-insurance/travel-insurance-plan.html"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "隨行兒童保費特惠",
+        "discount": "家庭特惠",
+        "note": "蘇黎世高達 HK$150 萬海外醫療；隨行兒童享優惠附加費"
+      }
     },
     {
       "id": "travel-bolttech",
@@ -3900,7 +4078,17 @@
           "quote": "6. 受保人乘坐或駕駛車輛用作賽車、比賽或任何專業運動…或受保人參與任何極限運動及體育活動(除非該運動是開放予公眾參與、不設限制並由獲認可的當地導遊公司/活動提供者提供活動; 並由合資格導遊及/或指導員的指引及監督下行動); … 9. 前往任何為人知悉屬高風險的國家，在保障生效日期前,傳媒或政府機關已充份發出反對旅遊的警告。",
           "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "每日 $19.8 起 + 同行95折",
+        "discount": "同行折上折",
+        "note": "亞洲日費低至 HK$19.80；同行親友投保享額外 95 折"
+      }
     },
     {
       "id": "medical-aia",
@@ -30117,7 +30305,17 @@
           "quote": "海外醫療費用優越計劃高達港幣1,500,000元，各項保障均不設自負額。",
           "url": "https://www.manulife.com.hk/zh-hk/individual/products/general-insurance/travel-insurance.html"
         }
-      ]
+      ],
+      "trip_type": "both",
+      "destination_scope": [
+        "asia",
+        "worldwide"
+      ],
+      "promo": {
+        "tag": "宏利客戶尊享優惠",
+        "discount": "客戶特惠",
+        "note": "全項保障不設自負額；宏利客戶尊享網上投保特別優惠"
+      }
     }
   ]
 }

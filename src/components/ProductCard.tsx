@@ -1,5 +1,6 @@
-import { ExternalLink, FileText, Plus, Check } from "lucide-react";
+import { ExternalLink, FileText, Plus, Check, Sparkles, Copy } from "lucide-react";
 import { useNavigate } from "react-router";
+import { toast } from "sonner";
 import type { Product } from "@/types/insurance";
 import { categoryColor } from "@/lib/categories";
 import { useCompare } from "@/providers/CompareProvider";
@@ -78,6 +79,45 @@ export default function ProductCard({
             {extraTiers > 0 && (
               <span className="chip bg-paper-3 font-grotesk text-ink-faint">+{extraTiers}</span>
             )}
+          </div>
+        )}
+
+        {/* 推廣折扣優惠與優惠碼 Badge */}
+        {product.promo && (
+          <div
+            className="flex flex-wrap items-center justify-between gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-2.5 py-1.5 text-[12px] font-medium"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className="inline-flex items-center gap-1 font-bold text-amber-900 dark:text-amber-200">
+                <Sparkles size={13} className="shrink-0 text-amber-600 dark:text-amber-400" />
+                {product.promo.tag}
+              </span>
+              {product.promo.discount && (
+                <span className="rounded bg-amber-500/20 px-1.5 py-0.2 text-[11px] font-bold text-amber-800 dark:text-amber-300">
+                  {product.promo.discount}
+                </span>
+              )}
+            </div>
+            {product.promo.code ? (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigator.clipboard.writeText(product.promo!.code!);
+                  toast.success(`已複製優惠碼：${product.promo!.code}`, { position: "top-center" });
+                }}
+                className="group/btn inline-flex items-center gap-1 rounded border border-amber-400/40 bg-paper px-2 py-0.5 font-mono text-[11px] font-bold text-amber-800 shadow-xs transition-all hover:border-amber-500 hover:bg-amber-100/60 dark:bg-paper-2 dark:text-amber-200"
+                title="點擊複製優惠碼"
+              >
+                <span>{product.promo.code}</span>
+                <Copy size={11} className="text-amber-600 transition-transform group-hover/btn:scale-110" />
+              </button>
+            ) : product.promo.note ? (
+              <span className="text-[11px] text-ink-soft line-clamp-1" title={product.promo.note}>
+                {product.promo.note}
+              </span>
+            ) : null}
           </div>
         )}
 

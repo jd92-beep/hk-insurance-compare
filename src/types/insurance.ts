@@ -41,6 +41,19 @@ export interface Product {
   documents_found: string[];
   /** 逐條資料出處引文（頁尾「資料出處」section） */
   citations?: Citation[];
+  /** 旅遊保險：旅程類型（單次 / 全年多次 / 兩者皆有） */
+  trip_type?: "single" | "annual" | "both";
+  /** 旅遊保險：覆蓋範圍（亞洲短途 / 全球通用 / 大灣區） */
+  destination_scope?: ("asia" | "worldwide" | "gba")[];
+  /** 產品推廣折扣優惠與優惠碼 */
+  promo?: ProductPromo;
+}
+
+export interface ProductPromo {
+  tag: string;
+  code?: string;
+  discount?: string;
+  note?: string;
 }
 
 export interface Category {

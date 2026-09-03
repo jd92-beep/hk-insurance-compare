@@ -5,9 +5,11 @@ import {
   ArrowUp,
   Check,
   ChevronDown,
+  Copy,
   ExternalLink,
   FileText,
   Plus,
+  Sparkles,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
@@ -140,6 +142,41 @@ function ExpandedRow({
           className="overflow-hidden"
         >
           <div className="grid grid-cols-1 gap-6 py-5 md:grid-cols-2">
+            {product.promo && (
+              <div className="col-span-full rounded-lg border border-amber-500/30 bg-amber-500/10 p-3.5 text-small">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 font-bold text-amber-900 dark:text-amber-200">
+                      <Sparkles size={14} className="shrink-0 text-amber-600 dark:text-amber-400" />
+                      專屬推廣優惠：{product.promo.tag}
+                    </span>
+                    {product.promo.discount && (
+                      <span className="rounded bg-amber-500/20 px-1.5 py-0.5 text-[11px] font-bold text-amber-800 dark:text-amber-300">
+                        {product.promo.discount}
+                      </span>
+                    )}
+                  </div>
+                  {product.promo.code && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigator.clipboard.writeText(product.promo!.code!);
+                        toast.success(`已複製優惠碼：${product.promo!.code}`, { position: "top-center" });
+                      }}
+                      className="inline-flex items-center gap-1.5 rounded border border-amber-400/40 bg-paper px-2.5 py-1 font-mono text-[11.5px] font-bold text-amber-800 shadow-2xs hover:bg-amber-100 dark:bg-paper-2 dark:text-amber-200"
+                      title="點擊複製優惠碼"
+                    >
+                      <span>複製優惠碼: {product.promo.code}</span>
+                      <Copy size={12} className="text-amber-600" />
+                    </button>
+                  )}
+                </div>
+                {product.promo.note && (
+                  <p className="mt-1.5 text-[12px] text-ink-soft">{product.promo.note}</p>
+                )}
+              </div>
+            )}
             <div>
               <p className="mb-2.5 text-small font-bold text-ink">
                 全部保障項目
@@ -363,6 +400,34 @@ export default function ProductTable({
                         className="mt-0.5 shrink-0"
                       />
                     </span>
+                    {p.promo && (
+                      <div className="mt-1.5 flex flex-wrap items-center gap-1">
+                        <span className="inline-flex items-center gap-1 rounded border border-amber-500/30 bg-amber-500/15 px-1.5 py-0.5 text-[11px] font-bold text-amber-900 dark:text-amber-200">
+                          <Sparkles size={11} className="shrink-0 text-amber-600 dark:text-amber-400" />
+                          {p.promo.tag}
+                        </span>
+                        {p.promo.discount && (
+                          <span className="rounded bg-amber-500/20 px-1 py-0.2 text-[10px] font-bold text-amber-800 dark:text-amber-300">
+                            {p.promo.discount}
+                          </span>
+                        )}
+                        {p.promo.code && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigator.clipboard.writeText(p.promo!.code!);
+                              toast.success(`已複製優惠碼：${p.promo!.code}`, { position: "top-center" });
+                            }}
+                            className="inline-flex items-center gap-0.5 rounded border border-amber-400/40 bg-paper px-1.5 py-0.5 font-mono text-[10.5px] font-bold text-amber-800 shadow-2xs hover:bg-amber-100/70 dark:bg-paper-2 dark:text-amber-200"
+                            title="點擊複製優惠碼"
+                          >
+                            <span>碼: {p.promo.code}</span>
+                            <Copy size={9} className="ml-0.5 text-amber-600" />
+                          </button>
+                        )}
+                      </div>
+                    )}
                     <span className="mt-1.5 inline-flex items-center gap-1 text-[12px] font-medium text-ink-faint transition-colors group-hover:text-ink-soft">
                       <ChevronDown
                         size={13}

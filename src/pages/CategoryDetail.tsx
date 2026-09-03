@@ -9,6 +9,7 @@ import ProductCard from "@/components/ProductCard";
 import FilterBar from "@/components/category/FilterBar";
 import type { SortKey, ViewMode } from "@/components/category/FilterBar";
 import ProductTable from "@/components/category/ProductTable";
+import UniversalComparisonChart from "@/components/category/UniversalComparisonChart";
 import { categoryCopy } from "@/components/category/copy";
 import {
   Accordion,
@@ -478,6 +479,18 @@ export default function CategoryDetail() {
               </div>
             </motion.div>
           )}
+        </div>
+      </section>
+
+      {/* ── S1.5 全類別視覺化保障限額圖表 ──────────────────────── */}
+      <section className="border-b border-line/60 bg-paper-2/30 py-8">
+        <div className="site-container">
+          <UniversalComparisonChart
+            products={products}
+            categoryId={category.id}
+            categoryName={category.name_zh}
+            color={color}
+          />
         </div>
       </section>
 

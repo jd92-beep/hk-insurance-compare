@@ -124,6 +124,7 @@ export default function ProductDetail() {
             <section id="pd-coverage" style={SECTION_SCROLL_MARGIN}>
               <CoverageSection
                 coverage={product.coverage ?? []}
+                productId={product.id}
                 standardTable={
                   product.category === "medical" &&
                   isStandardBenefitTable(product.coverage ?? [])

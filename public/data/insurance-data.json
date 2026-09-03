@@ -15981,7 +15981,7 @@
         {
           "item": "每年保障限額",
           "limit": "每保單年度 HK$40,000,000（菁英版終身保障無上限）",
-          "source_url": "https://www.bupa.com.hk/tc/individual/medical-insurance/bupa-global-health-plans/#page=4",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=4",
           "document_name": "保柏環球卓康健產品手冊",
           "page": 4,
           "quote": "每年賠償限額高達港幣 4,000 萬元，不設終身賠償上限。"
@@ -15989,7 +15989,7 @@
         {
           "item": "病房及膳食",
           "limit": "全數賠償（全球任何私家醫院標準私家房或套房）",
-          "source_url": "https://www.bupa.com.hk/tc/individual/medical-insurance/bupa-global-health-plans/#page=5",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=5",
           "document_name": "保柏環球卓康健產品手冊",
           "page": 5,
           "quote": "合資格住宿及膳食開支獲全數賠償，適用於標準私家房。"
@@ -15997,7 +15997,7 @@
         {
           "item": "主要醫療費用（住院及手術）",
           "limit": "全數賠償（外科手術費、麻醉師費、手術室開支無細項上限）",
-          "source_url": "https://www.bupa.com.hk/tc/individual/medical-insurance/bupa-global-health-plans/#page=5",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=5",
           "document_name": "保柏環球卓康健產品手冊",
           "page": 5,
           "quote": "外科手術及深切治療費用全數賠償，不設個別分項限額。"
@@ -16005,7 +16005,7 @@
         {
           "item": "全球出院免找數直付",
           "limit": "涵蓋全球逾170萬間醫療機構，經預先批核直接結算免找數",
-          "source_url": "https://www.bupa.com.hk/tc/individual/medical-insurance/bupa-global-health-plans/#page=6",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=6",
           "document_name": "保柏環球卓康健產品手冊",
           "page": 6,
           "quote": "龐大環球醫療網絡，住院前獲批核即可享有醫療費用直付服務。"
@@ -16013,7 +16013,7 @@
         {
           "item": "緊急醫療運送及遺體運返",
           "limit": "全數賠償（包括專機運送、專業醫護同行及直系親屬陪同）",
-          "source_url": "https://www.bupa.com.hk/tc/individual/medical-insurance/bupa-global-health-plans/#page=7",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=7",
           "document_name": "保柏環球卓康健產品手冊",
           "page": 7,
           "quote": "24小時環球緊急支援，運送至最適當醫療中心之費用全數賠償。"
@@ -16021,7 +16021,7 @@
         {
           "item": "先進診斷成像檢測（CT/MRI/PET）",
           "limit": "全數賠償（無論住院或門診診斷成像均實報實銷）",
-          "source_url": "https://www.bupa.com.hk/tc/individual/medical-insurance/bupa-global-health-plans/#page=8",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
           "document_name": "保柏環球卓康健產品手冊",
           "page": 8,
           "quote": "訂明診斷成像檢測全數賠償。"
@@ -16064,7 +16064,7 @@
         {
           "item": "每年保障限額",
           "limit": "每保單年度 HK$25,000,000 至 HK$30,000,000（終身限額 HK$75,000,000）",
-          "source_url": "https://www.aia.com.hk/zh-hk/our-products/medical-protection.html#page=4",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=4",
           "document_name": "AIA亞洲至尊醫療計劃產品簡介",
           "page": 4,
           "quote": "終身保障額高達港幣 7,500 萬元，年度限額達港幣 2,500 萬元。"
@@ -16072,7 +16072,7 @@
         {
           "item": "病房及膳食",
           "limit": "全數賠償（指定地域標準私家單人房）",
-          "source_url": "https://www.aia.com.hk/zh-hk/our-products/medical-protection.html#page=5",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=5",
           "document_name": "AIA亞洲至尊醫療計劃產品簡介",
           "page": 5,
           "quote": "入住標準私家房之每日住院及膳食開支全數賠償。"
@@ -16080,7 +16080,7 @@
         {
           "item": "主要醫療費用（住院及手術）",
           "limit": "全數賠償（手術費、雜項開支、巡房費均無分項上限）",
-          "source_url": "https://www.aia.com.hk/zh-hk/our-products/medical-protection.html#page=5",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=5",
           "document_name": "AIA亞洲至尊醫療計劃產品簡介",
           "page": 5,
           "quote": "手術費、深切治療及所有合資格醫療雜項費用實報實銷全數賠償。"
@@ -16088,7 +16088,7 @@
         {
           "item": "全球出院免找數直付",
           "limit": "友邦醫療網絡及覆蓋全球逾百個國家之指定醫院免找數直付",
-          "source_url": "https://www.aia.com.hk/zh-hk/our-products/medical-protection.html#page=6",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
           "document_name": "AIA亞洲至尊醫療計劃產品簡介",
           "page": 6,
           "quote": "出院免找數服務，由友邦代為繳付合資格住院費用。"
@@ -16096,7 +16096,7 @@
         {
           "item": "無索償自付額折扣",
           "limit": "連續無索償每年自負額扣減10%，最高可累計減至零自負額",
-          "source_url": "https://www.aia.com.hk/zh-hk/our-products/medical-protection.html#page=7",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=7",
           "document_name": "AIA亞洲至尊醫療計劃產品簡介",
           "page": 7,
           "quote": "連續無索償保單年度可享有自付費折扣，最高可調減至零。"
@@ -16139,7 +16139,7 @@
         {
           "item": "每年保障限額",
           "limit": "白金版無上限／金計劃 HK$15,600,000／銀計劃 HK$7,800,000",
-          "source_url": "https://www.cignaglobal.com/#page=8",
+          "source_url": "/docs/brochures/cigna-global-health-options.pdf#page=8",
           "document_name": "Cigna Global Customer Benefit Guide",
           "page": 8,
           "quote": "Platinum plan offers unlimited overall annual maximum benefit."
@@ -16147,7 +16147,7 @@
         {
           "item": "病房及膳食",
           "limit": "全數賠償（全球標準私家單人房）",
-          "source_url": "https://www.cignaglobal.com/#page=9",
+          "source_url": "/docs/brochures/cigna-global-health-options.pdf#page=9",
           "document_name": "Cigna Global Customer Benefit Guide",
           "page": 9,
           "quote": "Private room hospital accommodation paid in full."
@@ -16155,7 +16155,7 @@
         {
           "item": "主要醫療費用（住院及手術）",
           "limit": "全數賠償（手術費、專科醫生費、病理檢驗、重症監護病房）",
-          "source_url": "https://www.cignaglobal.com/#page=10",
+          "source_url": "/docs/brochures/cigna-global-health-options.pdf#page=10",
           "document_name": "Cigna Global Customer Benefit Guide",
           "page": 10,
           "quote": "Surgeon and anaesthetist fees paid in full."
@@ -16163,7 +16163,7 @@
         {
           "item": "全球出院免找數直付",
           "limit": "信諾全球逾165萬間醫院及診所網絡，出院直付免找數",
-          "source_url": "https://www.cignaglobal.com/#page=12",
+          "source_url": "/docs/brochures/cigna-global-health-options.pdf#page=12",
           "document_name": "Cigna Global Customer Benefit Guide",
           "page": 12,
           "quote": "Direct settlement with network hospitals worldwide."
@@ -16205,7 +16205,7 @@
         {
           "item": "每年保障限額",
           "limit": "每保單年度高達 HK$33,000,000（終身保障限額達 HK$100,000,000）",
-          "source_url": "https://www.axa.com.hk/zh/global-elite-plan#page=6",
+          "source_url": "/docs/brochures/axa-global-elite-brochure.pdf#page=6",
           "document_name": "AXA寰宇特選醫療計劃產品小冊子",
           "page": 6,
           "quote": "特級計劃每年保障額高達港幣 3,300 萬元，終身保障額高達港幣 1 億元。"
@@ -16213,7 +16213,7 @@
         {
           "item": "病房及膳食",
           "limit": "全數賠償（標準私家單人房）",
-          "source_url": "https://www.axa.com.hk/zh/global-elite-plan#page=7",
+          "source_url": "/docs/brochures/axa-global-elite-brochure.pdf#page=7",
           "document_name": "AXA寰宇特選醫療計劃產品小冊子",
           "page": 7,
           "quote": "私家病房住宿及膳食費用全數賠償。"
@@ -16221,7 +16221,7 @@
         {
           "item": "主要醫療費用（住院及手術）",
           "limit": "全數賠償（手術費、深切治療、訂明癌症藥物與治療）",
-          "source_url": "https://www.axa.com.hk/zh/global-elite-plan#page=7",
+          "source_url": "/docs/brochures/axa-global-elite-brochure.pdf#page=7",
           "document_name": "AXA寰宇特選醫療計劃產品小冊子",
           "page": 7,
           "quote": "手術及各項合資格住院醫療費用全數賠償，不設細項限制。"
@@ -16229,7 +16229,7 @@
         {
           "item": "全球出院免找數直付",
           "limit": "AXA安盛環球醫療網絡直付及大灣區頂尖三甲醫院綠色通道",
-          "source_url": "https://www.axa.com.hk/zh/global-elite-plan#page=9",
+          "source_url": "/docs/brochures/axa-global-elite-brochure.pdf#page=9",
           "document_name": "AXA寰宇特選醫療計劃產品小冊子",
           "page": 9,
           "quote": "出院免找數結算，特設大灣區跨境就醫專案經理支援。"
@@ -16534,7 +16534,7 @@
         {
           "item": "公司醫保 Shortfall 填補",
           "limit": "超出公司團體醫保上限後全數或 80% 差額賠償",
-          "source_url": "https://www.bupa.com.hk/tc/medical-insurance/carepro/#page=2",
+          "source_url": "/docs/brochures/bupa-carepro-topup.pdf#page=2",
           "document_name": "保柏易增值產品冊子",
           "page": 2,
           "quote": "為公司醫療保險未能覆蓋的合資格開支提供包底賠償，填補保障缺口。"
@@ -16542,7 +16542,7 @@
         {
           "item": "離職或退休保證轉保權",
           "limit": "轉工、離職或退休時毋須重新核保，直接銜接為保柏個人醫保",
-          "source_url": "https://www.bupa.com.hk/tc/medical-insurance/carepro/#page=3",
+          "source_url": "/docs/brochures/bupa-carepro-topup.pdf#page=3",
           "document_name": "保柏易增值產品冊子",
           "page": 3,
           "quote": "離職或退休時可保證轉換至個人醫療保險，毋須重新核保，避免保障真空。"
@@ -16550,7 +16550,7 @@
         {
           "item": "免核保加入條件",
           "limit": "受保於保柏或指定合資格僱主團體醫保滿期後，免體檢免核保即可投保",
-          "source_url": "https://www.bupa.com.hk/tc/medical-insurance/carepro/#page=3",
+          "source_url": "/docs/brochures/bupa-carepro-topup.pdf#page=3",
           "document_name": "保柏易增值產品冊子",
           "page": 3,
           "quote": "現有團體醫療保險會員及其家屬可無須核保申請加入。"
@@ -16558,7 +16558,7 @@
         {
           "item": "每年最高賠償限額",
           "limit": "每保單年度最高賠償 HK$1,000,000",
-          "source_url": "https://www.bupa.com.hk/tc/medical-insurance/carepro/#page=4",
+          "source_url": "/docs/brochures/bupa-carepro-topup.pdf#page=4",
           "document_name": "保柏易增值產品冊子",
           "page": 4,
           "quote": "基本保障加上附加醫療保障，年度賠償限額高達港幣 100 萬元。"
@@ -16566,7 +16566,7 @@
         {
           "item": "涵蓋已有病症特別條款",
           "limit": "受保滿指定月份後，可無縫銜接涵蓋已有病症",
-          "source_url": "https://www.bupa.com.hk/tc/medical-insurance/carepro/#page=4",
+          "source_url": "/docs/brochures/bupa-carepro-topup.pdf#page=4",
           "document_name": "保柏易增值產品冊子",
           "page": 4,
           "quote": "連續受保達合約指定期限後，可涵蓋已存在的病症。"
@@ -16608,7 +16608,7 @@
         {
           "item": "公司醫保 Shortfall 填補",
           "limit": "超出僱主醫保細項限額後，提供超額住院與手術費用差額賠償",
-          "source_url": "https://www.cigna.com.hk/#page=2",
+          "source_url": "/docs/brochures/cigna-vhis-flexi-superior.pdf#page=2",
           "document_name": "信諾額外加添醫療計劃產品單張",
           "page": 2,
           "quote": "特別配合現有公司團體醫療保險，為超出賠償上限的費用提供高達100萬港元額外保障。"
@@ -16616,7 +16616,7 @@
         {
           "item": "每年最高賠償限額",
           "limit": "每保單年度最高 HK$1,000,000（保證續保至 100 歲）",
-          "source_url": "https://www.cigna.com.hk/#page=2",
+          "source_url": "/docs/brochures/cigna-vhis-flexi-superior.pdf#page=2",
           "document_name": "信諾額外加添醫療計劃產品單張",
           "page": 2,
           "quote": "每年醫療賠償額高達港幣 100 萬元，保證續保至 100 歲。"
@@ -16624,7 +16624,7 @@
         {
           "item": "靈活自付費與公司醫保銜接",
           "limit": "自付費可直接由僱主公司醫療保險賠償抵銷",
-          "source_url": "https://www.cigna.com.hk/#page=3",
+          "source_url": "/docs/brochures/cigna-vhis-flexi-superior.pdf#page=3",
           "document_name": "信諾額外加添醫療計劃產品單張",
           "page": 3,
           "quote": "受保人可利用現有公司保險賠付抵扣自付費，自己毋須額外掏腰包。"
@@ -16664,7 +16664,7 @@
         {
           "item": "超額醫療費用賠償率（SMM）",
           "limit": "超出基本住院手術上限之合資格差額，賠償高達 80% 至 85%",
-          "source_url": "https://www.aia.com.hk/zh-hk/our-products/medical-protection.html#page=3",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=3",
           "document_name": "AIA附加醫療保障條款說明",
           "page": 3,
           "quote": "超出基本醫療計劃各分項限額的合資格費用，賠償高達 80% 的差額開支。"
@@ -16672,7 +16672,7 @@
         {
           "item": "實報實銷差額填補",
           "limit": "涵蓋住院、複雜外科手術、專科巡房費及各項超額雜費",
-          "source_url": "https://www.aia.com.hk/zh-hk/our-products/medical-protection.html#page=4",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=4",
           "document_name": "AIA附加醫療保障條款說明",
           "page": 4,
           "quote": "扣除基本計劃賠付後，為剩餘主要醫療費用提供實報實銷賠償。"
@@ -16711,7 +16711,7 @@
         {
           "item": "超額醫療費用賠償率（SMM）",
           "limit": "超出基本限額部分賠償 80%，每保單年度設有獨立高額上限",
-          "source_url": "https://www.axa.com.hk/zh/supplementary-major-medical-benefit#page=2",
+          "source_url": "/docs/brochures/axa-smm-policy-sample.pdf#page=2",
           "document_name": "AXA超額醫療保障產品小冊子",
           "page": 2,
           "quote": "為基本住院計劃賠償後的剩餘合資格費用提供 80% 額外賠償。"
@@ -16719,7 +16719,7 @@
         {
           "item": "公司醫保銜接與自付費扣除",
           "limit": "直接以公司醫保或主約理賠金抵扣墊底費",
-          "source_url": "https://www.axa.com.hk/zh/supplementary-major-medical-benefit#page=3",
+          "source_url": "/docs/brochures/axa-smm-policy-sample.pdf#page=3",
           "document_name": "AXA超額醫療保障產品小冊子",
           "page": 3,
           "quote": "超額醫療開支無縫銜接，減低員工自付負擔。"

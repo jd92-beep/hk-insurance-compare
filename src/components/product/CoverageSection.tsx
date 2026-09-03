@@ -1,9 +1,11 @@
-import { ExternalLink } from "lucide-react";
+import * as React from "react";
+import { ExternalLink, Eye } from "lucide-react";
 import { motion } from "framer-motion";
 import type { CoverageItem } from "@/types/insurance";
 import SectionHeading, { EASE_OUT_EXPO } from "@/components/product/SectionHeading";
 import CitationRef from "@/components/product/citation/CitationRef";
 import type { CitationEntry } from "@/components/product/citation/citation-utils";
+import PdfViewerDrawer from "@/components/product/PdfViewerDrawer";
 import { cn } from "@/lib/utils";
 
 /** 標準計劃保障表分組：限額行置頂，靈活計劃級別排尾，其餘為基本保障 */
@@ -28,6 +30,7 @@ function resolveSourceInfo(c: CoverageItem, citationEntries?: CitationEntry[]) {
       sourceUrl: c.source_url,
       documentName: c.document_name,
       page: c.page,
+      quote: c.quote,
     };
   }
   // 智能 fallback：如果 citationEntries 有對應保障項目，自動對齊
@@ -42,6 +45,7 @@ function resolveSourceInfo(c: CoverageItem, citationEntries?: CitationEntry[]) {
         sourceUrl: match.citation.url,
         documentName: match.citation.document,
         page: match.citation.page,
+        quote: match.citation.quote,
       };
     }
   }
@@ -49,13 +53,14 @@ function resolveSourceInfo(c: CoverageItem, citationEntries?: CitationEntry[]) {
     sourceUrl: undefined,
     documentName: c.document_name,
     page: c.page,
+    quote: c.quote,
   };
 }
 
 /**
  * 保障項目標題渲染組件：
- * 支援 source_url 外連深度跳轉、ExternalLink 視覺圖示與 hover 過渡效果，
- * 以及官方出處與頁碼微型標註。
+ * 支援點擊呼叫內置 PDF 閱讀抽屜（同份文件無感跳頁，不重新下載），
+ * 同時支援新分頁開啟與官方出處佐證。
  */
 function CoverageItemTitle({
   item,
@@ -64,6 +69,8 @@ function CoverageItemTitle({
   documentName,
   page,
   textSizeClass = "text-[15px]",
+  onPreviewDoc,
+  productId = "insurance",
 }: {
   item: string;
   headline?: boolean;
@@ -71,30 +78,44 @@ function CoverageItemTitle({
   documentName?: string;
   page?: number | null;
   textSizeClass?: string;
+  onPreviewDoc?: () => void;
+  productId?: string;
 }) {
   const hasDoc = Boolean(documentName || page != null);
 
   return (
     <div className="flex flex-col items-start gap-1">
       {sourceUrl ? (
-        <a
-          href={sourceUrl}
-          target="_blank"
-          rel="noreferrer"
-          className={cn(
-            "group/cov inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-jade hover:underline cursor-pointer",
-            textSizeClass,
-            headline ? "font-bold text-ink" : "font-medium text-ink"
-          )}
-          title={`前往官方來源查看「${item}」佐證文件`}
-        >
-          <span>{item}</span>
-          <ExternalLink
-            size={14}
-            className="shrink-0 text-jade/70 transition-transform duration-200 group-hover/cov:translate-x-0.5 group-hover/cov:-translate-y-0.5 group-hover/cov:text-jade"
-            aria-hidden="true"
-          />
-        </a>
+        <div className="inline-flex flex-wrap items-center gap-1.5">
+          <button
+            type="button"
+            onClick={onPreviewDoc}
+            className={cn(
+              "group/cov inline-flex items-center gap-1.5 text-left transition-colors duration-200 hover:text-jade hover:underline cursor-pointer",
+              textSizeClass,
+              headline ? "font-bold text-ink" : "font-medium text-ink"
+            )}
+            title={`點擊於內置抽屜查閱「${item}」官方條款`}
+          >
+            <span>{item}</span>
+            <Eye
+              size={14}
+              className="shrink-0 text-jade/70 transition-transform duration-200 group-hover/cov:scale-110 group-hover/cov:text-jade"
+              aria-hidden="true"
+            />
+          </button>
+
+          {/* 右側新分頁按鈕：鎖定相同 window 名稱，避免重複開分頁 */}
+          <a
+            href={sourceUrl}
+            target={`doc_viewer_${productId.replace(/[^a-zA-Z0-9_-]/g, "_")}`}
+            rel="noreferrer"
+            className="text-ink-faint transition-colors hover:text-jade"
+            title="在新分頁獨立開啟"
+          >
+            <ExternalLink size={12} className="shrink-0" />
+          </a>
+        </div>
       ) : (
         <span
           className={cn(
@@ -128,11 +149,41 @@ export default function CoverageSection({
   coverage,
   standardTable = false,
   citationEntries,
+  productId = "insurance",
 }: {
   coverage: CoverageItem[];
   standardTable?: boolean;
   citationEntries?: CitationEntry[];
+  productId?: string;
 }) {
+  // 內置 PDF 抽屜閱讀器狀態（同份文件點第二格無感切換頁碼，不重複下載）
+  const [activeDoc, setActiveDoc] = React.useState<{
+    isOpen: boolean;
+    pdfUrl?: string;
+    documentName?: string;
+    page?: number | null;
+    itemTitle?: string;
+    limitText?: string;
+    quote?: string;
+  }>({
+    isOpen: false,
+  });
+
+  const handleOpenDoc = (
+    c: CoverageItem,
+    info: ReturnType<typeof resolveSourceInfo>
+  ) => {
+    if (!info.sourceUrl) return;
+    setActiveDoc({
+      isOpen: true,
+      pdfUrl: info.sourceUrl,
+      documentName: info.documentName,
+      page: info.page,
+      itemTitle: c.item,
+      limitText: c.limit,
+      quote: info.quote,
+    });
+  };
   return (
     <div>
       <SectionHeading
@@ -195,6 +246,8 @@ export default function CoverageSection({
                           documentName={info.documentName}
                           page={info.page}
                           textSizeClass="text-[15px]"
+                          onPreviewDoc={() => handleOpenDoc(c, info)}
+                          productId={productId}
                         />
                       </td>
                       <td
@@ -239,6 +292,8 @@ export default function CoverageSection({
                   documentName={info.documentName}
                   page={info.page}
                   textSizeClass="text-[16px]"
+                  onPreviewDoc={() => handleOpenDoc(c, info)}
+                  productId={productId}
                 />
                 <span className="text-[15px] leading-[1.7] text-ink-soft sm:max-w-[60%] sm:shrink-0 sm:text-right">
                   {c.limit}
@@ -253,6 +308,19 @@ export default function CoverageSection({
           自願醫保標準計劃保障由政府劃一釐定，各認可產品基本保障完全相同。
         </p>
       )}
+
+      {/* 內置官方 PDF 原生抽屜閱讀器 */}
+      <PdfViewerDrawer
+        isOpen={activeDoc.isOpen}
+        onClose={() => setActiveDoc((prev) => ({ ...prev, isOpen: false }))}
+        pdfUrl={activeDoc.pdfUrl}
+        documentName={activeDoc.documentName}
+        page={activeDoc.page}
+        itemTitle={activeDoc.itemTitle}
+        limitText={activeDoc.limitText}
+        quote={activeDoc.quote}
+        productId={productId}
+      />
     </div>
   );
 }

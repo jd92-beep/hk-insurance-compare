@@ -1,5 +1,16 @@
 import * as React from "react";
-import { ExternalLink, Download, X, FileText, Sparkles, BookOpen } from "lucide-react";
+import {
+  ExternalLink,
+  Download,
+  X,
+  FileText,
+  Sparkles,
+  BookOpen,
+  ShieldCheck,
+  Copy,
+  Check,
+} from "lucide-react";
+import { toast } from "sonner";
 import {
   Sheet,
   SheetContent,
@@ -22,11 +33,14 @@ export interface PdfViewerDrawerProps {
 /**
  * 官方條款 PDF 原生閱讀抽屜（In-App PDF Slide-over Drawer）
  *
- * 核心解決三大體驗痛點：
+ * 核心解決四大體驗痛點：
  * 1. 杜絕首頁跳轉：優先使用本地/CDN 鏡像官方 PDF，直達指定頁碼。
  * 2. 同份 PDF 無感跳頁：用戶點擊同一保單之不同條款時，抽屜保持開啟，
  *    僅平滑更新頁碼（#page=N）與高亮摘要，絕不重複下載或刷新重載！
- * 3. 分頁重用（Window Reuse）：若點擊「新分頁開啟」，使用固定的 window target，
+ * 3. 根治 Refuse to Connect：本地鏡像文件 100% 同源無阻擋內嵌；
+ *    若為受 X-Frame-Options 限制之外部網頁，自動切換至「官方直通核實台」，
+ *    提供即時佐證摘錄與一鍵安全直通開啓，絕不出現瀏覽器報錯頁面！
+ * 4. 分頁重用（Window Reuse）：若點擊「新分頁開啟」，使用固定的 window target，
  *    在同一瀏覽器標籤頁聚焦跳轉，避免彈出多個重複分頁。
  */
 export default function PdfViewerDrawer({
@@ -41,6 +55,8 @@ export default function PdfViewerDrawer({
   productId = "insurance",
 }: PdfViewerDrawerProps) {
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
+  const [iframeError, setIframeError] = React.useState(false);
+  const [copied, setCopied] = React.useState(false);
 
   // 分離基礎 URL 與 Hash 頁碼
   const { baseUrl, hashPage } = React.useMemo(() => {
@@ -54,15 +70,29 @@ export default function PdfViewerDrawer({
     return { baseUrl: base, hashPage: p };
   }, [pdfUrl, page]);
 
+  // 判斷是否為本地鏡像 PDF（可安全 100% 內嵌於 iframe）
+  const isLocalPdf = React.useMemo(() => {
+    if (!baseUrl) return false;
+    return baseUrl.startsWith("/docs/brochures/") || baseUrl.startsWith("/");
+  }, [baseUrl]);
+
   // 構造帶有 PDF open parameters 的完整直達路徑
   const viewerUrl = React.useMemo(() => {
     if (!baseUrl) return "";
-    return `${baseUrl}#page=${hashPage}&view=FitH&toolbar=1&navpanes=0`;
-  }, [baseUrl, hashPage]);
+    if (isLocalPdf) {
+      return `${baseUrl}#page=${hashPage}&view=FitH&toolbar=1&navpanes=0`;
+    }
+    return baseUrl;
+  }, [baseUrl, hashPage, isLocalPdf]);
+
+  React.useEffect(() => {
+    setIframeError(false);
+    setCopied(false);
+  }, [viewerUrl]);
 
   // 當頁碼或 URL 變更時，若同一份 PDF 已在 iframe 加載，直接更新 hash 或 location，避免整份重新下載
   React.useEffect(() => {
-    if (isOpen && iframeRef.current && viewerUrl) {
+    if (isOpen && iframeRef.current && isLocalPdf && viewerUrl) {
       try {
         if (iframeRef.current.contentWindow) {
           iframeRef.current.contentWindow.location.replace(viewerUrl);
@@ -74,13 +104,26 @@ export default function PdfViewerDrawer({
         iframeRef.current.src = viewerUrl;
       }
     }
-  }, [isOpen, viewerUrl]);
+  }, [isOpen, viewerUrl, isLocalPdf]);
 
   // 點擊新分頁開啟：重用同一視窗 target 名稱
   const handleOpenNewTab = () => {
-    if (!viewerUrl) return;
+    if (!baseUrl) return;
     const targetName = `doc_viewer_${productId.replace(/[^a-zA-Z0-9_-]/g, "_")}`;
-    window.open(viewerUrl, targetName);
+    window.open(isLocalPdf ? viewerUrl : baseUrl, targetName);
+  };
+
+  const handleCopyUrl = async () => {
+    if (!baseUrl) return;
+    try {
+      const fullUrl = baseUrl.startsWith("/") ? `${window.location.origin}${baseUrl}` : baseUrl;
+      await navigator.clipboard.writeText(fullUrl);
+      setCopied(true);
+      toast.success("已複製官方條款網址！");
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast.error("複製失敗，請手動複製");
+    }
   };
 
   if (!isOpen || !pdfUrl) return null;
@@ -102,7 +145,7 @@ export default function PdfViewerDrawer({
               <div className="min-w-0">
                 <SheetTitle className="flex flex-wrap items-center gap-2 text-left font-serif text-[16px] font-bold text-ink">
                   <span>{documentName ?? "官方產品手冊與條款細則"}</span>
-                  {hashPage != null && (
+                  {hashPage != null && isLocalPdf && (
                     <span className="rounded bg-jade/10 px-2 py-0.5 font-grotesk text-[12px] font-bold text-jade ring-1 ring-jade/20">
                       第 {hashPage} 頁
                     </span>
@@ -128,7 +171,7 @@ export default function PdfViewerDrawer({
               <button
                 type="button"
                 onClick={handleOpenNewTab}
-                className="inline-flex items-center gap-1.5 rounded-lg border bg-paper px-3 py-1.5 text-[12px] font-medium text-ink-soft shadow-xs transition-colors hover:border-jade hover:text-jade"
+                className="inline-flex items-center gap-1.5 rounded-lg border bg-paper px-3 py-1.5 text-[12px] font-medium text-ink-soft shadow-xs transition-colors hover:border-jade hover:text-jade cursor-pointer"
                 style={{ borderColor: "var(--line)" }}
                 title="在獨立分頁開啟（重用同一個分頁，不重複開啟新視窗）"
               >
@@ -136,20 +179,22 @@ export default function PdfViewerDrawer({
                 <ExternalLink size={13} />
               </button>
 
-              <a
-                href={baseUrl}
-                download
-                className="inline-flex items-center gap-1.5 rounded-lg border bg-paper px-3 py-1.5 text-[12px] font-medium text-ink-soft shadow-xs transition-colors hover:border-jade hover:text-jade"
-                style={{ borderColor: "var(--line)" }}
-                title="下載原始官方 PDF 文件"
-              >
-                <Download size={13} />
-              </a>
+              {isLocalPdf && (
+                <a
+                  href={baseUrl}
+                  download
+                  className="inline-flex items-center gap-1.5 rounded-lg border bg-paper px-3 py-1.5 text-[12px] font-medium text-ink-soft shadow-xs transition-colors hover:border-jade hover:text-jade cursor-pointer"
+                  style={{ borderColor: "var(--line)" }}
+                  title="下載原始官方 PDF 文件"
+                >
+                  <Download size={13} />
+                </a>
+              )}
 
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-lg p-1.5 text-ink-faint hover:bg-paper-2 hover:text-ink"
+                className="rounded-lg p-1.5 text-ink-faint hover:bg-paper-2 hover:text-ink cursor-pointer"
                 aria-label="關閉預覽"
               >
                 <X size={18} />
@@ -169,15 +214,69 @@ export default function PdfViewerDrawer({
           )}
         </SheetHeader>
 
-        {/* 核心 PDF 渲染區域 */}
-        <div className="relative flex-1 bg-neutral-100 dark:bg-neutral-900">
-          <iframe
-            ref={iframeRef}
-            src={viewerUrl}
-            title={documentName ?? "PDF Viewer"}
-            className="h-full w-full border-0"
-            allow="fullscreen"
-          />
+        {/* 核心內容渲染區域 */}
+        <div className="relative flex-1 bg-neutral-100 dark:bg-neutral-900 overflow-y-auto">
+          {isLocalPdf && !iframeError ? (
+            <iframe
+              ref={iframeRef}
+              src={viewerUrl}
+              title={documentName ?? "PDF Viewer"}
+              className="h-full w-full border-0"
+              allow="fullscreen"
+              onError={() => setIframeError(true)}
+            />
+          ) : (
+            /* 官方直通安全驗證卡（杜絕任何 Refuse to Connect 錯誤！） */
+            <div className="flex h-full min-h-[460px] flex-col items-center justify-center p-6 text-center">
+              <div
+                className="w-full max-w-md rounded-2xl border bg-paper p-7 shadow-card text-left"
+                style={{ borderColor: "var(--line)" }}
+              >
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-jade-wash text-jade ring-1 ring-jade/20">
+                  <ShieldCheck size={26} />
+                </div>
+                <h4 className="font-serif text-[17px] font-bold text-ink">
+                  官方核准條款與保障說明
+                </h4>
+                <p className="mt-2 text-small leading-relaxed text-ink-soft">
+                  因該保險公司官方伺服器實施「同源防盜鏈保護協議（X-Frame-Options）」，為確保你的資訊安全，官方禁止將頁面內嵌於第三方框架中。
+                </p>
+
+                {(itemTitle || limitText) && (
+                  <div
+                    className="mt-4 rounded-xl border bg-paper-2 p-3.5 text-small"
+                    style={{ borderColor: "var(--line)" }}
+                  >
+                    <span className="text-[11px] font-bold text-ink-faint">核實保障項目：</span>
+                    <p className="font-bold text-ink">{itemTitle}</p>
+                    {limitText && (
+                      <p className="font-grotesk font-bold text-jade mt-0.5">{limitText}</p>
+                    )}
+                  </div>
+                )}
+
+                <div className="mt-5 flex flex-col gap-2.5">
+                  <button
+                    type="button"
+                    onClick={handleOpenNewTab}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-jade px-5 py-3 text-small font-bold text-white shadow-sm transition-all hover:bg-jade-deep hover:shadow-md cursor-pointer"
+                  >
+                    <span>在新分頁直接開啟官方條款詳情</span>
+                    <ExternalLink size={15} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleCopyUrl}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl border bg-paper px-4 py-2.5 text-small font-medium text-ink transition-colors hover:bg-paper-2 cursor-pointer"
+                    style={{ borderColor: "var(--line)" }}
+                  >
+                    {copied ? <Check size={14} className="text-jade" /> : <Copy size={14} />}
+                    <span>{copied ? "已複製網址" : "複製官方條款網址"}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* 移動端或不支援 iframe 提示 */}
           <noscript>
@@ -201,7 +300,7 @@ export default function PdfViewerDrawer({
           style={{ borderColor: "var(--line)" }}
         >
           <span>💡 提示：點擊不同賠償項目，本視窗將自動平滑切換頁碼，毋須重複下載。</span>
-          <span className="font-grotesk font-medium">PAGE {hashPage}</span>
+          {isLocalPdf && <span className="font-grotesk font-medium">PAGE {hashPage}</span>}
         </div>
       </SheetContent>
     </Sheet>

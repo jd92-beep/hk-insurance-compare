@@ -6,6 +6,7 @@ import {
   getDefaultMetric,
   extractProductMetric,
   prepareChartData,
+  METRIC_GROUP_LABELS,
 } from "../src/lib/chart-metrics";
 import type { InsuranceData } from "../src/types/insurance";
 
@@ -18,20 +19,22 @@ const data: InsuranceData = JSON.parse(rawJson);
 const products = data.products;
 
 console.log(`================================================================`);
-console.log(`📊 全類別通用量化指標解析引擎測試報告 (Universal Metrics Test)`);
+console.log(`📊 全類別通用量化指標解析引擎全面測試報告 (178 Metrics Taxonomy Test)`);
 console.log(`   全站總產品數: ${products.length} 份`);
 console.log(`   全站總類別數: ${Object.keys(CATEGORY_METRICS_MAP).length} 個`);
 console.log(`================================================================\n`);
 
 let totalChecks = 0;
 let passedChecks = 0;
+let totalMetricsCount = 0;
 
 for (const [catId, metrics] of Object.entries(CATEGORY_METRICS_MAP)) {
   const catProducts = products.filter((p) => p.category === catId);
   const defaultMetric = getDefaultMetric(catId);
+  totalMetricsCount += metrics.length;
 
   console.log(`----------------------------------------------------------------`);
-  console.log(`📂 【${catId}】 (${catProducts.length} 份產品)`);
+  console.log(`📂 【${catId}】 (${catProducts.length} 份產品 | 已配置 ${metrics.length} 項指標)`);
   console.log(`   預設指標: ${defaultMetric?.label} [${defaultMetric?.id}]`);
 
   for (const m of metrics) {
@@ -46,17 +49,18 @@ for (const [catId, metrics] of Object.entries(CATEGORY_METRICS_MAP)) {
         if (parsed.isUnlimited || parsed.isFullCover) {
           flagshipCount += 1;
         }
-        if (samples.length < 3) {
+        if (samples.length < 2) {
           const badgeStr = parsed.badge ? ` [Badge: ${parsed.badge}]` : "";
           samples.push(`${p.id} -> ${parsed.displayValue}${badgeStr}`);
         }
       }
     }
 
-    const pct = (matchedCount / catProducts.length) * 100;
+    const pct = catProducts.length > 0 ? (matchedCount / catProducts.length) * 100 : 0;
     const isDefault = m.id === defaultMetric?.id ? " ⭐(Default)" : "";
+    const groupName = METRIC_GROUP_LABELS[m.group] || m.group;
     console.log(
-      `   • ${m.label} (${m.id})${isDefault}: ${matchedCount}/${catProducts.length} (${pct.toFixed(1)}%) | 旗艦條款: ${flagshipCount} 個`
+      `   • [${groupName}] ${m.label} (${m.id})${isDefault}: ${matchedCount}/${catProducts.length} (${pct.toFixed(1)}%) | 旗艦: ${flagshipCount} 個`
     );
     if (samples.length > 0) {
       console.log(`     範例: ${samples.join(" | ")}`);
@@ -89,5 +93,6 @@ for (const [catId, metrics] of Object.entries(CATEGORY_METRICS_MAP)) {
 }
 
 console.log(`================================================================`);
-console.log(`✅ 測試統計: 驗證指標項 ${passedChecks}/${totalChecks} 項均有成功提取數據！`);
+console.log(`✅ 測試統計: 全站共驗證 ${totalMetricsCount} 項指標！`);
+console.log(`   成功提取率: ${passedChecks}/${totalChecks} 項指標均有成功提取數據 (${((passedChecks / totalChecks) * 100).toFixed(1)}%)！`);
 console.log(`================================================================`);

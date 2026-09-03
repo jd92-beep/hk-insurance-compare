@@ -34,19 +34,24 @@ export interface ResolvedCoverage {
 /* ── 各類別標準保障項目（keywords 順序＝匹配優先順序） ───────────── */
 
 const TRAVEL: CanonicalBenefit[] = [
-  { id: "medical", label: "海外醫療費用", keywords: ["醫療費用", "海外醫療", "醫療及相關", "覆診", "入院保證金", "住院現金", "海外住院"] },
-  { id: "evacuation", label: "緊急醫療運送 / 遺體運返", keywords: ["醫療運送", "遺體運返", "緊急援助", "緊急支援", "24小時", "24/7", "環球支援"] },
-  { id: "cancellation", label: "取消 / 縮短旅程", keywords: ["取消旅程", "取消/縮短", "提早結束", "任何原因取消", "縮短旅程", "旅程中斷"] },
-  { id: "trip-delay", label: "旅程延誤 / 阻礙", keywords: ["旅程延誤", "旅程阻礙", "超額訂票", "行程改道"] },
-  { id: "baggage-delay", label: "行李延誤", keywords: ["行李延誤"] },
-  { id: "baggage", label: "行李及個人物品", keywords: ["行李", "個人物品", "個人財物", "旅遊證件"] },
-  { id: "personal-accident", label: "個人意外", keywords: ["個人意外", "人身意外"] },
-  { id: "rental-car", label: "租車自負額 / 自駕遊", keywords: ["租車自負額", "自駕遊", "租車"] },
-  { id: "liability", label: "個人責任", keywords: ["個人責任"] },
-  { id: "money", label: "個人錢財 / 信用卡", keywords: ["個人錢財", "信用卡"] },
-  { id: "cruise", label: "郵輪保障", keywords: ["郵輪"] },
-  { id: "home-contents", label: "家居物品保障（旅程期間）", keywords: ["家居物品"] },
-  { id: "activities", label: "危險 / 冬季運動 / 消閒活動", keywords: ["危險活動", "冬季運動", "業餘", "消閒活動", "高爾夫", "Golfer"] },
+  { id: "medical", label: "海外醫療及門診費用", keywords: ["海外醫療及門診", "醫療及相關費用", "海外醫療費用", "醫療費用", "海外醫療", "海外及內地醫療", "住院費用", "門診"] },
+  { id: "follow-up-medical", label: "回港後覆診（含中醫跌打）", keywords: ["覆診", "中醫跌打", "後續醫療", "物理治療"] },
+  { id: "hospital-cash", label: "海外住院 / 隔離現金津貼", keywords: ["住院現金", "海外住院", "強制隔離", "住院津貼", "入院保證金"] },
+  { id: "evacuation", label: "緊急醫療運送 / 遺體運返", keywords: ["醫療運送", "遺體運返", "遺體送返", "遺體遣返", "緊急援助", "緊急支援", "24小時全球", "24/7", "環球支援"] },
+  { id: "cancellation", label: "取消旅程 / 任何原因取消", keywords: ["任何原因取消", "取消旅程", "未能成行", "旅程取消"] },
+  { id: "curtailment", label: "縮短 / 提早結束旅程", keywords: ["縮短旅程", "提早結束", "旅程中斷", "行程中斷", "取消/縮短"] },
+  { id: "trip-delay", label: "旅程延誤 / 航班延誤", keywords: ["旅程延誤", "航班延誤", "旅程阻礙", "超額訂票", "行程改道", "延誤現金"] },
+  { id: "baggage-delay", label: "行李延誤（應急津貼）", keywords: ["行李延誤", "行李延遲", "誤送行李"] },
+  { id: "mobile-laptop", label: "手提電話 / 數碼設備保障", keywords: ["手提電話", "流動設備", "平板電腦", "手提電腦", "電子設備", "電話及平板"] },
+  { id: "baggage", label: "行李及個人隨身物品", keywords: ["行李及個人物品", "行李及個人財物", "個人行李", "隨身行李", "行李", "個人物品", "個人財物"] },
+  { id: "money-passport", label: "個人錢財 / 遺失旅遊證件", keywords: ["個人錢財", "旅遊證件", "遺失護照", "個人金錢", "現金被盜", "重新補領"] },
+  { id: "personal-accident", label: "個人意外（身故及傷殘）", keywords: ["個人意外", "人身意外", "意外死亡", "公共交通工具意外", "雙倍賠償"] },
+  { id: "rental-car", label: "租車自負額 / 自駕遊保障", keywords: ["租車自負額", "租車自駕遊", "自駕遊", "租賃車輛", "租車", "車輛碰撞"] },
+  { id: "liability", label: "個人第三者法律責任", keywords: ["第三者法律責任", "個人法律責任", "個人第三者", "法律責任", "個人責任"] },
+  { id: "activities", label: "業餘高危運動 / 冬季滑雪 / 潛水", keywords: ["危險活動", "冬季運動", "滑雪", "業餘", "水肺潛水", "消閒活動", "運動用品", "運動器材", "高爾夫", "Golfer"] },
+  { id: "credit-card-fraud", label: "信用卡被盜用保障", keywords: ["信用卡", "未經授權", "盜刷", "流動支付"] },
+  { id: "home-contents", label: "外遊期間家居防盜保障", keywords: ["家居物品", "家居財物", "家居防盜"] },
+  { id: "cruise", label: "郵輪假期專屬保障", keywords: ["郵輪"] },
 ];
 
 const HOME: CanonicalBenefit[] = [

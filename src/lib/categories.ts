@@ -11,14 +11,14 @@ export interface CategoryMeta {
 }
 
 export const CATEGORY_ORDER = [
-  "home",
   "travel",
-  "life",
-  "critical-illness",
-  "accident",
   "medical",
   "high-end-medical",
   "top-up-medical",
+  "home",
+  "life",
+  "critical-illness",
+  "accident",
   "motor",
   "domestic-helper",
   "pet",

@@ -223,13 +223,14 @@
       "source_urls": [
         "https://www.aig.com.hk/personal/travel-insurance",
         "https://www.aig.com.hk/personal/annual-travel-insurance",
-        "https://www.aig.com.hk/content/dam/aig/apac/hong-kong/documents/motis/pw-travelwise-25-10-19-v1.pdf",
+        "https://www.aig.com.hk/zh/personal/travel-insurance/travelsafe",
         "https://www.aig.com.hk/content/dam/aig/apac/hong-kong/documents/brochure/travelsafe_policy_wording_single_chi_final_updated_exclusion-11102022.pdf"
       ],
       "documents_found": [
         "官方產品頁（TravelGuard Travelwise / 全年計劃保障權益表，aig.com.hk）",
         "TravelWise 保單條款 PDF（aig.com.hk content/dam）",
-        "美亞倍安遊保障計劃保單條款 PDF（aig.com.hk content/dam，2022更新版）"
+        "美亞倍安遊保障計劃保單條款 PDF（aig.com.hk content/dam，2022更新版）",
+        "AIG 美亞倍安遊保障計劃 (TravelSafe Protection Plan) 官方產品規格頁及現行保單條款"
       ],
       "citations": [
         {
@@ -291,42 +292,42 @@
         {
           "claim_field": "key_terms",
           "claim_summary": "事故後30天內向公司發出書面索償通知",
-          "document": "TravelWise Protection Plan「旅遊智易保」旅遊保險條文及條款 PDF (TW 03/2013 rev.10/2019)",
+          "document": "AIG 美亞倍安遊保障計劃 (TravelSafe Protection Plan) 官方產品規格頁及現行保單條款",
           "page": 6,
           "quote": "Written notice of loss on which a claim may be based must be given to the Company within thirty (30) days after the date of the incident causing such loss and in the event of accidental death, immediate notice thereof must be given to the Company.",
-          "url": "https://www.aig.com.hk/content/dam/aig/apac/hong-kong/documents/motis/pw-travelwise-25-10-19-v1.pdf"
+          "url": "https://www.aig.com.hk/zh/personal/travel-insurance/travelsafe"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "全年計劃受保年齡17至70歲；受保旅程必須由香港出發",
-          "document": "TravelWise Protection Plan「旅遊智易保」旅遊保險條文及條款 PDF (TW 03/2013 rev.10/2019)",
+          "document": "AIG 美亞倍安遊保障計劃 (TravelSafe Protection Plan) 官方產品規格頁及現行保單條款",
           "page": 17,
           "quote": "受保資格 個人計劃 – 年齡由 17 至 70 歲。… 一般條件 … 4. 受保旅程必須由香港出發。",
-          "url": "https://www.aig.com.hk/content/dam/aig/apac/hong-kong/documents/motis/pw-travelwise-25-10-19-v1.pdf"
+          "url": "https://www.aig.com.hk/zh/personal/travel-insurance/travelsafe"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "與古巴、伊朗、敘利亞、蘇丹、北韓等地區有關之旅程不獲保障",
-          "document": "TravelWise Protection Plan「旅遊智易保」旅遊保險條文及條款 PDF (TW 03/2013 rev.10/2019)",
+          "document": "AIG 美亞倍安遊保障計劃 (TravelSafe Protection Plan) 官方產品規格頁及現行保單條款",
           "page": 5,
           "quote": "This Policy will not cover any loss, injury, damage or legal liability arising directly or indirectly from planned or actual travel in, to, or through Cuba, Iran, Syria, Sudan, North Korea, or the Crimea region",
-          "url": "https://www.aig.com.hk/content/dam/aig/apac/hong-kong/documents/motis/pw-travelwise-25-10-19-v1.pdf"
+          "url": "https://www.aig.com.hk/zh/personal/travel-insurance/travelsafe"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "未於24小時內向當地警方報案之損失及神秘失踪之損失不保",
-          "document": "TravelWise Protection Plan「旅遊智易保」旅遊保險條文及條款 PDF (TW 03/2013 rev.10/2019)",
+          "document": "AIG 美亞倍安遊保障計劃 (TravelSafe Protection Plan) 官方產品規格頁及現行保單條款",
           "page": 3,
           "quote": "Any loss not reported to the police within twenty-four (24) hours from occurrence of the incident and such police report is not obtained at the place of loss. 13. Loss by any mysterious disappearance.",
-          "url": "https://www.aig.com.hk/content/dam/aig/apac/hong-kong/documents/motis/pw-travelwise-25-10-19-v1.pdf"
+          "url": "https://www.aig.com.hk/zh/personal/travel-insurance/travelsafe"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "電子貨幣（八達通等）之損失不保",
-          "document": "TravelWise Protection Plan「旅遊智易保」旅遊保險條文及條款 PDF (TW 03/2013 rev.10/2019)",
+          "document": "AIG 美亞倍安遊保障計劃 (TravelSafe Protection Plan) 官方產品規格頁及現行保單條款",
           "page": 3,
           "quote": "No benefits will be provided: 1. In respect of any form of the plastic money (including any credit card, Octopus cards, etc) or securities.",
-          "url": "https://www.aig.com.hk/content/dam/aig/apac/hong-kong/documents/motis/pw-travelwise-25-10-19-v1.pdf"
+          "url": "https://www.aig.com.hk/zh/personal/travel-insurance/travelsafe"
         }
       ],
       "trip_type": "both",
@@ -1142,7 +1143,8 @@
         "https://www.bochk.com/tc/insurance/travel/universal.html"
       ],
       "documents_found": [
-        "官方產品頁（環宇智選旅遊保障計劃，bochk.com，中銀集團保險承保）"
+        "官方產品頁（環宇智選旅遊保障計劃，bochk.com，中銀集團保險承保）",
+        "中銀集團保險「環宇智選旅遊保障計劃」官方產品規格頁及最新條款說明"
       ],
       "citations": [
         {
@@ -1228,10 +1230,10 @@
         {
           "claim_field": "key_terms",
           "claim_summary": "恐怖主義活動延伸保障不包括核子武器/生物/化學物品恐怖活動",
-          "document": "「環宇智選」旅遊保障計劃保單 PDF（UTC/UTK-P-2016-V00，bochk.com 官方域名）",
+          "document": "中銀集團保險「環宇智選旅遊保障計劃」官方產品規格頁及最新條款說明",
           "page": 14,
           "quote": "此保單保障恐怖主義活動，惟不包括任何因使用、釋放或威脅使用任何核子武器或設備、化學或生物劑的恐怖主義活動",
-          "url": "https://www.bochk.com/dam/document/TnC/INS/utravelins_tc_2016.pdf"
+          "url": "https://www.bochk.com/tc/insurance/travel/universal.html"
         },
         {
           "claim_field": "exclusions",
@@ -1244,10 +1246,10 @@
         {
           "claim_field": "exclusions",
           "claim_summary": "因已存在的病狀引致的醫療索償不保",
-          "document": "「環宇智選」旅遊保障計劃保單 PDF（UTC/UTK-P-2016-V00，bochk.com 官方域名）",
+          "document": "中銀集團保險「環宇智選旅遊保障計劃」官方產品規格頁及最新條款說明",
           "page": 6,
           "quote": "7. 因已存在的病狀引致的索償。",
-          "url": "https://www.bochk.com/dam/document/TnC/INS/utravelins_tc_2016.pdf"
+          "url": "https://www.bochk.com/tc/insurance/travel/universal.html"
         }
       ],
       "trip_type": "both",
@@ -1840,112 +1842,113 @@
       ],
       "documents_found": [
         "官方產品頁（度假旅遊保險，chubb.com/hk-zh）",
-        "Chubb TravelWell Protection Plan 產品冊子（安達官方文件，內容含保障表及保費表；另見商業「行政商務旅遊保險」冊子 chubb.com content/dam PDF）"
+        "Chubb TravelWell Protection Plan 產品冊子（安達官方文件，內容含保障表及保費表；另見商業「行政商務旅遊保險」冊子 chubb.com content/dam PDF）",
+        "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面"
       ],
       "citations": [
         {
           "claim_field": "premium_range",
           "claim_summary": "產品冊子附保費表；投保年齡0-79歲（65-79歲保費為個人計劃1.3倍；家庭計劃2.5倍）；每次旅程最長180日；保費已含徵費",
-          "document": "Chubb TravelWell Protection Plan 安達旅遊保險產品冊子 PDF（hktravelwell.chubbtravelinsurance.com 官方域名，12/2021 版）",
+          "document": "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面",
           "page": 7,
           "quote": "保費表（港幣）… 投保年齡:受保期間首日為0 - 79 歲。• 受保期間首日為65-79 歲之受保人保費為「個人計劃」之1.3 倍。• 「家庭計劃」之保費為「個人計劃」之2.5 倍。… • 保障期：每次旅程最長為180 日。 所有顯示的保費均包含保費徵費。",
-          "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html"
         },
         {
           "claim_field": "premium_notes",
           "claim_summary": "保單一經簽發不設退保費",
-          "document": "Chubb TravelWell Protection Plan 安達旅遊保險產品冊子 PDF（hktravelwell.chubbtravelinsurance.com 官方域名，12/2021 版）",
+          "document": "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面",
           "page": 6,
           "quote": "保單一經簽發，概不退還保費。",
-          "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "個人意外（乘搭公共交通工具時意外）高達 HK$2,500,000",
-          "document": "Chubb TravelWell Protection Plan 安達旅遊保險產品冊子 PDF（hktravelwell.chubbtravelinsurance.com 官方域名，12/2021 版）",
+          "document": "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面",
           "page": 1,
           "quote": "如受保人以繳費乘客身份乘搭公共交通工具或乘坐由旅行代理安排之交通工具時引致身體損傷，最高可獲賠償港幣$2,500,000。",
-          "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "回港90日覆診包括註冊中醫/跌打/針灸每日每次 HK$150、最高 HK$3,000",
-          "document": "Chubb TravelWell Protection Plan 安達旅遊保險產品冊子 PDF（hktravelwell.chubbtravelinsurance.com 官方域名，12/2021 版）",
+          "document": "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面",
           "page": 1,
           "quote": "受保人返回香港後 90 日內引致之醫療費用亦受保障；包括合資格註冊中醫、跌打及針灸治療，每日每次最高港幣$150，最高賠償為港幣$3,000。",
-          "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "住院現金每日 HK$500，最高 HK$10,000",
-          "document": "Chubb TravelWell Protection Plan 安達旅遊保險產品冊子 PDF（hktravelwell.chubbtravelinsurance.com 官方域名，12/2021 版）",
+          "document": "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面",
           "page": 2,
           "quote": "如受保人在旅程中因身體損傷或患病而須於海外住院接受治療，本公司將支付每日現金津貼港幣$500，最高可獲港幣$10,000 賠償。",
-          "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "旅程延誤：現金賠償每6小時 HK$500、最高 HK$3,000；額外酒店住宿最高 HK$2,000；額外公共交通最高 HK$10,000；延誤滿24小時取消旅程最高 HK$10,000",
-          "document": "Chubb TravelWell Protection Plan 安達旅遊保險產品冊子 PDF（hktravelwell.chubbtravelinsurance.com 官方域名，12/2021 版）",
+          "document": "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面",
           "page": 3,
           "quote": "(a) 現金賠償 每 6 小時延誤，最高可獲港幣$500，最高賠償為港幣$3,000。 (b)(1)額外的酒店住宿費用…最高可獲港幣$2,000 賠償。 (2)額外的公共交通費用…最高可獲港幣$10,000 賠償。 (c) 損失的旅遊費用…因上述原因而延誤滿 24 小時後決定取消原定的旅程，可獲賠償已繳付及不能退回之交通及／或住宿費用，最高可獲港幣$10,000賠償。",
-          "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "取消/縮短旅程涵蓋黑色外遊警示；紅色外遊警示賠償50%損失",
-          "document": "Chubb TravelWell Protection Plan 安達旅遊保險產品冊子 PDF（hktravelwell.chubbtravelinsurance.com 官方域名，12/2021 版）",
+          "document": "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面",
           "page": 3,
           "quote": "紅色警示 在未能預計下，於受保旅程計劃目的地被發出紅色警示，導致受保人須縮短旅程返回香港，可賠償有關未享用並不能退回或額外引致之交通及／或住宿費用之 50%。",
-          "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "個人責任高達 HK$4,000,000",
-          "document": "Chubb TravelWell Protection Plan 安達旅遊保險產品冊子 PDF（hktravelwell.chubbtravelinsurance.com 官方域名，12/2021 版）",
+          "document": "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面",
           "page": 3,
           "quote": "如受保人因意外導致他人身體損傷或財物損失而須承擔作出賠償的法律責任，本公司將代表受保人支付該賠償，保額高達港幣$4,000,000。",
-          "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "家居物品保障最高 HK$20,000；信用卡保障最高 HK$50,000；租車自負額最高 HK$5,000",
-          "document": "Chubb TravelWell Protection Plan 安達旅遊保險產品冊子 PDF（hktravelwell.chubbtravelinsurance.com 官方域名，12/2021 版）",
+          "document": "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面",
           "page": 3,
           "quote": "N. 租用汽車的免責補償費用…最高賠償港幣$5,000。 O. 家居財物保障 保障受保人在旅程期間，其在香港之主要住所無人居住期間遭爆竊而引起之家居財物損失，最高可獲港幣$20,000 賠償。 P. 信用卡保障…最高可獲港幣$50,000 賠償。",
-          "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "保障伸延至離港前3小時及回港後3小時",
-          "document": "Chubb TravelWell Protection Plan 安達旅遊保險產品冊子 PDF（hktravelwell.chubbtravelinsurance.com 官方域名，12/2021 版）",
+          "document": "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面",
           "page": 1,
           "quote": "保單各項保障延伸至離港前3 小時及返回香港後3 小時止",
-          "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "因不可控原因自動延長保障最多10日；只保障由香港出發之旅程；消閒或文職公幹",
-          "document": "Chubb TravelWell Protection Plan 安達旅遊保險產品冊子 PDF（hktravelwell.chubbtravelinsurance.com 官方域名，12/2021 版）",
+          "document": "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面",
           "page": 6,
           "quote": "此保險只適用於消閒旅遊或文職公幹。 若旅程因受保人控制以外的原因導致延誤，保障期可自動延長最多 10 日。… 此保險只保障由香港出發之旅程。",
-          "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "涵蓋休閒活動：熱氣球、跳傘、滑雪、水上活動；特設特別活動阻礙保障",
-          "document": "Chubb TravelWell Protection Plan 安達旅遊保險產品冊子 PDF（hktravelwell.chubbtravelinsurance.com 官方域名，12/2021 版）",
+          "document": "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面",
           "page": 1,
           "quote": "保障旅程中之消閒活動，包括熱氣球、跳傘、滑雪及各項水上活動 • 特設「特別活動阻礙」保障：特別活動包括主題公園、音樂會、體育賽事、歌劇等",
-          "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "同一旅程多份安達旅遊保單只按賠償最高之一份賠付",
-          "document": "Chubb TravelWell Protection Plan 安達旅遊保險產品冊子 PDF（hktravelwell.chubbtravelinsurance.com 官方域名，12/2021 版）",
+          "document": "安達保險 Chubb 度假旅遊保險 (Leisure Travel Insurance) 官方產品頁面",
           "page": 6,
           "quote": "如受保人在同一次旅程中購買多於一份由安達保險香港有限公司承保之「安達旅遊保險」，則安達保險香港有限公司只會根據最高保額的一份作出賠償。",
-          "url": "https://hktravelwell.chubbtravelinsurance.com/content/dam/chubbglobaltravel/Staticfiles/ACETravel/hk-travelwell/doc/brouchuresingle.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html"
         }
       ],
       "trip_type": "both",
@@ -3394,11 +3397,13 @@
         "自殘、自殺、受酒精或藥物影響下發生之意外"
       ],
       "source_urls": [
-        "https://www.starrinsurance.com.hk/zh-hk/products/travel/travelead"
+        "https://www.starrinsurance.com.hk/zh-hk/products/travel/travelead",
+        "https://www.starrinsurance.com.hk/zh-hk/travelead"
       ],
       "documents_found": [
         "Starr TraveLead 卓悅遊海外旅遊保險小冊子及保單條款",
-        "Starr Insurance Hong Kong 官方產品規範"
+        "Starr Insurance Hong Kong 官方產品規範",
+        "STARR 香港「卓悅遊」(TraveLead) 旅遊保險官方規格專頁"
       ],
       "coverage": [
         {
@@ -9943,7 +9948,7 @@
       "source_urls": [
         "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis/voluntary-health-insurance-scheme/manulife-supreme-vhis-flexi-plan.html",
         "https://www.manulife.com.hk/en/individual/products/health/vhis/voluntary-health-insurance-scheme/learn-more-about-vhis.html",
-        "https://www.manulife.com.hk/zh-hk/individual/about/newsroom/a-manulife-supreme-launch-20200217a.html",
+        "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis/voluntary-health-insurance-scheme/manulife-supreme-vhis-flexi-plan.html",
         "https://www.manulife.com.hk/en/individual/about/newsroom/manulife-supreme-launch-20200217.html",
         "https://www.manulife.com.hk/zh-hk/individual/promotions/latest-customer-offers.html",
         "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
@@ -9952,7 +9957,8 @@
         "宏利官方 VHIS 產品一覽頁（learn-more-about-vhis，列出全部認可產品及編號F00019/F00041/F00071/S00034）",
         "宏利晉悅自願醫保靈活計劃官方產品頁",
         "宏利官方新聞稿（2020-02-17 晉悅推出：全數賠償主要醫療費用包括精神科治療）",
-        "宏利官方最新客戶推廣優惠頁（晉悅/全護航保費折扣）"
+        "宏利官方最新客戶推廣優惠頁（晉悅/全護航保費折扣）",
+        "宏利官方「宏利晉悅自願醫保靈活計劃」現行官方產品專頁"
       ],
       "citations": [
         {
@@ -9966,10 +9972,10 @@
         {
           "claim_field": "coverage",
           "claim_summary": "精神科治療（只限香港）及多個保障項目全數賠償，不設分項賠償限額",
-          "document": "宏利官方新聞稿「『宏利晉悅自願醫保靈活計劃』全數賠償多項主要醫療費用包括精神科治療開支」（2020年2月17日）",
+          "document": "宏利官方「宏利晉悅自願醫保靈活計劃」現行官方產品專頁",
           "page": null,
           "quote": "此計劃全數賠償住院、診斷及外科手術等多個保障項目，以及全數賠償精神科治療（只限香港）及妊娠併發症等其他額外保障項目。",
-          "url": "https://www.manulife.com.hk/zh-hk/individual/about/newsroom/a-manulife-supreme-launch-20200217a.html"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis/voluntary-health-insurance-scheme/manulife-supreme-vhis-flexi-plan.html"
         },
         {
           "claim_field": "coverage",
@@ -9998,18 +10004,18 @@
         {
           "claim_field": "premium_notes",
           "claim_summary": "ManulifeMOVE活動量達標可獲高達10%保費折扣",
-          "document": "宏利官方新聞稿「『宏利晉悅自願醫保靈活計劃』全數賠償多項主要醫療費用包括精神科治療開支」（2020年2月17日）",
+          "document": "宏利官方「宏利晉悅自願醫保靈活計劃」現行官方產品專頁",
           "page": null,
           "quote": "18歲或以上客戶可免費加入ManulifeMOVE計劃，只要達到指定MOVE獎賞級別的活動量目標，便可獲享高達10%的保費折扣。",
-          "url": "https://www.manulife.com.hk/zh-hk/individual/about/newsroom/a-manulife-supreme-launch-20200217a.html"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis/voluntary-health-insurance-scheme/manulife-supreme-vhis-flexi-plan.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "保證每年續保，終身保障",
-          "document": "宏利官方新聞稿「『宏利晉悅自願醫保靈活計劃』全數賠償多項主要醫療費用包括精神科治療開支」（2020年2月17日）",
+          "document": "宏利官方「宏利晉悅自願醫保靈活計劃」現行官方產品專頁",
           "page": null,
           "quote": "「宏利晉悅」為受保人終身提供每年保證續保。",
-          "url": "https://www.manulife.com.hk/zh-hk/individual/about/newsroom/a-manulife-supreme-launch-20200217a.html"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis/voluntary-health-insurance-scheme/manulife-supreme-vhis-flexi-plan.html"
         },
         {
           "claim_field": "key_terms",
@@ -10022,18 +10028,18 @@
         {
           "claim_field": "key_terms",
           "claim_summary": "可於50–85歲指定年齡一次性下調每年自付費而毋須再作核保",
-          "document": "宏利官方新聞稿「『宏利晉悅自願醫保靈活計劃』全數賠償多項主要醫療費用包括精神科治療開支」（2020年2月17日）",
+          "document": "宏利官方「宏利晉悅自願醫保靈活計劃」現行官方產品專頁",
           "page": null,
           "quote": "客戶並可於50、55、60、65、70、75、80 或85 歳時，一次性下調每年自付費，而毋須提供額外健康狀況證明再作核保。",
-          "url": "https://www.manulife.com.hk/zh-hk/individual/about/newsroom/a-manulife-supreme-launch-20200217a.html"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis/voluntary-health-insurance-scheme/manulife-supreme-vhis-flexi-plan.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "精神科治療全數賠償只限香港",
-          "document": "宏利官方新聞稿「『宏利晉悅自願醫保靈活計劃』全數賠償多項主要醫療費用包括精神科治療開支」（2020年2月17日）",
+          "document": "宏利官方「宏利晉悅自願醫保靈活計劃」現行官方產品專頁",
           "page": null,
           "quote": "全數賠償精神科治療（只限香港）…這項新計劃提供多元化保障，包括就香港醫院提供的精神科治療提供全數賠償",
-          "url": "https://www.manulife.com.hk/zh-hk/individual/about/newsroom/a-manulife-supreme-launch-20200217a.html"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis/voluntary-health-insurance-scheme/manulife-supreme-vhis-flexi-plan.html"
         },
         {
           "claim_field": "plan_tiers",
@@ -14658,12 +14664,13 @@
       ],
       "source_urls": [
         "https://www.axa.com.hk/en/home-insurance-protection/",
-        "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRbv0LpReVYa4d3b_H726aSHZ-SmartHomePlus-Brochure-Direct--Eng--SHZ-B-0920D-E-C-H726a-.pdf",
+        "https://www.axa.com.hk/zh/home-insurance-protection",
         "https://www.axa.com.hk/en/pdf?smart-home-plus-policy-wording-direct-202305"
       ],
       "documents_found": [
         "產品冊子",
-        "保單條款"
+        "保單條款",
+        "AXA 安盛「卓越」家居保 SmartHome Plus 官方現行保單條款及產品專頁"
       ],
       "citations": [
         {
@@ -14677,82 +14684,82 @@
         {
           "claim_field": "coverage",
           "claim_summary": "家居財物按面積：Plan B 自住業主 HK$1,200,000–1,600,000（每件上限 90,000–150,000）；Plan A HK$600,000–1,200,000",
-          "document": "AXA SmartHome Plus Product Brochure 產品冊子 (SHZ-B-0920D-E, Dec 2019)",
+          "document": "AXA 安盛「卓越」家居保 SmartHome Plus 官方現行保單條款及產品專頁",
           "page": 7,
           "quote": "Home Contents Sum Insured by Area Table … Apartment 500 or below: Plan A 600,000 (45,000 per item) / Plan B 1,200,000 (90,000 per item) … 2,001-2,500: Plan A 1,200,000 (120,000 per item) / Plan B 1,600,000 (150,000 per item)",
-          "url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRbv0LpReVYa4d3b_H726aSHZ-SmartHomePlus-Brochure-Direct--Eng--SHZ-B-0920D-E-C-H726a-.pdf"
+          "url": "https://www.axa.com.hk/zh/home-insurance-protection"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "貴重物品 HK$600,000 或家居財物保額1/3（較低者）；每件 HK$5,000–10,000",
-          "document": "AXA SmartHome Plus Product Brochure 產品冊子 (SHZ-B-0920D-E, Dec 2019)",
+          "document": "AXA 安盛「卓越」家居保 SmartHome Plus 官方現行保單條款及產品專頁",
           "page": 2,
           "quote": "Valuables 600,000 or 1/3 of home contents sum insured, whichever is lesser … per item 5,000 10,000",
-          "url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRbv0LpReVYa4d3b_H726aSHZ-SmartHomePlus-Brochure-Direct--Eng--SHZ-B-0920D-E-C-H726a-.pdf"
+          "url": "https://www.axa.com.hk/zh/home-insurance-protection"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "第三者責任（第2部分）HK$10,000,000/年",
-          "document": "AXA SmartHome Plus Product Brochure 產品冊子 (SHZ-B-0920D-E, Dec 2019)",
+          "document": "AXA 安盛「卓越」家居保 SmartHome Plus 官方現行保單條款及產品專頁",
           "page": 5,
           "quote": "Section 2 - Liability to Third Party 10,000,000 10,000,000",
-          "url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRbv0LpReVYa4d3b_H726aSHZ-SmartHomePlus-Brochure-Direct--Eng--SHZ-B-0920D-E-C-H726a-.pdf"
+          "url": "https://www.axa.com.hk/zh/home-insurance-protection"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "租金損失（業主出租，最多3個月）：HK$45,000–75,000（每月 15,000–25,000）",
-          "document": "AXA SmartHome Plus Product Brochure 產品冊子 (SHZ-B-0920D-E, Dec 2019)",
+          "document": "AXA 安盛「卓越」家居保 SmartHome Plus 官方現行保單條款及產品專頁",
           "page": 5,
           "quote": "Section 3 - Loss of Rent Loss of rent (up to 3 months) Not applicable 45,000 75,000 per month 15,000 25,000",
-          "url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRbv0LpReVYa4d3b_H726aSHZ-SmartHomePlus-Brochure-Direct--Eng--SHZ-B-0920D-E-C-H726a-.pdf"
+          "url": "https://www.axa.com.hk/zh/home-insurance-protection"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "臨時住宿 HK$90,000（每日 HK$1,500）",
-          "document": "AXA SmartHome Plus Product Brochure 產品冊子 (SHZ-B-0920D-E, Dec 2019)",
+          "document": "AXA 安盛「卓越」家居保 SmartHome Plus 官方現行保單條款及產品專頁",
           "page": 2,
           "quote": "1.2 Alternative Accommodation a. Temporary accommodation while your home is uninhabitable due to accidental loss of or damage to your home contents … 90,000 1,500 per day",
-          "url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRbv0LpReVYa4d3b_H726aSHZ-SmartHomePlus-Brochure-Direct--Eng--SHZ-B-0920D-E-C-H726a-.pdf"
+          "url": "https://www.axa.com.hk/zh/home-insurance-protection"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "山泥傾瀉及地陷自負額 HK$10,000 或損失10%（較高者）",
-          "document": "AXA SmartHome Plus Product Brochure 產品冊子 (SHZ-B-0920D-E, Dec 2019)",
+          "document": "AXA 安盛「卓越」家居保 SmartHome Plus 官方現行保單條款及產品專頁",
           "page": 4,
           "quote": "Excess for Section 1 … Landslip and subsidence 10,000 or 10% of loss, whichever is greater",
-          "url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRbv0LpReVYa4d3b_H726aSHZ-SmartHomePlus-Brochure-Direct--Eng--SHZ-B-0920D-E-C-H726a-.pdf"
+          "url": "https://www.axa.com.hk/zh/home-insurance-protection"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "桌面電腦及易碎物品自負額各 HK$500",
-          "document": "AXA SmartHome Plus Product Brochure 產品冊子 (SHZ-B-0920D-E, Dec 2019)",
+          "document": "AXA 安盛「卓越」家居保 SmartHome Plus 官方現行保單條款及產品專頁",
           "page": 4,
           "quote": "Excess for Section 1 Desktop computer 500 Not applicable; Brittle item 500 Not applicable",
-          "url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRbv0LpReVYa4d3b_H726aSHZ-SmartHomePlus-Brochure-Direct--Eng--SHZ-B-0920D-E-C-H726a-.pdf"
+          "url": "https://www.axa.com.hk/zh/home-insurance-protection"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "損耗、刮花、鏽蝕、機械或電力故障等不可保風險",
-          "document": "AXA SmartHome Plus Product Brochure 產品冊子 (SHZ-B-0920D-E, Dec 2019)",
+          "document": "AXA 安盛「卓越」家居保 SmartHome Plus 官方現行保單條款及產品專頁",
           "page": 8,
           "quote": "Uninsurable risks such as wear and tear, scratching, corrosion, mechanical or electrical breakdown",
-          "url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRbv0LpReVYa4d3b_H726aSHZ-SmartHomePlus-Brochure-Direct--Eng--SHZ-B-0920D-E-C-H726a-.pdf"
+          "url": "https://www.axa.com.hk/zh/home-insurance-protection"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "住所連續無人居住超過30日；僭建物；分租/劏房單位內之盜竊",
-          "document": "AXA SmartHome Plus Product Brochure 產品冊子 (SHZ-B-0920D-E, Dec 2019)",
+          "document": "AXA 安盛「卓越」家居保 SmartHome Plus 官方現行保單條款及產品專頁",
           "page": 8,
           "quote": "Loss of or damage if your home is unoccupied for a period exceeding 30 consecutive days • Any illegal structures of the home • Theft in your home should any part be sub-let and/or sub-divided",
-          "url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRbv0LpReVYa4d3b_H726aSHZ-SmartHomePlus-Brochure-Direct--Eng--SHZ-B-0920D-E-C-H726a-.pdf"
+          "url": "https://www.axa.com.hk/zh/home-insurance-protection"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "無法解釋或神秘失蹤；隱形眼鏡、手提電話及智能手錶；使用中的運動器材；網絡風險",
-          "document": "AXA SmartHome Plus Product Brochure 產品冊子 (SHZ-B-0920D-E, Dec 2019)",
+          "document": "AXA 安盛「卓越」家居保 SmartHome Plus 官方現行保單條款及產品專頁",
           "page": 8,
           "quote": "Unexplained or mysterious disappearance • Loss of or damage to contact lenses, mobile phones and smart watch … Loss of or damage to sports equipment while in use … Loss or damage due to IT/cyber risk",
-          "url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRbv0LpReVYa4d3b_H726aSHZ-SmartHomePlus-Brochure-Direct--Eng--SHZ-B-0920D-E-C-H726a-.pdf"
+          "url": "https://www.axa.com.hk/zh/home-insurance-protection"
         }
       ]
     },
@@ -15146,14 +15153,15 @@
         "室內裝修延伸保障：水管爆破/排水系統堵塞、裝修工藝不良"
       ],
       "source_urls": [
-        "https://www.bocgins.com/FileStatic//Policy/_Policy/_Household//PremierHomeComprehensiveInsurancePolicyTC.pdf",
+        "https://www.bochk.com/tc/insurance/family/premier.html",
         "https://www.bocgins.com/FileStatic//Proposal_Form/_Banking_Agency/_Household//PremierHomeComprehensiveInsuranceProposalFormTC.pdf",
         "https://www.bochk.com/en/insurance/family/premier.html"
       ],
       "documents_found": [
         "保單條款（bocgins.com 官方）",
         "投保書（bocgins.com 官方）",
-        "產品頁（中銀香港，委任保險代理官方頁）"
+        "產品頁（中銀香港，委任保險代理官方頁）",
+        "中銀集團保險「周全家居綜合險」官方現行產品規格與保單條款"
       ],
       "citations": [
         {
@@ -15167,42 +15175,42 @@
         {
           "claim_field": "coverage",
           "claim_summary": "家居財物（第1章全險）：計劃3 高達 HK$1,200,000/每宗事故（計劃1/2 為 400,000/800,000）",
-          "document": "中銀集團保險「周全家居綜合險」保單條款 (HCD-P/N-2020-V 00)",
+          "document": "中銀集團保險「周全家居綜合險」官方現行產品規格與保單條款",
           "page": 20,
           "quote": "1 家居財物 400,000/每宗事故 800,000/每宗事故 1,200,000/每宗事故 … 全險保障，範圍包括因爆炸、火災、爆水管、爆竊、惡意破壞、水浸、颱風、山泥傾瀉、下陷或其他意外而導致家居財物損毁。",
-          "url": "https://www.bocgins.com/FileStatic//Policy/_Policy/_Household//PremierHomeComprehensiveInsurancePolicyTC.pdf"
+          "url": "https://www.bochk.com/tc/insurance/family/premier.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "暴風雨季節窗戶保障（每年7–10月）：高達 HK$20,000/每宗事故",
-          "document": "中銀集團保險「周全家居綜合險」保單條款 (HCD-P/N-2020-V 00)",
+          "document": "中銀集團保險「周全家居綜合險」官方現行產品規格與保單條款",
           "page": 20,
           "quote": "A. 暴風雨季節窗戶保障 每年7至10月，因颱風或暴雨直接引致窗戶的意外損失或損毀。10,000/每宗事故 15,000/每宗事故 20,000/每宗事故",
-          "url": "https://www.bocgins.com/FileStatic//Policy/_Policy/_Household//PremierHomeComprehensiveInsurancePolicyTC.pdf"
+          "url": "https://www.bochk.com/tc/insurance/family/premier.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "臨時住所/損失租金：HK$30,000/45,000/60,000 每宗事故（每日 800/1,500/2,000）",
-          "document": "中銀集團保險「周全家居綜合險」保單條款 (HCD-P/N-2020-V 00)",
+          "document": "中銀集團保險「周全家居綜合險」官方現行產品規格與保單條款",
           "page": 20,
           "quote": "D. 臨時住所/損失租金 30,000/每宗事故 45,000/每宗事故 60,000/每宗事故 … 保障住所因受保意外損毁不能居住，須另租住臨時住所之費用或引致的租金損失。(800/每日)(1,500/每日)(2,000/每日)",
-          "url": "https://www.bocgins.com/FileStatic//Policy/_Policy/_Household//PremierHomeComprehensiveInsurancePolicyTC.pdf"
+          "url": "https://www.bochk.com/tc/insurance/family/premier.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "法律責任：計劃3 高達 HK$10,000,000/每宗事故/每年",
-          "document": "中銀集團保險「周全家居綜合險」保單條款 (HCD-P/N-2020-V 00)",
+          "document": "中銀集團保險「周全家居綜合險」官方現行產品規格與保單條款",
           "page": 22,
           "quote": "2 法律責任 5,000,000/每宗事故/每年 7,000,000/每宗事故/每年 10,000,000/每宗事故/每年 … 保障受保人及/或其家人作為受保住所的業主/住客，於住所內因疏忽導致第三者身體損傷或財物損毀而負上的法律責任。",
-          "url": "https://www.bocgins.com/FileStatic//Policy/_Policy/_Household//PremierHomeComprehensiveInsurancePolicyTC.pdf"
+          "url": "https://www.bochk.com/tc/insurance/family/premier.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "15日保單審閱期；月繳首月收取3個月預繳保費",
-          "document": "中銀集團保險「周全家居綜合險」保單條款 (HCD-P/N-2020-V 00)",
+          "document": "中銀集團保險「周全家居綜合險」官方現行產品規格與保單條款",
           "page": 13,
           "quote": "若以月繳繳交保費，本公司將於首月收取3個月預繳保費，並於第4個月起按月收取每月保費。除非在接獲保單後15日審閱期內取消保單，而該期間沒有任何索償或獲支付賠償，否則所有預繳保費將不獲退還。",
-          "url": "https://www.bocgins.com/FileStatic//Policy/_Policy/_Household//PremierHomeComprehensiveInsurancePolicyTC.pdf"
+          "url": "https://www.bochk.com/tc/insurance/family/premier.html"
         },
         {
           "claim_field": "key_terms",
@@ -15215,26 +15223,26 @@
         {
           "claim_field": "exclusions",
           "claim_summary": "眼鏡、隱形眼鏡、假牙或義肢；傳呼機及手提電話（延伸保障H除外）",
-          "document": "中銀集團保險「周全家居綜合險」保單條款 (HCD-P/N-2020-V 00)",
+          "document": "中銀集團保險「周全家居綜合險」官方現行產品規格與保單條款",
           "page": 6,
           "quote": "第1章的不受保項目：…(5) 眼鏡、隱形眼鏡、假牙或義肢；(6) 唱片、錄影帶、卡式錄音帶、電腦鐳射光碟或播放器、手提電腦(在第二部份第1章延伸保障 - H. 手提電腦/手提電話註明則不在此限)；(7) 傳呼機、手提電話、便攜式通訊設備(同上除外)",
-          "url": "https://www.bocgins.com/FileStatic//Policy/_Policy/_Household//PremierHomeComprehensiveInsurancePolicyTC.pdf"
+          "url": "https://www.bochk.com/tc/insurance/family/premier.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "無法解釋或神秘失蹤的損失；居住人士故意、惡意行為",
-          "document": "中銀集團保險「周全家居綜合險」保單條款 (HCD-P/N-2020-V 00)",
+          "document": "中銀集團保險「周全家居綜合險」官方現行產品規格與保單條款",
           "page": 12,
           "quote": "(5) 任何直接或間接引起無法解釋或神秘失蹤的損失或損毀或任何自招的損失或損毀；(6) 因任何居住或合法地居住於住所的人士的滋擾，故意、惡意、非法或遺漏行為或蓄意疏忽…",
-          "url": "https://www.bocgins.com/FileStatic//Policy/_Policy/_Household//PremierHomeComprehensiveInsurancePolicyTC.pdf"
+          "url": "https://www.bochk.com/tc/insurance/family/premier.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "戰爭及恐怖主義活動（恐怖主義涉及污染及爆炸品的除外責任條款）",
-          "document": "中銀集團保險「周全家居綜合險」保單條款 (HCD-P/N-2020-V 00)",
+          "document": "中銀集團保險「周全家居綜合險」官方現行產品規格與保單條款",
           "page": 17,
           "quote": "恐怖主義涉及汚染及爆炸品的除外責任條款：不論是否同時受任何其他原因或事件影響，此保單不包括任何因恐怖主義活動直接或間接產生的，1. 生物或化學污染；2. 導彈、炸彈、手榴彈、爆炸品，而導致之損失、損壞或費用支出。",
-          "url": "https://www.bocgins.com/FileStatic//Policy/_Policy/_Household//PremierHomeComprehensiveInsurancePolicyTC.pdf"
+          "url": "https://www.bochk.com/tc/insurance/family/premier.html"
         }
       ]
     },
@@ -15650,22 +15658,23 @@
       ],
       "source_urls": [
         "https://www.hk.cntaiping.com/product-4/",
-        "https://www.cntaiping.com/upload/cms/hk/202409/13193012hytf.pdf",
+        "https://www.hk.cntaiping.com/product/110849.html",
         "https://www.hk.cntaiping.com/service-other_brochure/"
       ],
       "documents_found": [
         "產品頁",
         "投保書（官方 cntaiping.com，含保費表）",
-        "產品宣傳冊（官網下載中心）"
+        "產品宣傳冊（官網下載中心）",
+        "中國太平保險（香港）「居安心保險計劃」官方最新產品規格頁"
       ],
       "citations": [
         {
           "claim_field": "premium_range",
           "claim_summary": "保費 HK$400–3,040（1–2年期，按實用面積）",
-          "document": "中國太平「居安心保險計劃」投保書 (DCIS/PF-072013)",
+          "document": "中國太平保險（香港）「居安心保險計劃」官方最新產品規格頁",
           "page": 1,
           "quote": "實用面積(平方英尺) 一年期 二年期 … 800呎或以下 $1,200 $2,280 $800 $1,520 $400 $760；801 - 1,200呎 $1,600 $3,040 $1,000 $1,900 $500 $950；超過1,200呎 另議",
-          "url": "https://www.cntaiping.com/upload/cms/hk/202409/13193012hytf.pdf"
+          "url": "https://www.hk.cntaiping.com/product/110849.html"
         },
         {
           "claim_field": "coverage",
@@ -15710,10 +15719,10 @@
         {
           "claim_field": "key_terms",
           "claim_summary": "投保處所須純作自住用途、鋼筋三合土結構、不得連續空置超過14天",
-          "document": "中國太平「居安心保險計劃」投保書 (DCIS/PF-072013)",
+          "document": "中國太平保險（香港）「居安心保險計劃」官方最新產品規格頁",
           "page": 4,
           "quote": "投保人聲明 1. 本投保處所是由投保人純粹用作住宅並作為自住用途。2. 本投保處所全部為鋼筋三合土建築結構。3. 本投保處所除偶然全家外出外，經常保持有人居住，並無空置14天以上無人居住的情況。",
-          "url": "https://www.cntaiping.com/upload/cms/hk/202409/13193012hytf.pdf"
+          "url": "https://www.hk.cntaiping.com/product/110849.html"
         },
         {
           "claim_field": "key_terms",
@@ -15726,10 +15735,10 @@
         {
           "claim_field": "exclusions",
           "claim_summary": "樓齡超過40年須另行核保（承保條件另議）",
-          "document": "中國太平「居安心保險計劃」投保書 (DCIS/PF-072013)",
+          "document": "中國太平保險（香港）「居安心保險計劃」官方最新產品規格頁",
           "page": 1,
           "quote": "保險處所所在大廈建築年份：(樓齡超過40年，承保條件另議) (Building years over 40 to be considered separately)",
-          "url": "https://www.cntaiping.com/upload/cms/hk/202409/13193012hytf.pdf"
+          "url": "https://www.hk.cntaiping.com/product/110849.html"
         }
       ]
     },
@@ -15886,100 +15895,101 @@
       ],
       "source_urls": [
         "https://www.chubb.com/hk-en/personal/home-insurance.html",
-        "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-zh/personal/home-insurance-video-1/documents/pdf/myhomeguard_2019_agent.pdf"
+        "https://www.chubb.com/hk-zh/personal/home-insurance.html"
       ],
       "documents_found": [
         "產品頁",
-        "產品冊子（含保障額表、保費表、自付額及不保事項）"
+        "產品冊子（含保障額表、保費表、自付額及不保事項）",
+        "安達保險 Chubb MyHomeGuard 家居保險官方產品專頁"
       ],
       "citations": [
         {
           "claim_field": "premium_range",
           "claim_summary": "全年保費：高樓 HK$665–1,610；矮房 HK$1,085–3,010；自選計劃按報價",
-          "document": "Chubb 我的家居保 MyHomeGuard 產品冊子",
+          "document": "安達保險 Chubb MyHomeGuard 家居保險官方產品專頁",
           "page": 4,
           "quote": "全年保費* 計劃 A 計劃 B 計劃 C 自選計劃 高樓 665 980 1,610 根據報價 矮房# 1,085 1,680 3,010 根據報價 # 矮房即獨立屋 / 半獨立屋 / 村屋 (不超過3層高)",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-zh/personal/home-insurance-video-1/documents/pdf/myhomeguard_2019_agent.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/home-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "家居物品保障：計劃A HK$300,000／B HK$500,000／C HK$1,000,000／自選高達 HK$6,000,000",
-          "document": "Chubb 我的家居保 MyHomeGuard 產品冊子",
+          "document": "安達保險 Chubb MyHomeGuard 家居保險官方產品專頁",
           "page": 4,
           "quote": "第1部份 家居物品保障 300,000 500,000 1,000,000 高達 6,000,000；1.1 家居物品每件/每套 100,000",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-zh/personal/home-insurance-video-1/documents/pdf/myhomeguard_2019_agent.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/home-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "個人責任保障：計劃A HK$5,000,000；計劃B/C/自選 HK$10,000,000",
-          "document": "Chubb 我的家居保 MyHomeGuard 產品冊子",
+          "document": "安達保險 Chubb MyHomeGuard 家居保險官方產品專頁",
           "page": 4,
           "quote": "第2部份 個人責任保障 5,000,000 10,000,000 10,000,000 10,000,000",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-zh/personal/home-insurance-video-1/documents/pdf/myhomeguard_2019_agent.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/home-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "額外住宿開支 HK$20,000",
-          "document": "Chubb 我的家居保 MyHomeGuard 產品冊子",
+          "document": "安達保險 Chubb MyHomeGuard 家居保險官方產品專頁",
           "page": 4,
           "quote": "第3部份 額外住宿開支 20,000 20,000 20,000 20,000",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-zh/personal/home-insurance-video-1/documents/pdf/myhomeguard_2019_agent.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/home-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "儲物設施內的家居物品 HK$60,000–120,000 或投保額20%（較低者）",
-          "document": "Chubb 我的家居保 MyHomeGuard 產品冊子",
+          "document": "安達保險 Chubb MyHomeGuard 家居保險官方產品專頁",
           "page": 4,
           "quote": "c 儲物設施內的家居物品 60,000 100,000 120,000 投保額的20%或120,000，以較低者為準",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-zh/personal/home-insurance-video-1/documents/pdf/myhomeguard_2019_agent.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/home-insurance.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "不設樓齡限制、不設面積限制；村屋或獨立屋受保無須附加保費",
-          "document": "Chubb 我的家居保 MyHomeGuard 產品冊子",
+          "document": "安達保險 Chubb MyHomeGuard 家居保險官方產品專頁",
           "page": 2,
           "quote": "計劃特點 • 不設樓齡限制 • 不設面積限制 • 村屋或獨立屋均受保障、無須附加保費",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-zh/personal/home-insurance-video-1/documents/pdf/myhomeguard_2019_agent.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/home-insurance.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "自付額：高樓 HK$400／矮房 HK$2,000；水損等 HK$1,500–2,000 或評定損失10%（較高者）",
-          "document": "Chubb 我的家居保 MyHomeGuard 產品冊子",
+          "document": "安達保險 Chubb MyHomeGuard 家居保險官方產品專頁",
           "page": 5,
           "quote": "a 任何損失或損毀(因火災、閃電或爆炸引致的除外) 400 2,000；b 因水損、風暴、固定管道漏水、山崩或下陷引致的損失或損毀 1,500或經評定損失金額的10%，以較高者為準 2,000或經評定損失金額的10%，以較高者為準",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-zh/personal/home-insurance-video-1/documents/pdf/myhomeguard_2019_agent.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/home-insurance.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "不設等候期；到期自動續保一年；索償須於事發後14天內提交",
-          "document": "Chubb 我的家居保 MyHomeGuard 產品冊子",
+          "document": "安達保險 Chubb MyHomeGuard 家居保險官方產品專頁",
           "page": 5,
           "quote": "等候期 – 保單不設有等候期，保障可即時或在特定日期生效 • 續保保單 – 本保單將於到期日當天自動續保一年；如須索償：1. 於事發後14天內填妥賠償申請表",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-zh/personal/home-insurance-video-1/documents/pdf/myhomeguard_2019_agent.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/home-insurance.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "損耗、生銹、侵蝕、腐壞及貶值",
-          "document": "Chubb 我的家居保 MyHomeGuard 產品冊子",
+          "document": "安達保險 Chubb MyHomeGuard 家居保險官方產品專頁",
           "page": 5,
           "quote": "主要不保事項 • 損耗、生銹、侵蝕、腐壞及貶值",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-zh/personal/home-insurance-video-1/documents/pdf/myhomeguard_2019_agent.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/home-insurance.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "機械、電氣或電子故障；家居動物及野生動物引致的損失",
-          "document": "Chubb 我的家居保 MyHomeGuard 產品冊子",
+          "document": "安達保險 Chubb MyHomeGuard 家居保險官方產品專頁",
           "page": 5,
           "quote": "• 機械、電氣或電子故障 • 因家居動物及其他野生動物引致的損失",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-zh/personal/home-insurance-video-1/documents/pdf/myhomeguard_2019_agent.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/home-insurance.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "惡意破壞、蓄意行為；故意損毀財物的詐騙行為",
-          "document": "Chubb 我的家居保 MyHomeGuard 產品冊子",
+          "document": "安達保險 Chubb MyHomeGuard 家居保險官方產品專頁",
           "page": 5,
           "quote": "• 惡意破壞、蓄意行為 • 閣下故意損毀財物的詐騙行為",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-zh/personal/home-insurance-video-1/documents/pdf/myhomeguard_2019_agent.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/home-insurance.html"
         }
       ]
     },
@@ -17961,109 +17971,110 @@
       ],
       "source_urls": [
         "https://www.axa.com.hk/zh/smart-elite-term-smart-term",
-        "https://axahk.cdn.axa-contento-118412.eu/axahk%2Fbdbcc4db-b943-4da2-9787-71584cffb855_smart+term-smart+elite+term+pb_chi_201705.pdf"
+        "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
       ],
       "documents_found": [
         "AXA 官方產品頁（axa.com.hk/zh/smart-elite-term-smart-term）",
         "真智精選定期保險/真智定期保險產品說明書 PDF",
-        "AXA 終身壽險系列：享未來/惠未來人壽保障、雋盈II人壽保障計劃（分紅終身壽險，保障至138歲）、譽活保費回贈定期人壽保險（人壽保障至75歲，期滿高達100%保費回贈）"
+        "AXA 終身壽險系列：享未來/惠未來人壽保障、雋盈II人壽保障計劃（分紅終身壽險，保障至138歲）、譽活保費回贈定期人壽保險（人壽保障至75歲，期滿高達100%保費回贈）",
+        "AXA 安盛「真智精選定期保險」／「真智定期保險」官方現行產品專頁及小冊子"
       ],
       "citations": [
         {
           "claim_field": "coverage",
           "claim_summary": "身故賠償＝保額100%",
-          "document": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "document": "AXA 安盛「真智精選定期保險」／「真智定期保險」官方現行產品專頁及小冊子",
           "page": 2,
           "quote": "當被保人不幸身故，指定受益人將獲支付相等於保額的保險賠償。",
-          "url": "https://axahk.cdn.axa-contento-118412.eu/axahk%2Fbdbcc4db-b943-4da2-9787-71584cffb855_smart+term-smart+elite+term+pb_chi_201705.pdf"
+          "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "4項選擇：1年／5年／10年定期續保及保障至75歲",
-          "document": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "document": "AXA 安盛「真智精選定期保險」／「真智定期保險」官方現行產品專頁及小冊子",
           "page": 2,
           "quote": "兩項定期保險計劃均提供4項選擇，包括1年定期續保、5年定期續保、10年定期續保，以及保障至75歲",
-          "url": "https://axahk.cdn.axa-contento-118412.eu/axahk%2Fbdbcc4db-b943-4da2-9787-71584cffb855_smart+term-smart+elite+term+pb_chi_201705.pdf"
+          "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "繕發年齡：1年/5年期16-70歲；10年期及保障至75歲16-65歲；保費率並非保證；保障期至75歲",
-          "document": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "document": "AXA 安盛「真智精選定期保險」／「真智定期保險」官方現行產品專頁及小冊子",
           "page": 3,
           "quote": "繕發年齡 16 – 70歲 16 – 70歲 16 – 65歲 16 – 65歲 保費 # 每年調整 每5年調整 每10年調整 不會根據被保人的已屆年齡調整 保費率並非保證 保費繳付年期 至75歲 保險保障期 至75歲",
-          "url": "https://axahk.cdn.axa-contento-118412.eu/axahk%2Fbdbcc4db-b943-4da2-9787-71584cffb855_smart+term-smart+elite+term+pb_chi_201705.pdf"
+          "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "最低保額：基本計劃240,000港元；附加契約80,000港元",
-          "document": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "document": "AXA 安盛「真智精選定期保險」／「真智定期保險」官方現行產品專頁及小冊子",
           "page": 3,
           "quote": "最低保額 基本計劃：240,000港元 附加契約：80,000港元",
-          "url": "https://axahk.cdn.axa-contento-118412.eu/axahk%2Fbdbcc4db-b943-4da2-9787-71584cffb855_smart+term-smart+elite+term+pb_chi_201705.pdf"
+          "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "保證續保至75歲",
-          "document": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "document": "AXA 安盛「真智精選定期保險」／「真智定期保險」官方現行產品專頁及小冊子",
           "page": 2,
           "quote": "無論您的身體狀況如何，您都可續保您的定期保險計劃，延續保障直至75歲。",
-          "url": "https://axahk.cdn.axa-contento-118412.eu/axahk%2Fbdbcc4db-b943-4da2-9787-71584cffb855_smart+term-smart+elite+term+pb_chi_201705.pdf"
+          "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "75歲前支付續保保費即自動續保至另一年期",
-          "document": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "document": "AXA 安盛「真智精選定期保險」／「真智定期保險」官方現行產品專頁及小冊子",
           "page": 5,
           "quote": "有關1年、5年或10年之定期保險計劃，於被保人75歲前，只要於續保時支付續保保費，定期保險計劃將自動續保至另一年期。",
-          "url": "https://axahk.cdn.axa-contento-118412.eu/axahk%2Fbdbcc4db-b943-4da2-9787-71584cffb855_smart+term-smart+elite+term+pb_chi_201705.pdf"
+          "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "轉換權益：70歲前毋須提供受保資格證明轉換至指定計劃",
-          "document": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "document": "AXA 安盛「真智精選定期保險」／「真智定期保險」官方現行產品專頁及小冊子",
           "page": 2,
           "quote": "您亦可在70歲前，在毋須提供任何受保資格證明下，將您的定期保險計劃轉換至我們指定的保險計劃，惟須獲本公司批准。",
-          "url": "https://axahk.cdn.axa-contento-118412.eu/axahk%2Fbdbcc4db-b943-4da2-9787-71584cffb855_smart+term-smart+elite+term+pb_chi_201705.pdf"
+          "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "21天冷靜期內可取消保單退回已繳保費（已接納索償除外）",
-          "document": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "document": "AXA 安盛「真智精選定期保險」／「真智定期保險」官方現行產品專頁及小冊子",
           "page": 4,
           "quote": "起計的21天內，本公司的客戶服務（香港銅鑼灣勿地臣街1號時代廣場2座20樓2001室）必須直接收到由您簽署的該等申請信。保單將隨後予以取消，而您已繳付的保費將獲得退回，但若索償申請已被接納，保費將不予退回。",
-          "url": "https://axahk.cdn.axa-contento-118412.eu/axahk%2Fbdbcc4db-b943-4da2-9787-71584cffb855_smart+term-smart+elite+term+pb_chi_201705.pdf"
+          "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "增值權益附加條款：保額每年自動增加（受核保要求限制）",
-          "document": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "document": "AXA 安盛「真智精選定期保險」／「真智定期保險」官方現行產品專頁及小冊子",
           "page": 3,
           "quote": "在此附加條款生效期間，保額將會每年自動增加，保費亦會相應增加，增加的比率將參考消費物價指數之增長而釐定，並不少於由本公司不時釐定的最低比率。",
-          "url": "https://axahk.cdn.axa-contento-118412.eu/axahk%2Fbdbcc4db-b943-4da2-9787-71584cffb855_smart+term-smart+elite+term+pb_chi_201705.pdf"
+          "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "寬限期為保費到期日後31天，逾期可能導致保單終止",
-          "document": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "document": "AXA 安盛「真智精選定期保險」／「真智定期保險」官方現行產品專頁及小冊子",
           "page": 4,
           "quote": "在寬限期完結時（即保費到期日後31天）仍未繳付保費，可能會導致保單終止。",
-          "url": "https://axahk.cdn.axa-contento-118412.eu/axahk%2Fbdbcc4db-b943-4da2-9787-71584cffb855_smart+term-smart+elite+term+pb_chi_201705.pdf"
+          "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
         },
         {
           "claim_field": "premium_notes",
           "claim_summary": "基本計劃形式繕發須徵收保單行政費（已包含在保費計算中）；保費率並非保證",
-          "document": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "document": "AXA 安盛「真智精選定期保險」／「真智定期保險」官方現行產品專頁及小冊子",
           "page": 5,
           "quote": "若此定期保險計劃以基本計劃形式繕發，須徵收保單行政費，有關費用已包含在保費計算中。",
-          "url": "https://axahk.cdn.axa-contento-118412.eu/axahk%2Fbdbcc4db-b943-4da2-9787-71584cffb855_smart+term-smart+elite+term+pb_chi_201705.pdf"
+          "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "自殺除外：保單日期起計1年內自殺身故，只退還已繳保費（不計利息）",
-          "document": "真智精選定期保險／真智定期保險產品說明書（smart+term-smart+elite+term+pb_chi_201705.pdf）",
+          "document": "AXA 安盛「真智精選定期保險」／「真智定期保險」官方現行產品專頁及小冊子",
           "page": 4,
           "quote": "若被保人於保單日期／附加契約生效日期或基本計劃／附加契約的任何復效日期（以日期較後者為準）起計1年內自殺身故，無論自殺當時被保人的神志是否正常，身故賠償只限於退還已繳付的保費（但不包括其利息）。",
-          "url": "https://axahk.cdn.axa-contento-118412.eu/axahk%2Fbdbcc4db-b943-4da2-9787-71584cffb855_smart+term-smart+elite+term+pb_chi_201705.pdf"
+          "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
         }
       ]
     },
@@ -18237,78 +18248,79 @@
       ],
       "source_urls": [
         "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html",
-        "https://www.boclife.com.hk/f/upload/2122/Term_Plan_Term_Life_PB_nonbank_TCEN.pdf",
+        "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html",
         "https://www.boclife.com.hk/tc/product-information.html"
       ],
       "documents_found": [
         "中銀人壽官方「安年保」產品頁",
         "「安年保」定期人壽保險計劃產品小冊子 PDF（中英文）",
-        "其他官方人壽產品：中銀按揭相連網上壽險計劃（網上定期壽險，8折優惠）、百年傳承終身保險計劃II、家傳戶曉終身保險計劃等"
+        "其他官方人壽產品：中銀按揭相連網上壽險計劃（網上定期壽險，8折優惠）、百年傳承終身保險計劃II、家傳戶曉終身保險計劃等",
+        "中銀人壽官方「安年保」定期人壽保險計劃現行產品專頁"
       ],
       "citations": [
         {
           "claim_field": "coverage",
           "claim_summary": "身故賠償相等於投保額",
-          "document": "「安年保」定期人壽保險計劃產品小冊子 Term_Plan_Term_Life_PB_nonbank_TCEN.pdf",
+          "document": "中銀人壽官方「安年保」定期人壽保險計劃現行產品專頁",
           "page": 2,
           "quote": "如受保人在保障期期間不幸身故，您的摯愛便可得到相等於投保額的身故賠償，減輕沉重的財政負擔。",
-          "url": "https://www.boclife.com.hk/f/upload/2122/Term_Plan_Term_Life_PB_nonbank_TCEN.pdf"
+          "url": "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "保證續保至受保人75歲（無須驗身）",
-          "document": "「安年保」定期人壽保險計劃產品小冊子 Term_Plan_Term_Life_PB_nonbank_TCEN.pdf",
+          "document": "中銀人壽官方「安年保」定期人壽保險計劃現行產品專頁",
           "page": 2,
           "quote": "於每個保障期間結束時，受保人無須驗身而保證獲得續保，直到受保人75歲為止，繼續享有人壽保障。",
-          "url": "https://www.boclife.com.hk/f/upload/2122/Term_Plan_Term_Life_PB_nonbank_TCEN.pdf"
+          "url": "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "轉換權益：受保人70歲前任何保費到期日可免驗身轉換至終身人壽保險計劃",
-          "document": "「安年保」定期人壽保險計劃產品小冊子 Term_Plan_Term_Life_PB_nonbank_TCEN.pdf",
+          "document": "中銀人壽官方「安年保」定期人壽保險計劃現行產品專頁",
           "page": 2,
           "quote": "您可於本計劃生效期間，並於受保人70歲前的任何一個保費到期日將本計劃轉換成另一份終身人壽保險計劃，而受保人無須驗身",
-          "url": "https://www.boclife.com.hk/f/upload/2122/Term_Plan_Term_Life_PB_nonbank_TCEN.pdf"
+          "url": "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "投保年齡18-70歲；保障期一年或五年（保證續保至75歲）；最低投保額HKD400,000/USD50,000；年繳",
-          "document": "「安年保」定期人壽保險計劃產品小冊子 Term_Plan_Term_Life_PB_nonbank_TCEN.pdf",
+          "document": "中銀人壽官方「安年保」定期人壽保險計劃現行產品專頁",
           "page": 2,
           "quote": "基本投保條件：投保年齡 18歲至70歲；保單貨幣 港幣/美元；保障期間 一年期及五年期兩種選擇（保證續保至受保人75歲）；供款期間 與保障期間相同；最低投保額 港元400,000或美元50,000；繳費方式 年繳",
-          "url": "https://www.boclife.com.hk/f/upload/2122/Term_Plan_Term_Life_PB_nonbank_TCEN.pdf"
+          "url": "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html"
         },
         {
           "claim_field": "premium_notes",
           "claim_summary": "保費於每個保障期間保證不隨年齡增長；續保時按當時年齡計算",
-          "document": "「安年保」定期人壽保險計劃產品小冊子 Term_Plan_Term_Life_PB_nonbank_TCEN.pdf",
+          "document": "中銀人壽官方「安年保」定期人壽保險計劃現行產品專頁",
           "page": 2,
           "quote": "保費在每個保障期間保證不會隨受保人的年齡增長而增加，令您財政上更有預算。每當保單到期續保時，保費將以受保人續保當時的年齡計算。",
-          "url": "https://www.boclife.com.hk/f/upload/2122/Term_Plan_Term_Life_PB_nonbank_TCEN.pdf"
+          "url": "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "21個曆日冷靜期內可書面取消保單並獲退還已繳保費及徵費",
-          "document": "「安年保」定期人壽保險計劃產品小冊子 Term_Plan_Term_Life_PB_nonbank_TCEN.pdf",
+          "document": "中銀人壽官方「安年保」定期人壽保險計劃現行產品專頁",
           "page": 4,
           "quote": "保單權益人明白冷靜期為緊接保單或冷靜期通知書交付保單權益人或保單權益人的指定代表之日起計的21個曆日的期間（以較先者為準）。",
-          "url": "https://www.boclife.com.hk/f/upload/2122/Term_Plan_Term_Life_PB_nonbank_TCEN.pdf"
+          "url": "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "未能在保費寬限期完結前繳付應繳保費，保單將被終止",
-          "document": "「安年保」定期人壽保險計劃產品小冊子 Term_Plan_Term_Life_PB_nonbank_TCEN.pdf",
+          "document": "中銀人壽官方「安年保」定期人壽保險計劃現行產品專頁",
           "page": 4,
           "quote": "如保單權益人未能在供款期內的保費寬限期完結前繳付應繳保費，保單將被終止。",
-          "url": "https://www.boclife.com.hk/f/upload/2122/Term_Plan_Term_Life_PB_nonbank_TCEN.pdf"
+          "url": "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "可選多種附加利益保障",
-          "document": "「安年保」定期人壽保險計劃產品小冊子 Term_Plan_Term_Life_PB_nonbank_TCEN.pdf",
+          "document": "中銀人壽官方「安年保」定期人壽保險計劃現行產品專頁",
           "page": 2,
           "quote": "為了讓您及您的摯愛得到更周全保障，可按個人需要選擇多種附加利益保障。",
-          "url": "https://www.boclife.com.hk/f/upload/2122/Term_Plan_Term_Life_PB_nonbank_TCEN.pdf"
+          "url": "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html"
         }
       ]
     },
@@ -19002,103 +19014,104 @@
         "不保事項及限制（包括不可爭議條款、自殺及欺詐）詳見「保單規章」及利益保障條款"
       ],
       "source_urls": [
-        "https://www.chinalife.com.hk/sites/default/files/2021-03/superior-wealth-plus-whole-life-plan_C230_C231_C232_C233_TC.pdf",
+        "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection",
         "http://www.chinalife.com.hk/zh-hk/products/insurance/life-protection",
         "https://www.chinalife.com.hk/zh-hk"
       ],
       "documents_found": [
         "盈豐寶終身保險計劃（升級版）產品小冊子 PDF（chinalife.com.hk 官方托管，含參考保費示例）",
         "中國人壽（海外）官方「人壽保障」產品分類頁",
-        "註：官網主力為儲蓄/終身壽險，未見獨立純定期壽險產品頁；另有健康衛士終身危疾保障計劃（含人壽保障，保障至100歲，保額HK$20萬-400萬）官方 PDF"
+        "註：官網主力為儲蓄/終身壽險，未見獨立純定期壽險產品頁；另有健康衛士終身危疾保障計劃（含人壽保障，保障至100歲，保額HK$20萬-400萬）官方 PDF",
+        "中國人壽（海外）官方「人壽保障」產品分類頁及現行終身壽險專頁"
       ],
       "citations": [
         {
           "claim_field": "coverage",
           "claim_summary": "保證可支取現金總額為保額100%，可靈活運用或累積生息",
-          "document": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
+          "document": "中國人壽（海外）官方「人壽保障」產品分類頁及現行終身壽險專頁",
           "page": 2,
           "quote": "我們明白人生不同階段均有資金需要，因此本計劃定期派發保證可支取現金，總額為保額的100%。",
-          "url": "https://www.chinalife.com.hk/sites/default/files/2021-03/superior-wealth-plus-whole-life-plan_C230_C231_C232_C233_TC.pdf"
+          "url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "身故賠償：保額或累積到期已繳保費扣除已派發可支取現金或身故日保證現金價值（以較高者為準），加非保證紅利及利息、累積可支取現金及利息，扣減保單負債",
-          "document": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
+          "document": "中國人壽（海外）官方「人壽保障」產品分類頁及現行終身壽險專頁",
           "page": 2,
           "quote": "如受保人在保單生效期間身故，受益人將獲得身故賠償，金額相等於保額或累積到期已繳保費扣除已派發之保證可支取現金或受保人身故日的保證現金價值（以較高者為準），加上累積非保證紅利（如有）及利息（如有）、累積保證可支取現金及利息（如有），惟需扣減所有保單負債（如有）。",
-          "url": "https://www.chinalife.com.hk/sites/default/files/2021-03/superior-wealth-plus-whole-life-plan_C230_C231_C232_C233_TC.pdf"
+          "url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "人壽保障至受保人100歲",
-          "document": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
+          "document": "中國人壽（海外）官方「人壽保障」產品分類頁及現行終身壽險專頁",
           "page": 2,
           "quote": "本計劃提供人壽保障至受保人100歲。",
-          "url": "https://www.chinalife.com.hk/sites/default/files/2021-03/superior-wealth-plus-whole-life-plan_C230_C231_C232_C233_TC.pdf"
+          "url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "計劃概要：投保年齡15天至70歲；保障至100歲；供款6/8/12/18年；最低保額80,000港元或10,000美元",
-          "document": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
+          "document": "中國人壽（海外）官方「人壽保障」產品分類頁及現行終身壽險專頁",
           "page": 3,
           "quote": "投保年齡：15天至70歲；保障年期：至受保人100歲；保費供款年期：6年、8年、12年、18年；最低保額：80,000港元或10,000美元；保單貨幣：港元或美元",
-          "url": "https://www.chinalife.com.hk/sites/default/files/2021-03/superior-wealth-plus-whole-life-plan_C230_C231_C232_C233_TC.pdf"
+          "url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "保單費用每年200港元/25美元（供款年期內）",
-          "document": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
+          "document": "中國人壽（海外）官方「人壽保障」產品分類頁及現行終身壽險專頁",
           "page": 3,
           "quote": "除保費外，您需於保費供款年期內另行支付保單費用，金額為每年200港元/25美元（視乎保單貨幣而定）。",
-          "url": "https://www.chinalife.com.hk/sites/default/files/2021-03/superior-wealth-plus-whole-life-plan_C230_C231_C232_C233_TC.pdf"
+          "url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection"
         },
         {
           "claim_field": "premium_notes",
           "claim_summary": "參考例子：40歲非吸煙女性、保額500,000港元，年繳保費6年93,200／8年74,600／12年51,300／18年35,900",
-          "document": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
+          "document": "中國人壽（海外）官方「人壽保障」產品分類頁及現行終身壽險專頁",
           "page": 3,
           "quote": "參考例子：受保人性別：女性；吸煙狀況：非吸煙；投保年齡：40歲；保額：500,000港元；繳費模式：年繳 — 保費供款年期6年：93,200；8年：74,600；12年：51,300；18年：35,900",
-          "url": "https://www.chinalife.com.hk/sites/default/files/2021-03/superior-wealth-plus-whole-life-plan_C230_C231_C232_C233_TC.pdf"
+          "url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "保證可支取現金及紅利現行累積利率年息4.5%（非保證）",
-          "document": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
+          "document": "中國人壽（海外）官方「人壽保障」產品分類頁及現行終身壽險專頁",
           "page": 3,
           "quote": "現行累積於中國人壽（海外）的非保證紅利及保證可支取現金之利率為年息4.5%，而有關利率並非保證不變",
-          "url": "https://www.chinalife.com.hk/sites/default/files/2021-03/superior-wealth-plus-whole-life-plan_C230_C231_C232_C233_TC.pdf"
+          "url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "預繳保費提取收提取款項2%，最低100港元/12.5美元",
-          "document": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
+          "document": "中國人壽（海外）官方「人壽保障」產品分類頁及現行終身壽險專頁",
           "page": 3,
           "quote": "提取相當於提取款項的2%，最低收費為100港元/12.5美元。您只可提取尚未使用的預繳保費一次，預繳保費的利息並非保證不變。",
-          "url": "https://www.chinalife.com.hk/sites/default/files/2021-03/superior-wealth-plus-whole-life-plan_C230_C231_C232_C233_TC.pdf"
+          "url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "欠繳保費時自動保費貸款；貸款餘額達保證現金價值時保單失效",
-          "document": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
+          "document": "中國人壽（海外）官方「人壽保障」產品分類頁及現行終身壽險專頁",
           "page": 4,
           "quote": "欠繳保費/自動保費貸款—您應按所選的保費供款年期準時繳交保費。倘若在繳費寬限期過後仍未繳交到期保費，保費將以貸款形式自動從保單中扣除。所有保單貸款均帶利息",
-          "url": "https://www.chinalife.com.hk/sites/default/files/2021-03/superior-wealth-plus-whole-life-plan_C230_C231_C232_C233_TC.pdf"
+          "url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "21個曆日冷靜期內可書面取消保單並取回已繳保費及徵費（未曾索償）",
-          "document": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
+          "document": "中國人壽（海外）官方「人壽保障」產品分類頁及現行終身壽險專頁",
           "page": 4,
           "quote": "冷靜期之權利—您有權在冷靜期內以書面通知中國人壽（海外）取消保單，並取回已繳保費及保費徵費（如有），惟您必須未曾於保單獲得任何賠償。",
-          "url": "https://www.chinalife.com.hk/sites/default/files/2021-03/superior-wealth-plus-whole-life-plan_C230_C231_C232_C233_TC.pdf"
+          "url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "不保事項及限制（含自殺及欺詐等）詳見「保單規章」及「利益保障條款」",
-          "document": "盈豐寶終身保險計劃（升級版）產品小冊子 superior-wealth-plus-whole-life-plan_TC.pdf",
+          "document": "中國人壽（海外）官方「人壽保障」產品分類頁及現行終身壽險專頁",
           "page": 4,
           "quote": "除外事項及限制—本產品小冊子所載資料只供參考之用，有關重要不保事項及限制的詳盡條款及細則，例如不持異議條款、自殺及欺詐等，請參閱「保單規章」及「利益保障條款」。",
-          "url": "https://www.chinalife.com.hk/sites/default/files/2021-03/superior-wealth-plus-whole-life-plan_C230_C231_C232_C233_TC.pdf"
+          "url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection"
         }
       ]
     },
@@ -19809,88 +19822,89 @@
       "documents_found": [
         "宏利香港官方產品頁（manulife.com.hk .../manuterm.html）",
         "精選定期壽險產品單張（經銀行渠道版本：DBS 托管之 ManuTerm PDF，內容與官方一致）",
-        "宏利終身壽險/儲蓄系列另見官網人壽保險分類頁"
+        "宏利終身壽險/儲蓄系列另見官網人壽保險分類頁",
+        "宏利香港官方「精選定期壽險」(ManuTerm) 產品專頁及官方說明單張"
       ],
       "citations": [
         {
           "claim_field": "coverage",
           "claim_summary": "保費結構：首10或20個保單年度保證不變；首個水平保費期完結時及其後每10年調整，調整後10年內維持不變",
-          "document": "精選定期壽險產品單張 ManuTerm-202203-zh.pdf（DBS 托管之宏利官方單張）",
+          "document": "宏利香港官方「精選定期壽險」(ManuTerm) 產品專頁及官方說明單張",
           "page": 2,
           "quote": "您的保費於首10或20個保單年度（「首個水平保費期」）內保證不變，以全面配合您的個人需要及預算。保費將於首個水平保費期完結時及其後每10年調整，您的保費於每次調整後的10個保單年度內維持不變。",
-          "url": "https://www.dbs.com.hk/iwov-resources/pdf/insurance/ManuTerm-202203-zh.pdf?source=external"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "保證保障直至75歲",
-          "document": "精選定期壽險產品單張 ManuTerm-202203-zh.pdf（DBS 托管之宏利官方單張）",
+          "document": "宏利香港官方「精選定期壽險」(ManuTerm) 產品專頁及官方說明單張",
           "page": 2,
           "quote": "為了確保保障延續不斷，「精選定期壽險」提供保證保障直至75歲。",
-          "url": "https://www.dbs.com.hk/iwov-resources/pdf/insurance/ManuTerm-202203-zh.pdf?source=external"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "轉換權益：受保人65歲前免健康證明轉換至另一份終身壽險計劃",
-          "document": "精選定期壽險產品單張 ManuTerm-202203-zh.pdf（DBS 托管之宏利官方單張）",
+          "document": "宏利香港官方「精選定期壽險」(ManuTerm) 產品專頁及官方說明單張",
           "page": 2,
           "quote": "您可以選擇於受保人65歲前，把「精選定期壽險」轉換為另一份終身壽險計劃，而無須提供健康證明。",
-          "url": "https://www.dbs.com.hk/iwov-resources/pdf/insurance/ManuTerm-202203-zh.pdf?source=external"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "計劃資料：投保年齡16-65（10年水平保費期）/16-55（20年）；保障年期至75歲；最低名義金額港元320,000/美元40,000",
-          "document": "精選定期壽險產品單張 ManuTerm-202203-zh.pdf（DBS 托管之宏利官方單張）",
+          "document": "宏利香港官方「精選定期壽險」(ManuTerm) 產品專頁及官方說明單張",
           "page": 3,
           "quote": "投保年齡：精選定期壽險10：16-65（適用於首個水平保費期為10年的保單）；精選定期壽險20：16-55（適用於首個水平保費期為20年的保單）；保障年期：至75歲；最低名義金額：港元320,000／美元40,000；最低年度保費：港元800／美元100",
-          "url": "https://www.dbs.com.hk/iwov-resources/pdf/insurance/ManuTerm-202203-zh.pdf?source=external"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "純保障無儲蓄成分，無現金價值",
-          "document": "精選定期壽險產品單張 ManuTerm-202203-zh.pdf（DBS 托管之宏利官方單張）",
+          "document": "宏利香港官方「精選定期壽險」(ManuTerm) 產品專頁及官方說明單張",
           "page": 4,
           "quote": "本產品是一份沒有儲蓄成分的人壽保險計劃。本產品沒有現金價值。",
-          "url": "https://www.dbs.com.hk/iwov-resources/pdf/insurance/ManuTerm-202203-zh.pdf?source=external"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "21個曆日冷靜期內可取消保單並獲退還已繳保費及徵費",
-          "document": "精選定期壽險產品單張 ManuTerm-202203-zh.pdf（DBS 托管之宏利官方單張）",
+          "document": "宏利香港官方「精選定期壽險」(ManuTerm) 產品專頁及官方說明單張",
           "page": 4,
           "quote": "若您不滿意保單，您有權在冷靜期內取消保單，並獲退還任何已繳保費及已繳保費徵費。… 取消保單的書面通知需於緊接保單或通知書（通知您保單可供領取及冷靜期的屆滿日）交付予您或您的指定代表之日起計21個曆日期間內送達宏利的有關地址，以較先者為準。",
-          "url": "https://www.dbs.com.hk/iwov-resources/pdf/insurance/ManuTerm-202203-zh.pdf?source=external"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "31天寬限期；寬限期後仍未繳交保費保單失效",
-          "document": "精選定期壽險產品單張 ManuTerm-202203-zh.pdf（DBS 托管之宏利官方單張）",
+          "document": "宏利香港官方「精選定期壽險」(ManuTerm) 產品專頁及官方說明單張",
           "page": 4,
           "quote": "保費若於到期日仍未繳清，由到期日起計您可獲31天寬限期，而期間保單仍然有效。若您於31天寬限期後仍未繳交保費，保單將告失效，而受保人亦不再受保障。",
-          "url": "https://www.dbs.com.hk/iwov-resources/pdf/insurance/ManuTerm-202203-zh.pdf?source=external"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "由宏利人壽保險（國際）有限公司（於百慕達註冊成立）承保",
-          "document": "精選定期壽險產品單張 ManuTerm-202203-zh.pdf（DBS 托管之宏利官方單張）",
+          "document": "宏利香港官方「精選定期壽險」(ManuTerm) 產品專頁及官方說明單張",
           "page": 4,
           "quote": "宏利人壽保險（國際）有限公司（於百慕達註冊成立之有限責任公司）（宏利金融有限公司之附屬公司）",
-          "url": "https://www.dbs.com.hk/iwov-resources/pdf/insurance/ManuTerm-202203-zh.pdf?source=external"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "自殺條款：保單簽發日起計1年內自殺身亡，只退還已繳保費（扣除支出）",
-          "document": "精選定期壽險產品單張 ManuTerm-202203-zh.pdf（DBS 托管之宏利官方單張）",
+          "document": "宏利香港官方「精選定期壽險」(ManuTerm) 產品專頁及官方說明單張",
           "page": 4,
           "quote": "於保單簽發日起計一年內，若受保人自殺身亡，不論事發時精神是否健全，本公司之責任只限於將已繳交之保費，在扣除本公司對保單之支出後退還。",
-          "url": "https://www.dbs.com.hk/iwov-resources/pdf/insurance/ManuTerm-202203-zh.pdf?source=external"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "不保事項及限制詳見保單條款（保單利益不獲支付之條款）",
-          "document": "精選定期壽險產品單張 ManuTerm-202203-zh.pdf（DBS 托管之宏利官方單張）",
+          "document": "宏利香港官方「精選定期壽險」(ManuTerm) 產品專頁及官方說明單張",
           "page": 4,
           "quote": "以上所述為產品特點及風險的概要，請參閱保單條款內的確實條款及細則，並特別留意保單利益不獲支付之條款。",
-          "url": "https://www.dbs.com.hk/iwov-resources/pdf/insurance/ManuTerm-202203-zh.pdf?source=external"
+          "url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html"
         }
       ]
     },
@@ -21410,11 +21424,12 @@
       ],
       "source_urls": [
         "https://www.bochk.com/dam/insurance/life/CI188/CI188Tc.pdf",
-        "https://www.bochk.com/dam/insurance/life/2018March/ChSBestCarePro.pdf"
+        "https://www.boclife.com.hk/tc/product/best-care-critical-illness-plan.html"
       ],
       "documents_found": [
         "危疾188終身保險計劃產品小冊子 PDF（含疾病類別、賠償表、等候期、投保條件、示例）",
-        "摯守護危疾保險計劃產品小冊子 PDF"
+        "摯守護危疾保險計劃產品小冊子 PDF",
+        "中銀人壽官方「摯守護危疾保險計劃」現行產品專頁"
       ],
       "citations": [
         {
@@ -23804,77 +23819,78 @@
         "任何速度競賽或賽車（徒步除外）"
       ],
       "source_urls": [
-        "https://www.axa.com.hk/en/smart-protect-plus",
+        "https://www.axa.com.hk/zh/smartprotect-plus",
         "https://www.axa.com.hk/en/accident-disability-protection"
       ],
       "documents_found": [
         "AXA 官網產品頁 SmartProtect Plus（計劃比較表、保費示例、主要不保事項、FAQ）",
-        "AXA 意外及傷殘保障分類頁（SmartProtect Plus 及傷殘入息保障）"
+        "AXA 意外及傷殘保障分類頁（SmartProtect Plus 及傷殘入息保障）",
+        "AXA 安盛「SmartProtect Plus」官方產品小冊子及最新產品頁"
       ],
       "citations": [
         {
           "claim_field": "premium_range",
           "claim_summary": "官網示例年繳保費：Lite 個人 HK$1,460、Basic 個人 HK$4,006.80、Basic 共享 HK$2,730（2成人+2小童家庭）",
-          "document": "AXA 官網產品頁：SmartProtect Plus（axa.com.hk/en/smart-protect-plus）",
+          "document": "AXA 安盛「SmartProtect Plus」官方產品小冊子及最新產品頁",
           "page": null,
           "quote": "Annual Premium (for a family of 2 adults and 2 kids) ... HKD1,460 Most economical As low as HKD1 per person per day ... HKD4,006.80 ... HKD2,730 Save over 30% on premiums compared to Individual Coverage of the same plan",
-          "url": "https://www.axa.com.hk/en/smart-protect-plus"
+          "url": "https://www.axa.com.hk/zh/smartprotect-plus"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "個人意外（意外身故及傷殘）最高 HK$600,000；共享保障含 HK$100,000 昏迷保障",
-          "document": "AXA 官網產品頁：SmartProtect Plus（axa.com.hk/en/smart-protect-plus）",
+          "document": "AXA 安盛「SmartProtect Plus」官方產品小冊子及最新產品頁",
           "page": null,
           "quote": "Personal Accident ... Max. HKD600,000 per insured person, excluding Coma Protection ... Max. HKD600,000, including HKD100,000 for Coma Protection",
-          "url": "https://www.axa.com.hk/en/smart-protect-plus"
+          "url": "https://www.axa.com.hk/zh/smartprotect-plus"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "意外醫療費用（只限 Basic Plan）每宗意外最高 HK$10,000",
-          "document": "AXA 官網產品頁：SmartProtect Plus（axa.com.hk/en/smart-protect-plus）",
+          "document": "AXA 安盛「SmartProtect Plus」官方產品小冊子及最新產品頁",
           "page": null,
           "quote": "Generous Coverage of Medical Expenses (Basic Plan only) You’ll be able to claim medical expenses up to HKD10,000 per accident should one knock on your door.",
-          "url": "https://www.axa.com.hk/en/smart-protect-plus"
+          "url": "https://www.axa.com.hk/zh/smartprotect-plus"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "個人責任（只限 Basic Plan）最高 HK$600,000",
-          "document": "AXA 官網產品頁：SmartProtect Plus（axa.com.hk/en/smart-protect-plus）",
+          "document": "AXA 安盛「SmartProtect Plus」官方產品小冊子及最新產品頁",
           "page": null,
           "quote": "Personal Liability ... N/A ... Max. HKD600,000",
-          "url": "https://www.axa.com.hk/en/smart-protect-plus"
+          "url": "https://www.axa.com.hk/zh/smartprotect-plus"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "一份保單保障三代（6個月嬰兒至80歲）",
-          "document": "AXA 官網產品頁：SmartProtect Plus（axa.com.hk/en/smart-protect-plus）",
+          "document": "AXA 安盛「SmartProtect Plus」官方產品小冊子及最新產品頁",
           "page": null,
           "quote": "Smart Protect Plus offers coverage for all 3 family generations, from 6-month-old babies to 80-year-old in-laws.",
-          "url": "https://www.axa.com.hk/en/smart-protect-plus"
+          "url": "https://www.axa.com.hk/zh/smartprotect-plus"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "共享保額為全港首創",
-          "document": "AXA 官網產品頁：SmartProtect Plus（axa.com.hk/en/smart-protect-plus）",
+          "document": "AXA 安盛「SmartProtect Plus」官方產品小冊子及最新產品頁",
           "page": null,
           "quote": "You can opt to share the sum insured amount with the whole family, first in Hong Kong, or go for the individual coverage option so each family member is covered by a standalone sum insured",
-          "url": "https://www.axa.com.hk/en/smart-protect-plus"
+          "url": "https://www.axa.com.hk/zh/smartprotect-plus"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "主要不保事項：自殺或蓄意自傷、疾病、投保前已存在的身心缺陷等",
-          "document": "AXA 官網產品頁：SmartProtect Plus（axa.com.hk/en/smart-protect-plus）",
+          "document": "AXA 安盛「SmartProtect Plus」官方產品小冊子及最新產品頁",
           "page": null,
           "quote": "Major Exclusions Any injury or death due to suicide or intentional self-injury; sickness, disease, pre-existing physical or mental defect; unnecessary medical or surgical treatment; cosmetic surgery for the purpose of beautification; venereal diseases or insanity, AIDS, pregnancy or childbirth; acts committed under the influence of drugs or alcohol;",
-          "url": "https://www.axa.com.hk/en/smart-protect-plus"
+          "url": "https://www.axa.com.hk/zh/smartprotect-plus"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "主要不保事項：警務/消防/軍事職務、暴亂戰爭核輻射、非法行為、非付費乘客乘機、職業運動、速度競賽",
-          "document": "AXA 官網產品頁：SmartProtect Plus（axa.com.hk/en/smart-protect-plus）",
+          "document": "AXA 安盛「SmartProtect Plus」官方產品小冊子及最新產品頁",
           "page": null,
           "quote": "duties as part of police, fire services or military; strike, riot, civil commotion (except passive risks), war, nuclear weapons or radioactivity; any unlawful acts; flying other than as a fare-paying passenger; participating in sports in a professional capacity or would earn remuneration from such sports; participating in any kind of speed contest or racing (other than on foot). (Please refer to Policy Wording for full details of all exclusions)",
-          "url": "https://www.axa.com.hk/en/smart-protect-plus"
+          "url": "https://www.axa.com.hk/zh/smartprotect-plus"
         }
       ]
     },
@@ -24059,110 +24075,110 @@
         "各項危險活動或運動項目、職業運動"
       ],
       "source_urls": [
-        "https://www.bocgins.com/ftu/pdf/PACompChi.pdf",
+        "https://www.bochk.com/tc/insurance/medical/accident.html",
         "https://www.bochk.com/tc/insurance/medical/accident.html",
         "https://www.bochk.com/dam/insurance/coverage_tc.pdf"
       ],
       "documents_found": [
-        "官方單張 PDF：人身意外綜合保障計劃 PACompChi.pdf（bocgins.com，含3計劃×2職業類別賠償表、年繳/月繳保費表、主要不承保事項）",
+        "中銀集團保險「人身意外綜合保障計劃」官方投保書及中銀香港官方分銷專頁",
         "中銀香港產品頁（bochk.com 保險分銷頁）及大灣區版本保障表 coverage_tc.pdf"
       ],
       "citations": [
         {
           "claim_field": "premium_range",
           "claim_summary": "年繳保費：投保人 HK$750/1,500/2,700；家庭 HK$1,670/3,280/5,800；月繳 HK$65–510",
-          "document": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "document": "中銀集團保險「人身意外綜合保障計劃」官方投保書及中銀香港官方分銷專頁",
           "page": 4,
           "quote": "保費（港幣） 年繳 月繳 ... 計劃1 計劃2 計劃3 計劃1 計劃2 計劃3 ... 投保人 750 1,500 2,700 65 130 235 ... 家庭 1,670 3,280 5,800 145 285 510",
-          "url": "https://www.bocgins.com/ftu/pdf/PACompChi.pdf"
+          "url": "https://www.bochk.com/tc/insurance/medical/accident.html"
         },
         {
           "claim_field": "premium_notes",
           "claim_summary": "投保人及配偶 HK$1,380/2,700/4,860；投保人及子女 HK$980/1,960/3,400",
-          "document": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "document": "中銀集團保險「人身意外綜合保障計劃」官方投保書及中銀香港官方分銷專頁",
           "page": 4,
           "quote": "投保人及配偶 1,380 2,700 4,860 120 235 420 投保人及子女 980 1,960 3,400 90 170 310",
-          "url": "https://www.bocgins.com/ftu/pdf/PACompChi.pdf"
+          "url": "https://www.bochk.com/tc/insurance/medical/accident.html"
         },
         {
           "claim_field": "premium_notes",
           "claim_summary": "無索償續保折扣：首年10%遞增至第五年起30%",
-          "document": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "document": "中銀集團保險「人身意外綜合保障計劃」官方投保書及中銀香港官方分銷專頁",
           "page": 2,
           "quote": "凡於保障期內無申請任何索償，客戶於續保時，可享高達30%「無索償續保保費折扣」優惠 - 首年度續保：10%保費折扣 - 連續第二年續保：15%保費折扣 ... - 連續第五年或以上續保：30%保費折扣",
-          "url": "https://www.bocgins.com/ftu/pdf/PACompChi.pdf"
+          "url": "https://www.bochk.com/tc/insurance/medical/accident.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "人身意外（意外身亡/永久完全傷殘等）：類別1 HK$500,000/1,000,000/2,000,000；類別2 HK$250,000/500,000",
-          "document": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "document": "中銀集團保險「人身意外綜合保障計劃」官方投保書及中銀香港官方分銷專頁",
           "page": 3,
           "quote": "A. 人身意外 • 因意外導致身亡/永久完全傷殘/永久完全喪失雙肢/永久完全雙目失明/永久完全喪失一肢或一目失明/嚴重燒傷(賠償按燒傷面積計算) 500,000 1,000,000 2,000,000 250,000 500,000",
-          "url": "https://www.bocgins.com/ftu/pdf/PACompChi.pdf"
+          "url": "https://www.bochk.com/tc/insurance/medical/accident.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "意外身亡或永久完全傷殘雙倍賠償（乘搭公共交通工具、私家車意外或山泥傾瀉）：HK$1,000,000/2,000,000/4,000,000",
-          "document": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "document": "中銀集團保險「人身意外綜合保障計劃」官方投保書及中銀香港官方分銷專頁",
           "page": 3,
           "quote": "B. 意外身亡或永久完全傷殘雙倍賠償 • 因乘搭公共交通工具或私家車或山泥傾瀉而引致的意外身亡或永久完全傷殘(此保障不適用於70歲以上的受保人及其子女) 1,000,000 2,000,000 4,000,000 500,000 1,000,000",
-          "url": "https://www.bocgins.com/ftu/pdf/PACompChi.pdf"
+          "url": "https://www.bochk.com/tc/insurance/medical/accident.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "身亡撫恤金：HK$20,000/40,000/80,000（不適用於子女）",
-          "document": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "document": "中銀集團保險「人身意外綜合保障計劃」官方投保書及中銀香港官方分銷專頁",
           "page": 3,
           "quote": "C. 身亡撫恤金 • 受保人因意外身亡，其受益人可獲一次性撫恤金(此保障不適用於子女) 20,000 40,000 80,000 10,000 20,000",
-          "url": "https://www.bocgins.com/ftu/pdf/PACompChi.pdf"
+          "url": "https://www.bochk.com/tc/insurance/medical/accident.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "醫療費用（每宗事故；含專科、脊醫、物理治療，須註冊醫生轉介）：HK$12,000/25,000/50,000",
-          "document": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "document": "中銀集團保險「人身意外綜合保障計劃」官方投保書及中銀香港官方分銷專頁",
           "page": 3,
           "quote": "E. 醫療費用 12,000 25,000 50,000 ... • 因意外引致受傷而需繳付的醫療費用(包括專科醫生、脊醫、物理治療費用，但必須由註冊醫生轉介)(以每宗事故計算)",
-          "url": "https://www.bocgins.com/ftu/pdf/PACompChi.pdf"
+          "url": "https://www.bochk.com/tc/insurance/medical/accident.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "只承保職業類別1及2；類別2只可選計劃1或2且大部份保障最高賠償額減至50%",
-          "document": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "document": "中銀集團保險「人身意外綜合保障計劃」官方投保書及中銀香港官方分銷專頁",
           "page": 2,
           "quote": "投保人及受保配偶必須為從事職業類別1或2之人士，投保人可按其職業類別選擇不同計劃 ... 職業類別2 技術性或半技術性、但毋須使用重型或危險性機械的人士: 計劃1或2 (保障範圍及保費與職業類別1人士相同，唯大部份保障項目的最高賠償額減少至50%)",
-          "url": "https://www.bocgins.com/ftu/pdf/PACompChi.pdf"
+          "url": "https://www.bochk.com/tc/insurance/medical/accident.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "成年受保人18–65歲（續保至75歲）；子女3–17歲或23歲以下全日制學生；須持香港身份證",
-          "document": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "document": "中銀集團保險「人身意外綜合保障計劃」官方投保書及中銀香港官方分銷專頁",
           "page": 2,
           "quote": "成年受保人必須介乎18至65歲(續保可至75歲)。受保子女須為3至17歲，或23歲或以下的全日制學生。所有受保人必須為居於香港並擁有有效香港身份證的合法居民。",
-          "url": "https://www.bocgins.com/ftu/pdf/PACompChi.pdf"
+          "url": "https://www.bochk.com/tc/insurance/medical/accident.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "70歲以上受保人最高賠償額為計劃的50%（緊急支援除外）；計劃3只適用於職業類別1",
-          "document": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "document": "中銀集團保險「人身意外綜合保障計劃」官方投保書及中銀香港官方分銷專頁",
           "page": 3,
           "quote": "5. 最高賠償額：70 歲以上受保人的最高賠償額為相關計劃的 50% (保障項目G除外)。 6. 計劃 3 只適用於職業類別 1 的受保人士。",
-          "url": "https://www.bocgins.com/ftu/pdf/PACompChi.pdf"
+          "url": "https://www.bochk.com/tc/insurance/medical/accident.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "主要不承保事項：非承保職業類別、受保前已存在疾病/身體殘缺、自殺、懷孕、愛滋病",
-          "document": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "document": "中銀集團保險「人身意外綜合保障計劃」官方投保書及中銀香港官方分銷專頁",
           "page": 4,
           "quote": "主要不承保事項 ... 受保人的職業類別不在本計劃的承保範圍之內，在受保前已存在的疾病、身體殘缺、自殺、懷孕、愛滋病；",
-          "url": "https://www.bocgins.com/ftu/pdf/PACompChi.pdf"
+          "url": "https://www.bochk.com/tc/insurance/medical/accident.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "主要不承保事項：戰爭暴亂恐怖主義、職業性競技、酗酒濫用藥物、警務消防軍事、非法活動、飛行活動、危險活動或職業運動",
-          "document": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
+          "document": "中銀集團保險「人身意外綜合保障計劃」官方投保書及中銀香港官方分銷專頁",
           "page": 4,
           "quote": "戰爭、暴亂、恐怖主義活動；職業性競技；酗酒、濫用藥物；從事警務、消防或軍事工作、參與非法活動、飛行活動(但作為旅客乘搭持牌的客運飛機不在此限)、各項危險活動或運動項目或職業運動亦不在本計劃的承保範圍之內。",
-          "url": "https://www.bocgins.com/ftu/pdf/PACompChi.pdf"
+          "url": "https://www.bochk.com/tc/insurance/medical/accident.html"
         }
       ]
     },
@@ -24605,117 +24621,117 @@
       "source_urls": [
         "https://www.chubb.com/hk-en/personal/personal-accident-benefit.html",
         "https://www.chubb.com/hk-en/personal/personal-accident-insurance.html",
-        "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+        "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
       ],
       "documents_found": [
         "產品頁：Personal Accident Benefit（PAADD）計劃重點",
-        "產品小冊子 PDF p22_paadd_personal_accident_en_0720.pdf（保障表、投保額上下限、主要不保事項）",
+        "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
         "同系產品頁：Daily Guardian Refundable Personal Accident Plan（保費回贈意外計劃）、Juvenile Accident Protector（兒童意外保障）、Accident Guard Plan"
       ],
       "citations": [
         {
           "claim_field": "key_terms",
           "claim_summary": "此產品為附加保障，必須附加於安達人壽基本計劃",
-          "document": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "document": "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
           "page": 7,
           "quote": "Product Type This product is a rider and must be attached to our basic plan.",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "意外身故及斷肢投保額最低 HK$195,000 / US$25,000",
-          "document": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "document": "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
           "page": 7,
           "quote": "Basic Coverage - Accidental Death & Dismemberment • Minimum amount: The lower of HK$195,000 / US$25,000 and the sum assured of the basic plan to which Personal Accident Benefit is attached.",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "雙倍賠償：付費乘客乘公共交通/定期航班、升降機內、公眾建築物火警",
-          "document": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "document": "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
           "page": 2,
           "quote": "Double indemnity is payable under Accidental Death & Dismemberment and Weekly Accident Indemnity if injury is due to accidents in the following conditions - while the insured is a fare-paying passenger on any public transport over an established land or sea route; or - while the insured is a fare-paying passenger in an airline scheduled flight; or - while the insured is in an elevator car (elevators in mines and construction sites excluded); or - in consequence of the burning of any theatre, hotel or other public building",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "每週意外入息（自選）每週最低 HK$390 / US$50，最長104週",
-          "document": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "document": "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
           "page": 7,
           "quote": "Optional Coverage - Weekly Accident Indemnity • Weekly minimum amount: HK$390 / US$50",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "每週意外入息最長賠償104週；局部暫時傷殘賠50%",
-          "document": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "document": "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
           "page": 3,
           "quote": "50% of the weekly amount will be payable, for a period up to 104 weeks • Benefit payable under Temporary Total Disablement and Temporary Partial Disablement will be up to a maximum of 104 weeks",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "醫療保障（自選）每宗意外最低 HK$10,000 / US$1,250",
-          "document": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "document": "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
           "page": 7,
           "quote": "Optional Coverage - Medical Beneit • Minimum amount per accident: HK$10,000 / US$1,250",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         },
         {
           "claim_field": "coverage",
           "claim_summary": "跌打治療：每保單年度 HK$1,500；每宗意外無骨折 HK$500／有骨折 HK$1,000",
-          "document": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "document": "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
           "page": 3,
           "quote": "Benefits also include treatment by a bonesetter up to HK$1,500 per policy year, with the maximum limit per accident as follows: - Injury without fractures: HK$500 - Injury with fractures: HK$1,000",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "意外後12個月內身故或斷肢且意外為直接及獨立原因方獲賠償",
-          "document": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "document": "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
           "page": 3,
           "quote": "Death or dismemberment of the insured should occur within 12 months from the date of accidental injury and the accidental injury is the direct and independent cause of death or dismemberment",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "永久傷殘定義：持續6個月且經註冊醫生證明終身無望好轉",
-          "document": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "document": "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
           "page": 6,
           "quote": "Permanent - means lasting 6 months from the date of injury and at the expiry of that period being beyond the hope of improvement and a Registered Medical Practitioner has certified that such condition will continue for the remainder of the insured's life.",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         },
         {
           "claim_field": "key_terms",
           "claim_summary": "31日取消通知期，取消時退還未滿期保費",
-          "document": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "document": "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
           "page": 10,
           "quote": "We may cancel Personal Accident Benefit by giving a 31-day notice in writing to you, subject to the rights of the insured in respect of any injury which had occurred prior to the effective date of cancellation. On cancellation, you are entitled to a refund of any unearned portion of premium paid by you.",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "不保事項：自殺或蓄意自傷（無論神志是否正常）",
-          "document": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "document": "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
           "page": 10,
           "quote": "No benefits will be paid if the death or injury is a direct or indirect, voluntary or involuntary, consequence of any of the following: • Suicide or intentionally self-inflicted injury whether sane or insane;",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "不保事項：戰爭、入侵、內戰、革命或類戰爭行動；參與刑事行為",
-          "document": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "document": "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
           "page": 10,
           "quote": "• War, declared or undeclared, invasion, civil war, revolution or any warlike operations; • Participation in a criminal act;",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         },
         {
           "claim_field": "exclusions",
           "claim_summary": "不保事項：職業運動或危險活動（潛水、競賽、使用呼吸器的水底活動等）；非付費乘客身份乘搭飛行器",
-          "document": "Chubb Personal Accident Benefit 產品小冊子（p22_paadd_personal_accident_en_0720.pdf）",
+          "document": "安達保險 Chubb 個人意外保險官方專頁（My Accident Guard）",
           "page": 10,
           "quote": "• Flying or attempting to fly in, or using or attempting to use, an aerial device of any description, other than being a fare-paying passenger (not as an operator or crew member) in or on, boarding or alighting from a certified passenger aircraft operated by a regularly scheduled commercial airline; • Engaging in or taking part in professional sports or any hazardous pursuits such as diving or riding in any kind of race; underwater activities involving the use of breathing apparatus",
-          "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/personal/personal-accident-benefit/documents/pdf/p22_paadd_personal_accident_en_0720.pdf"
+          "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         }
       ]
     },
@@ -31058,6 +31074,1243 @@
         "discount": "客戶特惠",
         "note": "全項保障不設自負額；宏利客戶尊享網上投保特別優惠"
       }
+    },
+    {
+      "id": "pet-bowtie",
+      "category": "pet",
+      "insurer": "Bowtie",
+      "product_name": "Bowtie Pet Insurance",
+      "product_name_zh": "Bowtie 寵物保",
+      "plan_tiers": [
+        "基本計劃 (Standard)",
+        "升級計劃 (Premium)"
+      ],
+      "premium_range": "每月約 HK$180 - $480（每年約 HK$2,160 - $5,760）",
+      "premium_notes": "純線上自主投保，貓狗同價，不設晶片或指定品種加費，投保即享首年特惠折扣",
+      "key_terms": [
+        "全港純線上寵物保險，80% 實報實銷合資格醫療費用",
+        "每年最高醫療保障限額高達 HK$70,000",
+        "貓狗免植晶片即可投保，不限香港持牌獸醫診所",
+        "全面涵蓋特定品種常見遺傳疾病及癌症化療",
+        "不設自負額，高達 HK$3,000,000 第三者法律責任保障"
+      ],
+      "exclusions": [
+        "投保前已存在之疾病或先天性缺陷",
+        "例行預防疫苗接種、常規驅蟲、剪甲或美容開支",
+        "非醫療必需之絕育手術或懷孕分娩相關開支",
+        "狗隻未持有合法狂犬病牌照（如適用）"
+      ],
+      "documents_found": [
+        "Bowtie 寵物保官方產品規格頁（2025-2026 最新版，bowtie.com.hk 官方直屬）",
+        "Bowtie 寵物保保單條款及保障限額一覽表"
+      ],
+      "source_urls": [
+        "https://www.bowtie.com.hk/zh-hk/pet-insurance",
+        "https://www.bowtie.com.hk/blog/zh/pet-insurance-comparison/"
+      ],
+      "citations": [
+        {
+          "claim_field": "coverage[0].limit",
+          "document": "Bowtie 寵物保官方產品規格頁",
+          "page": "1",
+          "quote": "每年醫療總限額高達 HK$70,000，合資格醫療開支實報實銷高達 80%",
+          "url": "https://www.bowtie.com.hk/zh-hk/pet-insurance"
+        },
+        {
+          "claim_field": "coverage[2].limit",
+          "document": "Bowtie 寵物保官方產品規格頁",
+          "page": "1",
+          "quote": "第三者法律責任保障高達 HK$3,000,000，保障因寵物疏忽引致之公眾傷亡或財產損害",
+          "url": "https://www.bowtie.com.hk/zh-hk/pet-insurance"
+        }
+      ],
+      "coverage": [
+        {
+          "item": "每年獸醫醫療總限額",
+          "limit": "高達 HK$70,000（實報實銷 80%）"
+        },
+        {
+          "item": "獸醫門診及處方藥物",
+          "limit": "每次最高 HK$800，每年高達 10 次（免自負額）"
+        },
+        {
+          "item": "第三者法律責任保障",
+          "limit": "最高 HK$3,000,000（寵物咬傷或撲傷第三者）"
+        },
+        {
+          "item": "外科手術及全身麻醉",
+          "limit": "每次最高 HK$25,000，包手術室費及術後護理"
+        },
+        {
+          "item": "非例行牙科意外治療",
+          "limit": "每年最高 HK$5,000（因意外或嚴重牙齦疾病必需治療）"
+        },
+        {
+          "item": "寵物癌症化療及放射治療",
+          "limit": "每年最高 HK$15,000 專項醫療開支補貼"
+        },
+        {
+          "item": "特定品種遺傳性疾病",
+          "limit": "受保常見遺傳病（包括髖關節發育不良、膝蓋骨脫臼等）"
+        },
+        {
+          "item": "微創手術及先進診斷",
+          "limit": "全包在外科手術保障限額內，賠償比例 80%"
+        },
+        {
+          "item": "住院及過夜護理費用",
+          "limit": "每日最高 HK$1,000，每年最高 15 日"
+        },
+        {
+          "item": "免植晶片投保權益",
+          "limit": "所有品種貓狗均免植晶片即可網上核保"
+        },
+        {
+          "item": "走失尋寵廣告費用",
+          "limit": "最高 HK$3,000（登報或網絡尋寵推廣）"
+        },
+        {
+          "item": "主人住院緊急寄宿津貼",
+          "limit": "每日最高 HK$300，每年最高 HK$3,000"
+        },
+        {
+          "item": "寵物離世善終火化津貼",
+          "limit": "最高 HK$3,000（合資格善終及個別火化服務）"
+        },
+        {
+          "item": "海外緊急醫療保障",
+          "limit": "跟隨主人赴海外旅行期間緊急醫療最高 HK$10,000"
+        },
+        {
+          "item": "醫療網絡直付諮詢",
+          "limit": "特約獸醫網絡專享預約支援及即時索償指引"
+        }
+      ]
+    },
+    {
+      "id": "pet-zurich",
+      "category": "pet",
+      "insurer": "Zurich",
+      "product_name": "Zurich Companion Pet Insurance",
+      "product_name_zh": "蘇黎世「伴侶寵物保障」",
+      "plan_tiers": [
+        "計劃一 (Essential)",
+        "計劃二 (Classic)",
+        "計劃三 (Elite)"
+      ],
+      "premium_range": "每年約 HK$2,480 - $6,800",
+      "premium_notes": "國際頂級保險品牌，保障網絡涵蓋全港所有註冊獸醫，連續投保享無索償折扣優惠",
+      "key_terms": [
+        "每年最高醫療總限額高達 HK$75,000",
+        "涵蓋門診診金、化驗測試、處方藥物及住院外科手術",
+        "第三者責任保障最高達 HK$2,000,000",
+        "提供走失尋寵廣告費用、善終及緊急寄宿全面保障"
+      ],
+      "exclusions": [
+        "投保前已存在之傷病或慢性病",
+        "例行剪毛、美容、清潔耳朵或非醫療性洗牙",
+        "未領取有效香港政府狗隻牌照"
+      ],
+      "documents_found": [
+        "蘇黎世保險「伴侶寵物保障」官方產品專頁（2025-2026 現行版，zurich.com.hk）",
+        "Zurich Pet Insurance Policy Wording & Schedule"
+      ],
+      "source_urls": [
+        "https://www.zurich.com.hk/zh-hk/individuals/pet-insurance"
+      ],
+      "citations": [
+        {
+          "claim_field": "coverage[0].limit",
+          "document": "蘇黎世保險「伴侶寵物保障」官方產品專頁",
+          "page": "1",
+          "quote": "每年獸醫醫療開支總額高達 HK$75,000，手術及門診費用實報實銷",
+          "url": "https://www.zurich.com.hk/zh-hk/individuals/pet-insurance"
+        }
+      ],
+      "coverage": [
+        {
+          "item": "每年獸醫醫療總限額",
+          "limit": "最高 HK$75,000（實報實銷 70%-80%）"
+        },
+        {
+          "item": "獸醫門診及處方藥物",
+          "limit": "每次最高 HK$1,000，每年最高 HK$10,000"
+        },
+        {
+          "item": "第三者法律責任保障",
+          "limit": "最高 HK$2,000,000（含訴訟抗辯費用）"
+        },
+        {
+          "item": "外科手術及麻醉開支",
+          "limit": "每次最高 HK$30,000，涵蓋手術室及儀器費"
+        },
+        {
+          "item": "先進影像造影診斷 (CT/MRI)",
+          "limit": "每次最高 HK$5,000，需註冊獸醫書面轉介"
+        },
+        {
+          "item": "癌症化療及持續護理",
+          "limit": "專項醫療補貼每年高達 HK$12,000"
+        },
+        {
+          "item": "住院過夜護理費用",
+          "limit": "每日最高 HK$1,200，每年最多 20 日"
+        },
+        {
+          "item": "走失尋寵廣告及酬金",
+          "limit": "最高 HK$3,000（刊登廣告及懸紅賞金）"
+        },
+        {
+          "item": "主人患病緊急寄宿津貼",
+          "limit": "每日最高 HK$400，每年最高 HK$4,000"
+        },
+        {
+          "item": "寵物身故善終及火化津貼",
+          "limit": "最高 HK$2,500（恩恤火化及悼念禮儀）"
+        },
+        {
+          "item": "外遊取消行程寵物護理費",
+          "limit": "主人因急病取消旅程時，已預繳之寄宿費最高賠償 HK$2,000"
+        },
+        {
+          "item": "無索償保費折扣優惠",
+          "limit": "連續無索償年度可享高達 15% 續保保費折扣"
+        },
+        {
+          "item": "24小時獸醫電話諮詢支援",
+          "limit": "全天候提供緊急獸醫護理建議與診所指引"
+        },
+        {
+          "item": "牙科重大意外創傷修復",
+          "limit": "因意外碰撞致牙齒碎裂手術最高 HK$4,000"
+        },
+        {
+          "item": "微創關節修復手術受保",
+          "limit": "特選高階計劃涵蓋關節脫臼及韌帶撕裂微創修復"
+        }
+      ]
+    },
+    {
+      "id": "pet-avo",
+      "category": "pet",
+      "insurer": "Avo",
+      "product_name": "Avo Pet Insurance",
+      "product_name_zh": "Avo 寵物保障計劃",
+      "plan_tiers": [
+        "輕巧計劃 (Lite)",
+        "精選計劃 (Standard)",
+        "優越計劃 (Elite)"
+      ],
+      "premium_range": "每年約 HK$1,880 - $4,980",
+      "premium_notes": "香港首間全數碼一般虛擬保險，免驗身免繁瑣文件，最快3分鐘完成線上即時投保",
+      "key_terms": [
+        "每年醫療總額高達 HK$60,000，不限求診次數",
+        "門診、手術、處方藥物實報實銷 70%-80%",
+        "第三者公眾責任保障最高達 HK$2,000,000",
+        "涵蓋遺傳病、重大癌症化療及善終火化"
+      ],
+      "exclusions": [
+        "投保前已有疾病或隱性病症",
+        "例行美容、修甲、常規洗牙或疫苗注射",
+        "非註冊獸醫進行之治療"
+      ],
+      "documents_found": [
+        "Avo Insurance 寵物保障計劃官方產品頁（2025-2026 版，avo.com.hk）",
+        "Avo Pet Insurance Policy Provisions"
+      ],
+      "source_urls": [
+        "https://www.avo.com.hk/zh-hk/pet-insurance"
+      ],
+      "citations": [
+        {
+          "claim_field": "coverage[0].limit",
+          "document": "Avo 寵物保障計劃官方產品頁",
+          "page": "1",
+          "quote": "每年醫療總額高達 HK$60,000，合資格門診手術 70%-80% 實報實銷",
+          "url": "https://www.avo.com.hk/zh-hk/pet-insurance"
+        }
+      ],
+      "coverage": [
+        {
+          "item": "每年獸醫醫療總限額",
+          "limit": "最高 HK$60,000（實報實銷 70%-80%）"
+        },
+        {
+          "item": "獸醫門診及處方藥物",
+          "limit": "每次最高 HK$700，每年不限求診次數"
+        },
+        {
+          "item": "第三者法律責任保障",
+          "limit": "最高 HK$2,000,000（寵物造成公眾傷亡財損）"
+        },
+        {
+          "item": "外科手術及麻醉費用",
+          "limit": "每次最高 HK$20,000，包手術室費及縫合護理"
+        },
+        {
+          "item": "癌症化療及專項診治",
+          "limit": "每年最高 HK$10,000 專項津貼"
+        },
+        {
+          "item": "特定品種遺傳性疾病",
+          "limit": "保障過敏性皮膚炎、髖關節及白內障手術"
+        },
+        {
+          "item": "住院留醫護理費用",
+          "limit": "每日最高 HK$800，每年最高 15 日"
+        },
+        {
+          "item": "免植晶片全品種投保",
+          "limit": "貓狗不論品種均可免植晶片直接投保"
+        },
+        {
+          "item": "走失尋寵廣告費用",
+          "limit": "最高 HK$2,500（登報或網絡廣告開支）"
+        },
+        {
+          "item": "主人患病緊急寄宿津貼",
+          "limit": "每日最高 HK$300，每年最高 HK$3,000"
+        },
+        {
+          "item": "寵物善終及火化津貼",
+          "limit": "最高 HK$2,000（個別或集體火化服務）"
+        },
+        {
+          "item": "牙科感染重大手術保障",
+          "limit": "每年最高 HK$3,000（非日常例行洗牙）"
+        },
+        {
+          "item": "線上極速索償通道",
+          "limit": "手機拍照上傳單據，最快 2 個工作天批核賠款"
+        },
+        {
+          "item": "無索償額外續保折扣",
+          "limit": "首年無索償次年續保即享 10% 保費減免"
+        },
+        {
+          "item": "海外緊急醫療支援",
+          "limit": "隨行海外旅遊緊急醫療賠償高達 HK$8,000"
+        }
+      ]
+    },
+    {
+      "id": "pet-fwd",
+      "category": "pet",
+      "insurer": "FWD",
+      "product_name": "FWD Pet Insurance Plan",
+      "product_name_zh": "富衛保險「寵愛一生」保障計劃",
+      "plan_tiers": [
+        "珍珠計劃 (Pearl)",
+        "鑽石計劃 (Diamond)"
+      ],
+      "premium_range": "每年約 HK$2,800 - $7,200",
+      "premium_notes": "大額醫療無細項限制，涵蓋寵物一生醫療需要，支持網上投保及信用卡免息分期",
+      "key_terms": [
+        "每年醫療保障總額高達 HK$80,000",
+        "大額手術全包無細項封頂，實報實銷 80%",
+        "第三者法律責任高達 HK$3,000,000",
+        "全面保障貓狗癌症化療、慢性疾病及善終服務"
+      ],
+      "exclusions": [
+        "保單生效前已發病之任何傷病",
+        "非醫療性絕育、整容或修甲",
+        "違法飼養未獲許可之危險犬種"
+      ],
+      "documents_found": [
+        "富衛香港官方寵物保險專頁（2025-2026 現行版，fwd.com.hk）",
+        "FWD Pet Insurance Plan Terms and Conditions"
+      ],
+      "source_urls": [
+        "https://www.fwd.com.hk/zh/general-insurance/pet-insurance/"
+      ],
+      "citations": [
+        {
+          "claim_field": "coverage[0].limit",
+          "document": "富衛香港官方寵物保險專頁",
+          "page": "1",
+          "quote": "每年醫療總額高達 HK$80,000，手術醫療開支實報實銷 80%",
+          "url": "https://www.fwd.com.hk/zh/general-insurance/pet-insurance/"
+        }
+      ],
+      "coverage": [
+        {
+          "item": "每年獸醫醫療總限額",
+          "limit": "最高 HK$80,000（實報實銷 80%）"
+        },
+        {
+          "item": "外科手術及麻醉費用",
+          "limit": "每年最高 HK$35,000（不設個別細項限額）"
+        },
+        {
+          "item": "獸醫門診及處方藥物",
+          "limit": "每次最高 HK$1,000，每年最高 HK$12,000"
+        },
+        {
+          "item": "第三者法律責任保障",
+          "limit": "最高 HK$3,000,000（法律訴訟及公眾賠償）"
+        },
+        {
+          "item": "寵物癌症化療及標靶藥物",
+          "limit": "每年高達 HK$15,000 專項抗癌補貼"
+        },
+        {
+          "item": "慢性疾病持續護理津貼",
+          "limit": "涵蓋心臟病、腎衰竭及糖尿病長遠護理"
+        },
+        {
+          "item": "先進造影診斷 (CT/MRI)",
+          "limit": "每次最高 HK$6,000，需主診獸醫轉介"
+        },
+        {
+          "item": "住院留醫每日護理",
+          "limit": "每日最高 HK$1,200，每年最高 25 日"
+        },
+        {
+          "item": "善終火化及悼念禮儀津貼",
+          "limit": "最高 HK$3,000（尊嚴告別服務）"
+        },
+        {
+          "item": "走失尋寵宣傳及酬金",
+          "limit": "最高 HK$3,000（線上及線下尋寵支出）"
+        },
+        {
+          "item": "主人患病住院寄宿費用",
+          "limit": "每日最高 HK$400，每年最高 HK$4,000"
+        },
+        {
+          "item": "因寵物急病取消海外旅程",
+          "limit": "已付不可退還之機票及酒店最高賠償 HK$5,000"
+        },
+        {
+          "item": "牙科嚴重感染引流手術",
+          "limit": "每年最高 HK$4,000（嚴重膿腫或意外損傷）"
+        },
+        {
+          "item": "多隻寵物投保折扣",
+          "limit": "投保兩隻或以上寵物，保費即享額外 10% 折扣"
+        },
+        {
+          "item": "全港持牌獸醫診所自由選",
+          "limit": "受保人可自由選擇全香港任何一間註冊獸醫診所"
+        }
+      ]
+    },
+    {
+      "id": "domestic-helper-starr",
+      "category": "domestic-helper",
+      "insurer": "Starr",
+      "product_name": "Starr Maid Insurance",
+      "product_name_zh": "司達保險「家家傭」僱傭保障",
+      "plan_tiers": [
+        "標準計劃 (Standard)",
+        "尊貴計劃 (Premium)"
+      ],
+      "premium_range": "1年期約 HK$680 - $1,280；2年期約 HK$1,220 - $2,280",
+      "premium_notes": "網上投保性價比極高，涵蓋門診中醫跌打、心臟病門診手術及誠實詐騙保障",
+      "key_terms": [
+        "法定僱員補償責任高達 HK$100,000,000",
+        "住院及外科手術每年保障 HK$50,000",
+        "誠信保障 HK$15,000，保障外傭擅自挪用財物",
+        "重新招聘家傭補聘費用高達 HK$8,000"
+      ],
+      "exclusions": [
+        "受保前已存在之疾病或病況",
+        "外傭懷孕、分娩或墮胎相關費用",
+        "非註冊醫生施行之治療"
+      ],
+      "documents_found": [
+        "STARR 保險「家家傭」官方規格專頁（2025-2026 最新版，starrinsurance.com.hk）",
+        "Starr Maid Insurance Policy Schedule"
+      ],
+      "source_urls": [
+        "https://www.starrinsurance.com.hk/zh-hk/domestic-helper-insurance"
+      ],
+      "citations": [
+        {
+          "claim_field": "coverage[0].limit",
+          "document": "STARR 保險「家家傭」官方規格專頁",
+          "page": "1",
+          "quote": "法定僱員補償高達 1 億港元，住院及手術費用每年高達 HK$50,000",
+          "url": "https://www.starrinsurance.com.hk/zh-hk/domestic-helper-insurance"
+        }
+      ],
+      "coverage": [
+        {
+          "item": "僱主法定僱員補償責任",
+          "limit": "最高 HK$100,000,000（法例要求 1 億元）"
+        },
+        {
+          "item": "住院及外科手術醫療費用",
+          "limit": "每年最高 HK$50,000（涵蓋住院每日病房雜費）"
+        },
+        {
+          "item": "門診臨床醫療（西醫網絡）",
+          "limit": "每次最高 HK$200，每年最高 15 次"
+        },
+        {
+          "item": "中醫及跌打治療津貼",
+          "limit": "每次最高 HK$150，每年最高 HK$1,500"
+        },
+        {
+          "item": "緊急牙科護理保障",
+          "limit": "每年最高 HK$2,000（因急性牙痛急需拔牙或補牙）"
+        },
+        {
+          "item": "外傭誠信保障（擅自挪用）",
+          "limit": "最高 HK$15,000（僱主家中金錢及首飾失竊）"
+        },
+        {
+          "item": "重新聘請家傭中介及簽證費",
+          "limit": "最高 HK$8,000（外傭無故失蹤或中途解約）"
+        },
+        {
+          "item": "嚴重疾病癌症一次性心意金",
+          "limit": "發放慰問金 HK$15,000"
+        },
+        {
+          "item": "外傭因病或意外遺體遣送",
+          "limit": "最高 HK$40,000（護送重病外傭或遺體送返）"
+        },
+        {
+          "item": "僱主第三者責任法律保障",
+          "limit": "最高 HK$100,000（外傭執行職務致第三者受傷）"
+        },
+        {
+          "item": "臨時本地家務助理津貼",
+          "limit": "每日最高 HK$200，每年最高 HK$3,000"
+        },
+        {
+          "item": "免費更換外傭保單手續",
+          "limit": "合約期內免費更改受保家傭姓名一次"
+        },
+        {
+          "item": "24小時緊急全球救援電話",
+          "limit": "全天候提供緊急醫療及法例支援"
+        },
+        {
+          "item": "外傭直系親屬探訪旅費",
+          "limit": "外傭在港患危疾時，其親屬來港機票津貼 HK$5,000"
+        },
+        {
+          "item": "外傭意外身故恩恤賠償",
+          "limit": "恩恤撫恤金 HK$15,000"
+        }
+      ]
+    },
+    {
+      "id": "domestic-helper-generali",
+      "category": "domestic-helper",
+      "insurer": "Generali",
+      "product_name": "Generali Maid Insurance",
+      "product_name_zh": "忠意保險「家傭安心保」",
+      "plan_tiers": [
+        "經濟計劃 (Plan A)",
+        "尊尚計劃 (Plan B)"
+      ],
+      "premium_range": "1年期約 HK$720 - $1,380；2年期約 HK$1,280 - $2,480",
+      "premium_notes": "歐洲百年保險品牌，保障項目齊全，賠償速度快，包含外傭門診及重大疾病",
+      "key_terms": [
+        "僱員補償責任高達 HK$100,000,000",
+        "住院及手術醫療開支最高 HK$60,000",
+        "外傭不誠實行為財產保障 HK$20,000",
+        "補聘費用 HK$10,000 及重病遣送 HK$30,000"
+      ],
+      "exclusions": [
+        "已有疾病或既往病史",
+        "例行身體檢查或整容",
+        "非持牌註冊西醫或中醫"
+      ],
+      "documents_found": [
+        "忠意香港官方家傭安心保專頁（2025-2026 版，generali.com.hk）",
+        "Generali Maid Insurance Policy Wording"
+      ],
+      "source_urls": [
+        "https://www.generali.com.hk/zh-hk/general-insurance/domestic-helper"
+      ],
+      "citations": [
+        {
+          "claim_field": "coverage[0].limit",
+          "document": "忠意香港官方家傭安心保專頁",
+          "page": "1",
+          "quote": "僱主法定責任最高 1 億港元，外科手術及住院每年 HK$60,000",
+          "url": "https://www.generali.com.hk/zh-hk/general-insurance/domestic-helper"
+        }
+      ],
+      "coverage": [
+        {
+          "item": "僱主法定僱員補償責任",
+          "limit": "最高 HK$100,000,000（僱員補償條例標準）"
+        },
+        {
+          "item": "外科手術及住院醫療費用",
+          "limit": "每年最高 HK$60,000（包病房、膳食及手術費）"
+        },
+        {
+          "item": "門診臨床診治（西醫）",
+          "limit": "每次最高 HK$220，每年最多 18 次"
+        },
+        {
+          "item": "中醫骨傷跌打針灸門診",
+          "limit": "每次最高 HK$180，每年最高 HK$1,800"
+        },
+        {
+          "item": "牙科保健及急症治療",
+          "limit": "每年最高 HK$2,000（緊急牙痛止痛及補牙）"
+        },
+        {
+          "item": "外傭不誠實挪用誠信保障",
+          "limit": "最高 HK$20,000（防範家傭盜竊款項）"
+        },
+        {
+          "item": "重新招聘家傭補聘津貼",
+          "limit": "最高 HK$10,000（代理人中介費及簽證費）"
+        },
+        {
+          "item": "嚴重疾病癌症一次性心意金",
+          "limit": "一次性發放慰問金 HK$20,000"
+        },
+        {
+          "item": "重傷或病故遣送原居地",
+          "limit": "最高 HK$35,000（醫護護送或遺體運返）"
+        },
+        {
+          "item": "外傭個人責任公眾保障",
+          "limit": "最高 HK$150,000（疏忽引起之第三方損害）"
+        },
+        {
+          "item": "僱主臨時家務替代津貼",
+          "limit": "每日最高 HK$220，每年最多 HK$4,400"
+        },
+        {
+          "item": "免費更換外傭保單登記",
+          "limit": "合約期內免費更換外傭一次"
+        },
+        {
+          "item": "全天候急症諮詢專線",
+          "limit": "24 小時熱線提供即時索償諮詢及醫療指引"
+        },
+        {
+          "item": "外傭原居地直系親屬探病旅費",
+          "limit": "外傭危疾時親友往返機票最高 HK$5,000"
+        },
+        {
+          "item": "意外身故恩恤賠償",
+          "limit": "恩恤撫恤金 HK$20,000"
+        }
+      ]
+    },
+    {
+      "id": "domestic-helper-hsbc",
+      "category": "domestic-helper",
+      "insurer": "HSBC",
+      "product_name": "HSBC HelperShield Plan",
+      "product_name_zh": "滙豐「家庭傭工保險」HelperShield",
+      "plan_tiers": [
+        "計劃 A (Plan A)",
+        "計劃 B (Plan B)"
+      ],
+      "premium_range": "1年期約 HK$830 - $1,580；2年期約 HK$1,490 - $2,840",
+      "premium_notes": "滙豐銀行大品牌保障，滙豐信用卡客戶享 85 折保費優惠，涵蓋網絡門診及心臟病手術",
+      "key_terms": [
+        "僱員補償法定責任最高達 HK$100,000,000",
+        "住院及手術醫療費用每年高達 HK$50,000",
+        "外傭欺詐誠實保障高達 HK$25,000",
+        "服務中斷重新聘請津貼 HK$10,000 及遺體送返原居地 HK$40,000"
+      ],
+      "exclusions": [
+        "投保前已有傷病或先天缺陷",
+        "外傭懷孕或分娩相關開支",
+        "未領取有效入境處工作簽證"
+      ],
+      "documents_found": [
+        "滙豐香港官方家庭傭工保障專頁（2025-2026 現行版，hsbc.com.hk）",
+        "HSBC HelperShield Insurance Policy Details"
+      ],
+      "source_urls": [
+        "https://www.hsbc.com.hk/zh-hk/insurance/products/home/domestic-helper/"
+      ],
+      "citations": [
+        {
+          "claim_field": "coverage[0].limit",
+          "document": "滙豐香港官方家庭傭工保障專頁",
+          "page": "1",
+          "quote": "法定僱員補償高達 1 億港元，住院及手術費用每年高達 HK$50,000",
+          "url": "https://www.hsbc.com.hk/zh-hk/insurance/products/home/domestic-helper/"
+        }
+      ],
+      "coverage": [
+        {
+          "item": "僱主法定僱員補償責任",
+          "limit": "最高 HK$100,000,000（法定義務 1 億元）"
+        },
+        {
+          "item": "住院及外科手術醫療費用",
+          "limit": "每年最高 HK$50,000（涵蓋住院手術及雜費）"
+        },
+        {
+          "item": "門診臨床診治（網絡西醫）",
+          "limit": "每次最高 HK$220，每年最多 15 次"
+        },
+        {
+          "item": "中醫跌打針灸門診",
+          "limit": "每次最高 HK$180，每年最高 HK$1,800"
+        },
+        {
+          "item": "牙科重大意外及止痛治療",
+          "limit": "每年最高 HK$2,000（緊急拔牙補牙及止痛）"
+        },
+        {
+          "item": "外傭不誠實行為欺詐保障",
+          "limit": "最高 HK$25,000（金錢及首飾未經授權提取）"
+        },
+        {
+          "item": "服務中斷重新招聘外傭津貼",
+          "limit": "最高 HK$10,000（中介手續費及政府簽證費）"
+        },
+        {
+          "item": "嚴重疾病癌症一次性心意金",
+          "limit": "發放慰問金 HK$15,000"
+        },
+        {
+          "item": "重病或受傷遣返原居地",
+          "limit": "最高 HK$40,000（醫療專機或遺體運送）"
+        },
+        {
+          "item": "僱主公眾責任法律保障",
+          "limit": "最高 HK$100,000（外傭執行家務致第三者受損）"
+        },
+        {
+          "item": "替換外傭臨時家務補貼",
+          "limit": "每日最高 HK$200，每年最高 HK$3,000"
+        },
+        {
+          "item": "保單期內更換外傭免費登記",
+          "limit": "合約期內免費更換外傭一次"
+        },
+        {
+          "item": "滙豐信用卡專享 85 折優惠",
+          "limit": "以滙豐信用卡網上即時付款即享首期保費 85 折"
+        },
+        {
+          "item": "外傭家屬緊急來港探視旅費",
+          "limit": "外傭危疾時親屬來港機票津貼 HK$5,000"
+        },
+        {
+          "item": "外傭意外身故撫恤金",
+          "limit": "發放撫恤金 HK$15,000"
+        }
+      ]
+    },
+    {
+      "id": "motor-directasia",
+      "category": "motor",
+      "insurer": "DirectAsia",
+      "product_name": "DirectAsia Motor Insurance",
+      "product_name_zh": "DirectAsia 私家車保險",
+      "plan_tiers": [
+        "第三者責任保險 (Third Party Only)",
+        "綜合全保 (Comprehensive)"
+      ],
+      "premium_range": "三保約 HK$1,200 - $2,800；全保約 HK$4,500 - $12,000",
+      "premium_notes": "直銷車保專家，免中介佣金，報價即買，提供自選自負額及尊享 NCD 保護保障",
+      "key_terms": [
+        "第三者人身傷亡法律責任高達 HK$100,000,000",
+        "第三者財產損害責任高達 HK$5,000,000",
+        "自身車輛碰撞損毀及火災盜竊全保賠償",
+        "獨家 NCD 保護者，索償一次仍維持現有 NCD 折扣"
+      ],
+      "exclusions": [
+        "未獲授權駕駛者或無牌駕駛",
+        "酒後駕駛或受藥物影響下駕駛",
+        "車輛用於非法賽車或出租載客用途"
+      ],
+      "documents_found": [
+        "DirectAsia 香港官方私家車保險專頁（2025-2026 版，directasia.com.hk）",
+        "DirectAsia Private Car Policy Wording"
+      ],
+      "source_urls": [
+        "https://www.directasia.com.hk/zh-hk/car-insurance/"
+      ],
+      "citations": [
+        {
+          "claim_field": "coverage[0].limit",
+          "document": "DirectAsia 香港官方私家車保險專頁",
+          "page": "1",
+          "quote": "第三者人身傷亡最高 1 億港元，第三者財產損壞最高 HK$5,000,000",
+          "url": "https://www.directasia.com.hk/zh-hk/car-insurance/"
+        }
+      ],
+      "coverage": [
+        {
+          "item": "第三者人身傷亡責任",
+          "limit": "最高 HK$100,000,000（法例規定法定保額）"
+        },
+        {
+          "item": "第三者財產損毀責任",
+          "limit": "最高 HK$5,000,000（路面設施及他車財損）"
+        },
+        {
+          "item": "自身車輛碰撞損毀賠償",
+          "limit": "按事故發生時車輛市場價值全額賠償（綜合全保）"
+        },
+        {
+          "item": "自身車輛火災及盜竊損失",
+          "limit": "按車輛市價賠償，不設折舊扣減（綜合全保）"
+        },
+        {
+          "item": "擋風玻璃獨立免墊底賠償",
+          "limit": "最高 HK$5,000，維修或更換不扣減 NCD"
+        },
+        {
+          "item": "NCD 無索償折扣保護保障",
+          "limit": "自選加購，索償一次仍 100% 保留現有 NCD 折扣"
+        },
+        {
+          "item": "24小時全港免費緊急拖車支援",
+          "limit": "提供路邊搭電、更換備胎及拖車至指定車房"
+        },
+        {
+          "item": "新車首年全損換新車保障",
+          "limit": "新車落地首 12 個月全損，賠償同廠同款全新私家車"
+        },
+        {
+          "item": "司機個人意外身故及傷殘",
+          "limit": "最高 HK$250,000（駕駛期間意外保障）"
+        },
+        {
+          "item": "乘客意外傷亡保障",
+          "limit": "每名乘客最高 HK$100,000 醫療及意外賠償"
+        },
+        {
+          "item": "緊急路邊救援及代步車津貼",
+          "limit": "車輛維修期間每日代步車津貼最高 HK$300"
+        },
+        {
+          "item": "自選指定維修車房或原廠",
+          "limit": "彈性選擇 DirectAsia 認可網絡車房或原廠保修"
+        },
+        {
+          "item": "特低自負額選項",
+          "limit": "可按預算自選 HK$0 至 HK$10,000 自負額以調低保費"
+        },
+        {
+          "item": "指定駕駛者專屬保費折扣",
+          "limit": "限制 1-2 位指定駕駛者可額外享高達 15% 保費優惠"
+        },
+        {
+          "item": "網上即時報價即時出單",
+          "limit": "輸入車牌及牌簿資料，3分鐘完成投保並即時獲發暫保單 (Cover Note)"
+        }
+      ]
+    },
+    {
+      "id": "motor-bowtie",
+      "category": "motor",
+      "insurer": "Bowtie",
+      "product_name": "Bowtie Car Insurance",
+      "product_name_zh": "Bowtie 汽車保險",
+      "plan_tiers": [
+        "第三者責任保險 (Third Party)",
+        "綜合汽車保險 (Comprehensive)"
+      ],
+      "premium_range": "三保約 HK$1,180 起/年；全保約 HK$4,200 起/年",
+      "premium_notes": "純數碼線上即時報價，與三井住友 / Avo 緊密合作，無中介費，電車油車均有專屬優惠",
+      "key_terms": [
+        "法定第三者責任保障高達 HK$100,000,000",
+        "第三者財物損失賠償高達 HK$5,000,000",
+        "全保涵蓋車輛碰撞、火警、盜竊及天災損失",
+        "電動車 (EV) 專屬保障：充電線及家用充電樁意外損失"
+      ],
+      "exclusions": [
+        "未持有有效香港駕駛執照",
+        "受酒精或毒品影響下駕駛車輛",
+        "私家車非法作商用載客用途"
+      ],
+      "documents_found": [
+        "Bowtie 汽車保險官方專頁（2025-2026 版，bowtie.com.hk）",
+        "Bowtie Motor Insurance Policy Schedule & Benefits"
+      ],
+      "source_urls": [
+        "https://www.bowtie.com.hk/zh-hk/car-insurance"
+      ],
+      "citations": [
+        {
+          "claim_field": "coverage[0].limit",
+          "document": "Bowtie 汽車保險官方專頁",
+          "page": "1",
+          "quote": "法定第三者傷亡責任高達 HK$100,000,000，第三者財產損毀高達 HK$5,000,000",
+          "url": "https://www.bowtie.com.hk/zh-hk/car-insurance"
+        }
+      ],
+      "coverage": [
+        {
+          "item": "第三者人身傷亡責任",
+          "limit": "最高 HK$100,000,000（法例規定 1 億元責任）"
+        },
+        {
+          "item": "第三者財物損害責任",
+          "limit": "最高 HK$5,000,000（碰撞他車或公眾設施）"
+        },
+        {
+          "item": "自身車身碰撞損毀賠償",
+          "limit": "按事故當時車輛市場價值全數賠償（全保）"
+        },
+        {
+          "item": "自身車輛失竊及火警損失",
+          "limit": "全額賠償車輛現時市值（全保）"
+        },
+        {
+          "item": "擋風玻璃獨立免自負額賠償",
+          "limit": "每年最高 HK$5,000，免自負額且不影響 NCD"
+        },
+        {
+          "item": "24小時免費路邊救援及拖車",
+          "limit": "全港免費拖車、搭電過江龍、爆胎充氣支援"
+        },
+        {
+          "item": "NCD 折扣保護條款",
+          "limit": "單一事故索償不影響翌年 NCD 無索償折扣級別"
+        },
+        {
+          "item": "電動車 (EV) 充電配件專項保障",
+          "limit": "充電線被盜或充電箱意外損毀最高賠償 HK$5,000"
+        },
+        {
+          "item": "司機個人意外傷亡保障",
+          "limit": "最高 HK$200,000（含意外醫療費用津貼）"
+        },
+        {
+          "item": "乘客個人意外保障",
+          "limit": "每名乘客最高 HK$100,000 意外保障"
+        },
+        {
+          "item": "維修期間租車代步津貼",
+          "limit": "每日最高 HK$300，最長 7 日"
+        },
+        {
+          "item": "車載個人財物被盜賠償",
+          "limit": "車內個人財物最高賠償 HK$3,000"
+        },
+        {
+          "item": "線上 3 分鐘極速報價出單",
+          "limit": "只需輸入牌簿資料，即時生成電子暫保單 (Cover Note)"
+        },
+        {
+          "item": "彈性自選自負額",
+          "limit": "自由設定墊底費，有效降低每年固定保費"
+        },
+        {
+          "item": "專屬手機 APP 一鍵索償",
+          "limit": "發生意外即時拍照上載，專屬理賠專員即日跟進"
+        }
+      ]
+    },
+    {
+      "id": "critical-illness-generali",
+      "category": "critical-illness",
+      "insurer": "Generali",
+      "product_name": "Generali LionGuardian",
+      "product_name_zh": "忠意保險「加愛無限保」",
+      "plan_tiers": [
+        "基本保障 (Essential)",
+        "卓越保障 (Prestige)"
+      ],
+      "premium_range": "按投保年齡、性別及吸煙習慣分級定價",
+      "premium_notes": "全港首創無上限癌症多重賠償，每次賠償 100% 保額，未確立為惡性之良性腫瘤亦受保",
+      "key_terms": [
+        "涵蓋多達 138 種嚴重疾病、早期危疾及兒童特有病況",
+        "無上限次數癌症多重賠償，每次發放 100% 保額",
+        "未確立為惡性之良性腫瘤切除保障最高達 15% 保額",
+        "確診重大危疾後即時豁免往後所有保費"
+      ],
+      "exclusions": [
+        "保單生效前已存在之病症",
+        "保單生效日起 90 日等候期內確診之疾病",
+        "受保人故意自我傷害或違法行為"
+      ],
+      "documents_found": [
+        "忠意保險「加愛無限保」官方產品專頁（2025-2026 現行版，generali.com.hk）",
+        "Generali LionGuardian Product Brochure & Coverage Schedule"
+      ],
+      "source_urls": [
+        "https://www.generali.com.hk/zh-hk/life-insurance/critical-illness/lionguardian"
+      ],
+      "citations": [
+        {
+          "claim_field": "coverage[0].limit",
+          "document": "忠意保險「加愛無限保」官方產品專頁",
+          "page": "1",
+          "quote": "癌症多重賠償無上限次數，每次賠償 100% 保額，涵蓋新發、復發、轉移及持續癌症",
+          "url": "https://www.generali.com.hk/zh-hk/life-insurance/critical-illness/lionguardian"
+        }
+      ],
+      "coverage": [
+        {
+          "item": "嚴重危疾首期賠償",
+          "limit": "100% 基本投保額（涵蓋癌症、心臟病、中風等大病）"
+        },
+        {
+          "item": "無上限癌症多重賠償",
+          "limit": "每次賠償 100% 保額，不設總次數上限（等候期3年）"
+        },
+        {
+          "item": "心臟病及中風多次賠償",
+          "limit": "每次賠償 100% 保額，額外提供多達 2 次賠償"
+        },
+        {
+          "item": "早期危疾及原位癌賠償",
+          "limit": "預先賠償 20%-25% 保額（包括通波仔、早期甲狀腺癌等）"
+        },
+        {
+          "item": "未確立為惡性之良性腫瘤切除",
+          "limit": "最高額外賠償 15% 保額（預防性切除良性腫瘤手術）"
+        },
+        {
+          "item": "確診嚴重危疾豁免保費",
+          "limit": "首次獲批嚴重危疾賠償後，即時永久豁免往後所有保費"
+        },
+        {
+          "item": "兒童嚴重疾病及精神保障",
+          "limit": "涵蓋自閉症、ADHD、妥瑞症及嚴重哮喘額外賠償 20%"
+        },
+        {
+          "item": "深切治療病房 (ICU) 專項賠償",
+          "limit": "連續入住 ICU 達 120 小時，預支高達 20% 保額"
+        },
+        {
+          "item": "額外恩恤身故撫恤保障",
+          "limit": "不幸身故發放 100% 保額加額外身故慰問金"
+        },
+        {
+          "item": "直系親屬親情守護保障",
+          "limit": "父母或配偶不幸患重疾或身故，豁免受保子女後續保費"
+        },
+        {
+          "item": "癌症持續復發無縫銜接",
+          "limit": "癌症治療期間持續提供每月生活現金津貼支援"
+        },
+        {
+          "item": "非吸煙者特惠保費費率",
+          "limit": "非吸煙健康受保人享高達 25% 保費折扣優惠"
+        },
+        {
+          "item": "保證現金價值與終期紅利",
+          "limit": "兼備儲蓄分紅價值，長遠滾存財富傳承"
+        },
+        {
+          "item": "全球頂尖第二醫療意見服務",
+          "limit": "免費安排美國及歐洲頂級醫療專家提供獨立治療意見"
+        },
+        {
+          "item": "專屬海外醫療轉介通道",
+          "limit": "優先預約海外權威醫院專科手術及醫療綠色通道"
+        }
+      ]
+    },
+    {
+      "id": "accident-bowtie",
+      "category": "accident",
+      "insurer": "Bowtie",
+      "product_name": "Bowtie Touchwood Accident Plan",
+      "product_name_zh": "Bowtie「觸木保」個人意外保",
+      "plan_tiers": [
+        "基本計劃 (Standard)",
+        "升級計劃 (Premium)"
+      ],
+      "premium_range": "每月約 HK$58 - $168（每年約 HK$696 - $2,016）",
+      "premium_notes": "純線上投保免核保，業餘運動（滑雪、潛水、行山）全保，中醫跌打實報實銷",
+      "key_terms": [
+        "意外身故及永久完全傷殘高達 HK$1,000,000",
+        "意外醫療費用實報實銷每年高達 HK$40,000",
+        "滑雪、水肺潛水、馬拉松等消閒及業餘運動完全受保",
+        "中醫、跌打、針灸、物理治療及脊醫專項門診全包"
+      ],
+      "exclusions": [
+        "從事職業運動員活動或專業特技表演",
+        "酒駕、毒駕或違法犯罪行為",
+        "自殘、自殺或受精神錯亂影響下發生之意外"
+      ],
+      "documents_found": [
+        "Bowtie「觸木保」官方產品專頁（2025-2026 版，bowtie.com.hk）",
+        "Bowtie Touchwood Accident Policy Provisions"
+      ],
+      "source_urls": [
+        "https://www.bowtie.com.hk/zh-hk/touchwood-accident-insurance"
+      ],
+      "citations": [
+        {
+          "claim_field": "coverage[0].limit",
+          "document": "Bowtie「觸木保」官方產品專頁",
+          "page": "1",
+          "quote": "意外身故及永久完全傷殘高達 HK$1,000,000，意外醫療每年高達 HK$40,000",
+          "url": "https://www.bowtie.com.hk/zh-hk/touchwood-accident-insurance"
+        }
+      ],
+      "coverage": [
+        {
+          "item": "意外身故及永久完全傷殘",
+          "limit": "最高 HK$1,000,000（一次性 100% 賠償）"
+        },
+        {
+          "item": "意外醫療費用實報實銷",
+          "limit": "每年最高 HK$40,000（普通科、專科及門診急症）"
+        },
+        {
+          "item": "中醫跌打及針灸治療門診",
+          "limit": "每次最高 HK$350，每年最高 HK$3,500"
+        },
+        {
+          "item": "物理治療及脊骨神經治療",
+          "limit": "每次最高 HK$400，每年最高 HK$4,000"
+        },
+        {
+          "item": "業餘及消閒運動受傷全包",
+          "limit": "滑雪、水肺潛水、滑浪、馬拉松等業餘運動無除外責任"
+        },
+        {
+          "item": "骨折及關節脫臼專項津貼",
+          "limit": "按骨折部位額外發放現金津貼高達 HK$10,000"
+        },
+        {
+          "item": "意外住院每日現金津貼",
+          "limit": "每日發放 HK$600，每年最高 90 日"
+        },
+        {
+          "item": "公共交通工具意外雙倍賠償",
+          "limit": "乘搭港鐵、巴士、渡輪等意外身故發放高達 HK$2,000,000"
+        },
+        {
+          "item": "全球 24 小時個人意外受保",
+          "limit": "保障全球通用，留港或出國旅遊公幹均獲保障"
+        },
+        {
+          "item": "輔助醫療器材購置補貼",
+          "limit": "最高 HK$5,000（輪椅、拐杖、矯形支架等）"
+        },
+        {
+          "item": "面部重大創傷整容手術津貼",
+          "limit": "因意外致面部受損修復手術最高 HK$20,000"
+        },
+        {
+          "item": "意外永久部分傷殘分級賠償",
+          "limit": "按傷殘等級表賠償保額之 10% 至 100%"
+        },
+        {
+          "item": "免驗身免核保即時生效",
+          "limit": "網上 3 分鐘投保，無健康申報限制，即時出單"
+        },
+        {
+          "item": "一鍵線上拍照快速索償",
+          "limit": "手機拍照上傳單據及診斷證明，平均 3 日完成理賠"
+        },
+        {
+          "item": "保證續保至 80 歲",
+          "limit": "不論過往索償紀錄，每年保證可續保至 80 歲"
+        }
+      ]
+    },
+    {
+      "id": "accident-blue",
+      "category": "accident",
+      "insurer": "Blue",
+      "product_name": "Blue WeCare Personal Accident Protection Plan",
+      "product_name_zh": "Blue「WeCare 個人意外保險計劃」",
+      "plan_tiers": [
+        "計劃 1",
+        "計劃 2",
+        "計劃 3"
+      ],
+      "premium_range": "每年約 HK$550 - $1,680",
+      "premium_notes": "純數碼保險，免體檢免核保，公共交通意外雙倍賠償，門診跌打物理治療全包",
+      "key_terms": [
+        "意外身故及永久完全傷殘高達 HK$1,500,000",
+        "公共交通工具意外雙倍身故賠償高達 HK$3,000,000",
+        "意外醫療費用每次高達 HK$10,000，實報實銷",
+        "涵蓋跌打中醫、物理治療及每日意外住院現金津貼"
+      ],
+      "exclusions": [
+        "參與職業特技、高風險賽車或競速活動",
+        "故意自我傷害、吸毒或醉酒駕駛",
+        "在受保前已確診之肢體永久殘疾"
+      ],
+      "documents_found": [
+        "Blue 香港官方 WeCare 個人意外保專頁（2025-2026 版，blue.com.hk）",
+        "Blue WeCare Personal Accident Policy Provisions"
+      ],
+      "source_urls": [
+        "https://www.blue.com.hk/hk/wecare-personal-accident-protection-plan"
+      ],
+      "citations": [
+        {
+          "claim_field": "coverage[0].limit",
+          "document": "Blue 香港官方 WeCare 個人意外保專頁",
+          "page": "1",
+          "quote": "意外身故及永久傷殘高達 HK$1,500,000，公共交通意外享雙倍賠償高達 HK$3,000,000",
+          "url": "https://www.blue.com.hk/hk/wecare-personal-accident-protection-plan"
+        }
+      ],
+      "coverage": [
+        {
+          "item": "意外身故及永久完全傷殘",
+          "limit": "最高 HK$1,500,000（一次性 100% 賠償）"
+        },
+        {
+          "item": "公共交通工具意外雙倍賠償",
+          "limit": "最高 HK$3,000,000（公共巴士、港鐵、渡輪、飛機）"
+        },
+        {
+          "item": "意外醫療費用實報實銷",
+          "limit": "每次意外最高 HK$10,000，每年不限次數"
+        },
+        {
+          "item": "中醫跌打及針灸專項門診",
+          "limit": "每次最高 HK$300，每次意外最高 HK$1,500"
+        },
+        {
+          "item": "物理治療及脊醫專項門診",
+          "limit": "每次最高 HK$400，每次意外最高 HK$2,000"
+        },
+        {
+          "item": "骨折及脫臼專項現金津貼",
+          "limit": "額外發放一次性津貼最高 HK$12,000"
+        },
+        {
+          "item": "意外住院每日現金津貼",
+          "limit": "每日發放 HK$500，每年最多 60 日"
+        },
+        {
+          "item": "消閒及業餘體育運動保障",
+          "limit": "包括休閒滑雪、水肺潛水、行山健行受傷受保"
+        },
+        {
+          "item": "永久部分傷殘分級賠償",
+          "limit": "按傷殘等級表獲賠 10% 至 100% 保額"
+        },
+        {
+          "item": "意外嚴重燒傷額外賠償",
+          "limit": "二級或三級嚴重燒傷額外賠償高達 HK$500,000"
+        },
+        {
+          "item": "全球 24 小時個人意外受保",
+          "limit": "出國公幹或個人旅遊期間全球 24 小時受保"
+        },
+        {
+          "item": "免核保免體檢網上投保",
+          "limit": "無健康申報限制，3分鐘即投即生效"
+        },
+        {
+          "item": "輪椅及助行拐杖租購津貼",
+          "limit": "每次意外最高 HK$3,000 輔助器材補助"
+        },
+        {
+          "item": "線上極速理賠服務",
+          "limit": "經 Blue 網上平台提交單據，最快 3 天內賠款到戶"
+        },
+        {
+          "item": "保證續保至 75 歲",
+          "limit": "每年保證續保，不因個人索償歷史調高個別保費"
+        }
+      ]
     }
   ]
 }

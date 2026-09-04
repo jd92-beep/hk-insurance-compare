@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   Check,
+  ChevronDown,
   RotateCcw,
   Scale,
   Search,
@@ -18,7 +19,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import EmptyState from "@/components/EmptyState";
 import ProductCard from "@/components/ProductCard";
 import FilterBar from "@/components/category/FilterBar";
-import type { SortKey, ViewMode, TravelTripType, TravelRegion } from "@/components/category/FilterBar";
+import type { SortKey, ViewMode, TravelTripType, TravelRegion, PriceRangeKey } from "@/components/category/FilterBar";
 import ProductTable from "@/components/category/ProductTable";
 import UniversalComparisonChart from "@/components/category/UniversalComparisonChart";
 import TravelFlagshipBanner from "@/components/category/TravelFlagshipBanner";
@@ -109,6 +110,10 @@ export default function CategoryDetail() {
   const [travelTripType, setTravelTripType] = useState<TravelTripType>("all");
   const [travelRegion, setTravelRegion] = useState<TravelRegion>("all");
   const [onlyPromo, setOnlyPromo] = useState(false);
+  // 💰 按價錢篩選（支援折後實付價預算過濾）
+  const [priceRange, setPriceRange] = useState<PriceRangeKey>("all");
+  // 🎯 智能保障挑選面板展開狀態（需求：預設收起 Collapsed，不佔用垂直空間）
+  const [isFeaturePanelOpen, setIsFeaturePanelOpen] = useState(false);
 
   // 🎯 用戶自選重視之保障項目（智能匹配與置頂推薦）
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
@@ -185,6 +190,26 @@ export default function CategoryDetail() {
       }
     }
 
+    // 💰 按價錢篩選：以折後實付價 discounted_price 或 original_price 或年繳化保費數字為準
+    if (priceRange !== "all") {
+      list = list.filter((p) => {
+        if (!p.premium_available) return false;
+        // 取得產品實付價或折後基準價
+        const effPrice =
+          p.discounted_price ??
+          p.promo?.discounted_price ??
+          p.original_price ??
+          premiumSortKey(p.premium_range);
+        if (!Number.isFinite(effPrice) || effPrice <= 0) return false;
+        if (priceRange === "under100") return effPrice <= 100;
+        if (priceRange === "100to250") return effPrice >= 100 && effPrice <= 250;
+        if (priceRange === "250to500") return effPrice >= 250 && effPrice <= 500;
+        if (priceRange === "over500") return effPrice > 500;
+        return true;
+      });
+    }
+
+
     return filterAndRankProductsByFeatures(
       list,
       selectedFeatures,
@@ -199,6 +224,7 @@ export default function CategoryDetail() {
     travelTripType,
     travelRegion,
     onlyPromo,
+    priceRange,
     selectedFeatures,
     categoryId,
     featureMatchMode,
@@ -294,6 +320,7 @@ export default function CategoryDetail() {
     selectedInsurers.length > 0 ||
     onlyPremium ||
     sort !== "default" ||
+    priceRange !== "all" ||
     selectedFeatures.length > 0 ||
     Boolean(featureSearchQuery) ||
     (isTravel && (travelTripType !== "all" || travelRegion !== "all" || onlyPromo));
@@ -304,6 +331,7 @@ export default function CategoryDetail() {
     setSort("default");
     setPremiumDir("asc");
     setSelectedFeatures([]);
+    setPriceRange("all");
     setFeatureMatchMode("smart");
     setFeatureSearchQuery("");
     if (isTravel) {
@@ -696,15 +724,101 @@ export default function CategoryDetail() {
           onTravelRegionChange={setTravelRegion}
           onlyPromo={onlyPromo}
           onTogglePromo={() => setOnlyPromo((v) => !v)}
+          priceRange={priceRange}
+          onPriceRangeChange={setPriceRange}
           activeFeatureCount={selectedFeatures.length}
         />
 
         {/* ── S3 產品列表 ─────────────────────────────────────── */}
         <section className="py-10 max-md:py-8">
           <div className="site-container">
-            {/* 🎯 智能偏好挑選面板（用戶自選重視保障與情境 Preset） */}
+            {/* 🎯 智能偏好挑選面板（用戶自選重視保障與情境 Preset，需求：預設收起 Collapsed，可自由展開） */}
             {categoryFeatureTags.length > 0 && (
               <div className="mb-6 rounded-2xl border border-line bg-paper p-4 sm:p-5 shadow-xs transition-all">
+                {/* 頂部常駐 Header：左側標題與已選狀態，右側展開/收起切換按鈕 */}
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="font-sans text-[15px] sm:text-[16px] font-bold text-ink flex items-center gap-1.5">
+                      <Sparkles size={16} className="text-jade" />
+                      <span>智能保障挑選（條款契合度推薦）</span>
+                    </h3>
+                    {selectedFeatures.length > 0 ? (
+                      <span className="rounded-full bg-jade/10 px-2.5 py-0.5 font-grotesk text-[11px] font-bold text-jade">
+                        已選 {selectedFeatures.length} 項重視條件
+                      </span>
+                    ) : (
+                      <span className="text-[12px] text-ink-faint">
+                        (支援 147 個高價值條款與情境一鍵套用)
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    {selectedFeatures.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => setSelectedFeatures([])}
+                        className="text-[12px] font-semibold text-red hover:underline px-2 py-1"
+                      >
+                        清空已選
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setIsFeaturePanelOpen((prev) => !prev)}
+                      aria-expanded={isFeaturePanelOpen}
+                      className={cn(
+                        "inline-flex min-h-[44px] sm:min-h-[34px] items-center gap-1.5 rounded-full px-3.5 py-1.5 text-small font-bold transition-all duration-200 active:scale-95 shadow-xs border",
+                        isFeaturePanelOpen
+                          ? "border-jade bg-jade text-paper"
+                          : "border-line-strong bg-paper hover:bg-paper-2 text-ink"
+                      )}
+                    >
+                      <Sparkles size={13} className={isFeaturePanelOpen ? "text-paper" : "text-jade"} />
+                      <span>{isFeaturePanelOpen ? "收起挑選面板" : "展開挑選面板"}</span>
+                      <ChevronDown
+                        size={14}
+                        className={cn("transition-transform duration-300", isFeaturePanelOpen && "rotate-180")}
+                      />
+                    </button>
+                  </div>
+                </div>
+
+                {/* 若已選取條款但處於收起狀態，展示直觀的已選條件 Chip 列與最高契合度 */}
+                {!isFeaturePanelOpen && selectedFeatures.length > 0 && (
+                  <div className="mt-3 pt-3 border-t border-line/60 flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="text-[12px] font-medium text-ink-soft">已選條款：</span>
+                      {selectedFeatures.map((fid) => {
+                        const tag = categoryFeatureTags.find((t) => t.id === fid);
+                        return (
+                          <span
+                            key={fid}
+                            className="inline-flex items-center gap-1 rounded-full bg-jade/10 border border-jade/30 px-2.5 py-0.5 text-[11px] font-bold text-jade"
+                          >
+                            ✓ {tag?.label || fid}
+                          </span>
+                        );
+                      })}
+                    </div>
+                    {maxMatchedCount > 0 && (
+                      <span className="text-[12px] font-bold text-jade">
+                        🎯 最高命中 {maxScore}% ({maxMatchedCount}/{selectedFeatures.length} 項)
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                {/* 展開時顯示的完整面板內容 */}
+                <AnimatePresence>
+                  {isFeaturePanelOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: EASE_OUT_EXPO }}
+                      className="overflow-hidden mt-4 pt-4 border-t border-line/60"
+                    >
                 {/* 1. 契合度進度指示與置頂反饋動效 (Top Match Feedback Banner) */}
                 <AnimatePresence>
                   {selectedFeatures.length > 0 && (
@@ -931,6 +1045,9 @@ export default function CategoryDetail() {
                     </div>
                   </div>
                 )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             )}
 

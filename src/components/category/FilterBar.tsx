@@ -1,6 +1,18 @@
-import type { ReactNode } from "react";
-import { motion } from "framer-motion";
-import { Check, Globe, LayoutGrid, Plane, RotateCcw, Sparkles, Table2 } from "lucide-react";
+import { useState, type ReactNode } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Check,
+  ChevronDown,
+  CircleDollarSign,
+  Filter,
+  Globe,
+  LayoutGrid,
+  Plane,
+  RotateCcw,
+  SlidersHorizontal,
+  Sparkles,
+  Table2,
+} from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -14,6 +26,7 @@ export type SortKey = "default" | "premium" | "insurer" | "coverage";
 export type ViewMode = "table" | "cards";
 export type TravelTripType = "all" | "single" | "annual";
 export type TravelRegion = "all" | "asia" | "worldwide" | "gba";
+export type PriceRangeKey = "all" | "under100" | "100to250" | "250to500" | "over500";
 
 export interface InsurerOption {
   name: string;
@@ -21,20 +34,29 @@ export interface InsurerOption {
 }
 
 const SORT_LABELS: Record<Exclude<SortKey, "premium">, string> = {
-  default: "預設排序",
+  default: "預設推薦",
   insurer: "公司名 A–Z",
   coverage: "保障項目數量",
 };
 
 /** 保費排序 label 跟埋方向（升序/降序即時反映） */
 function premiumSortLabel(dir: "asc" | "desc"): string {
-  return dir === "asc" ? "保費由低至高（有公開保費先）" : "保費由高至低（有公開保費先）";
+  return dir === "asc" ? "保費由低至高（實付折後價先）" : "保費由高至低（實付折後價先）";
 }
 
+const PRICE_RANGE_PRESETS: { id: PriceRangeKey; label: string; sub?: string }[] = [
+  { id: "all", label: "全部保費" },
+  { id: "under100", label: "平霸抵玩", sub: "≤ HK$100" },
+  { id: "100to250", label: "主流實用", sub: "HK$100 – $250" },
+  { id: "250to500", label: "高額保障", sub: "HK$250 – $500" },
+  { id: "over500", label: "尊尚旗艦", sub: "> HK$500" },
+];
+
 /**
- * 類別詳情頁 sticky 篩選工具列（category.md S2）
- * 保險公司 chips（多選）＋ 保費開關 ＋ 排序 ＋ 表格⇄卡片 ＋ 結果數／重設
- * 當 isTravel 為真時，加載專屬旅遊維度（旅程類型、覆蓋地區、即時折扣）
+ * 類別詳情頁篩選工具列（Expandable 收合架構）
+ * 1. 預設收起（Collapsed），向下滾動不使用 sticky，絕不霸佔視窗！
+ * 2. 支援一鍵展開與收起。
+ * 3. 整合【按價錢篩選 (Price Filter)】、【保險公司】、【旅遊維度】、【排序】與【視圖切換】。
  */
 export default function FilterBar({
   insurers,
@@ -60,6 +82,8 @@ export default function FilterBar({
   onTravelRegionChange,
   onlyPromo = false,
   onTogglePromo,
+  priceRange = "all",
+  onPriceRangeChange,
   activeFeatureCount = 0,
 }: {
   insurers: InsurerOption[];
@@ -85,8 +109,13 @@ export default function FilterBar({
   onTravelRegionChange?: (v: TravelRegion) => void;
   onlyPromo?: boolean;
   onTogglePromo?: () => void;
+  priceRange?: PriceRangeKey;
+  onPriceRangeChange?: (p: PriceRangeKey) => void;
   activeFeatureCount?: number;
 }) {
+  // 核心需求：預設設為「收起 (Collapsed)」！向下滾動不釘死在螢幕上
+  const [isOpen, setIsOpen] = useState(false);
+
   // 精確統計當前啟動之所有過濾條件總數
   const activeConditionsCount = (
     selectedInsurers.length +
@@ -95,265 +124,334 @@ export default function FilterBar({
     (isTravel && travelTripType !== "all" ? 1 : 0) +
     (isTravel && travelRegion !== "all" ? 1 : 0) +
     (isTravel && onlyPromo ? 1 : 0) +
+    (priceRange !== "all" ? 1 : 0) +
     activeFeatureCount
   );
 
   const isFilterActive = hasActiveFilters || activeConditionsCount > 0;
+  const currentPricePreset = PRICE_RANGE_PRESETS.find((p) => p.id === priceRange);
 
   return (
-    <motion.div
-      className="sticky top-[72px] z-40 border-b bg-paper/95 backdrop-blur-md transition-shadow duration-200"
+    <div
+      className="relative z-20 border-b bg-paper transition-shadow duration-200"
       style={{ borderColor: "var(--line)" }}
-      initial={{ opacity: 0, y: -12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
     >
-      {/* 📱 Mobile 專屬頂部常駐摘要列：顯示結果數量 + 已選條件 Badge + 充足觸摸熱區的一鍵重設按鈕 */}
-      <div className="flex sm:hidden items-center justify-between px-4 py-2.5 border-b border-line/40 bg-paper/90 text-[12.5px]">
+      {/* ── 1. 常駐 Compact 欄位（無論展開或收起皆常駐，且非 sticky，隨頁面正常捲動） ── */}
+      <div className="site-container flex flex-wrap items-center justify-between gap-3 py-3">
+        {/* 左側：結果統計 + 已選條件徽章與活躍條件摘要 */}
+        <div className="flex flex-wrap items-center gap-2 text-small">
+          <div className="flex items-center gap-2">
+            <SlidersHorizontal size={16} className="text-ink-soft shrink-0" />
+            <span className="font-medium text-ink">
+              篩選及排序
+            </span>
+            <span className="text-ink-faint">
+              (顯示 <strong className="font-grotesk font-bold text-ink">{shown}</strong> / {total} 份)
+            </span>
+          </div>
+
+          {/* 活躍條件 Badge */}
+          {activeConditionsCount > 0 && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-jade/10 px-2.5 py-0.5 font-grotesk text-[12px] font-bold text-jade">
+              已套用 {activeConditionsCount} 項條件
+            </span>
+          )}
+
+          {/* 快速顯示目前選取的價格或公司標籤 */}
+          {priceRange !== "all" && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/10 px-2.5 py-0.5 text-[11.5px] font-bold text-amber-800 dark:text-amber-300">
+              💰 {currentPricePreset?.label} ({currentPricePreset?.sub})
+            </span>
+          )}
+
+          {selectedInsurers.length > 0 && (
+            <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-sky-500/10 px-2.5 py-0.5 text-[11.5px] font-bold text-sky-800 dark:text-sky-300">
+              🏢 {selectedInsurers.length} 間公司
+            </span>
+          )}
+        </div>
+
+        {/* 右側：展開/收起 按鈕 + 視圖切換 + 重設 */}
         <div className="flex items-center gap-2">
-          <span className="text-ink-faint">
-            顯示 <span className="font-grotesk font-bold text-ink">{shown}</span> / <span className="font-grotesk">{total}</span> 份
-          </span>
-          {activeConditionsCount > 0 && (
-            <span className="inline-flex items-center rounded-full bg-jade/10 px-2 py-0.5 font-grotesk text-[11px] font-bold text-jade">
-              已選 {activeConditionsCount} 項
-            </span>
-          )}
-        </div>
-        {isFilterActive && (
-          <button
-            type="button"
-            onClick={onReset}
-            className="inline-flex min-h-[44px] items-center gap-1 rounded-full px-3 py-1.5 text-[12px] font-bold text-red hover:bg-red/10 active:scale-95 transition-all"
-            aria-label="重設全部篩選條件"
-          >
-            <RotateCcw size={13} />
-            <span>重設全部</span>
-          </button>
-        )}
-      </div>
-
-      {/* 旅遊專屬維度篩選條（旅程類型 + 覆蓋地區 + 即時折扣） */}
-      {isTravel && (
-        <div
-          className="border-b bg-paper-2/50 py-2.5"
-          style={{ borderColor: "var(--line)" }}
-        >
-          <div className="site-container flex items-center gap-3 overflow-x-auto touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {/* 旅程類型 */}
-            <div className="flex shrink-0 items-center gap-1.5" role="group" aria-label="旅程類型篩選">
-              <span className="inline-flex items-center gap-1 pr-1 text-[12px] font-bold text-ink-soft">
-                <Plane size={13} className="text-sky-600" />
-                旅程：
-              </span>
-              <FilterChip
-                active={travelTripType === "all"}
-                onClick={() => onTravelTripTypeChange?.("all")}
-              >
-                全部
-              </FilterChip>
-              <FilterChip
-                active={travelTripType === "single"}
-                onClick={() => onTravelTripTypeChange?.("single")}
-              >
-                單次旅程
-              </FilterChip>
-              <FilterChip
-                active={travelTripType === "annual"}
-                onClick={() => onTravelTripTypeChange?.("annual")}
-              >
-                全年多次 (Annual)
-              </FilterChip>
-            </div>
-
-            <span className="h-5 w-px shrink-0" style={{ background: "var(--line)" }} aria-hidden="true" />
-
-            {/* 覆蓋地區 */}
-            <div className="flex shrink-0 items-center gap-1.5" role="group" aria-label="覆蓋地區篩選">
-              <span className="inline-flex items-center gap-1 pr-1 text-[12px] font-bold text-ink-soft">
-                <Globe size={13} className="text-indigo-600" />
-                地區：
-              </span>
-              <FilterChip
-                active={travelRegion === "all"}
-                onClick={() => onTravelRegionChange?.("all")}
-              >
-                全部
-              </FilterChip>
-              <FilterChip
-                active={travelRegion === "asia"}
-                onClick={() => onTravelRegionChange?.("asia")}
-              >
-                亞洲短途
-              </FilterChip>
-              <FilterChip
-                active={travelRegion === "worldwide"}
-                onClick={() => onTravelRegionChange?.("worldwide")}
-              >
-                全球通用
-              </FilterChip>
-              <FilterChip
-                active={travelRegion === "gba"}
-                onClick={() => onTravelRegionChange?.("gba")}
-              >
-                大灣區 (GBA)
-              </FilterChip>
-            </div>
-
-            <span className="h-5 w-px shrink-0" style={{ background: "var(--line)" }} aria-hidden="true" />
-
-            {/* 即時折扣開關 */}
-            <button
-              type="button"
-              onClick={onTogglePromo}
-              aria-pressed={onlyPromo}
-              className={cn(
-                "chip shrink-0 border font-bold transition-all duration-300 active:scale-[0.94]",
-                onlyPromo
-                  ? "border-amber-500 bg-amber-500 text-white shadow-sm ring-2 ring-amber-400/30"
-                  : "border-transparent bg-paper-3 text-ink-soft hover:border-amber-300 hover:text-ink",
-              )}
+          {/* 視圖切換（表格 / 卡片） */}
+          {showViewToggle && (
+            <div
+              className="flex shrink-0 items-center rounded-full bg-paper-3 p-0.5"
+              role="group"
+              aria-label="視圖切換"
             >
-              <Sparkles
-                size={13}
-                className={cn(onlyPromo ? "animate-pulse text-white" : "text-amber-500")}
-                aria-hidden="true"
-              />
-              <span>只睇有優惠折扣</span>
-              {onlyPromo && <Check size={13} />}
-            </button>
-          </div>
-        </div>
-      )}
-      <div className="relative">
-        <div className="site-container flex items-center gap-3 overflow-x-auto py-3.5 touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {/* 保險公司 chips */}
-        <div className="flex shrink-0 items-center gap-1.5" role="group" aria-label="保險公司篩選">
-          <FilterChip
-            active={selectedInsurers.length === 0}
-            onClick={onClearInsurers}
-          >
-            全部
-          </FilterChip>
-          {insurers.map((ins) => (
-            <FilterChip
-              key={ins.name}
-              active={selectedInsurers.includes(ins.name)}
-              onClick={() => onToggleInsurer(ins.name)}
-            >
-              <span className="font-grotesk">{ins.name}</span>
-              <span>{ins.name_zh}</span>
-            </FilterChip>
-          ))}
-        </div>
-
-        <span className="h-6 w-px shrink-0" style={{ background: "var(--line-strong)" }} aria-hidden="true" />
-
-        {/* 保費開關 */}
-        <button
-          type="button"
-          onClick={onTogglePremium}
-          aria-pressed={onlyPremium}
-          className={cn(
-            "chip shrink-0 border font-bold transition-all duration-300 active:scale-[0.94]",
-            "min-h-[44px] sm:min-h-[34px] px-3.5 py-2.5 sm:py-1",
-            onlyPremium
-              ? "border-jade bg-jade text-paper shadow-xs"
-              : "border-transparent bg-paper-3 text-ink-soft hover:text-ink",
+              {(
+                [
+                  { key: "table", label: "表格", icon: Table2 },
+                  { key: "cards", label: "卡片", icon: LayoutGrid },
+                ] as const
+              ).map(({ key, label, icon: Icon }) => (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => onViewChange(key)}
+                  aria-pressed={view === key}
+                  className={cn(
+                    "inline-flex min-h-[36px] sm:min-h-[28px] items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] font-bold transition-all duration-300",
+                    view === key ? "bg-ink text-paper shadow-xs" : "text-ink-soft hover:text-ink",
+                  )}
+                >
+                  <Icon size={12} />
+                  <span>{label}</span>
+                </button>
+              ))}
+            </div>
           )}
-        >
-          <span
-            className={cn("h-1.5 w-1.5 rounded-full", onlyPremium ? "bg-paper" : "bg-jade")}
-            aria-hidden="true"
-          />
-          只睇有公開保費
-          {onlyPremium && <Check size={13} />}
-        </button>
 
-        {/* 排序 */}
-        <Select value={sort} onValueChange={(v) => onSortChange(v as SortKey)}>
-          <SelectTrigger
-            className="h-[44px] sm:h-[34px] w-[236px] shrink-0 rounded-full border-transparent bg-paper-3 px-3.5 text-small font-medium text-ink-soft shadow-none hover:text-ink focus:ring-red/40"
-            aria-label="排序方式"
-          >
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="default" className="text-small">
-              {SORT_LABELS.default}
-            </SelectItem>
-            <SelectItem value="premium" className="text-small">
-              {premiumSortLabel(premiumDir)}
-            </SelectItem>
-            <SelectItem value="insurer" className="text-small">
-              {SORT_LABELS.insurer}
-            </SelectItem>
-            <SelectItem value="coverage" className="text-small">
-              {SORT_LABELS.coverage}
-            </SelectItem>
-          </SelectContent>
-        </Select>
-
-        {/* 視圖切換 */}
-        {showViewToggle && (
-          <div
-            className="flex shrink-0 items-center rounded-full bg-paper-3 p-0.5"
-            role="group"
-            aria-label="視圖切換"
-          >
-            {(
-              [
-                { key: "table", label: "表格", icon: Table2 },
-                { key: "cards", label: "卡片", icon: LayoutGrid },
-              ] as const
-            ).map(({ key, label, icon: Icon }) => (
-              <button
-                key={key}
-                type="button"
-                onClick={() => onViewChange(key)}
-                aria-pressed={view === key}
-                className={cn(
-                  "inline-flex min-h-[40px] sm:min-h-[30px] items-center gap-1.5 rounded-full px-3 py-1.5 text-small font-bold transition-all duration-300",
-                  view === key ? "bg-ink text-paper shadow-xs" : "text-ink-soft hover:text-ink",
-                )}
-              >
-                <Icon size={13} />
-                {label}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {/* 桌面端：結果數 + 條件 Badge + 重設 */}
-        <div className="ml-auto hidden sm:flex shrink-0 items-center gap-2.5 pl-3 text-small">
-          {activeConditionsCount > 0 && (
-            <span className="inline-flex items-center rounded-full bg-jade/10 px-2.5 py-0.5 font-grotesk text-[11px] font-bold text-jade">
-              已選 {activeConditionsCount} 項條件
-            </span>
-          )}
-          <span className="whitespace-nowrap text-ink-faint">
-            顯示 <span className="font-grotesk font-bold text-ink">{shown}</span> /{" "}
-            <span className="font-grotesk">{total}</span> 份
-          </span>
           {isFilterActive && (
             <button
               type="button"
               onClick={onReset}
-              className="inline-flex items-center gap-1 whitespace-nowrap text-ink-faint transition-colors hover:text-red active:scale-95"
+              className="inline-flex min-h-[44px] sm:min-h-[32px] items-center gap-1 rounded-full px-2.5 py-1 text-[12px] font-semibold text-ink-soft hover:text-red hover:bg-red/10 active:scale-95 transition-all"
+              aria-label="重設全部篩選條件"
             >
-              <RotateCcw size={12} />
-              重設
+              <RotateCcw size={12} className="text-red" />
+              <span className="hidden sm:inline">重設全部</span>
             </button>
           )}
+
+          {/* 展開 / 收起 核心切換按鈕 */}
+          <button
+            type="button"
+            onClick={() => setIsOpen((prev) => !prev)}
+            aria-expanded={isOpen}
+            className={cn(
+              "inline-flex min-h-[44px] sm:min-h-[34px] items-center gap-1.5 rounded-full px-3.5 py-1.5 text-small font-bold transition-all duration-200 active:scale-95 shadow-xs border",
+              isOpen
+                ? "border-ink bg-ink text-paper"
+                : "border-line-strong bg-paper hover:bg-paper-2 text-ink"
+            )}
+          >
+            <Filter size={13} className={isOpen ? "text-paper" : "text-ink-soft"} />
+            <span>{isOpen ? "收起篩選器" : "展開篩選器"}</span>
+            <ChevronDown
+              size={14}
+              className={cn("transition-transform duration-300", isOpen && "rotate-180")}
+            />
+          </button>
         </div>
       </div>
-        {/* 右緣漸隱：提示 pills 行可以橫向滑動（夠闊先睇得清楚） */}
-        <div
-          className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-paper/95 via-paper/80 to-transparent"
-          aria-hidden="true"
-        />
-      </div>
-    </motion.div>
+
+      {/* ── 2. 可展開收起的完整篩選面板（預設收起） ── */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border-t bg-paper-2/40"
+            style={{ borderColor: "var(--line)" }}
+          >
+            <div className="site-container flex flex-col gap-4 py-4">
+              {/* [區塊 A] 價錢預算篩選 (Price Filter) */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1 text-[12.5px] font-bold text-ink-soft shrink-0 pr-1">
+                  <CircleDollarSign size={14} className="text-amber-600" />
+                  按價錢篩選：
+                </span>
+                <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="價錢篩選">
+                  {PRICE_RANGE_PRESETS.map((preset) => {
+                    const active = priceRange === preset.id;
+                    return (
+                      <button
+                        key={preset.id}
+                        type="button"
+                        onClick={() => onPriceRangeChange?.(preset.id)}
+                        aria-pressed={active}
+                        className={cn(
+                          "chip min-h-[44px] sm:min-h-[32px] px-3 py-1 text-[12px] font-bold transition-all duration-200 active:scale-95 border",
+                          active
+                            ? "border-amber-500 bg-amber-500 text-white shadow-xs ring-2 ring-amber-400/30"
+                            : "border-line bg-paper text-ink-soft hover:text-ink hover:border-line-strong"
+                        )}
+                      >
+                        <span>{preset.label}</span>
+                        {preset.sub && (
+                          <span className={cn("text-[11px] font-mono", active ? "text-amber-100" : "text-ink-faint")}>
+                            {preset.sub}
+                          </span>
+                        )}
+                        {active && <Check size={12} className="ml-0.5" />}
+                      </button>
+                    );
+                  })}
+                  <span className="text-[11px] text-ink-faint ml-1">
+                    （以官方即時折後實付價為準）
+                  </span>
+                </div>
+              </div>
+
+              {/* [區塊 B] 旅遊保險專屬維度（旅程類型 + 地區 + 優惠） */}
+              {isTravel && (
+                <div className="flex flex-wrap items-center gap-4 rounded-xl border border-line/60 bg-paper p-3">
+                  {/* 旅程類型 */}
+                  <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="旅程類型篩選">
+                    <span className="inline-flex items-center gap-1 text-[12px] font-bold text-ink-soft pr-1">
+                      <Plane size={13} className="text-sky-600" />
+                      旅程類型：
+                    </span>
+                    <FilterChip active={travelTripType === "all"} onClick={() => onTravelTripTypeChange?.("all")}>
+                      全部
+                    </FilterChip>
+                    <FilterChip active={travelTripType === "single"} onClick={() => onTravelTripTypeChange?.("single")}>
+                      單次旅程
+                    </FilterChip>
+                    <FilterChip active={travelTripType === "annual"} onClick={() => onTravelTripTypeChange?.("annual")}>
+                      全年多次 (Annual)
+                    </FilterChip>
+                  </div>
+
+                  <span className="hidden sm:block h-5 w-px shrink-0 bg-line" aria-hidden="true" />
+
+                  {/* 覆蓋地區 */}
+                  <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="覆蓋地區篩選">
+                    <span className="inline-flex items-center gap-1 text-[12px] font-bold text-ink-soft pr-1">
+                      <Globe size={13} className="text-indigo-600" />
+                      保障地區：
+                    </span>
+                    <FilterChip active={travelRegion === "all"} onClick={() => onTravelRegionChange?.("all")}>
+                      全部地區
+                    </FilterChip>
+                    <FilterChip active={travelRegion === "asia"} onClick={() => onTravelRegionChange?.("asia")}>
+                      亞洲短途
+                    </FilterChip>
+                    <FilterChip active={travelRegion === "worldwide"} onClick={() => onTravelRegionChange?.("worldwide")}>
+                      全球通用
+                    </FilterChip>
+                    <FilterChip active={travelRegion === "gba"} onClick={() => onTravelRegionChange?.("gba")}>
+                      大灣區
+                    </FilterChip>
+                  </div>
+
+                  <span className="hidden sm:block h-5 w-px shrink-0 bg-line" aria-hidden="true" />
+
+                  {/* 即時折扣開關 */}
+                  <button
+                    type="button"
+                    onClick={onTogglePromo}
+                    aria-pressed={onlyPromo}
+                    className={cn(
+                      "chip shrink-0 border font-bold transition-all duration-300 active:scale-[0.94]",
+                      onlyPromo
+                        ? "border-amber-500 bg-amber-500 text-white shadow-sm ring-2 ring-amber-400/30"
+                        : "border-line bg-paper text-ink-soft hover:border-amber-300 hover:text-ink",
+                    )}
+                  >
+                    <Sparkles size={13} className={cn(onlyPromo ? "animate-pulse text-white" : "text-amber-500")} />
+                    <span>只睇有折扣／優惠碼</span>
+                    {onlyPromo && <Check size={13} />}
+                  </button>
+                </div>
+              )}
+
+              {/* [區塊 C] 保險公司多選 Chips */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[12.5px] font-bold text-ink-soft">
+                    按保險公司多選篩選：
+                  </span>
+                  {selectedInsurers.length > 0 && (
+                    <button
+                      type="button"
+                      onClick={onClearInsurers}
+                      className="text-[11.5px] text-red hover:underline"
+                    >
+                      清空已選公司 ({selectedInsurers.length})
+                    </button>
+                  )}
+                </div>
+                <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="保險公司篩選">
+                  <FilterChip
+                    active={selectedInsurers.length === 0}
+                    onClick={onClearInsurers}
+                  >
+                    全部公司 ({insurers.length})
+                  </FilterChip>
+                  {insurers.map((ins) => (
+                    <FilterChip
+                      key={ins.name}
+                      active={selectedInsurers.includes(ins.name)}
+                      onClick={() => onToggleInsurer(ins.name)}
+                    >
+                      <span className="font-grotesk">{ins.name}</span>
+                      <span>{ins.name_zh}</span>
+                    </FilterChip>
+                  ))}
+                </div>
+              </div>
+
+              {/* [區塊 D] 附加過濾與排序控制項 */}
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-line/60">
+                <div className="flex flex-wrap items-center gap-3">
+                  {/* 只睇有公開保費 */}
+                  <button
+                    type="button"
+                    onClick={onTogglePremium}
+                    aria-pressed={onlyPremium}
+                    className={cn(
+                      "chip shrink-0 border font-bold transition-all duration-300 active:scale-[0.94]",
+                      "min-h-[44px] sm:min-h-[34px] px-3.5 py-1.5 sm:py-1",
+                      onlyPremium
+                        ? "border-jade bg-jade text-paper shadow-xs"
+                        : "border-line bg-paper text-ink-soft hover:text-ink",
+                    )}
+                  >
+                    <span
+                      className={cn("h-1.5 w-1.5 rounded-full", onlyPremium ? "bg-paper" : "bg-jade")}
+                      aria-hidden="true"
+                    />
+                    只睇有公開保費
+                    {onlyPremium && <Check size={13} />}
+                  </button>
+
+                  {/* 排序下拉選單 */}
+                  <div className="flex items-center gap-1.5 text-[12.5px] text-ink-soft">
+                    <span>排序方式：</span>
+                    <Select value={sort} onValueChange={(v) => onSortChange(v as SortKey)}>
+                      <SelectTrigger
+                        className="h-[44px] sm:h-[34px] w-[220px] shrink-0 rounded-full border-line bg-paper px-3.5 text-small font-medium text-ink-soft shadow-none hover:text-ink focus:ring-red/40"
+                        aria-label="排序方式"
+                      >
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="default" className="text-small">
+                          {SORT_LABELS.default}
+                        </SelectItem>
+                        <SelectItem value="premium" className="text-small">
+                          {premiumSortLabel(premiumDir)}
+                        </SelectItem>
+                        <SelectItem value="insurer" className="text-small">
+                          {SORT_LABELS.insurer}
+                        </SelectItem>
+                        <SelectItem value="coverage" className="text-small">
+                          {SORT_LABELS.coverage}
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                {/* 底部收起按鈕快捷列 */}
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(false)}
+                  className="text-[12px] font-semibold text-ink-soft hover:text-ink underline decoration-dotted"
+                >
+                  ▲ 收起篩選工具
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
@@ -372,9 +470,11 @@ function FilterChip({
       onClick={onClick}
       aria-pressed={active}
       className={cn(
-        "chip shrink-0 gap-1.5 whitespace-nowrap font-bold transition-all duration-300 active:scale-[0.94]",
-        "min-h-[44px] sm:min-h-[32px] px-3.5 py-2.5 sm:py-1",
-        active ? "bg-ink text-paper shadow-xs" : "bg-paper-3 text-ink-soft hover:text-ink",
+        "chip shrink-0 gap-1.5 whitespace-nowrap font-bold transition-all duration-300 active:scale-[0.94] border",
+        "min-h-[44px] sm:min-h-[32px] px-3.5 py-2 sm:py-1",
+        active
+          ? "border-ink bg-ink text-paper shadow-xs"
+          : "border-line bg-paper text-ink-soft hover:border-line-strong hover:text-ink",
       )}
     >
       {children}

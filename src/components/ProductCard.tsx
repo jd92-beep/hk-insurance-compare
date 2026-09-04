@@ -31,6 +31,10 @@ export default function ProductCard({
   const extraTiers = tiers.length - shownTiers.length;
   const highlights = (product.coverage ?? []).slice(0, 3);
   const sourceUrl = product.source_urls?.[0];
+  const buyUrl = product.official_buy_url || product.promo?.buy_url || product.source_urls?.[0];
+  const origPrice = product.original_price || product.promo?.original_price;
+  const discPrice = product.discounted_price || product.promo?.discounted_price;
+  const hasDiscount = Boolean(origPrice && discPrice && origPrice > discPrice);
 
   const goDetail = () => navigate(`/product/${product.id}`);
 
@@ -152,6 +156,25 @@ export default function ProductCard({
           </div>
         )}
 
+
+        {/* 官方即時折後價與劃線原價（精準、最新、不誤導） */}
+        {hasDiscount && origPrice && discPrice && (
+          <div className="flex items-baseline gap-2 pt-0.5">
+            <span className="text-[12.5px] font-grotesk text-ink-faint line-through">
+              HK${origPrice.toLocaleString()}
+            </span>
+            <span className="font-grotesk text-[19px] font-black text-red">
+              HK${discPrice.toLocaleString()}
+            </span>
+            <span className="rounded bg-red/10 px-1.5 py-0.5 font-sans text-[11px] font-bold text-red">
+              {product.promo?.discount || "折後價"}
+            </span>
+            <span className="text-[11px] text-ink-faint">
+              （實付價）
+            </span>
+          </div>
+        )}
+
         {/* 保費尺規 / 即時報價 */}
         <PriceRangeBar product={product} />
 
@@ -191,24 +214,39 @@ export default function ProductCard({
               </a>
             )}
           </div>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              compare.toggle(product.id);
-            }}
-            disabled={!inTray && compare.isFull}
-            className={cn(
-              "inline-flex items-center gap-1 rounded-[10px] border px-3 py-1.5 text-small font-bold transition-all duration-300",
-              inTray
-                ? "border-jade bg-jade-wash text-jade"
-                : "text-ink hover:border-red hover:bg-red hover:text-paper disabled:cursor-not-allowed disabled:opacity-40",
+          <div className="flex items-center gap-2">
+            {buyUrl && (
+              <a
+                href={buyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-1 rounded-[10px] bg-red text-paper hover:bg-red/90 px-3 py-1.5 text-small font-bold shadow-xs active:scale-95 transition-all"
+                title="前往該保險公司官方投保／報價頁面"
+              >
+                <span>官網投保</span>
+                <ExternalLink size={12} />
+              </a>
             )}
-            style={!inTray ? { borderColor: "var(--line-strong)" } : undefined}
-          >
-            {inTray ? <Check size={13} /> : <Plus size={13} />}
-            {inTray ? "已加入" : "加入比較"}
-          </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                compare.toggle(product.id);
+              }}
+              disabled={!inTray && compare.isFull}
+              className={cn(
+                "inline-flex items-center gap-1 rounded-[10px] border px-3 py-1.5 text-small font-bold transition-all duration-300",
+                inTray
+                  ? "border-jade bg-jade-wash text-jade"
+                  : "text-ink hover:border-red hover:bg-red hover:text-paper disabled:cursor-not-allowed disabled:opacity-40",
+              )}
+              style={!inTray ? { borderColor: "var(--line-strong)" } : undefined}
+            >
+              {inTray ? <Check size={13} /> : <Plus size={13} />}
+              {inTray ? "已加入" : "加入比較"}
+            </button>
+          </div>
         </div>
       </div>
     </article>

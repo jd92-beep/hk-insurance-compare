@@ -47,13 +47,22 @@ export interface Product {
   destination_scope?: ("asia" | "worldwide" | "gba")[];
   /** 產品推廣折扣優惠與優惠碼 */
   promo?: ProductPromo;
+  /** 官方標準原價（數值，例如 145） */
+  original_price?: number;
+  /** 官方即時折後實付價（數值，例如 109） */
+  discounted_price?: number;
+  /** 官方即時投保／選購頁面直達網址 */
+  official_buy_url?: string;
 }
 
 export interface ProductPromo {
   tag: string;
-  code?: string;
+  code?: string | null;
   discount?: string;
   note?: string;
+  original_price?: number;
+  discounted_price?: number;
+  buy_url?: string;
 }
 
 export interface Category {

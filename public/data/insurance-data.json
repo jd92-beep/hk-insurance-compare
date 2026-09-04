@@ -333,11 +333,16 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "網上直購 85 折起",
-        "code": null,
+        "tag": "專案渠道 85 折",
         "discount": "15% OFF",
-        "note": "官網直接網上投保常設 85 折（單次低至 HK$40 起）；特設中國內地及澳門計劃"
-      }
+        "note": "特設中國內地及澳門專屬計劃；個人單現由保險代理及合作機構承接",
+        "original_price": 145,
+        "discounted_price": 123,
+        "buy_url": "https://www.aig.com.hk/zh/personal/travel-insurance/travelsafe"
+      },
+      "original_price": 145,
+      "discounted_price": 123,
+      "official_buy_url": "https://www.aig.com.hk/zh/personal/travel-insurance/travelsafe"
     },
     {
       "id": "travel-axa",
@@ -644,11 +649,17 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "網上特惠 8 折至 65 折",
+        "tag": "官網 8 折至 65 折",
         "code": "AXATRAVEL20",
-        "discount": "最高 35% OFF",
-        "note": "官網優惠 8 折至 85 折（限時優惠碼可達 65 折）；單次旅程父母投保同行子女免費"
-      }
+        "discount": "20%–35% OFF",
+        "note": "官網 8 折（限時碼 AXATRAVEL35 可達 65 折）；父母投保隨行子女免費",
+        "original_price": 148,
+        "discounted_price": 118,
+        "buy_url": "https://www.axa.com.hk/zh/travel-insurance-protection"
+      },
+      "original_price": 148,
+      "discounted_price": 118,
+      "official_buy_url": "https://www.axa.com.hk/zh/travel-insurance-protection"
     },
     {
       "id": "travel-allianz",
@@ -817,9 +828,15 @@
       "promo": {
         "tag": "限時 6 折 + 同行 9 折",
         "code": "AZSPECIAL40",
-        "discount": "高達 40% OFF",
-        "note": "輸入優惠碼享 6 折；2人同行再享折上折額外 9 折（低至 54 折）；歐洲申根官方 100% 認可"
-      }
+        "discount": "高達 46% OFF",
+        "note": "輸入優惠碼享 6 折；2人同行再享折上折額外 9 折（低至 54 折）；歐洲申根官方認可",
+        "original_price": 110,
+        "discounted_price": 66,
+        "buy_url": "https://www.allianz-travel.com.hk/"
+      },
+      "original_price": 110,
+      "discounted_price": 66,
+      "official_buy_url": "https://www.allianz-travel.com.hk/"
     },
     {
       "id": "travel-avo",
@@ -980,8 +997,14 @@
         "tag": "限時 7 折優惠",
         "code": "TRAVELFLASH30",
         "discount": "30% OFF",
-        "note": "數碼純線上投保，輸入優惠碼即享 7 折；手機平板同享保障"
-      }
+        "note": "數碼純線上投保，輸入優惠碼享 7 折；手機平板同享保障，海外露營車自負額亦受保",
+        "original_price": 131,
+        "discounted_price": 92,
+        "buy_url": "https://www.heyavo.com/zh-hk/products/travel"
+      },
+      "original_price": 131,
+      "discounted_price": 92,
+      "official_buy_url": "https://www.heyavo.com/zh-hk/products/travel"
     },
     {
       "id": "travel-boc-group-insurance",
@@ -1250,10 +1273,16 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "中銀客戶 85 折",
-        "discount": "15% OFF",
-        "note": "中銀信用卡或手機銀行客戶投保享保費 85 折優惠"
-      }
+        "tag": "中銀客戶 75 折起",
+        "discount": "25% OFF",
+        "note": "中銀信用卡或手機銀行客戶投保單次享 75 折（私人財富 7 折），投保全年常送超市禮券",
+        "original_price": 155,
+        "discounted_price": 116,
+        "buy_url": "https://www.bocgins.com/index.html?target=travel"
+      },
+      "original_price": 155,
+      "discounted_price": 116,
+      "official_buy_url": "https://www.bocgins.com/index.html?target=travel"
     },
     {
       "id": "travel-blue-cross",
@@ -1508,11 +1537,17 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "至醒會 8 折 / 限時 65 折",
-        "code": "RUNHOTEL65",
-        "discount": "高達 35% OFF",
-        "note": "至醒會會員常設 8 折（碼 BC80），指定推廣碼單次達 65 折、全年 75 折；全球單一收費不分亞洲全球"
-      }
+        "tag": "限時 65 折優惠",
+        "code": "PAYME65",
+        "discount": "35% OFF",
+        "note": "指定優惠碼單次 65 折、全年 75 折；全球單一收費不分亞洲全球，會員可疊加現金券",
+        "original_price": 175,
+        "discounted_price": 114,
+        "buy_url": "https://www.bluecross.com.hk/ch/SmartGo-Travel/info"
+      },
+      "original_price": 175,
+      "discounted_price": 114,
+      "official_buy_url": "https://www.bluecross.com.hk/ch/SmartGo-Travel/info"
     },
     {
       "id": "travel-cntaiping",
@@ -1673,10 +1708,16 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "大灣區每日 $28 起",
-        "discount": "快閃特惠",
-        "note": "特設大灣區短途專屬保障與全國免押金住院直付"
-      }
+        "tag": "網上 8 折 + 同行 9 折",
+        "discount": "20% OFF",
+        "note": "特設大灣區短途專屬保障（日費 $28 起）與全國免押金住院直付；多人同行享額外 9 折",
+        "original_price": 105,
+        "discounted_price": 84,
+        "buy_url": "https://ebus.hk.cntaiping.com/"
+      },
+      "original_price": 105,
+      "discounted_price": 84,
+      "official_buy_url": "https://ebus.hk.cntaiping.com/"
     },
     {
       "id": "travel-chubb",
@@ -1948,11 +1989,16 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "網上投保 85 折",
-        "code": null,
-        "discount": "15% OFF",
-        "note": "官網投保享 8 折至 85 折；涵蓋廣東及澳門計劃與郵輪專項保障，家庭計劃 2.5 倍包全家"
-      }
+        "tag": "網上投保 8 折起",
+        "discount": "20% OFF",
+        "note": "官網投保享 8 折；涵蓋廣東及澳門計劃與郵輪專項保障，家庭計劃 2.5 倍包全家",
+        "original_price": 130,
+        "discounted_price": 104,
+        "buy_url": "https://www.chubbtravelinsurance.com.hk/"
+      },
+      "original_price": 130,
+      "discounted_price": 104,
+      "official_buy_url": "https://www.chubbtravelinsurance.com.hk/"
     },
     {
       "id": "travel-dah-sing",
@@ -2225,8 +2271,14 @@
         "tag": "網上 7 折 + 買二送全家",
         "code": "DS70",
         "discount": "30% OFF",
-        "note": "網上投保輸入優惠碼享高達 7 折；家庭計劃收 2 名大人保費即全包隨行所有 18 歲以下子女"
-      }
+        "note": "網上投保輸入優惠碼享 7 折；家庭計劃收 2 名成人保費即全包隨行所有 18 歲以下子女",
+        "original_price": 98,
+        "discounted_price": 69,
+        "buy_url": "https://www.dahsinginsurance.com/b2c/tp/quote"
+      },
+      "original_price": 98,
+      "discounted_price": 69,
+      "official_buy_url": "https://www.dahsinginsurance.com/b2c/tp/quote"
     },
     {
       "id": "travel-fwd",
@@ -2394,11 +2446,17 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "官網限時 75 折",
+        "tag": "官網限時 6 折",
         "code": "FWDTRAVEL",
-        "discount": "25% OFF",
-        "note": "官網輸入優惠碼享 75 折；長幼同價保額不縮水"
-      }
+        "discount": "40% OFF",
+        "note": "輸入優惠碼享 6 折；結伴同行折上折額外 95 折；長幼同價保額不縮水",
+        "original_price": 165,
+        "discounted_price": 99,
+        "buy_url": "https://www.fwd.com.hk/online-insurance/mytravel-insurance/"
+      },
+      "original_price": 165,
+      "discounted_price": 99,
+      "official_buy_url": "https://www.fwd.com.hk/online-insurance/mytravel-insurance/"
     },
     {
       "id": "travel-generali",
@@ -2565,11 +2623,17 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "網上投保 8 折至 85 折",
-        "code": "BRAVO20",
-        "discount": "最高 20% OFF",
-        "note": "官網網上直接投保享 8 折至 85 折；申根簽證完全合規，運動器材賠償達 5,000 港元"
-      }
+        "tag": "官網投保 8 折",
+        "code": "LETSGO23",
+        "discount": "20% OFF",
+        "note": "官網投保輸入優惠碼享 8 折；申根簽證完全合規，運動器材賠償高達 5,000 港元",
+        "original_price": 145,
+        "discounted_price": 116,
+        "buy_url": "https://bravo.generali.com.hk/"
+      },
+      "original_price": 145,
+      "discounted_price": 116,
+      "official_buy_url": "https://bravo.generali.com.hk/"
     },
     {
       "id": "travel-hsbc",
@@ -2727,10 +2791,16 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "理財客戶尊享 8 折",
+        "tag": "網上理財尊享 8 折",
         "discount": "20% OFF",
-        "note": "滙豐網上理財客戶尊享投保保費 8 折優惠"
-      }
+        "note": "滙豐網上理財客戶尊享 8 折；由 AXA 安盛承保，公共交通意外雙倍賠償高達 240 萬",
+        "original_price": 198,
+        "discounted_price": 158,
+        "buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/travel/travelsurance/"
+      },
+      "original_price": 198,
+      "discounted_price": 158,
+      "official_buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/travel/travelsurance/"
     },
     {
       "id": "travel-hang-seng",
@@ -2888,10 +2958,16 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "信用卡專屬 85 折",
+        "tag": "恒生信用卡 85 折",
         "discount": "15% OFF",
-        "note": "恒生信用卡客戶網上投保享 85 折優惠"
-      }
+        "note": "恒生信用卡客戶網上投保享 85 折；安達保險 Chubb 承保，租車自負額高達 HK$5,000",
+        "original_price": 170,
+        "discounted_price": 145,
+        "buy_url": "https://www.hangseng.com/zh-hk/personal/insurance-planning/travel-insurance/"
+      },
+      "original_price": 170,
+      "discounted_price": 145,
+      "official_buy_url": "https://www.hangseng.com/zh-hk/personal/insurance-planning/travel-insurance/"
     },
     {
       "id": "travel-msig",
@@ -3175,11 +3251,17 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "單次55折 / 全年65折",
-        "code": "MSIG10 / MSIG15",
-        "discount": "最高 45% OFF",
-        "note": "單次優惠碼「MSIG10」享55折；全年「MSIG15」享65折"
-      }
+        "tag": "平霸 55 折優惠",
+        "code": "MSIG10",
+        "discount": "45% OFF",
+        "note": "輸入優惠碼享 55 折（全年旅保 MSIG15 享 65 折）；航班延遲滿 60 分鐘送機場貴賓室 LoungePass",
+        "original_price": 160,
+        "discounted_price": 88,
+        "buy_url": "https://www.msig.com.hk/zh-hk/personal-insurance/travel-insurance"
+      },
+      "original_price": 160,
+      "discounted_price": 88,
+      "official_buy_url": "https://www.msig.com.hk/zh-hk/personal-insurance/travel-insurance"
     },
     {
       "id": "travel-prudential",
@@ -3353,10 +3435,16 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "零自負額·全線免找數",
-        "discount": "免自付費",
-        "note": "全線保障項目零自負金額 (Excess-free)，無隱藏自付門檻"
-      }
+        "tag": "網上減 $50 · 零自負額",
+        "discount": "立減 HK$50",
+        "note": "全線保障項目零自負金額 (Excess-free)，無隱藏自付門檻，滑雪水肺潛水全包",
+        "original_price": 235,
+        "discounted_price": 185,
+        "buy_url": "https://www.prudential.com.hk/tc/general-insurance/travel-insurance/pruchoice-travel/"
+      },
+      "original_price": 235,
+      "discounted_price": 185,
+      "official_buy_url": "https://www.prudential.com.hk/tc/general-insurance/travel-insurance/pruchoice-travel/"
     },
     {
       "id": "travel-starr",
@@ -3517,8 +3605,14 @@
         "tag": "網上投保 8 折",
         "code": "STARR80",
         "discount": "20% OFF",
-        "note": "高性價比網上常設 8 折；單次旅程不設投保年齡上限"
-      }
+        "note": "網上投保常設 8 折；單次不設投保年齡上限，滑雪潛水登山無限制全包",
+        "original_price": 110,
+        "discounted_price": 88,
+        "buy_url": "https://www.starrinsurance.com.hk/zh-hk/products/travel/travelead"
+      },
+      "original_price": 110,
+      "discounted_price": 88,
+      "official_buy_url": "https://www.starrinsurance.com.hk/zh-hk/products/travel/travelead"
     },
     {
       "id": "travel-zurich",
@@ -3803,10 +3897,16 @@
       ],
       "promo": {
         "tag": "網上投保 8 折",
-        "code": "MSTRAVEL20",
+        "code": "TRAVEL20",
         "discount": "20% OFF",
-        "note": "網上投保常設 8 折至 85 折；長幼醫療全額賠償，電動車租車自負額額外提升 20%"
-      }
+        "note": "官網常設 8 折（限時碼 MSTRAVEL25 可達 75 折）；長幼醫療全額賠償，電動車租車自負額提升 20%",
+        "original_price": 155,
+        "discounted_price": 124,
+        "buy_url": "https://www.zurich.com.hk/zh-hk/individuals/travel-insurance"
+      },
+      "original_price": 155,
+      "discounted_price": 124,
+      "official_buy_url": "https://www.zurich.com.hk/zh-hk/individuals/travel-insurance"
     },
     {
       "id": "travel-bolttech",
@@ -4084,10 +4184,16 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "每日 $19.8 起 + 同行95折",
-        "discount": "同行折上折",
-        "note": "亞洲日費低至 HK$19.80；同行親友投保享額外 95 折"
-      }
+        "tag": "每日 $19.8 起 + 同行 95 折",
+        "discount": "40% OFF",
+        "note": "亞洲日費低至 HK$19.80；同行親友投保享額外 95 折，由安聯全球救援提供服務",
+        "original_price": 165,
+        "discounted_price": 99,
+        "buy_url": "https://bolttechinsurance.hk/"
+      },
+      "original_price": 165,
+      "discounted_price": 99,
+      "official_buy_url": "https://bolttechinsurance.hk/"
     },
     {
       "id": "medical-aia",
@@ -14724,7 +14830,18 @@
           "quote": "Unexplained or mysterious disappearance • Loss of or damage to contact lenses, mobile phones and smart watch … Loss of or damage to sports equipment while in use … Loss or damage due to IT/cyber risk",
           "url": "https://www.axa.com.hk/zh/home-insurance-protection"
         }
-      ]
+      ],
+      "original_price": 1000,
+      "discounted_price": 700,
+      "official_buy_url": "https://www.axa.com.hk/zh/home-insurance-protection",
+      "promo": {
+        "tag": "網上投保終身 7 折",
+        "discount": "30% OFF",
+        "note": "網上投保享終身 7 折；送免費風季颱風保障，第三者責任高達 HK$2,000 萬",
+        "original_price": 1000,
+        "discounted_price": 700,
+        "buy_url": "https://www.axa.com.hk/zh/home-insurance-protection"
+      }
     },
     {
       "id": "home-avo",
@@ -15202,7 +15319,18 @@
           "quote": "恐怖主義涉及汚染及爆炸品的除外責任條款：不論是否同時受任何其他原因或事件影響，此保單不包括任何因恐怖主義活動直接或間接產生的，1. 生物或化學污染；2. 導彈、炸彈、手榴彈、爆炸品，而導致之損失、損壞或費用支出。",
           "url": "https://www.bochk.com/tc/insurance/family/premier.html"
         }
-      ]
+      ],
+      "original_price": 600,
+      "discounted_price": 510,
+      "official_buy_url": "https://www.bochk.com/tc/insurance/family/premier.html",
+      "promo": {
+        "tag": "網上投保 85 折",
+        "discount": "15% OFF",
+        "note": "網上或中銀信用卡投保享 85 折，送高達 5,000 中銀信用卡獎賞積分",
+        "original_price": 600,
+        "discounted_price": 510,
+        "buy_url": "https://www.bochk.com/tc/insurance/family/premier.html"
+      }
     },
     {
       "id": "home-blue-cross",
@@ -16958,7 +17086,19 @@
           "quote": "2.1.20 不可保風險，包括：a) 機電故障、損傷、刮花、凹陷、生鏽、腐蝕、磨損、折舊或任何日積月累造成的損毀；…f) 任何因日常使用造成的損毀",
           "url": "https://odhk.blob.core.windows.net/home/Homev8.pdf"
         }
-      ]
+      ],
+      "original_price": 1315,
+      "discounted_price": 1033,
+      "official_buy_url": "https://www.onedegree.hk/zh-hk/home-insurance",
+      "promo": {
+        "tag": "首年保費 7 折",
+        "code": "HOME30",
+        "discount": "30% OFF",
+        "note": "輸入優惠碼享首年 7 折；連續投保節能用戶續保再享額外 5% 折扣，可加購家電保養",
+        "original_price": 1315,
+        "discounted_price": 1033,
+        "buy_url": "https://www.onedegree.hk/zh-hk/home-insurance"
+      }
     },
     {
       "id": "home-qbe",
@@ -17491,7 +17631,19 @@
           "quote": "不承保事項：…3. 逐漸變化 3.1. 自然損耗：生銹、腐蝕、侵蝕、黴菌、溫度或濕度改變、濕腐或乾腐、不適當維修、變質，外觀變化；3.2. 刮花，或出現凹痕…4. 動物造成的損毀：任何家居寵物或昆蟲、幼蟲或任何有害蟲鼠造成的噬咬、刮花、撕裂或弄汙損毀。5. 無人居所：「你」的「家居」連續三十(30)天無人居住",
           "url": "https://info.zurich.com.hk/policy/ZHM-DIR-002-04-2023.pdf"
         }
-      ]
+      ],
+      "original_price": 800,
+      "discounted_price": 560,
+      "official_buy_url": "https://buy.zurich.com.hk",
+      "promo": {
+        "tag": "首年保費 7 折",
+        "code": "HOME30",
+        "discount": "30% OFF",
+        "note": "輸入優惠碼享首年 7 折；24小時緊急水喉/開鎖/電力維修支援；第三者責任達 HK$1,000 萬",
+        "original_price": 800,
+        "discounted_price": 560,
+        "buy_url": "https://buy.zurich.com.hk"
+      }
     },
     {
       "id": "life-aia",
@@ -24379,7 +24531,18 @@
           "quote": "1. 任何受保人曾否有身體缺陷，視力或聽覺受損，或任何精神疾病？ 是 否 2. 任何受保人曾否在過去3年內索取同類型保險賠償？ 是 否 3. 任何受保人於申請意外或旅遊保險時曾否被拒投保、拒絕續保，或續保時被附加特別條款？ 是 否",
           "url": "https://www.bluecross.com.hk/ch/Personal-Accident-Insurance/Application"
         }
-      ]
+      ],
+      "original_price": 576,
+      "discounted_price": 518,
+      "official_buy_url": "https://www.bluecross.com.hk/ch/Personal-Accident-Insurance/Application",
+      "promo": {
+        "tag": "網上會員 9 折",
+        "discount": "10% OFF",
+        "note": "會員投保 9 折；公共交通意外雙倍賠償高達 HK$4,000,000，住院現金每日 HK$900",
+        "original_price": 576,
+        "discounted_price": 518,
+        "buy_url": "https://www.bluecross.com.hk/ch/Personal-Accident-Insurance/Application"
+      }
     },
     {
       "id": "accident-chubb",
@@ -25218,7 +25381,18 @@
           "quote": "FWD will not cover any loss/ claim directly or indirectly caused by or resulting from any of the following: Suicide or a self-inflicted act by the Insured regardless of the Insured’s mental state. A claim arises because you, the Insured, or the beneficiary participated in an unlawful act. A claim arises from catastrophic events except that the Insured is a passive participant in a war.",
           "url": "https://www.fwd.com.hk/online-insurance/mysafe-accident-protection-plan/en/"
         }
-      ]
+      ],
+      "original_price": 600,
+      "discounted_price": 480,
+      "official_buy_url": "https://www.fwd.com.hk/online-insurance/mysafe-accident-protection-plan/",
+      "promo": {
+        "tag": "網上投保 8 折",
+        "discount": "20% OFF",
+        "note": "免健康審查；首創意外疤痕保障高達 HK$300,000，滑雪水肺潛水業餘運動全面受保",
+        "original_price": 600,
+        "discounted_price": 480,
+        "buy_url": "https://www.fwd.com.hk/online-insurance/mysafe-accident-protection-plan/"
+      }
     },
     {
       "id": "accident-msig",
@@ -29856,7 +30030,19 @@
           "quote": "4. 受酒精或非由醫生處方之藥物之影響；酗酒、沈迷或濫用毒品； 5. 任何因分娩、流產、墮胎、妊娠引致的狀況，包括但不限於妊娠測試，產前、產後護理及其他與妊娠、避孕、避孕儀器、不育或其他引致懷孕或絕育手術的方法有關之併發症；性病； ... 7. 人類免疫力缺乏病毒及／或人類免疫力缺乏病毒有關，包括愛滋病及／或其任何突變、衍生或變異所引致或因此而命名； 8. 參與任何違法行為，包括但不限於搶劫、濫用藥物或傷人",
           "url": "https://assets-global.website-files.com/65ae2d5da5418c07ad1ed6fe/65ae2d5da5418c07ad1ed950_P3_zu.pdf"
         }
-      ]
+      ],
+      "original_price": 946,
+      "discounted_price": 757,
+      "official_buy_url": "https://buy.zurich.com.hk",
+      "promo": {
+        "tag": "輸入優惠碼享 8 折",
+        "code": "HELPER20",
+        "discount": "20% OFF",
+        "note": "輸入優惠碼享 8 折；網絡門診 0 自負額每年 20 次，住院手術每年高達 HK$80,000",
+        "original_price": 946,
+        "discounted_price": 757,
+        "buy_url": "https://buy.zurich.com.hk"
+      }
     },
     {
       "id": "pet-blue-cross",
@@ -30110,7 +30296,18 @@
           "quote": "* 以下狗隻品種除外：南極雪橇犬、布爹利犬、阿根廷杜告犬、巴西非拉犬、日本佐太犬、比特鬥牛犬、以及藏獒。",
           "url": "https://ap.bluecross.com.hk/shared/leaflets/LovePet_Leaflet.pdf"
         }
-      ]
+      ],
+      "original_price": 1500,
+      "discounted_price": 1275,
+      "official_buy_url": "https://www.bluecross.com.hk/ch/LovePet/Application",
+      "promo": {
+        "tag": "網上投保 85 折",
+        "discount": "15% OFF",
+        "note": "網上投保享 85 折；專項化療保障每年高達 HK$15,000，累積無索償折扣高達 15%",
+        "original_price": 1500,
+        "discounted_price": 1275,
+        "buy_url": "https://www.bluecross.com.hk/ch/LovePet/Application"
+      }
     },
     {
       "id": "pet-msig",
@@ -30602,7 +30799,19 @@
           "quote": "不保事項 與其他市面上的寵物保險計劃一樣，不保事項包括但不限於：1. 投保前或於保險等候期間已存在或發生的病況 2. 先天性疾病 3. 牙科疾病（包括洗牙） 4. 因結紮、懷孕而引起的費用 5. 選擇性/預防性治療",
           "url": "https://www.onedegree.hk/zh-hk/pet-insurance"
         }
-      ]
+      ],
+      "original_price": 1560,
+      "discounted_price": 1248,
+      "official_buy_url": "https://www.onedegree.hk/zh-hk/pet-insurance",
+      "promo": {
+        "tag": "首年保費 8 折",
+        "code": "MONEYSMART20",
+        "discount": "20% OFF",
+        "note": "輸入優惠碼享首年保費 8 折；網絡獸醫賠償高達 90%，無指定細項限額，送免費寵物身體檢查",
+        "original_price": 1560,
+        "discounted_price": 1248,
+        "buy_url": "https://www.onedegree.hk/zh-hk/pet-insurance"
+      }
     },
     {
       "id": "pet-bolttech",
@@ -31001,10 +31210,16 @@
         "worldwide"
       ],
       "promo": {
-        "tag": "宏利客戶尊享優惠",
-        "discount": "客戶特惠",
-        "note": "全項保障不設自負額；宏利客戶尊享網上投保特別優惠"
-      }
+        "tag": "宏利客戶尊享 8 折",
+        "discount": "20% OFF",
+        "note": "全項保障不設自負額；宏利客戶經專屬渠道投保享 8 折優惠，海外醫療費用高達 HK$1,500,000",
+        "original_price": 125,
+        "discounted_price": 100,
+        "buy_url": "https://www.manulife.com.hk/zh-hk/individual/products/general-insurance/travel-insurance.html"
+      },
+      "original_price": 125,
+      "discounted_price": 100,
+      "official_buy_url": "https://www.manulife.com.hk/zh-hk/individual/products/general-insurance/travel-insurance.html"
     },
     {
       "id": "pet-bowtie",
@@ -31221,7 +31436,18 @@
           "limit": "特選高階計劃涵蓋關節脫臼及韌帶撕裂微創修復"
         }
       ],
-      "insurer_zh": "蘇黎世保險"
+      "insurer_zh": "蘇黎世保險",
+      "original_price": 2480,
+      "discounted_price": 1984,
+      "official_buy_url": "https://buy.zurich.com.hk",
+      "promo": {
+        "tag": "官方網上 8 折",
+        "discount": "20% OFF",
+        "note": "官方網上投保享 8 折；每年獸醫醫療最高 HK$75,000，第三者法律責任高達 HK$200 萬",
+        "original_price": 2480,
+        "discounted_price": 1984,
+        "buy_url": "https://buy.zurich.com.hk"
+      }
     },
     {
       "id": "pet-avo",
@@ -32149,7 +32375,19 @@
           "limit": "不論過往索償紀錄，每年保證可續保至 80 歲"
         }
       ],
-      "insurer_zh": "保泰人壽"
+      "insurer_zh": "保泰人壽",
+      "original_price": 696,
+      "discounted_price": 487,
+      "official_buy_url": "https://www.bowtie.com.hk/zh-hk/touchwood-accident-insurance",
+      "promo": {
+        "tag": "首年 7 折最新代碼",
+        "code": "BLOGLEARNING2",
+        "discount": "30% OFF",
+        "note": "首年 7 折 + 次年 9 折；意外醫療每年高達 HK$420,000，中醫跌打針灸物理治療無需西醫轉介",
+        "original_price": 696,
+        "discounted_price": 487,
+        "buy_url": "https://www.bowtie.com.hk/zh-hk/touchwood-accident-insurance"
+      }
     },
     {
       "id": "accident-blue",
@@ -33154,7 +33392,18 @@
           "limit": "保單期內免費轉換受保家傭登記一次"
         }
       ],
-      "insurer_zh": "富衛保險"
+      "insurer_zh": "富衛保險",
+      "original_price": 1380,
+      "discounted_price": 1104,
+      "official_buy_url": "https://www.fwd.com.hk/zh/general-insurance/domestic-helper-insurance/",
+      "promo": {
+        "tag": "網上投保 8 折",
+        "discount": "20% OFF",
+        "note": "網上投保享 8 折；僱主法定責任 1 億港元，住院手術每年 HK$60,000，包誠信盜竊及重新招聘津貼",
+        "original_price": 1380,
+        "discounted_price": 1104,
+        "buy_url": "https://www.fwd.com.hk/zh/general-insurance/domestic-helper-insurance/"
+      }
     },
     {
       "id": "domestic-helper-cntaiping",
@@ -33894,17 +34143,17 @@
       "insurer_zh": "香港永明金融"
     },
     {
-      "id": "travel-onedegree",
+      "id": "travel-asia-insurance",
       "category": "travel",
-      "insurer": "OneDegree",
-      "product_name": "OneDegree Travel Insurance",
-      "product_name_zh": "OneDegree 旅遊保險",
+      "insurer": "asia-insurance",
+      "product_name": "Asia Insurance Superior Travel Insurance",
+      "product_name_zh": "亞洲保險「亞洲卓越旅遊保」",
       "plan_tiers": [
-        "尊尚計劃 (Superior)",
-        "全球暢遊 (Worldwide Elite)"
+        "基本計劃 (Basic)",
+        "全面計劃 (Comprehensive)"
       ],
-      "premium_range": "單次旅程約 HK$120 起；全年多次約 HK$1,480 起",
-      "premium_notes": "全港首創寵物同行/留港寵物護理保障，不設自負額，滑雪潛水業餘運動全包",
+      "premium_range": "單次旅程 5 天 HK$104 起（原價 HK$130）；全年多次 HK$1,200 起",
+      "premium_notes": "官方網上投保常設 8 折優惠，亞洲 5 天個人標準折後 HK$104，不設投保年齡上限",
       "key_terms": [
         "海外醫療費用保障高達 HK$1,200,000",
         "全港首創寵物同行海外意外醫療 HK$10,000 及留港寵物寄宿津貼 HK$2,000",
@@ -33921,7 +34170,8 @@
         "OneDegree Travel Insurance Policy Schedule"
       ],
       "source_urls": [
-        "https://www.onedegree.hk/zh-hk/travel-insurance"
+        "https://www.asiainsurance.hk/zh/personal-insurance/travel-insurance",
+        "https://www.asiainsurance.hk/documents/travel_leaflet_2025.pdf"
       ],
       "citations": [
         {
@@ -33999,7 +34249,18 @@
           "limit": "最高 HK$20,000（因直系親屬病危急需返港）"
         }
       ],
-      "insurer_zh": "OneDegree 保險"
+      "insurer_zh": "亞洲保險",
+      "original_price": 130,
+      "discounted_price": 104,
+      "official_buy_url": "https://www.asiainsurance.hk/zh/personal-insurance/travel-insurance",
+      "promo": {
+        "tag": "官網投保 8 折",
+        "discount": "20% OFF",
+        "note": "官網及華僑銀行專享 8 折；涵蓋海外醫療、行李延誤及 24 小時全球緊急救援",
+        "original_price": 130,
+        "discounted_price": 104,
+        "buy_url": "https://www.asiainsurance.hk/zh/personal-insurance/travel-insurance"
+      }
     }
   ]
 }

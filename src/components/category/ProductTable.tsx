@@ -459,10 +459,25 @@ export default function ProductTable({
                     </span>
                   </td>
 
-                  {/* 保費範圍（完整顯示，唔截斷） */}
+                  {/* 保費範圍（完整顯示，唔截斷；支援實付折後價與劃線原價） */}
                   <td className="px-4 py-4 align-top">
                     {p.premium_available && amounts.length > 0 ? (
                       <div>
+                        {/* 若有即時官方折扣，顯示劃線原價與實付折後價 */}
+                        {((p.discounted_price && p.original_price && p.original_price > p.discounted_price) ||
+                          (p.promo?.discounted_price && p.promo?.original_price && p.promo.original_price > p.promo.discounted_price)) && (
+                          <div className="flex items-baseline gap-1.5 mb-0.5">
+                            <span className="text-[12px] font-grotesk text-ink-faint line-through">
+                              HK${(p.original_price || p.promo?.original_price)?.toLocaleString()}
+                            </span>
+                            <span className="font-grotesk text-[17px] font-black text-red">
+                              HK${(p.discounted_price || p.promo?.discounted_price)?.toLocaleString()} 起
+                            </span>
+                            <span className="rounded bg-red/10 px-1 py-0.2 text-[10px] font-bold text-red">
+                              {p.promo?.discount || "折後價"}
+                            </span>
+                          </div>
+                        )}
                         <span className="text-price text-ink">
                           {formatHKD(Math.min(...amounts))}
                           {Math.max(...amounts) !== Math.min(...amounts) && (
@@ -553,6 +568,19 @@ export default function ProductTable({
                         >
                           官方來源
                           <ExternalLink size={12} />
+                        </a>
+                      )}
+                      {(p.official_buy_url || p.promo?.buy_url) && (
+                        <a
+                          href={p.official_buy_url || p.promo?.buy_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1 rounded bg-red text-paper hover:bg-red/90 px-2 py-0.5 text-[11px] font-bold shadow-2xs active:scale-95 transition-all"
+                          title="直達該保險公司官方投保／報價頁面"
+                        >
+                          <span>官網投保</span>
+                          <ExternalLink size={10} />
                         </a>
                       )}
                     </div>

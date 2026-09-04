@@ -89,10 +89,19 @@ export default function Navbar() {
     <header
       className={cn(
         "sticky top-0 z-50 h-[72px] transition-all duration-300",
-        scrolled && "border-b bg-paper/80 backdrop-blur-[12px]",
+        scrolled
+          ? "border-b bg-paper/90 backdrop-blur-md shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_24px_-2px_rgba(0,0,0,0.4)]"
+          : "border-b border-transparent bg-paper/0",
       )}
-      style={scrolled ? { borderColor: "var(--line)" } : { borderColor: "transparent" }}
+      style={{ borderColor: scrolled ? "var(--line)" : "transparent" }}
     >
+      {/* 滾動時底邊精緻微光分界線（景深分層） */}
+      {scrolled && (
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-jade/30 to-transparent opacity-80"
+          aria-hidden="true"
+        />
+      )}
       <div className="site-container flex h-full items-center justify-between gap-4">
         {/* 左：品牌 */}
         <Link to="/" className="flex shrink-0 items-center gap-2.5" aria-label="保險格價站首頁">

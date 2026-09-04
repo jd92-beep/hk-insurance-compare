@@ -77,6 +77,14 @@
     font-size: 16px;
     line-height: 1.8;
     letter-spacing: 0.01em;
+    background-color: var(--paper);
+    /* 全站底層微紋理：88% 米紙白底疊加金融等高線網格，滾動時呈現細膩紙張視差 */
+    background-image: 
+      linear-gradient(to bottom, rgba(247, 244, 238, 0.88), rgba(247, 244, 238, 0.88)),
+      url("/images/textures/mesh-paper-texture.webp");
+    background-size: auto, 680px 680px;
+    background-repeat: repeat;
+    background-attachment: scroll, fixed;
   }
 
   /* 全站紙紋疊加 */
@@ -276,5 +284,160 @@
   }
   .img-fade {
     animation: img-fade 0.7s ease both;
+  }
+
+  /* ── 頂級紙質層次與金融材質 Utilities (Tactile Architecture) ── */
+
+  /* 1. 金融米紙等高線微紋理底襯 (opacity 10-14%, multiply 混合，文字維持 WCAG AAA 最高對比度) */
+  .bg-mesh-texture {
+    position: relative;
+  }
+  .bg-mesh-texture::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/images/textures/mesh-paper-texture.webp");
+    background-size: 640px 640px;
+    background-repeat: repeat;
+    opacity: 0.12;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: inherit;
+  }
+  .bg-mesh-texture > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 2. 仿精緻實體紙盒陰影 (Paper Shadowbox - 多層微投影與細膩高光倒角) */
+  .paper-shadowbox {
+    box-shadow: 
+      0 4px 6px -1px rgba(24, 29, 46, 0.05), 
+      0 20px 40px -15px rgba(24, 29, 46, 0.12), 
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(24, 29, 46, 0.08);
+  }
+  .paper-shadowbox-interactive {
+    box-shadow: 
+      0 4px 6px -1px rgba(24, 29, 46, 0.05), 
+      0 20px 40px -15px rgba(24, 29, 46, 0.12), 
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(24, 29, 46, 0.08);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .paper-shadowbox-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 6px 10px -2px rgba(24, 29, 46, 0.06), 
+      0 26px 48px -12px rgba(24, 29, 46, 0.16), 
+      inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  }
+
+  /* 3. 高級毛玻璃懸浮島 (Glass Floating Island) */
+  .glass-floating {
+    background: rgba(247, 244, 238, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(24, 29, 46, 0.12);
+    box-shadow: 
+      0 10px 30px -10px rgba(24, 29, 46, 0.08), 
+      0 4px 6px -2px rgba(24, 29, 46, 0.04), 
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  /* 4. 紙張重疊分層邊緣效果 (Paper Stack Edge - 翻頁與厚紙層疊接縫) */
+  .paper-stack-edge {
+    position: relative;
+  }
+  .paper-stack-edge::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(24, 29, 46, 0.08) 12%,
+      rgba(24, 29, 46, 0.18) 50%,
+      rgba(24, 29, 46, 0.08) 88%,
+      transparent 100%
+    );
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* 頂部紙張層疊分界 */
+  .paper-stack-edge-t {
+    position: relative;
+  }
+  .paper-stack-edge-t::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -1px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(24, 29, 46, 0.08) 12%,
+      rgba(24, 29, 46, 0.18) 50%,
+      rgba(24, 29, 46, 0.08) 88%,
+      transparent 100%
+    );
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* 5. 光學玻璃折射與氛圍金光背景 (Category Ambient Glow) */
+  .bg-ambient-glow {
+    position: relative;
+    overflow: hidden;
+  }
+  .bg-ambient-glow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/images/textures/category-ambient-glow.webp");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.14;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: inherit;
+  }
+  .bg-ambient-glow > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 6. 金融防偽盾徽浮水印 (Shield Seal Watermark) */
+  .shield-watermark {
+    position: relative;
+    overflow: hidden;
+  }
+  .shield-watermark::after {
+    content: "";
+    position: absolute;
+    right: -24px;
+    bottom: -24px;
+    width: 140px;
+    height: 140px;
+    background-image: url("/images/textures/shield-seal-emblem.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.07;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .shield-watermark > * {
+    position: relative;
+    z-index: 1;
   }
 }

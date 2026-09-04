@@ -133,11 +133,17 @@ export default function FilterBar({
 
   return (
     <div
-      className="relative z-20 border-b bg-paper transition-shadow duration-200"
+      className="relative z-20 border-b bg-paper/95 backdrop-blur-md transition-all duration-300 shadow-[0_4px_16px_-2px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.02)] [box-shadow:0_1px_0_var(--line),0_4px_16px_-4px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.35)]"
       style={{ borderColor: "var(--line)" }}
     >
+      {/* 頂部極細微光層（景深分離） */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-jade/20 to-transparent opacity-70"
+        aria-hidden="true"
+      />
+
       {/* ── 1. 常駐 Compact 欄位（無論展開或收起皆常駐，且非 sticky，隨頁面正常捲動） ── */}
-      <div className="site-container flex flex-wrap items-center justify-between gap-3 py-3">
+      <div className="site-container relative z-10 flex flex-wrap items-center justify-between gap-3 py-3">
         {/* 左側：結果統計 + 已選條件徽章與活躍條件摘要 */}
         <div className="flex flex-wrap items-center gap-2 text-small">
           <div className="flex items-center gap-2">
@@ -245,10 +251,21 @@ export default function FilterBar({
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t bg-paper-2/40"
+            className="relative overflow-hidden border-t bg-paper-2/50 shadow-inner"
             style={{ borderColor: "var(--line)" }}
           >
-            <div className="site-container flex flex-col gap-4 py-4">
+            {/* 實體米紙微紋理底層 */}
+            <div
+              className="pointer-events-none absolute inset-0 z-0 select-none opacity-[0.025] mix-blend-multiply dark:mix-blend-screen"
+              style={{
+                backgroundImage: "url('/images/textures/mesh-paper-texture.webp')",
+                backgroundSize: "320px",
+                backgroundRepeat: "repeat",
+              }}
+              aria-hidden="true"
+            />
+
+            <div className="site-container relative z-10 flex flex-col gap-4 py-4.5">
               {/* [區塊 A] 價錢預算篩選 (Price Filter) */}
               <div className="flex flex-wrap items-center gap-2">
                 <span className="inline-flex items-center gap-1 text-[12.5px] font-bold text-ink-soft shrink-0 pr-1">

@@ -314,14 +314,25 @@ export default function ProductTable({
   const COL_SPAN = 7;
 
   const thBase =
-    "sticky top-[72px] z-20 bg-paper/95 backdrop-blur-md px-4 py-3.5 text-left text-small font-bold text-ink-soft border-b border-line-strong [box-shadow:inset_0_-1px_0_var(--line-strong)]";
+    "sticky top-[72px] z-20 bg-paper-2/95 backdrop-blur-md px-4 py-3.5 text-left text-small font-bold text-ink border-b border-line-strong shadow-[0_2px_8px_-2px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.06)] [box-shadow:inset_0_-1px_0_var(--line-strong)]";
 
   return (
     <div
-      className="rounded-card border bg-paper shadow-card max-lg:overflow-x-auto"
+      className="relative overflow-hidden rounded-2xl border border-line-strong/80 bg-paper shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_28px_-4px_rgba(0,0,0,0.4)] max-lg:overflow-x-auto"
       style={{ borderColor: "var(--line)" }}
     >
-      <table className="w-full border-collapse text-left text-[14.5px] leading-[1.55] max-lg:min-w-[1080px] max-md:text-[13.5px]">
+      {/* 表格底層實體微弱紙紋對比 (mesh-paper-texture) */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0 select-none opacity-[0.022] mix-blend-multiply dark:mix-blend-screen"
+        style={{
+          backgroundImage: "url('/images/textures/mesh-paper-texture.webp')",
+          backgroundSize: "360px",
+          backgroundRepeat: "repeat",
+        }}
+        aria-hidden="true"
+      />
+
+      <table className="relative z-10 w-full border-collapse text-left text-[14.5px] leading-[1.55] max-lg:min-w-[1080px] max-md:text-[13.5px]">
         <thead className="sticky top-[72px] z-20">
           <tr className="border-b" style={{ borderColor: "var(--line-strong)" }}>
             <th className={cn(thBase, "w-[21%] px-5")}>保險公司 / 產品</th>
@@ -362,8 +373,12 @@ export default function ProductTable({
                 <motion.tr
                   onClick={() => toggleRow(p.id)}
                   className={cn(
-                    "group cursor-pointer border-b transition-colors duration-200 hover:bg-paper-2",
-                    expanded && "bg-paper-2/70",
+                    "group cursor-pointer border-b transition-colors duration-200",
+                    expanded
+                      ? "bg-paper-2/80 shadow-xs"
+                      : i % 2 === 1
+                        ? "bg-paper-2/30 hover:bg-paper-2/80"
+                        : "bg-paper hover:bg-paper-2/70",
                   )}
                   style={{ borderColor: "var(--line)" }}
                   initial={{ opacity: 0, y: 10 }}
@@ -401,7 +416,7 @@ export default function ProductTable({
                       <StampBadge
                         variant={p.premium_available ? "jade" : "ink"}
                         size={16}
-                        className="mt-0.5 shrink-0"
+                        className="mt-0.5 shrink-0 shadow-[0_1px_3px_rgba(0,0,0,0.12)] transition-transform group-hover:scale-110"
                       />
                     </span>
                     {/* 智能契合度 Badge（用戶自選重視保障命中狀態） */}

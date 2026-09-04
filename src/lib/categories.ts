@@ -157,7 +157,7 @@ const UNIT_WORDS: [RegExp, Exclude<PremiumUnit, null>][] = [
 
 /** 由金額前後文推斷繳費單位：緊接嘅「/月、/年、/日」優先，再睇同子句前面嘅「每月/月繳/每年/年繳/每日」，最後睇範圍後段共用嘅「/月」尾綴 */
 function detectUnit(text: string, start: number, end: number): PremiumUnit {
-  const immediate = text.slice(end, end + 8).match(/^\s*[\/／]\s*(月|年|日)/);
+  const immediate = text.slice(end, end + 8).match(/^\s*[/／]\s*(月|年|日)/);
   if (immediate) return immediate[1] === "月" ? "month" : immediate[1] === "年" ? "year" : "day";
   // 同子句（。；（）為界）入面最近嘅單位詞，例如「每月HK$14.31、HK$15.93」後段都係月繳
   const clauseBefore = text.slice(Math.max(0, start - 48), start).split(/[。；;（）]/).pop() ?? "";
@@ -172,7 +172,7 @@ function detectUnit(text: string, start: number, end: number): PremiumUnit {
   if (best && clauseBefore.length - best.idx <= 44) return best.unit;
   // 範圍寫法「HK$183–226/月」：/月 係成個範圍嘅共用尾綴
   const clauseAfter = text.slice(end, end + 24).split(/[。；;（）]/)[0] ?? "";
-  const shared = clauseAfter.match(/[\/／]\s*(月|年|日)/);
+  const shared = clauseAfter.match(/[/／]\s*(月|年|日)/);
   if (shared) return shared[1] === "月" ? "month" : shared[1] === "年" ? "year" : "day";
   return null;
 }
@@ -183,7 +183,7 @@ function detectUnit(text: string, start: number, end: number): PremiumUnit {
  */
 export function parsePremiumEntries(premiumRange: string): PremiumEntry[] {
   const entries: PremiumEntry[] = [];
-  const re = /(?:HK\$|HKD)\s*([\d,]+(?:\.\d+)?)|(?<=[–—\-\/])\s*([\d,]{2,}(?:\.\d+)?)/g;
+  const re = /(?:HK\$|HKD)\s*([\d,]+(?:\.\d+)?)|(?<=[–—\-/])\s*([\d,]{2,}(?:\.\d+)?)/g;
   let m: RegExpExecArray | null;
   while ((m = re.exec(premiumRange)) !== null) {
     const raw = m[1] ?? m[2];

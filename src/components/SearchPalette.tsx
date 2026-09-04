@@ -61,7 +61,7 @@ export default function SearchPalette() {
     const matchedProducts = products
       .filter((p) =>
         fuzzyMatch(
-          `${p.product_name} ${p.product_name_zh} ${p.insurer} ${p.insurer_zh} ${p.category}`,
+          `${p.product_name} ${p.product_name_zh} ${p.insurer} ${p.insurer_zh} ${p.category} ${p.promo?.code ?? ""} ${p.promo?.tag ?? ""} ${(p.plan_tiers ?? []).join(" ")}`,
           q,
         ),
       )
@@ -184,6 +184,11 @@ export default function SearchPalette() {
                               {p.insurer} {p.insurer_zh}
                             </span>
                           </span>
+                          {p.discounted_price ? (
+                            <span className="shrink-0 font-grotesk font-black text-red text-[13px]">
+                              HK${p.discounted_price.toLocaleString()}
+                            </span>
+                          ) : null}
                           <span
                             className="shrink-0 rounded-full px-2 py-0.5 text-[11px] font-bold"
                             style={{ background: `color-mix(in srgb, ${color} 12%, transparent)`, color }}

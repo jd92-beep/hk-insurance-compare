@@ -4,16 +4,37 @@ import { motion } from "framer-motion";
 import type { Product } from "@/types/insurance";
 import { cn } from "@/lib/utils";
 
-/** 保費範圍原文（有公開保費 → 左側 jade 圓點） */
+/** 保費範圍原文（有公開保費 → 左側 jade 圓點；有折後價 → 醒目標出實付價與原價） */
 export function PremiumRangeCell({ product }: { product: Product }) {
+  const origPrice = product.original_price ?? product.promo?.original_price;
+  const discPrice = product.discounted_price ?? product.promo?.discounted_price;
+  const hasDiscount = Boolean(origPrice && discPrice && discPrice <= origPrice);
+
   return (
-    <div className="flex items-start gap-2.5 text-[15px] leading-[1.7] text-ink">
-      {product.premium_available && (
-        <span className="mt-[9px] h-2 w-2 shrink-0 rounded-full bg-jade" aria-label="有公開保費" />
+    <div className="flex flex-col gap-1">
+      {hasDiscount && origPrice && discPrice && (
+        <div className="flex flex-wrap items-baseline gap-1.5 pb-0.5">
+          <span className="text-[13px] font-grotesk text-ink-faint line-through">
+            HK${origPrice.toLocaleString()}
+          </span>
+          <span className="font-grotesk text-[17px] font-black text-red">
+            HK${discPrice.toLocaleString()}
+          </span>
+          {product.promo?.discount && (
+            <span className="rounded bg-red/10 px-1.5 py-0.2 text-[11px] font-bold text-red">
+              {product.promo.discount}
+            </span>
+          )}
+        </div>
       )}
-      <span className={cn(!product.premium_available && "text-ink-soft")}>
-        {product.premium_range}
-      </span>
+      <div className="flex items-start gap-2.5 text-[15px] leading-[1.7] text-ink">
+        {product.premium_available && (
+          <span className="mt-[9px] h-2 w-2 shrink-0 rounded-full bg-jade" aria-label="有公開保費" />
+        )}
+        <span className={cn(!product.premium_available && "text-ink-soft")}>
+          {product.premium_range}
+        </span>
+      </div>
     </div>
   );
 }

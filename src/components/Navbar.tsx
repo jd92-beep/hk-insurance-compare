@@ -69,11 +69,13 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 換頁時關閉抽屜／mega menu
-  useEffect(() => {
+  // 換頁時關閉抽屜／mega menu（遵循 React 官方 Adjusting state during render 規範）
+  const [prevPathname, setPrevPathname] = useState(location.pathname);
+  if (prevPathname !== location.pathname) {
+    setPrevPathname(location.pathname);
     setDrawerOpen(false);
     setMegaOpen(false);
-  }, [location.pathname]);
+  }
 
   // 抽屜開啟時鎖 body 滾動
   useEffect(() => {

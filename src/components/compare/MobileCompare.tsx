@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { X } from "lucide-react";
+import { ExternalLink, X } from "lucide-react";
 import type { Product } from "@/types/insurance";
 import { categoryColor, categoryName } from "@/lib/categories";
 import { useCategories } from "@/providers/InsuranceDataProvider";
@@ -144,7 +144,22 @@ export default function MobileCompare({
         <Group en="PRICE" zh="保費" multi={multi}>
           <Block label="保費範圍"><PremiumRangeCell product={active} /></Block>
           <Block label="保費備註"><PremiumNotesCell product={active} /></Block>
-          <Block label="公開保費"><PremiumStatusCell product={active} /></Block>
+          <Block label="公開保費">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <PremiumStatusCell product={active} />
+              {(active.official_buy_url || active.promo?.buy_url) && (
+                <a
+                  href={active.official_buy_url || active.promo?.buy_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 rounded-md bg-red px-3 py-1.5 text-[12px] font-bold text-paper shadow-xs active:scale-95 transition-all"
+                >
+                  <span>官網投保</span>
+                  <ExternalLink size={12} />
+                </a>
+              )}
+            </div>
+          </Block>
         </Group>
 
         <Group en="COVERAGE" zh="保障項目" multi={multi}>

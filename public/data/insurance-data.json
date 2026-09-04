@@ -2309,8 +2309,8 @@
         "出發前政府已發出外遊警示之高風險目的地"
       ],
       "source_urls": [
-        "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=2",
-        "https://www.fwd.com.hk/online-insurance/mytravel-insurance/"
+        "https://www.fwd.com.hk/online-insurance/mytravel-insurance/",
+        "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=2"
       ],
       "documents_found": [
         "FWD 自寫意旅遊保 (MyTravel Insurance) 產品小冊子",
@@ -34145,7 +34145,7 @@
     {
       "id": "travel-asia-insurance",
       "category": "travel",
-      "insurer": "asia-insurance",
+      "insurer": "Asia Insurance",
       "product_name": "Asia Insurance Superior Travel Insurance",
       "product_name_zh": "亞洲保險「亞洲卓越旅遊保」",
       "plan_tiers": [

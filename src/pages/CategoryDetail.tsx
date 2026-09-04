@@ -267,6 +267,24 @@ export default function CategoryDetail() {
   // 🔍 特點即時微型搜尋欄輸入字串
   const [featureSearchQuery, setFeatureSearchQuery] = useState("");
 
+  // 切換類別時自動重設所有篩選狀態（避免跨類別殘留條件導致 0 筆結果或空指標）
+  const [prevCategoryId, setPrevCategoryId] = useState(categoryId);
+  if (prevCategoryId !== categoryId) {
+    setPrevCategoryId(categoryId);
+    setSelectedInsurers([]);
+    setOnlyPremium(false);
+    setSort("default");
+    setPremiumDir("asc");
+    setTravelTripType("all");
+    setTravelRegion("all");
+    setOnlyPromo(false);
+    setPriceRange("all");
+    setIsFeaturePanelOpen(false);
+    setSelectedFeatures([]);
+    setFeatureSearchQuery("");
+    setFeatureMatchMode("smart");
+  }
+
   // 當前類別之情境 Shortcuts
   const categoryPresets = useMemo(
     () => getCategoryScenarioPresets(categoryId || ""),

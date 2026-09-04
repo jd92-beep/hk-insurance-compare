@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Link2, Plus, RotateCcw, X } from "lucide-react";
+import { ArrowRight, ExternalLink, Link2, Plus, RotateCcw, X } from "lucide-react";
 import { Link, useSearchParams } from "react-router";
 import type { Product } from "@/types/insurance";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -40,10 +40,15 @@ function SplitWords({ words, className }: { words: string[]; className?: string 
   );
 }
 
-/** 已填產品欄（S2）：類別色頂條 + 公司 + 產品名 + 保費狀態 chip + × 移除 */
+/** 已填產品欄（S2）：類別色頂條 + 公司 + 產品名 + 保費狀態 chip + 官方投保 + × 移除 */
 function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => void }) {
   const color = categoryColor(product.category);
   const icon = CATEGORY_META[product.category]?.icon;
+  const buyUrl = product.official_buy_url || product.promo?.buy_url;
+  const origPrice = product.original_price ?? product.promo?.original_price;
+  const discPrice = product.discounted_price ?? product.promo?.discounted_price;
+  const hasDiscount = Boolean(origPrice && discPrice && discPrice <= origPrice);
+
   return (
     <motion.div
       layout="position"
@@ -87,9 +92,39 @@ function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => v
         >
           {product.product_name_zh || product.product_name}
         </Link>
-        <div className="pt-0.5">
+
+        {/* 即時折後價與劃線原價 */}
+        {hasDiscount && origPrice && discPrice && (
+          <div className="flex flex-wrap items-baseline gap-1.5 pt-0.5">
+            <span className="text-[12px] font-grotesk text-ink-faint line-through">
+              HK${origPrice.toLocaleString()}
+            </span>
+            <span className="font-grotesk text-[16px] font-black text-red">
+              HK${discPrice.toLocaleString()}
+            </span>
+            {product.promo?.discount && (
+              <span className="rounded bg-red/10 px-1.5 py-0.2 text-[10.5px] font-bold text-red">
+                {product.promo.discount}
+              </span>
+            )}
+          </div>
+        )}
+
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
           <PremiumStatusCell product={product} />
-               </div>
+          {buyUrl && (
+            <a
+              href={buyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 rounded-[8px] bg-red px-2.5 py-1 text-[11.5px] font-bold text-paper transition-all hover:bg-red/90 shadow-xs active:scale-95"
+              title="前往官網即時投保／報價"
+            >
+              <span>官網投保</span>
+              <ExternalLink size={11} />
+            </a>
+          )}
+        </div>
       </div>
     </motion.div>
   );

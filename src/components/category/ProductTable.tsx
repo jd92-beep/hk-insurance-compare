@@ -15,6 +15,7 @@ import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 import type { CoverageItem, Product } from "@/types/insurance";
 import type { PremiumSpectrum } from "@/lib/categories";
+import type { FeatureMatchResult } from "@/lib/feature-filters";
 import { parsePremiumAmounts, premiumUnitHint } from "@/lib/categories";
 import PriceRangeBar from "@/components/PriceRangeBar";
 import StampBadge from "@/components/StampBadge";
@@ -254,6 +255,7 @@ export default function ProductTable({
   spectrum,
   premiumSortDir,
   onTogglePremiumSort,
+  productMatchMap,
 }: {
   products: Product[];
   color: string;
@@ -262,6 +264,7 @@ export default function ProductTable({
   /** null = 未按保費排序 */
   premiumSortDir: "asc" | "desc" | null;
   onTogglePremiumSort: () => void;
+  productMatchMap?: Map<string, FeatureMatchResult>;
 }) {
   const navigate = useNavigate();
   const compare = useCompare();
@@ -352,6 +355,7 @@ export default function ProductTable({
             const keyCoverage = pickKeyCoverage(p.coverage ?? [], coverageKeywords);
             const tiers = p.plan_tiers ?? [];
             const sourceUrl = p.source_urls?.[0];
+            const match = productMatchMap?.get(p.id);
             const enterDelay = i < 9 ? i * 0.05 : 0;
             return (
               <Fragment key={p.id}>
@@ -400,6 +404,24 @@ export default function ProductTable({
                         className="mt-0.5 shrink-0"
                       />
                     </span>
+                    {/* 智能契合度 Badge（用戶自選重視保障命中狀態） */}
+                    {match && match.totalSelected > 0 && (
+                      <div className="mt-1.5 flex flex-wrap items-center gap-1">
+                        <span
+                          className={cn(
+                            "inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[10.5px] font-bold shadow-2xs",
+                            match.matchedCount === match.totalSelected
+                              ? "bg-jade/15 text-jade border border-jade/30"
+                              : "bg-sky-500/15 text-sky-800 dark:text-sky-300 border border-sky-500/30"
+                          )}
+                        >
+                          {match.matchedCount === match.totalSelected
+                            ? `🎯 完美符合全部 ${match.matchedCount}/${match.totalSelected} 項重視保障`
+                            : `✨ 符合 ${match.matchedCount}/${match.totalSelected} 項重視保障`}
+                          <span className="font-mono text-[10px] opacity-85">({match.score}%)</span>
+                        </span>
+                      </div>
+                    )}
                     {p.promo && (
                       <div className="mt-1.5 flex flex-wrap items-center gap-1">
                         <span className="inline-flex items-center gap-1 rounded border border-amber-500/30 bg-amber-500/15 px-1.5 py-0.5 text-[11px] font-bold text-amber-900 dark:text-amber-200">

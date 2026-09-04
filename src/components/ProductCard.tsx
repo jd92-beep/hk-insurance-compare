@@ -2,6 +2,7 @@ import { ExternalLink, FileText, Plus, Check, Sparkles, Copy } from "lucide-reac
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import type { Product } from "@/types/insurance";
+import type { FeatureMatchResult } from "@/lib/feature-filters";
 import { categoryColor } from "@/lib/categories";
 import { useCompare } from "@/providers/CompareProvider";
 import PriceRangeBar from "@/components/PriceRangeBar";
@@ -15,9 +16,11 @@ import { cn } from "@/lib/utils";
 export default function ProductCard({
   product,
   className,
+  match,
 }: {
   product: Product;
   className?: string;
+  match?: FeatureMatchResult;
 }) {
   const navigate = useNavigate();
   const compare = useCompare();
@@ -67,6 +70,34 @@ export default function ProductCard({
             size={28}
           />
         </div>
+
+        {/* 智能契合度 Badge（用戶自選重視保障命中狀態） */}
+        {match && match.totalSelected > 0 && (
+          <div className="flex flex-col gap-1 rounded-lg border border-jade/30 bg-jade/10 p-2.5 text-[12px]">
+            <div className="flex items-center justify-between gap-1.5">
+              <span className={cn(
+                "font-bold font-sans",
+                match.matchedCount === match.totalSelected ? "text-jade" : "text-sky-800 dark:text-sky-300"
+              )}>
+                {match.matchedCount === match.totalSelected
+                  ? `🎯 完美符合全部 ${match.matchedCount}/${match.totalSelected} 項重視保障`
+                  : `✨ 符合 ${match.matchedCount}/${match.totalSelected} 項重視保障`}
+              </span>
+              <span className="font-mono text-[11px] font-bold text-jade">
+                {match.score}% 契合
+              </span>
+            </div>
+            {match.matchedTags.length > 0 && (
+              <div className="flex flex-wrap gap-1 mt-0.5">
+                {match.matchedTags.map((t) => (
+                  <span key={t.id} className="rounded bg-paper px-1.5 py-0.5 text-[10.5px] font-semibold text-jade shadow-2xs border border-jade/25">
+                    ✓ {t.label}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* 計劃層級 chips */}
         {shownTiers.length > 0 && (

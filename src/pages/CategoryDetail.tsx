@@ -13,6 +13,13 @@ import UniversalComparisonChart from "@/components/category/UniversalComparisonC
 import TravelFlagshipBanner from "@/components/category/TravelFlagshipBanner";
 import { categoryCopy } from "@/components/category/copy";
 import {
+  getCategoryFeatureTags,
+  filterAndRankProductsByFeatures,
+  type FeatureMatchMode,
+  type FeatureMatchResult,
+} from "@/lib/feature-filters";
+import { Check, RotateCcw } from "lucide-react";
+import {
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -91,6 +98,10 @@ export default function CategoryDetail() {
   const [travelRegion, setTravelRegion] = useState<TravelRegion>("all");
   const [onlyPromo, setOnlyPromo] = useState(false);
 
+  // 🎯 用戶自選重視之保障項目（智能匹配與置頂推薦）
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
+  const [featureMatchMode, setFeatureMatchMode] = useState<FeatureMatchMode>("smart");
+
   const rawCategory = categories.find((c) => c.id === categoryId);
   const copy = categoryCopy(categoryId);
   const meta = categoryId ? CATEGORY_META[categoryId] : undefined;
@@ -128,7 +139,13 @@ export default function CategoryDetail() {
   const premiumKey = (p: (typeof products)[number]): number =>
     p.premium_available ? premiumSortKey(p.premium_range) : Number.POSITIVE_INFINITY;
 
-  const filtered = useMemo(() => {
+  const categoryFeatureTags = useMemo(
+    () => getCategoryFeatureTags(categoryId || ""),
+    [categoryId]
+  );
+
+  // 1. 先套用基礎條件（公司、有保費、旅遊維度）並送入智能契合度評分引擎
+  const rankedFeatureData = useMemo(() => {
     let list = products;
     if (selectedInsurers.length > 0) {
       list = list.filter((p) => selectedInsurers.includes(p.insurer));
@@ -156,12 +173,45 @@ export default function CategoryDetail() {
       }
     }
 
+    return filterAndRankProductsByFeatures(
+      list,
+      selectedFeatures,
+      categoryId || "",
+      featureMatchMode
+    );
+  }, [
+    products,
+    selectedInsurers,
+    onlyPremium,
+    isTravel,
+    travelTripType,
+    travelRegion,
+    onlyPromo,
+    selectedFeatures,
+    categoryId,
+    featureMatchMode,
+  ]);
+
+  // 建立產品與 Match 結果快速索引
+  const productMatchMap = useMemo(() => {
+    const map = new Map<string, FeatureMatchResult>();
+    for (const r of rankedFeatureData.results) {
+      map.set(r.product.id, r.match);
+    }
+    return map;
+  }, [rankedFeatureData]);
+
+  // 2. 最終排序：若為預設排序且有選取重視保障，直接按符合度多至少置頂推薦；若手動指定保費或A-Z，則按手動條件排序
+  const filtered = useMemo(() => {
+    const list = rankedFeatureData.results.map((r) => r.product);
+    if (sort === "default") {
+      return list;
+    }
     const sorted = [...list];
     if (sort === "premium") {
       sorted.sort((a, b) => {
         const ka = premiumKey(a);
         const kb = premiumKey(b);
-        // 無公開保費永遠排尾（升序降序都係），先至貼合「有公開保費先」
         const aNone = !Number.isFinite(ka);
         const bNone = !Number.isFinite(kb);
         if (aNone !== bNone) return aNone ? 1 : -1;
@@ -174,12 +224,13 @@ export default function CategoryDetail() {
     }
     return sorted;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [products, selectedInsurers, onlyPremium, isTravel, travelTripType, travelRegion, onlyPromo, sort, premiumDir]);
+  }, [rankedFeatureData, sort, premiumDir]);
 
   const hasActiveFilters =
     selectedInsurers.length > 0 ||
     onlyPremium ||
     sort !== "default" ||
+    selectedFeatures.length > 0 ||
     (isTravel && (travelTripType !== "all" || travelRegion !== "all" || onlyPromo));
 
   const resetFilters = () => {
@@ -187,11 +238,19 @@ export default function CategoryDetail() {
     setOnlyPremium(false);
     setSort("default");
     setPremiumDir("asc");
+    setSelectedFeatures([]);
+    setFeatureMatchMode("smart");
     if (isTravel) {
       setTravelTripType("all");
       setTravelRegion("all");
       setOnlyPromo(false);
     }
+  };
+
+  const toggleFeature = (tagId: string) => {
+    setSelectedFeatures((prev) =>
+      prev.includes(tagId) ? prev.filter((id) => id !== tagId) : [...prev, tagId]
+    );
   };
 
   const toggleInsurer = (name: string) => {
@@ -536,6 +595,10 @@ export default function CategoryDetail() {
             categoryId={category.id}
             categoryName={category.name_zh}
             color={color}
+            selectedFeatures={selectedFeatures}
+            onSelectedFeaturesChange={setSelectedFeatures}
+            matchMode={featureMatchMode}
+            onMatchModeChange={setFeatureMatchMode}
           />
         </div>
       </section>
@@ -572,6 +635,109 @@ export default function CategoryDetail() {
         {/* ── S3 產品列表 ─────────────────────────────────────── */}
         <section className="py-10 max-md:py-8">
           <div className="site-container">
+            {/* 🎯 智能偏好挑選面板（用戶自選重視保障） */}
+            {categoryFeatureTags.length > 0 && (
+              <div className="mb-6 rounded-2xl border border-line bg-paper p-4 sm:p-5 shadow-xs transition-all">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between pb-3 border-b border-line/50">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="font-sans text-[15px] sm:text-[16px] font-bold text-ink flex items-center gap-1.5">
+                        <Sparkles size={16} className="text-jade" />
+                        <span>挑選你重視的保障項目（智能推薦最合適保險）</span>
+                      </h3>
+                      {selectedFeatures.length > 0 && (
+                        <span className="rounded-full bg-jade/10 px-2.5 py-0.5 font-grotesk text-[11px] font-bold text-jade">
+                          已選 {selectedFeatures.length} 項條件
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-0.5 text-small text-ink-soft">
+                      點選你最關注的保障條款，系統將按契合度智能評分並置頂推薦最貼近心水的方案。
+                    </p>
+                  </div>
+
+                  {/* 模式切換 Switch：智能推薦 vs 嚴格全中 */}
+                  {selectedFeatures.length > 1 && (
+                    <div className="inline-flex items-center rounded-full bg-paper-2 p-1 text-[11px] self-start sm:self-auto border border-line/60">
+                      <button
+                        type="button"
+                        onClick={() => setFeatureMatchMode("smart")}
+                        className={cn(
+                          "rounded-full px-2.5 py-1 font-medium transition-all",
+                          featureMatchMode === "smart"
+                            ? "bg-jade text-paper font-bold shadow-xs"
+                            : "text-ink-soft hover:text-ink"
+                        )}
+                        title="智能推薦：符合最多重視項目優先置頂，永不落空"
+                      >
+                        ✨ 智能推薦（符合最多項優先）
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setFeatureMatchMode("strict")}
+                        className={cn(
+                          "rounded-full px-2.5 py-1 font-medium transition-all",
+                          featureMatchMode === "strict"
+                            ? "bg-ink text-paper font-bold shadow-xs"
+                            : "text-ink-soft hover:text-ink"
+                        )}
+                        title="嚴格全中：要求同時滿足所有選中條件"
+                      >
+                        🎯 嚴格全中 (AND)
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* 特點標籤 Chips */}
+                <div className="mt-3.5 flex flex-wrap items-center gap-1.5">
+                  <span className="text-[12px] font-semibold text-ink-faint mr-1">快捷點選：</span>
+                  {categoryFeatureTags.map((tag) => {
+                    const isSelected = selectedFeatures.includes(tag.id);
+                    return (
+                      <button
+                        key={tag.id}
+                        type="button"
+                        onClick={() => toggleFeature(tag.id)}
+                        className={cn(
+                          "inline-flex items-center gap-1 rounded-full px-3 py-1 text-[12px] font-medium transition-all",
+                          isSelected
+                            ? "bg-jade text-paper font-bold shadow-xs scale-[1.02]"
+                            : "bg-paper-2/70 text-ink-soft border border-line/70 hover:border-jade/50 hover:text-jade hover:bg-paper"
+                        )}
+                      >
+                        {isSelected && <Check size={12} />}
+                        <span>{tag.label}</span>
+                      </button>
+                    );
+                  })}
+                  {selectedFeatures.length > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => setSelectedFeatures([])}
+                      className="ml-2 inline-flex items-center gap-1 text-[12px] font-semibold text-red hover:underline"
+                    >
+                      <RotateCcw size={12} />
+                      <span>重設重視保障</span>
+                    </button>
+                  )}
+                </div>
+
+                {/* Fallback 智能提示 */}
+                {rankedFeatureData.fallbackTriggered && (
+                  <div className="mt-3.5 rounded-xl border border-amber-300/80 bg-amber-50/90 dark:bg-amber-950/40 p-3 text-amber-900 dark:text-amber-200 text-[12.5px] flex items-start gap-2">
+                    <Sparkles size={16} className="text-amber-600 shrink-0 mt-0.5" />
+                    <div>
+                      <strong>市場上暫無單一計劃同時 100% 滿足所有 {selectedFeatures.length} 項條件。</strong>
+                      <p className="mt-0.5 text-[12px] text-amber-800/90 dark:text-amber-300/90">
+                        已為你自動切換為<strong>【智能推薦模式】</strong>，將符合最多項目（如中 2–3 項）的方案置頂排序，助你挑選最實用貼心的保險！
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* 保費公開狀況 summary chip（表格頂一眼睇晒） */}
             <div className="mb-5 flex flex-wrap items-center gap-2.5">
               {premiumCount === 0 ? (
@@ -614,6 +780,7 @@ export default function CategoryDetail() {
                     spectrum={spectrum}
                     premiumSortDir={sort === "premium" ? premiumDir : null}
                     onTogglePremiumSort={handleTogglePremiumSort}
+                    productMatchMap={productMatchMap}
                   />
                 </motion.div>
               ) : (
@@ -636,7 +803,7 @@ export default function CategoryDetail() {
                         delay: i < 9 ? i * 0.06 : 0,
                       }}
                     >
-                      <ProductCard product={p} className="h-full" />
+                      <ProductCard product={p} className="h-full" match={productMatchMap.get(p.id)} />
                     </motion.div>
                   ))}
                 </motion.div>

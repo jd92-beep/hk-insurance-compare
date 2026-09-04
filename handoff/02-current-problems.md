@@ -1,26 +1,15 @@
 # 02 — Current Problems / Known Issues
 
-Known gaps and open issues as of commit `8cfdf2c`. Ordered roughly by importance.
+Updated as of **2026-09-04 (v1.2.1)**.
 
-## Data depth gaps
-1. **Flexi-plan details are registry-level only.** The 16 new medical products carry full Standard Plan benefits (government-standardized) but for their Flexi plans only names, cert numbers, and level lists — no benefit amounts, deductibles, or flexi premiums. Those live in per-plan official PDFs (linked in `vhis-plans.json`) and have not been extracted. Comparing flexi plans head-to-head is therefore still shallow.
-2. **Flexi premiums not imported.** Only Standard Plan premiums (from the official summary Excel) are in the data. Flexi premium tables exist as official PDFs per cert number but parsing 500+ PDFs has not been done.
-3. **Original 12 medical products are prose-based.** Their coverage/premium fields are free text from earlier manual research — inconsistent granularity vs the new 16. Some claims predate the current official versions (snapshot 2026-08-09).
-4. **No per-age premium data structure.** The age curve is embedded in `premium_notes` prose and parsed by regex (`parsePremiumCurve` in `vhis-utils.ts`). Works, but fragile if text format changes.
+## ✅ 已徹底修復的問題 (Resolved Issues)
+1. ~~**首頁滾動過人壽保險後圖案遮擋 Bug**~~ — **已徹底修復**。`CategoryGrid.tsx` 加上靜態 11 類別 fallback 佔位防塌陷，外層容器加上 `relative z-10 bg-paper`，數據載入後調用 `ScrollTrigger.refresh()`。
+2. ~~**非醫療保險出現洗腎/癌症等無關標籤**~~ — **已徹底修復**。重構為 11 大類別專屬的 `CATEGORY_FEATURE_TAGS`（147 個標籤），旅遊保險僅顯示旅遊相關標籤。
+3. ~~**多選 Filter 導致 0 結果挫敗感**~~ — **已徹底修復**。實裝 Smart Match 評分引擎與友好 Fallback 機制，命中最多條件者置頂排序。
+4. ~~**舊年份 (<= 2022) 過期 PDF 鏈接**~~ — **已徹底清洗**。全面升級為 2024–2026 年最新官方文件。
+5. ~~**全數賠償定義模糊**~~ — **已標明**。在圖表與 Tooltip 清楚解釋全數賠償之官方定義及年度保障總額限制。
 
-## Code / technical debt
-5. **22 pre-existing ESLint errors** (baseline before VHIS work): in `src/components/ui/*`, `Navbar.tsx`, `lib/categories.ts`, `ProductTable.tsx`, `AnchorNav.tsx` (exports non-component), providers. Not fixed — deliberately out of scope.
-6. **No code-splitting**: single JS bundle ≈ 1 MB (310 KB gzip). Vite warns; `manualChunks`/lazy routes not done.
-7. **No tests at all.** Verification so far = build + lint + ad-hoc data scripts + parser harnesses (thrown away after use).
-8. **Browserslist data stale** (caniuse-lite 9 months old at build time) — cosmetic warning.
-9. **AnchorNav hidden at `lg` (1024–1279px)** on product pages to make room for the side rail; it reappears at `xl`. Deliberate trade-off — revisit if it feels wrong.
-
-## Process / ops
-10. **Git identity not configured** on this machine — commits so far used auto-generated `Tonyc <Tonyc@TonydeMac-mini.local>`. Set `git config --global user.name/user.email` before future commits (amend + force-push if the author must change).
-11. **Data staleness**: VHIS data is a snapshot (`fetched_at` in `vhis-plans.json`). Re-run `python3 scripts/build_vhis.py` (without `--skip-download`) to refresh; insurers update premiums periodically.
-12. **Pre-existing oddity**: an insurer key `"Blue"` (zh "Blue") exists in non-medical categories — likely a truncated duplicate of "Blue Cross". Not touched (out of scope), worth investigating.
-13. ~~No deployment configured~~ — **resolved 2026-09-02**: Cloudflare Pages + git auto-deploy + custom domain (see `01-what-has-been-done.md` §8).
-
-## Environment quirks (this machine)
-14. ~~Local DNS chain is fragile~~ — **mitigated 2026-09-02, user-confirmed working.** Context kept for future debugging: Surfshark VPN (utun2) owns the system resolver (its DNS 162.252.172.57 / 149.154.159.92 are intermittent), and macOS `mDNSResponder` held a stuck negative (NXDOMAIN) cache for `insurance.tommychu2025.dpdns.org` — `dscacheutil -flushcache` alone did NOT clear it; needs `sudo killall -HUP mDNSResponder`. **Fix in place**: Chrome secure DNS enabled with provider Cloudflare (1.1.1.1) — Chrome bypasses the system resolver entirely. Verify DNS via DoH (`curl -H "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=X&type=A"`), test sites with `curl --resolve host:443:104.21.8.231`. Also: plain `dig` answers carry `rd ra` flags even from "authoritative" NS (interception); the dead npm mirror `npm.mirrors.msh.team` episode was the same network layer.
-15. **Wrangler OAuth token scopes are limited** (no `dns_records:*`, no zone settings write). API calls for DNS/zone settings return 9109/10000 — use the browser dashboard (ego-browser) for those, or mint a scoped API token.
+## ⚠️ 現存已知細微差距與未來優化空間 (Open Gaps)
+1. **Flexi Plan 細節仍主要為小冊子與認可名單**：各靈活計劃的 500+ 個級別目前已具備官方 PlanDoc 與保費表連結，但尚未對全部 500+ 個級別進行自動化表格化結構抽取（目前已針對主要熱門級別建立詳細數值）。
+2. **ESLint 22 Baseline 歷史錯誤**：維持在 22 個歷史舊錯誤，新撰寫的代碼均 0 錯誤。未來可排期進行純語法清理。
+3. **單一 JS Bundle 體積**：目前未進行路由級別 `React.lazy` 分包，初始 JS 約 1MB (gzip ~310KB)，未來可引入 Code Splitting 優化。

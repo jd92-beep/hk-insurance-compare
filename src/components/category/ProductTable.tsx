@@ -314,7 +314,7 @@ export default function ProductTable({
   const COL_SPAN = 7;
 
   const thBase =
-    "sticky z-20 bg-paper-2 px-4 py-3.5 text-left text-small font-bold text-ink-soft max-lg:top-0 lg:top-[130px]";
+    "sticky top-[72px] z-20 bg-paper/95 backdrop-blur-md px-4 py-3.5 text-left text-small font-bold text-ink-soft border-b border-line-strong [box-shadow:inset_0_-1px_0_var(--line-strong)]";
 
   return (
     <div
@@ -322,9 +322,9 @@ export default function ProductTable({
       style={{ borderColor: "var(--line)" }}
     >
       <table className="w-full border-collapse text-left text-[14.5px] leading-[1.55] max-lg:min-w-[1080px] max-md:text-[13.5px]">
-        <thead>
+        <thead className="sticky top-[72px] z-20">
           <tr className="border-b" style={{ borderColor: "var(--line-strong)" }}>
-            <th className={cn(thBase, "z-30 w-[21%] px-5")}>保險公司 / 產品</th>
+            <th className={cn(thBase, "w-[21%] px-5")}>保險公司 / 產品</th>
             <th className={cn(thBase, "w-[19%]")}>
               <button
                 type="button"

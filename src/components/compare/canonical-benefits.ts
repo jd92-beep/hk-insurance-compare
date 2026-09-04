@@ -82,7 +82,7 @@ const LIFE: CanonicalBenefit[] = [
   { id: "conversion", label: "轉換權益", keywords: ["轉換"] },
   { id: "currency", label: "保單貨幣", keywords: ["保單貨幣"] },
   { id: "terminal-illness", label: "末期疾病保障", keywords: ["末期疾病"] },
-  { id: "cash-value", label: "現金價值 / 紅利", keywords: ["紅利", "支取現金"] },
+  { id: "cash-value", label: "現金價值 / 保費返還", keywords: ["紅利", "支取現金", "保費返還", "現金價值", "退保價值", "消費型", "保單價值"] },
 ];
 
 const CRITICAL_ILLNESS: CanonicalBenefit[] = [

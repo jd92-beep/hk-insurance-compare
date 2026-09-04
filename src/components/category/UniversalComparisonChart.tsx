@@ -3,17 +3,22 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpDown,
+  Award,
   BarChart3,
   Check,
   ChevronDown,
   ChevronUp,
   Filter,
   Info,
+  Layers,
   PieChart,
   RotateCcw,
   Search,
+  ShieldCheck,
   Sparkles,
+  Users,
   X,
+  Zap,
 } from "lucide-react";
 import { useNavigate } from "react-router";
 import {
@@ -21,6 +26,8 @@ import {
   getCategoryMetrics,
   getDefaultMetric,
   prepareChartData,
+  type MetricUnitType,
+  type ChartDataPoint,
 } from "@/lib/chart-metrics";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/types/insurance";
@@ -59,6 +66,54 @@ interface ProductCapInfo {
   lifetimeCap: string;
   shortBadge: string;
   isFullCover: boolean;
+}
+
+/** 動態自適應市場梯隊結構（Dynamic Adaptive Insurance Tier） */
+export interface DynamicTier {
+  id: string;
+  name: string;
+  badge: string;
+  tagline: string;
+  color: string;
+  borderColor: string;
+  bgColor: string;
+  headerBg: string;
+  textColor: string;
+  iconType: "flagship" | "high" | "mid" | "low" | "standard";
+  count: number;
+  percentage: number;
+  rangeDisplay: string;
+  avgDisplay?: string;
+  advantage: string;
+  targetAudience: string;
+  insurers: { insurer: string; insurerZh: string }[];
+  items: ChartDataPoint[];
+}
+
+/** 智能格式化指標數值為香港繁體習慣表達 */
+function formatMetricValue(
+  val: number,
+  unitType?: MetricUnitType,
+  unitSuffix?: string
+): string {
+  if (unitType === "currency") {
+    if (val >= 100_000_000) {
+      const v = val / 100_000_000;
+      return `HK$${Number.isInteger(v) ? v : v.toFixed(1)}億`;
+    }
+    if (val >= 10_000) {
+      const v = val / 10_000;
+      return `HK$${Number.isInteger(v) ? v : v.toFixed(1)}萬`;
+    }
+    return `HK$${Math.round(val).toLocaleString()}`;
+  }
+  if (unitType === "percentage") {
+    return `${Math.round(val)}%`;
+  }
+  if (unitType === "age") {
+    return `${Math.round(val)} 歲`;
+  }
+  return `${Math.round(val)} ${unitSuffix ?? ""}`.trim();
 }
 
 /** 智能提取產品的保單整體封頂上限（每年總額、終身限額、海外醫療等） */
@@ -232,6 +287,12 @@ export default function UniversalComparisonChart({
   // 5. 圖表視圖切換：長條圖排行榜 (bar) 或 梯隊分佈圖 (pie)
   const [viewMode, setViewMode] = useState<"bar" | "pie">("bar");
 
+  // 梯隊內產品清單展開/折疊狀態（key: tier.id）
+  const [expandedTiers, setExpandedTiers] = useState<Record<string, boolean>>({});
+  const toggleTierExpanded = (tierId: string) => {
+    setExpandedTiers((prev) => ({ ...prev, [tierId]: !prev[tierId] }));
+  };
+
   // 6. 排序方向：'desc'（最高保障優先）或 'asc'
   const [sortDirection, setSortDirection] = useState<"desc" | "asc">("desc");
 
@@ -383,53 +444,272 @@ export default function UniversalComparisonChart({
     );
   }, [chartPoints]);
 
-  // 14. 梯隊分佈數據（Pie Chart Breakdown）
-  const distributionTiers = useMemo(() => {
-    if (chartPoints.length === 0) return [];
-    const flagship = chartPoints.filter((p) => p.isFlagship);
-    const tierHigh = chartPoints.filter(
-      (p) => !p.isFlagship && p.numericValue >= 5_000_000
-    );
-    const tierMid = chartPoints.filter(
-      (p) => !p.isFlagship && p.numericValue >= 500_000 && p.numericValue < 5_000_000
-    );
-    const tierBase = chartPoints.filter(
-      (p) => !p.isFlagship && p.numericValue < 500_000
+  // 14. 梯隊分佈數據（動態自適應多維梯隊引擎）
+  const distributionTiers = useMemo<DynamicTier[]>(() => {
+    if (chartPoints.length === 0 || !currentMetric) return [];
+    const totalCount = chartPoints.length;
+
+    // A. 提取頂級旗艦組（全數賠償 / 無細項上限 / 無上限）
+    const flagshipItems = chartPoints.filter(
+      (p) =>
+        p.isFlagship ||
+        p.displayValue.includes("全數賠償") ||
+        p.displayValue.includes("全額") ||
+        p.displayValue.includes("無上限") ||
+        p.badge?.includes("全數賠償") ||
+        p.badge?.includes("無上限")
     );
 
-    const tiers = [
-      {
-        name: "頂級旗艦（全數賠償 / 無細項上限）",
-        subNote: "不設分項上限，受制於保單年度總額",
-        count: flagship.length,
+    // B. 提取具備具體數值的常規組，依數值降序排列（最高在前）
+    const numericItems = chartPoints
+      .filter(
+        (p) =>
+          !flagshipItems.includes(p) &&
+          p.numericValue > 0 &&
+          p.numericValue < 900_000_000
+      )
+      .sort((a, b) => b.numericValue - a.numericValue);
+
+    const tiers: DynamicTier[] = [];
+
+    // Helper: 提取保險公司去重名單
+    const getInsurers = (items: ChartDataPoint[]) => {
+      const map = new Map<string, string>();
+      for (const item of items) {
+        if (!map.has(item.insurer)) {
+          map.set(item.insurer, item.insurerZh);
+        }
+      }
+      return Array.from(map.entries()).map(([insurer, insurerZh]) => ({
+        insurer,
+        insurerZh,
+      }));
+    };
+
+    // Helper: 計算數值區間與均值
+    const getRangeAndAvg = (items: ChartDataPoint[]) => {
+      const vals = items.map((i) => i.numericValue);
+      if (vals.length === 0) return { rangeDisplay: "受制於年度/終身總額" };
+      const min = Math.min(...vals);
+      const max = Math.max(...vals);
+      const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+      const minStr = formatMetricValue(min, currentMetric.unitType, currentMetric.unitSuffix);
+      const maxStr = formatMetricValue(max, currentMetric.unitType, currentMetric.unitSuffix);
+      const avgStr = formatMetricValue(avg, currentMetric.unitType, currentMetric.unitSuffix);
+      return {
+        rangeDisplay: min === max ? minStr : `${minStr} – ${maxStr}`,
+        avgDisplay: min === max ? undefined : `均值約 ${avgStr}`,
+      };
+    };
+
+    // 1. 若有旗艦計劃，放入頂級旗艦梯隊
+    if (flagshipItems.length > 0) {
+      const pct = (flagshipItems.length / totalCount) * 100;
+      tiers.push({
+        id: "tier-flagship",
+        name: "頂級旗艦梯隊",
+        badge: "⭐ 全數賠償 / 無細項上限",
+        tagline: "突破常規分項細項限額約束，由保險公司 100% 實報實銷合資格開支",
         color: "#D97706",
-        items: flagship,
-      },
-      {
-        name: "高額保障（HK$500萬以上）",
-        subNote: "高額分項限額或高保額常規方案",
-        count: tierHigh.length,
+        borderColor: "border-amber-300 dark:border-amber-700/60",
+        bgColor: "bg-amber-50/50 dark:bg-amber-950/20",
+        headerBg: "bg-amber-100/70 dark:bg-amber-900/40",
+        textColor: "text-amber-950 dark:text-amber-200",
+        iconType: "flagship",
+        count: flagshipItems.length,
+        percentage: Number(pct.toFixed(1)),
+        rangeDisplay: "全數賠償（受制於保單年度/終身總額）",
+        avgDisplay: undefined,
+        advantage: "零自付額外爆單風險，無分項細額壓力，通常尊享私家病房、免找數或全球頂級救援",
+        targetAudience: "追求最高規格保障、預算充裕家庭、高淨值人士或重視零煩惱醫療體驗者",
+        insurers: getInsurers(flagshipItems),
+        items: flagshipItems,
+      });
+    }
+
+    // 2. 處理數值梯隊
+    const uniqueVals = Array.from(
+      new Set(numericItems.map((p) => p.numericValue))
+    ).sort((a, b) => a - b);
+
+    if (uniqueVals.length === 1) {
+      // 情況 A：全市場唯一一致數值
+      const pct = (numericItems.length / totalCount) * 100;
+      const { rangeDisplay } = getRangeAndAvg(numericItems);
+      tiers.push({
+        id: "tier-standard",
+        name: "市場標準基準梯隊",
+        badge: "⚖️ 全市場標準劃一",
+        tagline: `參照計劃於此指標均劃一提供一致標準的保障額度（${rangeDisplay}）`,
         color: "#2563EB",
-        items: tierHigh,
-      },
-      {
-        name: "中級保障（HK$50萬 - HK$500萬）",
-        subNote: "中產或標準以上進階保障",
-        count: tierMid.length,
-        color: "#059669",
-        items: tierMid,
-      },
-      {
-        name: "入門/常規（HK$50萬以下）",
-        subNote: "標準自願醫保或入門基層限額",
-        count: tierBase.length,
-        color: "#64748B",
-        items: tierBase,
-      },
-    ].filter((t) => t.count > 0);
+        borderColor: "border-blue-300 dark:border-blue-700/60",
+        bgColor: "bg-blue-50/40 dark:bg-blue-950/20",
+        headerBg: "bg-blue-100/70 dark:bg-blue-900/40",
+        textColor: "text-blue-950 dark:text-blue-200",
+        iconType: "standard",
+        count: numericItems.length,
+        percentage: Number(pct.toFixed(1)),
+        rangeDisplay: `全市場劃一為 ${rangeDisplay}`,
+        avgDisplay: undefined,
+        advantage: "各家保障額度睇齊香港法定或頂尖市場規範，條款透明規範",
+        targetAudience: "各類投保人士（此指標額度劃一，建議重點對比保費費率、自負額與增值服務）",
+        insurers: getInsurers(numericItems),
+        items: numericItems,
+      });
+    } else if (uniqueVals.length === 2) {
+      // 情況 B：市場兩極分化（2 檔）
+      const highItems = numericItems.filter((p) => p.numericValue === uniqueVals[1]);
+      const lowItems = numericItems.filter((p) => p.numericValue === uniqueVals[0]);
+
+      if (highItems.length > 0) {
+        const pct = (highItems.length / totalCount) * 100;
+        const { rangeDisplay, avgDisplay } = getRangeAndAvg(highItems);
+        tiers.push({
+          id: "tier-high",
+          name: "高額充足梯隊",
+          badge: "🚀 充裕升級保障",
+          tagline: "保障額顯著高於市場基礎檔次，提供更寬鬆從容的索償緩衝空間",
+          color: "#2563EB",
+          borderColor: "border-blue-300 dark:border-blue-700/60",
+          bgColor: "bg-blue-50/40 dark:bg-blue-950/20",
+          headerBg: "bg-blue-100/70 dark:bg-blue-900/40",
+          textColor: "text-blue-950 dark:text-blue-200",
+          iconType: "high",
+          count: highItems.length,
+          percentage: Number(pct.toFixed(1)),
+          rangeDisplay,
+          avgDisplay,
+          advantage: "應對突發嚴重事故時儲備更充足，大幅降低因限額不足而需自行貼錢的機會",
+          targetAudience: "家庭主要經濟支柱、經常出行或重視高規格防護之投保人",
+          insurers: getInsurers(highItems),
+          items: highItems,
+        });
+      }
+
+      if (lowItems.length > 0) {
+        const pct = (lowItems.length / totalCount) * 100;
+        const { rangeDisplay, avgDisplay } = getRangeAndAvg(lowItems);
+        tiers.push({
+          id: "tier-low",
+          name: "實惠經濟梯隊",
+          badge: "🌱 基礎入門基層",
+          tagline: "提供滿足基本日常應急的門檻保障，保費門檻最為親民實惠",
+          color: "#64748B",
+          borderColor: "border-slate-300 dark:border-slate-700/60",
+          bgColor: "bg-slate-50/40 dark:bg-slate-900/20",
+          headerBg: "bg-slate-100/70 dark:bg-slate-800/40",
+          textColor: "text-slate-900 dark:text-slate-200",
+          iconType: "low",
+          count: lowItems.length,
+          percentage: Number(pct.toFixed(1)),
+          rangeDisplay,
+          avgDisplay,
+          advantage: "用最精打細算的保費開支獲得核心基礎風險防護，性價比極高",
+          targetAudience: "預算有限的剛起步年輕人、打工仔或用作既有保單的輕量補充",
+          insurers: getInsurers(lowItems),
+          items: lowItems,
+        });
+      }
+    } else if (uniqueVals.length >= 3) {
+      // 情況 C：市場多檔階梯（>= 3 檔，自適應分位數三梯隊）
+      const p33 = numericItems[Math.floor(numericItems.length * 0.33)].numericValue;
+      const p67 = numericItems[Math.floor(numericItems.length * 0.67)].numericValue;
+
+      let highGroup = numericItems.filter((p) => p.numericValue >= p33);
+      let midGroup = numericItems.filter(
+        (p) => p.numericValue < p33 && p.numericValue >= p67
+      );
+      let lowGroup = numericItems.filter((p) => p.numericValue < p67);
+
+      if (highGroup.length === 0 || midGroup.length === 0 || lowGroup.length === 0) {
+        const uLen = uniqueVals.length;
+        const uCut1 = uniqueVals[Math.floor(uLen / 3)];
+        const uCut2 = uniqueVals[Math.floor((uLen * 2) / 3)];
+        lowGroup = numericItems.filter((p) => p.numericValue < uCut1);
+        midGroup = numericItems.filter(
+          (p) => p.numericValue >= uCut1 && p.numericValue < uCut2
+        );
+        highGroup = numericItems.filter((p) => p.numericValue >= uCut2);
+      }
+
+      const groups = [
+        {
+          id: "tier-high",
+          name: "高保額無憂梯隊",
+          badge: "💎 充裕高額旗艦",
+          tagline: "額度處於市場前列，為重大事故及高額支出提供堅實充裕的資金後盾",
+          color: "#2563EB",
+          borderColor: "border-blue-300 dark:border-blue-700/60",
+          bgColor: "bg-blue-50/40 dark:bg-blue-950/20",
+          headerBg: "bg-blue-100/70 dark:bg-blue-900/40",
+          textColor: "text-blue-950 dark:text-blue-200",
+          iconType: "high" as const,
+          items: highGroup,
+          advantage: "應對超高額突發索償從容不迫，防範巨額醫療或財物損失風險",
+          targetAudience: "高收入家庭、經常外遊公幹或追求頂格防護的家庭決策者",
+        },
+        {
+          id: "tier-mid",
+          name: "主流性價比梯隊",
+          badge: "⚖️ 市場中堅主流",
+          tagline: "香港市場最主流平衡配置水平，兼顧賠償充裕度與合理保費支出",
+          color: "#059669",
+          borderColor: "border-emerald-300 dark:border-emerald-700/60",
+          bgColor: "bg-emerald-50/40 dark:bg-emerald-950/20",
+          headerBg: "bg-emerald-100/70 dark:bg-emerald-900/40",
+          textColor: "text-emerald-950 dark:text-emerald-200",
+          iconType: "mid" as const,
+          items: midGroup,
+          advantage: "足以覆蓋 80% 以上日常常見索償場景，保費親民適中，綜合性價比最高",
+          targetAudience: "普遍香港家庭、一般打工仔、重視性價比與實用性的精明投保者",
+        },
+        {
+          id: "tier-low",
+          name: "輕量經濟入門梯隊",
+          badge: "🌱 基礎經濟型",
+          tagline: "滿足基本應急或法定規定的入門級限額，著重降低投保門檻",
+          color: "#64748B",
+          borderColor: "border-slate-300 dark:border-slate-700/60",
+          bgColor: "bg-slate-50/40 dark:bg-slate-900/20",
+          headerBg: "bg-slate-100/70 dark:bg-slate-800/40",
+          textColor: "text-slate-900 dark:text-slate-200",
+          iconType: "low" as const,
+          items: lowGroup,
+          advantage: "以最經濟實惠的預算獲得核心風險保障，減輕每年保費負擔",
+          targetAudience: "預算有限剛起步青年、短期臨時過渡或已有主力保單只需少許補貼人士",
+        },
+      ];
+
+      for (const g of groups) {
+        if (g.items.length > 0) {
+          const pct = (g.items.length / totalCount) * 100;
+          const { rangeDisplay, avgDisplay } = getRangeAndAvg(g.items);
+          tiers.push({
+            id: g.id,
+            name: g.name,
+            badge: g.badge,
+            tagline: g.tagline,
+            color: g.color,
+            borderColor: g.borderColor,
+            bgColor: g.bgColor,
+            headerBg: g.headerBg,
+            textColor: g.textColor,
+            iconType: g.iconType,
+            count: g.items.length,
+            percentage: Number(pct.toFixed(1)),
+            rangeDisplay,
+            avgDisplay,
+            advantage: g.advantage,
+            targetAudience: g.targetAudience,
+            insurers: getInsurers(g.items),
+            items: g.items,
+          });
+        }
+      }
+    }
 
     return tiers;
-  }, [chartPoints]);
+  }, [chartPoints, currentMetric]);
 
   // 切換特點選中狀態
   const toggleFeature = (tagId: string) => {
@@ -1098,74 +1378,246 @@ export default function UniversalComparisonChart({
                   })}
                 </div>
               ) : (
-                /* ── 梯隊分佈視圖（Pie/Distribution View） ───────────── */
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  {distributionTiers.map((tier) => {
-                    const pct = ((tier.count / chartPoints.length) * 100).toFixed(1);
-                    return (
-                      <div
-                        key={tier.name}
-                        className="rounded-xl border border-line/70 bg-paper p-4 shadow-xs"
-                      >
-                        <div className="flex items-center justify-between border-b border-line/50 pb-2.5">
-                          <div className="flex items-center gap-2">
+                /* ── 梯隊分佈視圖（動態自適應市場梯隊與決策短鏈） ───────────── */
+                <div className="space-y-5">
+                  {/* 1. 頂部全景市場梯隊格局分佈條 (Panoramic Tier Bar) */}
+                  <div className="rounded-xl border border-line/80 bg-paper-2/40 p-4 shadow-xs">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+                      <div className="flex items-center gap-2 text-[13px] font-bold text-ink">
+                        <Layers size={15} className="text-jade shrink-0" />
+                        <span>全景市場梯隊格局分佈（{currentMetric.label}）</span>
+                      </div>
+                      <span className="font-grotesk text-[11px] font-semibold text-ink-soft">
+                        共 {chartPoints.length} 款有效計劃參照 · 劃分為 {distributionTiers.length} 個市場梯隊
+                      </span>
+                    </div>
+
+                    {/* 橫向堆疊色彩條 */}
+                    <div className="flex h-6 w-full overflow-hidden rounded-lg bg-paper-2 p-0.5 gap-0.5 shadow-inner">
+                      {distributionTiers.map((t) => (
+                        <div
+                          key={t.id}
+                          style={{
+                            width: `${Math.max(t.percentage, 8)}%`,
+                            backgroundColor: t.color,
+                          }}
+                          className="h-full rounded-sm flex items-center justify-center text-paper font-grotesk text-[10.5px] font-bold transition-all hover:opacity-90 px-1 overflow-hidden select-none"
+                          title={`${t.name}：${t.count} 份 (${t.percentage}%)`}
+                        >
+                          <span className="truncate">{t.badge.split(" ")[0]} {t.percentage}%</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* 梯隊圖例與市場一句話診斷 */}
+                    <div className="mt-3 flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-line/40 text-[11px] text-ink-soft">
+                      <div className="flex flex-wrap items-center gap-3">
+                        {distributionTiers.map((t) => (
+                          <div key={t.id} className="flex items-center gap-1.5">
                             <div
-                              className="h-3.5 w-3.5 rounded-full"
-                              style={{ backgroundColor: tier.color }}
+                              className="h-2.5 w-2.5 rounded-full shrink-0"
+                              style={{ backgroundColor: t.color }}
                             />
-                            <div>
-                              <h4 className="font-sans text-[14px] font-bold text-ink">
-                                {tier.name}
-                              </h4>
-                              {tier.subNote && (
-                                <p className="text-[11px] text-ink-faint">
-                                  {tier.subNote}
-                                </p>
+                            <span className="font-semibold text-ink">{t.name}</span>
+                            <span className="font-grotesk text-ink-faint">
+                              ({t.count} 份 · {t.percentage}%)
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="text-ink-faint italic text-[10.5px]">
+                        💡 提示：點擊各梯隊內代表計劃可直接對照官方保單條款
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 2. 梯隊深度卡片矩陣 (Deep Tier Cards Grid) */}
+                  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                    {distributionTiers.map((tier) => {
+                      const isExpanded = Boolean(expandedTiers[tier.id]);
+                      const hasMoreThanFour = tier.items.length > 4;
+                      const displayedItems = hasMoreThanFour && !isExpanded
+                        ? tier.items.slice(0, 3)
+                        : tier.items;
+
+                      const TierIcon =
+                        tier.iconType === "flagship"
+                          ? Sparkles
+                          : tier.iconType === "high"
+                            ? Award
+                            : tier.iconType === "mid"
+                              ? ShieldCheck
+                              : tier.iconType === "low"
+                                ? Zap
+                                : Layers;
+
+                      return (
+                        <div
+                          key={tier.id}
+                          className={cn(
+                            "flex flex-col justify-between rounded-xl border p-4.5 transition-all duration-200 shadow-xs",
+                            tier.borderColor,
+                            tier.bgColor
+                          )}
+                        >
+                          <div>
+                            {/* 卡片頭部：標題、徽章與佔比 */}
+                            <div className="flex items-start justify-between gap-3 border-b border-line/60 pb-3">
+                              <div className="flex items-start gap-2.5">
+                                <div
+                                  className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-paper shadow-xs"
+                                  style={{ backgroundColor: tier.color }}
+                                >
+                                  <TierIcon size={16} />
+                                </div>
+                                <div>
+                                  <div className="flex flex-wrap items-center gap-1.5">
+                                    <h4 className="font-sans text-[15px] font-bold text-ink">
+                                      {tier.name}
+                                    </h4>
+                                    <span
+                                      className="rounded-full px-2 py-0.5 font-sans text-[10px] font-bold"
+                                      style={{
+                                        backgroundColor: `${tier.color}1A`,
+                                        color: tier.color,
+                                      }}
+                                    >
+                                      {tier.badge}
+                                    </span>
+                                  </div>
+                                  <p className="mt-0.5 text-[11.5px] text-ink-soft leading-snug">
+                                    {tier.tagline}
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="shrink-0 text-right">
+                                <span className="inline-flex rounded-full bg-paper px-2 py-0.5 font-grotesk text-[11px] font-bold text-ink shadow-2xs border border-line/60">
+                                  {tier.count} 份 ({tier.percentage}%)
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* 數值指標區間與均值橫幅 (Range & Avg Banner) */}
+                            <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-lg bg-paper/90 px-3 py-2 border border-line/60 text-[11.5px]">
+                              <div className="flex items-center gap-1.5">
+                                <span className="font-semibold text-ink-soft">保障區間：</span>
+                                <strong className="font-grotesk text-ink text-[12.5px]">
+                                  {tier.rangeDisplay}
+                                </strong>
+                              </div>
+                              {tier.avgDisplay && (
+                                <span className="font-grotesk text-[11px] font-semibold text-jade bg-jade/10 px-2 py-0.5 rounded-full">
+                                  {tier.avgDisplay}
+                                </span>
                               )}
                             </div>
-                          </div>
-                          <span className="font-grotesk text-[13px] font-black text-ink">
-                            {tier.count} 份 ({pct}%)
-                          </span>
-                        </div>
-                        <div className="mt-3 flex flex-col gap-1.5 max-h-48 overflow-y-auto pr-1">
-                          {tier.items.map((p) => {
-                            const pCap = productCapsMap.get(p.id);
-                            const isPFullCover =
-                              p.isFlagship ||
-                              p.displayValue.includes("全數賠償") ||
-                              p.displayValue.includes("全額");
 
-                            return (
-                              <button
-                                key={p.id}
-                                type="button"
-                                onClick={() => navigate(p.url)}
-                                className="flex items-center justify-between rounded-lg px-2.5 py-1.5 text-left text-small text-ink transition-colors hover:bg-paper-2"
-                              >
-                                <span className="truncate pr-2 font-medium">
-                                  <span className="font-bold text-ink-soft mr-1">
-                                    [{p.insurerZh}]
-                                  </span>
-                                  {p.name}
-                                </span>
-                                <div className="flex flex-col items-end shrink-0 text-right">
-                                  <span className="font-grotesk font-bold text-ink">
-                                    {p.displayValue}
-                                  </span>
-                                  {isPFullCover && pCap && (
-                                    <span className="text-[10px] font-semibold text-amber-700">
-                                      {pCap.shortBadge}
-                                    </span>
-                                  )}
+                            {/* Short-Chain 決策短鏈 (Core Advantage & Target Audience) */}
+                            <div className="mt-2.5 space-y-1.5 rounded-lg bg-paper/70 p-2.5 border border-line/50 text-[11.5px]">
+                              <div className="flex items-start gap-1.5">
+                                <Zap size={13} className="shrink-0 mt-0.5 text-amber-600" />
+                                <div className="leading-relaxed">
+                                  <strong className="text-ink">核心優勢：</strong>
+                                  <span className="text-ink-soft">{tier.advantage}</span>
                                 </div>
-                              </button>
-                            );
-                          })}
+                              </div>
+                              <div className="flex items-start gap-1.5">
+                                <Users size={13} className="shrink-0 mt-0.5 text-blue-600" />
+                                <div className="leading-relaxed">
+                                  <strong className="text-ink">適合人群：</strong>
+                                  <span className="text-ink-soft">{tier.targetAudience}</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* 涵蓋保險公司 Chips */}
+                            {tier.insurers.length > 0 && (
+                              <div className="mt-2.5 flex flex-wrap items-center gap-1">
+                                <span className="text-[11px] font-semibold text-ink-faint mr-0.5">
+                                  涵蓋保司 ({tier.insurers.length})：
+                                </span>
+                                {tier.insurers.map((ins) => (
+                                  <span
+                                    key={ins.insurer}
+                                    className="inline-flex items-center rounded bg-paper px-1.5 py-0.5 text-[10.5px] font-medium text-ink-soft border border-line/50"
+                                  >
+                                    {ins.insurerZh}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+
+                            {/* 代表產品列表 */}
+                            <div className="mt-3 space-y-1">
+                              <span className="text-[11px] font-bold text-ink-faint">
+                                代表性計劃對照（點擊開啟官方條款）：
+                              </span>
+                              <div className="mt-1 flex flex-col gap-1">
+                                {displayedItems.map((p) => {
+                                  const pCap = productCapsMap.get(p.id);
+                                  const isPFullCover =
+                                    p.isFlagship ||
+                                    p.displayValue.includes("全數賠償") ||
+                                    p.displayValue.includes("全額");
+
+                                  return (
+                                    <button
+                                      key={p.id}
+                                      type="button"
+                                      onClick={() => navigate(p.url)}
+                                      className="group/item flex items-center justify-between rounded-lg bg-paper/80 p-2 text-left text-small text-ink transition-all hover:bg-paper hover:shadow-xs border border-line/40 hover:border-line"
+                                    >
+                                      <div className="min-w-0 flex-1 pr-2">
+                                        <div className="flex items-center gap-1.5 truncate">
+                                          <span className="shrink-0 rounded bg-paper-2 px-1.5 py-0.5 font-grotesk text-[10.5px] font-semibold text-ink-soft">
+                                            {p.insurerZh}
+                                          </span>
+                                          <span className="truncate font-sans font-medium text-[13px] text-ink group-hover/item:text-jade transition-colors">
+                                            {p.name}
+                                          </span>
+                                        </div>
+                                      </div>
+                                      <div className="flex items-center gap-2 shrink-0 text-right">
+                                        <div className="flex flex-col items-end">
+                                          <span className="font-grotesk font-bold text-[13px] text-ink">
+                                            {p.displayValue}
+                                          </span>
+                                          {isPFullCover && pCap && (
+                                            <span className="text-[10px] font-semibold text-amber-700 dark:text-amber-400">
+                                              {pCap.shortBadge}
+                                            </span>
+                                          )}
+                                        </div>
+                                        <ArrowRight
+                                          size={13}
+                                          className="text-ink-faint transition-transform group-hover/item:translate-x-0.5 group-hover/item:text-ink"
+                                        />
+                                      </div>
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* 展開/收起更多產品按鈕 */}
+                          {hasMoreThanFour && (
+                            <button
+                              type="button"
+                              onClick={() => toggleTierExpanded(tier.id)}
+                              className="mt-2.5 inline-flex w-full items-center justify-center gap-1 rounded-lg border border-line/60 bg-paper py-1.5 text-[11.5px] font-semibold text-ink-soft hover:bg-paper-2 hover:text-ink transition-colors"
+                            >
+                              <span>
+                                {isExpanded
+                                  ? "收起部分計劃 ▴"
+                                  : `展開其餘 ${tier.items.length - 3} 款計劃 ▾（共 ${tier.items.length} 份）`}
+                              </span>
+                            </button>
+                          )}
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               )}
             </div>

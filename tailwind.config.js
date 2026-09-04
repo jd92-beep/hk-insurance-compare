@@ -101,14 +101,6 @@ module.exports = {
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
         card: "0 1px 0 rgba(24,29,46,.06)",
         lift: "0 12px 32px -12px rgba(24,29,46,.18)",
-        shadowbox: "0 4px 6px -1px rgba(24, 29, 46, 0.05), 0 20px 40px -15px rgba(24, 29, 46, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
-        floating: "0 10px 30px -10px rgba(24, 29, 46, 0.08), 0 4px 6px -2px rgba(24, 29, 46, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
-      },
-      backgroundImage: {
-        'mesh-paper': "url('/images/textures/mesh-paper-texture.webp')",
-        'hero-harbour': "url('/images/textures/hero-harbour-layered.webp')",
-        'shield-seal': "url('/images/textures/shield-seal-emblem.webp')",
-        'ambient-glow': "url('/images/textures/category-ambient-glow.webp')",
       },
       maxWidth: {
         site: "1280px",

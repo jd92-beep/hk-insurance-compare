@@ -423,7 +423,7 @@ export default function CategoryDetail() {
       <Toaster />
 
       {/* ── S1 類別頁首 ─────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-paper">
+      <section className="relative overflow-hidden">
         {/* 頂部 6px 類別色條 */}
         <motion.div
           className="h-[6px] w-full origin-left"
@@ -432,42 +432,6 @@ export default function CategoryDetail() {
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
         />
-
-        {/* 1. 高級光學玻璃折射、防偽細線與翡翠金光氛圍底層 (category-ambient-glow) */}
-        <div
-          className="pointer-events-none absolute inset-0 z-0 select-none overflow-hidden opacity-[0.15] dark:opacity-[0.22]"
-          style={{
-            backgroundImage: "url('/images/textures/category-ambient-glow.webp')",
-            backgroundSize: "cover",
-            backgroundPosition: "top right",
-            maskImage: "radial-gradient(ellipse 90% 75% at 80% 20%, black 25%, transparent 80%)",
-            WebkitMaskImage: "radial-gradient(ellipse 90% 75% at 80% 20%, black 25%, transparent 80%)",
-          }}
-          aria-hidden="true"
-        />
-
-        {/* 2. 實體金融網格與米紙層疊微弱透光層 (mesh-paper-texture) */}
-        <div
-          className="pointer-events-none absolute inset-0 z-0 select-none opacity-[0.035] mix-blend-multiply dark:mix-blend-screen"
-          style={{
-            backgroundImage: "url('/images/textures/mesh-paper-texture.webp')",
-            backgroundSize: "360px",
-            backgroundRepeat: "repeat",
-          }}
-          aria-hidden="true"
-        />
-
-        {/* 3. 3D 翡翠金印防偽盾徽水印 (shield-seal-emblem) */}
-        <motion.img
-          src="/images/textures/shield-seal-emblem.webp"
-          alt=""
-          className="pointer-events-none absolute -right-6 top-8 h-52 w-52 select-none opacity-[0.07] mix-blend-luminosity dark:opacity-[0.12]"
-          initial={{ opacity: 0, scale: 0.85, rotate: -15 }}
-          animate={{ opacity: 0.07, scale: 1, rotate: -6 }}
-          transition={{ duration: 1.2, ease: EASE_OUT_EXPO }}
-          aria-hidden="true"
-        />
-
         {/* 水印 icon */}
         <motion.span
           className="cat-icon pointer-events-none absolute -right-6 top-10 h-40 w-40 select-none"
@@ -477,12 +441,12 @@ export default function CategoryDetail() {
             maskImage: `url(${meta.icon})`,
           }}
           initial={{ opacity: 0, rotate: -16 }}
-          animate={{ opacity: 0.05, rotate: -10 }}
+          animate={{ opacity: 0.06, rotate: -10 }}
           transition={{ duration: 1, ease: EASE_OUT_EXPO }}
           aria-hidden="true"
         />
 
-        <div className="site-container relative z-10 pb-14 pt-14 max-md:pb-10 max-md:pt-10">
+        <div className="site-container pb-14 pt-14 max-md:pb-10 max-md:pt-10">
           <Breadcrumbs
             items={[
               { label: "首頁", to: "/" },
@@ -491,38 +455,19 @@ export default function CategoryDetail() {
             ]}
           />
 
-          {/* 類別圖標立體光澤權威徽章 */}
-          <div className="mt-9 flex items-center gap-3.5">
-            <div
-              className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-line-strong/80 bg-paper-2 shadow-[0_2px_8px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.85)] backdrop-blur-xs transition-transform hover:scale-105 dark:shadow-[0_2px_8px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.1)]"
-            >
-              <span
-                className="cat-icon h-7 w-7 shrink-0 transition-transform"
-                style={{
-                  color,
-                  WebkitMaskImage: `url(${meta.icon})`,
-                  maskImage: `url(${meta.icon})`,
-                }}
-                aria-hidden="true"
-              />
-              {/* 翡翠金光微暈 */}
-              <span
-                className="pointer-events-none absolute -inset-1 rounded-xl opacity-25 blur-[6px]"
-                style={{ background: color }}
-                aria-hidden="true"
-              />
-            </div>
-            <div className="flex flex-col">
-              <div className="flex flex-wrap items-center gap-2">
-                <p className="eyebrow tracking-wider" style={{ color }}>
-                  {copy.english} · {category.name_zh}
-                </p>
-                <span className="inline-flex items-center gap-1 rounded-full border border-line bg-paper/90 px-2.5 py-0.5 text-[10.5px] font-mono font-bold text-ink-soft shadow-2xs">
-                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: color }} />
-                  OFFICIAL CITATION
-                </span>
-              </div>
-            </div>
+          <div className="mt-9 flex items-center gap-4">
+            <span
+              className="cat-icon h-11 w-11 shrink-0"
+              style={{
+                color,
+                WebkitMaskImage: `url(${meta.icon})`,
+                maskImage: `url(${meta.icon})`,
+              }}
+              aria-hidden="true"
+            />
+            <p className="eyebrow" style={{ color }}>
+              {copy.english} · {category.name_zh}
+            </p>
           </div>
 
           <AnimatedTitle
@@ -772,29 +717,12 @@ export default function CategoryDetail() {
 
       {/* ── S2 智能保障挑選面板（條款契合度推薦） ───────────────── */}
       {categoryFeatureTags.length > 0 && (
-        <section className="relative border-b border-line/60 bg-paper-2/40 py-6 max-md:py-4">
+        <section className="border-b border-line/60 bg-paper py-5 max-md:py-4">
           <div className="site-container">
-            {/* 🎯 智能偏好挑選面板（立體精裝公文夾島：柔和微邊框、內高光、立體投影、米紙底紋） */}
-            <div className="relative overflow-hidden rounded-2xl border border-line-strong/80 bg-paper shadow-[0_6px_24px_-4px_rgba(0,0,0,0.07),0_1px_3px_rgba(0,0,0,0.03),inset_0_1px_0_rgba(255,255,255,0.95)] transition-all dark:shadow-[0_6px_24px_-4px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.08)] p-4 sm:p-5.5">
-              {/* 精裝公文夾微細紙紋質感層 (mesh-paper-texture) */}
-              <div
-                className="pointer-events-none absolute inset-0 z-0 select-none opacity-[0.028] mix-blend-multiply dark:mix-blend-screen"
-                style={{
-                  backgroundImage: "url('/images/textures/mesh-paper-texture.webp')",
-                  backgroundSize: "320px",
-                  backgroundRepeat: "repeat",
-                }}
-                aria-hidden="true"
-              />
-
-              {/* 頂部裝訂燙金微光線 */}
-              <div
-                className="pointer-events-none absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-jade/80 via-amber/50 to-transparent"
-                aria-hidden="true"
-              />
-
+            {/* 🎯 智能偏好挑選面板（用戶自選重視保障與情境 Preset，需求：預設收起 Collapsed，可自由展開） */}
+            <div className="rounded-2xl border border-line bg-paper-2/40 p-4 sm:p-5 shadow-xs transition-all">
               {/* 頂部常駐 Header：左側標題與已選狀態，右側展開/收起切換按鈕 */}
-              <div className="relative z-10 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="font-sans text-[15px] sm:text-[16px] font-bold text-ink flex items-center gap-1.5">
                     <Sparkles size={16} className="text-jade" />
@@ -844,7 +772,7 @@ export default function CategoryDetail() {
 
               {/* 若已選取條款但處於收起狀態，展示直觀的已選條件 Chip 列與最高契合度 */}
               {!isFeaturePanelOpen && selectedFeatures.length > 0 && (
-                <div className="relative z-10 mt-3 pt-3 border-t border-line/60 flex flex-wrap items-center justify-between gap-2">
+                <div className="mt-3 pt-3 border-t border-line/60 flex flex-wrap items-center justify-between gap-2">
                   <div className="flex flex-wrap items-center gap-1.5">
                     <span className="text-[12px] font-medium text-ink-soft">已選條款：</span>
                     {selectedFeatures.map((fid) => {
@@ -875,7 +803,7 @@ export default function CategoryDetail() {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.35, ease: EASE_OUT_EXPO }}
-                    className="relative z-10 overflow-hidden mt-4 pt-4 border-t border-line/60"
+                    className="overflow-hidden mt-4 pt-4 border-t border-line/60"
                   >
                     {/* 1. 契合度進度指示與置頂反饋動效 (Top Match Feedback Banner) */}
                     <AnimatePresence>

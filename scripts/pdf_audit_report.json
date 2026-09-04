@@ -1,0 +1,1596 @@
+{
+  "total_products": 158,
+  "total_brochures_on_disk": 81,
+  "total_coverage_items": 2600,
+  "local_coverage_items": 1738,
+  "external_coverage_items": 466,
+  "empty_coverage_items": 396,
+  "broken_references_count": 0,
+  "broken_references": [],
+  "products_full_local": 95,
+  "products_partial_local": 1,
+  "products_external_only": 30,
+  "products_empty": 32,
+  "products": [
+    {
+      "id": "travel-aig",
+      "category": "travel",
+      "insurer": "AIG",
+      "name": "「旅遊智易保」保障計劃",
+      "status": "PARTIAL_LOCAL",
+      "local_items": 14,
+      "external_items": 1,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-axa",
+      "category": "travel",
+      "insurer": "AXA",
+      "name": "「卓越」豐盛優遊樂旅遊保險",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-allianz",
+      "category": "travel",
+      "insurer": "Allianz",
+      "name": "安聯「安聯旅遊保」",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 14,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-avo",
+      "category": "travel",
+      "insurer": "Avo",
+      "name": "Avo「全球旅遊保障」",
+      "status": "FULLY_LOCAL",
+      "local_items": 13,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-boc-group-insurance",
+      "category": "travel",
+      "insurer": "BOC Group Insurance",
+      "name": "「環宇智選」旅遊保障計劃",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 15,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-blue-cross",
+      "category": "travel",
+      "insurer": "Blue Cross",
+      "name": "「智在遊」旅遊保險",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-cntaiping",
+      "category": "travel",
+      "insurer": "China Taiping",
+      "name": "中國太平「樂悠遊」海外旅遊保險",
+      "status": "FULLY_LOCAL",
+      "local_items": 13,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-chubb",
+      "category": "travel",
+      "insurer": "Chubb",
+      "name": "安達度假旅遊保險（TravelWell 保障計劃）",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-dah-sing",
+      "category": "travel",
+      "insurer": "Dah Sing",
+      "name": "「智優遊」旅遊保障計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-fwd",
+      "category": "travel",
+      "insurer": "FWD",
+      "name": "富衛「自寫意旅遊保」",
+      "status": "FULLY_LOCAL",
+      "local_items": 14,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-generali",
+      "category": "travel",
+      "insurer": "Generali",
+      "name": "忠意「忠意旅程安心」",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 14,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-hsbc",
+      "category": "travel",
+      "insurer": "HSBC",
+      "name": "滙豐「旅遊萬全保」",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 13,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-hang-seng",
+      "category": "travel",
+      "insurer": "Hang Seng",
+      "name": "恒生「旅遊保障計劃」",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 13,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-msig",
+      "category": "travel",
+      "insurer": "MSIG",
+      "name": "iTravel Go 單次旅遊保險 / iTravel Go 全年旅遊保險",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-prudential",
+      "category": "travel",
+      "insurer": "Prudential",
+      "name": "保誠精選「旅遊樂」",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 15,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-starr",
+      "category": "travel",
+      "insurer": "Starr",
+      "name": "Starr「卓悅遊」海外旅遊保險",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 13,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-zurich",
+      "category": "travel",
+      "insurer": "Zurich",
+      "name": "「易起行+」旅遊保險計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-bolttech",
+      "category": "travel",
+      "insurer": "bolttech",
+      "name": "自寫意旅遊保",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-aia",
+      "category": "medical",
+      "insurer": "AIA",
+      "name": "AIA自願醫保標準計劃（S00013）／AIA自願醫保靈活計劃（F00022）／AIA自願醫保尊耀計劃（F00074）／AIA自願醫保睿選計劃（F00081）",
+      "status": "FULLY_LOCAL",
+      "local_items": 23,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-axa",
+      "category": "medical",
+      "insurer": "AXA",
+      "name": "AXA安盛智尊守慧醫療保障（自願醫保靈活計劃）／AXA安盛守慧醫療保障（自願醫保標準計劃）",
+      "status": "FULLY_LOCAL",
+      "local_items": 23,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-asia-insurance",
+      "category": "medical",
+      "insurer": "Asia Insurance",
+      "name": "延愛／亞洲尚選",
+      "status": "FULLY_LOCAL",
+      "local_items": 21,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-avo",
+      "category": "medical",
+      "insurer": "Avo",
+      "name": "Avo自願醫保（標準）計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 20,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-boc-group-insurance",
+      "category": "medical",
+      "insurer": "BOC Group Insurance",
+      "name": "中銀標準自願醫保計劃認可產品／中銀靈活自願醫保計劃認可產品",
+      "status": "FULLY_LOCAL",
+      "local_items": 21,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-boc-life",
+      "category": "medical",
+      "insurer": "BOC Life",
+      "name": "中銀人壽標準自願醫保／非凡守護靈活自願醫保，由中銀集團人壽保險有限公司承保",
+      "status": "FULLY_LOCAL",
+      "local_items": 23,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-blue-cross",
+      "category": "medical",
+      "insurer": "Blue Cross",
+      "name": "「只衛您」標準自願醫保計劃／「只衛您」靈活自願醫保計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 21,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-bowtie",
+      "category": "medical",
+      "insurer": "Bowtie",
+      "name": "Bowtie 自願醫保（標準計劃／靈活計劃（基本及升級）／Bowtie Pink 自願醫保計劃）",
+      "status": "FULLY_LOCAL",
+      "local_items": 23,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-bupa",
+      "category": "medical",
+      "insurer": "Bupa",
+      "name": "Bupa Hero 保柏非凡自願醫保計劃（靈活計劃，認可編號F00040）／保柏靈活配自願醫保計劃（靈活計劃）／保柏自願醫保計劃（標準計劃）／環球優越自願醫保計劃（靈活計劃）",
+      "status": "FULLY_LOCAL",
+      "local_items": 23,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-china-life-overseas",
+      "category": "medical",
+      "insurer": "China Life (Overseas)",
+      "name": "衛您健康醫療保險計劃／健康常伴醫療保險計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 21,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-china-taiping",
+      "category": "medical",
+      "insurer": "China Taiping",
+      "name": "太平自願醫療標準保險計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 20,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-china-taiping-life",
+      "category": "medical",
+      "insurer": "China Taiping Life",
+      "name": "太平人壽自願醫保標準計劃／太平人壽自願醫保靈活計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 21,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-chow-tai-fook-life",
+      "category": "medical",
+      "insurer": "Chow Tai Fook Life",
+      "name": "「卓康保」醫療保障計劃／「樂康保」醫療保障計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 21,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-chubb-life",
+      "category": "medical",
+      "insurer": "Chubb Life",
+      "name": "安達自願醫保（標準）計劃／安達自願醫保（靈活）計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 21,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-cigna",
+      "category": "medical",
+      "insurer": "Cigna",
+      "name": "信諾自願醫保系列（靈活計劃（優越）／靈活計劃（附加保障SMM）／標準計劃），由信諾環球保險有限公司承保",
+      "status": "FULLY_LOCAL",
+      "local_items": 23,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-dah-sing",
+      "category": "medical",
+      "insurer": "Dah Sing",
+      "name": "大新保險「尚護康」自願醫保標準計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 20,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-fwd",
+      "category": "medical",
+      "insurer": "FWD",
+      "name": "尊衛您醫療計劃（自願醫保靈活計劃，認可編號F00045）／更衛您醫療計劃（自願醫保靈活計劃，認可編號F00015）",
+      "status": "FULLY_LOCAL",
+      "local_items": 23,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-hsbc-life",
+      "category": "medical",
+      "insurer": "HSBC Life",
+      "name": "滙豐自願醫保靈活計劃（認可編號F00049），由滙豐人壽保險（國際）有限公司承保",
+      "status": "FULLY_LOCAL",
+      "local_items": 23,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-hong-kong-life",
+      "category": "medical",
+      "insurer": "Hong Kong Life",
+      "name": "「摯健樂」醫療計劃 – 基本／「倍健樂」醫療計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 21,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-liberty-international",
+      "category": "medical",
+      "insurer": "Liberty",
+      "name": "利寶國際自願醫保標準計劃／利寶國際自願醫保系列 – 靈活計劃(尊尚)",
+      "status": "FULLY_LOCAL",
+      "local_items": 21,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-msig",
+      "category": "medical",
+      "insurer": "MSIG",
+      "name": "自願醫保計劃-適健保／自願醫保計劃-優健保",
+      "status": "FULLY_LOCAL",
+      "local_items": 21,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-manulife",
+      "category": "medical",
+      "insurer": "Manulife",
+      "name": "宏利晉悅自願醫保靈活計劃（F00041）／宏利全護航自願醫保靈活計劃（F00019）／宏利自願醫保標準計劃（S00034）／宏利晉逸自願醫保附加保障（F00071）",
+      "status": "FULLY_LOCAL",
+      "local_items": 23,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-prudential",
+      "category": "medical",
+      "insurer": "Prudential",
+      "name": "保誠自願醫保尚賓計劃（靈活計劃）／保誠靈活自主醫保計劃（靈活計劃）／保誠自願醫保摯稱心計劃（靈活計劃）／保誠自主醫保計劃（標準計劃）",
+      "status": "FULLY_LOCAL",
+      "local_items": 23,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-sun-life",
+      "category": "medical",
+      "insurer": "Sun Life",
+      "name": "永明港卓越醫療保（靈活計劃，認可編號F00063）／永明港無憂醫療保（靈活計劃）／永明港稱心醫療保（靈活計劃）／永明港健康醫療保（標準計劃）",
+      "status": "FULLY_LOCAL",
+      "local_items": 23,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-well-link-life",
+      "category": "medical",
+      "insurer": "Well Link Life",
+      "name": "立安心自願醫保標準計劃／立安心自願醫保靈活計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 21,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-yf-life",
+      "category": "medical",
+      "insurer": "YF Life",
+      "name": "「稅」優惠醫療計劃／「稅」安心醫療計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 21,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-zurich",
+      "category": "medical",
+      "insurer": "Zurich",
+      "name": "蘇黎世自願醫保系列（「智選守護」標準計劃／「智選無憂+」靈活計劃），由蘇黎世保險有限公司承保",
+      "status": "FULLY_LOCAL",
+      "local_items": 23,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "medical-bolttech",
+      "category": "medical",
+      "insurer": "bolttech",
+      "name": "智適簡自願醫療保險計劃／智適選自願醫療保險計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 21,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "high-end-aia-ceo",
+      "category": "high-end-medical",
+      "insurer": "AIA",
+      "name": "AIA友邦「亞洲至尊醫療計劃2」／「至尊明珠醫療計劃」",
+      "status": "FULLY_LOCAL",
+      "local_items": 20,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "high-end-axa-global-elite",
+      "category": "high-end-medical",
+      "insurer": "AXA",
+      "name": "AXA安盛「寰宇特選醫療計劃」（Global Elite）",
+      "status": "FULLY_LOCAL",
+      "local_items": 20,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "high-end-bowtie-pink",
+      "category": "high-end-medical",
+      "insurer": "Bowtie",
+      "name": "Bowtie Pink 自願醫保（高端全數賠償旗艦）",
+      "status": "FULLY_LOCAL",
+      "local_items": 20,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "high-end-bupa-elite",
+      "category": "high-end-medical",
+      "insurer": "Bupa",
+      "name": "保柏環球「卓康健」醫療計劃（Bupa Global Elite）",
+      "status": "FULLY_LOCAL",
+      "local_items": 20,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "high-end-cigna-global",
+      "category": "high-end-medical",
+      "insurer": "Cigna",
+      "name": "信諾環球「個人健康保」（Cigna Global Health Options）",
+      "status": "FULLY_LOCAL",
+      "local_items": 20,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "high-end-fwd-premier",
+      "category": "high-end-medical",
+      "insurer": "FWD",
+      "name": "FWD富衛「至尊醫療計劃」／「至．衛一（配臻一醫護管理）」",
+      "status": "FULLY_LOCAL",
+      "local_items": 20,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "high-end-manulife-supreme",
+      "category": "high-end-medical",
+      "insurer": "Manulife",
+      "name": "宏利「宏達醫療計劃」（Manulife Supreme Healthcare）",
+      "status": "FULLY_LOCAL",
+      "local_items": 20,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "high-end-prudential-apex",
+      "category": "high-end-medical",
+      "insurer": "Prudential",
+      "name": "保誠「傲馳醫療計劃」／「摯為您優悅醫療保險計劃」",
+      "status": "FULLY_LOCAL",
+      "local_items": 20,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "topup-aia-extra-medic",
+      "category": "top-up-medical",
+      "insurer": "AIA",
+      "name": "AIA友邦「額外醫療保障」附加契約（Extra Medic）",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "topup-axa-smart-excess",
+      "category": "top-up-medical",
+      "insurer": "AXA",
+      "name": "AXA安盛「守慧附加差額」醫療保險（Smart Excess）",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "topup-bowtie-combat",
+      "category": "top-up-medical",
+      "insurer": "Bowtie",
+      "name": "Bowtie「觸木保」個人意外醫療加強保障",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "topup-bupa-carepro",
+      "category": "top-up-medical",
+      "insurer": "Bupa",
+      "name": "保柏「保柏易增值」醫療保障計劃（Bupa Top-up）",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "topup-cigna-plus",
+      "category": "top-up-medical",
+      "insurer": "Cigna",
+      "name": "信諾「附加醫療保障」SMM Plus",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "topup-fwd-supplementary",
+      "category": "top-up-medical",
+      "insurer": "FWD",
+      "name": "FWD富衛「補足您」超額補充醫療（FWD Top-up）",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "topup-prudential-mediextra",
+      "category": "top-up-medical",
+      "insurer": "Prudential",
+      "name": "保誠「附加醫療保」PRUHealth MediExtra",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "home-axa",
+      "category": "home",
+      "insurer": "AXA",
+      "name": "SmartHome Plus 家居保險",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "home-avo",
+      "category": "home",
+      "insurer": "Avo",
+      "name": "Avo 家居保障",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 15,
+      "empty_items": 0
+    },
+    {
+      "id": "home-boc-group-insurance",
+      "category": "home",
+      "insurer": "BOC Group Insurance",
+      "name": "周全家居綜合險",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "home-blue-cross",
+      "category": "home",
+      "insurer": "Blue Cross",
+      "name": "家居至專寶 / 家居至專寶+",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "home-china-taiping",
+      "category": "home",
+      "insurer": "China Taiping",
+      "name": "居安心保險計劃",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 15,
+      "empty_items": 0
+    },
+    {
+      "id": "home-chubb",
+      "category": "home",
+      "insurer": "Chubb",
+      "name": "我的家居保險",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 15,
+      "empty_items": 0
+    },
+    {
+      "id": "home-dah-sing",
+      "category": "home",
+      "insurer": "Dah Sing",
+      "name": "「樂加家」家居保障計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 17,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "home-liberty",
+      "category": "home",
+      "insurer": "Liberty",
+      "name": "Home Protector Plus 家居保障計劃",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 16,
+      "empty_items": 0
+    },
+    {
+      "id": "home-msig",
+      "category": "home",
+      "insurer": "MSIG",
+      "name": "iHome 家居保險",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 17,
+      "empty_items": 0
+    },
+    {
+      "id": "home-onedegree",
+      "category": "home",
+      "insurer": "OneDegree",
+      "name": "OneDegree 家居保險",
+      "status": "FULLY_LOCAL",
+      "local_items": 16,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "home-qbe",
+      "category": "home",
+      "insurer": "QBE",
+      "name": "家居綜合保險",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "home-zurich",
+      "category": "home",
+      "insurer": "Zurich",
+      "name": "「自在家居」保險計劃（住戶保險）",
+      "status": "FULLY_LOCAL",
+      "local_items": 20,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "life-aia",
+      "category": "life",
+      "insurer": "AIA",
+      "name": "守康易定期壽險計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 17,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "life-axa",
+      "category": "life",
+      "insurer": "AXA",
+      "name": "真智精選定期保險 / 真智定期保險",
+      "status": "FULLY_LOCAL",
+      "local_items": 17,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "life-boc-life",
+      "category": "life",
+      "insurer": "BOC Life",
+      "name": "「安年保」定期人壽保險計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "life-blue",
+      "category": "life",
+      "insurer": "Blue",
+      "name": "WeCare 定期人壽保障計劃 TL3",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 18,
+      "empty_items": 0
+    },
+    {
+      "id": "life-bowtie",
+      "category": "life",
+      "insurer": "Bowtie",
+      "name": "Bowtie 人壽保",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 18,
+      "empty_items": 0
+    },
+    {
+      "id": "life-china-life-overseas",
+      "category": "life",
+      "insurer": "China Life (Overseas)",
+      "name": "盈豐寶終身保險計劃（升級版）",
+      "status": "FULLY_LOCAL",
+      "local_items": 17,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "life-fwd",
+      "category": "life",
+      "insurer": "FWD",
+      "name": "自主保定期保障系列 / 自主保（升級版）定期保障計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 17,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "life-hsbc-life",
+      "category": "life",
+      "insurer": "HSBC Life",
+      "name": "尊尚定期壽險計劃 / 終身壽險計劃",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 17,
+      "empty_items": 0
+    },
+    {
+      "id": "life-manulife",
+      "category": "life",
+      "insurer": "Manulife",
+      "name": "精選定期壽險",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 15,
+      "empty_items": 0
+    },
+    {
+      "id": "life-prudential",
+      "category": "life",
+      "insurer": "Prudential",
+      "name": "「守護家人」定期人壽保",
+      "status": "FULLY_LOCAL",
+      "local_items": 17,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "life-sun-life",
+      "category": "life",
+      "insurer": "Sun Life",
+      "name": "一年/五年定期壽險計劃II 及 SunPlus 定期壽險計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 17,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "life-za-insure",
+      "category": "life",
+      "insurer": "ZA Insure",
+      "name": "ZA 人壽保",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "critical-illness-aia",
+      "category": "critical-illness",
+      "insurer": "AIA",
+      "name": "「自在人生」危疾保障計劃2 / 「自在人生」危疾保障計劃2 – 首護摯愛（On Your Side 危疾保障系列，2025年11月推出）",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "critical-illness-axa",
+      "category": "critical-illness",
+      "insurer": "AXA",
+      "name": "「愛護同行」危疾保障計劃（加強版）/「愛護同行（加強版）– 愛寶保」（TotalAssure Plus 危疾保障系列）",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 18,
+      "empty_items": 0
+    },
+    {
+      "id": "critical-illness-boc-life",
+      "category": "critical-illness",
+      "insurer": "BOC Life",
+      "name": "危疾188終身保險計劃（涵蓋197種疾病狀況）；另有「摯守護危疾保險計劃」",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "critical-illness-blue",
+      "category": "critical-illness",
+      "insurer": "Blue",
+      "name": "「WeCare 109% 回贈危疾保」（數碼保險業界首個可回贈危疾產品）",
+      "status": "FULLY_LOCAL",
+      "local_items": 17,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "critical-illness-bowtie",
+      "category": "critical-illness",
+      "insurer": "Bowtie",
+      "name": "Bowtie 危疾保（定期危疾保險）",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 16,
+      "empty_items": 0
+    },
+    {
+      "id": "critical-illness-fwd",
+      "category": "critical-illness",
+      "insurer": "FWD",
+      "name": "危疾緻尚保系列（旗艦危疾計劃）；網上版另有「自主揀危疾保障計劃 MyCover」系列",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 17,
+      "empty_items": 0
+    },
+    {
+      "id": "critical-illness-hsbc-life",
+      "category": "critical-illness",
+      "insurer": "HSBC Life",
+      "name": "滙豐「迅衛」危疾保障計劃（網上投保，101%保費回贈）",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 17,
+      "empty_items": 0
+    },
+    {
+      "id": "critical-illness-manulife",
+      "category": "critical-illness",
+      "insurer": "Manulife",
+      "name": "宏健守護危疾入息保障（2025年4月推出）",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 18,
+      "empty_items": 0
+    },
+    {
+      "id": "critical-illness-prudential",
+      "category": "critical-illness",
+      "insurer": "Prudential",
+      "name": "保誠「守護健康」危疾加倍保 III（PRUHealth 危疾加護保 III）",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "critical-illness-sun-life",
+      "category": "critical-illness",
+      "insurer": "Sun Life",
+      "name": "永明危疾家康保（旗艦終身危疾計劃）；另有萬家康卓越保／萬家康尊尚保（188種受保疾病）",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "accident-aia",
+      "category": "accident",
+      "insurer": "AIA",
+      "name": "超卓越個人保障計劃 / Xtra Protect (XP)",
+      "status": "FULLY_LOCAL",
+      "local_items": 16,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "accident-axa",
+      "category": "accident",
+      "insurer": "AXA",
+      "name": "「卓越」豐盛守護樂",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 16,
+      "empty_items": 0
+    },
+    {
+      "id": "accident-boc-group-insurance",
+      "category": "accident",
+      "insurer": "BOC Group Insurance",
+      "name": "人身意外綜合保障計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 17,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "accident-blue-cross",
+      "category": "accident",
+      "insurer": "Blue Cross",
+      "name": "個人意外保險（360°保障系列）",
+      "status": "FULLY_LOCAL",
+      "local_items": 16,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "accident-chubb",
+      "category": "accident",
+      "insurer": "Chubb",
+      "name": "個人意外保障",
+      "status": "FULLY_LOCAL",
+      "local_items": 16,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "accident-dah-sing",
+      "category": "accident",
+      "insurer": "Dah Sing",
+      "name": "「心意保」個人意外保障計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "accident-fwd",
+      "category": "accident",
+      "insurer": "FWD",
+      "name": "MySafe 意外保障計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 16,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "accident-msig",
+      "category": "accident",
+      "insurer": "MSIG",
+      "name": "iSafe 意外保險",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 17,
+      "empty_items": 0
+    },
+    {
+      "id": "accident-prudential",
+      "category": "accident",
+      "insurer": "Prudential",
+      "name": "意外保系列",
+      "status": "FULLY_LOCAL",
+      "local_items": 18,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "accident-zurich",
+      "category": "accident",
+      "insurer": "Zurich",
+      "name": "「自在守護」個人意外保險計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 17,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "motor-aig",
+      "category": "motor",
+      "insurer": "AIG",
+      "name": "AIG 汽車保險（Auto Select 汽車全保計劃）",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "motor-axa",
+      "category": "motor",
+      "insurer": "AXA",
+      "name": "AXA 安盛 iMotor 保險",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 15,
+      "empty_items": 0
+    },
+    {
+      "id": "motor-boc-group-insurance",
+      "category": "motor",
+      "insurer": "BOC Group Insurance",
+      "name": "汽車保險-私家車",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 15,
+      "empty_items": 0
+    },
+    {
+      "id": "motor-china-taiping",
+      "category": "motor",
+      "insurer": "China Taiping",
+      "name": "汽車保險",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 15,
+      "empty_items": 0
+    },
+    {
+      "id": "motor-dah-sing",
+      "category": "motor",
+      "insurer": "Dah Sing",
+      "name": "私家車汽車保險",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "motor-liberty",
+      "category": "motor",
+      "insurer": "Liberty",
+      "name": "私用汽車保險 / 尊貴汽車保險",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "motor-msig",
+      "category": "motor",
+      "insurer": "MSIG",
+      "name": "私家車保險",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 15,
+      "empty_items": 0
+    },
+    {
+      "id": "motor-qbe",
+      "category": "motor",
+      "insurer": "QBE",
+      "name": "汽車超級保險",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "motor-zurich",
+      "category": "motor",
+      "insurer": "Zurich",
+      "name": "「車護保」汽車保險計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "domestic-helper-axa",
+      "category": "domestic-helper",
+      "insurer": "AXA",
+      "name": "SmartHelper Plus 家傭保險（外籍家庭傭工綜合計劃）",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "domestic-helper-boc-group-insurance",
+      "category": "domestic-helper",
+      "insurer": "BOC Group Insurance",
+      "name": "智幫手家傭保障計劃",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 15,
+      "empty_items": 0
+    },
+    {
+      "id": "domestic-helper-blue-cross",
+      "category": "domestic-helper",
+      "insurer": "Blue Cross",
+      "name": "家傭至專寶",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "domestic-helper-dah-sing",
+      "category": "domestic-helper",
+      "insurer": "Dah Sing",
+      "name": "「樂融傭」家傭保障計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "domestic-helper-msig",
+      "category": "domestic-helper",
+      "insurer": "MSIG",
+      "name": "iHelper 家庭傭工保險",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "domestic-helper-qbe",
+      "category": "domestic-helper",
+      "insurer": "QBE",
+      "name": "家傭全險",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "domestic-helper-zurich",
+      "category": "domestic-helper",
+      "insurer": "Zurich",
+      "name": "「傭易保」家傭保障計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "pet-blue-cross",
+      "category": "pet",
+      "insurer": "Blue Cross",
+      "name": "「愛・寵物」保險計劃",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "pet-msig",
+      "category": "pet",
+      "insurer": "MSIG",
+      "name": "Happy Tails® 寵物保險（至寵愛）",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "pet-onedegree",
+      "category": "pet",
+      "insurer": "OneDegree",
+      "name": "寵物CEO Plan®（毛價保）",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 15,
+      "empty_items": 0
+    },
+    {
+      "id": "pet-bolttech",
+      "category": "pet",
+      "insurer": "bolttech",
+      "name": "毛孩寵物保",
+      "status": "FULLY_LOCAL",
+      "local_items": 15,
+      "external_items": 0,
+      "empty_items": 0
+    },
+    {
+      "id": "travel-manulife",
+      "category": "travel",
+      "insurer": "Manulife",
+      "name": "宏利「宏利旅遊保障」",
+      "status": "EXTERNAL_ONLY",
+      "local_items": 0,
+      "external_items": 13,
+      "empty_items": 0
+    },
+    {
+      "id": "pet-bowtie",
+      "category": "pet",
+      "insurer": "Bowtie",
+      "name": "Bowtie 寵物保",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 15
+    },
+    {
+      "id": "pet-zurich",
+      "category": "pet",
+      "insurer": "Zurich",
+      "name": "蘇黎世「伴侶寵物保障」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 15
+    },
+    {
+      "id": "pet-avo",
+      "category": "pet",
+      "insurer": "Avo",
+      "name": "Avo 寵物保障計劃",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 15
+    },
+    {
+      "id": "pet-fwd",
+      "category": "pet",
+      "insurer": "FWD",
+      "name": "富衛保險「寵愛一生」保障計劃",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 15
+    },
+    {
+      "id": "domestic-helper-starr",
+      "category": "domestic-helper",
+      "insurer": "Starr",
+      "name": "司達保險「家家傭」僱傭保障",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 15
+    },
+    {
+      "id": "domestic-helper-generali",
+      "category": "domestic-helper",
+      "insurer": "Generali",
+      "name": "忠意保險「家傭安心保」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 15
+    },
+    {
+      "id": "domestic-helper-hsbc",
+      "category": "domestic-helper",
+      "insurer": "HSBC",
+      "name": "滙豐「家庭傭工保險」HelperShield",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 15
+    },
+    {
+      "id": "motor-directasia",
+      "category": "motor",
+      "insurer": "DirectAsia",
+      "name": "DirectAsia 私家車保險",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 15
+    },
+    {
+      "id": "motor-bowtie",
+      "category": "motor",
+      "insurer": "Bowtie",
+      "name": "Bowtie 汽車保險",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 15
+    },
+    {
+      "id": "critical-illness-generali",
+      "category": "critical-illness",
+      "insurer": "Generali",
+      "name": "忠意保險「加愛無限保」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 15
+    },
+    {
+      "id": "accident-bowtie",
+      "category": "accident",
+      "insurer": "Bowtie",
+      "name": "Bowtie「觸木保」個人意外保",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 15
+    },
+    {
+      "id": "accident-blue",
+      "category": "accident",
+      "insurer": "Blue",
+      "name": "Blue「WeCare 個人意外保險計劃」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 15
+    },
+    {
+      "id": "home-hsbc",
+      "category": "home",
+      "insurer": "HSBC",
+      "name": "滙豐「家居保險」ResidenceSurance",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 14
+    },
+    {
+      "id": "home-prudential",
+      "category": "home",
+      "insurer": "Prudential",
+      "name": "保誠精選「家居樂」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 14
+    },
+    {
+      "id": "home-fwd",
+      "category": "home",
+      "insurer": "FWD",
+      "name": "富衛「易安家」家居保",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 13
+    },
+    {
+      "id": "home-starr",
+      "category": "home",
+      "insurer": "Starr",
+      "name": "司達保險「泰安心」家居保",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 11
+    },
+    {
+      "id": "pet-prudential",
+      "category": "pet",
+      "insurer": "Prudential",
+      "name": "保誠「PRUChoice 毛孩保障」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 12
+    },
+    {
+      "id": "pet-allianz",
+      "category": "pet",
+      "insurer": "Allianz",
+      "name": "安聯「安聯寵物保」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 12
+    },
+    {
+      "id": "pet-dah-sing",
+      "category": "pet",
+      "insurer": "Dah Sing",
+      "name": "大新保險「寵愛無憂」寵物保障計劃",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 10
+    },
+    {
+      "id": "motor-fwd",
+      "category": "motor",
+      "insurer": "FWD",
+      "name": "富衛「私家車保險」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 11
+    },
+    {
+      "id": "motor-blue-cross",
+      "category": "motor",
+      "insurer": "Blue Cross",
+      "name": "藍十字「車護寶」私家車保險",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 10
+    },
+    {
+      "id": "domestic-helper-fwd",
+      "category": "domestic-helper",
+      "insurer": "FWD",
+      "name": "富衛「家傭保障計劃」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 10
+    },
+    {
+      "id": "domestic-helper-cntaiping",
+      "category": "domestic-helper",
+      "insurer": "China Taiping",
+      "name": "中國太平「家傭綜合保險」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 9
+    },
+    {
+      "id": "life-generali",
+      "category": "life",
+      "insurer": "Generali",
+      "name": "忠意保險「精選定期壽險」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 10
+    },
+    {
+      "id": "life-chubb-life",
+      "category": "life",
+      "insurer": "Chubb Life",
+      "name": "安達人壽「康健定期壽險」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 7
+    },
+    {
+      "id": "critical-illness-chubb-life",
+      "category": "critical-illness",
+      "insurer": "Chubb Life",
+      "name": "安達人壽「摯為您危疾保」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 7
+    },
+    {
+      "id": "critical-illness-za-insure",
+      "category": "critical-illness",
+      "insurer": "ZA Insure",
+      "name": "眾安人壽「ZA 危疾保」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 6
+    },
+    {
+      "id": "accident-generali",
+      "category": "accident",
+      "insurer": "Generali",
+      "name": "忠意保險「智選個人意外保」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 10
+    },
+    {
+      "id": "accident-sun-life",
+      "category": "accident",
+      "insurer": "Sun Life",
+      "name": "永明金融「自在生活意外保」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 9
+    },
+    {
+      "id": "high-end-zurich-medelite",
+      "category": "high-end-medical",
+      "insurer": "Zurich",
+      "name": "蘇黎世「智選卓逸」醫療保障",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 14
+    },
+    {
+      "id": "high-end-sun-life-prestige",
+      "category": "high-end-medical",
+      "insurer": "Sun Life",
+      "name": "永明「港卓越」高端醫療保",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 14
+    },
+    {
+      "id": "travel-asia-insurance",
+      "category": "travel",
+      "insurer": "Asia Insurance",
+      "name": "亞洲保險「亞洲卓越旅遊保」",
+      "status": "WEB_ONLY",
+      "local_items": 0,
+      "external_items": 0,
+      "empty_items": 13
+    }
+  ]
+}

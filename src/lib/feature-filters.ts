@@ -113,6 +113,26 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "親子同行 / 隨行子女專屬保障",
       keywords: ["雙人/家庭", "同行子女", "子女護送", "子女", "小童", "家庭保險"],
     },
+    {
+      id: "overbooked-flight",
+      label: "機位超賣 / 航空取消重訂機票交通津貼",
+      keywords: ["機位超賣", "超賣", "航空公司超額預訂", "取消旅程", "重新訂位", "額外交通", "延遲啟程", "更改行程", "超額預訂"],
+    },
+    {
+      id: "loss-travel-docs",
+      label: "遺失護照 / 旅行證件重發及補辦費用",
+      keywords: ["旅行證件", "遺失護照", "護照", "簽證", "補領證件", "補發證件", "重發費用", "額外住宿費用", "重辦簽證"],
+    },
+    {
+      id: "sports-equipment-extra",
+      label: "自攜專用運動器材 / 高爾夫及滑雪裝備損壞",
+      keywords: ["運動器材", "高爾夫", "滑雪裝備", "潛水裝備", "自行車", "單車", "體育器材", "一桿進洞", "運動用具"],
+    },
+    {
+      id: "home-burglary-while-away",
+      label: "外遊期間香港寓所爆竊及家居財物損毀",
+      keywords: ["家居爆竊", "外遊期間家居", "住所爆竊", "寓所被竊", "家居盜竊", "入屋犯法", "香港住所", "家居財物被竊"],
+    },
   ],
 
   // 2. 自願醫保 / 常規醫療 (medical - 16 tags)
@@ -197,6 +217,26 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "恩恤身故賠償 / 慰問金",
       keywords: ["恩恤身故", "身故賠償", "恩恤賠償", "身故津貼", "恩恤金"],
     },
+    {
+      id: "post-surgery-tcm",
+      label: "出院後中醫跌打針灸調理及復康門診",
+      keywords: ["中醫", "跌打", "針灸", "中醫師", "中草藥", "出院後中醫", "術後中醫", "跌打骨傷", "出院後針灸"],
+    },
+    {
+      id: "second-medical-opinion",
+      label: "國際權威第二醫療意見及海外轉介服務",
+      keywords: ["第二醫療意見", "第二意見", "國際權威", "海外名醫", "專科轉介", "專家會診", "國際第二意見", "海外轉介"],
+    },
+    {
+      id: "reconstructive-surgery",
+      label: "乳房切除重建及意外面部修復手術",
+      keywords: ["乳房切除重建", "重建手術", "外觀修復", "乳房重建", "意外修復", "義肢", "切除重建", "面部修復"],
+    },
+    {
+      id: "day-bed-cashless",
+      label: "日間醫療中心網絡直付 (門診胃鏡腸鏡免找數)",
+      keywords: ["日間醫療中心", "日間中心直付", "門診胃鏡", "門診腸鏡", "日間內窺鏡", "免找數", "直付中心", "醫療卡直付"],
+    },
   ],
 
   // 3. 高端醫療 (high-end-medical - 14 tags)
@@ -271,6 +311,26 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "專屬健康管家與全球權威第二醫療意見",
       keywords: ["第二醫療意見", "健康管家", "專屬醫療顧問", "醫療個案管理", "醫療專案經理", "名醫轉介", "專家網絡", "臻一醫療", "綠色就醫通道"],
     },
+    {
+      id: "cashless-worldwide",
+      label: "全球頂尖私家醫院全數免找數直付簽賬",
+      keywords: ["全球免找數", "環球免找數", "直付簽賬", "醫療費用預先批核", "出院免找數", "全球直付", "直付網絡", "全球醫療直付"],
+    },
+    {
+      id: "psychiatric-in-out",
+      label: "精神科住院及專案心理專科門診治療",
+      keywords: ["精神科", "精神疾病", "心理專科", "精神科住院", "心理諮詢", "精神科門診", "思覺失調", "專案心理治療"],
+    },
+    {
+      id: "palliative-care",
+      label: "末期疾病緩和治療及臨終紓緩安寧護理",
+      keywords: ["緩和治療", "紓緩治療", "臨終安寧", "善終服務", "臨終照顧", "安寧病房", "紓緩護理", "末期緩和"],
+    },
+    {
+      id: "pregnancy-complications",
+      label: "懷孕嚴重併發症專項手術及深切治療全包",
+      keywords: ["妊娠併發症", "懷孕併發症", "產科併發症", "子癇", "胎盤早期剝離", "妊娠期手術", "宮外孕", "產科急症"],
+    },
   ],
 
   // 4. Top-up 差額醫療 (top-up-medical - 12 tags)
@@ -334,6 +394,26 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       id: "guaranteed-renewal-80",
       label: "保證續保至 80/85 歲或終身",
       keywords: ["保證續保至 80", "保證續保至 85", "保證續保至80", "保證續保至85", "終身保證續保", "保證續保年齡"],
+    },
+    {
+      id: "medical-appliance-supplement",
+      label: "訂明特定體內外科用器具超額補助 (心臟支架/人工關節)",
+      keywords: ["體內外科用器具", "醫療器具", "支架", "人工關節", "心臟支架", "起搏器", "義肢", "內固定物", "特定器具"],
+    },
+    {
+      id: "companion-bed-extra",
+      label: "直系親屬陪床陪伴費超額差額津貼",
+      keywords: ["陪床費", "陪伴費", "家屬陪床", "陪床床位", "額外陪床", "陪床津貼", "親屬陪伴"],
+    },
+    {
+      id: "emergency-overseas-supplement",
+      label: "外幹/海外公幹出差突發緊急醫療差額",
+      keywords: ["海外出差", "公幹", "緊急醫療", "海外公幹", "跨境醫療", "外派公幹", "海外差額", "出差緊急醫療"],
+    },
+    {
+      id: "chinese-medicine-extra",
+      label: "手術出院後中醫跌打骨傷差額補充",
+      keywords: ["中醫骨傷", "跌打", "中醫差額", "中醫超額", "術後中醫", "針灸差額", "中草藥", "跌打差額"],
     },
   ],
 
@@ -409,6 +489,26 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "寵物（貓狗）第三者法律責任及意外損害",
       keywords: ["寵物", "貓狗", "毛孩", "合法飼養寵物", "毛孩保障"],
     },
+    {
+      id: "solar-panel-ev",
+      label: "天台太陽能光伏板及私家電車充電樁損毀保障",
+      keywords: ["太陽能", "太陽能板", "光伏系統", "充電樁", "電動車充電器", "充電設備", "天台裝置", "光伏板"],
+    },
+    {
+      id: "seepage-test-search",
+      label: "尋找暗渠漏水水源探測及紅外線勘測專案費用",
+      keywords: ["尋找水源", "漏水探測", "紅外線探測", "滲水測試", "水源探測", "暗渠滲水", "探測費用", "紅外線勘測"],
+    },
+    {
+      id: "smart-home-iot",
+      label: "智能家居設備 (IoT) 及全屋電器意外損壞全險",
+      keywords: ["智能家居", "IoT", "智能門鎖", "全屋電器", "家電損壞", "智能影音", "智能設備", "家電意外"],
+    },
+    {
+      id: "debris-removal",
+      label: "火災或嚴重水浸後廢物清理及泥頭搬遷雜費",
+      keywords: ["廢物清理", "泥頭清理", "殘礫清理", "火災瓦礫", "水浸雜費", "清理費用", "清除殘礫", "泥頭搬運"],
+    },
   ],
 
   // 6. 危疾保險 (critical-illness - 14 tags)
@@ -482,6 +582,26 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       id: "second-opinion-global",
       label: "全球權威第二醫療意見與海外綠色通道",
       keywords: ["第二醫療意見", "海外醫療轉介", "專家意見", "醫療綠色通道", "歐美頂尖醫療"],
+    },
+    {
+      id: "mental-health-extra",
+      label: "精神疾病 (嚴重抑鬱/思 پژ失調/躁鬱症) 專項賠償",
+      keywords: ["精神疾病", "嚴重抑鬱", "思覺失調", "躁鬱症", "雙極性情緒病", "精神疾患", "重度抑鬱症", "精神健康", "情緒病賠償"],
+    },
+    {
+      id: "dementia-parkinsons",
+      label: "大腦退化性疾病 (阿茲海默氏症/柏金遜症) 長期護理金",
+      keywords: ["阿茲海默", "認知障礙", "柏金遜", "腦退化", "老年癡呆", "帕金森", "失智症", "長期護理", "大腦退化"],
+    },
+    {
+      id: "re-employment-rehab",
+      label: "重大危疾後重投職場培訓及無障礙家居改裝補助",
+      keywords: ["重投職場", "職業培訓", "居家改裝", "無障礙改裝", "復康器材", "復職支援", "復康補助", "重返工作"],
+    },
+    {
+      id: "loss-of-independent-existence",
+      label: "喪失獨立生活能力 (ADL) 終身年金或每月生活津貼",
+      keywords: ["喪失獨立生活能力", "日常生活活動", "ADL", "無法自理", "長期照顧", "護理津貼", "傷殘年金", "獨立生活能力"],
     },
   ],
 
@@ -557,6 +677,26 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "全球 24 小時緊急救援/醫療運送及送返",
       keywords: ["全球", "24小時", "世界各地", "環球", "緊急醫療撤離", "遺體運返", "入院按金", "近親探望", "全球緊急支援", "蘇黎世緊急支援", "24小時全球支援"],
     },
+    {
+      id: "food-poisoning",
+      label: "食物中毒、遇溺及意外突發窒息緊急治療",
+      keywords: ["食物中毒", "遇溺", "窒息", "吸入氣體", "細菌感染中毒", "急性食物中毒", "溺水", "突發窒息"],
+    },
+    {
+      id: "animal-insect-bite",
+      label: "動物襲擊咬傷及毒蟲叮咬狂犬破傷風針劑費",
+      keywords: ["動物咬傷", "狗咬", "昆蟲叮咬", "狂犬病疫苗", "破傷風針", "蜂蜇", "爬蟲類咬傷", "動物襲擊", "毒蟲叮咬"],
+    },
+    {
+      id: "coma-benefit",
+      label: "意外創傷引致持續昏迷專項危急慰問現金",
+      keywords: ["昏迷", "意外昏迷", "腦震盪昏迷", "昏迷津貼", "持續昏迷", "創傷昏迷", "昏迷給付", "昏迷慰問金"],
+    },
+    {
+      id: "hearing-speech-loss",
+      label: "意外導致言語能力喪失或聽覺永久受損專案賠償",
+      keywords: ["聽覺受損", "言語能力喪失", "失聰", "失語", "耳膜破裂", "意外失聲", "聽力受損", "語言能力"],
+    },
   ],
 
   // 8. 人壽保險 (life - 14 tags)
@@ -630,6 +770,26 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       id: "suicide-clause",
       label: "保單生效滿 1 年後自殺受保全額賠償",
       keywords: ["自殺", "自殺條款", "一年後自殺", "首年不保自殺", "13個月", "一年內自殺", "滿1年後自殺", "自殺受保", "首年後自殺涵蓋條款"],
+    },
+    {
+      id: "split-policy-option",
+      label: "保單分拆權益 (自設不同受保人或世代傳承)",
+      keywords: ["保單分拆", "分拆權益", "更改受保人", "傳承分拆", "世代傳承", "轉移受保人", "分拆保單", "保單傳承"],
+    },
+    {
+      id: "currency-options",
+      label: "多種貨幣轉換選擇 (美元/港元/人民幣/英鎊)",
+      keywords: ["多幣種", "貨幣轉換", "貨幣選擇", "美元", "人民幣", "英鎊", "外幣保單", "轉換保單貨幣", "雙幣切換"],
+    },
+    {
+      id: "unemployment-premium-holiday",
+      label: "非自願性失業暫緩繳付保費保障 (保費假期)",
+      keywords: ["失業延期", "暫緩繳費", "保費假期", "非自願失業", "延遲繳付保費", "供款寬限期", "失業保障", "暫緩供款"],
+    },
+    {
+      id: "funeral-service-support",
+      label: "身故專業殯儀喪葬安排諮詢與家屬哀傷輔導",
+      keywords: ["殯儀安排", "喪葬諮詢", "身故輔導", "喪葬服務", "哀傷輔導", "後事安排", "身故支援", "後事諮詢"],
     },
   ],
 
@@ -705,6 +865,26 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "指定駕駛者專屬保費折扣及低自負額",
       keywords: ["指定駕駛者", "記名司機", "指定司機", "記名駕駛者", "非指定駕駛者自負額", "非記名司機", "指定駕駛人", "指定駕駛者專屬保費折扣"],
     },
+    {
+      id: "key-remote-loss",
+      label: "車匙及智能遙控器遺失更換與重配鎖匙費用",
+      keywords: ["車匙遺失", "更換車匙", "遙控器", "智能車匙", "晶片鑰匙", "配匙費用", "更換門鎖", "鎖匙重配"],
+    },
+    {
+      id: "tyre-rim-protection",
+      label: "輪胎爆胎及輪圈獨立破損免扣自負額更換",
+      keywords: ["輪胎破損", "爆胎", "輪圈損毀", "車軨", "輪胎更換", "輪胎意外", "爆胎保障", "輪圈破損"],
+    },
+    {
+      id: "misfuelling-cover",
+      label: "加錯燃油或水箱加錯冷卻液清洗引擎保障",
+      keywords: ["加錯油", "燃油錯誤", "混入錯誤燃油", "柴油汽油加錯", "沖洗油缸", "引擎清油", "誤加燃油", "加錯燃油"],
+    },
+    {
+      id: "flood-typhoon-waterlogging",
+      label: "極端暴雨水浸、颱風冧樹砸車全額免折舊賠償",
+      keywords: ["水浸", "暴雨浸車", "颱風冧樹", "樹木倒塌", "天災水浸", "黑雨積水", "水浸賠償", "冧樹砸車"],
+    },
   ],
 
   // 10. 家傭保險 (domestic-helper - 14 tags)
@@ -779,6 +959,26 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "合約期內免費更換外傭手續登記一次",
       keywords: ["免費更換", "更換外傭", "免費更改受保家傭", "免費更換外傭保單", "免費更換外傭一次", "更換外傭免費登記", "免費轉換受保家傭", "更換受保"],
     },
+    {
+      id: "helper-cardiac-stroke",
+      label: "外傭心臟病發及急性中風專案高額醫療手術補助",
+      keywords: ["心臟病", "急性中風", "通波仔", "腦血管意外", "專科手術", "心臟手術", "血管介入", "嚴重手術", "外傭中風"],
+    },
+    {
+      id: "overstay-legal-expenses",
+      label: "外傭非法拒絕離港或勞資爭議僱主法律費用支援",
+      keywords: ["勞資審裁處", "法律費用", "勞工處調解", "追討合約", "拒絕離港", "逾期居留", "法律訴訟", "僱主法律支援"],
+    },
+    {
+      id: "infectious-disease-isolation",
+      label: "外傭法定傳染病隔離及家居深度消毒清潔津貼",
+      keywords: ["傳染病", "隔離津貼", "消毒清潔", "家居消毒", "深度消毒", "檢疫隔離", "傳染病補償", "家傭隔離"],
+    },
+    {
+      id: "helper-personal-belongings",
+      label: "外傭居所意外火災或水浸個人衣物行李損毀補貼",
+      keywords: ["外傭衣物", "個人物品損壞", "外傭行李", "居所火災", "房間水浸", "私人物品賠償", "衣物損毀", "家傭財物"],
+    },
   ],
 
   // 11. 寵物保險 (pet - 14 tags)
@@ -852,6 +1052,26 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       id: "freedom-vet-choice",
       label: "全港註冊獸醫診所自由選擇（不限指定網絡）",
       keywords: ["自由選擇", "全港持牌", "自由選", "全港註冊獸醫", "全港持牌獸醫診所自由選"],
+    },
+    {
+      id: "lifetime-renewable-senior",
+      label: "年老無上限保證續保 (高齡不拒保不減額)",
+      keywords: ["保證續保", "終身續保", "無年齡上限", "年老續保", "高齡續保", "續保至終身", "不限續保年齡", "終身保證續保"],
+    },
+    {
+      id: "skin-allergy-cover",
+      label: "常見貓狗皮膚過敏、真菌感染及外耳炎專項門診藥費",
+      keywords: ["皮膚過敏", "異位性皮膚炎", "真菌感染", "濕疹", "外耳炎", "皮膚病", "止痕藥", "皮膚治療", "皮膚炎症"],
+    },
+    {
+      id: "ingestion-foreign-body",
+      label: "吞食異物 (骨頭/玩具/毛線) 緊急內窺鏡或開腹手術",
+      keywords: ["吞食異物", "誤吞異物", "內窺鏡取出", "腸道阻塞", "異物手術", "催吐急症", "吞骨手術", "開腹手術取出"],
+    },
+    {
+      id: "behavioural-training",
+      label: "寵物行為失常/創傷後心理輔導與合格訓練師課程津貼",
+      keywords: ["行為訓練", "行為失常", "心理輔導", "創傷輔導", "合格訓犬師", "行為矯治", "訓練課程", "行為偏差"],
     },
   ],
 };

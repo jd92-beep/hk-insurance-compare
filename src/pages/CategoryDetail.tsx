@@ -70,6 +70,62 @@ function AnimatedTitle({ text, className }: { text: string; className?: string }
   );
 }
 
+/** 排序 key 統一年繳化（/月 ×12、/日 ×365），避免月繳價同年繳價直接比大細 */
+function getProductPremiumKey(p: { premium_available: boolean; premium_range: string }): number {
+  return p.premium_available ? premiumSortKey(p.premium_range) : Number.POSITIVE_INFINITY;
+}
+
+/** 智能提取產品整體最高保障限額（數值化，用於最高保額排序與性價比計算） */
+function getProductMaxCoverageAmount(product: { coverage?: { item: string; limit: string }[] }): number {
+  const coverages = product.coverage ?? [];
+  let maxFound = 0;
+  for (const c of coverages) {
+    const text = `${c.item} ${c.limit}`;
+    if (/無上限|不設上限|不設終身保障限額/i.test(text)) {
+      return 1_000_000_000;
+    }
+    const matches = Array.from(
+      c.limit.matchAll(/(?:HK\$|HKD|\$)?\s*([\d,]+(?:\.\d+)?)\s*(萬|億)?/g)
+    );
+    for (const m of matches) {
+      const num = parseFloat(m[1].replace(/,/g, ""));
+      if (!Number.isFinite(num)) continue;
+      const unit = m[2];
+      const mult = unit === "億" ? 100_000_000 : unit === "萬" ? 10_000 : 1;
+      const total = num * mult;
+      if (total > maxFound) maxFound = total;
+    }
+  }
+  return maxFound;
+}
+
+/** 智能評估產品性價比綜合指數（CP值：保障額度與條款豐富度 vs 實付保費） */
+function getProductValueScore(product: {
+  coverage?: { item: string; limit: string }[];
+  discounted_price?: number;
+  promo?: { discounted_price?: number };
+  original_price?: number;
+  premium_available: boolean;
+  premium_range: string;
+}): number {
+  const coverageCount = product.coverage?.length ?? 0;
+  const maxCoverage = getProductMaxCoverageAmount(product);
+  const effPrice =
+    product.discounted_price ??
+    product.promo?.discounted_price ??
+    product.original_price ??
+    (product.premium_available ? premiumSortKey(product.premium_range) : Number.POSITIVE_INFINITY);
+
+  const coverageIndex = maxCoverage > 0 ? Math.log10(maxCoverage + 10) : 4.5;
+  const breadthFactor = 1 + coverageCount * 0.08;
+
+  if (product.premium_available && Number.isFinite(effPrice) && effPrice > 0) {
+    const priceIndex = Math.max(Math.log10(effPrice + 10), 1.2);
+    return (coverageIndex * breadthFactor) / priceIndex;
+  }
+  return coverageIndex * breadthFactor * 0.35;
+}
+
 /** 類別詳情（模板）`/category/:categoryId`（design/category.md S1–S6） */
 export default function CategoryDetail() {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -114,6 +170,8 @@ export default function CategoryDetail() {
   const [priceRange, setPriceRange] = useState<PriceRangeKey>("all");
   // 🎯 智能保障挑選面板展開狀態（需求：預設收起 Collapsed，不佔用垂直空間）
   const [isFeaturePanelOpen, setIsFeaturePanelOpen] = useState(false);
+  // 🏷️ 特點標籤漸進式揭示（Progressive Disclosure：預設只展開前 9 項精選）
+  const [isExpandedTags, setIsExpandedTags] = useState(false);
 
   // 🎯 用戶自選重視之保障項目（智能匹配與置頂推薦）
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
@@ -151,10 +209,6 @@ export default function CategoryDetail() {
   }, [products]);
 
   const spectrum = useMemo(() => categorySpectrum(products), [products]);
-
-  // 排序 key 統一年繳化（/月 ×12、/日 ×365），避免月繳價同年繳價直接比大細
-  const premiumKey = (p: (typeof products)[number]): number =>
-    p.premium_available ? premiumSortKey(p.premium_range) : Number.POSITIVE_INFINITY;
 
   const categoryFeatureTags = useMemo(
     () => getCategoryFeatureTags(categoryId || ""),
@@ -239,30 +293,66 @@ export default function CategoryDetail() {
     return map;
   }, [rankedFeatureData]);
 
-  // 2. 最終排序：若為預設排序且有選取重視保障，直接按符合度多至少置頂推薦；若手動指定保費或A-Z，則按手動條件排序
+  // 2. 最終排序：支援預設推薦、契合度最高、保費升/降序、最高保額、性價比推薦、公司字母A-Z
   const filtered = useMemo(() => {
     const list = rankedFeatureData.results.map((r) => r.product);
     if (sort === "default") {
       return list;
     }
     const sorted = [...list];
-    if (sort === "premium") {
+
+    if (sort === "fit-score") {
       sorted.sort((a, b) => {
-        const ka = premiumKey(a);
-        const kb = premiumKey(b);
+        const ma = productMatchMap.get(a.id);
+        const mb = productMatchMap.get(b.id);
+        const countA = ma?.matchedCount ?? 0;
+        const countB = mb?.matchedCount ?? 0;
+        if (countA !== countB) return countB - countA;
+        const scoreA = ma?.score ?? 0;
+        const scoreB = mb?.score ?? 0;
+        if (scoreA !== scoreB) return scoreB - scoreA;
+        const ka = getProductPremiumKey(a);
+        const kb = getProductPremiumKey(b);
+        return ka - kb;
+      });
+    } else if (sort === "premium-asc" || (sort === "premium" && premiumDir === "asc")) {
+      sorted.sort((a, b) => {
+        const ka = getProductPremiumKey(a);
+        const kb = getProductPremiumKey(b);
         const aNone = !Number.isFinite(ka);
         const bNone = !Number.isFinite(kb);
         if (aNone !== bNone) return aNone ? 1 : -1;
-        return premiumDir === "asc" ? ka - kb : kb - ka;
+        return ka - kb;
       });
-    } else if (sort === "insurer") {
+    } else if (sort === "premium-desc" || (sort === "premium" && premiumDir === "desc")) {
+      sorted.sort((a, b) => {
+        const ka = getProductPremiumKey(a);
+        const kb = getProductPremiumKey(b);
+        const aNone = !Number.isFinite(ka);
+        const bNone = !Number.isFinite(kb);
+        if (aNone !== bNone) return aNone ? 1 : -1;
+        return kb - ka;
+      });
+    } else if (sort === "coverage-max") {
+      sorted.sort((a, b) => {
+        const maxA = getProductMaxCoverageAmount(a);
+        const maxB = getProductMaxCoverageAmount(b);
+        if (maxA !== maxB) return maxB - maxA;
+        return (b.coverage?.length ?? 0) - (a.coverage?.length ?? 0);
+      });
+    } else if (sort === "value-score") {
+      sorted.sort((a, b) => {
+        const valA = getProductValueScore(a);
+        const valB = getProductValueScore(b);
+        return valB - valA;
+      });
+    } else if (sort === "insurer-az" || sort === "insurer") {
       sorted.sort((a, b) => a.insurer.localeCompare(b.insurer) || a.id.localeCompare(b.id));
     } else if (sort === "coverage") {
       sorted.sort((a, b) => (b.coverage?.length ?? 0) - (a.coverage?.length ?? 0));
     }
     return sorted;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rankedFeatureData, sort, premiumDir]);
+  }, [rankedFeatureData, sort, premiumDir, productMatchMap]);
 
   // 🔍 特點即時微型搜尋欄輸入字串
   const [featureSearchQuery, setFeatureSearchQuery] = useState("");
@@ -280,6 +370,7 @@ export default function CategoryDetail() {
     setOnlyPromo(false);
     setPriceRange("all");
     setIsFeaturePanelOpen(false);
+    setIsExpandedTags(false);
     setSelectedFeatures([]);
     setFeatureSearchQuery("");
     setFeatureMatchMode("smart");
@@ -302,6 +393,17 @@ export default function CategoryDetail() {
         t.id.toLowerCase().includes(q)
     );
   }, [categoryFeatureTags, featureSearchQuery]);
+
+  // 漸進式揭示（Progressive Disclosure）：若有搜尋關鍵字或已點擊展開，展示全部；否則預設只展示前 9 個精選
+  const VISIBLE_TAG_COUNT = 9;
+  const displayedFeatureTags = useMemo(() => {
+    if (featureSearchQuery.trim() || isExpandedTags) {
+      return filteredFeatureTags;
+    }
+    return filteredFeatureTags.slice(0, VISIBLE_TAG_COUNT);
+  }, [filteredFeatureTags, featureSearchQuery, isExpandedTags]);
+
+  const remainingTagCount = Math.max(0, filteredFeatureTags.length - VISIBLE_TAG_COUNT);
 
   // 最高契合度統計指標（供動態 Feedback Banner 使用）
   const maxMatchedCount = useMemo(() => {
@@ -373,15 +475,24 @@ export default function CategoryDetail() {
 
   const handleSortChange = (s: SortKey) => {
     setSort(s);
-    if (s === "premium") setPremiumDir("asc");
+    if (s === "premium-asc" || s === "premium") setPremiumDir("asc");
+    if (s === "premium-desc") setPremiumDir("desc");
   };
 
   const handleTogglePremiumSort = () => {
-    if (sort !== "premium") {
-      setSort("premium");
+    if (sort === "premium-asc") {
+      setSort("premium-desc");
+      setPremiumDir("desc");
+    } else if (sort === "premium-desc") {
+      setSort("premium-asc");
       setPremiumDir("asc");
+    } else if (sort === "premium") {
+      const nextDir = premiumDir === "asc" ? "desc" : "asc";
+      setPremiumDir(nextDir);
+      setSort(nextDir === "asc" ? "premium-asc" : "premium-desc");
     } else {
-      setPremiumDir((d) => (d === "asc" ? "desc" : "asc"));
+      setSort("premium-asc");
+      setPremiumDir("asc");
     }
   };
 
@@ -734,7 +845,7 @@ export default function CategoryDetail() {
                     </span>
                   ) : (
                     <span className="text-[12px] text-ink-faint">
-                      (支援 147 個高價值條款與情境一鍵套用)
+                      (支援 200 款高價值條款與情境一鍵套用)
                     </span>
                   )}
                 </div>
@@ -967,13 +1078,57 @@ export default function CategoryDetail() {
                       </div>
                     )}
 
-                    {/* 3. 特點標籤 Chips 列 */}
+                    {/* 3. 已選條款常駐置頂列 (Pinned Active Selection Bar) */}
+                    {selectedFeatures.length > 0 && (
+                      <div className="mt-3.5 rounded-xl border border-jade/30 bg-jade-wash/50 p-2.5 sm:p-3 transition-all">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <div className="flex flex-wrap items-center gap-1.5">
+                            <span className="text-[12px] font-bold text-jade flex items-center gap-1 shrink-0">
+                              <Check size={13} className="text-jade" />
+                              已選條件 ({selectedFeatures.length})：
+                            </span>
+                            {selectedFeatures.map((fid) => {
+                              const tag = categoryFeatureTags.find((t) => t.id === fid);
+                              return (
+                                <button
+                                  key={fid}
+                                  type="button"
+                                  onClick={() => toggleFeature(fid)}
+                                  className="group inline-flex items-center gap-1 rounded-full bg-jade px-2.5 py-0.5 text-[11.5px] font-bold text-paper shadow-xs hover:bg-jade/90 active:scale-95 transition-all"
+                                  title="點擊取消選取此條件"
+                                >
+                                  <span>{tag?.label || fid}</span>
+                                  <X size={11} className="opacity-70 group-hover:opacity-100" />
+                                </button>
+                              );
+                            })}
+                          </div>
+
+                          <div className="flex items-center gap-2 shrink-0">
+                            {maxMatchedCount > 0 && (
+                              <span className="text-[11.5px] font-grotesk font-bold text-jade">
+                                🎯 最高命中 {maxScore}% ({maxMatchedCount}/{selectedFeatures.length} 項)
+                              </span>
+                            )}
+                            <button
+                              type="button"
+                              onClick={() => setSelectedFeatures([])}
+                              className="text-[11.5px] font-semibold text-red hover:underline ml-1"
+                            >
+                              清空全部
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 4. 特點標籤 Chips 列（漸進式揭示 Progressive Disclosure：精選 9 項 + 折疊收納） */}
                     <div className="mt-3.5">
                       <div className="flex flex-wrap items-center gap-1.5">
                         <span className="text-[12px] font-semibold text-ink-faint mr-1 shrink-0">
-                          自選保障項目：
+                          {featureSearchQuery ? "搜尋結果：" : isExpandedTags ? "所有保障條款：" : "🔥 精選核心保障："}
                         </span>
-                        {filteredFeatureTags.map((tag) => {
+                        {displayedFeatureTags.map((tag) => {
                           const isSelected = selectedFeatures.includes(tag.id);
                           return (
                             <button
@@ -981,7 +1136,7 @@ export default function CategoryDetail() {
                               type="button"
                               onClick={() => toggleFeature(tag.id)}
                               className={cn(
-                                "inline-flex items-center gap-1 rounded-full px-3 py-1 text-[12px] font-medium transition-all active:scale-95",
+                                "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[12px] font-medium transition-all active:scale-95",
                                 isSelected
                                   ? "bg-jade text-paper font-bold shadow-xs scale-[1.02]"
                                   : "bg-paper-2/70 text-ink-soft border border-line/70 hover:border-jade/50 hover:text-jade hover:bg-paper"
@@ -992,6 +1147,17 @@ export default function CategoryDetail() {
                             </button>
                           );
                         })}
+
+                        {/* 折疊/展開更多標籤按鈕 */}
+                        {!featureSearchQuery && remainingTagCount > 0 && (
+                          <button
+                            type="button"
+                            onClick={() => setIsExpandedTags((prev) => !prev)}
+                            className="inline-flex items-center gap-1 rounded-full border border-dashed border-jade/50 bg-jade/5 hover:bg-jade/10 px-3 py-1 text-[12px] font-bold text-jade transition-all active:scale-95"
+                          >
+                            <span>{isExpandedTags ? "收起更多條款 ▴" : `展開更多條款標籤 (+${remainingTagCount} 項) ▾`}</span>
+                          </button>
+                        )}
 
                         {filteredFeatureTags.length === 0 && (
                           <div className="flex items-center gap-2 py-1 text-[12px] text-ink-faint">
@@ -1112,7 +1278,13 @@ export default function CategoryDetail() {
                     color={color}
                     coverageKeywords={copy.coverageKeywords}
                     spectrum={spectrum}
-                    premiumSortDir={sort === "premium" ? premiumDir : null}
+                    premiumSortDir={
+                      sort === "premium-asc" || (sort === "premium" && premiumDir === "asc")
+                        ? "asc"
+                        : sort === "premium-desc" || (sort === "premium" && premiumDir === "desc")
+                          ? "desc"
+                          : null
+                    }
                     onTogglePremiumSort={handleTogglePremiumSort}
                     productMatchMap={productMatchMap}
                   />

@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 import {
   ArrowRight,
-  ArrowUpDown,
   Award,
   BarChart3,
   Check,
@@ -67,6 +66,9 @@ interface ProductCapInfo {
   shortBadge: string;
   isFullCover: boolean;
 }
+
+/** 圖表排序維度：數值由高至低、數值由低至高、保險公司名稱 A–Z */
+export type ChartSortType = "desc" | "asc" | "insurer";
 
 /** 動態自適應市場梯隊結構（Dynamic Adaptive Insurance Tier） */
 export interface DynamicTier {
@@ -293,8 +295,8 @@ export default function UniversalComparisonChart({
     setExpandedTiers((prev) => ({ ...prev, [tierId]: !prev[tierId] }));
   };
 
-  // 6. 排序方向：'desc'（最高保障優先）或 'asc'
-  const [sortDirection, setSortDirection] = useState<"desc" | "asc">("desc");
+  // 6. 排序方向：'desc'（最高保障優先）、'asc'（低至高）或 'insurer'（公司 A-Z）
+  const [chartSortType, setChartSortType] = useState<ChartSortType>("desc");
 
   // 7. 取得當前類別專屬特點 Tags
   const currentFeatureTags = useMemo(
@@ -328,6 +330,20 @@ export default function UniversalComparisonChart({
     const validIds = new Set(currentFeatureTags.map((t) => t.id));
     return selectedFeatures.filter((id) => validIds.has(id));
   }, [currentFeatureTags, selectedFeatures]);
+
+  // 🏷️ 特點標籤空間壓縮（預設只展示前 8 個，支援點擊展開更多）
+  const [isChartTagsExpanded, setIsChartTagsExpanded] = useState(false);
+
+  const displayedChartTags = useMemo(() => {
+    if (isChartTagsExpanded || currentFeatureTags.length <= 8) {
+      return currentFeatureTags;
+    }
+    // 優先展示已選中的 tags，其餘補足到 8 個
+    const selected = currentFeatureTags.filter((t) => validSelectedFeatures.includes(t.id));
+    const unselected = currentFeatureTags.filter((t) => !validSelectedFeatures.includes(t.id));
+    const combined = [...selected, ...unselected];
+    return combined.slice(0, 8);
+  }, [currentFeatureTags, validSelectedFeatures, isChartTagsExpanded]);
 
   // 8. 保險公司過濾
   const [selectedInsurers, setSelectedInsurers] = useState<string[]>([]);
@@ -384,11 +400,19 @@ export default function UniversalComparisonChart({
   // 11. 使用 chart-metrics 引擎準備圖表數據點
   const chartPoints = useMemo(() => {
     if (!currentMetric) return [];
-    return prepareChartData(filteredProducts, currentMetric, {
-      sortOrder: sortDirection,
+    const points = prepareChartData(filteredProducts, currentMetric, {
+      sortOrder: chartSortType === "asc" ? "asc" : "desc",
       filterEmpty: true,
     });
-  }, [filteredProducts, currentMetric, sortDirection]);
+    if (chartSortType === "insurer") {
+      return [...points].sort((a, b) =>
+        a.insurerZh.localeCompare(b.insurerZh, "zh-Hant") ||
+        a.insurer.localeCompare(b.insurer) ||
+        a.name.localeCompare(b.name)
+      );
+    }
+    return points;
+  }, [filteredProducts, currentMetric, chartSortType]);
 
   // 12. 計算市場平均值與圖表最大值
   const { maxVisualValue, benchmarkAverage, benchmarkDisplay } = useMemo(() => {
@@ -729,7 +753,7 @@ export default function UniversalComparisonChart({
   const resetFilters = () => {
     setSelectedFeatures([]);
     setSelectedInsurers([]);
-    setSortDirection("desc");
+    setChartSortType("desc");
     setMetricSearch("");
   };
 
@@ -910,16 +934,47 @@ export default function UniversalComparisonChart({
                   </div>
 
                   {viewMode === "bar" && (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setSortDirection((d) => (d === "desc" ? "asc" : "desc"))
-                      }
-                      className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-line bg-paper px-2.5 py-1 text-[12px] font-medium text-ink shadow-xs transition-colors hover:bg-paper-2"
-                    >
-                      <ArrowUpDown size={12} className="text-ink-soft" />
-                      <span>{sortDirection === "desc" ? "高至低 ▾" : "低至高 ▴"}</span>
-                    </button>
+                    <div className="flex items-center gap-1 rounded-lg border border-line bg-paper p-0.5 text-[11.5px] shadow-xs">
+                      <button
+                        type="button"
+                        onClick={() => setChartSortType("desc")}
+                        className={cn(
+                          "inline-flex items-center gap-1 rounded-md px-2.5 py-1 font-medium transition-all",
+                          chartSortType === "desc"
+                            ? "bg-ink font-bold text-paper shadow-2xs"
+                            : "text-ink-soft hover:text-ink hover:bg-paper-2"
+                        )}
+                        title="數值由高至低排序（最高保障優先）"
+                      >
+                        <span>高至低 ▾</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setChartSortType("asc")}
+                        className={cn(
+                          "inline-flex items-center gap-1 rounded-md px-2.5 py-1 font-medium transition-all",
+                          chartSortType === "asc"
+                            ? "bg-ink font-bold text-paper shadow-2xs"
+                            : "text-ink-soft hover:text-ink hover:bg-paper-2"
+                        )}
+                        title="數值由低至高排序"
+                      >
+                        <span>低至高 ▴</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setChartSortType("insurer")}
+                        className={cn(
+                          "inline-flex items-center gap-1 rounded-md px-2.5 py-1 font-medium transition-all",
+                          chartSortType === "insurer"
+                            ? "bg-ink font-bold text-paper shadow-2xs"
+                            : "text-ink-soft hover:text-ink hover:bg-paper-2"
+                        )}
+                        title="按保險公司名稱排序"
+                      >
+                        <span>公司 A–Z</span>
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>
@@ -998,7 +1053,7 @@ export default function UniversalComparisonChart({
                     </div>
                   )}
                 </div>
-                {currentFeatureTags.map((tag) => {
+                {displayedChartTags.map((tag) => {
                   const isSelected = validSelectedFeatures.includes(tag.id);
                   return (
                     <button
@@ -1017,6 +1072,15 @@ export default function UniversalComparisonChart({
                     </button>
                   );
                 })}
+                {currentFeatureTags.length > 8 && (
+                  <button
+                    type="button"
+                    onClick={() => setIsChartTagsExpanded((prev) => !prev)}
+                    className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-bold text-jade bg-jade/10 border border-dashed border-jade/40 hover:bg-jade/20 transition-all active:scale-95"
+                  >
+                    <span>{isChartTagsExpanded ? "收起 ▴" : `+${currentFeatureTags.length - displayedChartTags.length} 條款 ▾`}</span>
+                  </button>
+                )}
                 {validSelectedFeatures.length > 0 && (
                   <button
                     type="button"
@@ -1169,98 +1233,100 @@ export default function UniversalComparisonChart({
                 </div>
               ) : viewMode === "bar" ? (
                 /* ── 長條圖視圖 ─────────────────────────────────── */
-                <div className="relative flex flex-col gap-3">
-                  {/* 市場平均虛線 */}
-                  {benchmarkPercent !== null && (
-                    <div
-                      className="pointer-events-none absolute bottom-0 top-0 hidden w-px border-r-2 border-dashed border-jade/50 md:block z-10"
-                      style={{
-                        left: `calc(230px + (100% - 380px) * ${
-                          benchmarkPercent / 100
-                        })`,
-                      }}
-                    >
-                      <span className="absolute -top-3 -translate-x-1/2 whitespace-nowrap rounded bg-jade px-1.5 py-0.5 font-grotesk text-[10px] font-bold text-paper shadow-xs">
-                        均值 {benchmarkDisplay}
-                      </span>
-                    </div>
-                  )}
-
-                  {chartPoints.map((item, index) => {
-                    const barPercent = Math.max(
-                      4,
-                      Math.min(100, (item.visualValue / maxVisualValue) * 100)
-                    );
-
-                    const rank = index + 1;
-                    const isTop1 = rank === 1;
-                    const isTop2 = rank === 2;
-                    const isTop3 = rank === 3;
-
-                    return (
-                      <motion.div
-                        key={item.id}
-                        layout
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: 0.4,
-                          ease: EASE_OUT_EXPO,
-                          delay: index < 10 ? index * 0.03 : 0,
+                <LayoutGroup id={`chart-rank-${categoryId}-${selectedMetricId}`}>
+                  <div className="relative flex flex-col gap-3">
+                    {/* 市場平均虛線 */}
+                    {benchmarkPercent !== null && (
+                      <div
+                        className="pointer-events-none absolute bottom-0 top-0 hidden w-px border-r-2 border-dashed border-jade/50 md:block z-10"
+                        style={{
+                          left: `calc(230px + (100% - 380px) * ${
+                            benchmarkPercent / 100
+                          })`,
                         }}
-                        onClick={() => navigate(item.url)}
-                        className="group relative flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 rounded-xl border border-line/60 bg-paper p-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-line hover:bg-paper-2/40 hover:shadow-xs cursor-pointer"
                       >
-                        {/* 左側：名次 + 保險公司 + 產品名稱 */}
-                        <div className="flex items-center gap-3 sm:w-[230px] lg:w-[270px] shrink-0">
-                          <div
-                            className={cn(
-                              "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[12px] font-grotesk font-bold transition-transform group-hover:scale-105",
-                              isTop1
-                                ? "bg-amber-100 text-amber-900 ring-1 ring-amber-400/60 font-black shadow-xs"
-                                : isTop2
-                                  ? "bg-slate-100 text-slate-800 ring-1 ring-slate-300"
-                                  : isTop3
-                                    ? "bg-orange-100 text-orange-900 ring-1 ring-orange-300"
-                                    : "bg-paper-2 text-ink-faint"
-                            )}
+                        <span className="absolute -top-3 -translate-x-1/2 whitespace-nowrap rounded bg-jade px-1.5 py-0.5 font-grotesk text-[10px] font-bold text-paper shadow-xs">
+                          均值 {benchmarkDisplay}
+                        </span>
+                      </div>
+                    )}
+
+                    <AnimatePresence mode="popLayout" initial={false}>
+                      {chartPoints.map((item, index) => {
+                        const barPercent = Math.max(
+                          4,
+                          Math.min(100, (item.visualValue / maxVisualValue) * 100)
+                        );
+
+                        const rank = index + 1;
+                        const isTop1 = rank === 1;
+                        const isTop2 = rank === 2;
+                        const isTop3 = rank === 3;
+
+                        return (
+                          <motion.div
+                            key={item.id}
+                            layout
+                            initial={false}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0, scale: 0.98 }}
+                            transition={{
+                              layout: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+                              opacity: { duration: 0.2 },
+                            }}
+                            onClick={() => navigate(item.url)}
+                            className="group relative flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 rounded-xl border border-line/60 bg-paper p-3 transition-colors duration-200 hover:border-line hover:bg-paper-2/40 hover:shadow-xs cursor-pointer"
                           >
-                            {isTop1 ? "🥇" : isTop2 ? "🥈" : isTop3 ? "🥉" : rank}
-                          </div>
+                            {/* 左側：名次 + 保險公司 + 產品名稱 */}
+                            <div className="flex items-center gap-3 sm:w-[230px] lg:w-[270px] shrink-0">
+                              <div
+                                className={cn(
+                                  "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[12px] font-grotesk font-bold transition-transform group-hover:scale-105",
+                                  isTop1
+                                    ? "bg-amber-100 text-amber-900 ring-1 ring-amber-400/60 font-black shadow-xs"
+                                    : isTop2
+                                      ? "bg-slate-100 text-slate-800 ring-1 ring-slate-300"
+                                      : isTop3
+                                        ? "bg-orange-100 text-orange-900 ring-1 ring-orange-300"
+                                        : "bg-paper-2 text-ink-faint"
+                                )}
+                              >
+                                {isTop1 ? "🥇" : isTop2 ? "🥈" : isTop3 ? "🥉" : rank}
+                              </div>
 
-                          <div className="min-w-0 flex-1">
-                            <p className="truncate text-[12px] font-semibold text-ink-faint">
-                              {item.insurerZh}
-                            </p>
-                            <h4 className="truncate font-sans text-[14px] font-bold text-ink transition-colors group-hover:text-jade">
-                              {item.name}
-                            </h4>
-                          </div>
-                        </div>
+                              <div className="min-w-0 flex-1">
+                                <p className="truncate text-[12px] font-semibold text-ink-faint">
+                                  {item.insurerZh}
+                                </p>
+                                <h4 className="truncate font-sans text-[14px] font-bold text-ink transition-colors group-hover:text-jade">
+                                  {item.name}
+                                </h4>
+                              </div>
+                            </div>
 
-                        {/* 中間：進度柱 */}
-                        <div className="relative flex-1 py-1">
-                          <div className="h-5 w-full overflow-hidden rounded-full bg-paper-2">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              animate={{ width: `${barPercent}%` }}
-                              transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
-                              className="h-full rounded-full relative flex items-center justify-end pr-2"
-                              style={{
-                                background: item.isFlagship
-                                  ? `linear-gradient(90deg, ${color} 0%, #D97706 100%)`
-                                  : `linear-gradient(90deg, ${color}CC 0%, ${color} 100%)`,
-                              }}
-                            >
-                              {item.isFlagship && (
-                                <Sparkles
-                                  size={12}
-                                  className="text-amber-200 animate-pulse"
-                                />
-                              )}
-                            </motion.div>
-                          </div>
-                        </div>
+                            {/* 中間：進度柱 */}
+                            <div className="relative flex-1 py-1">
+                              <div className="h-5 w-full overflow-hidden rounded-full bg-paper-2">
+                                <motion.div
+                                  initial={false}
+                                  animate={{ width: `${barPercent}%` }}
+                                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                                  className="h-full rounded-full relative flex items-center justify-end pr-2"
+                                  style={{
+                                    background: item.isFlagship
+                                      ? `linear-gradient(90deg, ${color} 0%, #D97706 100%)`
+                                      : `linear-gradient(90deg, ${color}CC 0%, ${color} 100%)`,
+                                  }}
+                                >
+                                  {item.isFlagship && (
+                                    <Sparkles
+                                      size={12}
+                                      className="text-amber-200 animate-pulse"
+                                    />
+                                  )}
+                                </motion.div>
+                              </div>
+                            </div>
 
                         {/* 右側：金額標籤 + 全數賠償年度上限提示 + 徽章 + 跳轉箭頭 */}
                         {(() => {
@@ -1376,7 +1442,9 @@ export default function UniversalComparisonChart({
                       </motion.div>
                     );
                   })}
-                </div>
+                    </AnimatePresence>
+                  </div>
+                </LayoutGroup>
               ) : (
                 /* ── 梯隊分佈視圖（動態自適應市場梯隊與決策短鏈） ───────────── */
                 <div className="space-y-5">

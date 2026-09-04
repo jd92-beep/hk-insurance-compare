@@ -22,7 +22,17 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
-export type SortKey = "default" | "premium" | "insurer" | "coverage";
+export type SortKey =
+  | "default"
+  | "fit-score"
+  | "premium-asc"
+  | "premium-desc"
+  | "coverage-max"
+  | "value-score"
+  | "insurer-az"
+  | "premium"
+  | "insurer"
+  | "coverage";
 export type ViewMode = "table" | "cards";
 export type TravelTripType = "all" | "single" | "annual";
 export type TravelRegion = "all" | "asia" | "worldwide" | "gba";
@@ -33,15 +43,24 @@ export interface InsurerOption {
   name_zh: string;
 }
 
-const SORT_LABELS: Record<Exclude<SortKey, "premium">, string> = {
-  default: "預設推薦",
-  insurer: "公司名 A–Z",
-  coverage: "保障項目數量",
-};
+const SORT_OPTIONS: { id: SortKey; label: string; shortLabel: string }[] = [
+  { id: "default", label: "✨ 預設推薦（智能契合度）", shortLabel: "預設推薦" },
+  { id: "fit-score", label: "🎯 契合度最高優先（中最多條件）", shortLabel: "🎯 契合度最高" },
+  { id: "premium-asc", label: "💰 保費：由低至高（實付折後價先）", shortLabel: "💰 保費由低至高" },
+  { id: "premium-desc", label: "💎 保費：由高至低（尊尚高額先）", shortLabel: "💎 保費由高至低" },
+  { id: "coverage-max", label: "🛡️ 最高保障額度優先（封頂最高）", shortLabel: "🛡️ 最高保額" },
+  { id: "value-score", label: "🌟 性價比推薦優先（CP值最高）", shortLabel: "🌟 性價比最高" },
+  { id: "insurer-az", label: "🏢 保險公司名 A–Z", shortLabel: "🏢 公司名 A-Z" },
+];
 
-/** 保費排序 label 跟埋方向（升序/降序即時反映） */
-function premiumSortLabel(dir: "asc" | "desc"): string {
-  return dir === "asc" ? "保費由低至高（實付折後價先）" : "保費由高至低（實付折後價先）";
+function getSortLabel(sort: SortKey, premiumDir?: "asc" | "desc"): string {
+  if (sort === "premium") {
+    return premiumDir === "desc" ? "💎 保費由高至低" : "💰 保費由低至高";
+  }
+  if (sort === "insurer") return "🏢 公司名 A–Z";
+  if (sort === "coverage") return "🛡️ 保障項目數量";
+  const hit = SORT_OPTIONS.find((o) => o.id === sort);
+  return hit ? hit.shortLabel : "預設推薦";
 }
 
 const PRICE_RANGE_PRESETS: { id: PriceRangeKey; label: string; sub?: string }[] = [
@@ -167,6 +186,12 @@ export default function FilterBar({
           {selectedInsurers.length > 0 && (
             <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-sky-500/10 px-2.5 py-0.5 text-[11.5px] font-bold text-sky-800 dark:text-sky-300">
               🏢 {selectedInsurers.length} 間公司
+            </span>
+          )}
+
+          {sort !== "default" && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-rose-500/10 px-2.5 py-0.5 text-[11.5px] font-bold text-rose-700 dark:text-rose-300">
+              {getSortLabel(sort, premiumDir)}
             </span>
           )}
         </div>
@@ -415,24 +440,17 @@ export default function FilterBar({
                     <span>排序方式：</span>
                     <Select value={sort} onValueChange={(v) => onSortChange(v as SortKey)}>
                       <SelectTrigger
-                        className="h-[44px] sm:h-[34px] w-[220px] shrink-0 rounded-full border-line bg-paper px-3.5 text-small font-medium text-ink-soft shadow-none hover:text-ink focus:ring-red/40"
+                        className="h-[44px] sm:h-[34px] w-[240px] sm:w-[260px] shrink-0 rounded-full border-line bg-paper px-3.5 text-small font-medium text-ink-soft shadow-none hover:text-ink focus:ring-red/40"
                         aria-label="排序方式"
                       >
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="default" className="text-small">
-                          {SORT_LABELS.default}
-                        </SelectItem>
-                        <SelectItem value="premium" className="text-small">
-                          {premiumSortLabel(premiumDir)}
-                        </SelectItem>
-                        <SelectItem value="insurer" className="text-small">
-                          {SORT_LABELS.insurer}
-                        </SelectItem>
-                        <SelectItem value="coverage" className="text-small">
-                          {SORT_LABELS.coverage}
-                        </SelectItem>
+                        {SORT_OPTIONS.map((opt) => (
+                          <SelectItem key={opt.id} value={opt.id} className="text-small">
+                            {opt.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>

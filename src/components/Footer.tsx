@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { useCategories, useInsuranceData, useInsurers, useProducts } from "@/providers/InsuranceDataProvider";
+import { FULL_VERSION_STRING } from "@/lib/version";
 import StampBadge from "@/components/StampBadge";
 import { StampSealIcon } from "@/components/StampSealIcon";
 
@@ -106,6 +107,7 @@ export default function Footer() {
             <p className="eyebrow mb-4 text-paper/50">數據聲明</p>
             <ul className="flex flex-col gap-2 text-[14px] text-paper/75">
               <li>資料快照日期：<span className="font-grotesk text-paper">{generatedAt}</span></li>
+              <li>系統版本：<span className="font-mono text-paper font-semibold">{FULL_VERSION_STRING}</span></li>
               <li><span className="font-grotesk text-paper">{insurers.length}</span> 間保險公司</li>
               <li><span className="font-grotesk text-paper">{products.length}</span> 份產品檔案</li>
               <li>全部摘自官方網站及文件，附來源連結</li>

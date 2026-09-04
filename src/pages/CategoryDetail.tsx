@@ -1,6 +1,17 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Scale, ShieldAlert, ShieldCheck, Sparkles, TriangleAlert } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  RotateCcw,
+  Scale,
+  Search,
+  ShieldAlert,
+  ShieldCheck,
+  Sparkles,
+  TriangleAlert,
+  X,
+} from "lucide-react";
 import { Link, useParams } from "react-router";
 import { Toaster } from "@/components/ui/sonner";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -14,11 +25,12 @@ import TravelFlagshipBanner from "@/components/category/TravelFlagshipBanner";
 import { categoryCopy } from "@/components/category/copy";
 import {
   getCategoryFeatureTags,
+  getCategoryScenarioPresets,
   filterAndRankProductsByFeatures,
   type FeatureMatchMode,
   type FeatureMatchResult,
+  type ScenarioPreset,
 } from "@/lib/feature-filters";
-import { Check, RotateCcw } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -226,11 +238,64 @@ export default function CategoryDetail() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rankedFeatureData, sort, premiumDir]);
 
+  // 🔍 特點即時微型搜尋欄輸入字串
+  const [featureSearchQuery, setFeatureSearchQuery] = useState("");
+
+  // 當前類別之情境 Shortcuts
+  const categoryPresets = useMemo(
+    () => getCategoryScenarioPresets(categoryId || ""),
+    [categoryId]
+  );
+
+  // 篩選特點標籤（支援 label、keywords、id 快速匹配）
+  const filteredFeatureTags = useMemo(() => {
+    if (!featureSearchQuery.trim()) return categoryFeatureTags;
+    const q = featureSearchQuery.trim().toLowerCase();
+    return categoryFeatureTags.filter(
+      (t) =>
+        t.label.toLowerCase().includes(q) ||
+        t.keywords.some((k) => k.toLowerCase().includes(q)) ||
+        t.id.toLowerCase().includes(q)
+    );
+  }, [categoryFeatureTags, featureSearchQuery]);
+
+  // 最高契合度統計指標（供動態 Feedback Banner 使用）
+  const maxMatchedCount = useMemo(() => {
+    if (rankedFeatureData.results.length === 0 || selectedFeatures.length === 0) return 0;
+    return Math.max(...rankedFeatureData.results.map((r) => r.match.matchedCount));
+  }, [rankedFeatureData, selectedFeatures]);
+
+  const maxScore = useMemo(() => {
+    if (rankedFeatureData.results.length === 0 || selectedFeatures.length === 0) return 0;
+    return Math.max(...rankedFeatureData.results.map((r) => r.match.score));
+  }, [rankedFeatureData, selectedFeatures]);
+
+  const bestMatchProducts = useMemo(() => {
+    if (maxMatchedCount === 0) return [];
+    return rankedFeatureData.results.filter((r) => r.match.matchedCount === maxMatchedCount);
+  }, [rankedFeatureData, maxMatchedCount]);
+
+  // Preset 點擊切換與取消邏輯
+  const handleTogglePreset = (preset: ScenarioPreset) => {
+    const isAlreadyActive =
+      selectedFeatures.length === preset.featureIds.length &&
+      preset.featureIds.every((id) => selectedFeatures.includes(id));
+
+    if (isAlreadyActive) {
+      // 再次點擊同一個 Preset 一鍵取消
+      setSelectedFeatures([]);
+    } else {
+      // 套用 Preset，並同步點亮相關特點
+      setSelectedFeatures([...preset.featureIds]);
+    }
+  };
+
   const hasActiveFilters =
     selectedInsurers.length > 0 ||
     onlyPremium ||
     sort !== "default" ||
     selectedFeatures.length > 0 ||
+    Boolean(featureSearchQuery) ||
     (isTravel && (travelTripType !== "all" || travelRegion !== "all" || onlyPromo));
 
   const resetFilters = () => {
@@ -240,6 +305,7 @@ export default function CategoryDetail() {
     setPremiumDir("asc");
     setSelectedFeatures([]);
     setFeatureMatchMode("smart");
+    setFeatureSearchQuery("");
     if (isTravel) {
       setTravelTripType("all");
       setTravelRegion("all");
@@ -630,14 +696,94 @@ export default function CategoryDetail() {
           onTravelRegionChange={setTravelRegion}
           onlyPromo={onlyPromo}
           onTogglePromo={() => setOnlyPromo((v) => !v)}
+          activeFeatureCount={selectedFeatures.length}
         />
 
         {/* ── S3 產品列表 ─────────────────────────────────────── */}
         <section className="py-10 max-md:py-8">
           <div className="site-container">
-            {/* 🎯 智能偏好挑選面板（用戶自選重視保障） */}
+            {/* 🎯 智能偏好挑選面板（用戶自選重視保障與情境 Preset） */}
             {categoryFeatureTags.length > 0 && (
               <div className="mb-6 rounded-2xl border border-line bg-paper p-4 sm:p-5 shadow-xs transition-all">
+                {/* 1. 契合度進度指示與置頂反饋動效 (Top Match Feedback Banner) */}
+                <AnimatePresence>
+                  {selectedFeatures.length > 0 && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0, y: -10 }}
+                      animate={{ opacity: 1, height: "auto", y: 0 }}
+                      exit={{ opacity: 0, height: 0, y: -10 }}
+                      transition={{ duration: 0.35, ease: EASE_OUT_EXPO }}
+                      className="overflow-hidden pb-4 mb-4 border-b border-line/60"
+                    >
+                      <div className="rounded-xl border border-jade/30 bg-jade-wash/70 p-3.5 sm:p-4 text-ink flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div className="flex items-start gap-3">
+                          <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-jade text-paper shadow-xs">
+                            <Sparkles size={16} />
+                          </div>
+                          <div>
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span className="font-sans text-[14.5px] sm:text-[15.5px] font-bold text-ink">
+                                為你精選推薦 <span className="font-grotesk font-black text-jade underline decoration-jade/40 underline-offset-4">{bestMatchProducts.length}</span> 款最高契合保險
+                              </span>
+                              <span className="rounded-full bg-jade text-paper px-2.5 py-0.5 font-grotesk text-[11px] font-bold tracking-tight shadow-xs">
+                                最高命中率 {maxScore}% ({maxMatchedCount}/{selectedFeatures.length} 項)
+                              </span>
+                            </div>
+                            <p className="mt-1 text-[12.5px] text-ink-soft">
+                              已選 {selectedFeatures.length} 項核心條款，依契合度多至少置頂排序，最貼近心水方案永遠排最前。
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* 控制器：清空全部 + 模式切換 */}
+                        <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto shrink-0">
+                          {selectedFeatures.length > 1 && (
+                            <div className="inline-flex items-center rounded-full bg-paper p-1 text-[11px] border border-line shadow-xs">
+                              <button
+                                type="button"
+                                onClick={() => setFeatureMatchMode("smart")}
+                                className={cn(
+                                  "rounded-full px-2.5 py-1 font-medium transition-all",
+                                  featureMatchMode === "smart"
+                                    ? "bg-jade text-paper font-bold shadow-xs"
+                                    : "text-ink-soft hover:text-ink"
+                                )}
+                                title="智能推薦：符合最多重視項目優先置頂，永不落空"
+                              >
+                                ✨ 智能推薦
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setFeatureMatchMode("strict")}
+                                className={cn(
+                                  "rounded-full px-2.5 py-1 font-medium transition-all",
+                                  featureMatchMode === "strict"
+                                    ? "bg-ink text-paper font-bold shadow-xs"
+                                    : "text-ink-soft hover:text-ink"
+                                )}
+                                title="嚴格全中：要求同時滿足所有選中條件"
+                              >
+                                🎯 嚴格全中 (AND)
+                              </button>
+                            </div>
+                          )}
+
+                          <button
+                            type="button"
+                            onClick={() => setSelectedFeatures([])}
+                            className="inline-flex items-center gap-1 rounded-full border border-line bg-paper px-3 py-1.5 text-[12px] font-semibold text-ink-soft hover:text-red hover:border-red/40 active:scale-95 transition-all shadow-xs"
+                            aria-label="清空全部自選條件"
+                          >
+                            <RotateCcw size={12} className="text-red" />
+                            <span>清空全部</span>
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* 面板標題區 + 特點微型搜尋欄 */}
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between pb-3 border-b border-line/50">
                   <div>
                     <div className="flex flex-wrap items-center gap-2">
@@ -652,75 +798,125 @@ export default function CategoryDetail() {
                       )}
                     </div>
                     <p className="mt-0.5 text-small text-ink-soft">
-                      點選你最關注的保障條款，系統將按契合度智能評分並置頂推薦最貼近心水的方案。
+                      點選你最關注的保障條款或熱門情境，系統將按契合度智能評分並置頂推薦最貼近心水的方案。
                     </p>
                   </div>
 
-                  {/* 模式切換 Switch：智能推薦 vs 嚴格全中 */}
-                  {selectedFeatures.length > 1 && (
-                    <div className="inline-flex items-center rounded-full bg-paper-2 p-1 text-[11px] self-start sm:self-auto border border-line/60">
+                  {/* 特點過濾即時微型搜尋欄 (Search within features) */}
+                  <div className="relative w-full sm:w-64 shrink-0">
+                    <Search size={14} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-faint" />
+                    <input
+                      type="text"
+                      value={featureSearchQuery}
+                      onChange={(e) => setFeatureSearchQuery(e.target.value)}
+                      placeholder="搜尋保障標籤（如：租車、免找數）"
+                      aria-label="搜尋保障項目標籤"
+                      className="h-[36px] w-full rounded-full border border-line bg-paper-2/60 pl-8 pr-8 text-[12px] text-ink placeholder:text-ink-faint focus:border-jade focus:bg-paper focus:outline-none transition-all"
+                    />
+                    {featureSearchQuery && (
                       <button
                         type="button"
-                        onClick={() => setFeatureMatchMode("smart")}
-                        className={cn(
-                          "rounded-full px-2.5 py-1 font-medium transition-all",
-                          featureMatchMode === "smart"
-                            ? "bg-jade text-paper font-bold shadow-xs"
-                            : "text-ink-soft hover:text-ink"
-                        )}
-                        title="智能推薦：符合最多重視項目優先置頂，永不落空"
+                        onClick={() => setFeatureSearchQuery("")}
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 p-0.5 text-ink-faint hover:text-ink transition-colors"
+                        aria-label="清空搜尋字串"
                       >
-                        ✨ 智能推薦（符合最多項優先）
+                        <X size={13} />
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => setFeatureMatchMode("strict")}
-                        className={cn(
-                          "rounded-full px-2.5 py-1 font-medium transition-all",
-                          featureMatchMode === "strict"
-                            ? "bg-ink text-paper font-bold shadow-xs"
-                            : "text-ink-soft hover:text-ink"
-                        )}
-                        title="嚴格全中：要求同時滿足所有選中條件"
-                      >
-                        🎯 嚴格全中 (AND)
-                      </button>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
 
-                {/* 特點標籤 Chips */}
-                <div className="mt-3.5 flex flex-wrap items-center gap-1.5">
-                  <span className="text-[12px] font-semibold text-ink-faint mr-1">快捷點選：</span>
-                  {categoryFeatureTags.map((tag) => {
-                    const isSelected = selectedFeatures.includes(tag.id);
-                    return (
+                {/* 2. 一鍵場景 Preset 晶片列 (Persona / Scenario Shortcuts) */}
+                {categoryPresets.length > 0 && (
+                  <div className="mt-3.5 pb-3 border-b border-line/40">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-[12px] font-bold text-ink-soft shrink-0">
+                        🔥 熱門情境快捷：
+                      </span>
+                      {categoryPresets.map((preset) => {
+                        const isExactActive =
+                          selectedFeatures.length === preset.featureIds.length &&
+                          preset.featureIds.every((id) => selectedFeatures.includes(id));
+                        const isPartialActive =
+                          !isExactActive &&
+                          preset.featureIds.every((id) => selectedFeatures.includes(id)) &&
+                          preset.featureIds.length > 0;
+
+                        return (
+                          <button
+                            key={preset.id}
+                            type="button"
+                            onClick={() => handleTogglePreset(preset)}
+                            title={preset.description}
+                            aria-pressed={isExactActive}
+                            className={cn(
+                              "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-bold transition-all duration-200 active:scale-95",
+                              isExactActive
+                                ? "bg-ink text-paper shadow-xs ring-2 ring-ink/20"
+                                : isPartialActive
+                                  ? "bg-jade/15 text-jade border border-jade/40 font-bold"
+                                  : "bg-paper-2 text-ink-soft border border-line/60 hover:border-ink/40 hover:text-ink hover:bg-paper"
+                            )}
+                          >
+                            {isExactActive && <Check size={12} className="text-paper" />}
+                            <span>{preset.label}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* 3. 特點標籤 Chips 列 */}
+                <div className="mt-3.5">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <span className="text-[12px] font-semibold text-ink-faint mr-1 shrink-0">
+                      自選保障項目：
+                    </span>
+                    {filteredFeatureTags.map((tag) => {
+                      const isSelected = selectedFeatures.includes(tag.id);
+                      return (
+                        <button
+                          key={tag.id}
+                          type="button"
+                          onClick={() => toggleFeature(tag.id)}
+                          className={cn(
+                            "inline-flex items-center gap-1 rounded-full px-3 py-1 text-[12px] font-medium transition-all active:scale-95",
+                            isSelected
+                              ? "bg-jade text-paper font-bold shadow-xs scale-[1.02]"
+                              : "bg-paper-2/70 text-ink-soft border border-line/70 hover:border-jade/50 hover:text-jade hover:bg-paper"
+                          )}
+                        >
+                          {isSelected && <Check size={12} />}
+                          <span>{tag.label}</span>
+                        </button>
+                      );
+                    })}
+
+                    {filteredFeatureTags.length === 0 && (
+                      <div className="flex items-center gap-2 py-1 text-[12px] text-ink-faint">
+                        <span>未搵到包含「{featureSearchQuery}」嘅保障標籤</span>
+                        <button
+                          type="button"
+                          onClick={() => setFeatureSearchQuery("")}
+                          className="font-bold text-jade hover:underline"
+                        >
+                          清除搜尋
+                        </button>
+                      </div>
+                    )}
+
+                    {selectedFeatures.length > 0 && (
                       <button
-                        key={tag.id}
                         type="button"
-                        onClick={() => toggleFeature(tag.id)}
-                        className={cn(
-                          "inline-flex items-center gap-1 rounded-full px-3 py-1 text-[12px] font-medium transition-all",
-                          isSelected
-                            ? "bg-jade text-paper font-bold shadow-xs scale-[1.02]"
-                            : "bg-paper-2/70 text-ink-soft border border-line/70 hover:border-jade/50 hover:text-jade hover:bg-paper"
-                        )}
+                        onClick={() => setSelectedFeatures([])}
+                        className="ml-2 inline-flex items-center gap-1 text-[12px] font-semibold text-red hover:underline"
                       >
-                        {isSelected && <Check size={12} />}
-                        <span>{tag.label}</span>
+                        <RotateCcw size={12} />
+                        <span>重設重視保障</span>
                       </button>
-                    );
-                  })}
-                  {selectedFeatures.length > 0 && (
-                    <button
-                      type="button"
-                      onClick={() => setSelectedFeatures([])}
-                      className="ml-2 inline-flex items-center gap-1 text-[12px] font-semibold text-red hover:underline"
-                    >
-                      <RotateCcw size={12} />
-                      <span>重設重視保障</span>
-                    </button>
-                  )}
+                    )}
+                  </div>
                 </div>
 
                 {/* Fallback 智能提示 */}

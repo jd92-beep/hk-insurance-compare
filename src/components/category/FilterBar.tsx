@@ -60,6 +60,7 @@ export default function FilterBar({
   onTravelRegionChange,
   onlyPromo = false,
   onTogglePromo,
+  activeFeatureCount = 0,
 }: {
   insurers: InsurerOption[];
   selectedInsurers: string[];
@@ -84,22 +85,61 @@ export default function FilterBar({
   onTravelRegionChange?: (v: TravelRegion) => void;
   onlyPromo?: boolean;
   onTogglePromo?: () => void;
+  activeFeatureCount?: number;
 }) {
+  // 精確統計當前啟動之所有過濾條件總數
+  const activeConditionsCount = (
+    selectedInsurers.length +
+    (onlyPremium ? 1 : 0) +
+    (sort !== "default" ? 1 : 0) +
+    (isTravel && travelTripType !== "all" ? 1 : 0) +
+    (isTravel && travelRegion !== "all" ? 1 : 0) +
+    (isTravel && onlyPromo ? 1 : 0) +
+    activeFeatureCount
+  );
+
+  const isFilterActive = hasActiveFilters || activeConditionsCount > 0;
+
   return (
     <motion.div
-      className="sticky top-[72px] z-40 border-b bg-paper"
+      className="sticky top-[72px] z-40 border-b bg-paper/95 backdrop-blur-md transition-shadow duration-200"
       style={{ borderColor: "var(--line)" }}
       initial={{ opacity: 0, y: -12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
     >
+      {/* 📱 Mobile 專屬頂部常駐摘要列：顯示結果數量 + 已選條件 Badge + 充足觸摸熱區的一鍵重設按鈕 */}
+      <div className="flex sm:hidden items-center justify-between px-4 py-2.5 border-b border-line/40 bg-paper/90 text-[12.5px]">
+        <div className="flex items-center gap-2">
+          <span className="text-ink-faint">
+            顯示 <span className="font-grotesk font-bold text-ink">{shown}</span> / <span className="font-grotesk">{total}</span> 份
+          </span>
+          {activeConditionsCount > 0 && (
+            <span className="inline-flex items-center rounded-full bg-jade/10 px-2 py-0.5 font-grotesk text-[11px] font-bold text-jade">
+              已選 {activeConditionsCount} 項
+            </span>
+          )}
+        </div>
+        {isFilterActive && (
+          <button
+            type="button"
+            onClick={onReset}
+            className="inline-flex min-h-[44px] items-center gap-1 rounded-full px-3 py-1.5 text-[12px] font-bold text-red hover:bg-red/10 active:scale-95 transition-all"
+            aria-label="重設全部篩選條件"
+          >
+            <RotateCcw size={13} />
+            <span>重設全部</span>
+          </button>
+        )}
+      </div>
+
       {/* 旅遊專屬維度篩選條（旅程類型 + 覆蓋地區 + 即時折扣） */}
       {isTravel && (
         <div
           className="border-b bg-paper-2/50 py-2.5"
           style={{ borderColor: "var(--line)" }}
         >
-          <div className="site-container flex items-center gap-3 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="site-container flex items-center gap-3 overflow-x-auto touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {/* 旅程類型 */}
             <div className="flex shrink-0 items-center gap-1.5" role="group" aria-label="旅程類型篩選">
               <span className="inline-flex items-center gap-1 pr-1 text-[12px] font-bold text-ink-soft">
@@ -186,7 +226,7 @@ export default function FilterBar({
         </div>
       )}
       <div className="relative">
-        <div className="site-container flex items-center gap-3 overflow-x-auto py-3.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="site-container flex items-center gap-3 overflow-x-auto py-3.5 touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {/* 保險公司 chips */}
         <div className="flex shrink-0 items-center gap-1.5" role="group" aria-label="保險公司篩選">
           <FilterChip
@@ -216,8 +256,9 @@ export default function FilterBar({
           aria-pressed={onlyPremium}
           className={cn(
             "chip shrink-0 border font-bold transition-all duration-300 active:scale-[0.94]",
+            "min-h-[44px] sm:min-h-[34px] px-3.5 py-2.5 sm:py-1",
             onlyPremium
-              ? "border-jade bg-jade text-paper"
+              ? "border-jade bg-jade text-paper shadow-xs"
               : "border-transparent bg-paper-3 text-ink-soft hover:text-ink",
           )}
         >
@@ -232,7 +273,7 @@ export default function FilterBar({
         {/* 排序 */}
         <Select value={sort} onValueChange={(v) => onSortChange(v as SortKey)}>
           <SelectTrigger
-            className="h-[34px] w-[236px] shrink-0 rounded-full border-transparent bg-paper-3 px-3 text-small font-medium text-ink-soft shadow-none hover:text-ink focus:ring-red/40"
+            className="h-[44px] sm:h-[34px] w-[236px] shrink-0 rounded-full border-transparent bg-paper-3 px-3.5 text-small font-medium text-ink-soft shadow-none hover:text-ink focus:ring-red/40"
             aria-label="排序方式"
           >
             <SelectValue />
@@ -272,8 +313,8 @@ export default function FilterBar({
                 onClick={() => onViewChange(key)}
                 aria-pressed={view === key}
                 className={cn(
-                  "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-small font-bold transition-all duration-300",
-                  view === key ? "bg-ink text-paper" : "text-ink-soft hover:text-ink",
+                  "inline-flex min-h-[40px] sm:min-h-[30px] items-center gap-1.5 rounded-full px-3 py-1.5 text-small font-bold transition-all duration-300",
+                  view === key ? "bg-ink text-paper shadow-xs" : "text-ink-soft hover:text-ink",
                 )}
               >
                 <Icon size={13} />
@@ -283,17 +324,22 @@ export default function FilterBar({
           </div>
         )}
 
-        {/* 結果數 + 重設 */}
-        <div className="ml-auto flex shrink-0 items-center gap-3 pl-2 text-small">
+        {/* 桌面端：結果數 + 條件 Badge + 重設 */}
+        <div className="ml-auto hidden sm:flex shrink-0 items-center gap-2.5 pl-3 text-small">
+          {activeConditionsCount > 0 && (
+            <span className="inline-flex items-center rounded-full bg-jade/10 px-2.5 py-0.5 font-grotesk text-[11px] font-bold text-jade">
+              已選 {activeConditionsCount} 項條件
+            </span>
+          )}
           <span className="whitespace-nowrap text-ink-faint">
             顯示 <span className="font-grotesk font-bold text-ink">{shown}</span> /{" "}
             <span className="font-grotesk">{total}</span> 份
           </span>
-          {hasActiveFilters && (
+          {isFilterActive && (
             <button
               type="button"
               onClick={onReset}
-              className="inline-flex items-center gap-1 whitespace-nowrap text-ink-faint transition-colors hover:text-red"
+              className="inline-flex items-center gap-1 whitespace-nowrap text-ink-faint transition-colors hover:text-red active:scale-95"
             >
               <RotateCcw size={12} />
               重設
@@ -303,7 +349,7 @@ export default function FilterBar({
       </div>
         {/* 右緣漸隱：提示 pills 行可以橫向滑動（夠闊先睇得清楚） */}
         <div
-          className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-paper via-paper/85 to-transparent"
+          className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-paper/95 via-paper/80 to-transparent"
           aria-hidden="true"
         />
       </div>
@@ -327,7 +373,8 @@ function FilterChip({
       aria-pressed={active}
       className={cn(
         "chip shrink-0 gap-1.5 whitespace-nowrap font-bold transition-all duration-300 active:scale-[0.94]",
-        active ? "bg-ink text-paper" : "bg-paper-3 text-ink-soft hover:text-ink",
+        "min-h-[44px] sm:min-h-[32px] px-3.5 py-2.5 sm:py-1",
+        active ? "bg-ink text-paper shadow-xs" : "bg-paper-3 text-ink-soft hover:text-ink",
       )}
     >
       {children}

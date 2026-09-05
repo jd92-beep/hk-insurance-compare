@@ -12,7 +12,7 @@ Hong Kong insurance comparison site. Static SPA, all UI in Traditional Chinese (
 npm install
 npm run dev                                      # vite dev server
 npm run build                                    # tsc -b && vite build (must pass 100%)
-npm run lint                                     # 22 pre-existing baseline errors — 0 new errors!
+npm run lint                                     # 17 pre-existing baseline errors — 0 new errors!
 npx tsx scripts/verify_filter_combinations.ts    # verify 3,200+ filter combinations
 npx tsx scripts/verify_filter_boundary_deep.ts   # deep stress test 80,000+ combinations
 python3 scripts/build_vhis.py                    # refresh VHIS data from official sources
@@ -36,7 +36,7 @@ Cloudflare Pages, git auto-deploy on push to `master`.
 
 ## Stack
 
-React 19 · TypeScript · Vite 7 · Tailwind CSS 3.4 · shadcn/ui · Framer Motion · GSAP · Lenis · cmdk · react-router 7.
+React 19 · TypeScript · Vite 7 · Tailwind CSS 3.4 · shadcn/ui · Framer Motion · GSAP · Lenis · cmdk · react-router 7 · three.js + @react-three/fiber (Hero WebGL 3D scene, lazy chunk).
 
 ## Layout & Architecture
 
@@ -52,7 +52,7 @@ React 19 · TypeScript · Vite 7 · Tailwind CSS 3.4 · shadcn/ui · Framer Moti
 - `src/providers/` — InsuranceDataProvider (fetches JSON), CompareProvider, SearchProvider
 - `src/lib/categories.ts` — category meta + premium parsing/sorting helpers
 - `src/components/compare/canonical-benefits.ts` — per-category canonical benefit rows
-- `src/components/fx/` — 3D/generative-art effect components (`AuroraBackground`, `TiltCard`, `ParticleField`); AI image slot at `public/hero-aurora-ai.webp` (auto-hidden when missing)
+- `src/components/fx/` — 3D/generative-art effect components (`AuroraBackground`, `TiltCard`, `ParticleField`, `HeroScene` WebGL); AI image slot at `public/hero-aurora-ai.webp` (auto-hidden when missing)
 
 ## Conventions
 

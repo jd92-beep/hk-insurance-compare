@@ -26,9 +26,9 @@
 - **逐條引文四要素**：每個重要數據必須附帶 `{ document, page, quote, url }`。
 - **拒絕過期資料**：全站產品一律採用 2024–2026 年現行有效之官方文件，嚴禁引用 <= 2022 年之失效條款。
 
-### 📌 鐵律 3：嚴格防守 ESLint 22 Baseline 錯誤
-- 專案既有 22 個 baseline lint 錯誤（分佈於 `src/components/ui/`、`Navbar.tsx`、`categories.ts` 等歷史代碼）。
-- **鐵律**：任何新加入或修改的代碼，**新增加的 Lint Error 必須為 0**！執行 `npm run lint` 必須維持在 22 個。
+### 📌 鐵律 3：嚴格防守 ESLint 17 Baseline 錯誤
+- 專案既有 17 個 baseline lint 錯誤（分佈於 `src/components/ui/`、`src/providers/`、`ProductTable.tsx` 等歷史代碼）。
+- **鐵律**：任何新加入或修改的代碼，**新增加的 Lint Error 必須為 0**！執行 `npm run lint` 必須維持在 17 個。
 
 ### 📌 鐵律 4：主語言為廣東話（香港粵語）
 - 所有思考過程、回覆、輸出、報告以及 UI 文案，一律以正宗香港廣東話（香港繁體中文）為主要語言。

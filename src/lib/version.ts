@@ -4,7 +4,7 @@
  * 每次修改或部署時，必須更新版本號或遞增 Build Number！
  */
 export const APP_VERSION = "1.6.0";
-export const BUILD_NUMBER = "20260905.9";
+export const BUILD_NUMBER = "20260905.10";
 export const BUILD_DATE = "2026-09-05";
 export const FULL_VERSION_STRING = `v${APP_VERSION} (Build ${BUILD_NUMBER})`;
 

@@ -3,6 +3,7 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { useProducts } from "@/providers/InsuranceDataProvider";
 import type { Product } from "@/types/insurance";
+import TiltCard from "@/components/fx/TiltCard";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -65,6 +66,8 @@ export default function FeaturedCompare() {
           viewport={{ once: true, margin: "-20% 0px" }}
           transition={{ duration: 0.8, ease: EASE_OUT_EXPO }}
         >
+          {/* 迷你比較表：3D 傾斜互動（大表面，角度收細到 3°） */}
+          <TiltCard className="rounded-card" max={3}>
           <div
             onClick={() => navigate("/category/travel")}
             className="cursor-pointer overflow-hidden rounded-card border bg-paper shadow-card transition-shadow duration-300 hover:shadow-lift"
@@ -130,6 +133,7 @@ export default function FeaturedCompare() {
               )}
             </div>
           </div>
+          </TiltCard>
         </motion.div>
       </div>
     </section>

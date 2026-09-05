@@ -10,6 +10,9 @@ import { useSearch } from "@/providers/SearchProvider";
 import { scrollToElement } from "@/lib/lenis";
 import { StampSealIcon } from "@/components/StampSealIcon";
 import Magnetic from "@/components/Magnetic";
+import AuroraBackground from "@/components/fx/AuroraBackground";
+import ParticleField from "@/components/fx/ParticleField";
+import TiltCard from "@/components/fx/TiltCard";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -47,7 +50,7 @@ export default function Hero() {
     () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
 
-  // 滑鼠微 parallax（兩層深度）
+  // 滑鼠微 parallax（四層深度：極光最慢 → 遠景 → 近景 → 插畫最快）
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const sx = useSpring(mx, { stiffness: 55, damping: 18 });
@@ -58,6 +61,8 @@ export default function Hero() {
   const layerFarY = useTransform(sy, (v) => v * -8);
   const artX = useTransform(sx, (v) => v * 8);
   const artY = useTransform(sy, (v) => v * 6);
+  const auroraX = useTransform(sx, (v) => v * -6);
+  const auroraY = useTransform(sy, (v) => v * -4);
 
   const stats = [
     { n: categories.length || 9, label: "大保險類別" },
@@ -166,6 +171,21 @@ export default function Hero() {
 
   return (
     <section ref={rootRef} className="relative overflow-hidden" onMouseMove={onMouseMove}>
+      {/* 極光背景層（最遠景，滑鼠反向慢速漂移）+ 互動微粒 */}
+      {reduced ? (
+        <AuroraBackground />
+      ) : (
+        <>
+          <motion.div
+            className="pointer-events-none absolute inset-0"
+            style={{ x: auroraX, y: auroraY }}
+            aria-hidden="true"
+          >
+            <AuroraBackground />
+          </motion.div>
+          <ParticleField />
+        </>
+      )}
       {/* mobile 底部加多啲 padding：首訪免責聲明 toast（fixed 底條）唔會冚住 9/85/27 統計行 */}
       <div className="site-container relative grid min-h-[92dvh] grid-cols-1 items-center gap-12 pb-16 pt-24 max-md:pb-36 lg:grid-cols-12 lg:gap-8">
         {/* 漂浮裝飾層（左欄文字後面，近/遠兩層） */}
@@ -262,20 +282,41 @@ export default function Hero() {
             aria-hidden="true"
             className="animate-spin-slow pointer-events-none absolute -right-24 -top-24 h-[480px] w-[480px] opacity-[.05]"
           />
+          {/* 點陣裝飾層（最遠景縱深）+ 垂直 hairline */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-10 top-1/2 hidden h-[130%] w-44 -translate-y-1/2 lg:block"
+            style={{
+              backgroundImage: "radial-gradient(rgba(24,29,46,.20) 1.2px, transparent 1.2px)",
+              backgroundSize: "22px 22px",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent, black 22%, black 78%, transparent)",
+              maskImage: "linear-gradient(to bottom, transparent, black 22%, black 78%, transparent)",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-8 top-[6%] hidden h-[88%] w-px lg:block"
+            style={{ background: "linear-gradient(to bottom, transparent, var(--line-strong) 30%, var(--line-strong) 70%, transparent)" }}
+          />
           <motion.div className="relative" style={reduced ? undefined : { x: artX, y: artY }}>
-            <div className="hero-art overflow-hidden rounded-[20px] border shadow-card will-change-transform" style={{ borderColor: "var(--line)" }}>
-              <img
-                src="/hero-harbour.svg"
-                alt="香港維港天際線紙雕插畫，紅色圓日映襯高樓剪影"
-                className="img-fade block aspect-[16/9] w-full object-cover"
-              />
-            </div>
-            <div
-              className="hero-stamp absolute -bottom-4 -left-4 will-change-transform"
-              title="資料來自保險公司官方文件"
-            >
-              <StampSealIcon size={120} className="text-red" />
-            </div>
+            <TiltCard className="rounded-[20px]" max={7}>
+              <div className="hero-art overflow-hidden rounded-[20px] border shadow-card will-change-transform" style={{ borderColor: "var(--line)" }}>
+                <img
+                  src="/hero-harbour.svg"
+                  alt="香港維港天際線紙雕插畫，紅色圓日映襯高樓剪影"
+                  className="img-fade block aspect-[16/9] w-full object-cover"
+                />
+              </div>
+              {/* 印章用 translateZ 浮出卡面（3D 縱深）；scale/rotate 動畫照舊喺 .hero-stamp 身上 */}
+              <div className="absolute -bottom-4 -left-4" style={{ transform: "translateZ(70px)" }}>
+                <div
+                  className="hero-stamp will-change-transform"
+                  title="資料來自保險公司官方文件"
+                >
+                  <StampSealIcon size={120} className="text-red" />
+                </div>
+              </div>
+            </TiltCard>
           </motion.div>
         </div>
       </div>

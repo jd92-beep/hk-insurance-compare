@@ -15,10 +15,11 @@ export default function InsurerMarquee() {
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{ duration: 0.6 }}
       className="border-y bg-paper-2 py-7"
-      style={{ borderColor: "var(--line)" }}
+      style={{ borderColor: "var(--line)", perspective: "900px" }}
       aria-label="涵蓋保險公司"
     >
-      <div className="flex items-center gap-8">
+      {/* 輕微 rotateX：成條 marquee 似向後斜放嘅紙帶，加強縱深感 */}
+      <div className="flex items-center gap-8" style={{ transform: "rotateX(4deg)" }}>
         <p className="eyebrow eyebrow-zh shrink-0 pl-[clamp(20px,4vw,48px)] text-ink-faint">
           涵蓋保險公司
         </p>

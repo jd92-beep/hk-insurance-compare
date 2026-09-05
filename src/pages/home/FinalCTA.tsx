@@ -3,6 +3,8 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import { scrollToElement } from "@/lib/lenis";
 import Magnetic from "@/components/Magnetic";
+import AuroraBackground from "@/components/fx/AuroraBackground";
+import ParticleField from "@/components/fx/ParticleField";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -12,6 +14,9 @@ const TITLE_WORDS = ["投保之前，", "先格一格價。"];
 export default function FinalCTA() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-paper to-paper-2 py-28 md:py-40">
+      {/* 極光漸變 + 互動微粒（滑鼠埋嚟會推開）做底 */}
+      <AuroraBackground />
+      <ParticleField density={0.7} />
       <motion.img
         src="/stamp-seal.svg"
         alt=""

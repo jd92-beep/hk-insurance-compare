@@ -81,9 +81,10 @@ export default function Promises() {
             <motion.div
               key={p.title}
               variants={{
-                hidden: { opacity: 0, y: 32 },
-                show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE_OUT_EXPO } },
+                hidden: { opacity: 0, y: 32, rotateX: 10 },
+                show: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.7, ease: EASE_OUT_EXPO } },
               }}
+              style={{ transformPerspective: 800 }}
               className="group relative pt-6"
             >
               <span className="absolute left-0 top-0 h-[2px] w-full bg-red transition-all duration-300 group-hover:h-[4px]" aria-hidden="true" />

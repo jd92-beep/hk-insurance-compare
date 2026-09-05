@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { useCategories } from "@/providers/InsuranceDataProvider";
 import { CATEGORY_ORDER, DEFAULT_CATEGORIES } from "@/lib/categories";
 import CategoryCard from "@/components/CategoryCard";
+import TiltCard from "@/components/fx/TiltCard";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -58,7 +59,10 @@ export default function CategoryGrid() {
                 show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE_OUT_EXPO } },
               }}
             >
-              <CategoryCard category={c} className="h-full" />
+              {/* 3D 傾斜 + 高光掃層（reduced-motion / 觸控自動原樣 render） */}
+              <TiltCard className="h-full rounded-card" max={6}>
+                <CategoryCard category={c} className="h-full" />
+              </TiltCard>
             </motion.div>
           ))}
         </motion.div>

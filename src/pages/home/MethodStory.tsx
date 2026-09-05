@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ExternalLink, FileText } from "lucide-react";
 import { StampSealIcon } from "@/components/StampSealIcon";
+import AuroraBackground from "@/components/fx/AuroraBackground";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -72,6 +73,19 @@ export default function MethodStory() {
         return;
       }
 
+      // 互動：滑鼠視差（右邊舞台層）+ 背景極光隨 pin 進度漂移
+      const stageX = gsap.quickTo(".method-stage", "x", { duration: 0.6, ease: "power3.out" });
+      const stageY = gsap.quickTo(".method-stage", "y", { duration: 0.6, ease: "power3.out" });
+      const bgY = gsap.quickTo(".method-bg-drift", "yPercent", { duration: 0.5, ease: "none" });
+      const root = rootRef.current;
+      const onPointerMove = (e: PointerEvent) => {
+        if (!root) return;
+        const r = root.getBoundingClientRect();
+        stageX(((e.clientX - r.left) / r.width - 0.5) * 18);
+        stageY(((e.clientY - r.top) / r.height - 0.5) * 12);
+      };
+      root?.addEventListener("pointermove", onPointerMove);
+
       let current = 0;
       ScrollTrigger.create({
         trigger: rootRef.current,
@@ -85,6 +99,7 @@ export default function MethodStory() {
         pinSpacing: true,
         anticipatePin: 1,
         onUpdate: (self) => {
+          bgY((self.progress - 0.5) * -12);
           const p = self.progress;
           const idx = p < 0.33 ? 0 : p < 0.66 ? 1 : 2;
           if (idx !== current) {
@@ -94,13 +109,19 @@ export default function MethodStory() {
           }
         },
       });
+
+      return () => root?.removeEventListener("pointermove", onPointerMove);
     },
     { scope: rootRef },
   );
 
   return (
     <section ref={rootRef} className="relative bg-ink text-paper">
-      <div className="method-pin flex h-[100dvh] items-center overflow-hidden">
+      <div className="method-pin relative flex h-[100dvh] items-center overflow-hidden">
+        {/* 深色極光背景層（隨 pin 進度上下漂移，超低透明度唔搶戲） */}
+        <div className="method-bg-drift absolute inset-x-0 -inset-y-[12%]" aria-hidden="true">
+          <AuroraBackground variant="dark" />
+        </div>
         <div className="method-pin-inner site-container relative grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-12">
           {/* 進度指示 dots */}
           <div
@@ -150,8 +171,8 @@ export default function MethodStory() {
             </div>
           </div>
 
-          {/* 右 7 欄：視覺舞台 */}
-          <div className="relative hidden h-[420px] lg:col-span-7 lg:block">
+          {/* 右 7 欄：視覺舞台（滑鼠視差互動層） */}
+          <div className="method-stage relative hidden h-[420px] will-change-transform lg:col-span-7 lg:block">
             {/* 幕一：瀏覽器視窗層疊 */}
             <div className="method-scene absolute inset-0">
               <div className="relative h-full">

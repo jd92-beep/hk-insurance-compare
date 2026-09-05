@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router";
+import TiltCard from "@/components/fx/TiltCard";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -47,12 +48,15 @@ export default function GuidesTeaser() {
               variants={{ hidden: { opacity: 0, x: 24 }, show: { opacity: 1, x: 0, transition: { duration: 0.7, ease: EASE_OUT_EXPO } } }}
               className="shrink-0"
             >
-              <img
-                src="/guides-hero.svg"
-                alt="保單文件、放大鏡同紅色批註嘅紙雕插畫"
-                className="img-fade h-auto w-full max-w-[360px] rounded-[12px] border md:w-[360px]"
-                style={{ borderColor: "var(--line)" }}
-              />
+              {/* 指南插畫 3D 傾斜互動 */}
+              <TiltCard className="rounded-[12px]" max={6}>
+                <img
+                  src="/guides-hero.svg"
+                  alt="保單文件、放大鏡同紅色批註嘅紙雕插畫"
+                  className="img-fade h-auto w-full max-w-[360px] rounded-[12px] border md:w-[360px]"
+                  style={{ borderColor: "var(--line)" }}
+                />
+              </TiltCard>
             </motion.div>
           </motion.div>
         </motion.div>

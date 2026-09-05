@@ -277,4 +277,31 @@
   .img-fade {
     animation: img-fade 0.7s ease both;
   }
+
+  /* ── 極光背景 blob（AuroraBackground）────────────────── */
+  /* 三組位移/縮放/旋轉節奏錯開，全部 transform-only */
+  @keyframes aurora-drift-a {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+    33% { transform: translate3d(6%, -4%, 0) scale(1.12) rotate(8deg); }
+    66% { transform: translate3d(-5%, 5%, 0) scale(0.94) rotate(-6deg); }
+  }
+  @keyframes aurora-drift-b {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+    40% { transform: translate3d(-7%, 3%, 0) scale(1.08) rotate(-10deg); }
+    70% { transform: translate3d(4%, -6%, 0) scale(0.92) rotate(5deg); }
+  }
+  @keyframes aurora-drift-c {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(5%, 7%, 0) scale(1.15); }
+  }
+  .aurora-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(70px);
+    will-change: transform;
+  }
+
+  /* 3D 透視工具（TiltCard / 透視容器用） */
+  .preserve-3d { transform-style: preserve-3d; }
+  .perspective-1000 { perspective: 1000px; }
 }

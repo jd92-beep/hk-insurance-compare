@@ -27,8 +27,6 @@ export type SortKey =
   | "fit-score"
   | "premium-asc"
   | "premium-desc"
-  | "coverage-max"
-  | "value-score"
   | "insurer-az"
   | "premium"
   | "insurer"

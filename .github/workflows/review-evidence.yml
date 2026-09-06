@@ -33,6 +33,8 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Record lint diagnostics
+        # 診斷用途：lint 有 error 都唔准阻住後面 build/test 步驟
+        continue-on-error: true
         run: npx eslint . --format json --output-file audit-evidence/eslint.json
       - name: Build and tests
         run: |

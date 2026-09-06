@@ -1,0 +1,90 @@
+name: Integrate and verify evidence chart
+on:
+  push:
+    branches: [review/08-evidence-chart]
+permissions:
+  contents: read
+concurrency:
+  group: integrate-evidence-chart
+  cancel-in-progress: false
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Check integration is still required
+        id: required
+        run: |
+          if test -f .review/integrate-evidence-chart.mjs; then echo 'run=true' >> "$GITHUB_OUTPUT"; fi
+      - name: Integrate only after regression tests reproduce the missing behavior
+        if: steps.required.outputs.run == 'true'
+        env:
+          EXPECTED: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/review/08-evidence-chart | cut -f1)" = "$EXPECTED"
+          mkdir -p chart-evidence
+          npm ci
+          if node --experimental-strip-types --test tests/chart-evidence.test.mjs > chart-evidence/red-tests.txt 2>&1; then
+            echo 'Expected missing integration regression to fail before wiring; inspect instead of hiding it.'
+            exit 1
+          fi
+          node .review/integrate-evidence-chart.mjs
+          sed -i 's/bg-jade\/65/bg-jade\/70/g' src/components/category/EvidenceComparisonPanel.tsx
+          npm test 2>&1 | tee chart-evidence/unit-tests.txt
+          npm run lint -- --max-warnings=0 2>&1 | tee chart-evidence/lint.txt
+          npm run build 2>&1 | tee chart-evidence/build.txt
+          npm run test:filters 2>&1 | tee chart-evidence/filter-tests.txt
+      - name: Install isolated browser tooling
+        if: steps.required.outputs.run == 'true'
+        run: |
+          npm install --prefix "$RUNNER_TEMP/browser-tools" --no-save --ignore-scripts playwright@1.63.0
+          node "$RUNNER_TEMP/browser-tools/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Verify chart, document, category and full-product flows
+        if: steps.required.outputs.run == 'true'
+        run: |
+          set -euo pipefail
+          node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4173 >/tmp/insurance-chart-preview.log 2>&1 &
+          server=$!
+          trap 'kill "$server" || true' EXIT
+          for n in $(seq 1 30); do curl -sf http://127.0.0.1:4173/ >/dev/null && break; sleep 1; done
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/browser-tools/node_modules/playwright/index.mjs"
+          node scripts/browser_chart_review.mjs
+          node scripts/browser_pdf_review.mjs
+          node scripts/browser_category_review.mjs
+          node scripts/browser_complete_review.mjs
+      - name: Publish tested application changes to this review branch only
+        if: steps.required.outputs.run == 'true'
+        env:
+          EXPECTED: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/review/08-evidence-chart | cut -f1)" = "$EXPECTED"
+          git add src docs/review/08-evidence-chart.md
+          git rm .review/integrate-evidence-chart.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(chart): integrate scope-safe evidence charts after browser verification'
+          git push origin HEAD:refs/heads/review/08-evidence-chart
+          git rev-parse HEAD > chart-evidence/tested-commit.txt
+          echo 'Application, chart and evidence checks passed for the commit recorded in tested-commit.txt. No master merge or deployment was performed.' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.required.outputs.run == 'true'
+        with:
+          name: evidence-chart-verification-${{ github.sha }}
+          path: |
+            chart-evidence/
+            browser-evidence/
+            category-evidence/
+            complete-evidence/
+          retention-days: 7
+          if-no-files-found: error

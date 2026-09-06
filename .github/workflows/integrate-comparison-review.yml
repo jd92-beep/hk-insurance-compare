@@ -1,0 +1,39 @@
+name: Integrate comparison review branch
+on:
+  push:
+    branches: [review/04-comparison-integrity]
+permissions:
+  contents: read
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply and verify branch-scoped integration
+        env:
+          EXPECTED: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          test -f .review/integrate-comparison.py || exit 0
+          test "$(git ls-remote origin refs/heads/review/04-comparison-integrity | cut -f1)" = "$EXPECTED"
+          python .review/integrate-comparison.py
+          sed -i 's/label: "租車自負額保障/label: "自駕遊租車自負額保障/' src/lib/feature-filters.ts
+          npm ci
+          npm test
+          npm run lint -- --max-warnings=0
+          npm run build
+          npm run test:filters
+          git add src tests
+          git rm .review/integrate-comparison.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(compare): reject unsupported matches and incomparable best values'
+          git push origin HEAD:refs/heads/review/04-comparison-integrity

@@ -8,7 +8,7 @@ export interface LimitRow {
   productId: string; productName: string; insurer: string; coverageIndex: number | null;
   raw: string; status: LimitStatus; amount: ComparableAmount | null;
 }
-export interface LimitGroup { basis: ComparableAmount["basis"]; rows: LimitRow[]; maximum: number }
+export interface LimitGroup { basis: ComparableAmount["basis"]; scopeKey: string; scopeLabel: string; rows: LimitRow[]; maximum: number }
 const labelKey = (value: string) => value.normalize("NFKC").trim().replace(/\s+/g, " ").toLowerCase();
 
 /** Match exactly named summary fields; never infer equivalent benefits by fuzzy text. */
@@ -48,14 +48,14 @@ export function limitRows(products: Product[], metric: string): LimitRow[] {
 
 /** Each panel has one explicit HKD scope. Keep source order; larger is not 'best'. */
 export function limitGroups(rows: LimitRow[]): LimitGroup[] {
-  const groups = new Map<ComparableAmount["basis"], LimitRow[]>();
+  const groups = new Map<string, LimitRow[]>();
   for (const row of rows) {
-    if (row.status !== "numeric" || !row.amount || row.amount.basis === "unspecified") continue;
-    const list = groups.get(row.amount.basis) ?? [];
-    list.push(row); groups.set(row.amount.basis, list);
+    if (row.status !== "numeric" || !row.amount || !row.amount.scopeKey) continue;
+    const list = groups.get(row.amount.scopeKey) ?? [];
+    list.push(row); groups.set(row.amount.scopeKey, list);
   }
-  return [...groups.entries()].filter(([, members]) => members.length >= 2).map(([basis, members]) => ({
-    basis, rows: members, maximum: Math.max(...members.map(row => row.amount!.value)),
+  return [...groups.entries()].filter(([, members]) => members.length >= 2).map(([scopeKey, members]) => ({
+    basis: members[0].amount!.basis, scopeKey, scopeLabel: members[0].amount!.scopeLabel, rows: members, maximum: Math.max(...members.map(row => row.amount!.value)),
   }));
 }
 

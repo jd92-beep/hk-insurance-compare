@@ -25,5 +25,5 @@ test('best highlight requires consistent explicit basis and respects deductibles
   assert.deepEqual([...bestValueColumnsFromLimits(['每年 HK$500', undefined])], []);
   assert.deepEqual([...bestValueColumnsFromLimits(['HK$500','HK$1,000'])], []);
   assert.deepEqual([...bestValueColumnsFromLimits(['每年 HK$500','每年 HK$1,000'])], [1]);
-  assert.deepEqual([...bestValueColumnsFromLimits(['每次 HK$0','每次 HK$500'], '自負額')], [0]);
+  assert.deepEqual([...bestValueColumnsFromLimits(['每次事故 HK$0','每次事故 HK$500'], '自負額')], [0]);
 });

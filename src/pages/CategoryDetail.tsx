@@ -75,57 +75,6 @@ function getProductPremiumKey(p: { premium_available: boolean; premium_range: st
   return p.premium_available ? premiumSortKey(p.premium_range) : Number.POSITIVE_INFINITY;
 }
 
-/** 智能提取產品整體最高保障限額（數值化，用於最高保額排序與性價比計算） */
-function getProductMaxCoverageAmount(product: { coverage?: { item: string; limit: string }[] }): number {
-  const coverages = product.coverage ?? [];
-  let maxFound = 0;
-  for (const c of coverages) {
-    const text = `${c.item} ${c.limit}`;
-    if (/無上限|不設上限|不設終身保障限額/i.test(text)) {
-      return 1_000_000_000;
-    }
-    const matches = Array.from(
-      c.limit.matchAll(/(?:HK\$|HKD|\$)?\s*([\d,]+(?:\.\d+)?)\s*(萬|億)?/g)
-    );
-    for (const m of matches) {
-      const num = parseFloat(m[1].replace(/,/g, ""));
-      if (!Number.isFinite(num)) continue;
-      const unit = m[2];
-      const mult = unit === "億" ? 100_000_000 : unit === "萬" ? 10_000 : 1;
-      const total = num * mult;
-      if (total > maxFound) maxFound = total;
-    }
-  }
-  return maxFound;
-}
-
-/** 智能評估產品性價比綜合指數（CP值：保障額度與條款豐富度 vs 實付保費） */
-function getProductValueScore(product: {
-  coverage?: { item: string; limit: string }[];
-  discounted_price?: number;
-  promo?: { discounted_price?: number };
-  original_price?: number;
-  premium_available: boolean;
-  premium_range: string;
-}): number {
-  const coverageCount = product.coverage?.length ?? 0;
-  const maxCoverage = getProductMaxCoverageAmount(product);
-  const effPrice =
-    product.discounted_price ??
-    product.promo?.discounted_price ??
-    product.original_price ??
-    (product.premium_available ? premiumSortKey(product.premium_range) : Number.POSITIVE_INFINITY);
-
-  const coverageIndex = maxCoverage > 0 ? Math.log10(maxCoverage + 10) : 4.5;
-  const breadthFactor = 1 + coverageCount * 0.08;
-
-  if (product.premium_available && Number.isFinite(effPrice) && effPrice > 0) {
-    const priceIndex = Math.max(Math.log10(effPrice + 10), 1.2);
-    return (coverageIndex * breadthFactor) / priceIndex;
-  }
-  return coverageIndex * breadthFactor * 0.35;
-}
-
 /** 類別詳情（模板）`/category/:categoryId`（design/category.md S1–S6） */
 export default function CategoryDetail() {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -332,19 +281,6 @@ export default function CategoryDetail() {
         const bNone = !Number.isFinite(kb);
         if (aNone !== bNone) return aNone ? 1 : -1;
         return kb - ka;
-      });
-    } else if (sort === "coverage-max") {
-      sorted.sort((a, b) => {
-        const maxA = getProductMaxCoverageAmount(a);
-        const maxB = getProductMaxCoverageAmount(b);
-        if (maxA !== maxB) return maxB - maxA;
-        return (b.coverage?.length ?? 0) - (a.coverage?.length ?? 0);
-      });
-    } else if (sort === "value-score") {
-      sorted.sort((a, b) => {
-        const valA = getProductValueScore(a);
-        const valB = getProductValueScore(b);
-        return valB - valA;
       });
     } else if (sort === "insurer-az" || sort === "insurer") {
       sorted.sort((a, b) => a.insurer.localeCompare(b.insurer) || a.id.localeCompare(b.id));
@@ -1190,9 +1126,9 @@ export default function CategoryDetail() {
                       <div className="mt-3.5 rounded-xl border border-amber-300/80 bg-amber-50/90 dark:bg-amber-950/40 p-3 text-amber-900 dark:text-amber-200 text-[12.5px] flex items-start gap-2">
                         <Sparkles size={16} className="text-amber-600 shrink-0 mt-0.5" />
                         <div>
-                          <strong>市場上暫無單一計劃同時 100% 滿足所有 {selectedFeatures.length} 項條件。</strong>
+                          <strong>本站摘要未有同時命中全部 {selectedFeatures.length} 項條件。</strong>
                           <p className="mt-0.5 text-[12px] text-amber-800/90 dark:text-amber-300/90">
-                            已為你自動切換為<strong>【智能推薦模式】</strong>，將符合最多項目（如中 2–3 項）的方案置頂排序，助你挑選最實用貼心的保險！
+                            以下只係部分命中嘅替代資料，並不符合你全部條件。未命中可能係不保或資料不足；百分比唔係適合度、核保或理賠機會。
                           </p>
                         </div>
                       </div>

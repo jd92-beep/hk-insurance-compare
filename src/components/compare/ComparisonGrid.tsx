@@ -130,7 +130,7 @@ export default function ComparisonGrid({
   const resolved = useMemo(() => resolveCoverage(products), [products]);
   const bestMap = useMemo(() => {
     const map = new Map<string, Set<number>>();
-    for (const row of resolved.matched) map.set(row.key, bestValueColumnsFromLimits(row.limits));
+    for (const row of resolved.matched) map.set(row.key, bestValueColumnsFromLimits(row.limits, row.label));
     return map;
   }, [resolved]);
   const priceDiffers = premiumStatusDiffers(products);

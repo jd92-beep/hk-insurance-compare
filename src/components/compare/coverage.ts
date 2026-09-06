@@ -1,3 +1,4 @@
+import { comparableAmount, comparableBest } from "../../lib/comparable-amount.ts";
 import type { Product } from "@/types/insurance";
 
 /**
@@ -33,44 +34,15 @@ export function coverageLimit(product: Product, item: string): string | undefine
   return product.coverage?.find((c) => c.item === item)?.limit;
 }
 
-/**
- * 由 limit 原文解析 HK$ 金額上限（例如「HK$600,000–1,500,000」→ 1500000）。
- * 字串無「HK$」→ 無法解析 → null（唔參與最優高亮）。
- */
+/** Unsupported ranges, currencies or ambiguous units deliberately remain unknown. */
 export function parseLimitValue(limit: string | undefined): number | null {
-  if (!limit || !limit.includes("HK$")) return null;
-  const matches = limit.match(/\d[\d,]*(?:\.\d+)?/g) ?? [];
-  const values = matches
-    .map((m) => parseFloat(m.replace(/,/g, "")))
-    .filter((n) => Number.isFinite(n) && n > 0);
-  if (values.length === 0) return null;
-  return Math.max(...values);
+  return comparableAmount(limit)?.value ?? null;
 }
-
-/**
- * 最優高亮（limits 陣列版）：可解析出 HK$ 上限嘅欄位之中，搵出最高值嘅欄位 index。
- * 要少於 2 個可解析欄位、或者全部數值一樣 → 唔高亮（避免誤導）。
- */
-export function bestValueColumnsFromLimits(limits: (string | undefined)[]): Set<number> {
-  const values = limits.map((l) => parseLimitValue(l));
-  const parseable = values.filter((v): v is number => v !== null);
-  if (parseable.length < 2) return new Set();
-  const max = Math.max(...parseable);
-  const min = Math.min(...parseable);
-  if (max === min) return new Set();
-  const best = new Set<number>();
-  values.forEach((v, i) => {
-    if (v === max) best.add(i);
-  });
-  return best;
+export function bestValueColumnsFromLimits(limits: (string | undefined)[], label = ""): Set<number> {
+  return comparableBest(limits, label);
 }
-
-/**
- * 最優高亮：同一行可解析出 HK$ 上限嘅欄位之中，搵出最高值嘅欄位 index。
- * 要少於 2 個可解析欄位、或者全部數值一樣 → 唔高亮（避免誤導）。
- */
 export function bestValueColumns(products: Product[], item: string): Set<number> {
-  return bestValueColumnsFromLimits(products.map((p) => coverageLimit(p, item)));
+  return bestValueColumnsFromLimits(products.map(p => coverageLimit(p, item)), item);
 }
 
 /** 保費公開狀態各欄唔一致 → 該行淡 amber 提示（compare.md S3 組 1 差異高亮） */

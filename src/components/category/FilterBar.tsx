@@ -44,12 +44,10 @@ export interface InsurerOption {
 }
 
 const SORT_OPTIONS: { id: SortKey; label: string; shortLabel: string }[] = [
-  { id: "default", label: "✨ 預設推薦（智能契合度）", shortLabel: "預設推薦" },
-  { id: "fit-score", label: "🎯 契合度最高優先（中最多條件）", shortLabel: "🎯 契合度最高" },
-  { id: "premium-asc", label: "💰 保費：由低至高（實付折後價先）", shortLabel: "💰 保費由低至高" },
-  { id: "premium-desc", label: "💎 保費：由高至低（尊尚高額先）", shortLabel: "💎 保費由高至低" },
-  { id: "coverage-max", label: "🛡️ 最高保障額度優先（封頂最高）", shortLabel: "🛡️ 最高保額" },
-  { id: "value-score", label: "🌟 性價比推薦優先（CP值最高）", shortLabel: "🌟 性價比最高" },
+  { id: "default", label: "摘要條件命中排序", shortLabel: "預設推薦" },
+  { id: "fit-score", label: "摘要命中項目由多至少", shortLabel: "🎯 契合度最高" },
+  { id: "premium-asc", label: "💰 保費：由低至高（參考資料，並非同條件報價）", shortLabel: "💰 保費由低至高" },
+  { id: "premium-desc", label: "💎 保費：由高至低（參考資料，並非保障排名）", shortLabel: "💎 保費由高至低" },
   { id: "insurer-az", label: "🏢 保險公司名 A–Z", shortLabel: "🏢 公司名 A-Z" },
 ];
 

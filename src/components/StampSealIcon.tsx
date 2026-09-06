@@ -1,7 +1,8 @@
+import { useId } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * 官方文件印章（inline SVG 版，跟 currentColor）。
+ * 來源參考印章（裝飾不代表內容／版本已核實）。
  * 用嚟做需要變色嘅印章；public/stamp-seal.svg 仍然畀 <img> 引用。
  */
 export function StampSealIcon({
@@ -11,6 +12,9 @@ export function StampSealIcon({
   size?: number;
   className?: string;
 }) {
+  const instanceId = useId();
+  // Encode every code point: stable, unique and safe in SVG fragment references.
+  const arcId = `seal-${Array.from(instanceId, char => char.codePointAt(0)!.toString(16)).join("-")}`;
   return (
     <svg
       viewBox="0 0 120 120"
@@ -24,7 +28,7 @@ export function StampSealIcon({
       <circle cx="60" cy="60" r="30" stroke="currentColor" strokeWidth="1.2" />
       <defs>
         <path
-          id="seal-arc"
+          id={arcId}
           d="M60 60 m-40 0 a40 40 0 1 1 80 0 a40 40 0 1 1 -80 0"
         />
       </defs>
@@ -35,8 +39,8 @@ export function StampSealIcon({
         fontWeight="700"
         letterSpacing="2.4"
       >
-        <textPath href="#seal-arc" startOffset="4%">
-          OFFICIAL SOURCE · VERIFIED · 官方文件核實 ·
+        <textPath href={`#${arcId}`} startOffset="4%">
+          SOURCE REFERENCE · 核對原文 ·
         </textPath>
       </text>
       <text
@@ -48,7 +52,7 @@ export function StampSealIcon({
         fontWeight="900"
         fontSize="17"
       >
-        官方
+        來源
       </text>
       <text
         x="60"
@@ -59,7 +63,7 @@ export function StampSealIcon({
         fontWeight="900"
         fontSize="17"
       >
-        文件
+        參考
       </text>
       <path
         d="M60 26.5l1.5 3.2 3.4.4-2.5 2.4.7 3.4-3.1-1.7-3.1 1.7.7-3.4-2.5-2.4 3.4-.4L60 26.5Z"

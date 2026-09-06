@@ -38,6 +38,7 @@ jobs:
           node scripts/browser_review.mjs
           node scripts/browser_pdf_review.mjs
           node scripts/browser_pdf_integrity_review.mjs
+          node scripts/browser_stamp_review.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

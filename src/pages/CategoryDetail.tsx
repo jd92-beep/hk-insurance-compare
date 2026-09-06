@@ -14,7 +14,7 @@ import {
   TriangleAlert,
   X,
 } from "lucide-react";
-import { Link, useParams } from "react-router";
+import { Link, useParams, useSearchParams } from "react-router";
 import { Toaster } from "@/components/ui/sonner";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import EmptyState from "@/components/EmptyState";
@@ -106,7 +106,12 @@ export default function CategoryDetail() {
   }, [directProducts, categoryId, allMedicalProducts]);
 
   const isTravel = categoryId === "travel";
-  const [selectedInsurers, setSelectedInsurers] = useState<string[]>([]);
+  const [searchParams] = useSearchParams();
+  // 從 URL ?insurer= 預選保險公司（由 InsurerCard 等入口帶入）
+  const [selectedInsurers, setSelectedInsurers] = useState<string[]>(() => {
+    const v = searchParams.get("insurer");
+    return v ? [v] : [];
+  });
   const [onlyPremium, setOnlyPremium] = useState(false);
   const [sort, setSort] = useState<SortKey>("default");
   const [premiumDir, setPremiumDir] = useState<"asc" | "desc">("asc");

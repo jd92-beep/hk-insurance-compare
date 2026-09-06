@@ -1,0 +1,2 @@
+# PDF parser for offline operator curation and CI fixtures only; not bundled into the SPA.
+PyMuPDF==1.28.2

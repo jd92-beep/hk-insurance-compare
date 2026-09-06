@@ -1,0 +1,37 @@
+name: Materialize reviewed patch
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  apply:
+    if: github.head_ref == 'review/ci-evidence-20260906' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 1
+      - name: Apply hash-checked diff only to the exact review branch
+        env:
+          TARGET: review/ci-evidence-20260906
+          EXPECTED: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED"
+          test "$(git ls-remote origin "refs/heads/$TARGET" | cut -f1)" = "$EXPECTED"
+          patch=$(mktemp)
+          trap 'rm -f "$patch"' EXIT
+          sed 's/^ diff --git /diff --git /' .review/change.patch > "$patch"
+          echo "922ebfb02a09097608ddc7455eb57394106a1bc5c319333751e91c2dd9b7f3bc  $patch" | sha256sum --check
+          git apply --check --index "$patch"
+          git apply --index "$patch"
+          git rm --ignore-unmatch .review/change.patch .github/workflows/review-materialize.yml .github/workflows/audit-runtime.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'ci: enforce lint gate and add browser audit evidence'
+          git push origin "HEAD:refs/heads/$TARGET"

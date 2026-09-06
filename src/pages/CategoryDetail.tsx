@@ -1,4 +1,3 @@
-import CategoryDecisionGuide from "@/components/category/CategoryDecisionGuide";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -751,8 +750,6 @@ export default function CategoryDetail() {
           )}
         </div>
       </section>
-
-      <CategoryDecisionGuide key={category.id} categoryId={category.id} />
 
       {/* ── S1.5 全類別視覺化保障限額圖表 ──────────────────────── */}
       <section id="chart-section" className="border-b border-line/60 bg-paper-2/30 py-8">

@@ -38,7 +38,8 @@ function resolveSourceInfo(c: CoverageItem, citationEntries?: CitationEntry[]) {
     const match = citationEntries.find((entry) => {
       const summary = entry.citation.claim_summary || "";
       const quote = entry.citation.quote || "";
-      return summary.includes(c.item) || c.item.includes(summary) || quote.includes(c.item);
+      return entry.citation.claim_field === "coverage" && c.item.trim().length > 0 && summary.trim().length > 0 &&
+        (summary.trim() === c.item.trim() || summary.startsWith(`${c.item}：`) || quote.trim() === c.item.trim());
     });
     if (match) {
       return {

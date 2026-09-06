@@ -22,11 +22,11 @@ Never claim all product content is verified or current without product/plan/vers
 
 No fabricated quotes, default pages presented as evidence, first-citation fallbacks, cross-insurer substitutions or silent promotion of unknown to covered. Keep observed negative/unknown conditions visible. A tag match is not suitability; a high amount is not automatically a better plan; different beneficiary/event/tier/region scopes cannot be silently compared.
 
-Keep unavailable/renewal-only sales channels distinct from historical policy-reference records. Do not run a data-refresh script as a routine test; review its output, official applicability, source/version changes and audit impact in a separate content PR.
+Keep unavailable/renewal-only sales channels distinct from historical policy-reference records. Do not run a data-refresh script as a routine test; review its output, official applicability, source/version changes and audit impact in a separate content PR. Insurer identity keys must never be invented or renamed without official verification; always use product_identity.mjs to guard canonical identities.
 
 ## Preserve these architectural lessons
 
-Reserve category space while data loads and refresh ScrollTrigger after relevant layout changes. Give GSAP scroll transforms and pointer transforms separate DOM owners. Cancel animation frames/listeners on cleanup; reduced-motion and background/offscreen states must stop unnecessary work. Retain native touch scrolling and usable keyboard paths. A 2.5D Canvas effect is not physically based WebGL.
+Reserve category space while data loads and refresh ScrollTrigger after relevant layout changes. Give GSAP scroll transforms and pointer transforms separate DOM owners. MethodStory GSAP pin must always guard against unmounted triggers and ensure scroll markers refresh cleanly. Cancel animation frames/listeners on cleanup; reduced-motion and background/offscreen states must stop unnecessary work. Retain native touch scrolling and usable keyboard paths. A 2.5D Canvas effect is not physically based WebGL.
 
 Avoid empty/unrecoverable error screens: use explicit loading, empty, failure, retry and partial-result states. Strict-filter fallbacks must say that alternatives do not match all selected conditions. An error boundary is a fallback, not permission to accept malformed snapshot fields.
 

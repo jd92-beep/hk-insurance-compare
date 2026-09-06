@@ -72,9 +72,12 @@ function PdfPage({ pdf, page, quote, zoom }: { pdf: PDFDocumentProxy; page: numb
       text.replaceChildren(); text.style.setProperty("--scale-factor", String(viewport.scale)); text.style.setProperty("--total-scale-factor", String(viewport.scale));
       text.style.width = `${viewport.width}px`; text.style.height = `${viewport.height}px`;
       render = pdfPage.render({ canvas: target, viewport, transform: [dpr, 0, 0, dpr, 0, 0] });
+      // Observe cancellation immediately, before awaiting text extraction.
+      const rendered = render.promise.then(() => ({ ok: true as const }), error => ({ ok: false as const, error }));
       const content = await pdfPage.getTextContent(); if (!active) return;
       textLayer = new TextLayer({ textContentSource: content, container: text, viewport });
-      await Promise.all([render.promise, textLayer.render()]); if (!active) return;
+      const [outcome] = await Promise.all([rendered, textLayer.render()]); if (!active) return;
+      if (!outcome.ok) throw outcome.error;
       const found = findQuote(textLayer.textContentItemsStr, quote);
       const boxes: typeof rects = [];
       if (found.status === "matched" && found.start && found.end) {

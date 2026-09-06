@@ -1,151 +1,82 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { createAnimationLoop, makeParticles, projectParticle } from "@/lib/particle-scene";
 
-/**
- * Canvas 2D 微粒層：慢速上升嘅紙屑光點（ink 色為主，少量品牌紅），
- * 滑鼠埋嚟會輕輕推開（互動感）。
- * - `IntersectionObserver`：離開視口即停 rAF，唔食電。
- * - `prefers-reduced-motion`：唔 render。
- * - DPR cap 2，粒子數 desktop ~40 / 觸控 ~15。
- */
-export default function ParticleField({
-  className,
-  /** 粒子密度倍率（1 = 標準） */
-  density = 1,
-}: {
-  className?: string;
-  density?: number;
-}) {
+/** Faceted jade, champagne and ruby micro-crystals, projected at different depths. */
+export default function ParticleField({ className, density = 1 }: { className?: string; density?: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [enabled] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  );
-
+  const reduced = useReducedMotion();
   useEffect(() => {
-    if (!enabled) return;
+    if (reduced) return;
     const canvas = canvasRef.current;
     const parent = canvas?.parentElement;
-    if (!canvas || !parent) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let raf = 0;
-    let running = false;
-    let w = 0;
-    let h = 0;
-    const mouse = { x: -9999, y: -9999 };
-    const coarse = window.matchMedia("(pointer: coarse)").matches;
-    const COUNT = Math.round((coarse ? 15 : 40) * density);
-
-    type P = { x: number; y: number; r: number; vx: number; vy: number; a: number; red: boolean };
-    let parts: P[] = [];
-
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !parent || !ctx) return;
+    const coarse = matchMedia("(pointer: coarse)").matches;
+    const particles = makeParticles((coarse ? 24 : 56) * density);
+    // Pre-render materials once; no gradients, shadows or allocations in the draw loop.
+    const sprites = ["14,124,102", "180,131,51", "180,35,61"].map((color) => {
+      const sprite = document.createElement("canvas"); sprite.width = sprite.height = 64;
+      const g = sprite.getContext("2d")!;
+      const glow = g.createRadialGradient(30, 27, 2, 32, 32, 29);
+      glow.addColorStop(0, `rgba(${color},.18)`); glow.addColorStop(1, `rgba(${color},0)`);
+      g.fillStyle = glow; g.fillRect(0, 0, 64, 64);
+      const face = g.createLinearGradient(21, 15, 43, 48);
+      face.addColorStop(0, "rgba(255,255,255,.95)"); face.addColorStop(.48, `rgba(${color},.65)`); face.addColorStop(1, `rgba(${color},.12)`);
+      g.beginPath(); g.moveTo(32, 11); g.lineTo(45, 29); g.lineTo(32, 53); g.lineTo(19, 29); g.closePath();
+      g.fillStyle = face; g.fill(); g.strokeStyle = `rgba(${color},.45)`; g.lineWidth = .8; g.stroke();
+      g.beginPath(); g.moveTo(32, 12); g.lineTo(28, 30); g.lineTo(32, 52); g.moveTo(20, 29); g.lineTo(44, 29);
+      g.strokeStyle = "rgba(255,255,255,.85)"; g.lineWidth = 1; g.stroke();
+      return sprite;
+    });
+    let width = 1, height = 1, visible = false, previous = 0, elapsed = 0, scroll = 0;
+    let px = 0, py = 0, tx = 0, ty = 0;
+    let pointerX = -9999, pointerY = -9999;
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const rect = parent.getBoundingClientRect();
-      w = rect.width;
-      h = rect.height;
-      canvas.width = Math.max(1, Math.round(w * dpr));
-      canvas.height = Math.max(1, Math.round(h * dpr));
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
+      const rect = parent.getBoundingClientRect(); width = rect.width; height = rect.height;
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      canvas.width = Math.max(1, Math.round(width * dpr)); canvas.height = Math.max(1, Math.round(height * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
-
-    const seed = () => {
-      parts = Array.from({ length: COUNT }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: 1.2 + Math.random() * 2.6,
-        vx: (Math.random() - 0.5) * 0.12,
-        vy: -(0.08 + Math.random() * 0.22),
-        a: 0.08 + Math.random() * 0.14,
-        red: Math.random() < 0.18,
-      }));
-    };
-
-    const tick = () => {
-      ctx.clearRect(0, 0, w, h);
-      for (const p of parts) {
-        // 滑鼠排斥力（120px 半徑）
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 < 14400) {
-          const d = Math.sqrt(d2) || 1;
-          const f = ((120 - d) / 120) * 0.35;
-          p.vx += (dx / d) * f;
-          p.vy += (dy / d) * f;
-        }
-        // 衰減 + 回歸慢速上升基線
-        p.vx *= 0.96;
-        p.vy = p.vy * 0.96 + -0.15 * 0.04;
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.y < -8) {
-          p.y = h + 8;
-          p.x = Math.random() * w;
-        }
-        if (p.x < -8) p.x = w + 8;
-        else if (p.x > w + 8) p.x = -8;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.red ? `rgba(200,16,46,${p.a})` : `rgba(24,29,46,${p.a})`;
-        ctx.fill();
+    const loop = createAnimationLoop((time) => {
+      const dt = previous ? Math.min((time - previous) / 1000, .033) : 0;
+      previous = time; elapsed += dt;
+      const follow = 1 - Math.exp(-5 * dt); px += (tx - px) * follow; py += (ty - py) * follow;
+      ctx.clearRect(0, 0, width, height);
+      for (const p of particles) {
+        const q = projectParticle(p, width, height, elapsed, px, py, scroll);
+        const dx = q.x - pointerX, dy = q.y - pointerY, distance = Math.hypot(dx, dy);
+        const force = Math.max(0, 1 - distance / 150) ** 2 * 18 * q.scale;
+        const x = q.x + dx / Math.max(1, distance) * force, y = q.y + dy / Math.max(1, distance) * force;
+        const size = p.size * q.scale;
+        ctx.save(); ctx.translate(x, y); ctx.rotate(q.angle);
+        ctx.globalAlpha = .28 + q.scale * .5;
+        ctx.drawImage(sprites[p.material], -size / 2, -size / 2, size, size); ctx.restore();
       }
-      raf = requestAnimationFrame(tick);
+    }, { request: requestAnimationFrame, cancel: cancelAnimationFrame });
+    const sync = () => {
+      previous = 0;
+      if (visible && !document.hidden && width > 0 && height > 0) loop.start(); else loop.stop();
     };
-
-    const start = () => {
-      if (!running) {
-        running = true;
-        raf = requestAnimationFrame(tick);
-      }
+    const onScroll = () => { scroll = Math.max(0, Math.min(height, -parent.getBoundingClientRect().top)); };
+    const move = (e: PointerEvent) => {
+      if (coarse || e.pointerType === "touch") return;
+      const rect = canvas.getBoundingClientRect(); pointerX = e.clientX - rect.left; pointerY = e.clientY - rect.top;
+      tx = pointerX / Math.max(1, width) - .5; ty = pointerY / Math.max(1, height) - .5;
     };
-    const stop = () => {
-      running = false;
-      cancelAnimationFrame(raf);
-    };
-
+    const leave = () => { tx = ty = 0; pointerX = pointerY = -9999; };
     resize();
-    seed();
-
-    const ro = new ResizeObserver(resize);
-    ro.observe(parent);
-    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), {
-      threshold: 0,
-    });
-    io.observe(parent);
-
-    const onMove = (e: PointerEvent) => {
-      const r = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - r.left;
-      mouse.y = e.clientY - r.top;
-    };
-    const onLeave = () => {
-      mouse.x = -9999;
-      mouse.y = -9999;
-    };
-    parent.addEventListener("pointermove", onMove);
-    parent.addEventListener("pointerleave", onLeave);
-
+    const ro = new ResizeObserver(() => { resize(); sync(); }); ro.observe(parent);
+    const io = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }); io.observe(parent);
+    document.addEventListener("visibilitychange", sync);
+    parent.addEventListener("pointermove", move, { passive: true }); parent.addEventListener("pointerleave", leave);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      stop();
-      ro.disconnect();
-      io.disconnect();
-      parent.removeEventListener("pointermove", onMove);
-      parent.removeEventListener("pointerleave", onLeave);
+      loop.stop(); ro.disconnect(); io.disconnect(); document.removeEventListener("visibilitychange", sync);
+      parent.removeEventListener("pointermove", move); parent.removeEventListener("pointerleave", leave); window.removeEventListener("scroll", onScroll);
     };
-  }, [enabled, density]);
-
-  if (!enabled) return null;
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      className={cn("pointer-events-none absolute inset-0", className)}
-    />
-  );
+  }, [reduced, density]);
+  if (reduced) return null;
+  return <canvas ref={canvasRef} aria-hidden="true" className={cn("pointer-events-none absolute inset-0 h-full w-full", className)} />;
 }

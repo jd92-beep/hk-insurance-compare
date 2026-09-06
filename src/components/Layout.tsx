@@ -40,13 +40,14 @@ export default function Layout() {
 
   // Lenis 平滑滾動（全站）
   useEffect(() => {
-    const lenis = initLenis();
-    if (lenis) {
-      lenis.on("scroll", ScrollTrigger.update);
-    }
-    return () => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const reset = () => {
       destroyLenis();
+      initLenis()?.on("scroll", ScrollTrigger.update);
     };
+    reset();
+    preference.addEventListener("change", reset);
+    return () => { preference.removeEventListener("change", reset); destroyLenis(); };
   }, []);
 
   // 換頁滾回頂部

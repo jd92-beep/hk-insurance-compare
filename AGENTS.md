@@ -36,7 +36,7 @@ Cloudflare Pages, git auto-deploy on push to `master`.
 
 ## Stack
 
-React 19 · TypeScript · Vite 7 · Tailwind CSS 3.4 · shadcn/ui · Framer Motion · GSAP · Lenis · cmdk · react-router 7 · three.js + @react-three/fiber (Hero WebGL 3D scene, lazy chunk).
+React 19 · TypeScript · Vite 7 · Tailwind CSS 3.4 · shadcn/ui · Framer Motion · GSAP · Lenis · cmdk · react-router 7.
 
 ## Layout & Architecture
 
@@ -52,7 +52,7 @@ React 19 · TypeScript · Vite 7 · Tailwind CSS 3.4 · shadcn/ui · Framer Moti
 - `src/providers/` — InsuranceDataProvider (fetches JSON), CompareProvider, SearchProvider
 - `src/lib/categories.ts` — category meta + premium parsing/sorting helpers
 - `src/components/compare/canonical-benefits.ts` — per-category canonical benefit rows
-- `src/components/fx/` — 3D/generative-art effect components (`AuroraBackground`, `TiltCard`, `ParticleField`, `HeroScene` WebGL); AI image slot at `public/hero-aurora-ai.webp` (auto-hidden when missing)
+- `src/components/fx/` — generative-art effect components (`AuroraBackground`, `TiltCard`, `ParticleField`); AI image slot at `public/hero-aurora-ai.webp` (auto-hidden when missing)
 
 ## Conventions
 

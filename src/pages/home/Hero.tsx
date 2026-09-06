@@ -1,4 +1,4 @@
-import { useRef, useState, lazy, Suspense } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight, Search } from "lucide-react";
 import { Link } from "react-router";
 import gsap from "gsap";
@@ -13,9 +13,6 @@ import Magnetic from "@/components/Magnetic";
 import AuroraBackground from "@/components/fx/AuroraBackground";
 import ParticleField from "@/components/fx/ParticleField";
 import TiltCard from "@/components/fx/TiltCard";
-
-// 3D 場景懶載入：three.js 體積大，拆 chunk 唔阻首屏；reduced-motion 直接唔載
-const HeroScene = lazy(() => import("@/components/fx/HeroScene"));
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -186,12 +183,6 @@ export default function Hero() {
           >
             <AuroraBackground />
           </motion.div>
-          {/* 即時渲染 3D 層：懸浮幾何體 + 紅色流體球（疊喺極光之上、內容之下） */}
-          <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-            <Suspense fallback={null}>
-              <HeroScene />
-            </Suspense>
-          </div>
           <ParticleField />
         </>
       )}

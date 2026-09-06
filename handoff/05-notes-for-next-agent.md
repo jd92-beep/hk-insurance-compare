@@ -20,10 +20,11 @@ Remember to update `src/lib/version.ts` and `package.json` every time you make c
 5. **Quality Gates**:
    - `npm run lint`: Maintain strictly 17 baseline errors (0 new errors).
    - `npm run build`: Must pass with 0 errors before push.
-6. **Landing Page 3D/FX Layer** (added in v1.5.0–v1.6.0):
-   - `src/components/fx/` — `AuroraBackground` (gradient blobs + optional AI image slot `public/hero-aurora-ai.webp`), `TiltCard` (3D tilt + glare), `ParticleField` (interactive canvas particles), `HeroScene` (react-three-fiber WebGL scene, lazy-loaded chunk, hand-rolled Float/blob/dust — **no drei**, it 504s under Vite 7 dev pre-bundle).
+6. **Landing Page FX Layer** (added in v1.5.0):
+   - `src/components/fx/` — `AuroraBackground` (gradient blobs + optional AI image slot `public/hero-aurora-ai.webp`), `TiltCard` (3D tilt + glare), `ParticleField` (interactive canvas particles).
    - All FX must degrade gracefully: `prefers-reduced-motion` → static, touch devices → no tilt.
-   - React Compiler lint rule: no `Math.random()` during render — use the `mulberry32` seeded PRNG in `HeroScene.tsx`.
+   - React Compiler lint rule: no `Math.random()` during render — use a seeded PRNG (e.g. mulberry32) instead.
+   - (Note: a WebGL `HeroScene` existed in v1.6.0 but was removed in v1.6.1 per owner decision; three.js is no longer a dependency.)
 
 ## 🤖 For External Review Agents (GitHub-only access)
 - Open a **Pull Request** against `master`; never push directly.

@@ -1,3 +1,4 @@
+import { purchaseUrl } from "@/lib/product-availability";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, X } from "lucide-react";
@@ -147,9 +148,9 @@ export default function MobileCompare({
           <Block label="公開保費">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <PremiumStatusCell product={active} />
-              {(active.official_buy_url || active.promo?.buy_url) && (
+              {(purchaseUrl(active)) && (
                 <a
-                  href={active.official_buy_url || active.promo?.buy_url}
+                  href={purchaseUrl(active)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 rounded-md bg-red px-3 py-1.5 text-[12px] font-bold text-paper shadow-xs active:scale-95 transition-all"

@@ -12,6 +12,7 @@ import Insurers from "@/pages/Insurers";
 import Guides from "@/pages/Guides";
 import Vhis from "@/pages/Vhis";
 import About from "@/pages/About";
+import DataQuality from "@/pages/DataQuality";
 import Documents from "@/pages/Documents";
 import Placeholder from "@/pages/Placeholder";
 
@@ -31,6 +32,7 @@ export default function App() {
               <Route path="guides" element={<Guides />} />
               <Route path="vhis" element={<Vhis />} />
               <Route path="about" element={<About />} />
+              <Route path="data-quality" element={<DataQuality />} />
               <Route path="documents" element={<Documents />} />
               <Route
                 path="*"

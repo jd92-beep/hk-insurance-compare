@@ -1,0 +1,62 @@
+name: Review evidence
+
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: review-evidence-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Record reproducible source snapshot (no PDF binaries)
+        run: |
+          mkdir -p audit-evidence
+          git rev-parse HEAD > audit-evidence/commit.txt
+          git ls-files > audit-evidence/tracked-files.txt
+          git archive --format=tar.gz --output=audit-evidence/source.tar.gz HEAD -- . ':!public/docs'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: review-source-${{ github.event.pull_request.head.sha }}
+          path: audit-evidence/
+          retention-days: 7
+          if-no-files-found: error
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Record lint diagnostics
+        run: |
+          set +e
+          npx eslint . --format json --output-file audit-evidence/eslint.json
+          result=$?
+          echo "$result" > audit-evidence/eslint-exit-code.txt
+          # Exit 2 is an execution/configuration failure, not a lint baseline.
+          if [ "$result" -gt 1 ]; then exit "$result"; fi
+      - name: Build
+        run: npm run build 2>&1 | tee audit-evidence/build.txt
+      - name: Filter regression
+        run: npx --yes tsx scripts/verify_filter_combinations.ts 2>&1 | tee audit-evidence/filter-regression.txt
+      - name: Filter boundaries
+        run: npx --yes tsx scripts/verify_filter_boundary_deep.ts 2>&1 | tee audit-evidence/filter-boundaries.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: review-checks-${{ github.event.pull_request.head.sha }}
+          path: |
+            audit-evidence/*.txt
+            audit-evidence/*.json
+          retention-days: 7
+          if-no-files-found: error

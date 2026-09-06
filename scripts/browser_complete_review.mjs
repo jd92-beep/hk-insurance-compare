@@ -1,3 +1,4 @@
+import { verifyProductIdentity } from './product_identity.mjs';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 const { chromium }=await import(pathToFileURL(process.env.PLAYWRIGHT_MODULE).href);
@@ -14,9 +15,13 @@ try{
    await page.goto(`${base}/product/${product.id}`);
    await page.getByRole('heading',{level:1}).first().waitFor({timeout:15000});
    if((await page.locator('main').innerText()).includes('頁面暫時未能開啟'))throw Error('Error boundary shown');
-   const text=await page.locator('main').innerText();if(!text.includes(product.product_name_zh||product.product_name))throw Error('Wrong product');
+   const text=await page.locator('main').innerText();
+   const heading=await page.getByRole('heading',{level:1}).first().innerText();
+   const category=data.categories.find(item=>item.id===product.category)?.name_zh??product.category;
+   const identityProblems=verifyProductIdentity(product,category,{url:page.url(),heading,text});
+   if(identityProblems.length)throw Error(identityProblems.join('; '));
    results.push({kind:'product',id:product.id,title:await page.title(),overflow:await page.evaluate(overflow),errors:[...errors]});
-  }catch(e){results.push({kind:'product',id:product.id,failed:true,errors:[...errors,String(e)]});}
+  }catch(e){results.push({kind:'product',id:product.id,failed:true,errors:[...errors,String(e)]});await page.screenshot({path:`${out}/product-${product.id}-failed.png`}).catch(()=>{});}
  }
  await context.close();
  for(const viewport of [{width:1440,height:960},{width:390,height:844}]){

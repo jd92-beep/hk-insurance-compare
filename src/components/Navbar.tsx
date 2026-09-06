@@ -46,6 +46,7 @@ const NAV_LINKS = [
   { label: "比較工具", to: "/compare", match: (p: string) => p.startsWith("/compare") },
   { label: "保險公司", to: "/insurers", match: (p: string) => p.startsWith("/insurers") },
   { label: "自願醫保名單", to: "/vhis", match: (p: string) => p.startsWith("/vhis") },
+  { label: "PDF 中心", to: "/documents", match: (p: string) => p.startsWith("/documents") },
   { label: "投保指南", to: "/guides", match: (p: string) => p.startsWith("/guides") },
   { label: "關於數據", to: "/about", match: (p: string) => p.startsWith("/about") },
 ];
@@ -101,7 +102,7 @@ export default function Navbar() {
         </Link>
 
         {/* 中：桌面導航 */}
-        <nav className="hidden items-center gap-1 min-[900px]:flex" aria-label="主導航">
+        <nav className="hidden items-center gap-1 min-[1200px]:flex" aria-label="主導航">
           {NAV_LINKS.map((link) => {
             const active = link.match(location.pathname);
             const item = (
@@ -262,7 +263,7 @@ export default function Navbar() {
             aria-label="全域搜尋（⌘K）"
           >
             <Search size={16} />
-            <kbd className="hidden rounded border bg-paper-2 px-1.5 py-0.5 font-grotesk text-[11px] text-ink-faint min-[900px]:inline" style={{ borderColor: "var(--line)" }}>
+            <kbd className="hidden rounded border bg-paper-2 px-1.5 py-0.5 font-grotesk text-[11px] text-ink-faint min-[1200px]:inline" style={{ borderColor: "var(--line)" }}>
               ⌘K
             </kbd>
           </button>
@@ -291,7 +292,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setDrawerOpen(true)}
-            className="flex items-center rounded-[10px] border px-3 py-2 text-ink min-[900px]:hidden"
+            className="flex items-center rounded-[10px] border px-3 py-2 text-ink min-[1200px]:hidden"
             style={{ borderColor: "var(--line)" }}
             aria-label="開啟選單"
           >
@@ -309,7 +310,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[70] flex flex-col bg-paper min-[900px]:hidden"
+            className="fixed inset-0 z-[70] flex flex-col bg-paper min-[1200px]:hidden"
           >
             <div className="site-container flex h-[72px] shrink-0 items-center justify-between">
               <span className="flex items-center gap-2.5">

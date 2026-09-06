@@ -1,3 +1,4 @@
+import CategoryDecisionGuide from "@/components/category/CategoryDecisionGuide";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -73,57 +74,6 @@ function AnimatedTitle({ text, className }: { text: string; className?: string }
 /** 排序 key 統一年繳化（/月 ×12、/日 ×365），避免月繳價同年繳價直接比大細 */
 function getProductPremiumKey(p: { premium_available: boolean; premium_range: string }): number {
   return p.premium_available ? premiumSortKey(p.premium_range) : Number.POSITIVE_INFINITY;
-}
-
-/** 智能提取產品整體最高保障限額（數值化，用於最高保額排序與性價比計算） */
-function getProductMaxCoverageAmount(product: { coverage?: { item: string; limit: string }[] }): number {
-  const coverages = product.coverage ?? [];
-  let maxFound = 0;
-  for (const c of coverages) {
-    const text = `${c.item} ${c.limit}`;
-    if (/無上限|不設上限|不設終身保障限額/i.test(text)) {
-      return 1_000_000_000;
-    }
-    const matches = Array.from(
-      c.limit.matchAll(/(?:HK\$|HKD|\$)?\s*([\d,]+(?:\.\d+)?)\s*(萬|億)?/g)
-    );
-    for (const m of matches) {
-      const num = parseFloat(m[1].replace(/,/g, ""));
-      if (!Number.isFinite(num)) continue;
-      const unit = m[2];
-      const mult = unit === "億" ? 100_000_000 : unit === "萬" ? 10_000 : 1;
-      const total = num * mult;
-      if (total > maxFound) maxFound = total;
-    }
-  }
-  return maxFound;
-}
-
-/** 智能評估產品性價比綜合指數（CP值：保障額度與條款豐富度 vs 實付保費） */
-function getProductValueScore(product: {
-  coverage?: { item: string; limit: string }[];
-  discounted_price?: number;
-  promo?: { discounted_price?: number };
-  original_price?: number;
-  premium_available: boolean;
-  premium_range: string;
-}): number {
-  const coverageCount = product.coverage?.length ?? 0;
-  const maxCoverage = getProductMaxCoverageAmount(product);
-  const effPrice =
-    product.discounted_price ??
-    product.promo?.discounted_price ??
-    product.original_price ??
-    (product.premium_available ? premiumSortKey(product.premium_range) : Number.POSITIVE_INFINITY);
-
-  const coverageIndex = maxCoverage > 0 ? Math.log10(maxCoverage + 10) : 4.5;
-  const breadthFactor = 1 + coverageCount * 0.08;
-
-  if (product.premium_available && Number.isFinite(effPrice) && effPrice > 0) {
-    const priceIndex = Math.max(Math.log10(effPrice + 10), 1.2);
-    return (coverageIndex * breadthFactor) / priceIndex;
-  }
-  return coverageIndex * breadthFactor * 0.35;
 }
 
 /** 類別詳情（模板）`/category/:categoryId`（design/category.md S1–S6） */
@@ -332,19 +282,6 @@ export default function CategoryDetail() {
         const bNone = !Number.isFinite(kb);
         if (aNone !== bNone) return aNone ? 1 : -1;
         return kb - ka;
-      });
-    } else if (sort === "coverage-max") {
-      sorted.sort((a, b) => {
-        const maxA = getProductMaxCoverageAmount(a);
-        const maxB = getProductMaxCoverageAmount(b);
-        if (maxA !== maxB) return maxB - maxA;
-        return (b.coverage?.length ?? 0) - (a.coverage?.length ?? 0);
-      });
-    } else if (sort === "value-score") {
-      sorted.sort((a, b) => {
-        const valA = getProductValueScore(a);
-        const valB = getProductValueScore(b);
-        return valB - valA;
       });
     } else if (sort === "insurer-az" || sort === "insurer") {
       sorted.sort((a, b) => a.insurer.localeCompare(b.insurer) || a.id.localeCompare(b.id));
@@ -782,11 +719,11 @@ export default function CategoryDetail() {
                         SHORTFALL SHIELD
                       </span>
                       <span className="font-serif text-[15px] font-bold text-paper sm:text-[16px]">
-                        打工仔專用 · 填補公司團體醫保 Shortfall · 免核保銜接與離職保證轉保權
+                        公司醫保差額 · 先核對自負額抵扣與離職後續保安排
                       </span>
                     </div>
                     <p className="mt-1 text-small text-paper/80">
-                      專門承保超出公司團體醫療上限的差額開支，並保留離職或退休時免驗身轉保權利。
+                      不同差額／自負額型計劃的賠償次序及延續保障條件有別；免核保轉保權必須有具體條款支持。
                     </p>
                   </div>
                 </div>
@@ -809,6 +746,8 @@ export default function CategoryDetail() {
           )}
         </div>
       </section>
+
+      <CategoryDecisionGuide key={category.id} categoryId={category.id} />
 
       {/* ── S1.5 全類別視覺化保障限額圖表 ──────────────────────── */}
       <section id="chart-section" className="border-b border-line/60 bg-paper-2/30 py-8">
@@ -837,7 +776,7 @@ export default function CategoryDetail() {
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="font-sans text-[15px] sm:text-[16px] font-bold text-ink flex items-center gap-1.5">
                     <Sparkles size={16} className="text-jade" />
-                    <span>智能保障挑選（條款契合度推薦）</span>
+                    <span>按摘要條件篩選（仍需核對條款）</span>
                   </h3>
                   {selectedFeatures.length > 0 ? (
                     <span className="rounded-full bg-jade/10 px-2.5 py-0.5 font-grotesk text-[11px] font-bold text-jade">
@@ -1190,9 +1129,9 @@ export default function CategoryDetail() {
                       <div className="mt-3.5 rounded-xl border border-amber-300/80 bg-amber-50/90 dark:bg-amber-950/40 p-3 text-amber-900 dark:text-amber-200 text-[12.5px] flex items-start gap-2">
                         <Sparkles size={16} className="text-amber-600 shrink-0 mt-0.5" />
                         <div>
-                          <strong>市場上暫無單一計劃同時 100% 滿足所有 {selectedFeatures.length} 項條件。</strong>
+                          <strong>本站摘要未有同時命中全部 {selectedFeatures.length} 項條件。</strong>
                           <p className="mt-0.5 text-[12px] text-amber-800/90 dark:text-amber-300/90">
-                            已為你自動切換為<strong>【智能推薦模式】</strong>，將符合最多項目（如中 2–3 項）的方案置頂排序，助你挑選最實用貼心的保險！
+                            以下只係部分命中嘅替代資料，並不符合你全部條件。未命中可能係不保或資料不足；百分比唔係適合度、核保或理賠機會。
                           </p>
                         </div>
                       </div>
@@ -1206,6 +1145,7 @@ export default function CategoryDetail() {
       )}
 
       {/* ── S3 篩選工具列 ───────────────────────────────────── */}
+      <div id="category-filter-controls" style={{ scrollMarginTop: 110 }} />
       <FilterBar
         insurers={insurerOptions}
         selectedInsurers={selectedInsurers}

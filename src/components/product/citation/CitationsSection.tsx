@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router";
+import { useProduct } from "@/providers/InsuranceDataProvider";
+import { evidenceEntries, evidenceHref, sourceTarget } from "@/lib/pdf-evidence";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronDown, Stamp } from "lucide-react";
 import type { Citation } from "@/types/insurance";
@@ -136,6 +139,10 @@ function CitationCard({
   highlighted: boolean;
 }) {
   const { citation, num } = entry;
+  const { productId } = useParams();
+  const product = useProduct(productId);
+  const evidence = product && evidenceEntries(product).find(e => e.kind === "citation" && e.index === product.citations?.indexOf(citation));
+  const href = evidence ? evidenceHref(product!.id, evidence) : sourceTarget(citation.url)?.url;
 
   return (
     <motion.article
@@ -181,12 +188,12 @@ function CitationCard({
 
       {/* 飛去出處 ↗：新分頁開官方文件 */}
       <a
-        href={citation.url}
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex h-9 shrink-0 items-center gap-1.5 self-center whitespace-nowrap rounded-[10px] bg-jade px-4 font-sans text-[13px] font-bold text-paper transition-colors duration-300 hover:bg-ink max-md:self-start"
       >
-        飛去出處
+        核對原文
         <ArrowUpRight size={14} aria-hidden="true" />
       </a>
     </motion.article>

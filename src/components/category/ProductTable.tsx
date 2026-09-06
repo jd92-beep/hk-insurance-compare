@@ -1,3 +1,4 @@
+import { purchaseUrl } from "@/lib/product-availability";
 import { Fragment, useState, type MouseEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -404,7 +405,7 @@ export default function ProductTable({
                         className="mt-0.5 shrink-0"
                       />
                     </span>
-                    {/* 智能契合度 Badge（用戶自選重視保障命中狀態） */}
+                    {/* 智能摘要命中率 Badge（用戶自選重視保障命中狀態） */}
                     {match && match.totalSelected > 0 && (
                       <div className="mt-1.5 flex flex-wrap items-center gap-1">
                         <span
@@ -416,8 +417,8 @@ export default function ProductTable({
                           )}
                         >
                           {match.matchedCount === match.totalSelected
-                            ? `🎯 完美符合全部 ${match.matchedCount}/${match.totalSelected} 項重視保障`
-                            : `✨ 符合 ${match.matchedCount}/${match.totalSelected} 項重視保障`}
+                            ? `🎯 摘要命中全部 ${match.matchedCount}/${match.totalSelected} 項所選摘要條件`
+                            : `✨ 符合 ${match.matchedCount}/${match.totalSelected} 項所選摘要條件`}
                           <span className="font-mono text-[10px] opacity-85">({match.score}%)</span>
                         </span>
                       </div>
@@ -570,9 +571,9 @@ export default function ProductTable({
                           <ExternalLink size={12} />
                         </a>
                       )}
-                      {(p.official_buy_url || p.promo?.buy_url) && (
+                      {(purchaseUrl(p)) && (
                         <a
-                          href={p.official_buy_url || p.promo?.buy_url}
+                          href={purchaseUrl(p)}
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}

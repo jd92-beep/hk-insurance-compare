@@ -1,3 +1,4 @@
+import { purchaseUrl } from "@/lib/product-availability";
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { Link } from "react-router";
@@ -275,9 +276,9 @@ export default function ProductHeader({ product }: { product: Product }) {
               transition={{ duration: 0.5, ease: EASE_OUT_EXPO, delay: 0.6 }}
               className="mt-8 flex flex-wrap items-center gap-3"
             >
-              {(product.official_buy_url || product.promo?.buy_url) && (
+              {(purchaseUrl(product)) && (
                 <a
-                  href={product.official_buy_url || product.promo?.buy_url}
+                  href={purchaseUrl(product)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 rounded-[10px] bg-red px-4 py-2.5 text-small font-bold text-paper shadow-md transition-all hover:bg-red/90 hover:shadow-lg active:scale-95"

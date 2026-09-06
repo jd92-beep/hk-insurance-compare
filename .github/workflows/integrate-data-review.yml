@@ -1,0 +1,43 @@
+name: Integrate data review branch
+on:
+  push:
+    branches: [review/05-data-audit]
+permissions:
+  contents: read
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Integrate and generate exact corpus ledger
+        env:
+          EXPECTED: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          test -f .review/integrate-data.py || exit 0
+          test "$(git ls-remote origin refs/heads/review/05-data-audit | cut -f1)" = "$EXPECTED"
+          python .review/integrate-data.py
+          python -m pip install PyMuPDF==1.26.7
+          python -m unittest discover -s tests -p 'test_evidence_audit.py'
+          python scripts/audit_evidence.py --as-of 2026-09-06
+          npm ci
+          npm test
+          npm run lint -- --max-warnings=0
+          npm run build
+          git add src public/data/evidence-audit.json docs/review/05-evidence-audit.md
+          git rm .review/integrate-data.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'feat(data): publish full corpus audit and gate obsolete direct purchase links'
+          git push origin HEAD:refs/heads/review/05-data-audit

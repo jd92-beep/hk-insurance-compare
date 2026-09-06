@@ -1,3 +1,4 @@
+import { loadVerifiedPdf } from "@/lib/pdf-integrity";
 import { useEffect, useRef, useState } from "react";
 import { getDocument, GlobalWorkerOptions, TextLayer } from "pdfjs-dist";
 import type { PDFDocumentProxy, RenderTask } from "pdfjs-dist";
@@ -27,12 +28,24 @@ function DocumentSession({ url, page, quote = "" }: { url: string; page: number;
   const current = pageOverride?.selection === selection ? pageOverride.page : page;
   useEffect(() => {
     let active = true;
-    const loading = getDocument({ url, cMapUrl: "/pdfjs/cmaps/", cMapPacked: true, standardFontDataUrl: "/pdfjs/standard_fonts/", wasmUrl: "/pdfjs/wasm/" });
-    loading.promise.then(doc => { if (active) setPdf(doc); }).catch(() => { if (active) setError("未能讀取 PDF。請使用原檔連結，或稍後重試。"); });
-    return () => { active = false; void loading.destroy(); };
+    const controller = new AbortController();
+    let loading: ReturnType<typeof getDocument> | undefined;
+    const timeout = window.setTimeout(() => {
+      controller.abort();
+      if (active) setError("文件讀取逾時，請重新開啟或使用原檔連結。");
+      void loading?.destroy().catch(() => {});
+    }, 30000);
+    loadVerifiedPdf(url, controller.signal).then(bytes => {
+      if (!active) return;
+      loading = getDocument({ data: bytes, cMapUrl: "/pdfjs/cmaps/", cMapPacked: true, standardFontDataUrl: "/pdfjs/standard_fonts/", wasmUrl: "/pdfjs/wasm/" });
+      return loading.promise;
+    }).then(doc => { if (active && doc && !controller.signal.aborted) setPdf(doc); })
+      .catch((reason: unknown) => { if (active) setError(controller.signal.aborted ? "文件讀取逾時，請重新開啟或使用原檔連結。" : reason instanceof Error ? reason.message : "未能核對文件版本，請使用原檔連結。"); })
+      .finally(() => window.clearTimeout(timeout));
+    return () => { active = false; window.clearTimeout(timeout); controller.abort(); void loading?.destroy().catch(() => {}); };
   }, [url]);
   if (error) return <p role="alert" className="p-6 text-red">{error}</p>;
-  if (!pdf) return <p role="status" className="p-6 text-ink-soft">正在讀取 PDF…</p>;
+  if (!pdf) return <p role="status" className="p-6 text-ink-soft">正在核對 PDF 文件版本…</p>;
   const valid = current >= 1 && current <= pdf.numPages;
   const shown = valid ? current : 1;
   return <div className="flex min-h-0 flex-1 flex-col" data-lenis-prevent>
@@ -76,8 +89,8 @@ function PdfPage({ pdf, page, quote, zoom }: { pdf: PDFDocumentProxy; page: numb
       const rendered = render.promise.then(() => ({ ok: true as const }), error => ({ ok: false as const, error }));
       const content = await pdfPage.getTextContent(); if (!active) return;
       textLayer = new TextLayer({ textContentSource: content, container: text, viewport });
-      const [outcome] = await Promise.all([rendered, textLayer.render()]); if (!active) return;
-      if (!outcome.ok) throw outcome.error;
+      await Promise.all([rendered, textLayer.render()]).then(([outcome]) => { if (active && !outcome.ok) throw outcome.error; });
+      if (!active) return;
       const found = findQuote(textLayer.textContentItemsStr, quote);
       const boxes: typeof rects = [];
       if (found.status === "matched" && found.start && found.end) {

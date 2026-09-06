@@ -1,0 +1,5 @@
+from pathlib import Path
+p=Path('src/pages/CategoryDetail.tsx');s=p.read_text();assert 'import CategoryDecisionGuide' not in s;s='import CategoryDecisionGuide from "@/components/category/CategoryDecisionGuide";\n'+s;s=s.replace('      {/* ── S1.5 全類別視覺化保障限額圖表','      <CategoryDecisionGuide key={category.id} categoryId={category.id} />\n\n      {/* ── S1.5 全類別視覺化保障限額圖表');s=s.replace('      <FilterBar','      <div id="category-filter-controls" style={{ scrollMarginTop: 110 }} />\n      <FilterBar');s=s.replace('打工仔專用 · 填補公司團體醫保 Shortfall · 免核保銜接與離職保證轉保權','公司醫保差額 · 先核對自負額抵扣與離職後續保安排').replace('專門承保超出公司團體醫療上限的差額開支，並保留離職或退休時免驗身轉保權利。','不同差額／自負額型計劃的賠償次序及延續保障條件有別；免核保轉保權必須有具體條款支持。').replace('智能保障挑選（條款契合度推薦）','按摘要條件篩選（仍需核對條款）');p.write_text(s)
+for file in ['src/components/ProductCard.tsx','src/components/category/ProductTable.tsx']:
+ p=Path(file);s=p.read_text().replace('完美符合全部','摘要命中全部').replace('項重視保障','項所選摘要條件').replace('% 契合','% 摘要命中').replace('契合度','摘要命中率');p.write_text(s)
+p=Path('src/lib/version.ts');p.write_text(p.read_text().replace('20260906.9','20260906.12'))

@@ -1,0 +1,37 @@
+name: Integrate category review branch
+on:
+  push:
+    branches: [review/06-category-decisions]
+permissions:
+  contents: read
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Integrate and verify only this branch
+        env:
+          EXPECTED: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          test -f .review/integrate-category.py || exit 0
+          test "$(git ls-remote origin refs/heads/review/06-category-decisions | cut -f1)" = "$EXPECTED"
+          python .review/integrate-category.py
+          npm ci
+          npm test
+          npm run lint -- --max-warnings=0
+          npm run build
+          git add src
+          git rm .review/integrate-category.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'feat(category): integrate all-category decision journeys and correct suitability copy'
+          git push origin HEAD:refs/heads/review/06-category-decisions

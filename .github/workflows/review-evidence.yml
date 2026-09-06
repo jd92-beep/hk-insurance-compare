@@ -1,0 +1,52 @@
+name: Review evidence
+on:
+  pull_request:
+    branches: [master, "review/**"]
+permissions:
+  contents: read
+concurrency:
+  group: review-evidence-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - run: |
+          mkdir -p audit-evidence
+          git rev-parse HEAD > audit-evidence/commit.txt
+          git ls-files > audit-evidence/tracked-files.txt
+          git archive --format=tar.gz --output=audit-evidence/source.tar.gz HEAD -- . ':!public/docs'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: review-source-${{ github.event.pull_request.head.sha }}
+          path: audit-evidence/
+          retention-days: 7
+          if-no-files-found: error
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Record lint diagnostics
+        # 診斷用途：lint 有 error 都唔准阻住後面 build/test 步驟
+        continue-on-error: true
+        run: npx eslint . --format json --output-file audit-evidence/eslint.json
+      - name: Build and tests
+        run: |
+          npm run build 2>&1 | tee audit-evidence/build.txt
+          npm test 2>&1 | tee audit-evidence/unit-tests.txt
+          npm run test:filters 2>&1 | tee audit-evidence/filter-tests.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: review-checks-${{ github.event.pull_request.head.sha }}
+          path: |
+            audit-evidence/*.txt
+            audit-evidence/*.json
+          retention-days: 7
+          if-no-files-found: error

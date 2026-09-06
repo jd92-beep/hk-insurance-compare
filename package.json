@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "test:filters": "node --experimental-strip-types scripts/verify_filter_combinations.ts && node --experimental-strip-types scripts/verify_filter_boundary_deep.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

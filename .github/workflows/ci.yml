@@ -1,36 +1,29 @@
 name: CI
-
+permissions:
+  contents: read
 on:
   push:
-    branches: [master]
+    branches: [master, "review/**"]
   pull_request:
-    branches: [master]
-
+    branches: [master, "review/**"]
 jobs:
   quality-gates:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      # 17 個 pre-existing baseline errors——lint 只作報告，唔攔截；
-      # 新碼 0 error 嘅防守靠 PR review（baseline 詳見 GEMINI.md 鐵律 3）
-      - name: ESLint (report only — 17 baseline errors allowed)
-        run: npm run lint
-        continue-on-error: true
-
-      - name: TypeScript + Vite build (must pass 100%)
+      - run: npm ci
+      - name: ESLint (zero errors and warnings)
+        run: npm run lint -- --max-warnings=0
+      - name: Targeted regression tests
+        run: npm test
+      - name: TypeScript and production build
         run: npm run build
-
-      - name: Filter regression suite (3,200+ assertions)
-        run: npx tsx scripts/verify_filter_combinations.ts
-
-      - name: Deep boundary stress test (80,858 assertions)
-        run: npx tsx scripts/verify_filter_boundary_deep.ts
+      - name: Filter regression and boundary tests
+        run: npm run test:filters

@@ -68,6 +68,7 @@ export default function CompareTray() {
             <button
               type="button"
               onClick={() => navigate("/compare")}
+              aria-label={`開始比較（${items.length}/${COMPARE_LIMIT}）`}
               className="shrink-0 rounded-full bg-red px-5 py-2 text-small font-bold text-paper transition-colors hover:bg-red-deep"
             >
               開始比較（

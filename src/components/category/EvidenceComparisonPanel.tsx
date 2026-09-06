@@ -1,16 +1,10 @@
 import { useMemo, useState } from "react";
-import { Link } from "react-router";
-import { ArrowUpRight, FileSearch } from "lucide-react";
+import { FileSearch } from "lucide-react";
 import type { Product } from "@/types/insurance";
 import { limitBarPercent, limitGroups, limitRows, metricChoices } from "@/lib/evidence-chart";
 import { evidenceEntries, evidenceHref } from "@/lib/pdf-evidence";
-import type { LimitStatus } from "@/lib/evidence-chart";
+import EvidenceRows from "./EvidenceRows";
 
-const STATUS: Record<LimitStatus, string> = {
-  numeric: "有明示金額與計算單位", unlimited: "摘要寫明無上限；仍需核對限制",
-  unscoped: "計算口徑未能可靠對齊，不繪製比較柱", unsupported: "有條件／區間或未能可靠解析",
-  ambiguous: "同名項目有多條記錄，未代選級別", missing: "未列出摘要，不代表不保",
-};
 const format = new Intl.NumberFormat("zh-HK", { maximumFractionDigits: 2 });
 
 /** Accept existing chart props without changing the category route's data selection. */
@@ -35,9 +29,7 @@ export default function EvidenceComparisonPanel({ products }: { products: Produc
         <div className="space-y-4">{group.rows.map(row => <div key={row.productId} className="min-w-0"><div className="mb-1 flex items-start justify-between gap-4 text-sm"><span className="min-w-0 break-words">{row.insurer} · {row.productName}</span><span className="shrink-0 font-grotesk tabular-nums">HK${format.format(row.amount!.value)}</span></div><div aria-hidden="true" className="h-2 overflow-hidden rounded-full bg-jade/10"><div className="h-full rounded-full bg-jade/70 motion-safe:transition-[width] motion-safe:duration-300" style={{ width: `${limitBarPercent(row.amount!.value, group.maximum)}%` }} /></div></div>)}</div>
       </figure>)}</div>
       {groups.length === 0 && <p className="mt-6 flex items-start gap-3 rounded-xl bg-paper-2 p-5 text-sm leading-relaxed"><FileSearch className="shrink-0 text-jade" size={20} />未有至少兩款可按同一明示單位繪製的摘要。直接對照下方原文，比製造一個誤導圖表更可靠。</p>}
-      <div className="mt-7 min-w-0 overflow-x-auto rounded-xl border" data-lenis-prevent>
-        <table className="w-full min-w-[640px] text-left text-sm"><caption className="border-b bg-paper-2 p-4 text-left font-semibold">{selected?.label}：全部產品摘要與核對入口</caption><thead><tr className="border-b"><th scope="col" className="w-[28%] p-4">產品</th><th scope="col" className="w-[30%] p-4">原有摘要</th><th scope="col" className="p-4">比較狀態</th><th scope="col" className="p-4">來源</th></tr></thead><tbody>{rows.map(row => <tr key={row.productId} className="border-b last:border-b-0"><th scope="row" className="break-words p-4 align-top font-normal"><span className="block font-semibold">{row.insurer}</span>{row.productName}</th><td className="break-words p-4 align-top leading-relaxed">{row.raw}</td><td className="p-4 align-top text-ink-soft">{STATUS[row.status]}{row.amount && <span className="mt-1 block">{row.amount.scopeLabel}</span>}</td><td className="p-4 align-top"><Link className="inline-flex min-h-11 items-center gap-1 whitespace-nowrap font-semibold text-jade underline" to={(row.coverageIndex === null ? undefined : hrefs.get(row.productId)?.get(row.coverageIndex)) ?? `/documents?product=${encodeURIComponent(row.productId)}`}>核對<ArrowUpRight size={14} /></Link></td></tr>)}</tbody></table>
-      </div>
+      <EvidenceRows key={`${selected?.key}:${products.map(product => product.id).join(",")}`} rows={rows} links={hrefs} title={selected?.label ?? "保障"} />
     </div>
   </section>;
 }

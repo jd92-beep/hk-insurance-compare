@@ -19,11 +19,11 @@
       font-weight="700"
       letter-spacing="2.4"
     >
-      <textPath href="#seal-arc" startOffset="4%">OFFICIAL SOURCE · VERIFIED · 官方文件核實 ·</textPath>
+      <textPath href="#seal-arc" startOffset="4%">SOURCE REFERENCE · 核對原文 ·</textPath>
     </text>
-    <!-- 中心直排「官方文件」 -->
-    <text x="60" y="56" text-anchor="middle" fill="currentColor" font-family="'Noto Serif TC', serif" font-weight="900" font-size="17">官方</text>
-    <text x="60" y="76" text-anchor="middle" fill="currentColor" font-family="'Noto Serif TC', serif" font-weight="900" font-size="17">文件</text>
+    <!-- 中心直排「來源參考」（非認證） -->
+    <text x="60" y="56" text-anchor="middle" fill="currentColor" font-family="'Noto Serif TC', serif" font-weight="900" font-size="17">來源</text>
+    <text x="60" y="76" text-anchor="middle" fill="currentColor" font-family="'Noto Serif TC', serif" font-weight="900" font-size="17">參考</text>
     <!-- 小星 -->
     <path d="M60 26.5l1.5 3.2 3.4.4-2.5 2.4.7 3.4-3.1-1.7-3.1 1.7.7-3.4-2.5-2.4 3.4-.4L60 26.5Z" fill="currentColor" />
   </g>

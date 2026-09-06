@@ -11,14 +11,11 @@ const VARIANT_COLOR: Record<StampVariant, string> = {
   gray: "text-ink-faint",
 };
 
-const TOOLTIP = "資料來自保險公司官方文件，附來源連結";
+const TOOLTIP = "來源參考標記，不代表保障內容或文件版本已核實";
 
 /**
  * 印章徽章（§7.6）
- * - jade：有官方保費公開
- * - ink：有官方文件但需報價
- * - red：首頁主印章「官方文件核實」
- * - gray：EmptyState 灰版
+ * 顏色僅延續設計樣式，不能作為官方認證或資料時效狀態。
  */
 export default function StampBadge({
   variant = "ink",
@@ -40,13 +37,14 @@ export default function StampBadge({
   );
   if (!animated) {
     return (
-      <span title={TOOLTIP} aria-label={TOOLTIP} className={cn("inline-flex", className)}>
+      <span role="img" title={TOOLTIP} aria-label={TOOLTIP} className={cn("inline-flex", className)}>
         {seal}
       </span>
     );
   }
   return (
     <motion.span
+      role="img"
       title={TOOLTIP}
       aria-label={TOOLTIP}
       className={cn("inline-flex", className)}

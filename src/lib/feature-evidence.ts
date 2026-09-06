@@ -12,7 +12,8 @@ export function assessFeature(product: Product, keywords: string[]): FeatureEvid
   if (rows.some(c => negative.test(`${c.item} ${c.limit}`))) return { matched: false, status: "excluded-or-conditional" };
   for (const c of rows) {
     const text = `${c.item} ${c.limit}`;
-    if (!c.limit?.trim() || unknown.test(text)) continue;
+    if (unknown.test(text)) continue;
+    if (!c.limit?.trim() && !/無上限|不設上限|unlimited/i.test(c.item)) continue;
     if (/^(?:HK\$|HKD|\$)?\s*0(?:\.0+)?\s*$/i.test(c.limit) && !/自負額|墊底費|deductible|excess/i.test(c.item)) continue;
     return { matched: true, matchedKeyword: terms.find(k => normalize(text).includes(normalize(k))), status: "summary-match" };
   }
@@ -20,6 +21,5 @@ export function assessFeature(product: Product, keywords: string[]): FeatureEvid
   if (keyTerms.some(t => negative.test(t))) return { matched: false, status: "excluded-or-conditional" };
   const text = keyTerms.find(t => !unknown.test(t));
   if (text) return { matched: true, matchedKeyword: terms.find(k => normalize(text).includes(normalize(k))), status: "summary-match" };
-  // A plan's marketing name alone cannot establish a benefit.
   return { matched: false, status: "unknown" };
 }

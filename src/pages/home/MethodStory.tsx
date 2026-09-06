@@ -1,3 +1,4 @@
+import { useReducedMotion } from "framer-motion";
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,26 +13,26 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 const STEPS = [
   {
     title: "官方網站逐頁睇",
-    body: "27 間保險公司官網，產品頁、保障表、保費表逐頁記錄。",
+    body: "先記錄產品頁、保障表同保費表來源，缺失資料明確列出。",
   },
   {
     title: "官方文件逐份捉",
-    body: "產品冊子、保單條款 PDF、自負額表——85 份產品全部註明搵到邊份文件。",
+    body: "產品冊子、保單條款 PDF、自負額表——分清鏡像版本、頁碼同摘錄。",
   },
   {
     title: "結構化逐項排",
-    body: "保障上限、保費範圍、主要條款、不保事項，統一格式先好比較。每個產品附官方來源連結，你可以自己核實。",
+    body: "保障上限、保費範圍、主要條款、不保事項，統一格式先好比較。有來源可逐條核對，未核實項目清楚提示。",
   },
 ];
 
 /** S4 Pinned 敘事 —「我哋嘅數據，唔係靠估」（深色反轉段） */
 export default function MethodStory() {
+  const reduced = useReducedMotion();
   const rootRef = useRef<HTMLElement>(null);
   const [step, setStep] = useState(0);
 
   useGSAP(
     () => {
-      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const scenes = gsap.utils.toArray<HTMLElement>(".method-scene");
       gsap.set(scenes, { autoAlpha: 0, y: 24 });
       gsap.set(scenes[0], { autoAlpha: 1, y: 0 });
@@ -69,7 +70,9 @@ export default function MethodStory() {
 
       if (reduced) {
         setStep(2);
-        showScene(2);
+        gsap.set(scenes, { autoAlpha: 0, y: 0 });
+        gsap.set(scenes[2], { autoAlpha: 1 });
+        gsap.set(".method-table-row, .method-source-chip, .method-stamp", { autoAlpha: 1, x: 0, scale: 1 });
         return;
       }
 
@@ -112,7 +115,7 @@ export default function MethodStory() {
 
       return () => root?.removeEventListener("pointermove", onPointerMove);
     },
-    { scope: rootRef },
+    { scope: rootRef, dependencies: [reduced], revertOnUpdate: true },
   );
 
   return (

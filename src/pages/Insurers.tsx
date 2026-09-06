@@ -1,3 +1,4 @@
+import { safeFragment } from "@/lib/data-integrity";
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Search } from "lucide-react";
@@ -59,7 +60,7 @@ function SplitWords({ words, className }: { words: string[]; className?: string 
       {words.map((word, i) => (
         <motion.span
           key={word}
-          className="inline-block will-change-transform"
+          className="inline-block max-w-full will-change-transform"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 + i * 0.09, ease: EASE_OUT_EXPO }}
@@ -134,7 +135,7 @@ export default function Insurers() {
   // URL hash 錨點（如 /insurers#AXA，大小寫皆可）→ 滾到對應公司卡 + 紅框閃爍
   useEffect(() => {
     if (insurers.length === 0 || !location.hash) return;
-    const hash = decodeURIComponent(location.hash.slice(1)).toLowerCase();
+    const hash = safeFragment(location.hash).toLowerCase();
     const target = insurers.find((ins) => ins.name.toLowerCase() === hash);
     if (!target) return;
     // 若目標被篩選隱藏，先重設篩選
@@ -188,7 +189,7 @@ export default function Insurers() {
           transition={{ duration: 0.6, delay: 0.35, ease: EASE_OUT_EXPO }}
           className="mt-4 max-w-[36em] text-ink-soft"
         >
-          由傳統大行到虛擬保險，逐間睇佢哋喺 9 大類別嘅產品覆蓋同保費公開情況。
+          由傳統大行到虛擬保險，逐間睇佢哋喺 {categories.length} 大類別嘅產品覆蓋同保費公開情況。
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -285,7 +286,7 @@ export default function Insurers() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="搜尋公司…"
-                className="w-full bg-transparent text-small text-ink outline-none placeholder:text-ink-faint"
+                className="min-w-0 w-full bg-transparent text-small text-ink outline-none placeholder:text-ink-faint"
                 aria-label="搜尋保險公司"
               />
             </label>
@@ -302,7 +303,7 @@ export default function Insurers() {
         {filtered.length === 0 ? (
           <EmptyState
             title="呢個類別暫時冇呢間公司嘅產品"
-            description="試下重設篩選，或者睇返全部 27 間保險公司。"
+            description="試下重設篩選，或者睇返本站公司名錄。"
             onReset={resetFilters}
             resetLabel="重設篩選"
           />

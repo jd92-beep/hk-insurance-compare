@@ -55,7 +55,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.7, delay: 0.2, ease: EASE_OUT_EXPO }}
           className="mt-5 text-ink-soft"
         >
-          9 大類別 · 85 份產品 · 27 間公司，全部有官方出處。
+          由保障摘要去到來源原文，睇清已知資料同待核實嘅缺口。
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

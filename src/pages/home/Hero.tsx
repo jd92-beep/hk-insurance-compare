@@ -1,10 +1,10 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { ArrowRight, Search } from "lucide-react";
 import { Link } from "react-router";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
 import { useCategories, useInsurers, useProducts } from "@/providers/InsuranceDataProvider";
 import { useSearch } from "@/providers/SearchProvider";
 import { scrollToElement } from "@/lib/lenis";
@@ -46,9 +46,7 @@ export default function Hero() {
   const categories = useCategories();
   const products = useProducts();
   const insurers = useInsurers();
-  const [reduced] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  );
+  const reduced = useReducedMotion();
 
   // 滑鼠微 parallax（四層深度：極光最慢 → 遠景 → 近景 → 插畫最快）
   const mx = useMotionValue(0);
@@ -65,9 +63,9 @@ export default function Hero() {
   const auroraY = useTransform(sy, (v) => v * -4);
 
   const stats = [
-    { n: categories.length || 9, label: "大保險類別" },
-    { n: products.length || 85, label: "份官方產品檔案" },
-    { n: insurers.length || 27, label: "間保險公司" },
+    { n: categories.length || "—", label: "大保險類別" },
+    { n: products.length || "—", label: "份官方產品檔案" },
+    { n: insurers.length || "—", label: "間保險公司" },
   ];
 
   const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
@@ -145,7 +143,7 @@ export default function Hero() {
         scrollTrigger: { trigger: rootRef.current, start: "top top", end: "bottom top", scrub: true },
       });
     },
-    { scope: rootRef, dependencies: [reduced] },
+    { scope: rootRef, dependencies: [reduced], revertOnUpdate: true },
   );
 
   const floater = (f: (typeof FLOATERS)[number], i: number) =>
@@ -170,7 +168,7 @@ export default function Hero() {
     );
 
   return (
-    <section ref={rootRef} className="relative overflow-hidden" onMouseMove={onMouseMove}>
+    <section ref={rootRef} className="relative overflow-hidden" onMouseMove={onMouseMove} onMouseLeave={() => { mx.set(0); my.set(0); }}>
       {/* 極光背景層（最遠景，滑鼠反向慢速漂移）+ 互動微粒 */}
       {reduced ? (
         <AuroraBackground />
@@ -191,20 +189,20 @@ export default function Hero() {
         {/* 漂浮裝飾層（左欄文字後面，近/遠兩層） */}
         {!reduced && (
           <>
-            <motion.div data-float-near className="pointer-events-none absolute inset-0 hidden lg:block" style={{ x: layerNearX, y: layerNearY }} aria-hidden="true">
+            <div data-float-near className="pointer-events-none absolute inset-0"><motion.div className="pointer-events-none absolute inset-0 hidden lg:block" style={{ x: layerNearX, y: layerNearY }} aria-hidden="true">
               {FLOATERS.filter((f) => f.depth === 1).map((f, i) => (
                 <span key={i} className="absolute" style={{ top: f.top, left: f.left }}>
                   {floater(f, i)}
                 </span>
               ))}
-            </motion.div>
-            <motion.div data-float-far className="pointer-events-none absolute inset-0 hidden lg:block" style={{ x: layerFarX, y: layerFarY }} aria-hidden="true">
+            </motion.div></div>
+            <div data-float-far className="pointer-events-none absolute inset-0"><motion.div className="pointer-events-none absolute inset-0 hidden lg:block" style={{ x: layerFarX, y: layerFarY }} aria-hidden="true">
               {FLOATERS.filter((f) => f.depth !== 1).map((f, i) => (
                 <span key={i} className="absolute" style={{ top: f.top, left: f.left }}>
                   {floater(f, i)}
                 </span>
               ))}
-            </motion.div>
+            </motion.div></div>
           </>
         )}
 
@@ -223,8 +221,8 @@ export default function Hero() {
             <Chars text="。" />
           </h1>
           <p data-hero-sub className="mt-7 max-w-[34em] text-[20px] font-medium leading-[1.7] text-ink-soft">
-            家居、旅遊、人壽、危疾、意外、醫療、汽車、家傭、寵物——9 大類別、85
-            份真實保單，保障範圍、價錢、條款逐項並排，全部附有保險公司官方來源。
+            由旅遊、醫療到家居保障，按你嘅需要逐項比較。
+            睇清保障範圍、價錢同限制，再打開來源文件核對。
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <Magnetic>
@@ -239,7 +237,7 @@ export default function Hero() {
               </button>
             </Magnetic>
             <Link to="/categories" data-hero-cta className="btn-ghost">
-              瀏覽 9 大類別
+              瀏覽所有保險類別
             </Link>
           </div>
           {/* 快速搜尋條 */}

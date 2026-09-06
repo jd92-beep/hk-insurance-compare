@@ -38,7 +38,7 @@ function CoverageDots({
         return (
           <Link
             key={catId}
-            to={`/category/${catId}`}
+            to={`/category/${catId}?insurer=${encodeURIComponent(insurer.name)}`}
             title={name}
             aria-label={`${insurer.name_zh}嘅${name}產品`}
             className={className}
@@ -83,7 +83,7 @@ export default function InsurerCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-8% 0px" }}
       transition={{ duration: 0.6, delay: staggerDelay, ease: EASE_OUT_EXPO }}
-      className="group relative flex scroll-mt-[104px] flex-col gap-4 rounded-card border bg-paper p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
+      className="group relative flex min-w-0 scroll-mt-[104px] flex-col gap-4 rounded-card border bg-paper p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
       style={{ borderColor: "var(--line)" }}
     >
       {/* 錨點紅框閃爍 */}
@@ -100,7 +100,7 @@ export default function InsurerCard({
       {/* 頂行：公司名 + 產品數 */}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h2 className="font-grotesk text-[22px] font-bold leading-tight text-ink">
+          <h2 className="break-words font-grotesk text-[22px] font-bold leading-tight text-ink">
             {insurer.name}
           </h2>
           <p className="mt-0.5 text-[16px] font-medium text-ink-soft">{insurer.name_zh}</p>
@@ -124,7 +124,7 @@ export default function InsurerCard({
               return (
                 <Link
                   key={catId}
-                  to={`/category/${catId}`}
+                  to={`/category/${catId}?insurer=${encodeURIComponent(insurer.name)}`}
                   className="chip transition-opacity hover:opacity-80"
                   style={{
                     background: `color-mix(in srgb, ${color} 12%, transparent)`,
@@ -194,7 +194,7 @@ export default function InsurerCard({
           to={`/category/${firstCategory}?insurer=${encodeURIComponent(insurer.name)}`}
           className="mt-auto inline-flex w-fit items-center gap-1.5 text-small font-bold text-red transition-colors hover:text-red-deep hover:underline"
         >
-          睇全部 {insurer.productCount} 份產品
+          查看{categories.find(c => c.id === firstCategory)?.name_zh ?? "此類別"}產品
           <ArrowRight size={14} />
         </Link>
       )}

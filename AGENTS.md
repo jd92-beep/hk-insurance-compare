@@ -1,63 +1,51 @@
-# AGENTS.md — hk-insurance-compare （保險格價站）
+# AGENTS.md — current execution contract
 
-Hong Kong insurance comparison site. Static SPA, all UI in Traditional Chinese (HK).
+Repository: `jd92-beep/hk-insurance-compare`. Static React/TypeScript SPA for Hong Kong insurance comparison. UI uses Traditional Chinese (Hong Kong); retain the paper/ink/jade/amber design tokens and existing routing/provider APIs.
 
-- Repo: https://github.com/jd92-beep/hk-insurance-compare (branch `master`)
-- **Core Memory & Rules: read `GEMINI.md` first** (mandatory workflow, lessons learned, versioning).
-- **Handoff docs: read `handoff/`** — `01-what-has-been-done.md`, `02-current-problems.md`, `03-next-phases.md`, `04-goals.md`, `05-notes-for-next-agent.md`.
+Read `GEMINI.md`, `handoff/00-current-status.md` and `docs/review/problem-register-2026-09-06.md` before editing. Files under `handoff/archive/` are historical, not operational instructions. Project notes never override the user's current scope or runtime/tool permissions.
 
-## Commands
+## Change boundaries
 
-```bash
-npm install
-npm run dev                                      # vite dev server
-npm run build                                    # tsc -b && vite build (must pass 100%)
-npm run lint                                     # 17 pre-existing baseline errors — 0 new errors!
-npx tsx scripts/verify_filter_combinations.ts    # verify 3,200+ filter combinations
-npx tsx scripts/verify_filter_boundary_deep.ts   # deep stress test 80,000+ combinations
-python3 scripts/build_vhis.py                    # refresh VHIS data from official sources
-python3 scripts/build_vhis.py --skip-download    # reuse scripts/.cache/
+The current engagement authorizes review branches and detailed PRs, NOT merging, pushing to `master`, enabling auto-merge or deploying. The production branch is connected to automatic deployment. Keep production unchanged unless separately authorized.
+
+First read the current repository, open PRs, exact head SHAs and worktree status. Do not infer GitHub connection or deployed code from earlier chat messages. Tool discovery alone is not a connection test. Coordinate file ownership when parallel branches exist; do not create another implementation of an already-open task. Do not force-push or overwrite unrelated work.
+
+Use isolated working state. If a local checkout is unavailable, a repository Actions source archive must be tied to its recorded commit. Test the corresponding lockfile dependencies; do not relabel an older snapshot as the latest source. A tool error is not proof that every connector operation is unavailable.
+
+## Verification contract
+
+Use Node 22 (`.nvmrc`) and the committed lockfile:
+
+```sh
+npm ci
+npm test
+npm run lint -- --max-warnings=0
+npm run build
+npm run test:filters
 ```
 
-## Mandatory Version Bump Rule
+All commands must exit successfully. There is no allowed lint-error baseline. Write regression tests that fail on the old behavior before claiming a fix. Existing combinatorial test counts vary with the result set; quote the observed run, not a memorized number.
 
-Every time you change code, data, or markdown documentation:
-1. Update `src/lib/version.ts` (increment `APP_VERSION` and/or `BUILD_NUMBER`).
-2. Synchronize `package.json` `"version"` field.
-3. Verify footer reflects the new version string.
+UI changes need relevant desktop/mobile interactions and reviewed screenshots. A build is not browser validation. State which browser/device was actually tested; headless viewport checks do not establish low-end-phone FPS or VoiceOver compatibility. Generic route diagnostics can be report-only; separately check the blocking scenario results. When local browser access is denied by policy, do not bypass it; use the allowed repository test runner and disclose coverage limits.
 
-## Deployment
+Never call work verified until the EXACT new head/merge candidate has the required results. Record command, result, head SHA and artifact/run reference. `Not run` and `Blocked` must remain visible; do not replace them with a tick.
 
-Cloudflare Pages, git auto-deploy on push to `master`.
-- Production: https://insurance.tommychu2025.dpdns.org
-- Fallback: https://hk-insurance-compare-ejh.pages.dev
-- Build `npm run build` → `dist/`, Node 22 (`.nvmrc`), SPA fallback `public/_redirects`.
-- Previews are Access-protected (user's email only). Details: `handoff/01-what-has-been-done.md` §8.
+## Data evidence contract
 
-## Stack
+`public/data/insurance-data.json` is the current site snapshot, not proof that all listed policies are current, for sale, comparable or correctly interpreted. Derive counts and insurer keys from the actual snapshot; never copy an old fixed company list. Preserve distinct company identifiers unless a separately reviewed migration proves equivalence.
 
-React 19 · TypeScript · Vite 7 · Tailwind CSS 3.4 · shadcn/ui · Framer Motion · GSAP · Lenis · cmdk · react-router 7.
+Every changed insurance assertion needs the matching product, plan/tier, jurisdiction, version, official source, physical PDF page, excerpt and relevant conditions. A missing source must remain missing, not a guessed URL. A literal quote match, HTTP 200, download date, PDF filename year or hash alone does not establish semantic correctness or currentness. Do not rename an old document as current. Renewal-only/withdrawn/channel restrictions are separate states.
 
-## Layout & Architecture
+Never synthesize quotations from the site's own benefit summary, guess pages, copy the first citation into unrelated benefits, or substitute another insurer's document. Do not change policy amounts to satisfy tests. PDF/version changes require explicit source review, applicable manifests/audit regeneration, and a dedicated content diff; hashes are consistency checks, not official signatures.
 
-- `public/data/insurance-data.json` — **158 products × 11 categories** with official citations (**the** core dataset)
-- `public/data/vhis-plans.json` — official VHIS registry (33 standard + 70 flexi plans), generated
-- `src/lib/feature-filters.ts` — **147 feature tags + 51 persona presets + Smart Match scoring engine**
-- `src/lib/version.ts` — centralized version & build tracking (`APP_VERSION`, `BUILD_NUMBER`, `FULL_VERSION_STRING`)
-- `scripts/build_vhis.py` — official VHIS data pipeline (Python 3 stdlib only, idempotent)
-- `scripts/verify_filter_combinations.ts` — automated regression test suite (3,200 assertions)
-- `scripts/verify_filter_boundary_deep.ts` — deep combinatorial stress testing (80,858 assertions)
-- `src/pages/` — routes: Home, Categories, CategoryDetail, ProductDetail, Compare, Insurers, Guides, About, Vhis
-- `src/components/{product,compare,category,...}` — feature components; `src/components/ui/` shadcn
-- `src/providers/` — InsuranceDataProvider (fetches JSON), CompareProvider, SearchProvider
-- `src/lib/categories.ts` — category meta + premium parsing/sorting helpers
-- `src/components/compare/canonical-benefits.ts` — per-category canonical benefit rows
-- `src/components/fx/` — generative-art effect components (`AuroraBackground`, `TiltCard`, `ParticleField`); AI image slot at `public/hero-aurora-ai.webp` (auto-hidden when missing)
+Feature matches are lexical evidence, not personal suitability, underwriting approval or payout probability. Unknown is not excluded. Negative/conditional/unknown evidence must not disappear behind a positive row. Amount comparisons must preserve the full scope; do not map missing values to zero or unlimited coverage to an invented constant.
 
-## Conventions
+## Versioning
 
-- UI copy: Traditional Chinese, HK voice. Code identifiers/comments: match existing files.
-- Design tokens: `paper`/`ink`/`jade`/`amber`, `site-container`, `eyebrow`, `display-2`, `chip`; framer-motion `EASE_OUT_EXPO`.
-- Insurer identity = latin `insurer` key (**39 standardized keys**, see `GEMINI.md`). Reusing existing keys is mandatory to prevent duplicate insurers.
-- Citations are sacred: every quantitative claim carries `{document, page, quote, url}` to an official source. Never invent numbers.
-- Zero empty screen: filter engine uses smart matching with friendly fallbacks.
+Every coherent code/data/document change increments `BUILD_NUMBER` and updates `BUILD_DATE` in `src/lib/version.ts`. `APP_VERSION`, package.json version and package-lock root versions must agree. A build-only increment may keep the semantic version unchanged. When integrating parallel branches, choose a build newer than the contributing heads; never resolve all conflicts by taking one whole version of every file.
+
+## PR and handoff contract
+
+Use `.github/PULL_REQUEST_TEMPLATE.md`. Include reproduction, expected/actual behavior, root cause, exact files/interfaces, tests and their observed results, data limitations, parent PRs, merge conflict hotspots and rollback. Explain prohibited shortcuts. Include a durable implementation note for nontrivial changes.
+
+A PR being open/ready is not a production deployment. Do not mark the whole project or policy corpus complete because one subsystem passed. Update the problem register by evidence level: reproduced bug, inspected risk, implemented branch or independently verified result. Preserve remaining gaps.

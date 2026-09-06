@@ -85,7 +85,7 @@ export function CoverageLimitCell({
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
           className="inline-flex rounded-[8px] bg-jade-wash px-2.5 py-1 text-[14px] font-medium leading-[1.55] text-jade"
-          title="按官方文件所示上限比較"
+          title="同一明示計算單位的摘要數值比較；仍需核對原文、級別及例外"
         >
           {text}
         </motion.span>

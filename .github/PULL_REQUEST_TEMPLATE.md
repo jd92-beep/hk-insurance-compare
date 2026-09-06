@@ -1,19 +1,72 @@
-<!-- 多謝你嘅 PR！請跟返 GEMINI.md 嘅鐵律同質量門禁。 -->
+## 1. Base/head SHA and purpose
 
-## 改咗乜
+Base branch / parent PR: 
+Exact head SHA: 
+APP_VERSION / BUILD_NUMBER: 
+User-visible outcome: 
+Production changed? No, unless separately authorized and documented.
 
-<!-- 簡述變更內容同原因 -->
+## 2. Reproduction
 
-## 質量門禁 Checklist
+<!-- Use synthetic data for examples. State actual vs expected, route, inputs, viewport and root cause. -->
+Steps to reproduce the old failure:
+Expected behavior:
+Observed old behavior:
+Root cause (file/function, not just the symptom):
 
-- [ ] `src/lib/version.ts` 已遞增 `APP_VERSION` / `BUILD_NUMBER`，`package.json` `"version"` 已同步
-- [ ] `npm run lint` — 維持 **17** 個 baseline errors，**新碼 0 error**
-- [ ] `npm run build` — `tsc -b && vite build` 100% 通過
-- [ ] 如有改動 filter / 產品數據 / 比較模組：`npx tsx scripts/verify_filter_combinations.ts` 同 `verify_filter_boundary_deep.ts` 全部 PASS
-- [ ] 所有量化數據附官方引文 `{document, page, quote, url}`（鐵律 2：Citations are sacred）
-- [ ] 保險公司 Latin key 100% 復用 GEMINI.md 嘅 39 個標準 key
-- [ ] UI 文案為香港繁體中文；動效喺 `prefers-reduced-motion` 下有降級
+## 3. Changed files and interfaces
 
-## 截圖 / 演示
+| File | Specific change | Why required | Interfaces/consumers affected |
+|---|---|---|---|
 
-<!-- UI 變更請附截圖 -->
+What must remain unchanged:
+What another agent must NOT simplify, remove or overwrite:
+Durable implementation/handoff note:
+
+## 4. Verification evidence
+
+<!-- Fill PASS/FAIL/Not run/Blocked honestly. A checked command is not proof unless its output was observed. -->
+
+| Command / scenario | Before fix | This exact head | Evidence or limitation |
+|---|---|---|---|
+| `npm ci` (Node22, committed lockfile) | | Not run | |
+| Regression that reproduces the old bug | | Not run | |
+| `npm test` | | Not run | |
+| `npm run lint -- --max-warnings=0` | | Not run | Zero errors and warnings required |
+| `npm run build` | | Not run | List warnings separately |
+| `npm run test:filters` | | Not run | Required for comparison/data changes |
+| Relevant desktop/mobile browser flows | | Not run | Browser/version/viewport, screenshots |
+| Failed network / empty / keyboard / reduced motion | | Not run | As applicable |
+
+Exact Actions run + tested SHA:
+What was mocked vs a real file/browser/service:
+Screenshots reviewed and observed defects:
+
+## 5. Data and PDF evidence
+
+<!-- Say 'No policy/data/PDF changes' when true; do not imply inherited data was reverified. -->
+Changed policy claims / products / tiers:
+Official source and applicable version/effective date:
+Physical PDF page / literal excerpt / conditions:
+Dataset and document fingerprints:
+Freshness / sale or renewal-only status:
+Audit or manifest regeneration and reviewed diff:
+
+A literal match, HTTP200, download date or hash is NOT semantic/freshness certification. Missing and unknown values stay explicit. Never fabricate a quote/page or alter a policy number to pass a test.
+
+## 6. Dependencies and rollback
+
+Required parent PRs and order:
+Other branches NOT included:
+Expected merge-conflict files and which behavior must be preserved:
+Migration / external side effects:
+Rollback procedure and any trust/data risk:
+
+Do not merge/push to `master` or enable auto-merge without separate authorization. A green PR is not a deployment.
+
+## 7. Unverified / out of scope
+
+Remaining bugs and follow-up acceptance criteria:
+Devices/browsers not tested:
+Policy semantics/latest-version checks not completed:
+Security/accessibility/performance claims this PR does NOT establish:

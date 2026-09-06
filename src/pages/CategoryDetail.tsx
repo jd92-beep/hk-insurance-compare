@@ -1,3 +1,4 @@
+import CategoryDecisionGuide from "@/components/category/CategoryDecisionGuide";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -13,7 +14,7 @@ import {
   TriangleAlert,
   X,
 } from "lucide-react";
-import { Link, useParams } from "react-router";
+import { Link, useParams, useSearchParams } from "react-router";
 import { Toaster } from "@/components/ui/sonner";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import EmptyState from "@/components/EmptyState";
@@ -105,7 +106,12 @@ export default function CategoryDetail() {
   }, [directProducts, categoryId, allMedicalProducts]);
 
   const isTravel = categoryId === "travel";
-  const [selectedInsurers, setSelectedInsurers] = useState<string[]>([]);
+  const [searchParams] = useSearchParams();
+  // 從 URL ?insurer= 預選保險公司（由 InsurerCard 等入口帶入）
+  const [selectedInsurers, setSelectedInsurers] = useState<string[]>(() => {
+    const v = searchParams.get("insurer");
+    return v ? [v] : [];
+  });
   const [onlyPremium, setOnlyPremium] = useState(false);
   const [sort, setSort] = useState<SortKey>("default");
   const [premiumDir, setPremiumDir] = useState<"asc" | "desc">("asc");
@@ -718,11 +724,11 @@ export default function CategoryDetail() {
                         SHORTFALL SHIELD
                       </span>
                       <span className="font-serif text-[15px] font-bold text-paper sm:text-[16px]">
-                        打工仔專用 · 填補公司團體醫保 Shortfall · 免核保銜接與離職保證轉保權
+                        公司醫保差額 · 先核對自負額抵扣與離職後續保安排
                       </span>
                     </div>
                     <p className="mt-1 text-small text-paper/80">
-                      專門承保超出公司團體醫療上限的差額開支，並保留離職或退休時免驗身轉保權利。
+                      不同差額／自負額型計劃的賠償次序及延續保障條件有別；免核保轉保權必須有具體條款支持。
                     </p>
                   </div>
                 </div>
@@ -745,6 +751,8 @@ export default function CategoryDetail() {
           )}
         </div>
       </section>
+
+      <CategoryDecisionGuide key={category.id} categoryId={category.id} />
 
       {/* ── S1.5 全類別視覺化保障限額圖表 ──────────────────────── */}
       <section id="chart-section" className="border-b border-line/60 bg-paper-2/30 py-8">
@@ -773,7 +781,7 @@ export default function CategoryDetail() {
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="font-sans text-[15px] sm:text-[16px] font-bold text-ink flex items-center gap-1.5">
                     <Sparkles size={16} className="text-jade" />
-                    <span>智能保障挑選（條款契合度推薦）</span>
+                    <span>按摘要條件篩選（仍需核對條款）</span>
                   </h3>
                   {selectedFeatures.length > 0 ? (
                     <span className="rounded-full bg-jade/10 px-2.5 py-0.5 font-grotesk text-[11px] font-bold text-jade">
@@ -1142,6 +1150,7 @@ export default function CategoryDetail() {
       )}
 
       {/* ── S3 篩選工具列 ───────────────────────────────────── */}
+      <div id="category-filter-controls" style={{ scrollMarginTop: 110 }} />
       <FilterBar
         insurers={insurerOptions}
         selectedInsurers={selectedInsurers}

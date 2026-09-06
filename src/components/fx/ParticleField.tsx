@@ -38,12 +38,11 @@ export default function ParticleField({ className, density = 1 }: { className?: 
       u: random(), v: random(), z: .18 + random() * .82, phase: random() * Math.PI * 2,
       vx: 0, vy: 0, ox: 0, oy: 0, sprite: i % 4,
     }));
-    let width = 1, height = 1, top = 0, left = 0, visible = false, last = 0, elapsed = 0;
+    let width = 1, height = 1, visible = false, last = 0, elapsed = 0;
     const pointer = { x: -10000, y: -10000 };
     const resize = () => {
       const r = host.getBoundingClientRect();
       width = Math.max(1, r.width); height = Math.max(1, r.height);
-      top = r.top + window.scrollY; left = r.left + window.scrollX;
       const dpr = Math.min(devicePixelRatio || 1, 1.75, Math.sqrt(2_000_000 / (width * height)));
       canvas.width = Math.max(1, Math.round(width * dpr)); canvas.height = Math.max(1, Math.round(height * dpr));
       canvas.style.width = `${width}px`; canvas.style.height = `${height}px`;
@@ -78,7 +77,9 @@ export default function ParticleField({ className, density = 1 }: { className?: 
     };
     const move = (e: PointerEvent) => {
       if (e.pointerType === "touch" || coarse.matches || reduced.matches) return;
-      pointer.x = e.clientX + window.scrollX - left; pointer.y = e.clientY + window.scrollY - top;
+      // 即場讀 rect：async 數據載入會推移位佈局，cache 咗嘅 top/left 會過期
+      const r = host.getBoundingClientRect();
+      pointer.x = e.clientX - r.left; pointer.y = e.clientY - r.top;
     };
     const leave = () => { pointer.x = pointer.y = -10000; };
     resize();

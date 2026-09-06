@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import PageErrorBoundary from "@/components/PageErrorBoundary";
+import { useInsuranceData } from "@/providers/InsuranceDataProvider";
+import { Suspense, useEffect } from "react";
 import { useLocation, useOutlet } from "react-router";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { AnimatePresence, MotionConfig, motion, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion, useScroll, useSpring, useReducedMotion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CompareTray from "@/components/CompareTray";
@@ -11,84 +13,52 @@ import { useCompare } from "@/providers/CompareProvider";
 import { destroyLenis, getLenis, initLenis } from "@/lib/lenis";
 
 gsap.registerPlugin(ScrollTrigger);
-
-/** 頂部滾動進度條（幼紅線） */
 function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 26, mass: 0.4 });
-  return (
-    <motion.div
-      className="fixed inset-x-0 top-0 z-[80] h-[3px] origin-left bg-red"
-      style={{ scaleX }}
-      aria-hidden="true"
-    />
-  );
+  return <motion.div className="fixed inset-x-0 top-0 z-[80] h-[3px] origin-left bg-red" style={{ scaleX }} aria-hidden="true" />;
 }
-
-/**
- * 全站 Layout（nested-route pattern：呢度 render 當前頁面 outlet，
- * App.tsx 必須用 nested <Route> 配合）。
- * Navbar 係 sticky top-0 普通文檔流，頁面唔使留頂部空位。
- */
 export default function Layout() {
   const location = useLocation();
+  const reduced = useReducedMotion();
+  const { data, error, retry } = useInsuranceData();
   const outlet = useOutlet();
   const { items } = useCompare();
-  // CompareTray 係 fixed 底欄：出現時頁底要預留空間，避免遮 Footer／頁尾內容
-  // （tray 高 ~60px + bottom-6 浮位；同 DisclaimerToast 嘅 spacer 做法統一）
   const trayVisible = items.length > 0 && location.pathname !== "/compare";
-
-  // Lenis 平滑滾動（全站）
   useEffect(() => {
+    if (reduced) return;
     const lenis = initLenis();
-    if (lenis) {
-      lenis.on("scroll", ScrollTrigger.update);
-    }
-    return () => {
-      destroyLenis();
-    };
-  }, []);
-
-  // 換頁滾回頂部
+    lenis?.on("scroll", ScrollTrigger.update);
+    return () => { destroyLenis(); };
+  }, [reduced]);
   useEffect(() => {
     const lenis = getLenis();
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
-    }
-    // 等頁面渲染＋進場動畫完成後重新計算 ScrollTrigger 位置
+    if (lenis) lenis.scrollTo(0, { immediate: true });
+    else window.scrollTo(0, 0);
     const t1 = window.setTimeout(() => ScrollTrigger.refresh(), 120);
     const t2 = window.setTimeout(() => ScrollTrigger.refresh(), 650);
-    return () => {
-      window.clearTimeout(t1);
-      window.clearTimeout(t2);
-    };
+    return () => { window.clearTimeout(t1); window.clearTimeout(t2); };
   }, [location.pathname]);
-
-  return (
-    <MotionConfig reducedMotion="user">
-      <div className="flex min-h-[100dvh] flex-col">
-        <ScrollProgress />
-        <Navbar />
-        <main className="flex-1">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={location.pathname}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12, transition: { duration: 0.22, ease: [0.76, 0, 0.24, 1] } }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {outlet}
-            </motion.div>
-          </AnimatePresence>
-        </main>
-        <Footer />
-        {trayVisible && <div aria-hidden="true" className="h-[104px]" />}
-        <CompareTray />
-        <SearchPalette />
-      </div>
-    </MotionConfig>
-  );
+  useEffect(() => {
+    const path = location.pathname;
+    const title = path.startsWith("/product/") ? data?.products.find(p => p.id === path.split("/")[2])?.product_name_zh
+      : path.startsWith("/category/") ? data?.categories.find(c => c.id === path.split("/")[2])?.name_zh
+      : ({ "/": "香港保險比較", "/categories": "保險類別", "/compare": "並排比較", "/documents": "PDF 中心", "/data-quality": "資料核查", "/insurers": "保險公司", "/guides": "投保指南", "/vhis": "自願醫保", "/about": "關於本站" } as Record<string,string>)[path];
+    document.title = `${title || "保險資料"}｜保險格價站`;
+    document.documentElement.lang = "zh-Hant-HK";
+  }, [location.pathname, data]);
+  return <MotionConfig reducedMotion="user"><div className="flex min-h-[100dvh] flex-col">
+    <ScrollProgress />
+    <a href="#main-content" className="sr-only z-[100] bg-paper p-4 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">跳到主要內容</a>
+    <Navbar />
+    {error && <div role="alert" className="site-container flex flex-wrap items-center gap-3 border-b border-amber py-3 text-sm"><span>{error}</span><button className="btn-ghost min-h-11" onClick={retry}>重新載入資料</button></div>}
+    <main id="main-content" tabIndex={-1} className="min-w-0 flex-1 outline-none">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div key={location.pathname} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12, transition: { duration: 0.22, ease: [0.76, 0, 0.24, 1] } }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}>
+          <PageErrorBoundary key={location.pathname}><Suspense fallback={<div role="status" className="site-container min-h-[50vh] py-20">正在載入頁面…</div>}>{outlet}</Suspense></PageErrorBoundary>
+        </motion.div>
+      </AnimatePresence>
+    </main>
+    <Footer />{trayVisible && <div aria-hidden="true" className="h-[104px]" />}<CompareTray /><SearchPalette />
+  </div></MotionConfig>;
 }

@@ -1,16 +1,12 @@
 name: Review evidence
-
 on:
   pull_request:
-    branches: [master]
-
+    branches: [master, "review/**"]
 permissions:
   contents: read
-
 concurrency:
   group: review-evidence-${{ github.event.pull_request.number }}
   cancel-in-progress: true
-
 jobs:
   evidence:
     runs-on: ubuntu-latest
@@ -20,8 +16,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
-      - name: Record reproducible source snapshot (no PDF binaries)
-        run: |
+      - run: |
           mkdir -p audit-evidence
           git rev-parse HEAD > audit-evidence/commit.txt
           git ls-files > audit-evidence/tracked-files.txt
@@ -38,19 +33,12 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Record lint diagnostics
+        run: npx eslint . --format json --output-file audit-evidence/eslint.json
+      - name: Build and tests
         run: |
-          set +e
-          npx eslint . --format json --output-file audit-evidence/eslint.json
-          result=$?
-          echo "$result" > audit-evidence/eslint-exit-code.txt
-          # Exit 2 is an execution/configuration failure, not a lint baseline.
-          if [ "$result" -gt 1 ]; then exit "$result"; fi
-      - name: Build
-        run: npm run build 2>&1 | tee audit-evidence/build.txt
-      - name: Filter regression
-        run: npx --yes tsx scripts/verify_filter_combinations.ts 2>&1 | tee audit-evidence/filter-regression.txt
-      - name: Filter boundaries
-        run: npx --yes tsx scripts/verify_filter_boundary_deep.ts 2>&1 | tee audit-evidence/filter-boundaries.txt
+          npm run build 2>&1 | tee audit-evidence/build.txt
+          npm test 2>&1 | tee audit-evidence/unit-tests.txt
+          npm run test:filters 2>&1 | tee audit-evidence/filter-tests.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:

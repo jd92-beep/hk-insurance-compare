@@ -28,7 +28,7 @@ export default function EvidenceComparisonPanel({ products }: { products: Produc
         <figcaption className="mb-5 flex flex-wrap items-baseline justify-between gap-2"><strong className="font-serif text-lg">{group.scopeLabel} · HKD</strong><span className="text-xs text-ink-faint">依產品原有次序，不作最佳排名</span></figcaption>
         <div className="space-y-4">{group.rows.map(row => <div key={row.productId} className="min-w-0"><div className="mb-1 flex items-start justify-between gap-4 text-sm"><span className="min-w-0 break-words">{row.insurer} · {row.productName}</span><span className="shrink-0 font-grotesk tabular-nums">HK${format.format(row.amount!.value)}</span></div><div aria-hidden="true" className="h-2 overflow-hidden rounded-full bg-jade/10"><div className="h-full rounded-full bg-jade/70 motion-safe:transition-[width] motion-safe:duration-300" style={{ width: `${limitBarPercent(row.amount!.value, group.maximum)}%` }} /></div></div>)}</div>
       </figure>)}</div>
-      {groups.length === 0 && <p className="mt-6 flex items-start gap-3 rounded-xl bg-paper-2 p-5 text-sm leading-relaxed"><FileSearch className="shrink-0 text-jade" size={20} />未有至少兩款可按同一明示單位繪製的摘要。直接對照下方原文，比製造一個誤導圖表更可靠。</p>}
+      {groups.length === 0 && <p className="mt-6 flex items-start gap-3 rounded-xl bg-paper-2 p-5 text-sm leading-relaxed"><FileSearch className="shrink-0 text-jade" size={20} />未有至少兩款可按同一明示單位繪製的摘要。先對照下方網站摘要，再開啟來源核對；唔會用假設數字製造圖表。</p>}
       <EvidenceRows key={`${selected?.key}:${products.map(product => product.id).join(",")}`} rows={rows} links={hrefs} title={selected?.label ?? "保障"} />
     </div>
   </section>;

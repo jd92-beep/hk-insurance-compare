@@ -26,7 +26,7 @@ export default function EvidenceRows({ rows, links, title }: { rows: LimitRow[];
   return <div className="mt-8" data-evidence-preview>
     <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
       <div className="min-w-0">
-        <h3 className="font-serif text-lg font-bold text-ink">{title} · 原文摘要</h3>
+        <h3 className="font-serif text-lg font-bold text-ink">{title} · 網站摘要</h3>
         <p className="mt-1 text-xs leading-relaxed text-ink-soft" role="status">顯示 {visible.length} / {rows.length} 款，按產品原有次序，唔係推薦排名。</p>
       </div>
       {rows.length > EVIDENCE_PREVIEW_LIMIT && <button type="button" className="btn-ghost min-h-11 shrink-0 text-sm" aria-expanded={expanded} aria-controls={regionId} onClick={() => setExpanded(value => !value)}>
@@ -43,7 +43,7 @@ export default function EvidenceRows({ rows, links, title }: { rows: LimitRow[];
           </div>
           <p className="break-words text-sm font-semibold leading-relaxed text-ink">{row.productName}</p>
           <dl className="mt-4 space-y-3 text-sm leading-relaxed">
-            <div className="rounded-xl bg-paper-2 p-3"><dt className="mb-1 text-xs text-ink-faint">原有保障摘要</dt><dd className="break-words font-medium text-ink">{row.raw}</dd></div>
+            <div className="rounded-xl bg-paper-2 p-3"><dt className="mb-1 text-xs text-ink-faint">網站保障摘要</dt><dd className="break-words font-medium text-ink">{row.raw}</dd></div>
             <div><dt className="text-xs text-ink-faint">比較狀態</dt><dd className="mt-1 text-ink-soft">{STATUS[row.status]}</dd>{row.amount && <dd className="mt-1 text-xs text-ink-soft">{row.amount.scopeLabel}</dd>}</div>
           </dl>
           <Link to={sourceHref(row, links)} className="mt-4 inline-flex min-h-11 w-full items-center justify-between gap-2 rounded-xl border border-jade/20 px-4 text-sm font-semibold text-jade hover:bg-jade/5 focus-visible:outline-2 focus-visible:outline-jade" aria-label={`核對 ${row.insurer} ${row.productName} 的來源`}>核對來源原文<ArrowUpRight size={16} aria-hidden="true" /></Link>

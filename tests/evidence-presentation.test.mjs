@@ -13,3 +13,12 @@ test('expanded view preserves every record and the original order',()=>{
  assert.deepEqual(presentationRows([],false),[]);
  assert.deepEqual(presentationRows(rows.slice(0,3),false),rows.slice(0,3));
 });
+
+import { readFileSync } from 'node:fs';
+test('website summaries are not labelled as original policy quotations',()=>{
+ const rows=readFileSync('src/components/category/EvidenceRows.tsx','utf8');
+ const panel=readFileSync('src/components/category/EvidenceComparisonPanel.tsx','utf8');
+ assert.ok(rows.includes('網站摘要'));
+ assert.ok(!rows.includes('原文摘要'));
+ assert.ok(!panel.includes('對照下方原文'));
+});

@@ -1,67 +1,61 @@
 export interface ComparableAmount {
   value: number;
   basis: "year" | "lifetime" | "day" | "trip" | "event" | "unspecified";
-  /** Includes the exact period and beneficiary; empty means not safe to compare. */
   scopeKey: string;
   scopeLabel: string;
+  comparable: boolean;
 }
-const PERIODS: { key: string; basis: ComparableAmount["basis"]; label: string; pattern: RegExp }[] = [
-  { key: "year", basis: "year", label: "每年", pattern: /每(?:個)?保單年度|每保單年|每年度|每年|全年|年度|per\s+(?:policy\s+)?year|annually|annual/gi },
-  { key: "lifetime", basis: "lifetime", label: "終身", pattern: /終身|lifetime/gi },
-  { key: "day", basis: "day", label: "每日", pattern: /每日|每天|per\s+day|daily/gi },
-  { key: "trip", basis: "trip", label: "每次旅程", pattern: /每次旅程|每旅程|每程|per\s+(?:trip|journey)/gi },
-  { key: "claim", basis: "event", label: "每次索償", pattern: /每次索償|每宗索償|per\s+claim/gi },
-  { key: "admission", basis: "event", label: "每次住院", pattern: /每次住院|per\s+(?:admission|hospitalisation|hospitalization)/gi },
-  { key: "visit", basis: "event", label: "每次診症", pattern: /每次診症|每次門診|per\s+visit/gi },
-  { key: "incident", basis: "event", label: "每次事故", pattern: /每次事故|每宗事故|每事故|per\s+(?:incident|occurrence)/gi },
-  { key: "unknown-event", basis: "event", label: "每次（口徑未明）", pattern: /每次|每宗|per\s+event/gi },
+const PERIODS: [string, ComparableAmount["basis"], string, RegExp][] = [
+  ["policy-year", "year", "每保單年度", /每(?:個)?保單年度|\bper policy year\b|\beach policy year\b/gi],
+  ["calendar-year", "year", "每曆年", /每曆年|\bper calendar year\b/gi],
+  ["year", "year", "每年（年度定義未註明）", /每年|全年|年度|\bper year\b|\bannual(?:ly)?\b|\byearly\b/gi],
+  ["lifetime", "lifetime", "終身", /終身|\blifetime\b/gi],
+  ["day", "day", "每日", /每日|每天|\bper day\b|\bdaily\b/gi],
+  ["trip", "trip", "每次旅程", /每次旅程|每旅程|每程|\bper (?:trip|journey)\b/gi],
+  ["admission", "event", "每次住院", /每次住院|\bper (?:admission|hospitalisation|hospitalization)\b/gi],
+  ["claim", "event", "每次索償", /每次索償|每宗索償|\bper claim\b/gi],
+  ["visit", "event", "每次診症", /每次(?:診症|門診)|\bper (?:visit|consultation)\b/gi],
+  ["incident", "event", "每次事故", /每次事故|每宗事故|每事故|\bper (?:incident|occurrence)\b/gi],
+  ["generic-event", "event", "每次（事故／索償等定義未註明）", /每次|每宗|\bper event\b/gi],
 ];
-const SUBJECTS = [
-  { key: "person", label: "每人", pattern: /每(?:名|位|一)?受保人|每人|per\s+(?:insured\s+)?person/gi },
-  { key: "family", label: "每家庭", pattern: /每(?:個)?家庭|per\s+family/gi },
-  { key: "policy", label: "每保單", pattern: /每(?:份)?保單|per\s+policy/gi },
+const RECIPIENTS: [string, string, RegExp][] = [
+  ["person", "每人", /每位受保人|每名受保人|每受保人|每人|\bper (?:insured person|person)\b/gi],
+  ["policy", "每保單", /每份保單|每保單|\bper policy\b/gi],
 ];
 
-/** Fail closed: parse the whole summary, not the largest number inside free-form prose. */
+/** A bounded grammar, not 'extract the largest number from arbitrary insurance prose'. */
 export function comparableAmount(raw?: string): ComparableAmount | null {
-  if (typeof raw !== "string" || !raw.trim() || raw.length > 1000) return null;
+  if (!raw || raw.length > 2000) return null;
   const text = raw.normalize("NFKC").trim();
-  const amounts = [...text.matchAll(/(?:HK\$|HKD)\s*([\d,.]+)\s*(萬|億)?/gi)];
+  const amounts = [...text.matchAll(/(?:HK\$|\bHKD(?![A-Za-z])|港幣|港元)\s*((?:0|[1-9]\d{0,2}(?:,\d{3})+|[1-9]\d*)(?:\.\d+)?)\s*(萬|億)?/gi)];
   if (amounts.length !== 1) return null;
   const match = amounts[0];
-  if (!/^(?:0|[1-9]\d*|[1-9]\d{0,2}(?:,\d{3})+)(?:\.\d{1,2})?$/.test(match[1])) return null;
-  const value = Number(match[1].replaceAll(",", "")) * (match[2] === "萬" ? 10_000 : match[2] === "億" ? 100_000_000 : 1);
+  let rest = text.slice(0, match.index) + text.slice(match.index! + match[0].length);
+  const value = Number(match[1].replaceAll(",", "")) * (match[2] === "億" ? 100_000_000 : match[2] === "萬" ? 10_000 : 1);
   if (!Number.isFinite(value) || value < 0 || value > Number.MAX_SAFE_INTEGER) return null;
-  let rest = text.replace(match[0], " ");
-  const periods = PERIODS.filter(period => {
-    let found = false;
-    rest = rest.replace(period.pattern, () => { found = true; return " "; });
-    return found;
-  });
-  const subjects = SUBJECTS.filter(subject => {
-    let found = false;
-    rest = rest.replace(subject.pattern, () => { found = true; return " "; });
-    return found;
-  });
-  if (periods.length > 1 || subjects.length > 1) return null;
-  // Any remaining qualifier/currency/number could change the promise. Do not discard it.
-  rest = rest.replace(/賠償限額|保障限額|保障額|賠償額|限額|上限|最高|maximum|limit|up\s+to/gi, "")
-    .replace(/[\s()[\]:,。/]/g, "");
-  if (rest) return null;
-  const period = periods[0];
-  const subject = subjects[0];
+  const periods: (typeof PERIODS)[number][] = [];
+  for (const period of PERIODS) rest = rest.replace(period[3], () => { periods.push(period); return " "; });
+  const recipients: (typeof RECIPIENTS)[number][] = [];
+  for (const recipient of RECIPIENTS) rest = rest.replace(recipient[2], () => { recipients.push(recipient); return " "; });
+  // Multiple scope mentions may describe layered limits; do not choose one.
+  if (periods.length > 1 || recipients.length > 1) return null;
+  rest = rest.replace(/最高賠償額|賠償限額|保障上限|最高|上限|限額|\bmaximum\b|\bmax\b|\blimit\b|\bup to\b/gi, "");
+  if (rest.replace(/[\s()（）:：/／]/g, "")) return null;
+  const period = periods[0], recipient = recipients[0];
+  const basis = period?.[1] ?? "unspecified";
   return {
-    value, basis: period?.basis ?? "unspecified",
-    scopeKey: period && period.key !== "unknown-event" ? `${period.key}:${subject?.key ?? "unstated"}` : "",
-    scopeLabel: `${period?.label ?? "期間未明示"} · ${subject?.label ?? "對象未明示"}`,
+    value, basis,
+    scopeKey: `${period?.[0] ?? "unspecified"}:${recipient?.[0] ?? "unspecified"}`,
+    scopeLabel: `${period?.[2] ?? "期間未明示"} · ${recipient?.[1] ?? "每人／每保單未註明"}`,
+    comparable: Boolean(period && period[0] !== "generic-event"),
   };
 }
-
 export function comparableBest(limits: (string | undefined)[], label = ""): Set<number> {
-  const rows = limits.map(comparableAmount);
-  if (rows.length < 2 || rows.some(row => !row?.scopeKey)) return new Set();
-  if (new Set(rows.map(row => row!.scopeKey)).size !== 1) return new Set();
-  const values = rows.map(row => row!.value);
+  const parsed = limits.map(value => comparableAmount(value));
+  if (parsed.length < 2 || parsed.some(row => !row?.comparable)) return new Set();
+  const rows = parsed as ComparableAmount[];
+  if (new Set(rows.map(row => row.scopeKey)).size !== 1) return new Set();
+  const values = rows.map(row => row.value);
   if (Math.min(...values) === Math.max(...values)) return new Set();
   const best = /自負額|墊底費|deductible|excess/i.test(label) ? Math.min(...values) : Math.max(...values);
   return new Set(values.flatMap((value, index) => value === best ? [index] : []));

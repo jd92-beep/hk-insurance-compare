@@ -8,7 +8,7 @@ export interface LimitRow {
   productId: string; productName: string; insurer: string; coverageIndex: number | null;
   raw: string; status: LimitStatus; amount: ComparableAmount | null;
 }
-export interface LimitGroup { basis: ComparableAmount["basis"]; scopeKey: string; scopeLabel: string; rows: LimitRow[]; maximum: number }
+export interface LimitGroup { scopeKey: string; scopeLabel: string; basis: ComparableAmount["basis"]; rows: LimitRow[]; maximum: number }
 const labelKey = (value: string) => value.normalize("NFKC").trim().replace(/\s+/g, " ").toLowerCase();
 
 /** Match exactly named summary fields; never infer equivalent benefits by fuzzy text. */
@@ -38,10 +38,10 @@ export function limitRows(products: Product[], metric: string): LimitRow[] {
     const { row, index } = matching[0];
     const raw = row.limit?.trim() || "未提供限額";
     const common = { ...base, coverageIndex: index, raw };
-    if (/無上限|不設上限|unlimited/i.test(raw)) return { ...common, status: "unlimited", amount: null };
+    if (/^(?:(?:每年|每保單年度|終身|年度)\s*)?(?:無上限|不設上限|unlimited)(?:[\s（(;；]|$)/i.test(raw.normalize("NFKC").trim())) return { ...common, status: "unlimited", amount: null };
     const amount = comparableAmount(raw);
     if (!amount) return { ...common, status: "unsupported", amount: null };
-    if (amount.basis === "unspecified" || amount.basis === "event") return { ...common, status: "unscoped", amount: null };
+    if (!amount.comparable || amount.basis === "event") return { ...common, status: "unscoped", amount: null };
     return { ...common, status: "numeric", amount };
   });
 }
@@ -50,12 +50,12 @@ export function limitRows(products: Product[], metric: string): LimitRow[] {
 export function limitGroups(rows: LimitRow[]): LimitGroup[] {
   const groups = new Map<string, LimitRow[]>();
   for (const row of rows) {
-    if (row.status !== "numeric" || !row.amount || !row.amount.scopeKey) continue;
+    if (row.status !== "numeric" || !row.amount?.comparable) continue;
     const list = groups.get(row.amount.scopeKey) ?? [];
     list.push(row); groups.set(row.amount.scopeKey, list);
   }
   return [...groups.entries()].filter(([, members]) => members.length >= 2).map(([scopeKey, members]) => ({
-    basis: members[0].amount!.basis, scopeKey, scopeLabel: members[0].amount!.scopeLabel, rows: members, maximum: Math.max(...members.map(row => row.amount!.value)),
+    scopeKey, scopeLabel: members[0].amount!.scopeLabel, basis: members[0].amount!.basis, rows: members, maximum: Math.max(...members.map(row => row.amount!.value)),
   }));
 }
 

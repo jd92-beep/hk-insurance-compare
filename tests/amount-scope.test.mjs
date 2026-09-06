@@ -1,40 +1,40 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { comparableAmount, comparableBest } from '../src/lib/comparable-amount.ts';
-import { limitRows, limitGroups } from '../src/lib/evidence-chart.ts';
-const product = (id, limit) => ({ id, product_name:id, product_name_zh:id, insurer:'test', insurer_zh:'Test', coverage:[{item:'醫療',limit}] });
-
-test('malformed numbers and unparsed qualifications must not become scalar amounts', () => {
-  for (const input of ['每年 HK$1,,000', '每年 HK$12,34', '每年 HK$0001', '每年 HK$500 僅限指定醫院', '每年 HK$500 (另加附加保障)', '每年 HK$500 或全數賠償', '每年 HK$500 另設分項上限', '每年 HK$500 EUR', '每年 HK$500，最多20次']) {
-    assert.equal(comparableAmount(input), null, input);
-  }
+import { limitGroups, limitRows } from '../src/lib/evidence-chart.ts';
+const product=(id,limit)=>({id,insurer:'TEST',insurer_zh:'測試',product_name:id,product_name_zh:id,coverage:[{item:'醫療',limit}]});
+test('conditional or negative prose cannot become an unconditional cap',()=>{
+ for(const raw of ['不保：每年 HK$500','每年 HK$100（只限指定醫院）','每年 HK$100 或全數賠償','每年 HK$100 subject to approval','每年 HK$100 (except US)','每年HK$100 − 自負額']) assert.equal(comparableAmount(raw),null,raw);
 });
-test('fullwidth punctuation is normalized before safety checks', () => {
-  assert.equal(comparableAmount('每年 ＨＫ＄１，０００').value, 1000);
-  assert.equal(comparableAmount('每年 ＨＫ＄１００～５００'), null);
-  assert.equal(comparableAmount('每年 HK$100或US$200'), null);
+test('invalid money grouping, minus signs and normalized foreign currencies are refused',()=>{
+ for(const raw of ['每年 HK$1,00','每年 HK$10,,000','每年 HK$-100','每年HK$100／ＵＳＤ200','每年HK$100萬至200萬','每年 HK$100 + 其他費用']) assert.equal(comparableAmount(raw),null,raw);
+ assert.equal(comparableAmount('每年 ＨＫ＄１，０００').value,1000);
+ assert.equal(comparableAmount('每年 HK$1.5萬').value,15000);
 });
-test('per-person and per-family values cannot win against each other', () => {
-  assert.deepEqual([...comparableBest(['每年每人 HK$1,000','每年每家庭 HK$2,000'])], []);
-  assert.deepEqual([...comparableBest(['每年 HK$1,000','每年每人 HK$2,000'])], []);
-  assert.deepEqual([...comparableBest(['每年每人 HK$1,000','每人每年 HK$2,000'])], [1]);
+test('per-person and per-policy amounts never receive a common best highlight',()=>{
+ assert.deepEqual([...comparableBest(['每人每年 HK$100','每保單每年 HK$200'])],[]);
+ assert.deepEqual([...comparableBest(['每人每年 HK$100','每年 HK$200'])],[]);
+ assert.deepEqual([...comparableBest(['每人每年 HK$100','每人每年 HK$200'])],[1]);
 });
-test('claim, admission and incident are distinct bases; generic per-time cannot win', () => {
-  assert.deepEqual([...comparableBest(['每次索償 HK$1,000','每次住院 HK$2,000'])], []);
-  assert.deepEqual([...comparableBest(['每次 HK$1,000','每次 HK$2,000'])], []);
-  assert.deepEqual([...comparableBest(['每次事故 HK$0','每次事故 HK$500'],'自負額')], [0]);
+test('claim, admission, visit and incident are distinct and generic per-event is unknown',()=>{
+ assert.deepEqual([...comparableBest(['每次住院 HK$100','每次索償 HK$200'])],[]);
+ assert.deepEqual([...comparableBest(['每次門診 HK$100','每次事故 HK$200'])],[]);
+ assert.deepEqual([...comparableBest(['每次 HK$100','每次 HK$200'])],[]);
+ assert.deepEqual([...comparableBest(['每次索償 HK$0','每次索償 HK$500'],'自負額')],[0]);
 });
-test('a shared chart panel requires identical time and beneficiary scope', () => {
-  const rows=limitRows([product('p1','每年每人 HK$100'),product('f1','每年每家庭 HK$200'),product('p2','每年每人 HK$300'),product('f2','每年每家庭 HK$400')],'醫療');
-  const groups=limitGroups(rows);
-  assert.equal(groups.length,2);
-  assert.deepEqual(groups.map(g=>g.rows.map(r=>r.productId)),[['p1','p2'],['f1','f2']]);
-  assert.equal(new Set(groups.map(g=>g.scopeKey)).size,2);
-  assert.ok(groups[0].scopeLabel.includes('每人'));
+test('calendar and policy year are not silently equated',()=>{
+ assert.deepEqual([...comparableBest(['每曆年 HK$100','每保單年度 HK$200'])],[]);
+ assert.deepEqual([...comparableBest(['每年 HK$100','每保單年度 HK$200'])],[]);
 });
-test('safe amounts retain Chinese magnitudes and explicit zero deductibles', () => {
-  assert.equal(comparableAmount('每年最高 HK$500萬').value,5_000_000);
-  assert.equal(comparableAmount('終身 HK$1.5億').value,150_000_000);
-  assert.equal(comparableAmount('每次事故 HK$0').value,0);
-  assert.equal(comparableAmount('每年/每日 HK$500'),null);
+test('chart grouping preserves recipient boundaries as well as period',()=>{
+ const rows=limitRows([product('p1','每人每年 HK$100'),product('s1','每保單每年 HK$500'),product('p2','每人每年 HK$200'),product('s2','每保單每年 HK$600')],'醫療');
+ const groups=limitGroups(rows);
+ assert.equal(groups.length,2);
+ assert.ok(groups.some(g=>g.rows.map(r=>r.productId).join(',')==='p1,p2'));
+ assert.ok(groups.some(g=>g.rows.map(r=>r.productId).join(',')==='s1,s2'));
+});
+test('negative unlimited mentions are not presented as unlimited protection',()=>{
+ assert.equal(limitRows([product('no','並非無上限')],'醫療')[0].status,'unsupported');
+ assert.equal(limitRows([product('mixed','每年HK$100萬，終身無上限')],'醫療')[0].status,'unsupported');
+ assert.equal(limitRows([product('yes','無上限（受條款限制）')],'醫療')[0].status,'unlimited');
 });

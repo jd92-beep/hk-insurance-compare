@@ -1,3 +1,4 @@
+import { purchaseUrl } from "@/lib/product-availability";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ExternalLink, Link2, Plus, RotateCcw, X } from "lucide-react";
@@ -44,7 +45,7 @@ function SplitWords({ words, className }: { words: string[]; className?: string 
 function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => void }) {
   const color = categoryColor(product.category);
   const icon = CATEGORY_META[product.category]?.icon;
-  const buyUrl = product.official_buy_url || product.promo?.buy_url;
+  const buyUrl = purchaseUrl(product);
   const origPrice = product.original_price ?? product.promo?.original_price;
   const discPrice = product.discounted_price ?? product.promo?.discounted_price;
   const hasDiscount = Boolean(origPrice && discPrice && discPrice <= origPrice);

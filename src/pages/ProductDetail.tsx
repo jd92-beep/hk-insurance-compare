@@ -1,3 +1,4 @@
+import EvidenceNotice from "@/components/product/EvidenceNotice";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router";
 import { motion } from "framer-motion";
@@ -111,6 +112,7 @@ export default function ProductDetail() {
     <>
       {/* S1 產品頁首 */}
       <ProductHeader product={product} />
+      <EvidenceNotice product={product} />
 
       {/* 重點一覽卡（medical 專用：認可編號 + 關鍵數字 + 保證亮點，有數據先顯示） */}
       <KeyFactsCard product={product} />

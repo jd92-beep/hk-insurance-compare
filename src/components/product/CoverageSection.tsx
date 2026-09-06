@@ -36,10 +36,16 @@ function resolveSourceInfo(c: CoverageItem, citationEntries?: CitationEntry[]) {
   // 智能 fallback：如果 citationEntries 有對應保障項目，自動對齊
   if (citationEntries && citationEntries.length > 0) {
     const match = citationEntries.find((entry) => {
-      const summary = entry.citation.claim_summary || "";
-      const quote = entry.citation.quote || "";
-      return entry.citation.claim_field === "coverage" && c.item.trim().length > 0 && summary.trim().length > 0 &&
-        (summary.trim() === c.item.trim() || summary.startsWith(`${c.item}：`) || quote.trim() === c.item.trim());
+      const summary = (entry.citation.claim_summary || "").trim();
+      const quote = (entry.citation.quote || "").trim();
+      const item = c.item.trim();
+      if (entry.citation.claim_field !== "coverage" || item.length === 0 || summary.length === 0) return false;
+      // 防止空字串/子字串誤配之餘，接納真實格式「個人責任 HK$2,000,000」、
+      // 「緊急醫療費用—全年計劃 …」：item 必須係完整前綴，後面跟分隔符或開括號
+      const ITEM_SEPARATORS = new Set(["：", ":", "—", "–", "-", "·", "／", "/", " ", "（", "("]);
+      const summaryMatches =
+        summary === item || (summary.startsWith(item) && ITEM_SEPARATORS.has(summary.charAt(item.length)));
+      return summaryMatches || quote === item;
     });
     if (match) {
       return {

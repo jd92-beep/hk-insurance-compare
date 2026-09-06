@@ -1,3 +1,5 @@
+import { PDF_DOCUMENT_HASHES } from "./generated/pdf-manifest.ts";
+import { mirroredPdfHash } from "./pdf-integrity.ts";
 import type { Product } from "@/types/insurance";
 
 export function sourceTarget(value?: string, explicitPage?: number | null): { url: string; page: number; local: boolean } | null {
@@ -52,18 +54,18 @@ export interface EvidenceEntry {
   document: string;
   fingerprint: string;
 }
-function fingerprint(entry: Omit<EvidenceEntry, "fingerprint">): string {
+function fingerprint(entry: Omit<EvidenceEntry, "fingerprint">, documentHash?: string): string {
   let hash = 14695981039346656037n;
-  for (const char of JSON.stringify(entry)) hash = BigInt.asUintN(64, (hash ^ BigInt(char.codePointAt(0)!)) * 1099511628211n);
+  for (const char of JSON.stringify(["pdf-version-v1", entry, documentHash ?? null])) hash = BigInt.asUintN(64, (hash ^ BigInt(char.codePointAt(0)!)) * 1099511628211n);
   return hash.toString(16);
 }
-export function evidenceEntries(product: Product): EvidenceEntry[] {
+export function evidenceEntries(product: Product, versions: Readonly<Record<string, string>> = PDF_DOCUMENT_HASHES): EvidenceEntry[] {
   const rows: Omit<EvidenceEntry, "fingerprint">[] = [
     ...(product.coverage ?? []).map((row, index) => ({ kind: "coverage" as const, index, url: row.source_url ?? "", page: row.page ?? null, quote: row.quote ?? "", item: row.item, limit: row.limit, document: row.document_name ?? "來源文件" })),
     ...(product.citations ?? []).map((row, index) => ({ kind: "citation" as const, index, url: row.url, page: row.page, quote: row.quote, item: row.claim_summary, limit: "", document: row.document })),
     ...(product.source_urls ?? []).map((url, index) => ({ kind: "source" as const, index, url, page: null, quote: "", item: "產品來源", limit: "", document: "來源網站／文件" })),
   ];
-  return rows.filter(row => sourceTarget(row.url)).map(row => ({ ...row, fingerprint: fingerprint(row) }));
+  return rows.filter(row => sourceTarget(row.url)).map(row => ({ ...row, fingerprint: fingerprint(row, mirroredPdfHash(row.url, versions)) }));
 }
 export function evidenceHref(productId: string, entry: EvidenceEntry): string {
   return `/documents?${new URLSearchParams({ product: productId, kind: entry.kind, entry: String(entry.index), ref: entry.fingerprint })}`;

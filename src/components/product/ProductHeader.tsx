@@ -321,7 +321,7 @@ export default function ProductHeader({ product }: { product: Product }) {
                   />
                   <div>
                     <p className="font-serif text-[17px] font-bold leading-snug text-ink">
-                      官方文件核實
+                      來源參考
                     </p>
                     <p className="mt-0.5 text-small text-ink-soft">
                       資料來自保險公司官方文件

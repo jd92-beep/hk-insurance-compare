@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { ExternalLink, FileText } from "lucide-react";
 import type { Product } from "@/types/insurance";
@@ -35,6 +36,7 @@ export default function SourcesSection({ product }: { product: Product }) {
   return (
     <div>
       <SectionHeading index="07" title="官方來源" />
+      <Link to={`/documents?${new URLSearchParams({ product: product.id })}`} className="btn-ghost mb-5 min-h-11">到 PDF 中心逐條核對</Link>
       <motion.ul
         initial="hidden"
         whileInView="show"

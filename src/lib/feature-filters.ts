@@ -1,3 +1,4 @@
+import { assessFeature } from "./feature-evidence.ts";
 import type { Product } from "../types/insurance";
 
 export interface FeatureFilterTag {
@@ -40,8 +41,8 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "rental-car",
-      label: "租車自負額保障 (Rental Vehicle Excess)",
-      keywords: ["租車", "自駕遊", "自負額", "rental car", "rental vehicle excess", "車輛自負額", "海外租車", "私家車或露營車"],
+      label: "自駕遊租車自負額保障 (Rental Vehicle Excess)",
+      keywords: ["租車", "rental car", "rental vehicle excess", "車輛自負額", "海外租車", "私家車或露營車"],
     },
     {
       id: "sports-cover",
@@ -1559,39 +1560,7 @@ export function getCategoryScenarioPresets(categoryId: string): ScenarioPreset[]
 
 /** 檢測單一產品是否命中指定特點標籤 */
 export function matchSingleFeature(product: Product, tag: FeatureFilterTag): { matched: boolean; matchedKeyword?: string } {
-  const coverages = product.coverage ?? [];
-  const keyTerms = product.key_terms ?? [];
-  const planTiers = product.plan_tiers ?? [];
-
-  for (const kw of tag.keywords) {
-    const kwLower = kw.toLowerCase();
-
-    // 1. 比對 coverage
-    for (const c of coverages) {
-      if (
-        c.item.toLowerCase().includes(kwLower) ||
-        (c.limit && c.limit.toLowerCase().includes(kwLower))
-      ) {
-        return { matched: true, matchedKeyword: kw };
-      }
-    }
-
-    // 2. 比對 key_terms
-    for (const term of keyTerms) {
-      if (term.toLowerCase().includes(kwLower)) {
-        return { matched: true, matchedKeyword: kw };
-      }
-    }
-
-    // 3. 比對 plan_tiers
-    for (const tier of planTiers) {
-      if (tier.toLowerCase().includes(kwLower)) {
-        return { matched: true, matchedKeyword: kw };
-      }
-    }
-  }
-
-  return { matched: false };
+  return assessFeature(product, tag.keywords);
 }
 
 /** 計算產品對於一組選定特點標籤的契合度評分 (Match Score) */
@@ -1674,7 +1643,7 @@ export function filterAndRankProductsByFeatures(
   totalSelected: number;
 } {
   const allTags = getCategoryFeatureTags(categoryId);
-  const validTagIds = selectedTagIds.filter((id) => allTags.some((t) => t.id === id));
+  const validTagIds = [...new Set(selectedTagIds)].filter((id) => allTags.some((t) => t.id === id));
 
   if (validTagIds.length === 0) {
     return {

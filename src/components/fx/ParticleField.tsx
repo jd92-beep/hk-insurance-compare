@@ -1,151 +1,97 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { createFrameLoop, particleBudget, seededRandom } from "@/lib/motion-runtime";
 
-/**
- * Canvas 2D 微粒層：慢速上升嘅紙屑光點（ink 色為主，少量品牌紅），
- * 滑鼠埋嚟會輕輕推開（互動感）。
- * - `IntersectionObserver`：離開視口即停 rAF，唔食電。
- * - `prefers-reduced-motion`：唔 render。
- * - DPR cap 2，粒子數 desktop ~40 / 觸控 ~15。
- */
-export default function ParticleField({
-  className,
-  /** 粒子密度倍率（1 = 標準） */
-  density = 1,
-}: {
-  className?: string;
-  density?: number;
-}) {
+/** Faceted optical gems: pre-rendered atlas, perspective depth, no WebGL payload. */
+function jewel(hue: string): HTMLCanvasElement {
+  const tile = document.createElement("canvas"); tile.width = tile.height = 96;
+  const c = tile.getContext("2d")!;
+  c.translate(48, 48);
+  const glow = c.createRadialGradient(-5, -8, 1, 0, 0, 44);
+  glow.addColorStop(0, `${hue}45`); glow.addColorStop(1, `${hue}00`);
+  c.fillStyle = glow; c.fillRect(-48, -48, 96, 96);
+  const points = [[0, -24], [17, -10], [21, 9], [0, 26], [-20, 9], [-16, -11]];
+  c.beginPath(); points.forEach(([x,y], i) => i ? c.lineTo(x,y) : c.moveTo(x,y)); c.closePath();
+  const body = c.createLinearGradient(-18, -24, 20, 26);
+  body.addColorStop(0, "#ffffff"); body.addColorStop(.36, `${hue}aa`); body.addColorStop(1, `${hue}33`);
+  c.fillStyle = body; c.fill(); c.strokeStyle = `${hue}aa`; c.lineWidth = .8; c.stroke();
+  points.forEach(([x,y], i) => {
+    const next = points[(i + 1) % points.length];
+    c.beginPath(); c.moveTo(-3,-4); c.lineTo(x,y); c.lineTo(next[0],next[1]); c.closePath();
+    c.fillStyle = i % 2 ? "#ffffff44" : `${hue}22`; c.fill();
+    c.strokeStyle = "#ffffff66"; c.lineWidth = .55; c.stroke();
+  });
+  c.fillStyle = "#ffffffdd"; c.fillRect(-8,-14,2,7);
+  return tile;
+}
+
+export default function ParticleField({ className, density = 1 }: { className?: string; density?: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [enabled] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  );
-
   useEffect(() => {
-    if (!enabled) return;
-    const canvas = canvasRef.current;
-    const parent = canvas?.parentElement;
-    if (!canvas || !parent) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let raf = 0;
-    let running = false;
-    let w = 0;
-    let h = 0;
-    const mouse = { x: -9999, y: -9999 };
-    const coarse = window.matchMedia("(pointer: coarse)").matches;
-    const COUNT = Math.round((coarse ? 15 : 40) * density);
-
-    type P = { x: number; y: number; r: number; vx: number; vy: number; a: number; red: boolean };
-    let parts: P[] = [];
-
+    const canvas = canvasRef.current, host = canvas?.parentElement;
+    if (!canvas || !host) return;
+    const ctx = canvas.getContext("2d", { alpha: true }); if (!ctx) return;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)"), coarse = matchMedia("(pointer: coarse)");
+    const random = seededRandom(92831);
+    const atlas = ["#0e7c66", "#b58a48", "#779cae", "#c8102e"].map(jewel);
+    const particles = Array.from({ length: particleBudget(density, coarse.matches) }, (_, i) => ({
+      u: random(), v: random(), z: .18 + random() * .82, phase: random() * Math.PI * 2,
+      vx: 0, vy: 0, ox: 0, oy: 0, sprite: i % 4,
+    }));
+    let width = 1, height = 1, visible = false, last = 0, elapsed = 0;
+    const pointer = { x: -10000, y: -10000 };
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const rect = parent.getBoundingClientRect();
-      w = rect.width;
-      h = rect.height;
-      canvas.width = Math.max(1, Math.round(w * dpr));
-      canvas.height = Math.max(1, Math.round(h * dpr));
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
+      const r = host.getBoundingClientRect();
+      width = Math.max(1, r.width); height = Math.max(1, r.height);
+      const dpr = Math.min(devicePixelRatio || 1, 1.75, Math.sqrt(2_000_000 / (width * height)));
+      canvas.width = Math.max(1, Math.round(width * dpr)); canvas.height = Math.max(1, Math.round(height * dpr));
+      canvas.style.width = `${width}px`; canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
-
-    const seed = () => {
-      parts = Array.from({ length: COUNT }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: 1.2 + Math.random() * 2.6,
-        vx: (Math.random() - 0.5) * 0.12,
-        vy: -(0.08 + Math.random() * 0.22),
-        a: 0.08 + Math.random() * 0.14,
-        red: Math.random() < 0.18,
-      }));
-    };
-
-    const tick = () => {
-      ctx.clearRect(0, 0, w, h);
-      for (const p of parts) {
-        // 滑鼠排斥力（120px 半徑）
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 < 14400) {
-          const d = Math.sqrt(d2) || 1;
-          const f = ((120 - d) / 120) * 0.35;
-          p.vx += (dx / d) * f;
-          p.vy += (dy / d) * f;
-        }
-        // 衰減 + 回歸慢速上升基線
-        p.vx *= 0.96;
-        p.vy = p.vy * 0.96 + -0.15 * 0.04;
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.y < -8) {
-          p.y = h + 8;
-          p.x = Math.random() * w;
-        }
-        if (p.x < -8) p.x = w + 8;
-        else if (p.x > w + 8) p.x = -8;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.red ? `rgba(200,16,46,${p.a})` : `rgba(24,29,46,${p.a})`;
-        ctx.fill();
-      }
-      raf = requestAnimationFrame(tick);
-    };
-
-    const start = () => {
-      if (!running) {
-        running = true;
-        raf = requestAnimationFrame(tick);
+    const draw = (now: number) => {
+      const dt = last ? Math.min((now - last) / 1000, .04) : 1 / 60;
+      last = now; if (!reduced.matches) elapsed += dt;
+      ctx.clearRect(0, 0, width, height);
+      for (const p of particles) {
+        const depth = 1 / (1.6 - p.z * .6);
+        const x = p.u * width + Math.sin(elapsed * .16 + p.phase) * 14 * depth;
+        const y = p.v * height + Math.cos(elapsed * .12 + p.phase) * 18 * depth;
+        const dx = x + p.ox - pointer.x, dy = y + p.oy - pointer.y, distance = Math.hypot(dx, dy);
+        const force = !reduced.matches && distance < 145 ? (1 - distance / 145) * 100 * depth : 0;
+        p.vx += ((dx / (distance || 1)) * force - p.ox * 7 - p.vx * 6) * dt;
+        p.vy += ((dy / (distance || 1)) * force - p.oy * 7 - p.vy * 6) * dt;
+        p.ox += p.vx * dt; p.oy += p.vy * dt;
+        const size = (18 + p.z * 23) * depth;
+        ctx.save(); ctx.translate(x + p.ox, y + p.oy);
+        ctx.rotate(p.phase + elapsed * .06 * depth);
+        ctx.scale(.72 + .28 * Math.cos(elapsed * .25 + p.phase) ** 2, 1);
+        ctx.globalAlpha = .25 + p.z * .48;
+        ctx.drawImage(atlas[p.sprite], -size / 2, -size / 2, size, size); ctx.restore();
       }
     };
-    const stop = () => {
-      running = false;
-      cancelAnimationFrame(raf);
+    const loop = createFrameLoop(draw);
+    const sync = () => {
+      last = 0;
+      if (visible && !document.hidden && !reduced.matches) loop.start();
+      else { loop.stop(); if (visible && !document.hidden) draw(performance.now()); }
     };
-
+    const move = (e: PointerEvent) => {
+      if (e.pointerType === "touch" || coarse.matches || reduced.matches) return;
+      // 即場讀 rect：async 數據載入會推移位佈局，cache 咗嘅 top/left 會過期
+      const r = host.getBoundingClientRect();
+      pointer.x = e.clientX - r.left; pointer.y = e.clientY - r.top;
+    };
+    const leave = () => { pointer.x = pointer.y = -10000; };
     resize();
-    seed();
-
-    const ro = new ResizeObserver(resize);
-    ro.observe(parent);
-    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), {
-      threshold: 0,
-    });
-    io.observe(parent);
-
-    const onMove = (e: PointerEvent) => {
-      const r = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - r.left;
-      mouse.y = e.clientY - r.top;
-    };
-    const onLeave = () => {
-      mouse.x = -9999;
-      mouse.y = -9999;
-    };
-    parent.addEventListener("pointermove", onMove);
-    parent.addEventListener("pointerleave", onLeave);
-
+    const ro = new ResizeObserver(() => { resize(); if (reduced.matches) draw(performance.now()); }); ro.observe(host);
+    const io = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }); io.observe(host);
+    host.addEventListener("pointermove", move, { passive: true }); host.addEventListener("pointerleave", leave);
+    document.addEventListener("visibilitychange", sync); reduced.addEventListener("change", sync);
     return () => {
-      stop();
-      ro.disconnect();
-      io.disconnect();
-      parent.removeEventListener("pointermove", onMove);
-      parent.removeEventListener("pointerleave", onLeave);
+      loop.stop(); ro.disconnect(); io.disconnect();
+      host.removeEventListener("pointermove", move); host.removeEventListener("pointerleave", leave);
+      document.removeEventListener("visibilitychange", sync); reduced.removeEventListener("change", sync);
     };
-  }, [enabled, density]);
-
-  if (!enabled) return null;
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      className={cn("pointer-events-none absolute inset-0", className)}
-    />
-  );
+  }, [density]);
+  return <canvas ref={canvasRef} aria-hidden="true" data-particle-quality="faceted-depth" className={cn("pointer-events-none absolute inset-0", className)} />;
 }

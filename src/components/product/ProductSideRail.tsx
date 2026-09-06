@@ -1,3 +1,4 @@
+import { purchaseUrl } from "@/lib/product-availability";
 import { ExternalLink, FileText } from "lucide-react";
 import type { Product } from "@/types/insurance";
 import CertCodeChip from "@/components/product/CertCodeChip";
@@ -52,7 +53,7 @@ export default function ProductSideRail({
   const docs = quickDocLinks(product);
 
   const hasFacts = facts.annualLimitAmount || facts.premium30 || certs.length > 0;
-  const buyUrl = product.official_buy_url || product.promo?.buy_url;
+  const buyUrl = purchaseUrl(product);
   const origPrice = product.original_price ?? product.promo?.original_price;
   const discPrice = product.discounted_price ?? product.promo?.discounted_price;
 

@@ -1,3 +1,4 @@
+import { purchaseUrl } from "@/lib/product-availability";
 import { Fragment, useState, type MouseEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -570,9 +571,9 @@ export default function ProductTable({
                           <ExternalLink size={12} />
                         </a>
                       )}
-                      {(p.official_buy_url || p.promo?.buy_url) && (
+                      {(purchaseUrl(p)) && (
                         <a
-                          href={p.official_buy_url || p.promo?.buy_url}
+                          href={purchaseUrl(p)}
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}

@@ -1,3 +1,4 @@
+import { purchaseUrl } from "@/lib/product-availability";
 import { ExternalLink, FileText, Plus, Check, Sparkles, Copy } from "lucide-react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
@@ -31,7 +32,7 @@ export default function ProductCard({
   const extraTiers = tiers.length - shownTiers.length;
   const highlights = (product.coverage ?? []).slice(0, 3);
   const sourceUrl = product.source_urls?.[0];
-  const buyUrl = product.official_buy_url || product.promo?.buy_url || product.source_urls?.[0];
+  const buyUrl = purchaseUrl(product);
   const origPrice = product.original_price || product.promo?.original_price;
   const discPrice = product.discounted_price || product.promo?.discounted_price;
   const hasDiscount = Boolean(origPrice && discPrice && origPrice > discPrice);

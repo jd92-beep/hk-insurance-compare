@@ -32,7 +32,9 @@ jobs:
           server=$!
           trap 'kill "$server" || true' EXIT
           for attempt in $(seq 1 30); do curl -sf http://127.0.0.1:4173/ > /dev/null && break; sleep 1; done
-          PLAYWRIGHT_MODULE="$RUNNER_TEMP/browser-tools/node_modules/playwright/index.mjs" node scripts/browser_search_review.mjs
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/browser-tools/node_modules/playwright/index.mjs"
+          node scripts/browser_search_review.mjs
+          node scripts/browser_compare_store_review.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

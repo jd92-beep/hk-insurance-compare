@@ -76,7 +76,7 @@ export default function ProductCard({
           />
         </div>
 
-        {/* 智能契合度 Badge（用戶自選重視保障命中狀態） */}
+        {/* 智能摘要命中率 Badge（用戶自選重視保障命中狀態） */}
         {match && match.totalSelected > 0 && (
           <div className="flex flex-col gap-1 rounded-lg border border-jade/30 bg-jade/10 p-2.5 text-[12px]">
             <div className="flex items-center justify-between gap-1.5">
@@ -85,11 +85,11 @@ export default function ProductCard({
                 match.matchedCount === match.totalSelected ? "text-jade" : "text-sky-800 dark:text-sky-300"
               )}>
                 {match.matchedCount === match.totalSelected
-                  ? `🎯 完美符合全部 ${match.matchedCount}/${match.totalSelected} 項重視保障`
-                  : `✨ 符合 ${match.matchedCount}/${match.totalSelected} 項重視保障`}
+                  ? `🎯 摘要命中全部 ${match.matchedCount}/${match.totalSelected} 項所選摘要條件`
+                  : `✨ 符合 ${match.matchedCount}/${match.totalSelected} 項所選摘要條件`}
               </span>
               <span className="font-mono text-[11px] font-bold text-jade">
-                {match.score}% 契合
+                {match.score}% 摘要命中
               </span>
             </div>
             {match.matchedTags.length > 0 && (

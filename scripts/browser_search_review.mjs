@@ -25,6 +25,8 @@ try {
       }
       await page.screenshot({ path: `browser-evidence/${viewport.width}-search.png` });
       await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' });
+      // Radix restores focus in a zero-delay unmount task, after the dialog becomes hidden.
+      await page.waitForFunction(() => document.activeElement?.getAttribute('aria-label') === '全域搜尋（⌘K）', null, { timeout: 5000 });
       assert.ok(await opener.evaluate(el => el === document.activeElement), 'Focus not restored');
       await page.keyboard.press('Control+k'); await dialog.waitFor();
       await input.fill('no-such-insurer-zzzz');

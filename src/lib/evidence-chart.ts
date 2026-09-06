@@ -41,7 +41,7 @@ export function limitRows(products: Product[], metric: string): LimitRow[] {
     if (/無上限|不設上限|unlimited/i.test(raw)) return { ...common, status: "unlimited", amount: null };
     const amount = comparableAmount(raw);
     if (!amount) return { ...common, status: "unsupported", amount: null };
-    if (amount.basis === "unspecified") return { ...common, status: "unscoped", amount: null };
+    if (amount.basis === "unspecified" || amount.basis === "event") return { ...common, status: "unscoped", amount: null };
     return { ...common, status: "numeric", amount };
   });
 }

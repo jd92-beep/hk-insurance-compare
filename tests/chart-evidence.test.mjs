@@ -36,5 +36,8 @@ test('bar widths remain finite for zero, missing and out-of-range values', () =>
 });
 test('the actual category route imports the evidence-aware visualization', () => {
   const source = readFileSync('src/pages/CategoryDetail.tsx', 'utf8');
-  assert.ok(source.includes('@/components/category/EvidenceComparisonPanel'), 'Category route still uses its old chart');
+  assert.ok(source.includes('@/components/category/UniversalComparisonChart'));
+  const entry = readFileSync('src/components/category/UniversalComparisonChart.tsx', 'utf8');
+  assert.ok(entry.includes('./EvidenceComparisonPanel'), 'Category chart is not connected to the evidence panel');
+  assert.ok(!entry.includes('1000000000'), 'Legacy unlimited sentinel remains in the route component');
 });

@@ -1,0 +1,44 @@
+name: Evidence chart regression
+on:
+  pull_request:
+    branches: [master, "review/**"]
+permissions:
+  contents: read
+concurrency:
+  group: evidence-chart-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  chart:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Isolated browser tooling
+        run: |
+          npm install --prefix "$RUNNER_TEMP/browser-tools" --no-save --ignore-scripts playwright@1.63.0
+          node "$RUNNER_TEMP/browser-tools/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: All categories on desktop and mobile
+        run: |
+          set -euo pipefail
+          node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4173 > /tmp/chart-preview.log 2>&1 &
+          server=$!
+          trap 'kill "$server" || true' EXIT
+          for n in $(seq 1 30); do curl -sf http://127.0.0.1:4173/ > /dev/null && break; sleep 1; done
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/browser-tools/node_modules/playwright/index.mjs"
+          node scripts/browser_chart_review.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chart-checks-${{ github.event.pull_request.head.sha }}
+          path: chart-evidence/
+          retention-days: 7

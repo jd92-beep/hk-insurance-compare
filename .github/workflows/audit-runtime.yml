@@ -1,0 +1,44 @@
+name: Audit runtime snapshot
+on:
+  pull_request:
+    branches: [master]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    if: github.head_ref == 'review/ci-evidence-20260906'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Package original runtime and repository PDFs for offline audit
+        run: |
+          mkdir -p audit-runtime
+          tar -czf audit-runtime/runtime.tar.gz node_modules dist
+          tar -czf audit-runtime/documents.tar.gz public/docs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-original-runtime
+          path: audit-runtime/
+          retention-days: 2
+      - name: Stage pinned PDF renderer and test tooling without publishing
+        run: |
+          npm install --save-exact --ignore-scripts pdfjs-dist@6.3.289
+          npm install --no-save --package-lock=false --ignore-scripts tsx@4.20.5
+          mkdir -p audit-pdf-runtime
+          cp package.json package-lock.json audit-pdf-runtime/
+          tar -czf audit-pdf-runtime/pdf-runtime.tar.gz node_modules
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-pdf-runtime
+          path: audit-pdf-runtime/
+          retention-days: 2

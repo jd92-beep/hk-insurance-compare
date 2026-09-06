@@ -1,84 +1,51 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
+import { createSelectionStore } from "@/lib/compare-store";
+import { useInsuranceData } from "@/providers/InsuranceDataProvider";
 
 const STORAGE_KEY = "ic-compare-tray";
 export const COMPARE_LIMIT = 3;
-
 interface CompareState {
-  /** 已選產品 id（最多 3 個，按加入順序） */
   items: string[];
   add: (id: string) => void;
   remove: (id: string) => void;
   toggle: (id: string) => void;
   clear: () => void;
-  /** 一次性替換成指定清單（分享連結 ?ids= 載入用，避免 clear+add 逐下觸發） */
   replace: (ids: string[]) => void;
   has: (id: string) => boolean;
   isFull: boolean;
 }
-
 const CompareContext = createContext<CompareState | null>(null);
 
-function readStored(): string[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    const parsed: unknown = JSON.parse(raw);
-    if (Array.isArray(parsed)) {
-      return parsed.filter((x): x is string => typeof x === "string").slice(0, COMPARE_LIMIT);
-    }
-  } catch {
-    /* ignore corrupt storage */
-  }
-  return [];
-}
-
 export function CompareProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<string[]>(() => readStored());
-
+  const { data } = useInsuranceData();
+  const [store] = useState(() => createSelectionStore({
+    read: () => typeof window === "undefined" ? null : window.localStorage.getItem(STORAGE_KEY),
+    write: raw => window.localStorage.setItem(STORAGE_KEY, raw),
+    listen: receive => {
+      if (typeof window === "undefined") return () => {};
+      const onStorage = (event: StorageEvent) => {
+        if (event.key !== STORAGE_KEY && event.key !== null) return;
+        try { if (event.storageArea && event.storageArea !== window.localStorage) return; } catch { return; }
+        receive(event.newValue);
+      };
+      window.addEventListener("storage", onStorage);
+      return () => window.removeEventListener("storage", onStorage);
+    },
+  }, COMPARE_LIMIT));
+  const items = useSyncExternalStore(store.subscribe, store.getSnapshot, store.getServerSnapshot);
   useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-    } catch {
-      /* storage full / private mode — non-fatal */
-    }
-  }, [items]);
-
-  const add = useCallback((id: string) => {
-    setItems((prev) =>
-      prev.includes(id) || prev.length >= COMPARE_LIMIT ? prev : [...prev, id],
-    );
-  }, []);
-
-  const remove = useCallback((id: string) => {
-    setItems((prev) => prev.filter((x) => x !== id));
-  }, []);
-
-  const toggle = useCallback((id: string) => {
-    setItems((prev) => {
-      if (prev.includes(id)) return prev.filter((x) => x !== id);
-      if (prev.length >= COMPARE_LIMIT) return prev;
-      return [...prev, id];
-    });
-  }, []);
-
-  const clear = useCallback(() => setItems([]), []);
-  const replace = useCallback(
-    (ids: string[]) => setItems([...new Set(ids)].slice(0, COMPARE_LIMIT)),
-    [],
-  );
-  const has = useCallback((id: string) => items.includes(id), [items]);
-
-  const value = useMemo<CompareState>(
-    () => ({ items, add, remove, toggle, clear, replace, has, isFull: items.length >= COMPARE_LIMIT }),
-    [items, add, remove, toggle, clear, replace, has],
-  );
-
+    // Never clear saved selections while data is loading, failed, or unexpectedly empty.
+    if (data?.products.length) store.setKnownIds(new Set(data.products.map(product => product.id)));
+  }, [data, store]);
+  const value = useMemo<CompareState>(() => ({
+    items, add: store.add, remove: store.remove, toggle: store.toggle, clear: store.clear,
+    replace: store.replace, has: id => items.includes(id), isFull: items.length >= COMPARE_LIMIT,
+  }), [items, store]);
   return <CompareContext.Provider value={value}>{children}</CompareContext.Provider>;
 }
-
 export function useCompare(): CompareState {
-  const ctx = useContext(CompareContext);
-  if (!ctx) throw new Error("useCompare 必須喺 <CompareProvider> 入面使用");
-  return ctx;
+  const context = useContext(CompareContext);
+  if (!context) throw new Error("useCompare 必須喺 <CompareProvider> 入面使用");
+  return context;
 }

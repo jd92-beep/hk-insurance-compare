@@ -98,6 +98,8 @@ export default function Footer() {
               <li><Link to="/compare" className="link-sweep text-paper/75 transition-colors hover:text-paper">比較工具</Link></li>
               <li><Link to="/insurers" className="link-sweep text-paper/75 transition-colors hover:text-paper">保險公司名錄</Link></li>
               <li><Link to="/guides" className="link-sweep text-paper/75 transition-colors hover:text-paper">投保指南・詞彙</Link></li>
+              <li><Link to="/documents" className="link-sweep text-paper/75">PDF 中心</Link></li>
+              <li><Link to="/data-quality" className="link-sweep text-paper/75">資料核查清單</Link></li>
               <li><Link to="/about" className="link-sweep text-paper/75 transition-colors hover:text-paper">關於數據</Link></li>
             </ul>
           </div>
@@ -110,7 +112,7 @@ export default function Footer() {
               <li>系統版本：<span className="font-mono text-paper font-semibold">{FULL_VERSION_STRING}</span></li>
               <li><span className="font-grotesk text-paper">{insurers.length}</span> 間保險公司</li>
               <li><span className="font-grotesk text-paper">{products.length}</span> 份產品檔案</li>
-              <li>全部摘自官方網站及文件，附來源連結</li>
+              <li>有來源的資料附核對入口；完整性與時效詳見核查清單</li>
             </ul>
           </div>
         </div>

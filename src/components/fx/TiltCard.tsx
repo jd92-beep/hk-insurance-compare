@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 /**
@@ -24,12 +24,8 @@ export default function TiltCard({
   perspective?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [enabled] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
-      !window.matchMedia("(pointer: coarse)").matches,
-  );
+  const reduced = useReducedMotion();
+  const enabled = !reduced && typeof window !== "undefined" && !window.matchMedia("(pointer: coarse)").matches;
 
   // 0–1 歸一化滑鼠位置（卡中心為 0.5）
   const mx = useMotionValue(0.5);

@@ -1,7 +1,7 @@
 import { purchaseUrl } from "@/lib/product-availability";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ExternalLink, Link2, Plus, RotateCcw, X } from "lucide-react";
+import { ArrowRight, ExternalLink, Plus, RotateCcw, X } from "lucide-react";
 import { Link, useSearchParams } from "react-router";
 import type { Product } from "@/types/insurance";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -9,6 +9,7 @@ import StampBadge from "@/components/StampBadge";
 import ComparisonGrid from "@/components/compare/ComparisonGrid";
 import MobileCompare from "@/components/compare/MobileCompare";
 import ProductPicker from "@/components/compare/ProductPicker";
+import CompareShareButton from "@/components/compare/CompareShareButton";
 import { PremiumStatusCell } from "@/components/compare/cells";
 import { useInsuranceData } from "@/providers/InsuranceDataProvider";
 import { useCompare, COMPARE_LIMIT } from "@/providers/CompareProvider";
@@ -193,28 +194,6 @@ function EmptyStateView({ onDemo }: { onDemo: () => void }) {
   );
 }
 
-/** 複製成功 toast（頁面內置，無全站 Toaster） */
-function CopiedToast({ show }: { show: boolean }) {
-  return (
-    <AnimatePresence>
-      {show && (
-        <motion.div
-          key="copied-toast"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
-          className="fixed bottom-8 left-1/2 z-[80] -translate-x-1/2 rounded-full bg-ink px-5 py-2.5 text-small font-bold text-paper shadow-lift"
-          style={{ x: "-50%" }}
-          role="status"
-        >
-          連結已複製
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
-
 /** 比較工具 `/compare`（design/compare.md S0–S5） */
 export default function Compare() {
   const { data, loading, error, generatedAt } = useInsuranceData();
@@ -222,9 +201,7 @@ export default function Compare() {
   const isMobile = useIsMobile();
   const [searchParams, setSearchParams] = useSearchParams();
   const [pickerOpen, setPickerOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
   const initialized = useRef(false);
-  const toastTimer = useRef<number | null>(null);
   // URL ids 替換次數：作為產品欄 AnimatePresence 嘅 key，
   // 令舊 tray 產品即時消失（skip exit 動畫），唔會新舊 6 卡同屏
   const [urlSwapCount, setUrlSwapCount] = useState(0);
@@ -264,30 +241,6 @@ export default function Compare() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [compare.items]);
-
-  useEffect(
-    () => () => {
-      if (toastTimer.current !== null) window.clearTimeout(toastTimer.current);
-    },
-    [],
-  );
-
-  const copyLink = async () => {
-    const url = `${window.location.origin}${window.location.pathname}?ids=${compare.items.join(",")}`;
-    try {
-      await navigator.clipboard.writeText(url);
-    } catch {
-      const textarea = document.createElement("textarea");
-      textarea.value = url;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand("copy");
-      textarea.remove();
-    }
-    setCopied(true);
-    if (toastTimer.current !== null) window.clearTimeout(toastTimer.current);
-    toastTimer.current = window.setTimeout(() => setCopied(false), 2000);
-  };
 
   const loadDemo = () => {
     compare.clear();
@@ -363,15 +316,7 @@ export default function Compare() {
             <RotateCcw size={14} />
             清空全部
           </button>
-          <button
-            type="button"
-            onClick={copyLink}
-            className="inline-flex h-11 items-center gap-2 rounded-[10px] border px-5 text-small font-bold text-ink transition-colors hover:bg-paper-3"
-            style={{ borderColor: "var(--line-strong)" }}
-          >
-            <Link2 size={14} />
-            複製比較連結
-          </button>
+          <CompareShareButton ids={products.map(product => product.id)} className="inline-flex h-11 items-center gap-2 rounded-[10px] border px-5 text-small font-bold text-ink transition-colors hover:bg-paper-3" />
         </motion.div>
       </header>
 
@@ -426,14 +371,7 @@ export default function Compare() {
             <ArrowRight size={17} />
           </Link>
         )}
-        <button
-          type="button"
-          onClick={copyLink}
-          className="inline-flex h-[52px] items-center gap-2 rounded-[10px] px-4 text-small font-bold text-ink-soft transition-colors hover:text-red"
-        >
-          <Link2 size={15} />
-          複製比較連結
-        </button>
+        <CompareShareButton ids={products.map(product => product.id)} className="inline-flex h-[52px] items-center gap-2 rounded-[10px] px-4 text-small font-bold text-ink-soft transition-colors hover:text-red" />
       </motion.div>
 
       {/* S5 比較須知 */}
@@ -462,7 +400,6 @@ export default function Compare() {
         selectedIds={compare.items}
         onSelect={compare.add}
       />
-      <CopiedToast show={copied} />
     </div>
   );
 }

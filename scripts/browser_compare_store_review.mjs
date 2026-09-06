@@ -23,6 +23,14 @@ try {
   results.push({ normalization: 'pass', unknownProductCleanup: 'pass', crossTabClear: 'pass', errors });
   await second.screenshot({ path: 'browser-evidence/compare-storage.png' });
   await context.close();
-} catch (error) { results.push({ failed: true, error: String(error) }); process.exitCode = 1; }
+} catch (error) {
+  const pages = browser.contexts().flatMap(context => context.pages());
+  const diagnostics = [];
+  for (const [index, page] of pages.entries()) {
+    diagnostics.push({ url: page.url(), buttons: await page.getByRole('button').allTextContents().catch(() => []) });
+    await page.screenshot({ path: `browser-evidence/compare-storage-failed-${index}.png` }).catch(() => {});
+  }
+  results.push({ failed: true, error: String(error), diagnostics }); process.exitCode = 1;
+}
 finally { await browser.close(); await writeFile('browser-evidence/compare-storage-results.json', JSON.stringify(results, null, 2)); }
 console.log(JSON.stringify(results, null, 2));

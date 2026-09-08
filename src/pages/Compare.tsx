@@ -1,3 +1,4 @@
+import SavedComparisons from "@/components/compare/SavedComparisons";
 import { purchaseUrl } from "@/lib/product-availability";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -178,7 +179,7 @@ function EmptyStateView({ onDemo }: { onDemo: () => void }) {
         className="flex flex-col items-center gap-4"
       >
         <Link to="/categories" className="btn-primary">
-          瀏覽 9 大類別
+          瀏覽所有保險類別
           <ArrowRight size={17} />
         </Link>
         <button
@@ -266,6 +267,7 @@ export default function Compare() {
   if (products.length === 0) {
     return (
       <>
+        <div className="site-container pt-10"><SavedComparisons selected={products} catalog={data?.products ?? []} snapshotDate={generatedAt} onRestore={ids=>setSearchParams({ids:ids.join(",")})} /></div>
         <EmptyStateView onDemo={loadDemo} />
         <ProductPicker
           open={pickerOpen}
@@ -298,7 +300,7 @@ export default function Compare() {
             transition={{ duration: 0.6, delay: 0.35, ease: EASE_OUT_EXPO }}
             className="mt-3 max-w-[38em] text-ink-soft"
           >
-            以下內容全部摘自官方文件；價錢同條款以保險公司最新公佈為準。
+            以下為本站資料摘要，完整性及版本仍須核對來源；唔係即時報價或投保建議。
           </motion.p>
         </div>
         <motion.div
@@ -320,6 +322,7 @@ export default function Compare() {
         </motion.div>
       </header>
 
+      <SavedComparisons selected={products} catalog={data?.products ?? []} snapshotDate={generatedAt} onRestore={ids=>setSearchParams({ids:ids.join(",")})} />
       {isMobile ? (
         <MobileCompare products={products} onRemove={compare.remove} />
       ) : (
@@ -331,7 +334,7 @@ export default function Compare() {
                 className="flex items-end border-b px-4 pb-3 text-[12px] text-ink-faint"
                 style={{ borderColor: "var(--line)" }}
               >
-                官方文件節錄對照
+                網站摘要與來源對照
               </div>
               <AnimatePresence mode="popLayout" key={urlSwapCount}>
                 {products.map((p) => (
@@ -385,7 +388,7 @@ export default function Compare() {
         <h2 className="h3-style text-ink">比較須知</h2>
         <ol className="mt-4 flex list-decimal flex-col gap-2.5 pl-5 text-small text-ink-soft">
           <li>
-            各產品計劃層級唔同，上表以官方文件節錄對照，未必能逐項一對一；投保前請細閱保單條款。
+            各產品計劃層級唔同，上表以網站摘要與來源對照，未必能逐項一對一；投保前請細閱保單條款。
           </li>
           <li>「官網即時報價」表示公司按個人資料報價，本站不作估算。</li>
           <li>

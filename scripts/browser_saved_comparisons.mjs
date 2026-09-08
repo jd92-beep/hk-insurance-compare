@@ -41,6 +41,10 @@ try{
       await page.getByRole('button',{name:'清空全部',exact:true}).waitFor();
       panel=await open(page);await panel.getByRole('button',{name:'儲存目前 2 款',exact:true}).waitFor();
       await panel.evaluate(el=>window.scrollTo({top:el.getBoundingClientRect().top+scrollY-90,behavior:'instant'}));
+      // Wait for the real sticky-header scroll state and CSS transition before visual evidence.
+      await page.waitForFunction(()=>document.querySelector('header.sticky')?.className.includes('bg-paper/80'));
+      await page.locator('header.sticky').evaluate(async el=>{await Promise.allSettled(el.getAnimations().map(animation=>animation.finished));});
+      await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
       await page.screenshot({path:`${out}/${viewport.width}-saved-comparison.png`});
       const second=await context.newPage();second.on('pageerror',e=>errors.push(String(e)));await second.goto(base+'/compare');const other=await open(second);await other.locator('[data-saved-set]').waitFor();
       await panel.getByRole('button',{name:'刪除收藏 旅遊候選',exact:true}).click();assert.equal(await panel.locator('[data-saved-set]').count(),1);

@@ -1,3 +1,4 @@
+import ComparisonExportButton from "@/components/compare/ComparisonExportButton";
 import SavedComparisons from "@/components/compare/SavedComparisons";
 import { purchaseUrl } from "@/lib/product-availability";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -307,7 +308,7 @@ export default function Compare() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4, ease: EASE_OUT_EXPO }}
-          className="flex items-center gap-3"
+          className="flex flex-wrap items-center gap-3"
         >
           <button
             type="button"
@@ -319,6 +320,7 @@ export default function Compare() {
             清空全部
           </button>
           <CompareShareButton ids={products.map(product => product.id)} className="inline-flex h-11 items-center gap-2 rounded-[10px] border px-5 text-small font-bold text-ink transition-colors hover:bg-paper-3" />
+          <ComparisonExportButton key={products.map(product=>product.id).join(",")} products={products} snapshotDate={generatedAt} />
         </motion.div>
       </header>
 

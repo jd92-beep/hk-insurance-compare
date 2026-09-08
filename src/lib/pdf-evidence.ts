@@ -2,8 +2,8 @@ import { PDF_DOCUMENT_HASHES } from "./generated/pdf-manifest.ts";
 import { mirroredPdfHash } from "./pdf-integrity.ts";
 import type { Product } from "@/types/insurance";
 
-export function sourceTarget(value?: string, explicitPage?: number | null): { url: string; page: number; local: boolean } | null {
-  if (!value || value.includes("\\") || [...value].some(char => char.charCodeAt(0) < 32)) return null;
+export function sourceTarget(value?: unknown, explicitPage?: number | null): { url: string; page: number; local: boolean } | null {
+  if (typeof value !== "string" || !value || value.includes("\\") || [...value].some(char => char.charCodeAt(0) < 32)) return null;
   const [base, hash = ""] = value.split("#");
   let local = false;
   if (base.startsWith("/")) {

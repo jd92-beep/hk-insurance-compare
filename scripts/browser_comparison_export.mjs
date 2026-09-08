@@ -20,6 +20,8 @@ try{
    assert.equal(await page.locator('a[download]').count(),0,'Temporary link leaked');
    const first=selected.find(p=>p.id==='travel-axa');await page.getByRole('button',{name:`移除 ${first.product_name_zh}`,exact:true}).click();
    await page.waitForURL(url=>url.searchParams.get('ids')==='travel-msig');
+   // The URL/state changes before the old card's exit animation has unmounted.
+   await page.getByRole('button',{name:`移除 ${first.product_name_zh}`,exact:true}).waitFor({state:'detached'});
    const [second]=await Promise.all([page.waitForEvent('download'),button.click()]);const next=await readFile(await second.path(),'utf8');
    assert.ok(!next.includes('travel-axa'));assert.ok(next.includes('travel-msig'));
    await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));

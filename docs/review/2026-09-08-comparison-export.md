@@ -17,3 +17,6 @@ Review commands: Node22 npm ci; npm test; npm run lint -- --max-warnings=0; npm 
 
 ## Scope / rollback
 Base is the saved-comparison PR. No policy-data/PDF mutation, no migration, no automatic deployment. Revert exporter and button integration to remove feature; do not delete user saved sets. Existing official-currentness, promotion-validity and canonical mapping gaps remain. Safari/OS-specific file behavior and true low-end hardware performance still need device testing.
+
+## Screenshot review follow-up
+Initial exact-head export workflow passed actual downloads, but the desktop image captured the removed card during its exit animation. The screenshot step now waits for that card to unmount rather than weakening selection assertions. The saved-set screenshot likewise waits for the existing sticky-header scroll class and its real CSS transition to finish. No production animation is changed or disabled to make evidence look better. Build20260908.05 records this verification refinement.

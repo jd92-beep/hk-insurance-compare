@@ -13,7 +13,7 @@ try{
    try{
     if(scenario==='unsupported')await page.addInitScript(({key})=>localStorage.setItem(key,JSON.stringify({version:2,sets:[]})),{key});
     if(scenario==='quota')await page.addInitScript(({key})=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k===key)throw new DOMException('test quota','QuotaExceededError');return original.call(this,k,v);};},{key});
-    await page.goto(base+'/compare?ids=travel-axa,travel-msig');let panel=await open(page);
+    await page.goto(base+'/compare?ids=travel-axa,travel-msig');await page.getByRole('button',{name:'清空全部',exact:true}).waitFor();let panel=await open(page);
     await panel.getByRole('button',{name:'儲存目前 2 款',exact:true}).waitFor();
     await panel.getByLabel('組合名稱',{exact:true}).fill('旅遊候選');
     await panel.getByRole('button',{name:'儲存目前 2 款',exact:true}).click();
@@ -37,6 +37,8 @@ try{
       await page.getByRole('button',{name:'清空全部',exact:true}).click();await page.getByRole('heading',{name:'仲未揀產品',exact:true}).waitFor();
       panel=await open(page);await panel.getByRole('button',{name:'重新開啟比較',exact:true}).click();
       await page.waitForURL(url=>url.searchParams.get('ids')==='travel-axa,travel-msig');
+      // URL changes before React replaces the empty-state panel. Wait for the new comparison view.
+      await page.getByRole('button',{name:'清空全部',exact:true}).waitFor();
       panel=await open(page);await panel.getByRole('button',{name:'儲存目前 2 款',exact:true}).waitFor();
       await panel.evaluate(el=>window.scrollTo({top:el.getBoundingClientRect().top+scrollY-90,behavior:'instant'}));
       await page.screenshot({path:`${out}/${viewport.width}-saved-comparison.png`});

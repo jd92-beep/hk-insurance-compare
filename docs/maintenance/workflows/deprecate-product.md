@@ -1,5 +1,6 @@
 # 🗄️ 任務操作卡：產品停售或歸檔 SOP（以 AIG 為例）
 
+> 🧭 [返回維護總手冊](../README.md) ｜ 🏛️ [核心架構與規則](../core-rules-and-architecture.md)  
 > **檔案位置**：`docs/maintenance/workflows/deprecate-product.md`  
 > **目標**：規範化處理停售、下架或轉移銷售渠道的保險產品，保留歷史條款與外鏈完整性。  
 > **典型案例**：`motor-aig`（AIG 汽車保險暫停網上直購，轉為線下或代理管道）。
@@ -17,7 +18,7 @@
 
 ## 🛠️ 步驟 1：修改 `insurance-data.json` 狀態旗標
 
-定位至目標產品（例：`motor-aig`），調整以下關鍵欄位：
+打開 [`public/data/insurance-data.json`](../../../public/data/insurance-data.json)，定位至目標產品（例：`motor-aig`），調整以下關鍵欄位：
 
 ```json
 {
@@ -61,4 +62,12 @@ npm run build
 
 ## 📌 步驟 4：記錄變更與更新版本
 
-在 `src/lib/version.ts` 內遞增 `BUILD_NUMBER`（例：`20260911.04`），並在 PR 中清楚記錄產品下架之官方公告來源。
+在 [`src/lib/version.ts`](../../../src/lib/version.ts) 內遞增 `BUILD_NUMBER`（例：`20260911.04`），並在 PR 中清楚記錄產品下架之官方公告來源。
+
+---
+
+## 🔗 相關手冊導航
+- 🏷️ [更新保費與優惠代碼 SOP](./update-pricing-and-promo.md)
+- 📄 [PDF 說明書更新與引用校對 SOP](./update-pdf-terms-and-quotes.md)
+- ➕ [新增保險產品全流程 SOP](./add-new-product.md)
+- 🧭 [返回維護總手冊](../README.md)

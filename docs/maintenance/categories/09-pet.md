@@ -1,5 +1,7 @@
 # 🐾 寵物保險維護指南 (Pet Insurance Maintenance Guide)
 
+> 🧭 [返回維護總手冊](../README.md) ｜ 🏛️ [核心架構與規則](../core-rules-and-architecture.md) ｜ 🗓️ [年度運營日曆](../README.md#🗓️-2-保險市場年度運營與更新日曆-annual-operations-calendar)
+
 > **版本**：v1.7.2  
 > **更新日期**：2026-09-11  
 > **適用產品數**：11 款（Category: `pet`）  
@@ -59,3 +61,13 @@
 
 > ⚠️ **紅線三：必須保留等候期（Waiting Period）警示！**  
 > 寵物保險普遍有 14 至 90 天疾病等候期（癌症與遺傳病甚至長達 6-12 個月）。更新條款時絕不可刪除等候期說明，防止爭議。
+
+---
+
+## 🔗 相關維護操作指南 (Related Workflows)
+- 🏷️ [更新保費與優惠代碼 SOP](../workflows/update-pricing-and-promo.md)
+- 📄 [PDF 說明書更新與引用校對 SOP](../workflows/update-pdf-terms-and-quotes.md)
+- ➕ [新增保險產品全流程 SOP](../workflows/add-new-product.md)
+- 🗄️ [產品停售或歸檔 SOP](../workflows/deprecate-product.md)
+- 🧭 [返回維護總手冊](../README.md)
+

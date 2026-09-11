@@ -1,5 +1,7 @@
 # 🕊️ 定期人壽 (Term Life) 維護手冊 (05-life)
 
+> 🧭 [返回維護總手冊](../README.md) ｜ 🏛️ [核心架構與規則](../core-rules-and-architecture.md) ｜ 🗓️ [年度運營日曆](../README.md#🗓️-2-保險市場年度運營與更新日曆-annual-operations-calendar)
+
 > **定位宗旨**：專門收錄純消費型、極高身故槓桿、0% 儲蓄成分嘅定期人壽保險（共 14 款）。為家庭頂樑柱提供堅實後盾！新手 Agent 30 秒秒懂維護心法！⚡
 
 ---
@@ -100,3 +102,13 @@ npm run build
 ```
 
 🚀 5 項檢查綠燈通過，即可放心出 PR！
+
+---
+
+## 🔗 相關維護操作指南 (Related Workflows)
+- 🏷️ [更新保費與優惠代碼 SOP](../workflows/update-pricing-and-promo.md)
+- 📄 [PDF 說明書更新與引用校對 SOP](../workflows/update-pdf-terms-and-quotes.md)
+- ➕ [新增保險產品全流程 SOP](../workflows/add-new-product.md)
+- 🗄️ [產品停售或歸檔 SOP](../workflows/deprecate-product.md)
+- 🧭 [返回維護總手冊](../README.md)
+

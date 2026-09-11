@@ -1,5 +1,7 @@
 # 🏥 自願醫保 (VHIS) 維護手冊 (02-medical)
 
+> 🧭 [返回維護總手冊](../README.md) ｜ 🏛️ [核心架構與規則](../core-rules-and-architecture.md) ｜ 🗓️ [年度運營日曆](../README.md#🗓️-2-保險市場年度運營與更新日曆-annual-operations-calendar)
+
 > **定位宗旨**：專門收錄醫務衞生局認可之「標準計劃 (Standard)」及「靈活計劃 (Flexi)」。適合新手或 Agent 於 30 秒內秒懂核心規律並完成條款/保費更新！⚡
 
 ---
@@ -117,3 +119,13 @@ npm run build
 ```
 
 ✅ 通過上述 5 項指令，即可安全提交 PR！
+
+---
+
+## 🔗 相關維護操作指南 (Related Workflows)
+- 🏷️ [更新保費與優惠代碼 SOP](../workflows/update-pricing-and-promo.md)
+- 📄 [PDF 說明書更新與引用校對 SOP](../workflows/update-pdf-terms-and-quotes.md)
+- ➕ [新增保險產品全流程 SOP](../workflows/add-new-product.md)
+- 🗄️ [產品停售或歸檔 SOP](../workflows/deprecate-product.md)
+- 🧭 [返回維護總手冊](../README.md)
+

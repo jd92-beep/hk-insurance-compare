@@ -1,8 +1,9 @@
 # 📄 任務操作卡：PDF 說明書更新與引用校對 SOP
 
+> 🧭 [返回維護總手冊](../README.md) ｜ 🏛️ [核心架構與規則](../core-rules-and-architecture.md)  
 > **檔案位置**：`docs/maintenance/workflows/update-pdf-terms-and-quotes.md`  
 > **目標**：當保險公司發布新版小冊子或保單條款時，安全替換 PDF、校對頁碼引用並更新 SHA-256 指紋。  
-> **維護原則**：證據鏈閉環、零斷鏈、逐字引用。
+> **維護原則**：證據鏈閉環、零斷鏈、逐字引用、遵循[條款衝突仲裁原則](../core-rules-and-architecture.md#3-條款衝突仲裁原則-policy-terms-arbitration-rules)。
 
 ---
 
@@ -30,7 +31,7 @@ node scripts/copy_pdf_assets.mjs
 
 ## ✍️ 步驟 3：校對並更新 `insurance-data.json` 引用
 
-打開 `public/data/insurance-data.json`，定位至相應產品的 `coverage` 與 `citations`：
+打開 [`public/data/insurance-data.json`](../../../public/data/insurance-data.json)，定位至相應產品的 `coverage` 與 `citations`：
 
 1. **更新 URL 與頁碼**：
    ```json
@@ -41,6 +42,8 @@ node scripts/copy_pdf_assets.mjs
 2. **逐字引號校對 (`quote`)**：
    - 提取的 `quote` **必須與 PDF 該頁實際文字一字不差**（測試套件會執行嚴格純文本匹配）。
    - 切忌自己總結或潤色！
+3. **嚴格執行法律權威仲裁**：
+   - 若單張與條款有出入，以具法律約束力的 **保單條款 (Policy Wording)** 為準；詳見 [條款衝突仲裁原則](../core-rules-and-architecture.md#3-條款衝突仲裁原則-policy-terms-arbitration-rules)。
 
 ---
 
@@ -60,7 +63,7 @@ npm run test:filters
 
 ## 📌 步驟 5：更新版本與記錄
 
-在 `src/lib/version.ts` 遞增 `BUILD_NUMBER` 並確認提交。
+在 [`src/lib/version.ts`](../../../src/lib/version.ts) 遞增 `BUILD_NUMBER` 並確認提交。
 
 ---
 
@@ -69,3 +72,11 @@ npm run test:filters
 1. ❌ **切勿跨產品借用引用**：不可因找不到新條款而暫借其他保司的引用。
 2. ❌ **切勿手動偽造 SHA-256**：指紋必須由 `build_pdf_manifest.mjs` 自動產生。
 3. ❌ **頁碼從 1 起算**：`#page=X` 指的是 PDF 檔案閱讀器的實際物理頁碼，而非內頁印上的頁碼編號。
+
+---
+
+## 🔗 相關手冊導航
+- 🏷️ [更新保費與優惠代碼 SOP](./update-pricing-and-promo.md)
+- ➕ [新增保險產品全流程 SOP](./add-new-product.md)
+- 🗄️ [產品停售或歸檔 SOP](./deprecate-product.md)
+- 🧭 [返回維護總手冊](../README.md)

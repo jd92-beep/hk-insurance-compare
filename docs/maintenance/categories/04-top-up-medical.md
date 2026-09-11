@@ -1,5 +1,7 @@
 # 🛡️ Top-up 補充醫療 (Top-up Medical) 維護手冊 (04-top-up-medical)
 
+> 🧭 [返回維護總手冊](../README.md) ｜ 🏛️ [核心架構與規則](../core-rules-and-architecture.md) ｜ 🗓️ [年度運營日曆](../README.md#🗓️-2-保險市場年度運營與更新日曆-annual-operations-calendar)
+
 > **定位宗旨**：專門收錄銜接公司醫保、填補細項封頂 Shortfall 嘅補充醫療保障（共 7 款）。打工仔避坑必備！新手 Agent 30 秒秒明維護指南！⚡
 
 ---
@@ -92,3 +94,13 @@ npm run build
 ```
 
 🎉 5 個驗證全 PASS，即可放心出 PR！
+
+---
+
+## 🔗 相關維護操作指南 (Related Workflows)
+- 🏷️ [更新保費與優惠代碼 SOP](../workflows/update-pricing-and-promo.md)
+- 📄 [PDF 說明書更新與引用校對 SOP](../workflows/update-pdf-terms-and-quotes.md)
+- ➕ [新增保險產品全流程 SOP](../workflows/add-new-product.md)
+- 🗄️ [產品停售或歸檔 SOP](../workflows/deprecate-product.md)
+- 🧭 [返回維護總手冊](../README.md)
+

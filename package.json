@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "test:filters": "node --experimental-strip-types scripts/verify_filter_combinations.ts && node --experimental-strip-types scripts/verify_filter_boundary_deep.ts",
+    "check:maintenance": "node scripts/validate_maintenance.mjs",
     "predev": "node scripts/copy_pdf_assets.mjs",
     "prebuild": "node scripts/copy_pdf_assets.mjs"
   },

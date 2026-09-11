@@ -4,7 +4,7 @@
     {
       "id": "travel",
       "name_zh": "旅遊保險",
-      "count": 19,
+      "count": 20,
       "insurers_with_premium": 16
     },
     {
@@ -16,7 +16,7 @@
     {
       "id": "high-end-medical",
       "name_zh": "高端醫療保險",
-      "count": 8,
+      "count": 10,
       "insurers_with_premium": 8
     },
     {
@@ -28,43 +28,43 @@
     {
       "id": "home",
       "name_zh": "家居保險",
-      "count": 12,
+      "count": 16,
       "insurers_with_premium": 7
     },
     {
       "id": "life",
       "name_zh": "人壽保險",
-      "count": 12,
+      "count": 14,
       "insurers_with_premium": 4
     },
     {
       "id": "critical-illness",
       "name_zh": "危疾保險",
-      "count": 10,
+      "count": 13,
       "insurers_with_premium": 5
     },
     {
       "id": "accident",
       "name_zh": "意外保險",
-      "count": 10,
+      "count": 14,
       "insurers_with_premium": 5
     },
     {
       "id": "motor",
       "name_zh": "汽車保險",
-      "count": 9,
+      "count": 13,
       "insurers_with_premium": 0
     },
     {
       "id": "domestic-helper",
       "name_zh": "家傭保險",
-      "count": 7,
+      "count": 12,
       "insurers_with_premium": 6
     },
     {
       "id": "pet",
       "name_zh": "寵物保險",
-      "count": 4,
+      "count": 11,
       "insurers_with_premium": 1
     }
   ],
@@ -19682,14 +19682,6 @@
         {
           "item": "升級版額外權益",
           "limit": "額外意外身故權益（100%，86歲或以上50%）、特定情況雙倍賠償、失業保費豁免（最多1年）、享悅人生增值選項（人生大事免核保加保，最多3次，每次上限投保額100%或HK$150萬）",
-          "source_url": "/docs/brochures/fwd-myterm-pb-tc.pdf#page=5",
-          "document_name": "自主保定期保障系列產品冊子 myterm-pb-tc.pdf",
-          "page": 5,
-          "quote": "投保年齡（下次生日年齡）19-61；保費供款年期至被保人100歲；保障年期 保證續保至被保人100歲；續保年期 5/10/20年"
-        },
-        {
-          "item": "身故賠償",
-          "limit": "人壽主保額 HK$1,000,000 至 HK$5,000,000（受保人不幸身故一筆過全額發放）",
           "source_url": "/docs/brochures/fwd-myterm-pb-tc.pdf#page=5",
           "document_name": "自主保定期保障系列產品冊子 myterm-pb-tc.pdf",
           "page": 5,

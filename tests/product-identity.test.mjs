@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { verifyProductIdentity } from '../scripts/product_identity.mjs';
+import { verifyProductIdentity, CANONICAL_INSURER_KEYS, CANONICAL_INSURERS, isCanonicalInsurer } from '../scripts/product_identity.mjs';
 const single = { id: 'travel-test', insurer: 'TEST', insurer_zh: '測試公司', category: 'travel', product_name_zh: '旅遊保障計劃', product_name: 'Travel Plan' };
 const observed = { url: 'http://127.0.0.1:4173/product/travel-test', heading: '旅遊保障計劃', text: 'TEST 測試公司 旅遊保障計劃' };
 const series = { ...single, id: 'medical-test', category: 'medical', product_name_zh: '測試公司自願醫保標準計劃（S00013）／測試公司自願醫保靈活升級計劃（F00022）' };
@@ -27,3 +27,16 @@ test('layout whitespace and compatibility forms do not create false failures', (
   assert.deepEqual(verifyProductIdentity(single, '旅遊保險', { ...observed, heading: '旅遊\u00a0保障\n計劃', text: 'ＴＥＳＴ 測試公司 旅遊保障計劃' }), []);
   assert.ok(verifyProductIdentity(single, '旅遊保險', { ...observed, url: 'bad URL' }).length);
 });
+test('canonical insurers list is frozen, non-empty, and guards canonical keys', () => {
+  assert.equal(CANONICAL_INSURER_KEYS.length, 40);
+  assert.ok(Object.isFrozen(CANONICAL_INSURER_KEYS));
+  assert.equal(CANONICAL_INSURERS.size, 40);
+  assert.ok(isCanonicalInsurer('Prudential'));
+  assert.ok(isCanonicalInsurer('AXA'));
+  assert.ok(isCanonicalInsurer('AIA'));
+  assert.ok(isCanonicalInsurer('Bowtie'));
+  assert.equal(isCanonicalInsurer('INVENTED_COMPANY'), false);
+  assert.equal(isCanonicalInsurer(null), false);
+  assert.equal(isCanonicalInsurer(undefined), false);
+});
+

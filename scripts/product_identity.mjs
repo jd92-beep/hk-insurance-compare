@@ -1,5 +1,56 @@
 /** Assert the existing ProductHeader presentation without weakening product identity. */
 const normalize = value => String(value ?? '').normalize('NFKC').replace(/\s+/gu, '');
+
+/** Canonical insurer key list protecting against accidental key invention or renaming. */
+export const CANONICAL_INSURER_KEYS = Object.freeze([
+  'AIA',
+  'AIG',
+  'AXA',
+  'Allianz',
+  'Asia Insurance',
+  'Avo',
+  'BOC Group Insurance',
+  'BOC Life',
+  'Blue',
+  'Blue Cross',
+  'Bowtie',
+  'Bupa',
+  'China Life (Overseas)',
+  'China Taiping',
+  'China Taiping Life',
+  'Chow Tai Fook Life',
+  'Chubb',
+  'Chubb Life',
+  'Cigna',
+  'Dah Sing',
+  'DirectAsia',
+  'FWD',
+  'Generali',
+  'HSBC',
+  'HSBC Life',
+  'Hang Seng',
+  'Hong Kong Life',
+  'Liberty',
+  'MSIG',
+  'Manulife',
+  'OneDegree',
+  'Prudential',
+  'QBE',
+  'Starr',
+  'Sun Life',
+  'Well Link Life',
+  'YF Life',
+  'ZA Insure',
+  'Zurich',
+  'bolttech'
+]);
+
+export const CANONICAL_INSURERS = new Set(CANONICAL_INSURER_KEYS);
+
+export function isCanonicalInsurer(insurer) {
+  return typeof insurer === 'string' && CANONICAL_INSURERS.has(insurer);
+}
+
 export function verifyProductIdentity(product, categoryName, observed) {
   const problems = [];
   try {

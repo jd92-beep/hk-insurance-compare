@@ -1,5 +1,7 @@
 # ✈️ 旅遊保險維護指南 (01-travel.md)
 
+> 🧭 [返回維護總手冊](../README.md) ｜ 🏛️ [核心架構與規則](../core-rules-and-architecture.md) ｜ 🗓️ [年度運營日曆](../README.md#🗓️-2-保險市場年度運營與更新日曆-annual-operations-calendar)
+
 > **適用目錄**：`public/data/insurance-data.json`（分類：`travel`，共 20 款產品）  
 > **閱讀時間**：30 秒即睇即改 ⚡ | **目標**：極低 Token 損耗、傻瓜式維護、零低級錯誤
 
@@ -40,7 +42,7 @@
 | `travel-cntaiping` | 中國太平 | 「樂悠遊」海外旅遊保險 | [官方產品頁](https://ebus.hk.cntaiping.com/) | [官方產品單張](https://www.hk.cntaiping.com/product/110849.html)<br>鏡像：`/docs/brochures/cntaiping-13193012hytf.pdf` | p.1 (海外醫療及內地三甲醫院) | 半年檢；大灣區及內地三甲醫院就醫網絡優勢 |
 | `travel-chubb` | 安達保險 (Chubb) | 安達度假旅遊保 (TravelWell) | [官方投保頁](https://www.chubbtravelinsurance.com.hk/) | [官方單張 PDF](https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html)<br>鏡像：`/docs/brochures/hktravelwell-brouchuresingle.pdf` | p.7 (保費表及年齡加成), p.1 (公共交通雙倍賠償) | 季檢；0-79歲受保，65-79歲保費為 1.3 倍 |
 | `travel-dah-sing` | 大新保險 | 「智優遊」旅遊保障計劃 | [官方報價頁](https://www.dahsinginsurance.com/b2c/tp/quote) | [官方冊子 PDF](https://www.dahsinginsurance.com/b2c/api/fileCenter/file/BTP/product_brochure.pdf)<br>鏡像：`/docs/brochures/dahsinginsurance-product_brochure.pdf` | p.2 (家庭計劃只收兩人價錢), p.3 (醫療保障) | 半年檢；家庭計劃性價比極高（不限子女數目） |
-| `travel-fwd` | 富衛保險 (FWD) | 富衛「自寫意旅遊保」 | [官方投保頁](https://www.fwd.com.hk/online-insurance/mytravel-insurance/) | [官方小冊子 PDF](/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf)<br>鏡像：`/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf` | p.2 (頭等計劃醫療150萬), p.3 (任何原因取消 50%) | 季檢；因任何原因取消旅程賠 50% 係市場亮點 |
+| `travel-fwd` | 富衛保險 (FWD) | 富衛「自寫意旅遊保」 | [官方投保頁](https://www.fwd.com.hk/online-insurance/mytravel-insurance/) | [官方小冊子 PDF](https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf)<br>鏡像：`/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf` | p.2 (頭等計劃醫療150萬), p.3 (任何原因取消 50%) | 季檢；因任何原因取消旅程賠 50% 係市場亮點 |
 | `travel-generali` | 忠意保險 (Generali) | 忠意「忠意旅程安心」 | [官方投保頁](https://bravo.generali.com.hk/) | 官方線上專頁<br>鏡像：`待補充鏡像` | 官方產品規格表 | 半年檢；申根簽證（Schengen）合規，免自負額 |
 | `travel-hsbc` | 滙豐保險 (HSBC) | 滙豐「旅遊萬全保」 | [官方產品頁](https://www.hsbc.com.hk/zh-hk/insurance/products/travel/travelsurance/) | 滙豐條款細則專頁<br>鏡像：`待補充鏡像` | 官網保障規格表 (雙倍交通意外賠償) | 季檢；滙豐卓越理財客戶常有專屬保費折讓 |
 | `travel-hang-seng` | 恒生保險 | 恒生「旅遊保障計劃」 | [官方產品頁](https://www.hangseng.com/zh-hk/personal/insurance-planning/travel-insurance/) | 恒生條款頁（QBE承保）<br>鏡像：`待補充鏡像` | 官網優越計劃規格 (醫療120萬) | 半年檢；由昆士蘭保險(QBE)承保，信用卡扣賬方便 |
@@ -120,3 +122,13 @@ npm run lint -- --max-warnings=0
 # 5. 確保生產環境打包無故障
 npm run build
 ```
+
+---
+
+## 🔗 相關維護操作指南 (Related Workflows)
+- 🏷️ [更新保費與優惠代碼 SOP](../workflows/update-pricing-and-promo.md)
+- 📄 [PDF 說明書更新與引用校對 SOP](../workflows/update-pdf-terms-and-quotes.md)
+- ➕ [新增保險產品全流程 SOP](../workflows/add-new-product.md)
+- 🗄️ [產品停售或歸檔 SOP](../workflows/deprecate-product.md)
+- 🧭 [返回維護總手冊](../README.md)
+

@@ -1,5 +1,7 @@
 # 💎 高端醫療 (High-End Medical) 維護手冊 (03-high-end-medical)
 
+> 🧭 [返回維護總手冊](../README.md) ｜ 🏛️ [核心架構與規則](../core-rules-and-architecture.md) ｜ 🗓️ [年度運營日曆](../README.md#🗓️-2-保險市場年度運營與更新日曆-annual-operations-calendar)
+
 > **定位宗旨**：專門收錄全數賠償、尊貴私家房、大額醫療保障旗艦產品（共 10 款）。專為需要「突破細項限制、全球頂尖名醫」嘅客戶打造。新手 30 秒上手指南！🚀
 
 ---
@@ -96,3 +98,13 @@ npm run build
 ```
 
 🎯 5 個綠掣全齊，即可提交 PR！
+
+---
+
+## 🔗 相關維護操作指南 (Related Workflows)
+- 🏷️ [更新保費與優惠代碼 SOP](../workflows/update-pricing-and-promo.md)
+- 📄 [PDF 說明書更新與引用校對 SOP](../workflows/update-pdf-terms-and-quotes.md)
+- ➕ [新增保險產品全流程 SOP](../workflows/add-new-product.md)
+- 🗄️ [產品停售或歸檔 SOP](../workflows/deprecate-product.md)
+- 🧭 [返回維護總手冊](../README.md)
+

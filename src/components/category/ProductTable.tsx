@@ -580,7 +580,7 @@ export default function ProductTable({
                           className="inline-flex items-center gap-1 rounded bg-red text-paper hover:bg-red/90 px-2 py-0.5 text-[11px] font-bold shadow-2xs active:scale-95 transition-all"
                           title="直達該保險公司官方投保／報價頁面"
                         >
-                          <span>官網投保</span>
+                          <span>{p.premium_available ? "官網投保" : "官網報價"}</span>
                           <ExternalLink size={10} />
                         </a>
                       )}

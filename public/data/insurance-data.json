@@ -4512,7 +4512,13 @@
           "quote": "標準計劃認可編號 S00013；靈活計劃認可編號 F00022、F00025、F00053、F00054、F00074、F00081（截至 2026-09-02）",
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.aia.com.hk/zh-hk/products/health/vhis-flexi",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "投保享首年保費回贈，扣稅額每年高達 HK$8,000",
+        "buy_url": "https://www.aia.com.hk/zh-hk/products/health/vhis-flexi"
+      }
     },
     {
       "id": "medical-axa",
@@ -4850,7 +4856,13 @@
           "quote": "標準計劃認可編號 S00014、S00033、S00038；靈活計劃認可編號 F00017、F00018、F00034（截至 2026-09-02）",
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.axa.com.hk/zh/axa-wiseguard-pro-medical-insurance-plan",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "靈活計劃享高達 2 個月保費回贈，特設全數保障及無索償折扣",
+        "buy_url": "https://www.axa.com.hk/zh/axa-wiseguard-pro-medical-insurance-plan"
+      }
     },
     {
       "id": "medical-asia-insurance",
@@ -5090,7 +5102,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.asiainsurance.hk/tc/personal-insurance/medical-insurance",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "保證續保至 100 歲，設靈活自付費與優質私家診所網絡",
+        "buy_url": "https://www.asiainsurance.hk/tc/personal-insurance/medical-insurance"
+      }
     },
     {
       "id": "medical-avo",
@@ -5320,7 +5338,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.heyavo.com/zh-hk/products/vhis",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "純線上無佣金，超透明標準費率，投保享迎新優惠",
+        "buy_url": "https://www.heyavo.com/zh-hk/products/vhis"
+      }
     },
     {
       "id": "medical-boc-group-insurance",
@@ -5559,7 +5583,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.bocgins.com/index.html?target=vhis",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "中銀信用卡/手機銀行投保享保費折減，全家投保再折",
+        "buy_url": "https://www.bocgins.com/index.html?target=vhis"
+      }
     },
     {
       "id": "medical-boc-life",
@@ -5854,7 +5884,13 @@
           "quote": "標準計劃認可編號 S00022；靈活計劃認可編號 F00057（截至 2026-09-02）",
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.boclife.com.hk/tc/product/smartviva-flexi-vhis.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "特設無索償保費折扣及家庭投保專屬回贈，兼享扣稅優惠",
+        "buy_url": "https://www.boclife.com.hk/tc/product/smartviva-flexi-vhis.html"
+      }
     },
     {
       "id": "medical-blue-cross",
@@ -6096,7 +6132,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.bluecross.com.hk/ch/VHIS/Information",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上投保專享限時折扣；門診手術免找數出院服務",
+        "buy_url": "https://www.bluecross.com.hk/ch/VHIS/Information"
+      }
     },
     {
       "id": "medical-bowtie",
@@ -6405,7 +6447,13 @@
           "quote": "標準計劃認可編號 S00023；靈活計劃認可編號 F00031、F00060（截至 2026-09-02）",
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.bowtie.com.hk/zh/insurance/vhis",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "輸入優惠碼 `BLOGINSURE2` 享首年 6 折、次年 85 折優惠",
+        "buy_url": "https://www.bowtie.com.hk/zh/insurance/vhis"
+      }
     },
     {
       "id": "medical-bupa",
@@ -6710,7 +6758,13 @@
           "quote": "標準計劃認可編號 S00020；靈活計劃認可編號 F00029、F00035、F00040（截至 2026-09-02）",
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.bupa.com.hk/tc/medical-insurance/vhis-info/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "特設專科門診免找數及首年保費折扣，百年醫療專長保障",
+        "buy_url": "https://www.bupa.com.hk/tc/medical-insurance/vhis-info/"
+      }
     },
     {
       "id": "medical-china-life-overseas",
@@ -6950,7 +7004,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.chinalife.com.hk/zh-hk/products/insurance/medical-protection",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "大灣區跨境綠色就醫通道支援，指定醫院出院直付免找數",
+        "buy_url": "https://www.chinalife.com.hk/zh-hk/products/insurance/medical-protection"
+      }
     },
     {
       "id": "medical-china-taiping",
@@ -7180,7 +7240,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.hk.cntaiping.com/product/110860.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "保證續保至 100 歲，每年 42.4 萬保障額，官方商城享優惠",
+        "buy_url": "https://www.hk.cntaiping.com/product/110860.html"
+      }
     },
     {
       "id": "medical-china-taiping-life",
@@ -7420,7 +7486,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://life.hk.cntaiping.com/product/vhis/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "特設癌症預防及重疾綠通服務，尊享首年保費折扣優惠",
+        "buy_url": "https://life.hk.cntaiping.com/product/vhis/"
+      }
     },
     {
       "id": "medical-chow-tai-fook-life",
@@ -7662,7 +7734,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.ctflife.com.hk/tc/products/health-protection/vhis/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "前富通人壽升級品牌，享家庭同行折扣及終身保證續保",
+        "buy_url": "https://www.ctflife.com.hk/tc/products/health-protection/vhis/"
+      }
     },
     {
       "id": "medical-chubb-life",
@@ -7905,7 +7983,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.chubb.com/hk-zh/personal/health-insurance/vhis.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "官方專享核保支援及健康管理計劃，享專屬保費回贈",
+        "buy_url": "https://www.chubb.com/hk-zh/personal/health-insurance/vhis.html"
+      }
     },
     {
       "id": "medical-cigna",
@@ -8242,7 +8326,13 @@
           "quote": "標準計劃認可編號 S00031；靈活計劃認可編號 F00012、F00016（截至 2026-09-02）",
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.cigna.com.hk/zh-hant/medical-insurance/vhis/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上自主投保享首年保費回贈折扣，特設信諾醫療管家支援",
+        "buy_url": "https://www.cigna.com.hk/zh-hant/medical-insurance/vhis/"
+      }
     },
     {
       "id": "medical-dah-sing",
@@ -8472,7 +8562,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.dahsinginsurance.com/product/vhis",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "大新信用卡客戶享額外分期零手續費及保費回贈優惠",
+        "buy_url": "https://www.dahsinginsurance.com/product/vhis"
+      }
     },
     {
       "id": "medical-fwd",
@@ -8792,7 +8888,13 @@
           "quote": "標準計劃認可編號 S00036；靈活計劃認可編號 F00015、F00032、F00045、F00051、F00067、F00069、F00070、F00072（截至 2026-09-02）",
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.fwd.com.hk/online-insurance/vhis-vprime-medical-plan/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上自主投保享首年高達 20% 保費回贈，全數保障指定醫療",
+        "buy_url": "https://www.fwd.com.hk/online-insurance/vhis-vprime-medical-plan/"
+      }
     },
     {
       "id": "medical-hsbc-life",
@@ -9092,7 +9194,13 @@
           "quote": "標準計劃認可編號 S00042；靈活計劃認可編號 F00049、F00076、F00079（截至 2026-09-02）",
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/medical/vhis-flexi/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "滙豐銀行客戶專屬保費回贈，每年尊享高達 HK$8,000 扣稅額",
+        "buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/medical/vhis-flexi/"
+      }
     },
     {
       "id": "medical-hong-kong-life",
@@ -9331,7 +9439,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.hklife.com.hk/tc/products/personal-insurance/medical-protection/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "本土老牌人壽，費率平實透明，保證續保至 100 歲",
+        "buy_url": "https://www.hklife.com.hk/tc/products/personal-insurance/medical-protection/"
+      }
     },
     {
       "id": "medical-liberty-international",
@@ -9572,7 +9686,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.libertyinsurance.com.hk/zh-hk/personal/vhis/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "設有自付額選項與無索償優惠，彈性兼顧預算與大病保障",
+        "buy_url": "https://www.libertyinsurance.com.hk/zh-hk/personal/vhis/"
+      }
     },
     {
       "id": "medical-msig",
@@ -9811,7 +9931,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.msig.com.hk/zh-hant/personal-insurance/vhis",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "官網報價享專屬核保及理賠綠通，日本三井住友信譽承保",
+        "buy_url": "https://www.msig.com.hk/zh-hant/personal-insurance/vhis"
+      }
     },
     {
       "id": "medical-manulife",
@@ -10125,7 +10251,13 @@
           "quote": "標準計劃認可編號 S00034；靈活計劃認可編號 F00019、F00041、F00071（截至 2026-09-02）",
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis/voluntary-health-insurance-scheme/manulife-supreme-vhis-flexi-plan.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "全港知名醫療保險品牌，投保享迎新保費回贈及醫康健管網絡",
+        "buy_url": "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis/voluntary-health-insurance-scheme/manulife-supreme-vhis-flexi-plan.html"
+      }
     },
     {
       "id": "medical-prudential",
@@ -10440,7 +10572,13 @@
           "quote": "標準計劃認可編號 S00026；靈活計劃認可編號 F00013、F00050、F00068（截至 2026-09-02）",
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.prudential.com.hk/tc/products/health/medical/prudential-VHIS-series/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "全數保障指定醫療開支，家庭成員同行投保享額外折扣優惠",
+        "buy_url": "https://www.prudential.com.hk/tc/products/health/medical/prudential-VHIS-series/"
+      }
     },
     {
       "id": "medical-sun-life",
@@ -10764,7 +10902,13 @@
           "quote": "標準計劃認可編號 S00018；靈活計劃認可編號 F00026、F00063、F00066（截至 2026-09-02）",
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.sunlife.com.hk/zh-hant/insurance/health/voluntary-health-insurance-scheme/wehealth-preferred/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "全球醫療支援及專屬保費回贈，扣稅兼顧頂級私家醫療服務",
+        "buy_url": "https://www.sunlife.com.hk/zh-hant/insurance/health/voluntary-health-insurance-scheme/wehealth-preferred/"
+      }
     },
     {
       "id": "medical-well-link-life",
@@ -11003,7 +11147,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.wll.com.hk/tc/product/health/vhis",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "高性價比自願醫保，特設出院免找數及本地私家醫院網絡",
+        "buy_url": "https://www.wll.com.hk/tc/product/health/vhis"
+      }
     },
     {
       "id": "medical-yf-life",
@@ -11244,7 +11394,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.yflife.com.hk/tc/products/health-protection/vhis",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "保證續保至 100 歲，特設非合約醫院專項賠償及家庭扣稅福利",
+        "buy_url": "https://www.yflife.com.hk/tc/products/health-protection/vhis"
+      }
     },
     {
       "id": "medical-zurich",
@@ -11541,7 +11697,13 @@
           "quote": "標準計劃認可編號 S00024；靈活計劃認可編號 F00036、F00044（截至 2026-09-02）",
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.zurich.com.hk/zh-hk/individuals/health-insurance/vhis",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "瑞士百年保險工藝，尊享專科醫療諮詢及國際緊急醫療支援",
+        "buy_url": "https://www.zurich.com.hk/zh-hk/individuals/health-insurance/vhis"
+      }
     },
     {
       "id": "medical-bolttech",
@@ -11780,7 +11942,13 @@
           "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html"
         }
       ],
-      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json"
+      "note": "由 scripts/build_vhis.py 自 vhis.gov.hk 官方認可產品名單自動生成；詳見 public/data/vhis-plans.json",
+      "official_buy_url": "https://www.bolttechinsurance.hk/zh-hk/vhis",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "純數碼保險科技核保，免繁瑣手續，極速出單兼享扣稅額",
+        "buy_url": "https://www.bolttechinsurance.hk/zh-hk/vhis"
+      }
     },
     {
       "id": "high-end-aia-ceo",
@@ -11976,7 +12144,13 @@
         "AIA亞洲至尊醫療計劃產品簡介"
       ],
       "note": "獨立高端私家醫療保單，非自願醫保。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.aia.com.hk/zh-hk/products/health/ceo-medical-plan-2",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "終身額達 HK$25,000,000，半私家房全數賠償，享直付綠通",
+        "buy_url": "https://www.aia.com.hk/zh-hk/products/health/ceo-medical-plan-2"
+      }
     },
     {
       "id": "high-end-axa-global-elite",
@@ -12171,7 +12345,13 @@
         "AXA寰宇特選醫療計劃產品小冊子"
       ],
       "note": "獨立高端醫療，著重大灣區與亞太區頂尖私家醫療直付。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.axa.com.hk/zh/global-elite-plan",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "全球頂尖醫療網絡直付免找數，尊享首年保費回贈",
+        "buy_url": "https://www.axa.com.hk/zh/global-elite-plan"
+      }
     },
     {
       "id": "high-end-bowtie-pink",
@@ -12366,7 +12546,13 @@
         "Bowtie Pink 產品單張及保障表"
       ],
       "note": "市場極具性價比的高端自願醫保旗艦。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.bowtie.com.hk/zh/insurance/vhis/pink",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "終身保額 HK$50,000,000，輸入碼 `BLOGINSURE2` 享首年 6 折",
+        "buy_url": "https://www.bowtie.com.hk/zh/insurance/vhis/pink"
+      }
     },
     {
       "id": "high-end-bupa-elite",
@@ -12562,7 +12748,13 @@
         "保柏環球卓康健產品手冊"
       ],
       "note": "獨立國際私家醫療（IPMI），不屬香港自願醫保體系，不適用於自願醫保稅務扣除。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.bupa.com.hk/tc/individual/medical-insurance/bupa-global-health-plans/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "私家病房全包、全球頂級名醫直付及 24/7 專案經理全程陪診",
+        "buy_url": "https://www.bupa.com.hk/tc/individual/medical-insurance/bupa-global-health-plans/"
+      }
     },
     {
       "id": "high-end-cigna-global",
@@ -12757,7 +12949,13 @@
         "Cigna Global Customer Benefit Guide"
       ],
       "note": "獨立國際高端醫療保險，適合外派高管、跨國家庭與留學人士。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.cignaglobal.com/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "跨國醫療覆蓋全球頂尖醫院，尊享多幣種結算及免找數",
+        "buy_url": "https://www.cignaglobal.com/"
+      }
     },
     {
       "id": "high-end-fwd-premier",
@@ -12952,7 +13150,13 @@
         "FWD高端醫療產品單張"
       ],
       "note": "富衛旗艦高端醫療系列。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.fwd.com.hk/online-insurance/vhis-vprime-medical-plan/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "終身額達 HK$60,000,000，全數保障環球住院、手術及先進療法",
+        "buy_url": "https://www.fwd.com.hk/online-insurance/vhis-vprime-medical-plan/"
+      }
     },
     {
       "id": "high-end-manulife-supreme",
@@ -13146,7 +13350,13 @@
         "宏利宏達醫療計劃簡介"
       ],
       "note": "宏利獨立高端醫療產品。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis/voluntary-health-insurance-scheme/manulife-supreme-vhis-flexi-plan.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "覆蓋亞洲及全球，癌症標靶及免疫治療全數賠償，享保費回贈",
+        "buy_url": "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis/voluntary-health-insurance-scheme/manulife-supreme-vhis-flexi-plan.html"
+      }
     },
     {
       "id": "high-end-prudential-apex",
@@ -13341,7 +13551,13 @@
         "保誠傲馳醫療計劃條款細則"
       ],
       "note": "保誠旗艦高端私家醫療。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.prudential.com.hk/tc/products/health/medical/prudential-VHIS-series/pruhealth-vhis-vip-plan/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "高達 HK$50,000,000 終身保障，無細項上限實報實銷",
+        "buy_url": "https://www.prudential.com.hk/tc/products/health/medical/prudential-VHIS-series/pruhealth-vhis-vip-plan/"
+      }
     },
     {
       "id": "topup-aia-extra-medic",
@@ -13518,7 +13734,13 @@
         "AIA額外醫療保障產品說明書"
       ],
       "note": "友邦經典附加超額醫療保險契約。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.aia.com.hk/zh-hk/products/health/extra-medic",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "低成本附加於現有醫保，補足病房、雜費及手術超額費用",
+        "buy_url": "https://www.aia.com.hk/zh-hk/products/health/extra-medic"
+      }
     },
     {
       "id": "topup-axa-smart-excess",
@@ -13695,7 +13917,13 @@
         "AXA守慧附加差額醫療保單簡介"
       ],
       "note": "安盛專為白領上班族配置之超額差額補助險。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.axa.com.hk/zh/smart-excess",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "專為打工仔公司醫保差額設計，提供高達 80%–90% 額外補償",
+        "buy_url": "https://www.axa.com.hk/zh/smart-excess"
+      }
     },
     {
       "id": "topup-bowtie-combat",
@@ -13872,7 +14100,13 @@
         "Bowtie 觸木保產品條款"
       ],
       "note": "香港打工仔最喜愛之意外門診及跌打加強 Top-up 方案。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.bowtie.com.hk/zh/insurance/accident/combat",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "月供幾十蚊即可大幅提升意外醫療額度，純線上隨時加退保",
+        "buy_url": "https://www.bowtie.com.hk/zh/insurance/accident/combat"
+      }
     },
     {
       "id": "topup-bupa-carepro",
@@ -14049,7 +14283,13 @@
         "保柏易增值產品簡介"
       ],
       "note": "市場最經典之團體醫保 Top-up 升級方案。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.bupa.com.hk/tc/individual/medical-insurance/top-up/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "專為銜接公司醫療設計，無縫轉接全數保障出院差額",
+        "buy_url": "https://www.bupa.com.hk/tc/individual/medical-insurance/top-up/"
+      }
     },
     {
       "id": "topup-cigna-plus",
@@ -14226,7 +14466,13 @@
         "信諾附加醫療保障產品資料"
       ],
       "note": "外企高管與上班族常用之 Top-up 方案。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.cigna.com.hk/zh-hant/medical-insurance/vhis/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "高達 85% 實報實銷超額醫療開支，減輕重症自付負擔",
+        "buy_url": "https://www.cigna.com.hk/zh-hant/medical-insurance/vhis/"
+      }
     },
     {
       "id": "topup-fwd-supplementary",
@@ -14403,7 +14649,13 @@
         "FWD補足您產品小冊子"
       ],
       "note": "富衛為打工仔度身訂做之高性價比 Top-up 方案。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.fwd.com.hk/online-insurance/vhis-vcare-medical-plan/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "超高性價比補充醫保，網上自主投保即時核保出單",
+        "buy_url": "https://www.fwd.com.hk/online-insurance/vhis-vcare-medical-plan/"
+      }
     },
     {
       "id": "topup-prudential-mediextra",
@@ -14580,7 +14832,13 @@
         "保誠附加醫療保產品手冊"
       ],
       "note": "保誠旗艦附加差額醫療保單。",
-      "citations": []
+      "citations": [],
+      "official_buy_url": "https://www.prudential.com.hk/tc/products/health/medical/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "專責補足住院細項限額超出部分，家庭投保享特惠折扣",
+        "buy_url": "https://www.prudential.com.hk/tc/products/health/medical/"
+      }
     },
     {
       "id": "home-axa",
@@ -15077,7 +15335,13 @@
           "quote": "我們為實用面積1,200平方呎或以下、樓齡為55年或以下和非矮房（多於5層）的住所提供保障。… 上述資料僅為摘要，有關的詳盡條款及細則，及不受保項目細則，一概以保單條款為準。",
           "url": "https://www.heyavo.com/zh-hk/products/home"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.heyavo.com/zh-hk/products/home",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "純線上投保，免繁複家電申報，即投即保",
+        "buy_url": "https://www.heyavo.com/zh-hk/products/home"
+      }
     },
     {
       "id": "home-boc-group-insurance",
@@ -15596,7 +15860,13 @@
           "quote": "5. 任何損失或損毀乃由受保人、受保家屬或受保家庭傭工的蓄意、故意或魯莽行為造成。6. 罰款或懲罰性的損害賠償。7. 戰爭、入侵、外敵的行為…或任何恐怖主義行為。",
           "url": "https://ap.bluecross.com.hk/shared/leaflets/HomeSafe_Protection_Insurance_Direct_Leaflet.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.bluecross.com.hk/ch/HomeSafe-Protection-Insurance/Information",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上投保享保費 8 折，特設寵物額外保障與水管爆裂支援",
+        "buy_url": "https://www.bluecross.com.hk/ch/HomeSafe-Protection-Insurance/Information"
+      }
     },
     {
       "id": "home-china-taiping",
@@ -15824,7 +16094,13 @@
           "quote": "保險處所所在大廈建築年份：(樓齡超過40年，承保條件另議) (Building years over 40 to be considered separately)",
           "url": "https://www.hk.cntaiping.com/product/110849.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.hk.cntaiping.com/product/110849.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "太平居安心網上優惠價，樓宇結構與室內財物雙重守護",
+        "buy_url": "https://www.hk.cntaiping.com/product/110849.html"
+      }
     },
     {
       "id": "home-chubb",
@@ -16072,7 +16348,13 @@
           "quote": "• 惡意破壞、蓄意行為 • 閣下故意損毀財物的詐騙行為",
           "url": "https://www.chubb.com/hk-zh/personal/home-insurance.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.chubb.com/hk-zh/personal/home-insurance.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上投保尊享折扣，特設高達千萬第三者法律責任保障",
+        "buy_url": "https://www.chubb.com/hk-zh/personal/home-insurance.html"
+      }
     },
     {
       "id": "home-dah-sing",
@@ -16339,7 +16621,13 @@
           "quote": "• 從事任何貿易、專業或僱傭活動的責任 • 任何無形物品、數碼虛擬資產、數位貨幣及任何類近的物品。",
           "url": "https://www.dahsing.com/pdf/wm/WMD_GI_HomeSure.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.dahsing.com/html/tc/insurance/general_insurance/home_insurance.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "大新信用卡客戶投保享額外現金回贈及分期零利率",
+        "buy_url": "https://www.dahsing.com/html/tc/insurance/general_insurance/home_insurance.html"
+      }
     },
     {
       "id": "home-liberty",
@@ -16567,7 +16855,13 @@
           "quote": "Worldwide cover for personal belongings subject to an excess of HK$500 (excluding daily necessities such as mobile phones, spectacles and cash, etc.)",
           "url": "https://www.libertyinternational.com/hk-en/home-protector-plus"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.libertyinsurance.com.hk/zh-hk/personal/home/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "官方網上報價，全面承保水浸、火災及個人法律責任",
+        "buy_url": "https://www.libertyinsurance.com.hk/zh-hk/personal/home/"
+      }
     },
     {
       "id": "home-msig",
@@ -16826,7 +17120,13 @@
           "quote": "滲水事故 (由颱風、暴風或暴雨引致除外) 食物或飲品變質 (額外保障項目除外) 汽車 牲口、寵物及動物",
           "url": "https://www.msig.com.hk/zh-hant/node/6031"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.msig.com.hk/ihome",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上投保輸入優惠碼享保費 7 折至 8 折優惠",
+        "buy_url": "https://www.msig.com.hk/ihome"
+      }
     },
     {
       "id": "home-onedegree",
@@ -17357,7 +17657,13 @@
           "quote": "• mobile/portable radio, mobile/portable telecommunications or mobile/portable computer equipment including laptop computer, mobile phone or hand-held computer or pager;",
           "url": "https://www.qbe.com/media/qbe/asia/hongkong/files/home-insurance-renewal/qbe_home_policy_wording_mil.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.qbe.com/hk/zh-hk/personal-insurance/home-insurance",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "昆士蘭保險官方投保，專設業主及租客量身訂造方案",
+        "buy_url": "https://www.qbe.com/hk/zh-hk/personal-insurance/home-insurance"
+      }
     },
     {
       "id": "home-zurich",
@@ -17918,7 +18224,13 @@
           "quote": "若受保人於保單生效起計一年內自殺身亡，我們就此保單的賠償責任只限退還於此計劃下扣除所有向我們償還的款項後的已付保費（不包括利息）。",
           "url": "https://www.aia.com.hk/content/dam/hk/zh-hk/pdf/product-brochure/individuals/easyguard-term-life/EasyGuardTermLife_tc.pdf.coredownload.inline.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.aia.com.hk/zh-hk/products/life/easyguard-term-life-plan",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "低保費高保障，設保證續保權及末期疾病提前賠償",
+        "buy_url": "https://www.aia.com.hk/zh-hk/products/life/easyguard-term-life-plan"
+      }
     },
     {
       "id": "life-axa",
@@ -18195,7 +18507,13 @@
           "quote": "若被保人於保單日期／附加契約生效日期或基本計劃／附加契約的任何復效日期（以日期較後者為準）起計1年內自殺身故，無論自殺當時被保人的神志是否正常，身故賠償只限於退還已繳付的保費（但不包括其利息）。",
           "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "設 5/10/15/20 年或至指定年齡續保，享保費回贈",
+        "buy_url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term"
+      }
     },
     {
       "id": "life-boc-life",
@@ -18449,7 +18767,13 @@
           "quote": "為了讓您及您的摯愛得到更周全保障，可按個人需要選擇多種附加利益保障。",
           "url": "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "保費相宜，兼備末期疾病提前給付及無憂續保",
+        "buy_url": "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html"
+      }
     },
     {
       "id": "life-blue",
@@ -18717,7 +19041,13 @@
           "quote": "「最低價保證」不適用於已遞交之申請及生效中的保單。優惠價格不適用於其後續保之保費。",
           "url": "https://www.blue.com.hk/blog/hk/%E4%BF%9D%E9%9A%AA%E7%9F%A5%E8%AD%98/guide-to-avoiding-orphan-policies"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.blue.com.hk/zh-hk/products/term-life/wecare-term-life-protection-plan-tl3",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "輸入優惠碼 `BLUEANTL3` 享首年 6 折、次年 4 折 + 送 HealthCoin",
+        "buy_url": "https://www.blue.com.hk/zh-hk/products/term-life/wecare-term-life-protection-plan-tl3"
+      }
     },
     {
       "id": "life-bowtie",
@@ -18991,7 +19321,13 @@
           "quote": "Bowtie 人壽保系列均不會賠償以下事項：直接或間接、全部或部分因以下項目引致的死亡自殺受保人自保單生效日 2 年內因自殺而身故，不論自殺時神志清醒與否。",
           "url": "https://www.bowtie.com.hk/zh/insurance/term-life"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.bowtie.com.hk/zh/insurance/term-life",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "百萬保額每月 HK$38 起，純線上無佣金，性價比極高",
+        "buy_url": "https://www.bowtie.com.hk/zh/insurance/term-life"
+      }
     },
     {
       "id": "life-china-life-overseas",
@@ -19265,7 +19601,13 @@
           "quote": "除外事項及限制—本產品小冊子所載資料只供參考之用，有關重要不保事項及限制的詳盡條款及細則，例如不持異議條款、自殺及欺詐等，請參閱「保單規章」及「利益保障條款」。",
           "url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "保證續保，大額人壽身故撫恤金支援家庭",
+        "buy_url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection"
+      }
     },
     {
       "id": "life-fwd",
@@ -19585,7 +19927,13 @@
           "quote": "若被保人直接或間接由下列任何原因引致或導致身故，將不獲發此額外意外身故權益及/或雙倍賠償權益：1. 不論被保人的精神狀態如何，若索償申請是因被保人企圖自殺、自殺或蓄意自殘而引起的",
           "url": "https://www.fwd.com.hk/images/v3/assets/blt563fac53dd3a847c/blt5de7382c12bba9dd/647dc1d1f478a9a7f77f09f8/FWD_MyTerm_Plus_TC_Final.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.fwd.com.hk/online-insurance/myterm-term-life-insurance/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上投保專享限時折扣；簡易健康申報，極速批核",
+        "buy_url": "https://www.fwd.com.hk/online-insurance/myterm-term-life-insurance/"
+      }
     },
     {
       "id": "life-hsbc-life",
@@ -19830,7 +20178,13 @@
           "quote": "上述产品特点、利益及风险内容受条款及细则约束，请参阅相关产品册子、单张、保单，以了解详情。",
           "url": "https://retailbank.hsbc.com.hk/ins1/zh-cn/life-protection-plans/"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/life/term-express/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "線上即時投保享首年保費回贈，高額保障對沖按揭",
+        "buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/life/term-express/"
+      }
     },
     {
       "id": "life-manulife",
@@ -20075,7 +20429,13 @@
           "quote": "以上所述為產品特點及風險的概要，請參閱保單條款內的確實條款及細則，並特別留意保單利益不獲支付之條款。",
           "url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "保費每期保證不變，可免體檢免核保轉換終身人壽",
+        "buy_url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html"
+      }
     },
     {
       "id": "life-prudential",
@@ -20363,7 +20723,13 @@
           "quote": "在下列情況中，我們將不會支付本計劃的末期疾病保障：… 該末期疾病於本計劃生效日期或復效之生效日期前（以較後者為準）已存在；或 … 受保人企圖自殺或蓄意自殘；患上後天免疫缺陷綜合症（愛滋病）…；受保人使用的麻醉劑（但由註冊醫生處方使用則除外），或受保人濫用藥物及/或酗酒。",
           "url": "https://www.prudential.com.hk/content/dam/prudential-phkl/pdf/tc/macau/brochure/pruterm-family-protector-product-brochure.pdf.coredownload.inline.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.prudential.com.hk/tc/products/life/life-protection/pruterm-family-protector/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "首年投保享保費回贈，專為家庭經濟支柱量身設計",
+        "buy_url": "https://www.prudential.com.hk/tc/products/life/life-protection/pruterm-family-protector/"
+      }
     },
     {
       "id": "life-sun-life",
@@ -20612,7 +20978,13 @@
           "quote": "有關釋義、保障範圍、完整的條款及細則和除外責任的詳情包括產品風險，請參閱各相關的產品小冊子和保單文件樣本。如果此產品概要與保單文件樣本內容不符，則以保單文件樣本為準。",
           "url": "https://www.sunlife.com.hk/zh-hant/insurance/life-insurance/term-life-insurance/"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.sunlife.com.hk/zh-hant/insurance/life-insurance/term-life-insurance/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "靈活續保年期及高額人壽身故保障，支援按揭過渡",
+        "buy_url": "https://www.sunlife.com.hk/zh-hant/insurance/life-insurance/term-life-insurance/"
+      }
     },
     {
       "id": "life-za-insure",
@@ -20874,7 +21246,13 @@
           "quote": "主要不保事項：如受保人於保單生效日或最後一次保單復效日起計兩年內自殺，且保單仍然有效，身故賠償將限於退還已繳交的保費（不附利息）並扣除任何您未償還的欠款。",
           "url": "https://cdn.zaticdn.com/life/common/website/v2/Product%20Brochure%20-%20ZA%20Life-TC.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://insure.za.group/hk/productdetail?goodsId=223035",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "純線上 3 分鐘投保，保額最高達千萬，月供平民化",
+        "buy_url": "https://insure.za.group/hk/productdetail?goodsId=223035"
+      }
     },
     {
       "id": "critical-illness-aia",
@@ -21011,7 +21389,7 @@
         },
         {
           "item": "未確立為惡性之良性腫瘤切除手術保障",
-          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK$30,000 至 HK$80,000）",
           "document_name": "On Your Side Insurance Plan 2 / On Your Side Insurance Plan 2 – First Gift 產品冊子 (OnYourSideInsurancePlan2_en.pdf)",
           "page": 4,
           "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
@@ -21148,7 +21526,13 @@
           "quote": "• Fulminant viral hepatitis or cancer of the insured due to AIDS or HIV infection; and • a self-inflicted injury; and • any illnesses existed before the policy is issued and was not disclosed in the application for insurance or health statement.",
           "url": "https://www.aia.com.hk/content/dam/hk-wise/pdf/products/individuals/en/on-your-side-plan-2/OnYourSideInsurancePlan2_en.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.aia.com.hk/zh-hk/products/health/on-your-side-insurance-plan-2",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "2025/2026 旗艦多重危疾，涵蓋癌症、心臟病及兒童特疾",
+        "buy_url": "https://www.aia.com.hk/zh-hk/products/health/on-your-side-insurance-plan-2"
+      }
     },
     {
       "id": "critical-illness-axa",
@@ -21286,7 +21670,7 @@
         },
         {
           "item": "未確立為惡性之良性腫瘤切除手術保障",
-          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK$30,000 至 HK$80,000）",
           "document_name": "AXA 官網「危疾保障」產品總覽頁 (Critical Illness Insurance & Protection)",
           "page": null,
           "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
@@ -21425,7 +21809,13 @@
           "quote": "for any covered illnesses or Special Education Need (as the case may be) resulting directly or indirectly from, or caused or contributed by (in whole or in part) any of the following: (a) any Pre-Existing Conditions (as defined below); (b) Human Immunodeficiency Virus (HIV) and/or any HIV-related illness including Acquired Immune Deficiency Syndrome (AIDS) ... (c) any self-inflicted injury or suicide, whether sane or insane; (d) intoxication by alcohol or drugs not prescribed by a medical practitioner; (e) any criminal act",
           "url": "https://www.axa.com.hk/total-assure-plus-critical-illness-pb-en"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.axa.com.hk/zh/total-assure-plus-critical-illness",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "首年保費回贈高達 20% 起，特設多次癌症與中風保障",
+        "buy_url": "https://www.axa.com.hk/zh/total-assure-plus-critical-illness"
+      }
     },
     {
       "id": "critical-illness-boc-life",
@@ -21561,7 +21951,7 @@
         },
         {
           "item": "未確立為惡性之良性腫瘤切除手術保障",
-          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK$30,000 至 HK$80,000）",
           "document_name": "危疾188終身保險計劃產品小冊子 (CI188Tc.pdf，中銀香港官網)",
           "page": 2,
           "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
@@ -21698,7 +22088,13 @@
           "quote": "（b） 在本計劃中，對於保單簽發日期或加簽批單日期或最後保單復效的生效日（以最遲者為準）起計首60日等候期內患上的首次出現或顯現有關病徵或狀況或任何首次診斷的任何嚴重疾病、特別疾病、非嚴重疾病或兒童疾病，將不獲任何保障。本條款不適用於由意外事件導致的嚴重疾病、特別疾病、非嚴重疾病或兒童疾病。",
           "url": "https://www.bochk.com/dam/insurance/life/CI188/CI188Tc.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.boclife.com.hk/tc/product/best-care-critical-illness-plan.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "涵蓋高達 197 種疾病狀況，投保享推廣期保費折扣",
+        "buy_url": "https://www.boclife.com.hk/tc/product/best-care-critical-illness-plan.html"
+      }
     },
     {
       "id": "critical-illness-blue",
@@ -21835,7 +22231,7 @@
         },
         {
           "item": "未確立為惡性之良性腫瘤切除手術保障",
-          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK$30,000 至 HK$80,000）",
           "document_name": "WeCare 109% Refundable Critical Illness Protector Product Summary (Blue 官網 PDF 21015372)",
           "page": 1,
           "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
@@ -21953,7 +22349,13 @@
           "quote": "The Life Assured commits suicide, whether sane or insane within 12 months from the policy issue date or date of reinstatements, whichever is later. The benefit shall be limited to a return of total premiums paid from the policy effective date or reinstatement date, whichever is later, less any paid or payable Special Illness Benefit.",
           "url": "https://www.blue.com.hk/static/3a724f98d4fdb6609adcd1de2a84c494/21015372-WeCare_109-_Refundable_Critical_Illness_Protector-EN.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.blue.com.hk/zh/wecare-3-in-1-protector",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "輸入優惠碼 `BLOGCI1` 享保費折扣；滿期最高 109% 退保費",
+        "buy_url": "https://www.blue.com.hk/zh/wecare-3-in-1-protector"
+      }
     },
     {
       "id": "critical-illness-bowtie",
@@ -22090,7 +22492,7 @@
         },
         {
           "item": "未確立為惡性之良性腫瘤切除手術保障",
-          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK$30,000 至 HK$80,000）",
           "document_name": "Bowtie 官網 Bowtie Term Critical Illness Insurance 產品頁",
           "page": null,
           "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
@@ -22200,7 +22602,13 @@
           "quote": "Any illnesses diagnosed or symptoms manifested within the 90-day waiting period from the policy effective date will not be covered.",
           "url": "https://www.bowtie.com.hk/en/insurance/critical-illness"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.bowtie.com.hk/zh/insurance/critical-illness",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "輸入優惠碼 `BLOGINSURE2` 享首年 6 折、次年 85 折優惠",
+        "buy_url": "https://www.bowtie.com.hk/zh/insurance/critical-illness"
+      }
     },
     {
       "id": "critical-illness-fwd",
@@ -22339,7 +22747,7 @@
         },
         {
           "item": "未確立為惡性之良性腫瘤切除手術保障",
-          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK$30,000 至 HK$80,000）",
           "document_name": "FWD 富衛官網「危疾緻尚保／危疾緻尚保（升級版）」產品頁",
           "page": null,
           "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
@@ -22462,7 +22870,13 @@
           "quote": "The product information in this website is for reference only and does not contain the full terms and conditions, key product risks and full list of exclusions of the policy. For the details of benefits and key product risks, please refer to the brochure; and for exact terms and conditions and the full list of exclusions, please refer to the policy provisions of the Plan.",
           "url": "https://www.fwd.com.hk/zh/critical-illness/crisis-onemaster-series/"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.fwd.com.hk/zh/critical-illness/crisis-onemaster-series/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "跨代守護、癌症多次賠償及認知障礙長期護理補貼",
+        "buy_url": "https://www.fwd.com.hk/zh/critical-illness/crisis-onemaster-series/"
+      }
     },
     {
       "id": "critical-illness-hsbc-life",
@@ -22599,7 +23013,7 @@
         },
         {
           "item": "未確立為惡性之良性腫瘤切除手術保障",
-          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK$30,000 至 HK$80,000）",
           "document_name": "HSBC 官網「Chill out, you’re covered」推廣頁（HSBC Swift Guard Critical Illness Plan）",
           "page": null,
           "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
@@ -22690,7 +23104,13 @@
           "quote": "Please refer to the respective product brochure for detailed features and the policy provisions for the detailed terms and conditions.",
           "url": "https://retailbank.hsbc.com.hk/ins/en/campaign/chillout-getcovered/"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/critical-illness/swift-guard/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上自主投保享 101% 保費回贈，滿期無索償保費全退",
+        "buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/critical-illness/swift-guard/"
+      }
     },
     {
       "id": "critical-illness-manulife",
@@ -22827,7 +23247,7 @@
         },
         {
           "item": "未確立為惡性之良性腫瘤切除手術保障",
-          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK$30,000 至 HK$80,000）",
           "document_name": "IncomeGuard Critical Illness Protector 產品單張 (incomeguard-critical-illness-protector.pdf，宏利官網)",
           "page": 4,
           "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
@@ -22966,7 +23386,13 @@
           "quote": "We will not pay any living benefits if the critical illness results from any of the following: i. Directly or indirectly by acquired immune deficiency syndrome (AIDS), aids related complex (ARC), or infection by human immunodeficiency virus (HIV) ... ii. Suicide, attempted suicide or intentionally self-inflicted injury, whether sane or insane; ... iv. Directly or indirectly by the taking of drugs (except under the direction of a doctor), the consumption of poison or alcohol; v. Directly or indirectly by war or any act of war, declared or undeclared, riots, insurrection or civil commotion; vi. Participate in any criminal event",
           "url": "https://www.manulife.com.hk/content/dam/insurance/hk/en/documents/products/health/incomeguard-critical-illness-protector.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.manulife.com.hk/zh-hk/individual/products/health/critical-illness-protection/incomeguard-critical-illness-protector.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "最新產品，兼具危疾一筆過賠償與持續月入息支援",
+        "buy_url": "https://www.manulife.com.hk/zh-hk/individual/products/health/critical-illness-protection/incomeguard-critical-illness-protector.html"
+      }
     },
     {
       "id": "critical-illness-prudential",
@@ -23103,7 +23529,7 @@
         },
         {
           "item": "未確立為惡性之良性腫瘤切除手術保障",
-          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK$30,000 至 HK$80,000）",
           "document_name": "PRUHealth Critical Illness Extended Care III 產品冊子 (pruhealth-critical-illness-extended-care-iii-product-brochure.pdf，保誠官網)",
           "page": 3,
           "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
@@ -23265,7 +23691,13 @@
           "quote": "iv. the disease condition or the Qualified ICU Stay is a direct or indirect result of: a. the life assured’s attempted suicide or self-inflicted injuries while sane or insane; or b. Acquired Immune Deficiency Syndrome (AIDS), AIDS-related complex or infection by Human Immunodeficiency Virus (HIV) except for AIDS due to Blood Transfusion or Occupationally Acquired HIV; or c. narcotics used by the life assured unless taken as prescribed by a registered doctor, or the life assured’s abuse of drugs and/or alcohol.",
           "url": "https://www.prudential.com.hk/content/dam/prudential-phkl/pdf/en/brochure/pruhealth-critical-illness-extended-care-iii-product-brochure.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.prudential.com.hk/tc/products/health/critical-illness/pruhealth-critical-illness-extended-care-iii/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "多重癌症、心臟病、中風高達 660% 賠償，深層保障",
+        "buy_url": "https://www.prudential.com.hk/tc/products/health/critical-illness/pruhealth-critical-illness-extended-care-iii/"
+      }
     },
     {
       "id": "critical-illness-sun-life",
@@ -23404,7 +23836,7 @@
         },
         {
           "item": "未確立為惡性之良性腫瘤切除手術保障",
-          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK,000 至 HK,000）",
+          "limit": "若經醫生建議進行手術切除懷疑腫瘤，經組織病理學化驗證實為未確立為惡性之良性腫瘤或良性病變，額外給付原有投保額 5% 至 15%（最高 HK$30,000 至 HK$80,000）",
           "document_name": "SunHealth LovePromise 永明危疾家康保產品小冊子 (SunHealth-LovePromise_PB_EN.pdf，永明官網)",
           "page": 21,
           "quote": "如受保人經註冊專科醫生建議並進行手術切除懷疑惡性腫瘤，病理報告證實為良性病變或良性腫瘤，可獲良性腫瘤切除保障額外賠償。",
@@ -23559,7 +23991,13 @@
           "quote": "8. any Critical Condition, Long Term Care Condition, Juvenile Illness, Female Illness, Male Illness or Golden Years Condition arising from congenital conditions;",
           "url": "https://www.sunlife.com.hk/content/dam/sunlife/regional/hong-kong/documents/CMC_E.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.sunlife.com.hk/zh-hant/insurance/health/critical-illness/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "受保 188 種疾病，首創父母與子女共享受保額機制",
+        "buy_url": "https://www.sunlife.com.hk/zh-hant/insurance/health/critical-illness/"
+      }
     },
     {
       "id": "accident-aia",
@@ -23711,10 +24149,10 @@
         "31日保費寬限期；21日冷靜期",
         "醫療費用須屬「醫療需要」及「合理及慣常收費」",
         "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
-        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
-        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK$5,000-HK$30,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK$300 至 HK$1,000（每年最長 90 至 180 天） 現金津貼（最長達180天）",
         "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
-        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK$3,000-HK$10,000",
         "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
@@ -23821,7 +24259,13 @@
           "quote": "accident occurring while or because the insured is under the influence of alcohol or any non-prescribed drug;",
           "url": "https://www.aia.com.hk/content/dam/hk/en/pdf/product-brochure/individuals/xtraprotect/XtraProtect_ma_en.pdf.coredownload.inline.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.aia.com.hk/zh-hk/products/health/xtra-protect",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "AIA Xtra Protect，特設雙倍意外傷殘賠償及物理治療補貼",
+        "buy_url": "https://www.aia.com.hk/zh-hk/products/health/xtra-protect"
+      }
     },
     {
       "id": "accident-axa",
@@ -23974,10 +24418,10 @@
         "可網上即時報價及投保",
         "個案示例：Basic 個人保障加兩項自選，4人家庭年繳 HK$8,407.80（含推廣折扣）",
         "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
-        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
-        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK$5,000-HK$30,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK$300 至 HK$1,000（每年最長 90 至 180 天） 現金津貼（最長達180天）",
         "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
-        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK$3,000-HK$10,000",
         "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
@@ -24067,7 +24511,13 @@
           "quote": "duties as part of police, fire services or military; strike, riot, civil commotion (except passive risks), war, nuclear weapons or radioactivity; any unlawful acts; flying other than as a fare-paying passenger; participating in sports in a professional capacity or would earn remuneration from such sports; participating in any kind of speed contest or racing (other than on foot). (Please refer to Policy Wording for full details of all exclusions)",
           "url": "https://www.axa.com.hk/zh/smartprotect-plus"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.axa.com.hk/zh/smartprotect-plus",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "全球 24 小時意外醫療、骨折津貼及無索償續保折扣",
+        "buy_url": "https://www.axa.com.hk/zh/smartprotect-plus"
+      }
     },
     {
       "id": "accident-boc-group-insurance",
@@ -24213,7 +24663,7 @@
         },
         {
           "item": "骨折及脫臼專項津貼",
-          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK,000 至 HK,000",
+          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK$2,000 至 HK$30,000",
           "document_name": "中銀集團保險「人身意外綜合保障計劃」官方單張（PACompChi.pdf）",
           "page": 4,
           "quote": "因意外引致身體骨骼完全或不完全骨折或關節脫臼，可獲發放骨折專項現金補助金。",
@@ -24231,10 +24681,10 @@
         "即時批核及15日保單審閱期；自動續保",
         "由中銀香港及集友銀行作委任保險代理分銷",
         "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
-        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
-        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK$5,000-HK$30,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK$300 至 HK$1,000（每年最長 90 至 180 天） 現金津貼（最長達180天）",
         "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
-        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK$3,000-HK$10,000",
         "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
@@ -24355,7 +24805,13 @@
           "quote": "戰爭、暴亂、恐怖主義活動；職業性競技；酗酒、濫用藥物；從事警務、消防或軍事工作、參與非法活動、飛行活動(但作為旅客乘搭持牌的客運飛機不在此限)、各項危險活動或運動項目或職業運動亦不在本計劃的承保範圍之內。",
           "url": "https://www.bochk.com/tc/insurance/medical/accident.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.bocgins.com/index.html?target=accident",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "中銀客戶專屬優惠，兼備乘搭公共交通工具雙倍賠償",
+        "buy_url": "https://www.bocgins.com/index.html?target=accident"
+      }
     },
     {
       "id": "accident-blue-cross",
@@ -24510,10 +24966,10 @@
         "全球意外保障",
         "即時網上投保",
         "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
-        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
-        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK$5,000-HK$30,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK$300 至 HK$1,000（每年最長 90 至 180 天） 現金津貼（最長達180天）",
         "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
-        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK$3,000-HK$10,000",
         "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
@@ -24785,10 +25241,10 @@
         "醫療保障與其他醫療保險重疊時只賠差額",
         "21日冷靜期",
         "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
-        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
-        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK$5,000-HK$30,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK$300 至 HK$1,000（每年最長 90 至 180 天） 現金津貼（最長達180天）",
         "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
-        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK$3,000-HK$10,000",
         "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
@@ -24919,7 +25375,13 @@
           "quote": "• Flying or attempting to fly in, or using or attempting to use, an aerial device of any description, other than being a fare-paying passenger (not as an operator or crew member) in or on, boarding or alighting from a certified passenger aircraft operated by a regularly scheduled commercial airline; • Engaging in or taking part in professional sports or any hazardous pursuits such as diving or riding in any kind of race; underwater activities involving the use of breathing apparatus",
           "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "門診、跌打、物理治療實報實銷，特設海外意外援助",
+        "buy_url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
+      }
     },
     {
       "id": "accident-dah-sing",
@@ -25064,7 +25526,7 @@
         },
         {
           "item": "骨折及脫臼專項津貼",
-          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK,000 至 HK,000",
+          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK$2,000 至 HK$30,000",
           "document_name": "大新保險「心意保」個人意外保障計劃投保申請書（proposal_form.pdf）",
           "page": 2,
           "quote": "因意外引致身體骨骼完全或不完全骨折或關節脫臼，可獲發放骨折專項現金補助金。",
@@ -25072,7 +25534,7 @@
         },
         {
           "item": "意外住院每日現金津貼",
-          "limit": "因意外事故受傷入院治療，每日發放 HK 至 HK,000 住院現金入息津貼（每年最長 90 至 180 天）",
+          "limit": "因意外事故受傷入院治療，每日發放 HK$300 至 HK$1,000（每年最長 90 至 180 天） 住院現金入息津貼（每年最長 90 至 180 天）",
           "document_name": "大新保險「心意保」個人意外保障計劃投保申請書（proposal_form.pdf）",
           "page": 2,
           "quote": "因意外受傷入住醫院治療期間，每天可獲發住院現金入息津貼，彌補因傷停工之收入損失。",
@@ -25091,10 +25553,10 @@
         "失蹤逾365日可推定意外死亡；自動續保",
         "由大新銀行作持牌保險代理分銷（FA3022）",
         "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
-        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
-        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK$5,000-HK$30,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK$300 至 HK$1,000（每年最長 90 至 180 天） 現金津貼（最長達180天）",
         "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
-        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK$3,000-HK$10,000",
         "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
@@ -25225,7 +25687,13 @@
           "quote": "15. COVID-19／大流行疫症除外條款 儘管當中有任何相反規定，但本保險不承保由以下任何一項（包括其無論是實際或感覺上引起的任何恐懼或威脅）直接或間接造成...的任何損失、損害、責任、費用、罰款、罰金或任何其他金額：(a) 2019冠狀病毒病（COVID-19），包括其任何突變或變種病毒；或 (b) 由世界衛生組織或任何政府機構宣佈的大流行疫症或流行病。",
           "url": "https://www.dahsinginsurance.com/b2c/api/fileCenter/file/PA/%E3%80%8C%E5%BF%83%E6%84%8F%E4%BF%9D%E3%80%8D%E5%80%8B%E4%BA%BA%E6%84%8F%E5%A4%96%E4%BF%9D%E9%9A%9C%E8%A8%88%E5%8A%83%E4%BF%9D%E5%96%AE%E6%A2%9D%E6%AC%BE%20(%E7%94%B12023%E5%B9%B48%E6%9C%881%E6%97%A5%E6%88%96%E4%B9%8B%E5%BE%8C%E6%8A%95%E4%BF%9D%EF%BC%8F2023%E5%B9%B411%E6%9C%881%E6%97%A5%E6%88%96%E4%B9%8B%E5%BE%8C%E7%BA%8C%E4%BF%9D%E7%9A%84%E4%BF%9D%E5%96%AE).pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.dahsing.com/html/tc/insurance/general_insurance/personal_protector_insurance_plan.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "大新信用卡客戶投保享額外保費折扣",
+        "buy_url": "https://www.dahsing.com/html/tc/insurance/general_insurance/personal_protector_insurance_plan.html"
+      }
     },
     {
       "id": "accident-fwd",
@@ -25377,10 +25845,10 @@
         "網上申請人領取保單文件、冷靜期取消、更改受益人或退保須親臨富衛保險綜合服務中心",
         "如需更高保障額產品需經顧問投保",
         "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
-        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
-        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK$5,000-HK$30,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK$300 至 HK$1,000（每年最長 90 至 180 天） 現金津貼（最長達180天）",
         "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
-        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK$3,000-HK$10,000",
         "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
@@ -25626,7 +26094,7 @@
         },
         {
           "item": "骨折及脫臼專項津貼",
-          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK,000 至 HK,000",
+          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK$2,000 至 HK$30,000",
           "document_name": "MSIG 官網產品頁：iSafe Accident Insurance（msig.com.hk/en/personal-insurance/isafe-accident-insurance）",
           "page": null,
           "quote": "因意外引致身體骨骼完全或不完全骨折或關節脫臼，可獲發放骨折專項現金補助金。",
@@ -25643,10 +26111,10 @@
         "永久傷殘及嚴重燒傷按保單賠償表百分比計算",
         "全球保障；大灣區定義涵蓋港澳及廣東九市",
         "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
-        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
-        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK$5,000-HK$30,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK$300 至 HK$1,000（每年最長 90 至 180 天） 現金津貼（最長達180天）",
         "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
-        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK$3,000-HK$10,000",
         "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
@@ -25743,7 +26211,13 @@
           "quote": "Non-scheduled air flights Sickness or disease (e.g. infectious diseases) Childbirth or pregnancy Nuclear weapons Radioactive contamination",
           "url": "https://www.msig.com.hk/en/personal-insurance/isafe-accident-insurance"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.msig.com.hk/isafe",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "純線上即時核保享 8 折優惠，特設業餘危險運動保障",
+        "buy_url": "https://www.msig.com.hk/isafe"
+      }
     },
     {
       "id": "accident-prudential",
@@ -25888,7 +26362,7 @@
         },
         {
           "item": "骨折及脫臼專項津貼",
-          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK,000 至 HK,000",
+          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK$2,000 至 HK$30,000",
           "document_name": "保誠「意外保系列」產品小冊子（prucare-accident-cover-series-product-brochure.pdf）",
           "page": 3,
           "quote": "因意外引致身體骨骼完全或不完全骨折或關節脫臼，可獲發放骨折專項現金補助金。",
@@ -25896,7 +26370,7 @@
         },
         {
           "item": "意外住院每日現金津貼",
-          "limit": "因意外事故受傷入院治療，每日發放 HK 至 HK,000 住院現金入息津貼（每年最長 90 至 180 天）",
+          "limit": "因意外事故受傷入院治療，每日發放 HK$300 至 HK$1,000（每年最長 90 至 180 天） 住院現金入息津貼（每年最長 90 至 180 天）",
           "document_name": "保誠「意外保系列」產品小冊子（prucare-accident-cover-series-product-brochure.pdf）",
           "page": 3,
           "quote": "因意外受傷入住醫院治療期間，每天可獲發住院現金入息津貼，彌補因傷停工之收入損失。",
@@ -25913,10 +26387,10 @@
         "自殺條款：生效/復效1年內自殺只退還已繳保費",
         "30日書面通知可取消計劃",
         "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
-        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
-        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK$5,000-HK$30,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK$300 至 HK$1,000（每年最長 90 至 180 天） 現金津貼（最長達180天）",
         "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
-        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK$3,000-HK$10,000",
         "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
@@ -26035,7 +26509,13 @@
           "quote": "(v) 進行水肺潛水，或參加任何非徒步進行的比賽；或 (vi) 乘坐任何交通工具或裝置作空中航行，而非乘坐固定航線的公共空中交通工具的付費乘客；或 (vii) 受保人參與任何刑事罪行；或 (viii) 受保人於本計劃生效日期或復效之生效日期前（以較後者為準），已患有任何已存在病症或傷患...；或 (ix) 懷孕、分娩或因懷孕引起任何的併發症。",
           "url": "https://www.prudential.com.hk/tc/.galleries/pdf/brochure/prucare-accident-cover-series-product-brochure.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.prudential.com.hk/tc/products/health/accident-disability/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "涵蓋各類意外燒傷、傷殘、醫療費用及每日住院津貼",
+        "buy_url": "https://www.prudential.com.hk/tc/products/health/accident-disability/"
+      }
     },
     {
       "id": "accident-zurich",
@@ -26182,7 +26662,7 @@
         },
         {
           "item": "骨折及脫臼專項津貼",
-          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK,000 至 HK,000",
+          "limit": "因意外引致骨折或關節脫臼，按骨折部位（如盆骨、大腿骨、前臂、肋骨）發放額外專項現金津貼 HK$2,000 至 HK$30,000",
           "document_name": "蘇黎世官網產品頁：「自在守護」個人意外保險計劃（zurich.com.hk）",
           "page": 3,
           "quote": "因意外引致身體骨骼完全或不完全骨折或關節脫臼，可獲發放骨折專項現金補助金。",
@@ -26199,10 +26679,10 @@
         "31日保費寬限期；eClaim 網上索償",
         "不承保國家及地區名單適用",
         "業餘運動受保：休閒滑雪、水肺潛水（30米內）、業餘馬拉松及消閒運動全面受保，無休閒運動除外責任",
-        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK,000-HK,000",
-        "意外住院每日現金：因意外受傷住院每日發放 HK 至 HK,000 現金津貼（最長達180天）",
+        "骨折專項津貼：因意外導致骨折或脫臼按部位給付專項現金津貼高達 HK$5,000-HK$30,000",
+        "意外住院每日現金：因意外受傷住院每日發放 HK$300 至 HK$1,000（每年最長 90 至 180 天） 現金津貼（最長達180天）",
         "中醫跌打針灸：涵蓋註冊中醫、跌打及針灸治療，每次每次高達 HK-HK",
-        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK,000-HK,000",
+        "物理治療及脊醫：註冊物理治療師及脊醫專項復康治療，每年高達 HK$3,000-HK$10,000",
         "全球保障：全球24小時個人意外保障及全球緊急醫療運送支援服務"
       ],
       "exclusions": [
@@ -26325,7 +26805,13 @@
           "quote": "2. Any pre-existing conditions; 3. Any kind of disease or sickness; or any loss caused by an injury which is a consequence of any kind of disease (except Section 4(f)); 4. Any cosmetic surgery...; 5. The insured person’s participation in any illegal or unlawful acts; 6. Riding or driving in any kind of motor racing, or engaging in sport in a professional capacity...; 7. Air travel other than as a passenger on a regular scheduled airline or licensed chartered aircraft;",
           "url": "https://info.zurich.com.hk/policy/PAM-DIR-002-07-2025.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.zurich.com.hk/zh-hk/products/accident-and-health/personal-accident/breezy-care-personal-accident-insurance-plan",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "靈活自選跌打針灸及意外住院日額保障",
+        "buy_url": "https://www.zurich.com.hk/zh-hk/products/accident-and-health/personal-accident/breezy-care-personal-accident-insurance-plan"
+      }
     },
     {
       "id": "motor-aig",
@@ -26548,7 +27034,13 @@
           "quote": "#以上資料只供參考之用。保障內容將根據不同計劃有所不同，有關保障計劃的保障範圍及不承保事項將詳列於保單之內，如有任何差異，均以保單內之條款細則為準。",
           "url": "https://www.aig.com.hk/zh/personal/auto"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.aig.com.hk/zh/personal/car-insurance-quote",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上即時試算；全保特設擋風玻璃賠償無須扣減 NCD",
+        "buy_url": "https://www.aig.com.hk/zh/personal/car-insurance-quote"
+      }
     },
     {
       "id": "motor-axa",
@@ -26798,7 +27290,13 @@
           "quote": "要了解詳細的條款、條件及不保事項，請下載 AXA 安盛 iMotor 保單文件。",
           "url": "https://www.axa.com.hk/zh/car-insurance-protection"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.axa.com.hk/zh/car-insurance-protection",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "AXA iMotor 網上報價即減保費；特設24小時道路緊急支援",
+        "buy_url": "https://www.axa.com.hk/zh/car-insurance-protection"
+      }
     },
     {
       "id": "motor-boc-group-insurance",
@@ -27022,7 +27520,13 @@
           "quote": "本計劃及附加利益保障(如有)受相關保單的條款所限制，各項條款及細則以中銀集團保險繕發的正式保單為準。各項保障項目及承保範圍、條款及不承保事項，請參閱保單。",
           "url": "https://www.bochk.com/tc/insurance/travel/motor.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.bocgins.com/index.html?target=motor",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "中銀信用卡客戶享額外回贈；大灣區自駕港車北上專用方案",
+        "buy_url": "https://www.bocgins.com/index.html?target=motor"
+      }
     },
     {
       "id": "motor-china-taiping",
@@ -27247,7 +27751,13 @@
           "quote": "責任限額： HK$50,000,000 (每宗意外/每段保期) 其中包括第三者財物損失的責任限額為HK$2,000,000及索賠人的各項費用及開支",
           "url": "https://www.hk.cntaiping.com/product/110858.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.hk.cntaiping.com/product/110851.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "太平網上投保汽車三保/全保專享特惠費率",
+        "buy_url": "https://www.hk.cntaiping.com/product/110851.html"
+      }
     },
     {
       "id": "motor-dah-sing",
@@ -27518,7 +28028,13 @@
           "quote": "(i) being under the influence of intoxicants or drugs (unless under medical supervision) or alcohol; (ii) committing or attempting to commit suicide or intentionally inflicting self-injury; (iii) engaging in racing, pacemaking, reliability trial or speed testing.",
           "url": "https://www.dahsinginsurance.com/b2c/api/fileCenter/file/MO/policy_wordings.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.dahsinginsurance.com/product/2/motor",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "大新線上平台即時報價，NCD 達 60% 享額外特別折扣",
+        "buy_url": "https://www.dahsinginsurance.com/product/2/motor"
+      }
     },
     {
       "id": "motor-liberty",
@@ -27761,7 +28277,13 @@
           "quote": "此計劃受相關保單合約的條款、細則及不保事項所約束。利寶保險保留接受任何申請的最終權利。本產品說明書僅提供一般資料，僅供參考。有關詳細條款、細則及不保事項，請參閱有關產品保單內容。",
           "url": "https://www.libertyinsurance.com.hk/sites/libertyhk/files/documents/Motor_all/Privilege_Motor/Brochure_Privilege_Motor.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.libertyinsurance.com.hk/zh/private-motor",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "利寶尊貴汽車全保，全面支援「港車北上」跨境救援",
+        "buy_url": "https://www.libertyinsurance.com.hk/zh/private-motor"
+      }
     },
     {
       "id": "motor-msig",
@@ -27989,7 +28511,13 @@
           "quote": "以上提供之產品資料只供參考，有關保障範圍及承保條款，請參閱保單。",
           "url": "https://www.msig.com.hk/zh-hant/personal-insurance/private-motor-car"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.msig.com.hk/zh-hant/personal-insurance/private-motor-car",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "三井住友私家車保險，網上報價尊享特惠費率與道路援助",
+        "buy_url": "https://www.msig.com.hk/zh-hant/personal-insurance/private-motor-car"
+      }
     },
     {
       "id": "motor-qbe",
@@ -28243,7 +28771,13 @@
           "quote": "Remarks: This brochure is only a summary. Please refer to the Policy for full terms and conditions.",
           "url": "https://www.qbe.com/media/qbe/asia/hongkong/files/personal-insurance/motor/qbe-motor-insurance-brochure---final.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.qbe.com/hk/zh-hk/personal-insurance/motor-insurance",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "高達一億港元第三者人身傷亡責任保障",
+        "buy_url": "https://www.qbe.com/hk/zh-hk/personal-insurance/motor-insurance"
+      }
     },
     {
       "id": "motor-zurich",
@@ -28496,7 +29030,13 @@
           "quote": "本宣傳資料只供參考之用，並不構成保險合約的一部分，有關此項保障計劃的內容細則及不承保事項請參閱保單文件，如有任何差異，均以保單內之條款細則為準，蘇黎世保險有限公司保留最終批核及決定權。",
           "url": "https://edge.sitecorecloud.io/zurichinsurf8c0-zwpshared-prod-d824/media/project/zurich-headless/hongkong/docs/individuals/motor-insurance/private-motor-car-insurance/nev_fs_zh.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.zurich.com.hk/zh-hk/individuals/motor-insurance",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "特設全新電動車專屬充電樁意外及電池損壞保障",
+        "buy_url": "https://www.zurich.com.hk/zh-hk/individuals/motor-insurance"
+      }
     },
     {
       "id": "domestic-helper-axa",
@@ -28733,7 +29273,13 @@
           "quote": "Some of the exclusions under this policy are: • Suicide or international self-injury • Venereal diseases or insanity, including HIV/ AIDS • Pregnancy or childbirth • Acts committed under the influence of drugs or alcohol • Strike, riot, civil commotion • Injury due to war, nuclear weapons, radioactivity, terrorism • Any acts violating the law • Pre-existing medical conditions",
           "url": "https://www.axa.com.hk/pdf?axa-helper-product-brochure-combined-direct-en"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.axa.com.hk/zh/domestic-helper-insurance-protection",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上投保 2 年單享保費折扣，特設嚴重疾病及門診保障",
+        "buy_url": "https://www.axa.com.hk/zh/domestic-helper-insurance-protection"
+      }
     },
     {
       "id": "domestic-helper-boc-group-insurance",
@@ -28969,7 +29515,13 @@
           "quote": "主要不保事項(詳情請參閱保單) 戰爭、侵略、核武器、輻射或恐怖主義活動(另有列明則除外)；自殺、懷孕、酗酒或服用非註冊醫生處方指定之藥物；愛滋病、人體免疫力缺乏病毒；在保單生效前已存在的病狀；在香港以外發生的任何事故 ; 精神病或性病、身體檢查",
           "url": "https://www.bochk.com/tc/insurance/family/helper.html"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.bocgins.com/index.html?target=helper",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "中銀信用卡或客戶投保享專屬優惠，本地/外傭雙選",
+        "buy_url": "https://www.bocgins.com/index.html?target=helper"
+      }
     },
     {
       "id": "domestic-helper-blue-cross",
@@ -29198,7 +29750,13 @@
           "quote": "主要不保事項 1. 戰爭及恐怖活動。 2. 因石棉導致損失的任何責任。 3. 既有傷病。 4. 身體檢查。 5. 分娩、懷孕、流產、墮胎及所有併發症。 6. 自我毀傷、自殺或任何此等企圖，不論精神狀況是否正常。 7. 因酒精、麻醉藥或未經醫生處方的藥物引致昏迷或中毒，或與酗酒或濫藥有關的治療。 8. 愛滋病及其有關的疾病。",
           "url": "https://ap.bluecross.com.hk/shared/leaflets/MaidSafe_Insurance_Leaflet.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.bluecross.com.hk/ch/MaidSafe-Insurance/Information",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上投保即享保費折扣，設高額醫療及傭工誠信保障",
+        "buy_url": "https://www.bluecross.com.hk/ch/MaidSafe-Insurance/Information"
+      }
     },
     {
       "id": "domestic-helper-dah-sing",
@@ -29415,7 +29973,13 @@
           "quote": "主要不承保事項 - 因戰爭引發的意外 - 在保險生效前3個月已存在的傷病 - 懷孕及有關事項 - 愛滋病及性病 - 自殺 - 任何在香港境外引致的索償（「僱主責任」保障項目除外）",
           "url": "https://www.dahsing.com/pdf/wm/WMD_GI_MaidSure.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.dahsing.com/html/tc/insurance/general_insurance/domestic_helper_insurance.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "大新網上專享保費優惠；2年保單更划算",
+        "buy_url": "https://www.dahsing.com/html/tc/insurance/general_insurance/domestic_helper_insurance.html"
+      }
     },
     {
       "id": "domestic-helper-msig",
@@ -29650,7 +30214,13 @@
           "quote": "The insured Domestic Helper shall work in the address as specified in the standard Employment Contract during the period of insurance and that address must be same as the Insured Address.",
           "url": "https://www.msig.com.hk/en/personal-insurance/domestic-helper-insurance"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.msig.com.hk/ihelper",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "輸入優惠碼 `MHERO` / `MSIG20` 享低至 55 折至 8 折",
+        "buy_url": "https://www.msig.com.hk/ihelper"
+      }
     },
     {
       "id": "domestic-helper-qbe",
@@ -29887,7 +30457,13 @@
           "quote": "2. Clinical Expenses, Surgical and Hospitalisation Expenses, and Loss of Services Cash Allowances: Nervous or mental disease, venereal disease, congenital anomalies or deformities, infertility, sterilisation, contraception, heart disease and cancer (unless optional cover Cancer and Heart Disease Extension is insured), rest cure, physical check-ups and cosmetic or plastic surgery unless to correct an injury covered under the policy. 3. Dental Expenses: Routine examination, scaling polishing or cleaning, crowning, bridges, braces and dentures.",
           "url": "https://www.qbe.com/media/qbe/asia/hongkong/files/domestic-helper-protector-plan.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.qbe.com/hk/zh-hk/personal-insurance/domestic-helper",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "涵蓋僱主法定責任及家傭疾病住院手術費用",
+        "buy_url": "https://www.qbe.com/hk/zh-hk/personal-insurance/domestic-helper"
+      }
     },
     {
       "id": "domestic-helper-zurich",
@@ -30658,7 +31234,13 @@
           "quote": "Dental health care (unless due to accidental injuries); Anal gland expression; Special diets, pet foods, vitamins, supplements, grooming, nail trims, shampoo and bathing (including medicated baths); Purchase and rental of prosthesis, corrective devices and medical appliances; Injury or illness due to any intentional, neglectful or preventable act, by you or a member of your household; Any loss and/or damage arising from war and terrorism; The following dog breeds are not covered in the policy: Tibetan Mastiff, Bull Terrier, Pit Bull Terrier, Japanese Tosa, Dogo Argentino, Fila Braziliero or their cross breed.",
           "url": "https://www.msig.com.hk/en/personal-insurance/happy-tailsr-pet-insurance"
         }
-      ]
+      ],
+      "official_buy_url": "https://hk.aonhappytails.com/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "官方網上即時報價，輸入推廣碼享保費 8 折至 85 折",
+        "buy_url": "https://hk.aonhappytails.com/"
+      }
     },
     {
       "id": "pet-onedegree",
@@ -31149,7 +31731,13 @@
           "quote": "牙科（因意外而需接受的牙科治療除外）、懷孕、分娩或配種或繁殖及其任何併發症、器官移植、非必要就醫及整容手術有關之費用；例行身體檢查、X光、化驗及預防性治療、預防疫苗、絕育、結紮、例行狼爪移除、滅蚤及防蚤、杜蟲、美容及修甲或上述治療引起的任何併發症",
           "url": "https://bolttechinsurance.hk/brochure/PetInsurance.pdf"
         }
-      ]
+      ],
+      "official_buy_url": "https://www.fwd.com.hk/online-insurance/pets-insurance/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上投保享迎新折扣，高達 80% 實報實銷",
+        "buy_url": "https://www.fwd.com.hk/online-insurance/pets-insurance/"
+      }
     },
     {
       "id": "travel-manulife",
@@ -31170,7 +31758,7 @@
         "海外醫療保額優越計劃高達 HK,500,000",
         "全項保障不設自負金額（Excess-free）",
         "24小時全球緊急醫療運送無最高賠償限額",
-        "手提電話及手提電腦損失最高 HK,000–HK,000",
+        "手提電話及手提電腦損失最高 HK$3,000–HK$10,000",
         "業餘滑雪、水肺潛水（深度30米以內）自動受保"
       ],
       "exclusions": [
@@ -31429,7 +32017,13 @@
           "limit": "特約獸醫網絡專享預約支援及即時索償指引"
         }
       ],
-      "insurer_zh": "保泰人壽"
+      "insurer_zh": "保泰人壽",
+      "official_buy_url": "https://www.bowtie.com.hk/zh-hk/pet-insurance",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "首年投保享專屬特惠；免植晶片即可網上核保",
+        "buy_url": "https://www.bowtie.com.hk/zh-hk/pet-insurance"
+      }
     },
     {
       "id": "pet-zurich",
@@ -31648,7 +32242,13 @@
           "limit": "隨行海外旅遊緊急醫療賠償高達 HK$8,000"
         }
       ],
-      "insurer_zh": "Avo 保險"
+      "insurer_zh": "Avo 保險",
+      "official_buy_url": "https://www.heyavo.com/zh-hk/products/pet",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "數碼純線上投保，無自負額，涵蓋多種貓狗遺傳病",
+        "buy_url": "https://www.heyavo.com/zh-hk/products/pet"
+      }
     },
     {
       "id": "pet-fwd",
@@ -31751,7 +32351,13 @@
           "limit": "受保人可自由選擇全香港任何一間註冊獸醫診所"
         }
       ],
-      "insurer_zh": "富衛保險"
+      "insurer_zh": "富衛保險",
+      "official_buy_url": "https://www.fwd.com.hk/online-insurance/pets-insurance/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上投保限時折扣，涵蓋醫療及高達百萬第三者責任",
+        "buy_url": "https://www.fwd.com.hk/online-insurance/pets-insurance/"
+      }
     },
     {
       "id": "domestic-helper-starr",
@@ -31854,7 +32460,13 @@
           "limit": "恩恤撫恤金 HK$15,000"
         }
       ],
-      "insurer_zh": "司達保險"
+      "insurer_zh": "司達保險",
+      "official_buy_url": "https://www.starrinsurance.com.hk/zh-hk/domestic-helper-insurance",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "司達網上投保享特惠價，全包門診及牙科保障",
+        "buy_url": "https://www.starrinsurance.com.hk/zh-hk/domestic-helper-insurance"
+      }
     },
     {
       "id": "domestic-helper-generali",
@@ -31957,7 +32569,13 @@
           "limit": "恩恤撫恤金 HK$20,000"
         }
       ],
-      "insurer_zh": "忠意保險"
+      "insurer_zh": "忠意保險",
+      "official_buy_url": "https://www.generali.com.hk/zh-hk/general-insurance/domestic-helper",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "官方投保折扣，特設更換傭工及個人法律責任開支",
+        "buy_url": "https://www.generali.com.hk/zh-hk/general-insurance/domestic-helper"
+      }
     },
     {
       "id": "domestic-helper-hsbc",
@@ -32060,7 +32678,13 @@
           "limit": "發放撫恤金 HK$15,000"
         }
       ],
-      "insurer_zh": "滙豐保險"
+      "insurer_zh": "滙豐保險",
+      "official_buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/home/domestic-helper/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "滙豐客戶尊享保費折扣及信用卡積分回贈",
+        "buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/home/domestic-helper/"
+      }
     },
     {
       "id": "motor-directasia",
@@ -32163,7 +32787,13 @@
           "limit": "輸入車牌及牌簿資料，3分鐘完成投保並即時獲發暫保單 (Cover Note)"
         }
       ],
-      "insurer_zh": "DirectAsia 達信保險"
+      "insurer_zh": "DirectAsia 達信保險",
+      "official_buy_url": "https://www.directasia.com.hk/zh-hk/car-insurance/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "直銷車險免中介佣金；承諾同級保障超平價",
+        "buy_url": "https://www.directasia.com.hk/zh-hk/car-insurance/"
+      }
     },
     {
       "id": "motor-bowtie",
@@ -32215,7 +32845,7 @@
         },
         {
           "item": "自身車身碰撞損毀賠償",
-          "limit": "按事故當時車輛市場價值全數賠償（全保）"
+          "limit": "按事故當時車輛市場價值按車輛市價扣除適用之司機及自負額墊底費後賠償（全保）"
         },
         {
           "item": "自身車輛失竊及火警損失",
@@ -32266,7 +32896,13 @@
           "limit": "發生意外即時拍照上載，專屬理賠專員即日跟進"
         }
       ],
-      "insurer_zh": "保泰人壽"
+      "insurer_zh": "保泰人壽",
+      "official_buy_url": "https://www.bowtie.com.hk/zh-hk/car-insurance",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "純線上虛擬投保，透明報價無任何隱藏附加費",
+        "buy_url": "https://www.bowtie.com.hk/zh-hk/car-insurance"
+      }
     },
     {
       "id": "critical-illness-generali",
@@ -32369,7 +33005,13 @@
           "limit": "優先預約海外權威醫院專科手術及醫療綠色通道"
         }
       ],
-      "insurer_zh": "忠意保險"
+      "insurer_zh": "忠意保險",
+      "official_buy_url": "https://www.generali.com.hk/zh-hk/life-insurance/critical-illness/lionguardian",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "無限次癌症賠償，兼具早期良性病變及先天性疾病保障",
+        "buy_url": "https://www.generali.com.hk/zh-hk/life-insurance/critical-illness/lionguardian"
+      }
     },
     {
       "id": "accident-bowtie",
@@ -32588,7 +33230,13 @@
           "limit": "每年保證續保，不因個人索償歷史調高個別保費"
         }
       ],
-      "insurer_zh": "Blue 保險"
+      "insurer_zh": "Blue 保險",
+      "official_buy_url": "https://www.blue.com.hk/zh-hk/products/accident/wecare-personal-accident-protection-plan",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "數碼純線上投保，無手續費，投保享迎新保費折減",
+        "buy_url": "https://www.blue.com.hk/zh-hk/products/accident/wecare-personal-accident-protection-plan"
+      }
     },
     {
       "id": "home-hsbc",
@@ -32688,7 +33336,13 @@
           "limit": "輸入物業實用面積及地址，即時出單生效"
         }
       ],
-      "insurer_zh": "滙豐保險"
+      "insurer_zh": "滙豐保險",
+      "official_buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/home/residencesurance/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "滙豐按揭客戶或卓越理財享額外保費回贈",
+        "buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/home/residencesurance/"
+      }
     },
     {
       "id": "home-prudential",
@@ -32788,7 +33442,13 @@
           "limit": "全天候提供水喉、電工、鎖匠及滅蟲推薦支援"
         }
       ],
-      "insurer_zh": "保誠保險"
+      "insurer_zh": "保誠保險",
+      "official_buy_url": "https://www.prudential.com.hk/tc/general-insurance/home/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "保誠精選官方優惠，全方位家居財物與全球法律責任",
+        "buy_url": "https://www.prudential.com.hk/tc/general-insurance/home/"
+      }
     },
     {
       "id": "home-fwd",
@@ -32883,7 +33543,13 @@
           "limit": "全數碼流程，信用卡付款即時生成電子保單"
         }
       ],
-      "insurer_zh": "富衛保險"
+      "insurer_zh": "富衛保險",
+      "official_buy_url": "https://www.fwd.com.hk/online-insurance/home-insurance/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上投保限時折扣，涵蓋高達百萬財物及臨時住宿津貼",
+        "buy_url": "https://www.fwd.com.hk/online-insurance/home-insurance/"
+      }
     },
     {
       "id": "home-starr",
@@ -32970,7 +33636,13 @@
           "limit": "網站輸入建築面積，即享常設 8 折投保優惠"
         }
       ],
-      "insurer_zh": "司達保險"
+      "insurer_zh": "司達保險",
+      "official_buy_url": "https://www.starrinsurance.com.hk/zh-hk/home-insurance",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "官方網上投保即時生效，特設水喉水浸專項支援",
+        "buy_url": "https://www.starrinsurance.com.hk/zh-hk/home-insurance"
+      }
     },
     {
       "id": "pet-prudential",
@@ -33061,7 +33733,13 @@
           "limit": "全天候急症諮詢及就診網絡指引"
         }
       ],
-      "insurer_zh": "保誠保險"
+      "insurer_zh": "保誠保險",
+      "official_buy_url": "https://www.prudential.com.hk/tc/general-insurance/pet/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "保誠客戶尊享保費折扣，特設獸醫診治及住院津貼",
+        "buy_url": "https://www.prudential.com.hk/tc/general-insurance/pet/"
+      }
     },
     {
       "id": "pet-allianz",
@@ -33153,7 +33831,13 @@
           "limit": "受保人可自由前往全港任何持牌獸醫診所求診"
         }
       ],
-      "insurer_zh": "安聯保險"
+      "insurer_zh": "安聯保險",
+      "official_buy_url": "https://www.allianz.com.hk/zh-hk/personal/pet-insurance.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "官方網上報價優惠，國際品牌獸醫網絡支援",
+        "buy_url": "https://www.allianz.com.hk/zh-hk/personal/pet-insurance.html"
+      }
     },
     {
       "id": "pet-dah-sing",
@@ -33236,7 +33920,13 @@
           "limit": "投保 2 隻或以上寵物享額外 10% 保費折扣"
         }
       ],
-      "insurer_zh": "大新保險"
+      "insurer_zh": "大新保險",
+      "official_buy_url": "https://www.dahsing.com/html/tc/insurance/pet.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "大新信用卡客戶投保享額外保費折扣",
+        "buy_url": "https://www.dahsing.com/html/tc/insurance/pet.html"
+      }
     },
     {
       "id": "motor-fwd",
@@ -33323,7 +34013,13 @@
           "limit": "輸入車牌及底盤號碼，即時生成電子暫保單 (Cover Note)"
         }
       ],
-      "insurer_zh": "富衛保險"
+      "insurer_zh": "富衛保險",
+      "official_buy_url": "https://www.fwd.com.hk/online-insurance/car-insurance/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "富衛車險網上投保享限時折扣；設電動車尊享計劃",
+        "buy_url": "https://www.fwd.com.hk/online-insurance/car-insurance/"
+      }
     },
     {
       "id": "motor-blue-cross",
@@ -33406,7 +34102,13 @@
           "limit": "小型碰撞案件特快 3 個工作天內完成批核"
         }
       ],
-      "insurer_zh": "藍十字保險"
+      "insurer_zh": "藍十字保險",
+      "official_buy_url": "https://www.bluecross.com.hk/ch/General/Motor/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "網上報價即享折扣，設 24 小時免費道路緊急救援服務",
+        "buy_url": "https://www.bluecross.com.hk/ch/General/Motor/"
+      }
     },
     {
       "id": "domestic-helper-fwd",
@@ -33579,7 +34281,13 @@
           "limit": "恩恤撫恤金發放 HK$15,000"
         }
       ],
-      "insurer_zh": "中國太平保險"
+      "insurer_zh": "中國太平保險",
+      "official_buy_url": "https://www.hk.cntaiping.com/product/110850.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "太平網上商城投保即時生效，享專屬保費折扣",
+        "buy_url": "https://www.hk.cntaiping.com/product/110850.html"
+      }
     },
     {
       "id": "life-generali",
@@ -33665,7 +34373,13 @@
           "limit": "受保人無論居住在香港或移居海外均享有完全身故保障"
         }
       ],
-      "insurer_zh": "忠意保險"
+      "insurer_zh": "忠意保險",
+      "official_buy_url": "https://www.generali.com.hk/zh-hk/life-insurance/protection/term-life",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "純保障零儲蓄成分，專責對沖房貸及家庭負債",
+        "buy_url": "https://www.generali.com.hk/zh-hk/life-insurance/protection/term-life"
+      }
     },
     {
       "id": "life-chubb-life",
@@ -33739,7 +34453,13 @@
           "quote": "純保障定期人壽，不設儲蓄成份及退保價值（期滿受保人在生不退還保費）；保費純粹用於高額槓桿身故保障。唯一退款情況：保單生效首年內自殺退還保費；21天冷靜期內退保全數退還已繳保費。"
         }
       ],
-      "insurer_zh": "安達人壽"
+      "insurer_zh": "安達人壽",
+      "official_buy_url": "https://www.chubb.com/hk-zh/personal/life-insurance/term-life.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "極低保費門檻，特設末期疾病提早支付撫恤金",
+        "buy_url": "https://www.chubb.com/hk-zh/personal/life-insurance/term-life.html"
+      }
     },
     {
       "id": "critical-illness-chubb-life",
@@ -33810,7 +34530,13 @@
           "limit": "不幸身故發放 100% 保額加額外身故慰問金"
         }
       ],
-      "insurer_zh": "安達人壽"
+      "insurer_zh": "安達人壽",
+      "official_buy_url": "https://www.chubb.com/hk-zh/personal/life-insurance/critical-illness.html",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "分期年繳或月繳，涵蓋早期危疾及主要重症",
+        "buy_url": "https://www.chubb.com/hk-zh/personal/life-insurance/critical-illness.html"
+      }
     },
     {
       "id": "critical-illness-za-insure",
@@ -33878,7 +34604,13 @@
           "limit": "不幸身故發放 HK$10,000 恩恤津貼"
         }
       ],
-      "insurer_zh": "眾安人壽"
+      "insurer_zh": "眾安人壽",
+      "official_buy_url": "https://insure.za.group/hk/critical-illness",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "純線上投保免體檢，平民月供幾十蚊起即享百萬保障",
+        "buy_url": "https://insure.za.group/hk/critical-illness"
+      }
     },
     {
       "id": "accident-generali",
@@ -33962,7 +34694,13 @@
           "limit": "每年保證續保，不因個人索償歷史而拒保"
         }
       ],
-      "insurer_zh": "忠意保險"
+      "insurer_zh": "忠意保險",
+      "official_buy_url": "https://www.generali.com.hk/zh-hk/general-insurance/personal-accident",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "高額永久傷殘及燒傷賠償，兼具家庭同行優惠",
+        "buy_url": "https://www.generali.com.hk/zh-hk/general-insurance/personal-accident"
+      }
     },
     {
       "id": "accident-sun-life",
@@ -34041,7 +34779,13 @@
           "limit": "每年保證續保，手續簡便"
         }
       ],
-      "insurer_zh": "香港永明金融"
+      "insurer_zh": "香港永明金融",
+      "official_buy_url": "https://www.sunlife.com.hk/zh-hant/insurance/accident/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "家庭計劃享特惠費率，涵蓋各類日常及運動意外",
+        "buy_url": "https://www.sunlife.com.hk/zh-hant/insurance/accident/"
+      }
     },
     {
       "id": "high-end-zurich-medelite",
@@ -34139,9 +34883,23 @@
         {
           "item": "器官移植專項手術費",
           "limit": "全數賠償（心、肺、肝、腎及骨髓移植手術費用）"
+        },
+        {
+          "item": "自付費（墊底費）選項",
+          "limit": "HK$0 / HK$16,000 / HK$40,000 / HK$80,000 自負額選項，扣除自負額後合資格費用全數賠償",
+          "source_url": "https://www.zurich.com.hk/zh-hk/individuals/health-insurance/medelite",
+          "document_name": "蘇黎世智選卓逸醫療保險條款",
+          "page": 1,
+          "quote": "設有每年自負額 HK$0、HK$16,000、HK$40,000 及 HK$80,000 可供選擇"
         }
       ],
-      "insurer_zh": "蘇黎世保險"
+      "insurer_zh": "蘇黎世保險",
+      "official_buy_url": "https://www.zurich.com.hk/zh-hk/individuals/health-insurance/medelite",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "瑞士卓越醫療網絡，靈活自付費無縫銜接公司團體醫保",
+        "buy_url": "https://www.zurich.com.hk/zh-hk/individuals/health-insurance/medelite"
+      }
     },
     {
       "id": "high-end-sun-life-prestige",
@@ -34239,9 +34997,23 @@
         {
           "item": "重大器官移植手術費",
           "limit": "全數賠償（受保器官移植手術全包）"
+        },
+        {
+          "item": "自付費（墊底費）選項",
+          "limit": "HK$0 / HK$15,000 / HK$30,000 / HK$50,000 / HK$80,000 自選墊底費，扣除自負額後全數賠償",
+          "source_url": "https://www.sunlife.com.hk/zh-hk/insurance/health-and-medical/sunhealth-prestige/",
+          "document_name": "永明港卓越醫療保條款及保障表",
+          "page": 1,
+          "quote": "每年自負額可選 HK$0、HK$15,000、HK$30,000、HK$50,000 或 HK$80,000"
         }
       ],
-      "insurer_zh": "香港永明金融"
+      "insurer_zh": "香港永明金融",
+      "official_buy_url": "https://www.sunlife.com.hk/zh-hant/insurance/health/voluntary-health-insurance-scheme/wehealth-preferred/",
+      "promo": {
+        "tag": "最新優惠",
+        "note": "覆蓋大灣區及全球私家醫院直付，享頂級健康諮詢專屬禮遇",
+        "buy_url": "https://www.sunlife.com.hk/zh-hant/insurance/health/voluntary-health-insurance-scheme/wehealth-preferred/"
+      }
     },
     {
       "id": "travel-asia-insurance",

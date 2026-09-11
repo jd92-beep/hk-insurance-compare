@@ -1,51 +1,53 @@
-# AGENTS.md — current execution contract
+# AGENTS.md
 
-Repository: `jd92-beep/hk-insurance-compare`. Static React/TypeScript SPA for Hong Kong insurance comparison. UI uses Traditional Chinese (Hong Kong); retain the paper/ink/jade/amber design tokens and existing routing/provider APIs.
+Static React/TypeScript comparison site for Hong Kong insurance. Keep the
+Traditional Chinese (Hong Kong) UI and its existing paper/ink/jade/amber tokens.
+User instructions override this file and the global handbook owns generic workflow
+and skill routing.
 
-Read `GEMINI.md`, `handoff/00-current-status.md` and `docs/review/problem-register-2026-09-06.md` before editing. Files under `handoff/archive/` are historical, not operational instructions. Project notes never override the user's current scope or runtime/tool permissions.
+## Scope and release boundary
 
-## Change boundaries
+- Work only in the checked-out repository and inspect its status before editing.
+  Preserve unrelated changes and coordinate overlapping work.
+- Do not push, merge, enable auto-merge, or deploy unless Boss explicitly authorizes it.
+  `master` is deployment-connected.
+- Use current repository, Git, and live evidence. Handover and review notes are
+  useful when relevant; `handoff/archive/` is historical only.
 
-The current engagement authorizes review branches and detailed PRs, NOT merging, pushing to `master`, enabling auto-merge or deploying. The production branch is connected to automatic deployment. Keep production unchanged unless separately authorized.
+## Insurance evidence
 
-First read the current repository, open PRs, exact head SHAs and worktree status. Do not infer GitHub connection or deployed code from earlier chat messages. Tool discovery alone is not a connection test. Coordinate file ownership when parallel branches exist; do not create another implementation of an already-open task. Do not force-push or overwrite unrelated work.
-
-Use isolated working state. If a local checkout is unavailable, a repository Actions source archive must be tied to its recorded commit. Test the corresponding lockfile dependencies; do not relabel an older snapshot as the latest source. A tool error is not proof that every connector operation is unavailable.
-
-## Verification contract
-
-Use Node 22 (`.nvmrc`) and the committed lockfile:
-
-```sh
-npm ci
-npm test
-npm run lint -- --max-warnings=0
-npm run build
-npm run test:filters
-```
-
-All commands must exit successfully. There is no allowed lint-error baseline. Write regression tests that fail on the old behavior before claiming a fix. Existing combinatorial test counts vary with the result set; quote the observed run, not a memorized number.
-
-UI changes need relevant desktop/mobile interactions and reviewed screenshots. A build is not browser validation. State which browser/device was actually tested; headless viewport checks do not establish low-end-phone FPS or VoiceOver compatibility. Generic route diagnostics can be report-only; separately check the blocking scenario results. When local browser access is denied by policy, do not bypass it; use the allowed repository test runner and disclose coverage limits.
-
-Never call work verified until the EXACT new head/merge candidate has the required results. Record command, result, head SHA and artifact/run reference. `Not run` and `Blocked` must remain visible; do not replace them with a tick.
-
-## Data evidence contract
-
-`public/data/insurance-data.json` is the current site snapshot, not proof that all listed policies are current, for sale, comparable or correctly interpreted. Derive counts and insurer keys from the actual snapshot; never copy an old fixed company list. Preserve distinct company identifiers unless a separately reviewed migration proves equivalence.
-
-Every changed insurance assertion needs the matching product, plan/tier, jurisdiction, version, official source, physical PDF page, excerpt and relevant conditions. A missing source must remain missing, not a guessed URL. A literal quote match, HTTP 200, download date, PDF filename year or hash alone does not establish semantic correctness or currentness. Do not rename an old document as current. Renewal-only/withdrawn/channel restrictions are separate states.
-
-Never synthesize quotations from the site's own benefit summary, guess pages, copy the first citation into unrelated benefits, or substitute another insurer's document. Do not change policy amounts to satisfy tests. PDF/version changes require explicit source review, applicable manifests/audit regeneration, and a dedicated content diff; hashes are consistency checks, not official signatures.
-
-Feature matches are lexical evidence, not personal suitability, underwriting approval or payout probability. Unknown is not excluded. Negative/conditional/unknown evidence must not disappear behind a positive row. Amount comparisons must preserve the full scope; do not map missing values to zero or unlimited coverage to an invented constant.
+- `public/data/insurance-data.json` is a site snapshot, not proof that a policy
+  is current, available, comparable, or correctly interpreted. Derive insurer
+  keys and counts from the snapshot; do not merge distinct identifiers without
+  reviewed migration evidence.
+- For each changed insurance claim, retain the product and tier, jurisdiction,
+  document version, official source, PDF page, quotation, and relevant
+  qualification. Missing evidence stays missing.
+- Do not invent a page or URL, reuse a citation for another benefit, infer
+  currentness from a filename/hash/HTTP result, or change policy amounts to make
+  checks pass. Preserve conditional, negative, and unknown evidence. Do not turn
+  absent values into zero or unlimited coverage into an invented value.
+- A lexical match is not suitability, underwriting approval, or payout evidence.
+  PDF/version changes need a source review, applicable audit regeneration, and a
+  content diff; hashes only check consistency.
 
 ## Versioning
 
-Every coherent code/data/document change increments `BUILD_NUMBER` and updates `BUILD_DATE` in `src/lib/version.ts`. `APP_VERSION`, package.json version and package-lock root versions must agree. A build-only increment may keep the semantic version unchanged. When integrating parallel branches, choose a build newer than the contributing heads; never resolve all conflicts by taking one whole version of every file.
+- Every coherent code, data, or document change updates `BUILD_NUMBER` and
+  `BUILD_DATE` in `src/lib/version.ts`. Keep `APP_VERSION`, `package.json`, and
+  the package-lock root version aligned; a build-only change may keep semantic
+  version unchanged.
 
-## PR and handoff contract
+## Verification and delivery
 
-Use `.github/PULL_REQUEST_TEMPLATE.md`. Include reproduction, expected/actual behavior, root cause, exact files/interfaces, tests and their observed results, data limitations, parent PRs, merge conflict hotspots and rollback. Explain prohibited shortcuts. Include a durable implementation note for nontrivial changes.
-
-A PR being open/ready is not a production deployment. Do not mark the whole project or policy corpus complete because one subsystem passed. Update the problem register by evidence level: reproduced bug, inspected risk, implemented branch or independently verified result. Preserve remaining gaps.
+- Match verification to the changed surface. For application behavior, use Node
+  22, `npm ci`, and the lockfile, then run the relevant CI-equivalent checks: `npm test`,
+  `npm run lint -- --max-warnings=0`, `npm run build`, and `npm run test:filters`.
+  Data/evidence work also needs its focused audit or curation checks.
+- UI changes need relevant desktop and mobile interaction evidence. State the
+  browser/device used; a build alone is not browser or accessibility validation.
+- Record the command, result, tested head SHA, and any blocked check. Never call
+  a different head verified, weaken a check, or replace `Not run`/`Blocked` with
+  a pass.
+- Use `.github/PULL_REQUEST_TEMPLATE.md` for a PR. Keep remaining evidence gaps
+  visible in the problem register when the work changes it.

@@ -225,7 +225,7 @@ export default function ProductCard({
                 className="inline-flex items-center gap-1 rounded-[10px] bg-red text-paper hover:bg-red/90 px-3 py-1.5 text-small font-bold shadow-xs active:scale-95 transition-all"
                 title="前往該保險公司官方投保／報價頁面"
               >
-                <span>官網投保</span>
+                <span>{product.premium_available ? "官網投保" : "官網報價"}</span>
                 <ExternalLink size={12} />
               </a>
             )}

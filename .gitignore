@@ -5,3 +5,4 @@ scripts/.cache/
 
 /public/pdfjs/
 artifacts/
+scratch/

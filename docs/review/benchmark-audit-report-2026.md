@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # 🛡️ 香港保險市場最新資訊與比價平台 Benchmark 審查報告 (2025/2026)
 
 > **審查員身份**：香港保險市場最新資訊與比價平台 Benchmark 審查員  

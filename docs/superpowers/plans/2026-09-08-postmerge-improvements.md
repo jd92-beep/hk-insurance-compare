@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](../../review/2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # Post-merge improvement plan / implementation decisions
 
 **Goal:** Turn v1.7.1 into a more useful, repeatable comparison workspace without pretending to provide live quotes or verified policy advice.

@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # 可追溯 PDF 中心與逐字定位
 
 新增 /documents 目錄、產品搜尋、保障／citation／source 分類與 PDF.js 閱讀器。單頁按需繪製，支援翻頁、縮放、字層選取、跨文字段落原文高亮；worker、CMaps、fonts、WASM 同源供應。

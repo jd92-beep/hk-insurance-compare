@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # PDF bytes 與條款連結版本綁定
 
 舊 evidence fingerprint 只包含 item/limit/quote/url/page 等摘要欄位。同一 PDF URL 被換檔而摘要不變時，分享指紋亦不變；舊頁碼可能指向另一版本。先以回歸測試重現，再作以下修正。

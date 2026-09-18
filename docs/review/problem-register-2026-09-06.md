@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # 香港保險比較網站：問題登記與執行交接
 
 **審核日期：2026-09-06。這是具版本邊界的工程審核，不是全體保單最新性認證。**

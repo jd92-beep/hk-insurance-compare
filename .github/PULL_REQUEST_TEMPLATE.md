@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Current scope and remaining limitations: [delivery review](../docs/review/2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 ## 1. Base/head SHA and purpose
 
 Base branch / parent PR: 

@@ -18,7 +18,8 @@ const deductible = /自負額|墊底費|deductible|excess/i;
 export function featureSearchTerms(keywords: string[]): string[] {
   const terms = [...new Set(keywords.map(term => normalize(term.trim())).filter(Boolean))];
   if (terms.includes("cfar")) return ["因任何原因取消", "任何原因取消", "cancel for any reason", "cfar"];
-  if (terms.includes("全數賠償") || terms.includes("零自負額")) {
+  if (terms.includes("零自負額")) return terms.filter(term => /自負額|deductible|excess/.test(term));
+  if (terms.includes("全數賠償")) {
     return terms.filter(term => !["實報實銷", "100%實報實銷", "不設分項"].includes(term));
   }
   return terms;

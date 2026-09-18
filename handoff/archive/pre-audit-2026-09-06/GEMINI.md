@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](../../../docs/review/2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # GEMINI.md — hk-insurance-compare（保險格價站）專案記憶與執行規範 🛡️📊
 
 本文件為 Google Antigravity / Gemini Agent 之**最高權威專案記憶與執行手冊**。所有承接本專案之 Agent，在執行任何任務前必須嚴格研讀並遵守以下所有規範與工作流。

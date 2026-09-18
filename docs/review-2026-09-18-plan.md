@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Current scope and remaining limitations: [delivery review](review/2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # 2026-09-18 evidence, comparison and depth review
 
 Baseline: `701c11714d4e1ab3e1bffbb3c67e876c222b57b8` on `master`.
@@ -20,10 +24,6 @@ Use insurer/government sources for insurance facts. Consumer and regulator resea
 
 Use Node 22 with the existing lockfile. Required application gates: `npm ci`, `npm test`, `npm run lint -- --max-warnings=0`, `npm run build`, `npm run test:filters`. Add focused regressions before behavioral changes and inspect actual desktop/mobile browser artifacts. Record exact tested commits and remaining blocked checks. A GitHub Actions source bundle enables inspection in a network-restricted review environment; it is not evidence that policies are current.
 
-## Initial status
+## Delivery status
 
-- Live repository and baseline read.
-- Baseline CI run `35310611150` reports success; this is not verification of subsequent changes.
-- Initial documentation has blanket authority/currentness language requiring review.
-- No policy values changed or certified at this stage.
-- No subagent-launch capability is available in this chat; no spawned agents are claimed.
+Evidence work is implemented in PR #27 at `c5f3f63c4129449f5ba597182765ac35015b1983`; the plain-language, comparison, depth and Markdown changes depend on that PR. See [current review](review/2026-09-18-release.md) for actual tests and unresolved policy verification. No production merge or spawned subagent is claimed.

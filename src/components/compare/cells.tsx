@@ -2,61 +2,25 @@ import { useState } from "react";
 import { ExternalLink, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import type { Product } from "@/types/insurance";
-import { priceDisplay } from "@/lib/premium-display";
 import { cn } from "@/lib/utils";
 
 /** 保費範圍原文（有公開保費 → 左側 jade 圓點；有折後價 → 標為參考價） */
 export function PremiumRangeCell({ product }: { product: Product }) {
-  const pricing = priceDisplay(product);
-  const origPrice = pricing.originalPrice;
-  const discPrice = pricing.discountedPrice;
-  const hasDiscount = pricing.hasDiscount;
-
-  return (
-    <div className="flex flex-col gap-1">
-      {hasDiscount && origPrice && discPrice && (
-        <div className="flex flex-wrap items-baseline gap-1.5 pb-0.5">
-          <span className="text-[13px] font-grotesk text-ink-faint line-through">
-            HK${origPrice.toLocaleString()}
-          </span>
-          <span className="font-grotesk text-[17px] font-black text-red">
-            HK${discPrice.toLocaleString()}
-          </span>
-          <span
-            className="rounded bg-red/10 px-1.5 py-0.2 text-[11px] font-bold text-red"
-            title={pricing.disclaimer}
-          >
-            {pricing.discountLabel}
-          </span>
-          <span className="text-[11px] text-ink-faint" title={pricing.disclaimer}>
-            （參考價）
-          </span>
-        </div>
-      )}
-      <div className="flex items-start gap-2.5 text-[15px] leading-[1.7] text-ink">
-        {product.premium_available && (
-          <span className="mt-[9px] h-2 w-2 shrink-0 rounded-full bg-jade" aria-label="有公開保費" />
-        )}
-        <span className={cn(!product.premium_available && "text-ink-soft")}>
-          {product.premium_range}
-        </span>
-      </div>
-    </div>
-  );
+  return <div className="space-y-2"><p className="text-sm font-semibold text-ink-soft">資料快照，唔係你嘅實際報價。</p><p className="break-words text-base leading-relaxed text-ink">{product.premium_range || '未提供參考保費'}</p></div>;
 }
 
 /** 保費備註（small） */
 export function PremiumNotesCell({ product }: { product: Product }) {
-  if (!product.premium_notes) return <span className="text-ink-faint">—</span>;
-  return <p className="text-small text-ink-soft">{product.premium_notes}</p>;
+  if (!product.premium_notes) return <span className="text-base text-ink-soft">未提供（唔等於不保）</span>;
+  return <p className="text-base leading-relaxed text-ink-soft">{product.premium_notes}</p>;
 }
 
-/** 公開保費狀態：jade「✓ 有」/ amber「官網即時報價」；唔宣稱已核實現行保費 */
+/** 公開保費狀態：jade「✓ 有」/ amber「向公司查詢報價」；唔宣稱已核實現行保費 */
 export function PremiumStatusCell({ product }: { product: Product }) {
   if (product.premium_available) {
-    return <span className="chip bg-jade-wash font-bold text-jade" title="快照標示有公開保費欄位；現行價格以官網為準">✓ 有公開保費（快照）</span>;
+    return <span className="chip bg-jade-wash font-bold text-jade" title="快照標示有公開保費欄位；現行價格以官網為準">有參考保費資料</span>;
   }
-  return <span className="chip bg-amber-wash font-bold text-amber">官網即時報價</span>;
+  return <span className="chip bg-amber-wash font-bold text-amber">向公司查詢報價</span>;
 }
 
 /** 超過呢個長度嘅 limit 預設 clamp 3 行，撳「展開全文」睇晒 */
@@ -76,7 +40,7 @@ export function CoverageLimitCell({
   highlight: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
-  if (!limit) return <span className="text-ink-faint">—</span>;
+  if (!limit) return <span className="text-base text-ink-soft">未提供（唔等於不保）</span>;
   const isLong = limit.length > LONG_LIMIT_CHARS;
   const text = (
     <span className={cn("break-words", isLong && !expanded && "line-clamp-3")}>
@@ -96,13 +60,13 @@ export function CoverageLimitCell({
           {text}
         </motion.span>
       ) : (
-        <span className="text-[14px] leading-[1.55] text-ink">{text}</span>
+        <span className="text-base leading-relaxed text-ink">{text}</span>
       )}
       {isLong && (
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="text-[12px] font-bold text-red transition-colors hover:text-red-deep hover:underline"
+          className="min-h-11 rounded px-2 text-base font-bold text-red transition-colors hover:text-red-deep hover:underline"
         >
           {expanded ? "收合" : "展開全文"}
         </button>
@@ -114,7 +78,7 @@ export function CoverageLimitCell({
 /** 計劃層級 TierChips（可換行，全部列出） */
 export function PlanTiersCell({ product }: { product: Product }) {
   const tiers = product.plan_tiers ?? [];
-  if (tiers.length === 0) return <span className="text-ink-faint">—</span>;
+  if (tiers.length === 0) return <span className="text-base text-ink-soft">未提供（唔等於不保）</span>;
   return (
     <div className="flex flex-wrap gap-1.5">
       {tiers.map((t) => (
@@ -130,11 +94,11 @@ export function PlanTiersCell({ product }: { product: Product }) {
 export function KeyTermsCell({ product }: { product: Product }) {
   const [expanded, setExpanded] = useState(false);
   const terms = product.key_terms ?? [];
-  if (terms.length === 0) return <span className="text-ink-faint">—</span>;
+  if (terms.length === 0) return <span className="text-base text-ink-soft">未提供（唔等於不保）</span>;
   const shown = expanded ? terms : terms.slice(0, 2);
   return (
     <div className="flex flex-col gap-2">
-      <ul className="flex flex-col gap-1.5 text-small text-ink-soft">
+      <ul className="flex flex-col gap-1.5 text-base leading-relaxed text-ink-soft">
         {shown.map((t, i) => (
           <li key={i} className="flex gap-2">
             <span className="mt-[8px] h-1 w-1 shrink-0 rounded-full bg-ink-faint" />
@@ -146,7 +110,7 @@ export function KeyTermsCell({ product }: { product: Product }) {
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="w-fit text-small font-bold text-red transition-colors hover:text-red-deep hover:underline"
+          className="min-h-11 w-fit text-base font-bold text-red transition-colors hover:text-red-deep hover:underline"
         >
           {expanded ? "收合" : `展開全部 ${terms.length} 條`}
         </button>
@@ -158,9 +122,9 @@ export function KeyTermsCell({ product }: { product: Product }) {
 /** 不保事項列表（small） */
 export function ExclusionsCell({ product }: { product: Product }) {
   const list = product.exclusions ?? [];
-  if (list.length === 0) return <span className="text-ink-faint">—</span>;
+  if (list.length === 0) return <span className="text-base text-ink-soft">未提供（唔等於不保）</span>;
   return (
-    <ul className="flex flex-col gap-1.5 text-small text-ink-soft">
+    <ul className="flex flex-col gap-1.5 text-base leading-relaxed text-ink-soft">
       {list.map((e, i) => (
         <li key={i} className="flex gap-2">
           <span className="mt-[8px] h-1 w-1 shrink-0 rounded-full bg-amber" />
@@ -174,7 +138,7 @@ export function ExclusionsCell({ product }: { product: Product }) {
 /** 官方文件 chips */
 export function DocumentsCell({ product }: { product: Product }) {
   const docs = product.documents_found ?? [];
-  if (docs.length === 0) return <span className="text-ink-faint">—</span>;
+  if (docs.length === 0) return <span className="text-base text-ink-soft">未提供（唔等於不保）</span>;
   return (
     <div className="flex flex-wrap gap-1.5">
       {docs.map((d) => (
@@ -198,7 +162,7 @@ function domainOf(url: string): string {
 /** 官方來源連結列（jade「官方」chip + 域名，新分頁） */
 export function SourceLinksCell({ product }: { product: Product }) {
   const urls = product.source_urls ?? [];
-  if (urls.length === 0) return <span className="text-ink-faint">—</span>;
+  if (urls.length === 0) return <span className="text-base text-ink-soft">未提供（唔等於不保）</span>;
   return (
     <ul className="flex flex-col gap-2">
       {urls.map((url) => (
@@ -207,9 +171,9 @@ export function SourceLinksCell({ product }: { product: Product }) {
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex max-w-full items-center gap-2 text-small"
+            className="group inline-flex min-h-11 max-w-full items-center gap-2 text-base"
           >
-            <span className="chip shrink-0 bg-jade-wash font-bold text-jade">官方</span>
+            <span className="chip shrink-0 bg-jade-wash font-bold text-jade">來源</span>
             <span className="truncate font-grotesk text-[12.5px] text-ink-soft transition-colors group-hover:text-jade group-hover:underline">
               {domainOf(url)}
             </span>

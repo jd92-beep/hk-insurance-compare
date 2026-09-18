@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](../../review/2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # 全站審核與分拆 PR 執行計劃
 
 **Goal:** 提升香港保險比較站的視覺質素、實際比較能力與逐條來源可信度，不直接部署 master。

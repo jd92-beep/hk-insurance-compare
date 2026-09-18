@@ -1,82 +1,13 @@
-# 📄 任務操作卡：PDF 說明書更新與引用校對 SOP
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Current scope and remaining limitations: [delivery review](../../review/2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
 
-> 🧭 [返回維護總手冊](../README.md) ｜ 🏛️ [核心架構與規則](../core-rules-and-architecture.md)  
-> **檔案位置**：`docs/maintenance/workflows/update-pdf-terms-and-quotes.md`  
-> **目標**：當保險公司發布新版小冊子或保單條款時，安全替換 PDF、校對頁碼引用並更新 SHA-256 指紋。  
-> **維護原則**：證據鏈閉環、零斷鏈、逐字引用、遵循[條款衝突仲裁原則](../core-rules-and-architecture.md#3-條款衝突仲裁原則-policy-terms-arbitration-rules)。
+# 更新 PDF 及引文
 
----
+整理日期：2026-09-18。返回 [維護入口](../README.md)。
 
-## 📥 步驟 1：下載新版 PDF 鏡像並規範存檔
+核對官方 URL、產品／級別、版本日期及原文，不只看檔名。比對舊新 PDF、保留差異與來源紀錄，再更新鏡像、manifest、頁碼及引文。文字命中只證明字句存在，不能證明該條款支持指定保障。重新生成 evidence ledger 並實測 PDF 跳頁、搜尋、高亮和未知狀態；空引文不能高亮成已核實。
+## 共通驗證
 
-1. 從保司官方連結下載最新小冊子或條款文件。
-2. 存入本項目鏡像庫：`public/docs/brochures/`。
-3. **命名規範**：全小寫、英文及連字符（例：`axa-smartdrive-brochure-2026.pdf`），避免空格與中文檔名。
-
----
-
-## 🔐 步驟 2：重建 PDF Manifest 與 Hash 指紋
-
-每次新增或替換鏡像 PDF，必須重新計算 SHA-256 指紋：
-
-```bash
-# 1. 自動掃描 public/docs/brochures/ 並更新 manifest
-node scripts/build_pdf_manifest.mjs
-
-# 2. （若涉及資產複製）同步 public 資產
-node scripts/copy_pdf_assets.mjs
-```
-
----
-
-## ✍️ 步驟 3：校對並更新 `insurance-data.json` 引用
-
-打開 [`public/data/insurance-data.json`](../../../public/data/insurance-data.json)，定位至相應產品的 `coverage` 與 `citations`：
-
-1. **更新 URL 與頁碼**：
-   ```json
-   "source_url": "/docs/brochures/axa-smartdrive-brochure-2026.pdf#page=4",
-   "document_name": "AXA 卓越私家車保險產品小冊子（2026 年版）",
-   "page": 4
-   ```
-2. **逐字引號校對 (`quote`)**：
-   - 提取的 `quote` **必須與 PDF 該頁實際文字一字不差**（測試套件會執行嚴格純文本匹配）。
-   - 切忌自己總結或潤色！
-3. **嚴格執行法律權威仲裁**：
-   - 若單張與條款有出入，以具法律約束力的 **保單條款 (Policy Wording)** 為準；詳見 [條款衝突仲裁原則](../core-rules-and-architecture.md#3-條款衝突仲裁原則-policy-terms-arbitration-rules)。
-
----
-
-## 🧪 步驟 4：執行證據一致性驗證
-
-```bash
-# 執行單元測試（涵蓋 PDF 指紋、引文匹配及 Manifest 覆蓋測試）
-npm test
-
-# 執行過濾器與邊界深度檢測
-npm run test:filters
-```
-
-*若出現 `tampered real mirror` 或 `invalidate an old evidence fingerprint`，代表 PDF hash 或頁碼引用不吻合，請重新核對！*
-
----
-
-## 📌 步驟 5：更新版本與記錄
-
-在 [`src/lib/version.ts`](../../../src/lib/version.ts) 遞增 `BUILD_NUMBER` 並確認提交。
-
----
-
-## 🚫 防錯紅線
-
-1. ❌ **切勿跨產品借用引用**：不可因找不到新條款而暫借其他保司的引用。
-2. ❌ **切勿手動偽造 SHA-256**：指紋必須由 `build_pdf_manifest.mjs` 自動產生。
-3. ❌ **頁碼從 1 起算**：`#page=X` 指的是 PDF 檔案閱讀器的實際物理頁碼，而非內頁印上的頁碼編號。
-
----
-
-## 🔗 相關手冊導航
-- 🏷️ [更新保費與優惠代碼 SOP](./update-pricing-and-promo.md)
-- ➕ [新增保險產品全流程 SOP](./add-new-product.md)
-- 🗄️ [產品停售或歸檔 SOP](./deprecate-product.md)
-- 🧭 [返回維護總手冊](../README.md)
+Node 22、鎖定依賴：`npm ci`。執行 `npm test`、`npm run lint -- --max-warnings=0`、`npm run build`、`npm run test:filters`。內容變更另跑對應 evidence/citation/maintenance 檢查。
+PDF 審核用 `python scripts/audit_evidence.py --as-of YYYY-MM-DD`，日期必須來自實際審核，不可冒充全面條款更新。同步更新 BUILD_NUMBER／BUILD_DATE，保留個別測試結果和未能檢查項目。只提 PR，不自動合併。

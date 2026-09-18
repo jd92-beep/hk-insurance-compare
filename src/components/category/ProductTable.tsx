@@ -13,14 +13,9 @@ import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 import type { CoverageItem, Product } from "@/types/insurance";
 import type { FeatureMatchResult } from "@/lib/feature-filters";
-import StampBadge from "@/components/StampBadge";
 import PdfViewerDrawer from "@/components/product/PdfViewerDrawer";
 import { useCompare } from "@/providers/CompareProvider";
 import { cn } from "@/lib/utils";
-
-function truncate(text: string, max: number): string {
-  return text.length > max ? `${text.slice(0, max)}…` : text;
-}
 
 /** 表格「重點保障」欄：按類別關鍵字揀 coverage 項目，唔夠就用順序補夠 2 項 */
 export function pickKeyCoverage(coverage: CoverageItem[], keywords: string[]): CoverageItem[] {
@@ -57,7 +52,7 @@ function TableCoverageItem({
   const pageText = item.page != null ? `P.${item.page}` : null;
 
   return (
-    <li className="group/cov flex items-start gap-2 text-small leading-[1.65]">
+    <li className="group/cov flex items-start gap-2 text-base leading-[1.65]">
       <span
         className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full transition-transform group-hover/cov:scale-125"
         style={{ background: color }}
@@ -136,14 +131,14 @@ function ExpandedRow({
           <div className="grid grid-cols-1 gap-6 py-5 md:grid-cols-2">
             <div className="col-span-full"><VerifiedPromotion product={product} /></div>
             <div>
-              <p className="mb-2.5 text-small font-bold text-ink">
+              <p className="mb-2.5 text-base font-bold text-ink">
                 全部保障項目
                 <span className="ml-2 font-grotesk font-medium text-ink-faint">
                   {coverage.length} 項
                 </span>
               </p>
               {coverage.length === 0 ? (
-                <p className="text-small text-ink-faint">官方文件未逐項列出，請睇產品頁。</p>
+                <p className="text-base text-ink-faint">本站未逐項整理，請核對來源。</p>
               ) : (
                 <ul className="flex flex-col gap-2">
                   {coverage.map((c) => (
@@ -159,13 +154,13 @@ function ExpandedRow({
               )}
             </div>
             <div className="flex flex-col">
-              <p className="mb-2.5 text-small font-bold text-ink">主要條款</p>
+              <p className="mb-2.5 text-base font-bold text-ink">主要條款</p>
               {terms.length === 0 ? (
-                <p className="text-small text-ink-faint">—</p>
+                <p className="text-base text-ink-faint">—</p>
               ) : (
                 <ul className="flex flex-col gap-2">
                   {terms.map((t, i) => (
-                    <li key={i} className="flex gap-2 text-small leading-[1.65] text-ink-soft">
+                    <li key={i} className="flex gap-2 text-base leading-[1.65] text-ink-soft">
                       <span className="mt-[8px] h-1 w-1 shrink-0 rounded-full bg-ink-faint" />
                       <span>{t}</span>
                     </li>
@@ -175,7 +170,7 @@ function ExpandedRow({
               <div className="mt-5 flex flex-wrap items-center gap-3">
                 <Link
                   to={`/product/${product.id}`}
-                  className="inline-flex items-center gap-1.5 rounded-[8px] bg-ink px-4 py-2 text-small font-bold text-paper transition-colors hover:bg-red"
+                  className="inline-flex items-center gap-1.5 rounded-[8px] bg-ink px-4 py-2 text-base font-bold text-paper transition-colors hover:bg-red"
                 >
                   睇完整產品檔案
                   <ExternalLink size={13} />
@@ -185,7 +180,7 @@ function ExpandedRow({
                     href={product.source_urls[0]}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-small font-medium text-jade hover:underline"
+                    className="inline-flex min-h-11 items-center gap-1 text-base font-medium text-jade hover:underline"
                   >
                     官方來源
                     <ExternalLink size={12} />
@@ -268,23 +263,24 @@ export default function ProductTable({
   const COL_SPAN = 7;
 
   const thBase =
-    "sticky top-[72px] z-20 bg-paper/95 backdrop-blur-md px-4 py-3.5 text-left text-small font-bold text-ink-soft border-b border-line-strong [box-shadow:inset_0_-1px_0_var(--line-strong)]";
+    "sticky top-[72px] z-20 bg-paper/95 backdrop-blur-md px-4 py-3.5 text-left text-base font-bold text-ink-soft border-b border-line-strong [box-shadow:inset_0_-1px_0_var(--line-strong)]";
 
   return (
     <div
       className="rounded-card border bg-paper shadow-card max-lg:overflow-x-auto"
       style={{ borderColor: "var(--line)" }}
     >
-      <table className="w-full border-collapse text-left text-[14.5px] leading-[1.55] max-lg:min-w-[1080px] max-md:text-[13.5px]">
+      <table className="w-full border-collapse text-left text-base leading-[1.55] max-lg:min-w-[1080px] ">
+        <caption className="p-4 text-left text-base leading-relaxed text-ink-soft">只係網站摘要，唔係全市場或即時報價。請先對齊計劃級別、自負額及不保事項。</caption>
         <thead className="sticky top-[72px] z-20">
           <tr className="border-b" style={{ borderColor: "var(--line-strong)" }}>
-            <th className={cn(thBase, "w-[21%] px-5")}>保險公司 / 產品</th>
-            <th className={cn(thBase, "w-[19%]")}>保費資料（非即時報價）</th>
-            <th className={cn(thBase, "w-[15%]")}>計劃層級</th>
-            <th className={cn(thBase, "w-[21%]")}>重點保障</th>
-            <th className={cn(thBase, "w-[13%]")}>主要條款</th>
-            <th className={cn(thBase, "w-[7%]")}>文件</th>
-            <th className={cn(thBase, "w-[4%] text-center")}>比較</th>
+            <th scope="col" className={cn(thBase, "w-[21%] px-5")}>保險公司 / 產品</th>
+            <th scope="col" className={cn(thBase, "w-[19%]")}>保費資料（非即時報價）</th>
+            <th scope="col" className={cn(thBase, "w-[15%]")}>計劃層級</th>
+            <th scope="col" className={cn(thBase, "w-[21%]")}>重點保障</th>
+            <th scope="col" className={cn(thBase, "w-[13%]")}>先睇不保事項</th>
+            <th scope="col" className={cn(thBase, "w-[7%]")}>文件</th>
+            <th scope="col" className={cn(thBase, "w-[4%] text-center")}>比較</th>
           </tr>
         </thead>
         <tbody>
@@ -299,7 +295,7 @@ export default function ProductTable({
             return (
               <Fragment key={p.id}>
                 <motion.tr
-                  onClick={() => toggleRow(p.id)}
+                  
                   className={cn(
                     "group cursor-pointer border-b transition-colors duration-200 hover:bg-paper-2",
                     expanded && "bg-paper-2/70",
@@ -308,12 +304,6 @@ export default function ProductTable({
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: enterDelay }}
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" && e.target === e.currentTarget) toggleRow(p.id);
-                  }}
-                  aria-expanded={expanded}
-                  aria-label={`${p.insurer_zh} ${p.product_name_zh || p.product_name}（點擊展開保障詳情）`}
                 >
                   {/* 保險公司 / 產品 */}
                   <td className="relative px-5 py-4 align-top">
@@ -322,7 +312,7 @@ export default function ProductTable({
                       style={{ background: color }}
                       aria-hidden="true"
                     />
-                    <span className="block text-small">
+                    <span className="block text-base">
                       <span className="font-grotesk font-bold text-ink">{p.insurer}</span>
                       <span className="ml-1.5 text-ink-soft">{p.insurer_zh}</span>
                     </span>
@@ -337,38 +327,16 @@ export default function ProductTable({
                       >
                         {p.product_name_zh || p.product_name}
                       </button>
-                      <StampBadge
-                        variant={p.premium_available ? "jade" : "ink"}
-                        size={16}
-                        className="mt-0.5 shrink-0"
-                      />
                     </span>
-                    {/* 智能摘要命中率 Badge（用戶自選重視保障命中狀態） */}
-                    {match && match.totalSelected > 0 && (
-                      <div className="mt-1.5 flex flex-wrap items-center gap-1">
-                        <span
-                          className={cn(
-                            "inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[10.5px] font-bold shadow-2xs",
-                            match.matchedCount === match.totalSelected
-                              ? "bg-jade/15 text-jade border border-jade/30"
-                              : "bg-sky-500/15 text-sky-800 dark:text-sky-300 border border-sky-500/30"
-                          )}
-                        >
-                          {match.matchedCount === match.totalSelected
-                            ? `✅ 摘要條件全部對到 ${match.matchedCount}/${match.totalSelected} 項（仍要核對原文）`
-                            : `🔍 摘要對到 ${match.matchedCount}/${match.totalSelected} 項所選條件`}
-                          <span className="font-mono text-[10px] opacity-85">({match.score}% 摘要對照)</span>
-                        </span>
-                      </div>
-                    )}
+                    {match && match.totalSelected > 0 && <p className="mt-2 text-sm text-ink-soft">摘要對到 {match.matchedCount}/{match.totalSelected} 項，仍要核對原文。</p>}
                     <VerifiedPromotion product={p} />
-                    <span className="mt-1.5 inline-flex items-center gap-1 text-[12px] font-medium text-ink-faint transition-colors group-hover:text-ink-soft">
+                    <button type="button" aria-expanded={expanded} onClick={() => toggleRow(p.id)} className="min-h-11 mt-1.5 inline-flex items-center gap-1 text-base font-medium text-ink-faint transition-colors group-hover:text-ink-soft">
                       <ChevronDown
                         size={13}
                         className={cn("transition-transform duration-300", expanded && "rotate-180")}
                       />
                       {expanded ? "收合詳情" : "展開保障詳情"}
-                    </span>
+                    </button>
                   </td>
 
                   <td className="px-4 py-4 align-top">
@@ -385,7 +353,7 @@ export default function ProductTable({
                     <div className="flex flex-wrap gap-1.5">
                       {tiers.slice(0, 2).map((t) => (
                         <span key={t} className="chip bg-paper-3 text-ink-soft">
-                          {truncate(t, 14)}
+                          {t}
                         </span>
                       ))}
                       {tiers.length > 2 && (
@@ -414,22 +382,22 @@ export default function ProductTable({
                     </ul>
                     {(p.coverage?.length ?? 0) > keyCoverage.length && (
                       <span className="mt-1.5 block text-[12px] text-ink-faint">
-                        另有 {(p.coverage?.length ?? 0) - keyCoverage.length} 項，點行展開
+                        另有 {(p.coverage?.length ?? 0) - keyCoverage.length} 項，可展開詳情
                       </span>
                     )}
                   </td>
 
                   {/* 主要條款 */}
                   <td className="px-4 py-4 align-top text-ink-soft">
-                    {p.key_terms?.[0] ? truncate(p.key_terms[0], 60) : "—"}
+                    {p.exclusions?.[0] || "未提供（唔等於全部受保）"}<Link to={`/product/${p.id}`} className="mt-2 flex min-h-11 items-center text-jade underline">睇完整限制</Link>
                   </td>
 
                   {/* 文件 / 來源 */}
                   <td className="px-4 py-4 align-top">
                     <div className="flex flex-col items-start gap-2">
                       <span
-                        className="inline-flex items-center gap-1.5 whitespace-nowrap text-small text-ink-faint"
-                        title="官方文件數量"
+                        className="inline-flex items-center gap-1.5 whitespace-nowrap text-base text-ink-faint"
+                        title="收錄文件數量，唔代表已核實"
                       >
                         <FileText size={13} />
                         {p.documents_found?.length ?? 0} 份
@@ -440,7 +408,7 @@ export default function ProductTable({
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1 text-small font-medium text-jade transition-colors hover:underline"
+                          className="inline-flex min-h-11 items-center gap-1 text-base font-medium text-jade transition-colors hover:underline"
                         >
                           官方來源
                           <ExternalLink size={12} />
@@ -452,7 +420,7 @@ export default function ProductTable({
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1 rounded bg-red text-paper hover:bg-red/90 px-2 py-0.5 text-[11px] font-bold shadow-2xs active:scale-95 transition-all"
+                          className="inline-flex items-center gap-1 rounded bg-red text-paper hover:bg-red/90 px-2 py-0.5 text-sm font-bold min-h-11 shadow-2xs active:scale-95 transition-all"
                           title="直達該保險公司官方投保／報價頁面"
                         >
                           <span>{p.premium_available ? "官網投保" : "官網報價"}</span>
@@ -470,7 +438,7 @@ export default function ProductTable({
                       aria-pressed={inTray}
                       aria-label={inTray ? "移出比較" : "加入比較"}
                       className={cn(
-                        "inline-flex h-9 w-9 items-center justify-center rounded-[8px] border transition-all duration-300",
+                        "inline-flex h-12 w-12 items-center justify-center rounded-[8px] border transition-all duration-300",
                         inTray
                           ? "border-jade bg-jade-wash text-jade"
                           : "text-ink-soft hover:border-red hover:bg-red hover:text-paper",

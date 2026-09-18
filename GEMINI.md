@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Current scope and remaining limitations: [delivery review](docs/review/2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # GEMINI.md — current project memory, not a completion certificate
 
 This file and AGENTS.md describe the same current contract. Read `AGENTS.md`, `handoff/00-current-status.md`, and `docs/review/problem-register-2026-09-06.md`. The old text is preserved under `handoff/archive/pre-audit-2026-09-06/`; its obsolete release commands and accuracy claims are not instructions.

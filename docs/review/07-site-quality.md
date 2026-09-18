@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # 首頁層次、全站效能與資料容錯
 
 Hero 的 scroll transform 與 pointer transform 改用父子分層，避免 GSAP／Framer 同時覆寫；Tilt、Hero、MethodStory、Lenis 即時遵循 reduced-motion。保留既有藝術方向，不恢復大型 WebGL 圈圈。移除多處過期 9／85／27 常數與「全部來源已完整」概括保證。

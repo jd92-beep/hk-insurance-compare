@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # 保障圖表接線與驗收
 
 2026-09-06：上次PR #14只有元件與一次性整合腳本，CategoryDetail仍使用舊圖。已在exact 846b634快照重現兩個失敗：route未接線、一般每次口徑仍被繪製。

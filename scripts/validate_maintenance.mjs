@@ -157,7 +157,7 @@ const legalCatSet = new Set(LEGAL_CATEGORIES);
 
 for (const leg of LEGAL_CATEGORIES) {
   if (!catSet.has(leg)) {
-    reportIssue(2, '類別完整性', null, 'categories', `缺失法定類別：${leg}`);
+    reportIssue(2, '類別完整性', null, 'categories', `缺失網站類別：${leg}`);
   }
 }
 for (const cat of data.categories) {
@@ -232,6 +232,8 @@ console.log(`${c('green', '✔')} [4/10] 產品 ID 規範性與唯一性通過�
 for (const p of data.products) {
   const buyUrl = p.official_buy_url;
   if (!buyUrl || typeof buyUrl !== 'string' || !buyUrl.trim()) {
+    // Historical/quarantined records must not be forced to invent a purchase link.
+    if (p.record_status === 'archived' || p.record_status === 'discontinued') continue;
     reportIssue(5, '官方報價鏈接缺失', p.id, 'official_buy_url', '缺少 official_buy_url 或為空');
     continue;
   }
@@ -254,7 +256,7 @@ for (const p of data.products) {
     reportIssue(5, '官方報價鏈接語法', p.id, 'official_buy_url', `無法解析之非法 URL：${buyUrl}`);
   }
 }
-console.log(`${c('green', '✔')} [5/10] 官方即時報價/投保鏈接合法性通過（100% 為 HTTPS 且零誤連 PDF）`);
+console.log(`${c('green', '✔')} [5/10] 已提供來源網址的格式檢查完成（不代表已核實官網身份或現行銷售狀態）`);
 
 // ─────────────────────────────────────────────────────────────
 // Check 6: 保障條款 (Coverage) 結構與空值檢驗
@@ -463,10 +465,10 @@ console.log(`${c('green', '✔')} [10/10] 11 份維護類別手冊 100% 產品�
 console.log(`\n${c('cyan', '──────────────────────────────────────────────────────────────────')}`);
 console.log(c('bold', '📊 體檢統計指標摘要 (Health Summary):'));
 console.log(`  • 覆蓋保險產品總量 : ${c('bold', c('green', stats.totalProducts.toString()))} 款`);
-console.log(`  • 保險法定類別總量 : ${c('bold', c('green', stats.totalCategories.toString()))} 大類`);
+console.log(`  • 網站分類總量 : ${c('bold', c('green', stats.totalCategories.toString()))} 大類`);
 console.log(`  • Canonical 保險公司 : ${c('bold', c('green', stats.totalInsurers.toString()))} 間`);
 console.log(`  • 驗證保障細項總量 : ${c('bold', c('green', stats.totalCoverageItems.toString()))} 條`);
-console.log(`  • 驗證官網投保網址 : ${c('bold', c('green', stats.totalUrlsChecked.toString()))} 個 (全部 HTTPS 且無 PDF)`);
+console.log(`  • 已提供網址格式 : ${c('bold', c('green', stats.totalUrlsChecked.toString()))} 個 (全部 HTTPS 且無 PDF)`);
 console.log(`  • 類別維護手冊完整 : ${c('bold', c('green', `${stats.totalManualsChecked}/11`))} 份 (100% 產品 ID 完整索引)`);
 console.log(`${c('cyan', '──────────────────────────────────────────────────────────────────')}\n`);
 
@@ -482,7 +484,7 @@ if (issues.length > 0) {
   console.log(c('red', '請參照 docs/maintenance/core-rules-and-architecture.md 修正上述數據後再次執行！\n'));
   process.exit(1);
 } else {
-  console.log(c('bold', c('green', '🎉 恭喜！全站數據通過 10 重自動體檢，零缺陷、零壞字元、合規度 100%！')));
-  console.log(c('dim', '✅ 數據結構符合生產標準，可安全進行 git commit 與發布！\n'));
+  console.log(c('bold', c('green', '結構檢查完成：未發現此工具涵蓋的格式錯誤；不代表政策準確、現行或法規合規。')));
+  console.log(c('dim', '發布前仍需條款、瀏覽器及人工覆核；此工具不授權合併或部署。\n'));
   process.exit(0);
 }

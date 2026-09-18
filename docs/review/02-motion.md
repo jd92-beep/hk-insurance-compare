@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # 首頁光學粒子與動效生命週期
 
 保留紙白／玉綠／品牌紅與現有維港插畫；不恢復已移除的大型 WebGL 圈圈。

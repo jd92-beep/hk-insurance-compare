@@ -1,7 +1,6 @@
 import { priceDisplay, promoDisplay } from "@/lib/premium-display";
 import { ExternalLink, FileText, Plus, Check, Sparkles, Copy } from "lucide-react";
 import { useNavigate } from "react-router";
-import { toast } from "sonner";
 import type { Product } from "@/types/insurance";
 import type { FeatureMatchResult } from "@/lib/feature-filters";
 import { categoryColor } from "@/lib/categories";
@@ -9,6 +8,9 @@ import { useCompare } from "@/providers/CompareProvider";
 import PriceRangeBar from "@/components/PriceRangeBar";
 import StampBadge from "@/components/StampBadge";
 import { cn } from "@/lib/utils";
+import { toastPromoCopy, toastCompareToggle, copyTextToClipboard } from "@/lib/ui-feedback";
+import { motion } from "framer-motion";
+import { MOTION } from "@/lib/motion-runtime";
 
 /**
  * 產品卡（§7.3）— 全站核心組件。
@@ -42,14 +44,16 @@ export default function ProductCard({
   const goDetail = () => navigate(`/product/${product.id}`);
 
   return (
-    <article
+    <motion.article
       onClick={goDetail}
       onKeyDown={(e) => {
         if (e.key === "Enter" && e.target === e.currentTarget) goDetail();
       }}
       tabIndex={0}
+      whileHover={{ y: -MOTION.hoverLiftPx, scale: 1.025, transition: MOTION.springSoft }}
+      whileTap={{ scale: MOTION.pressScale, transition: { duration: MOTION.duration.snap } }}
       className={cn(
-        "group relative flex cursor-pointer flex-col overflow-hidden rounded-card border bg-paper shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift shine-sweep",
+        "group relative flex cursor-pointer flex-col overflow-hidden rounded-card border bg-paper shadow-card transition-shadow duration-300 hover:shadow-lift shine-sweep",
         className,
       )}
       style={{ borderColor: "var(--line)" }}
@@ -57,7 +61,7 @@ export default function ProductCard({
     >
       {/* 頂部類別色條 */}
       <div
-        className="h-[3px] w-full transition-all duration-300 group-hover:h-[5px]"
+        className="h-[3px] w-full transition-all duration-300 group-hover:h-[7px]"
         style={{ background: color }}
       />
       <div className="flex flex-1 flex-col gap-3 p-5">
@@ -78,7 +82,7 @@ export default function ProductCard({
           />
         </div>
 
-        {/* 智能摘要命中率 Badge（用戶自選重視保障命中狀態） */}
+        {/* 摘要條件對照（關鍵字檢索，唔係核保／理賠結果） */}
         {match && match.totalSelected > 0 && (
           <div className="flex flex-col gap-1 rounded-lg border border-jade/30 bg-jade/10 p-2.5 text-[12px]">
             <div className="flex items-center justify-between gap-1.5">
@@ -87,11 +91,11 @@ export default function ProductCard({
                 match.matchedCount === match.totalSelected ? "text-jade" : "text-sky-800 dark:text-sky-300"
               )}>
                 {match.matchedCount === match.totalSelected
-                  ? `🎯 摘要命中全部 ${match.matchedCount}/${match.totalSelected} 項所選摘要條件`
-                  : `✨ 符合 ${match.matchedCount}/${match.totalSelected} 項所選摘要條件`}
+                  ? `✅ 摘要條件全部對到 ${match.matchedCount}/${match.totalSelected} 項（仍要核對原文）`
+                  : `🔍 摘要對到 ${match.matchedCount}/${match.totalSelected} 項你揀嘅條件`}
               </span>
-              <span className="font-mono text-[11px] font-bold text-jade">
-                {match.score}% 摘要命中
+              <span className="font-mono text-[11px] font-bold text-jade" title="只係關鍵字對照百分比，唔係適合度">
+                {match.score}% 摘要對照
               </span>
             </div>
             {match.matchedTags.length > 0 && (
@@ -103,6 +107,9 @@ export default function ProductCard({
                 ))}
               </div>
             )}
+            <p className="text-[10.5px] leading-snug text-ink-faint">
+              摘要命中唔等於核保批核、理賠機會或「最適合你」。
+            </p>
           </div>
         )}
 
@@ -143,10 +150,10 @@ export default function ProductCard({
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  navigator.clipboard.writeText(promo.code!);
-                  toast.success(`已複製優惠碼：${promo.code}`, { position: "top-center" });
+                  const code = promo.code!;
+                  void copyTextToClipboard(code).then((ok) => toastPromoCopy(ok, code));
                 }}
-                className="group/btn inline-flex items-center gap-1 rounded border border-amber-400/40 bg-paper px-2 py-0.5 font-mono text-[11px] font-bold text-amber-800 shadow-xs transition-all hover:border-amber-500 hover:bg-amber-100/60 dark:bg-paper-2 dark:text-amber-200"
+                className="group/btn inline-flex items-center gap-1 rounded border border-amber-400/40 bg-paper px-2 py-0.5 font-mono text-[11px] font-bold text-amber-800 shadow-xs transition-all hover:scale-105 hover:border-amber-500 hover:bg-amber-100/60 active:scale-95 dark:bg-paper-2 dark:text-amber-200"
                 title="點擊複製優惠碼；期限／資格請向官網核實"
               >
                 <span>{promo.code}</span>
@@ -161,7 +168,7 @@ export default function ProductCard({
         )}
 
 
-        {/* 官方即時折後價與劃線原價（精準、最新、不誤導） */}
+        {/* 官方即時折後價與劃線原價（參考價，以官網為準） */}
         {hasDiscount && origPrice && discPrice && (
           <div className="flex items-baseline gap-2 pt-0.5">
             <span className="text-[12.5px] font-grotesk text-ink-faint line-through">
@@ -225,7 +232,7 @@ export default function ProductCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1 rounded-[10px] bg-red text-paper hover:bg-red/90 px-3 py-1.5 text-small font-bold shadow-xs active:scale-95 transition-all"
+                className="inline-flex items-center gap-1 rounded-[10px] bg-red text-paper hover:scale-105 hover:bg-red-deep px-3 py-1.5 text-small font-bold shadow-xs active:scale-90 transition-all duration-200"
                 title="前往該保險公司官方投保／報價頁面"
               >
                 <span>{pricing.buyLabel ?? "官網報價"}</span>
@@ -236,23 +243,29 @@ export default function ProductCard({
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
+                const label = product.product_name_zh || product.product_name;
+                if (!inTray && compare.isFull) {
+                  toastCompareToggle(label, false, true);
+                  return;
+                }
                 compare.toggle(product.id);
+                toastCompareToggle(label, !inTray);
               }}
               disabled={!inTray && compare.isFull}
               className={cn(
-                "inline-flex items-center gap-1 rounded-[10px] border px-3 py-1.5 text-small font-bold transition-all duration-300",
+                "inline-flex items-center gap-1 rounded-[10px] border px-3 py-1.5 text-small font-bold transition-all duration-200 active:scale-90",
                 inTray
-                  ? "border-jade bg-jade-wash text-jade"
-                  : "text-ink hover:border-red hover:bg-red hover:text-paper disabled:cursor-not-allowed disabled:opacity-40",
+                  ? "border-jade bg-jade-wash text-jade shadow-[0_0_0_3px_rgba(14,124,102,.18)]"
+                  : "text-ink hover:scale-105 hover:border-red hover:bg-red hover:text-paper disabled:cursor-not-allowed disabled:opacity-40",
               )}
               style={!inTray ? { borderColor: "var(--line-strong)" } : undefined}
             >
-              {inTray ? <Check size={13} /> : <Plus size={13} />}
-              {inTray ? "已加入" : "加入比較"}
+              {inTray ? <Check size={14} /> : <Plus size={14} />}
+              {inTray ? "已加入比較" : "加入比較"}
             </button>
           </div>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

@@ -21,7 +21,7 @@ export default function MethodTimeline() {
     return [
       {
         title: "第一步：逐間官網搜集",
-        body: `我哋逐一瀏覽官方網站，記錄公開發售產品——包括產品名、計劃層級、保障項目同賠償上限。當前快照涵蓋 ${insurerCount} 個站內保險公司鍵值、${categoryCount} 大類別。數量嚟自站內快照，唔代表香港全市場。`,
+        body: `我哋逐一瀏覽官方網站，記錄公開發售產品——包括產品名、計劃層級、保障項目同賠償上限。當前快照涵蓋 ${insurerCount} 間站內收錄嘅保險公司、${categoryCount} 大類別。數量嚟自站內快照，唔代表香港全市場。`,
       },
       {
         title: "第二步：核對官方文件",

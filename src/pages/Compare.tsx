@@ -1,4 +1,5 @@
 import { priceDisplay } from "@/lib/premium-display";
+import { MOTION } from "@/lib/motion-runtime";
 import ComparisonExportButton from "@/components/compare/ComparisonExportButton";
 import SavedComparisons from "@/components/compare/SavedComparisons";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -57,10 +58,10 @@ function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => v
   return (
     <motion.div
       layout="position"
-      initial={{ scale: 0.92, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ x: -20, opacity: 0 }}
-      transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+      initial={{ scale: MOTION.enterScale, opacity: 0, rotate: -2 }}
+      animate={{ scale: 1, opacity: 1, rotate: 0 }}
+      exit={{ x: MOTION.exitX, opacity: 0, scale: 0.88 }}
+      transition={MOTION.springy}
       className="relative min-w-0 border-x border-b bg-paper"
       style={{ borderColor: "var(--line)" }}
     >

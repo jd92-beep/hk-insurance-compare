@@ -11,11 +11,11 @@ import { cn } from "@/lib/utils";
 export default function TiltCard({
   children,
   className,
-  /** 最大傾斜角度（度） */
-  max = 6,
+  /** 最大傾斜角度（度）— 夸張效果用預設 14° */
+  max = 14,
   /** 滑鼠高光掃層 */
   glare = true,
-  perspective = 900,
+  perspective = 1100,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -30,11 +30,11 @@ export default function TiltCard({
   // 0–1 歸一化滑鼠位置（卡中心為 0.5）
   const mx = useMotionValue(0.5);
   const my = useMotionValue(0.5);
-  const rotateX = useSpring(useTransform(my, [0, 1], [max, -max]), { stiffness: 220, damping: 20 });
-  const rotateY = useSpring(useTransform(mx, [0, 1], [-max, max]), { stiffness: 220, damping: 20 });
+  const rotateX = useSpring(useTransform(my, [0, 1], [max, -max]), { stiffness: 320, damping: 14, mass: 0.55 });
+  const rotateY = useSpring(useTransform(mx, [0, 1], [-max, max]), { stiffness: 320, damping: 14, mass: 0.55 });
   const glareX = useTransform(mx, (v) => v * 100);
   const glareY = useTransform(my, (v) => v * 100);
-  const glareBg = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,.28), transparent 55%)`;
+  const glareBg = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,.42), transparent 58%)`;
 
   if (!enabled) return <div className={className}>{children}</div>;
 

@@ -9,7 +9,7 @@ export function initLenis(): Lenis | null {
   if (lenis) return lenis;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
   if (reduced.matches) return null;
-  const instance = new Lenis({ lerp: 0.1, syncTouch: false });
+  const instance = new Lenis({ lerp: 0.14, syncTouch: false });
   lenis = instance;
   const loop = createFrameLoop(time => instance.raf(time));
   const visibility = () => document.hidden ? loop.stop() : loop.start();
@@ -35,7 +35,7 @@ export function getLenis(): Lenis | null { return lenis; }
 export function scrollToElement(target: string | HTMLElement): void {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (lenis && !reduced) {
-    lenis.scrollTo(target, { duration: 0.9, easing: t => 1 - Math.pow(1 - t, 4) });
+    lenis.scrollTo(target, { duration: 1.05, easing: t => 1 - Math.pow(1 - t, 3.2) });
     return;
   }
   const el = typeof target === "string" ? document.querySelector(target) : target;

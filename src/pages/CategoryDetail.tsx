@@ -455,7 +455,7 @@ export default function CategoryDetail() {
       <div className="site-container py-24">
         <EmptyState
           title="搵唔到呢個類別"
-          description="呢條網址嘅類別唔存在，返去類別總覽睇晒 9 大類別。"
+          description="呢條網址嘅類別唔存在。返去類別總覽，用網站當前快照嘅類別清單重新揀過。"
           resetLabel="去類別總覽"
           onReset={() => {
             window.location.href = "/categories";
@@ -767,7 +767,7 @@ export default function CategoryDetail() {
         </div>
       </section>
 
-      {/* ── S2 智能保障挑選面板（條款契合度推薦） ───────────────── */}
+      {/* ── S2 摘要條件挑選面板（關鍵字對照排序） ───────────────── */}
       {categoryFeatureTags.length > 0 && (
         <section className="border-b border-line/60 bg-paper py-5 max-md:py-4">
           <div className="site-container">
@@ -841,7 +841,7 @@ export default function CategoryDetail() {
                   </div>
                   {maxMatchedCount > 0 && (
                     <span className="text-[12px] font-bold text-jade">
-                      🎯 最高命中 {maxScore}% ({maxMatchedCount}/{selectedFeatures.length} 項)
+                      🎯 摘要最多對到 {maxScore}% ({maxMatchedCount}/{selectedFeatures.length} 項條件)
                     </span>
                   )}
                 </div>
@@ -878,11 +878,11 @@ export default function CategoryDetail() {
                                     為你精選推薦 <span className="font-grotesk font-black text-jade underline decoration-jade/40 underline-offset-4">{bestMatchProducts.length}</span> 款最高契合保險
                                   </span>
                                   <span className="rounded-full bg-jade text-paper px-2.5 py-0.5 font-grotesk text-[11px] font-bold tracking-tight shadow-xs">
-                                    最高命中率 {maxScore}% ({maxMatchedCount}/{selectedFeatures.length} 項)
+                                    摘要最多對到 {maxScore}% ({maxMatchedCount}/{selectedFeatures.length} 項條件)
                                   </span>
                                 </div>
                                 <p className="mt-1 text-[12.5px] text-ink-soft">
-                                  已選 {selectedFeatures.length} 項核心條款，依契合度多至少置頂排序，最貼近心水方案永遠排最前。
+                                  已選 {selectedFeatures.length} 項摘要條件，按對到項目多至少排序。呢個只係關鍵字對照，唔係核保、理賠或「最適合你」嘅保證；記得打開原文同不保事項。
                                 </p>
                               </div>
                             </div>
@@ -1048,7 +1048,7 @@ export default function CategoryDetail() {
                           <div className="flex items-center gap-2 shrink-0">
                             {maxMatchedCount > 0 && (
                               <span className="text-[11.5px] font-grotesk font-bold text-jade">
-                                🎯 最高命中 {maxScore}% ({maxMatchedCount}/{selectedFeatures.length} 項)
+                                🎯 摘要最多對到 {maxScore}% ({maxMatchedCount}/{selectedFeatures.length} 項條件)
                               </span>
                             )}
                             <button
@@ -1131,7 +1131,7 @@ export default function CategoryDetail() {
                       <div className="mt-3.5 rounded-xl border border-amber-300/80 bg-amber-50/90 dark:bg-amber-950/40 p-3 text-amber-900 dark:text-amber-200 text-[12.5px] flex items-start gap-2">
                         <Sparkles size={16} className="text-amber-600 shrink-0 mt-0.5" />
                         <div>
-                          <strong>本站摘要未有同時命中全部 {selectedFeatures.length} 項條件。</strong>
+                          <strong>本站摘要未有同時對到你揀齊全部 {selectedFeatures.length} 項條件。</strong>
                           <p className="mt-0.5 text-[12px] text-amber-800/90 dark:text-amber-300/90">
                             以下只係部分命中嘅替代資料，並不符合你全部條件。未命中可能係不保或資料不足；百分比唔係適合度、核保或理賠機會。
                           </p>

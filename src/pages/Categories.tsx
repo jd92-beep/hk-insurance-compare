@@ -136,14 +136,14 @@ export default function Categories() {
               >
                 ALL CATEGORIES · 保險類別
               </motion.p>
-              <AnimatedTitle text="9 大類別，逐類格價。" />
+              <AnimatedTitle text={`${categories.length || "—"} 大類別，逐類格價。`} />
               <motion.p
                 className="mt-6 max-w-[36em] text-ink-soft"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: EASE_OUT_EXPO, delay: 0.35 }}
+                transition={{ duration: 0.65, ease: EASE_OUT_EXPO, delay: 0.35 }}
               >
-                每個類別入面，我哋將唔同保險公司嘅同類保單並排——價錢範圍、保障項目、賠償上限、主要條款、不保事項，全部來自官方文件。
+                每個類別入面，我哋將唔同保險公司嘅同類產品並排——價錢範圍、保障項目、賠償上限、主要條款、不保事項，整理自官方文件快照；現行條款仍要打開原文核對。
               </motion.p>
               <motion.p
                 className="mt-6 border-t pt-4 text-small text-ink-soft"
@@ -152,9 +152,9 @@ export default function Categories() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
-                共 <span className="font-grotesk font-bold text-ink">{allProducts.length || 85}</span> 份產品
+                共 <span className="font-grotesk font-bold text-ink">{allProducts.length || "—"}</span> 份產品
                 <span className="mx-2 text-ink-faint">｜</span>
-                <span className="font-grotesk font-bold text-ink">{insurers.length || 27}</span> 間保險公司
+                <span className="font-grotesk font-bold text-ink">{insurers.length || "—"}</span> 間保險公司（站內鍵值）
                 <span className="mx-2 text-ink-faint">｜</span>
                 資料快照：<span className="font-grotesk font-bold text-ink">{generatedAt}</span>
               </motion.p>

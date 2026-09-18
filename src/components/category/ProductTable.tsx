@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
+import { toastPromoCopy, copyTextToClipboard } from "@/lib/ui-feedback";
 import type { CoverageItem, Product } from "@/types/insurance";
 import type { PremiumSpectrum } from "@/lib/categories";
 import type { FeatureMatchResult } from "@/lib/feature-filters";
@@ -163,11 +164,11 @@ function ExpandedRow({
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        navigator.clipboard.writeText(product.promo!.code!);
-                        toast.success(`已複製優惠碼：${product.promo!.code}`, { position: "top-center" });
+                        const code = product.promo!.code!;
+                        void copyTextToClipboard(code).then((ok) => toastPromoCopy(ok, code));
                       }}
-                      className="inline-flex items-center gap-1.5 rounded border border-amber-400/40 bg-paper px-2.5 py-1 font-mono text-[11.5px] font-bold text-amber-800 shadow-2xs hover:bg-amber-100 dark:bg-paper-2 dark:text-amber-200"
-                      title="點擊複製優惠碼"
+                      className="inline-flex items-center gap-1.5 rounded border border-amber-400/40 bg-paper px-2.5 py-1 font-mono text-[11.5px] font-bold text-amber-800 shadow-2xs transition-transform hover:scale-105 active:scale-95 hover:bg-amber-100 dark:bg-paper-2 dark:text-amber-200"
+                      title="點擊複製優惠碼；期限／資格請向官網核實"
                     >
                       <span>複製優惠碼: {product.promo.code}</span>
                       <Copy size={12} className="text-amber-600" />
@@ -302,7 +303,11 @@ export default function ProductTable({
   const handleCompare = (e: MouseEvent, id: string) => {
     e.stopPropagation();
     if (!compare.has(id) && compare.isFull) {
-      toast.error("最多比較 3 份，請先移除一份", { position: "top-center" });
+      toast.error("⚖️ 比較車最多 3 份。請先移除一份，再加入新產品。", {
+        position: "top-center",
+        duration: 5000,
+        style: { fontSize: "14px", fontWeight: 700, padding: "14px 18px" },
+      });
       return;
     }
     compare.toggle(id);
@@ -417,9 +422,9 @@ export default function ProductTable({
                           )}
                         >
                           {match.matchedCount === match.totalSelected
-                            ? `🎯 摘要命中全部 ${match.matchedCount}/${match.totalSelected} 項所選摘要條件`
-                            : `✨ 符合 ${match.matchedCount}/${match.totalSelected} 項所選摘要條件`}
-                          <span className="font-mono text-[10px] opacity-85">({match.score}%)</span>
+                            ? `✅ 摘要條件全部對到 ${match.matchedCount}/${match.totalSelected} 項（仍要核對原文）`
+                            : `🔍 摘要對到 ${match.matchedCount}/${match.totalSelected} 項所選條件`}
+                          <span className="font-mono text-[10px] opacity-85">({match.score}% 摘要對照)</span>
                         </span>
                       </div>
                     )}
@@ -439,8 +444,7 @@ export default function ProductTable({
                             type="button"
                             onClick={(e) => {
                               e.stopPropagation();
-                              navigator.clipboard.writeText(p.promo!.code!);
-                              toast.success(`已複製優惠碼：${p.promo!.code}`, { position: "top-center" });
+                              void copyTextToClipboard(p.promo!.code!).then((ok) => toastPromoCopy(ok, p.promo!.code!));
                             }}
                             className="inline-flex items-center gap-0.5 rounded border border-amber-400/40 bg-paper px-1.5 py-0.5 font-mono text-[10.5px] font-bold text-amber-800 shadow-2xs hover:bg-amber-100/70 dark:bg-paper-2 dark:text-amber-200"
                             title="點擊複製優惠碼"

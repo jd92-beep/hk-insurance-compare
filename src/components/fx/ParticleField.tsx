@@ -57,15 +57,15 @@ export default function ParticleField({ className, density = 1 }: { className?: 
         const x = p.u * width + Math.sin(elapsed * .16 + p.phase) * 14 * depth;
         const y = p.v * height + Math.cos(elapsed * .12 + p.phase) * 18 * depth;
         const dx = x + p.ox - pointer.x, dy = y + p.oy - pointer.y, distance = Math.hypot(dx, dy);
-        const force = !reduced.matches && distance < 145 ? (1 - distance / 145) * 100 * depth : 0;
-        p.vx += ((dx / (distance || 1)) * force - p.ox * 7 - p.vx * 6) * dt;
-        p.vy += ((dy / (distance || 1)) * force - p.oy * 7 - p.vy * 6) * dt;
+        const force = !reduced.matches && distance < 210 ? (1 - distance / 210) * 220 * depth : 0;
+        p.vx += ((dx / (distance || 1)) * force - p.ox * 6.5 - p.vx * 5.5) * dt;
+        p.vy += ((dy / (distance || 1)) * force - p.oy * 6.5 - p.vy * 5.5) * dt;
         p.ox += p.vx * dt; p.oy += p.vy * dt;
-        const size = (18 + p.z * 23) * depth;
+        const size = (22 + p.z * 34) * depth;
         ctx.save(); ctx.translate(x + p.ox, y + p.oy);
-        ctx.rotate(p.phase + elapsed * .06 * depth);
+        ctx.rotate(p.phase + elapsed * .09 * depth);
         ctx.scale(.72 + .28 * Math.cos(elapsed * .25 + p.phase) ** 2, 1);
-        ctx.globalAlpha = .25 + p.z * .48;
+        ctx.globalAlpha = .3 + p.z * .55;
         ctx.drawImage(atlas[p.sprite], -size / 2, -size / 2, size, size); ctx.restore();
       }
     };

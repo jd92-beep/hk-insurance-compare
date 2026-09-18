@@ -53,14 +53,14 @@ export default function Hero() {
   const my = useMotionValue(0);
   const sx = useSpring(mx, { stiffness: 55, damping: 18 });
   const sy = useSpring(my, { stiffness: 55, damping: 18 });
-  const layerNearX = useTransform(sx, (v) => v * 22);
-  const layerNearY = useTransform(sy, (v) => v * 14);
-  const layerFarX = useTransform(sx, (v) => v * -12);
-  const layerFarY = useTransform(sy, (v) => v * -8);
-  const artX = useTransform(sx, (v) => v * 8);
-  const artY = useTransform(sy, (v) => v * 6);
-  const auroraX = useTransform(sx, (v) => v * -6);
-  const auroraY = useTransform(sy, (v) => v * -4);
+  const layerNearX = useTransform(sx, (v) => v * 36);
+  const layerNearY = useTransform(sy, (v) => v * 24);
+  const layerFarX = useTransform(sx, (v) => v * -28);
+  const layerFarY = useTransform(sy, (v) => v * -18);
+  const artX = useTransform(sx, (v) => v * 16);
+  const artY = useTransform(sy, (v) => v * 12);
+  const auroraX = useTransform(sx, (v) => v * -14);
+  const auroraY = useTransform(sy, (v) => v * -10);
 
   const stats = [
     { n: categories.length || "—", label: "大保險類別" },
@@ -297,7 +297,7 @@ export default function Hero() {
             style={{ background: "linear-gradient(to bottom, transparent, var(--line-strong) 30%, var(--line-strong) 70%, transparent)" }}
           />
           <motion.div className="relative" style={reduced ? undefined : { x: artX, y: artY }}>
-            <TiltCard className="rounded-[20px]" max={7}>
+            <TiltCard className="rounded-[20px]" max={16}>
               <div className="hero-art overflow-hidden rounded-[20px] border shadow-card will-change-transform" style={{ borderColor: "var(--line)" }}>
                 <img
                   src="/hero-harbour.svg"
@@ -309,7 +309,7 @@ export default function Hero() {
               <div className="absolute -bottom-4 -left-4" style={{ transform: "translateZ(70px)" }}>
                 <div
                   className="hero-stamp will-change-transform"
-                  title="資料來自保險公司官方文件"
+                  title="整理自官方文件快照，唔代表已核實現行版本"
                 >
                   <StampSealIcon size={120} className="text-red" />
                 </div>

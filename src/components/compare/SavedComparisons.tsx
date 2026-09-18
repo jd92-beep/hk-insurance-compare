@@ -30,9 +30,9 @@ export default function SavedComparisons({selected,catalog,snapshotDate,onRestor
       if(store.save(set)){setName("");setNotice(`已收藏「${set.name}」；只保存在此瀏覽器。`);}
     } catch {setNotice("未能建立收藏；請輸入1–60字名稱，並選擇1–3款不同產品。");}
   };
-  return <details className="group mb-8 min-w-0 rounded-2xl border border-jade/20 bg-paper" data-saved-comparisons>
-    <summary className="flex min-h-14 cursor-pointer flex-wrap items-center justify-between gap-3 rounded-2xl p-4 focus-visible:outline-2 focus-visible:outline-jade">
-      <span className="inline-flex items-center gap-2 font-semibold text-ink"><Bookmark size={18} className="text-jade" aria-hidden="true" />收藏比較組合</span>
+  return <details className="group mb-8 min-w-0 rounded-2xl border border-jade/30 bg-paper shadow-card" data-saved-comparisons>
+    <summary className="flex min-h-16 cursor-pointer flex-wrap items-center justify-between gap-3 rounded-2xl p-5 focus-visible:outline-2 focus-visible:outline-jade transition-colors hover:bg-jade/5">
+      <span className="inline-flex items-center gap-2 text-[15px] font-bold text-ink"><Bookmark size={20} className="text-jade" aria-hidden="true" />收藏比較組合</span>
       <span className="inline-flex items-center gap-2 text-xs text-ink-soft">{state.sets.length} / {SAVED_COMPARISONS_LIMIT} 組 · 此瀏覽器專用<ChevronDown size={16} className="group-open:rotate-180" aria-hidden="true" /></span>
     </summary>
     <div className="border-t border-line p-4 md:p-6">
@@ -52,7 +52,7 @@ export default function SavedComparisons({selected,catalog,snapshotDate,onRestor
             <h3 className="break-words font-semibold text-ink">{set.name}</h3>
             <p className="mt-1 text-xs leading-relaxed text-ink-faint">收藏於 {new Date(set.createdAt).toLocaleString("zh-HK")} · 當時資料快照：{set.snapshotDate}</p>
             <ul className="mt-3 space-y-1 text-sm text-ink-soft">{set.products.map(p=><li key={p.id} className="break-words">{p.name}</li>)}</ul>
-            {!!review.changed.length&&<p className="mt-3 rounded-lg bg-amber/10 p-3 text-sm">{review.changed.length} 款網站資料或來源指紋已變動；重新開啟後請覆核，唔代表保險公司已更改保单。</p>}
+            {!!review.changed.length&&<p className="mt-3 rounded-lg bg-amber/10 p-3 text-sm">{review.changed.length} 款網站資料或來源指紋已變動；重新開啟後請覆核，唔代表保險公司已更改保單。</p>}
             {!!review.missing.length&&<p className="mt-3 rounded-lg bg-amber/10 p-3 text-sm">目前缺少 {review.missing.map(p=>p.name).join("、")} 的資料；未有以其他產品代替。</p>}
             <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
               <button type="button" className="btn-ghost min-h-11 text-sm disabled:opacity-40" disabled={!review.availableIds.length} onClick={()=>{onRestore(review.availableIds);setNotice(`已要求載入「${set.name}」的當前產品資料。`);}}>

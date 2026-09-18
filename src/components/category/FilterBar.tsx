@@ -42,8 +42,8 @@ export interface InsurerOption {
 }
 
 const SORT_OPTIONS: { id: SortKey; label: string; shortLabel: string }[] = [
-  { id: "default", label: "摘要條件命中排序", shortLabel: "預設推薦" },
-  { id: "fit-score", label: "摘要命中項目由多至少", shortLabel: "🎯 契合度最高" },
+  { id: "default", label: "摘要條件命中排序（唔係核保或理賠排名）", shortLabel: "預設：摘要命中" },
+  { id: "fit-score", label: "摘要命中項目由多至少（只係關鍵字對照）", shortLabel: "🎯 摘要命中最多" },
   { id: "premium-asc", label: "💰 保費：由低至高（參考資料，並非同條件報價）", shortLabel: "💰 保費由低至高" },
   { id: "premium-desc", label: "💎 保費：由高至低（參考資料，並非保障排名）", shortLabel: "💎 保費由高至低" },
   { id: "insurer-az", label: "🏢 保險公司名 A–Z", shortLabel: "🏢 公司名 A-Z" },

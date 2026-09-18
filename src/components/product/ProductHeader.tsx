@@ -324,7 +324,7 @@ export default function ProductHeader({ product }: { product: Product }) {
                       來源參考
                     </p>
                     <p className="mt-0.5 text-small text-ink-soft">
-                      資料來自保險公司官方文件
+                      整理自保險公司官方文件快照；唔代表現行版本已逐條核實
                     </p>
                   </div>
                 </div>

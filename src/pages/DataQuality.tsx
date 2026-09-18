@@ -15,10 +15,36 @@ export default function DataQuality() {
     return () => controller.abort();
   }, []);
   const rows = useMemo(() => audit?.products.filter(p => `${p.id} ${p.name} ${p.category}`.toLowerCase().includes(query.trim().toLowerCase())) ?? [], [audit, query]);
+  const totals = useMemo(() => {
+    const statusCounts: Record<string, number> = {};
+    let reused = 0, entries = 0;
+    for (const row of audit?.products ?? []) {
+      reused += row.reused_quote_claims || 0;
+      for (const e of row.entries ?? []) {
+        entries += 1;
+        statusCounts[e.status] = (statusCounts[e.status] ?? 0) + 1;
+      }
+    }
+    return { statusCounts, reused, entries };
+  }, [audit]);
   return <div className="site-container py-12">
     <p className="eyebrow text-jade">EVIDENCE AUDIT</p><h1 className="mt-3 font-serif text-4xl font-bold md:text-5xl">可信，先要睇到缺口。</h1>
     <p className="mt-5 max-w-3xl leading-relaxed text-ink-soft">逐款列出 PDF 鏡像、引用頁碼、摘錄吻合同重用問題。呢度係機械核查結果，唔係已完成逐條保障解讀或確認所有版本最新。</p>
-    {audit && <p className="mt-4 rounded-xl border bg-paper-2 p-4 text-sm">{audit.summary.products} 款產品 · {audit.summary.categories} 類 · {audit.summary.pdfs} 份 PDF · 核查執行日期 {audit.audited_at}（唔係條款生效日期）</p>}
+    {audit && <div className="mt-4 space-y-3">
+      <p className="rounded-xl border bg-paper-2 p-4 text-sm">{audit.summary.products} 款產品 · {audit.summary.categories} 類 · {audit.summary.pdfs} 份 PDF · 核查執行日期 {audit.audited_at}（唔係條款生效日期）</p>
+      <div className="rounded-xl border bg-paper-2 p-4 text-sm">
+        <p className="font-semibold text-ink">機械狀態分佈（{totals.entries} 條 coverage／citation 檢查）</p>
+        <ul className="mt-2 grid gap-1 sm:grid-cols-2">
+          {Object.entries(totals.statusCounts).sort((a, b) => b[1] - a[1]).map(([status, count]) => (
+            <li key={status} className="flex justify-between gap-3">
+              <span className="text-ink-soft">{labels[status] ?? status}</span>
+              <span className="font-grotesk font-bold text-ink">{count}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-3 text-ink-soft">重用摘錄合計：{totals.reused}。找到文字唔代表足以支持保額；找不到亦唔等於保障錯誤。</p>
+      </div>
+    </div>}
     <label htmlFor="audit-search" className="mb-2 mt-7 block font-semibold">搜尋產品名稱、ID 或類別</label>
     <input id="audit-search" value={query} onChange={e => setParams(e.target.value ? { product: e.target.value } : {}, { replace: true })} className="min-h-12 w-full max-w-xl rounded-lg border bg-paper px-4" />
     {!audit && !error && <p role="status" className="py-6">正在載入逐項清單…</p>}{error && <p role="alert" className="py-6 text-red">{error}</p>}

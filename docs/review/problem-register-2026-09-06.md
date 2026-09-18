@@ -85,3 +85,18 @@ JS
 本輪保留semantic version1.6.1，按各PR遞增Build。平行branch可能各自使用相同序號；真正整合時必須高於所有已選提交並同步Footer，不盲目取ours/theirs。原dataset及PDF不因本輪feature/stamp/docs修正而改動。
 
 這份登記是後續工作入口，不是終局清單。新證據可增加／改變項目；刪除問題需要具體關閉條件已滿足的證據。**工程可靠、來源存在、原文吻合、語義正確、版本現行、個人適合**是不同層次，不能互相代替。
+
+---
+
+## 2026-09-11 更新（分支 `review/20260911-trust-and-honesty`，尚未合併 master）
+
+| ID | 分支狀態（本地驗證，非已部署） |
+|---|---|
+| INS-07 | **部分修正**：強保證式 filter 標題改為中立「摘要檢索」；關鍵字保留。其他類別標籤仍需逐項證據或維持中立。 |
+| INS-08 | **部分修正**：旅遊 CFAR／一般取消、住院現金／入院保證金已分欄並有測試；其餘類別 canonical mapping 仍待 fixture。 |
+| INS-09 | **已於本分支重現並修正**（master 上 PR#21 仍 CONFLICTING；優先採本分支版本）。詳見 `2026-09-11-trust-and-honesty.md`。 |
+| INS-10 | **部分修正**：About 方法時間線改為由快照衍生；DataLedger 不再內嵌過期 fallback 統計。 |
+| INS-13 | **部分修正**：ProductCard／Compare 共用 `premium-display`，優惠改標「參考」；有效期模型仍未建。 |
+| INS-04/05 | **外部內容仍未核實**；新增 citation-shape 守門腳本，當前語料 0 條 item+limit 偽造引文。 |
+
+關閉條件仍以原表為準；本更新只記錄分支代碼狀態與本地 quality gates，不替代合併後驗收。

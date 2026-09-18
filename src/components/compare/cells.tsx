@@ -2,13 +2,15 @@ import { useState } from "react";
 import { ExternalLink, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import type { Product } from "@/types/insurance";
+import { priceDisplay } from "@/lib/premium-display";
 import { cn } from "@/lib/utils";
 
-/** 保費範圍原文（有公開保費 → 左側 jade 圓點；有折後價 → 醒目標出實付價與原價） */
+/** 保費範圍原文（有公開保費 → 左側 jade 圓點；有折後價 → 標為參考價） */
 export function PremiumRangeCell({ product }: { product: Product }) {
-  const origPrice = product.original_price ?? product.promo?.original_price;
-  const discPrice = product.discounted_price ?? product.promo?.discounted_price;
-  const hasDiscount = Boolean(origPrice && discPrice && discPrice <= origPrice);
+  const pricing = priceDisplay(product);
+  const origPrice = pricing.originalPrice;
+  const discPrice = pricing.discountedPrice;
+  const hasDiscount = pricing.hasDiscount;
 
   return (
     <div className="flex flex-col gap-1">
@@ -20,11 +22,15 @@ export function PremiumRangeCell({ product }: { product: Product }) {
           <span className="font-grotesk text-[17px] font-black text-red">
             HK${discPrice.toLocaleString()}
           </span>
-          {product.promo?.discount && (
-            <span className="rounded bg-red/10 px-1.5 py-0.2 text-[11px] font-bold text-red">
-              {product.promo.discount}
-            </span>
-          )}
+          <span
+            className="rounded bg-red/10 px-1.5 py-0.2 text-[11px] font-bold text-red"
+            title={pricing.disclaimer}
+          >
+            {pricing.discountLabel}
+          </span>
+          <span className="text-[11px] text-ink-faint" title={pricing.disclaimer}>
+            （參考價）
+          </span>
         </div>
       )}
       <div className="flex items-start gap-2.5 text-[15px] leading-[1.7] text-ink">
@@ -45,10 +51,10 @@ export function PremiumNotesCell({ product }: { product: Product }) {
   return <p className="text-small text-ink-soft">{product.premium_notes}</p>;
 }
 
-/** 公開保費狀態：jade「✓ 有」/ amber「官網即時報價」 */
+/** 公開保費狀態：jade「✓ 有」/ amber「官網即時報價」；唔宣稱已核實現行保費 */
 export function PremiumStatusCell({ product }: { product: Product }) {
   if (product.premium_available) {
-    return <span className="chip bg-jade-wash font-bold text-jade">✓ 有公開保費</span>;
+    return <span className="chip bg-jade-wash font-bold text-jade" title="快照標示有公開保費欄位；現行價格以官網為準">✓ 有公開保費（快照）</span>;
   }
   return <span className="chip bg-amber-wash font-bold text-amber">官網即時報價</span>;
 }

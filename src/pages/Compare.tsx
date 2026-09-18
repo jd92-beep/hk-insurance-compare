@@ -1,4 +1,6 @@
-import { purchaseUrl } from "@/lib/product-availability";
+import { priceDisplay } from "@/lib/premium-display";
+import ComparisonExportButton from "@/components/compare/ComparisonExportButton";
+import SavedComparisons from "@/components/compare/SavedComparisons";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ExternalLink, Plus, RotateCcw, X } from "lucide-react";
@@ -35,7 +37,7 @@ function SplitWords({ words, className }: { words: string[]; className?: string 
           transition={{ duration: 0.7, delay: 0.1 + i * 0.09, ease: EASE_OUT_EXPO }}
         >
           {word}
-          {i < words.length - 1 ? " " : ""}
+          {i < words.length - 1 ? " " : ""}
         </motion.span>
       ))}
     </span>
@@ -46,10 +48,11 @@ function SplitWords({ words, className }: { words: string[]; className?: string 
 function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => void }) {
   const color = categoryColor(product.category);
   const icon = CATEGORY_META[product.category]?.icon;
-  const buyUrl = purchaseUrl(product);
-  const origPrice = product.original_price ?? product.promo?.original_price;
-  const discPrice = product.discounted_price ?? product.promo?.discounted_price;
-  const hasDiscount = Boolean(origPrice && discPrice && discPrice <= origPrice);
+  const pricing = priceDisplay(product);
+  const buyUrl = pricing.buyUrl;
+  const origPrice = pricing.originalPrice;
+  const discPrice = pricing.discountedPrice;
+  const hasDiscount = pricing.hasDiscount;
 
   return (
     <motion.div
@@ -95,7 +98,6 @@ function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => v
           {product.product_name_zh || product.product_name}
         </Link>
 
-        {/* 即時折後價與劃線原價 */}
         {hasDiscount && origPrice && discPrice && (
           <div className="flex flex-wrap items-baseline gap-1.5 pt-0.5">
             <span className="text-[12px] font-grotesk text-ink-faint line-through">
@@ -104,11 +106,12 @@ function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => v
             <span className="font-grotesk text-[16px] font-black text-red">
               HK${discPrice.toLocaleString()}
             </span>
-            {product.promo?.discount && (
-              <span className="rounded bg-red/10 px-1.5 py-0.2 text-[10.5px] font-bold text-red">
-                {product.promo.discount}
-              </span>
-            )}
+            <span
+              className="rounded bg-red/10 px-1.5 py-0.2 text-[10.5px] font-bold text-red"
+              title={pricing.disclaimer}
+            >
+              {pricing.discountLabel}
+            </span>
           </div>
         )}
 
@@ -122,7 +125,7 @@ function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => v
               className="inline-flex items-center gap-1 rounded-[8px] bg-red px-2.5 py-1 text-[11.5px] font-bold text-paper transition-all hover:bg-red/90 shadow-xs active:scale-95"
               title="前往官網即時投保／報價"
             >
-              <span>官網投保</span>
+              <span>{pricing.buyLabel ?? "官網報價"}</span>
               <ExternalLink size={11} />
             </a>
           )}
@@ -178,7 +181,7 @@ function EmptyStateView({ onDemo }: { onDemo: () => void }) {
         className="flex flex-col items-center gap-4"
       >
         <Link to="/categories" className="btn-primary">
-          瀏覽 9 大類別
+          瀏覽所有保險類別
           <ArrowRight size={17} />
         </Link>
         <button
@@ -247,6 +250,10 @@ export default function Compare() {
     DEMO_IDS.forEach((id) => compare.add(id));
   };
 
+  const restoreSaved = (ids: string[]) => {
+    setSearchParams({ ids: ids.join(",") });
+  };
+
   if (loading) {
     return (
       <div className="site-container flex min-h-[60vh] items-center justify-center">
@@ -266,6 +273,14 @@ export default function Compare() {
   if (products.length === 0) {
     return (
       <>
+        <div className="site-container pt-10">
+          <SavedComparisons
+            selected={products}
+            catalog={data?.products ?? []}
+            snapshotDate={generatedAt}
+            onRestore={restoreSaved}
+          />
+        </div>
         <EmptyStateView onDemo={loadDemo} />
         <ProductPicker
           open={pickerOpen}
@@ -298,14 +313,14 @@ export default function Compare() {
             transition={{ duration: 0.6, delay: 0.35, ease: EASE_OUT_EXPO }}
             className="mt-3 max-w-[38em] text-ink-soft"
           >
-            以下內容全部摘自官方文件；價錢同條款以保險公司最新公佈為準。
+            以下為本站資料摘要，完整性及版本仍須核對來源；唔係即時報價或投保建議。
           </motion.p>
         </div>
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4, ease: EASE_OUT_EXPO }}
-          className="flex items-center gap-3"
+          className="flex flex-wrap items-center gap-3"
         >
           <button
             type="button"
@@ -317,8 +332,20 @@ export default function Compare() {
             清空全部
           </button>
           <CompareShareButton ids={products.map(product => product.id)} className="inline-flex h-11 items-center gap-2 rounded-[10px] border px-5 text-small font-bold text-ink transition-colors hover:bg-paper-3" />
+          <ComparisonExportButton
+            key={products.map(product => product.id).join(",")}
+            products={products}
+            snapshotDate={generatedAt}
+          />
         </motion.div>
       </header>
+
+      <SavedComparisons
+        selected={products}
+        catalog={data?.products ?? []}
+        snapshotDate={generatedAt}
+        onRestore={restoreSaved}
+      />
 
       {isMobile ? (
         <MobileCompare products={products} onRemove={compare.remove} />
@@ -331,7 +358,7 @@ export default function Compare() {
                 className="flex items-end border-b px-4 pb-3 text-[12px] text-ink-faint"
                 style={{ borderColor: "var(--line)" }}
               >
-                官方文件節錄對照
+                網站摘要與來源對照
               </div>
               <AnimatePresence mode="popLayout" key={urlSwapCount}>
                 {products.map((p) => (
@@ -385,11 +412,14 @@ export default function Compare() {
         <h2 className="h3-style text-ink">比較須知</h2>
         <ol className="mt-4 flex list-decimal flex-col gap-2.5 pl-5 text-small text-ink-soft">
           <li>
-            各產品計劃層級唔同，上表以官方文件節錄對照，未必能逐項一對一；投保前請細閱保單條款。
+            各產品計劃層級唔同，上表以網站摘要與來源對照，未必能逐項一對一；投保前請細閱保單條款。
           </li>
           <li>「官網即時報價」表示公司按個人資料報價，本站不作估算。</li>
           <li>
             資料快照：{generatedAt}。保費及條款或已更新，一切以官方最新文件為準。
+          </li>
+          <li>
+            儲存比較只保留產品識別同資料指紋，唔係鎖定保費；匯出核對摘要亦唔係報價或投保建議。
           </li>
         </ol>
       </motion.aside>

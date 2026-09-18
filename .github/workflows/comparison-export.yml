@@ -1,0 +1,42 @@
+name: Comparison brief export
+on:
+  pull_request:
+    branches: [master, "review/**"]
+permissions:
+  contents: read
+concurrency:
+  group: comparison-export-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: |
+          npm install --prefix "$RUNNER_TEMP/browser-tools" --no-save --ignore-scripts playwright@1.63.0
+          node "$RUNNER_TEMP/browser-tools/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Actual downloads, current selection and failure handling
+        run: |
+          set -euo pipefail
+          node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4173 >/tmp/preview.log 2>&1 &
+          server=$!
+          trap 'kill "$server" || true' EXIT
+          for n in $(seq 1 30); do curl -sf http://127.0.0.1:4173/ >/dev/null && break; sleep 1; done
+          PLAYWRIGHT_MODULE="$RUNNER_TEMP/browser-tools/node_modules/playwright/index.mjs" node scripts/browser_comparison_export.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: comparison-export-${{ github.event.pull_request.head.sha }}
+          path: export-evidence/
+          retention-days: 7

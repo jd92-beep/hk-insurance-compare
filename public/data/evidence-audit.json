@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
   "audited_at": "2026-09-06",
-  "source_dataset_sha256": "951c7fe786e4f4800a684b8840f4e907e360ceebb3ea976f2be223df83c1455a",
+  "source_dataset_sha256": "724c24f386f2d601e6a9c4ca0b59282734134c05d1191421d522c6bf9837012e",
   "method": "offline-mirror-literal-audit; not semantic or freshness certification",
   "summary": {
     "products": 158,
     "categories": 11,
     "pdfs": 81,
-    "coverage_rows": 2600,
+    "coverage_rows": 2601,
     "entry_statuses": {
       "literal-match": 312,
-      "external-only": 1447,
+      "external-only": 1449,
       "not-found": 1373,
       "invalid-or-missing-page": 5,
-      "no-text": 49,
+      "no-text": 48,
       "missing-source": 396
     },
-    "reused_quote_claims": 956
+    "reused_quote_claims": 955
   },
   "category_counts": {
     "travel": 20,
@@ -32,17 +32,17 @@
     "pet": 11
   },
   "category_metadata_counts": {
-    "travel": 19,
+    "travel": 20,
     "medical": 28,
-    "high-end-medical": 8,
+    "high-end-medical": 10,
     "top-up-medical": 7,
-    "home": 12,
-    "life": 12,
-    "critical-illness": 10,
-    "accident": 10,
-    "motor": 9,
-    "domestic-helper": 7,
-    "pet": 4
+    "home": 16,
+    "life": 14,
+    "critical-illness": 13,
+    "accident": 14,
+    "motor": 13,
+    "domestic-helper": 12,
+    "pet": 11
   },
   "documents": [
     {
@@ -20464,10 +20464,10 @@
         "https://www.fwd.com.hk/-/media/documents/product/life/FWD-HNW-Noble-Term-PB-TC.pdf"
       ],
       "counts": {
-        "no-text": 17,
+        "no-text": 16,
         "external-only": 17
       },
-      "reused_quote_claims": 13,
+      "reused_quote_claims": 12,
       "next_action": "核對官方現行產品／計劃級別、文件版次與生效日期；重新映射逐條保障，不以下載日或文字命中冒認核實。",
       "entries": [
         {
@@ -20557,17 +20557,6 @@
         {
           "kind": "coverage",
           "index": 8,
-          "item": "身故賠償",
-          "source": "/docs/brochures/fwd-myterm-pb-tc.pdf#page=5",
-          "page": 5,
-          "status": "no-text",
-          "flags": [
-            "quote-reused-for-different-benefits"
-          ]
-        },
-        {
-          "kind": "coverage",
-          "index": 9,
           "item": "意外身故雙倍賠償",
           "source": "/docs/brochures/fwd-myterm-pb-tc.pdf#page=5",
           "page": 5,
@@ -20578,7 +20567,7 @@
         },
         {
           "kind": "coverage",
-          "index": 10,
+          "index": 9,
           "item": "末期疾病保障",
           "source": "/docs/brochures/fwd-myterm-pb-tc.pdf#page=5",
           "page": 5,
@@ -20589,7 +20578,7 @@
         },
         {
           "kind": "coverage",
-          "index": 11,
+          "index": 10,
           "item": "豁免保費保障",
           "source": "/docs/brochures/fwd-myterm-pb-tc.pdf#page=5",
           "page": 5,
@@ -20600,7 +20589,7 @@
         },
         {
           "kind": "coverage",
-          "index": 12,
+          "index": 11,
           "item": "恩恤身故即時援助",
           "source": "/docs/brochures/fwd-myterm-pb-tc.pdf#page=5",
           "page": 5,
@@ -20611,7 +20600,7 @@
         },
         {
           "kind": "coverage",
-          "index": 13,
+          "index": 12,
           "item": "入息及生活津貼",
           "source": "/docs/brochures/fwd-myterm-pb-tc.pdf#page=5",
           "page": 5,
@@ -20622,7 +20611,7 @@
         },
         {
           "kind": "coverage",
-          "index": 14,
+          "index": 13,
           "item": "投保 / 繕發年齡",
           "source": "/docs/brochures/fwd-myterm-pb-tc.pdf#page=5",
           "page": 5,
@@ -20633,7 +20622,7 @@
         },
         {
           "kind": "coverage",
-          "index": 15,
+          "index": 14,
           "item": "非吸煙者保費特惠",
           "source": "/docs/brochures/fwd-myterm-pb-tc.pdf#page=5",
           "page": 5,
@@ -20642,7 +20631,7 @@
         },
         {
           "kind": "coverage",
-          "index": 16,
+          "index": 15,
           "item": "首年後自殺涵蓋條款",
           "source": "/docs/brochures/fwd-myterm-pb-tc.pdf#page=5",
           "page": 5,
@@ -37511,7 +37500,7 @@
       ],
       "counts": {
         "missing-source": 14,
-        "external-only": 1
+        "external-only": 2
       },
       "reused_quote_claims": 0,
       "next_action": "核對官方現行產品／計劃級別、文件版次與生效日期；重新映射逐條保障，不以下載日或文字命中冒認核實。",
@@ -37643,6 +37632,15 @@
           "flags": []
         },
         {
+          "kind": "coverage",
+          "index": 14,
+          "item": "自付費（墊底費）選項",
+          "source": "https://www.zurich.com.hk/zh-hk/individuals/health-insurance/medelite",
+          "page": 1,
+          "status": "external-only",
+          "flags": []
+        },
+        {
           "kind": "citation",
           "index": 0,
           "item": "",
@@ -37664,7 +37662,7 @@
       ],
       "counts": {
         "missing-source": 14,
-        "external-only": 1
+        "external-only": 2
       },
       "reused_quote_claims": 0,
       "next_action": "核對官方現行產品／計劃級別、文件版次與生效日期；重新映射逐條保障，不以下載日或文字命中冒認核實。",
@@ -37793,6 +37791,15 @@
           "source": "",
           "page": null,
           "status": "missing-source",
+          "flags": []
+        },
+        {
+          "kind": "coverage",
+          "index": 14,
+          "item": "自付費（墊底費）選項",
+          "source": "https://www.sunlife.com.hk/zh-hk/insurance/health-and-medical/sunhealth-prestige/",
+          "page": 1,
+          "status": "external-only",
           "flags": []
         },
         {

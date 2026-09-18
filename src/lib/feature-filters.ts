@@ -71,7 +71,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "emergency-evac",
-      label: "全球緊急醫療運送及遺體送返無上限",
+      label: "全球緊急醫療運送及遺體送返（摘要檢索）",
       keywords: ["緊急醫療運送", "緊急運送", "救援及運送", "遺體送返", "遺體運返", "專機運送", "救援網絡", "海外緊急援助", "緊急醫療救援"],
     },
     {
@@ -86,7 +86,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "senior-friendly",
-      label: "長者高齡受保 / 保障額不縮水",
+      label: "長者高齡受保相關條款（摘要檢索）",
       keywords: ["不設年齡上限", "無年齡上限", "85歲", "80歲", "長者及小童100%", "年長受保人", "長者", "受保年齡"],
     },
     {
@@ -155,7 +155,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "guaranteed-renewal",
-      label: "保證續保至 100 歲 / 終身",
+      label: "保證／終身續保相關條款（摘要檢索）",
       keywords: ["保證續保", "續保至 100", "續保至100", "終身續保", "保證每年續保", "保證終身續保"],
     },
     {
@@ -393,7 +393,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "guaranteed-renewal-80",
-      label: "保證續保至 80/85 歲或終身",
+      label: "高齡續保相關條款（摘要檢索）",
       keywords: ["保證續保至 80", "保證續保至 85", "保證續保至80", "保證續保至85", "終身保證續保", "保證續保年齡"],
     },
     {
@@ -764,7 +764,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "guaranteed-renewable",
-      label: "保證續保至 80/85/100 歲無須重驗",
+      label: "續保年齡與重驗相關條款（摘要檢索）",
       keywords: ["保證續保", "續保至80歲", "續保至85歲", "續保至100歲", "可續保至", "終身續保", "保證可續保", "85歲", "100歲", "保證續保權益", "80歲"],
     },
     {
@@ -1056,7 +1056,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "lifetime-renewable-senior",
-      label: "年老無上限保證續保 (高齡不拒保不減額)",
+      label: "年長受保／續保相關條款（摘要檢索）",
       keywords: ["保證續保", "終身續保", "無年齡上限", "年老續保", "高齡續保", "續保至終身", "不限續保年齡", "終身保證續保"],
     },
     {
@@ -1093,7 +1093,7 @@ export const CATEGORY_PERSONA_PRESETS: Record<string, PersonaPreset[]> = {
       id: "sports-adventure",
       label: "⛷️ 滑雪 / 水上運動愛好者",
       icon: "⛷️",
-      description: "業餘消閒運動全包（滑雪、潛水、行山等），配備無上限緊急運送及回港中醫覆診",
+      description: "鎖定業餘消閒運動、緊急運送與回港中醫覆診等相關條款；額度與限制以保單條款為準",
       tagIds: ["sports-cover", "emergency-evac", "revisit-chinese-med"],
       featureIds: ["sports-cover", "emergency-evac", "revisit-chinese-med"],
     },
@@ -1109,7 +1109,7 @@ export const CATEGORY_PERSONA_PRESETS: Record<string, PersonaPreset[]> = {
       id: "family-trip",
       label: "👨‍👩‍👧 親子家庭 / 三代同堂遊",
       icon: "👨‍👩‍👧",
-      description: "帶長者與小朋友出遊，重視長者保額不縮水、隨行兒童專屬保障、航班延誤及回港覆診",
+      description: "帶長者與小朋友出遊，關注受保年齡、兒童保障、航班延誤及回港覆診等相關條款",
       tagIds: ["family-bundle", "senior-friendly", "flight-delay", "revisit-chinese-med"],
       featureIds: ["family-bundle", "senior-friendly", "flight-delay", "revisit-chinese-med"],
     },

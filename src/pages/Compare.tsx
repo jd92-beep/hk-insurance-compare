@@ -1,4 +1,4 @@
-import { purchaseUrl } from "@/lib/product-availability";
+import { priceDisplay } from "@/lib/premium-display";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ExternalLink, Plus, RotateCcw, X } from "lucide-react";
@@ -46,10 +46,11 @@ function SplitWords({ words, className }: { words: string[]; className?: string 
 function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => void }) {
   const color = categoryColor(product.category);
   const icon = CATEGORY_META[product.category]?.icon;
-  const buyUrl = purchaseUrl(product);
-  const origPrice = product.original_price ?? product.promo?.original_price;
-  const discPrice = product.discounted_price ?? product.promo?.discounted_price;
-  const hasDiscount = Boolean(origPrice && discPrice && discPrice <= origPrice);
+  const pricing = priceDisplay(product);
+  const buyUrl = pricing.buyUrl;
+  const origPrice = pricing.originalPrice;
+  const discPrice = pricing.discountedPrice;
+  const hasDiscount = pricing.hasDiscount;
 
   return (
     <motion.div
@@ -105,7 +106,7 @@ function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => v
               HK${discPrice.toLocaleString()}
             </span>
             {product.promo?.discount && (
-              <span className="rounded bg-red/10 px-1.5 py-0.2 text-[10.5px] font-bold text-red">
+              <span className="rounded bg-red/10 px-1.5 py-0.2 text-[10.5px] font-bold text-red" title="參考優惠，以官網為準">
                 {product.promo.discount}
               </span>
             )}
@@ -122,7 +123,7 @@ function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => v
               className="inline-flex items-center gap-1 rounded-[8px] bg-red px-2.5 py-1 text-[11.5px] font-bold text-paper transition-all hover:bg-red/90 shadow-xs active:scale-95"
               title="前往官網即時投保／報價"
             >
-              <span>官網投保</span>
+              <span>{pricing.buyLabel ?? "官網報價"}</span>
               <ExternalLink size={11} />
             </a>
           )}

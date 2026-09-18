@@ -1,4 +1,4 @@
-import { purchaseUrl } from "@/lib/product-availability";
+import { priceDisplay, promoDisplay } from "@/lib/premium-display";
 import { ExternalLink, FileText, Plus, Check, Sparkles, Copy } from "lucide-react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
@@ -32,10 +32,12 @@ export default function ProductCard({
   const extraTiers = tiers.length - shownTiers.length;
   const highlights = (product.coverage ?? []).slice(0, 3);
   const sourceUrl = product.source_urls?.[0];
-  const buyUrl = purchaseUrl(product);
-  const origPrice = product.original_price || product.promo?.original_price;
-  const discPrice = product.discounted_price || product.promo?.discounted_price;
-  const hasDiscount = Boolean(origPrice && discPrice && origPrice > discPrice);
+  const pricing = priceDisplay(product);
+  const promo = promoDisplay(product);
+  const buyUrl = pricing.buyUrl;
+  const origPrice = pricing.originalPrice;
+  const discPrice = pricing.discountedPrice;
+  const hasDiscount = pricing.hasDiscount;
 
   const goDetail = () => navigate(`/product/${product.id}`);
 
@@ -119,39 +121,40 @@ export default function ProductCard({
         )}
 
         {/* 推廣折扣優惠與優惠碼 Badge */}
-        {product.promo && (
+        {promo.present && (
           <div
             className="flex flex-wrap items-center justify-between gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-2.5 py-1.5 text-[12px] font-medium"
             onClick={(e) => e.stopPropagation()}
+            title={promo.disclaimer}
           >
             <div className="flex flex-wrap items-center gap-1.5">
               <span className="inline-flex items-center gap-1 font-bold text-amber-900 dark:text-amber-200">
                 <Sparkles size={13} className="shrink-0 text-amber-600 dark:text-amber-400" />
-                {product.promo.tag}
+                {promo.badgeLabel}
               </span>
-              {product.promo.discount && (
+              {promo.discount && (
                 <span className="rounded bg-amber-500/20 px-1.5 py-0.2 text-[11px] font-bold text-amber-800 dark:text-amber-300">
-                  {product.promo.discount}
+                  {promo.discount}
                 </span>
               )}
             </div>
-            {product.promo.code ? (
+            {promo.code ? (
               <button
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  navigator.clipboard.writeText(product.promo!.code!);
-                  toast.success(`已複製優惠碼：${product.promo!.code}`, { position: "top-center" });
+                  navigator.clipboard.writeText(promo.code!);
+                  toast.success(`已複製優惠碼：${promo.code}`, { position: "top-center" });
                 }}
                 className="group/btn inline-flex items-center gap-1 rounded border border-amber-400/40 bg-paper px-2 py-0.5 font-mono text-[11px] font-bold text-amber-800 shadow-xs transition-all hover:border-amber-500 hover:bg-amber-100/60 dark:bg-paper-2 dark:text-amber-200"
-                title="點擊複製優惠碼"
+                title="點擊複製優惠碼；期限／資格請向官網核實"
               >
-                <span>{product.promo.code}</span>
+                <span>{promo.code}</span>
                 <Copy size={11} className="text-amber-600 transition-transform group-hover/btn:scale-110" />
               </button>
-            ) : product.promo.note ? (
-              <span className="text-[11px] text-ink-soft line-clamp-1" title={product.promo.note}>
-                {product.promo.note}
+            ) : promo.note ? (
+              <span className="text-[11px] text-ink-soft line-clamp-1" title={promo.note}>
+                {promo.note}
               </span>
             ) : null}
           </div>
@@ -168,10 +171,10 @@ export default function ProductCard({
               HK${discPrice.toLocaleString()}
             </span>
             <span className="rounded bg-red/10 px-1.5 py-0.5 font-sans text-[11px] font-bold text-red">
-              {product.promo?.discount || "折後價"}
+              {pricing.discountLabel}
             </span>
-            <span className="text-[11px] text-ink-faint">
-              （實付價）
+            <span className="text-[11px] text-ink-faint" title={pricing.disclaimer}>
+              （參考價，以官網為準）
             </span>
           </div>
         )}
@@ -225,7 +228,7 @@ export default function ProductCard({
                 className="inline-flex items-center gap-1 rounded-[10px] bg-red text-paper hover:bg-red/90 px-3 py-1.5 text-small font-bold shadow-xs active:scale-95 transition-all"
                 title="前往該保險公司官方投保／報價頁面"
               >
-                <span>{product.premium_available ? "官網投保" : "官網報價"}</span>
+                <span>{pricing.buyLabel ?? "官網報價"}</span>
                 <ExternalLink size={12} />
               </a>
             )}

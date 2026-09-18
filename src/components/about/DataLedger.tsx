@@ -16,18 +16,8 @@ interface LedgerRow {
   insurers: number;
 }
 
-/** 數據未載入時嘅後備（design/about.md S3 行數據，同 insurance-data.json 一致） */
-const FALLBACK_ROWS: LedgerRow[] = [
-  { id: "home", name: "家居保險", color: "#B5533C", products: 12, withPremium: 7, insurers: 12 },
-  { id: "travel", name: "旅遊保險", color: "#2E6FDB", products: 9, withPremium: 6, insurers: 9 },
-  { id: "life", name: "人壽保險", color: "#5B4FA6", products: 12, withPremium: 4, insurers: 12 },
-  { id: "critical-illness", name: "危疾保險", color: "#C8102E", products: 10, withPremium: 5, insurers: 10 },
-  { id: "accident", name: "意外保險", color: "#D98E04", products: 10, withPremium: 5, insurers: 10 },
-  { id: "medical", name: "醫療保險（自願醫保）", color: "#0E7C66", products: 12, withPremium: 12, insurers: 12 },
-  { id: "motor", name: "汽車保險", color: "#3C4A63", products: 9, withPremium: 0, insurers: 9 },
-  { id: "domestic-helper", name: "家傭保險", color: "#7A4FB5", products: 7, withPremium: 6, insurers: 7 },
-  { id: "pet", name: "寵物保險", color: "#E0662B", products: 4, withPremium: 1, insurers: 4 },
-];
+/** 資料未載入時唔顯示過期硬編碼統計；等 provider 有數據先計數。 */
+const FALLBACK_ROWS: LedgerRow[] = [];
 
 type StatusKind = "full" | "partial" | "quote";
 

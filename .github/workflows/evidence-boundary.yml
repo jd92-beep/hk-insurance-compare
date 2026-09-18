@@ -1,0 +1,28 @@
+name: Evidence input boundary
+on:
+  pull_request:
+    branches: [master, "review/**"]
+permissions:
+  contents: read
+concurrency:
+  group: evidence-boundary-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  boundary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node scripts/validate_citation_shapes.mjs
+      - run: npm test
+      - run: npm run build
+      - name: Evidence boundary unit tests are part of npm test
+        run: node --experimental-strip-types --test tests/evidence-boundary.test.mjs tests/premium-display.test.mjs

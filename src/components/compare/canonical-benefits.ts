@@ -36,9 +36,11 @@ export interface ResolvedCoverage {
 const TRAVEL: CanonicalBenefit[] = [
   { id: "medical", label: "海外醫療及門診費用", keywords: ["海外醫療及門診", "醫療及相關費用", "海外醫療費用", "醫療費用", "海外醫療", "海外及內地醫療", "住院費用", "門診"] },
   { id: "follow-up-medical", label: "回港後覆診（含中醫跌打）", keywords: ["覆診", "中醫跌打", "後續醫療", "物理治療"] },
-  { id: "hospital-cash", label: "海外住院 / 隔離現金津貼", keywords: ["住院現金", "海外住院", "強制隔離", "住院津貼", "入院保證金"] },
+  { id: "hospital-cash", label: "海外住院現金津貼", keywords: ["住院現金", "海外住院現金", "住院津貼", "強制隔離"] },
+  { id: "admission-deposit", label: "入院保證金", keywords: ["入院保證金", "住院保證金"] },
   { id: "evacuation", label: "緊急醫療運送 / 遺體運返", keywords: ["醫療運送", "遺體運返", "遺體送返", "遺體遣返", "緊急援助", "緊急支援", "24小時全球", "24/7", "環球支援"] },
-  { id: "cancellation", label: "取消旅程 / 任何原因取消", keywords: ["任何原因取消", "取消旅程", "未能成行", "旅程取消"] },
+  { id: "cancellation-cfar", label: "任何原因取消 (CFAR)", keywords: ["任何原因取消", "CFAR", "因任何原因取消"] },
+  { id: "cancellation", label: "取消旅程（一般／特定原因）", keywords: ["取消旅程", "未能成行", "旅程取消", "取消行程"] },
   { id: "curtailment", label: "縮短 / 提早結束旅程", keywords: ["縮短旅程", "提早結束", "旅程中斷", "行程中斷", "取消/縮短"] },
   { id: "trip-delay", label: "旅程延誤 / 航班延誤", keywords: ["旅程延誤", "航班延誤", "旅程阻礙", "超額訂票", "行程改道", "延誤現金"] },
   { id: "baggage-delay", label: "行李延誤（應急津貼）", keywords: ["行李延誤", "行李延遲", "誤送行李"] },

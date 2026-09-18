@@ -1,32 +1,40 @@
+import { useMemo } from "react";
 import { motion } from "framer-motion";
+import { useCategories, useInsuranceData, useInsurers, useProducts } from "@/providers/InsuranceDataProvider";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-const STEPS: Array<{
-  title: string;
-  body: string;
-  chips?: string[];
-}> = [
-  {
-    title: "第一步：逐間官網搜集",
-    body: "我哋逐一瀏覽 27 間保險公司嘅香港官方網站，記錄 9 大類別下公開發售嘅產品——包括產品名、計劃層級、保障項目同賠償上限。",
-  },
-  {
-    title: "第二步：核對官方文件",
-    body: "每份產品，我哋記錄搵到嘅官方文件類型：產品冊子、保單條款、保費表、自負額表等，並保留原文連結。產品頁「官方來源」一欄就係呢啲原始出處。",
-    chips: ["產品冊子", "保單條款", "保費表", "自負額列表", "產品頁"],
-  },
-  {
-    title: "第三步：結構化整理",
-    body: "統一欄位先好比較：保費範圍、保障項目、主要條款、不保事項、官方來源。共整理 85 份產品，快照日期 2026-08-09。",
-  },
-];
-
 /**
- * 數據方法三步（about.md S2）：垂直時間線，
- * 左 2px hairline 軌道 + 12px 紅色圓點節點。
+ * 數據方法三步（about.md S2）：垂直時間線。
+ * 數量一律由當前快照衍生，禁止寫死過期統計。
  */
 export default function MethodTimeline() {
+  const { generatedAt } = useInsuranceData();
+  const categories = useCategories();
+  const products = useProducts();
+  const insurers = useInsurers();
+
+  const steps = useMemo(() => {
+    const categoryCount = categories.length || "—";
+    const productCount = products.length || "—";
+    const insurerCount = insurers.length || "—";
+    return [
+      {
+        title: "第一步：逐間官網搜集",
+        body: `我哋逐一瀏覽官方網站，記錄公開發售產品——包括產品名、計劃層級、保障項目同賠償上限。當前快照涵蓋 ${insurerCount} 個站內保險公司鍵值、${categoryCount} 大類別。數量嚟自站內快照，唔代表香港全市場。`,
+      },
+      {
+        title: "第二步：核對官方文件",
+        body: "每份產品，我哋記錄搵到嘅官方文件類型：產品冊子、保單條款、保費表、自負額表等，並保留原文連結。產品頁「官方來源」一欄就係呢啲原始出處。欄位齊全唔等於內容已逐條核實。",
+        chips: ["產品冊子", "保單條款", "保費表", "自負額列表", "產品頁"],
+      },
+      {
+        title: "第三步：結構化整理",
+        body: `統一欄位先好比較：保費範圍、保障項目、主要條款、不保事項、官方來源。當前快照共 ${productCount} 份產品，快照日期 ${generatedAt || "未提供"}。快照日期唔係條款現行日期。`,
+      },
+    ];
+  }, [categories.length, products.length, insurers.length, generatedAt]);
+
   return (
     <section className="pb-24 md:pb-28">
       <div className="site-container">
@@ -51,7 +59,6 @@ export default function MethodTimeline() {
           </motion.h2>
 
           <div className="relative mt-12 pl-8 md:pl-10">
-            {/* 軌道 */}
             <motion.div
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
@@ -62,9 +69,8 @@ export default function MethodTimeline() {
               aria-hidden="true"
             />
             <ol className="flex flex-col gap-12">
-              {STEPS.map((step, i) => (
+              {steps.map((step, i) => (
                 <li key={step.title} className="relative">
-                  {/* 節點圓點 */}
                   <motion.span
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}

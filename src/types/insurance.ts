@@ -53,6 +53,13 @@ export interface Product {
   discounted_price?: number;
   /** 官方即時投保／選購頁面直達網址 */
   official_buy_url?: string;
+  /**
+   * Optional site-record lifecycle. Absent = unknown — not proof the product
+   * is currently on sale or that any document was re-verified.
+   */
+  record_status?: "active" | "unverified" | "discontinued" | "archived";
+  last_verified_at?: string | null;
+  source_document_version?: string | null;
 }
 
 export interface ProductPromo {

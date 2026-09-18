@@ -19,7 +19,7 @@ test('PR template requires reproducible evidence and a bounded content claim',()
   assert.match(text,/Not run/);
 });
 
-test('legacy guidance is preserved byte-for-byte but the old entrypoints redirect to current state',()=>{
+test('review banners leave legacy guidance bodies byte-for-byte intact and entrypoints redirect',()=>{
   const original={
     'AGENTS.md':'ffd0ad3c00015d231497b5bcb8f9ea1a08145397',
     'GEMINI.md':'7083f18c1889072cde7d02e37723057f61f76ff2',
@@ -30,7 +30,11 @@ test('legacy guidance is preserved byte-for-byte but the old entrypoints redirec
     '05-notes-for-next-agent.md':'39782d37af6a39cf4ba9e9ceebc495078db4e9a3',
   };
   for(const [name,sha] of Object.entries(original)){
-    const bytes=readFileSync(`handoff/archive/pre-audit-2026-09-06/${name}`);
+    const archived=readFileSync(`handoff/archive/pre-audit-2026-09-06/${name}`);
+    const approvedBanner=Buffer.from('<!-- review-2026-09-18 -->\n> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](../../../docs/review/2026-09-18-release.md). No blanket policy-currentness certificate.\n<!-- /review-2026-09-18 -->\n\n');
+    assert.ok(archived.subarray(0,approvedBanner.length).equals(approvedBanner), `${name}: missing or changed review banner`);
+    // Only this exact approved prefix is new. Every original byte is still hash-checked.
+    const bytes=archived.subarray(approvedBanner.length);
     assert.equal(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex'),sha,name);
     if(/^0/.test(name))assert.ok(read(`handoff/${name}`).includes('00-current-status.md'));
   }

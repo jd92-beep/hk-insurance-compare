@@ -48,3 +48,7 @@ test('standalone reimbursement remains searchable and embedded acronym text is n
   assert.equal(assessFeature(p({coverage:[{item:'門診',limit:'實報實銷HK$500'}]}),['實報實銷']).matched,true);
   assert.equal(matchSingleFeature(p({coverage:[{item:'notcfar plan',limit:'HK$500'}]}),travelTag('trip-cancel-cfar')).matched,false);
 });
+test('full payment and zero deductible are distinct promises', () => {
+  const product = p({ coverage: [{ item:'海外醫療', limit:'全數賠償，自負額HK$500' }] });
+  assert.equal(matchSingleFeature(product, travelTag('full-cover')).matched, false);
+});

@@ -1,85 +1,13 @@
-# 🏷️ 任務操作卡：季度 / 月度更新保費與優惠代碼 SOP
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Current scope and remaining limitations: [delivery review](../../review/2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
 
-> 🧭 [返回維護總手冊](../README.md) ｜ 🏛️ [核心架構與規則](../core-rules-and-architecture.md) ｜ 🗓️ [年度運營日曆](../README.md#🗓️-2-保險市場年度運營與更新日曆-annual-operations-calendar)  
-> **檔案位置**：`docs/maintenance/workflows/update-pricing-and-promo.md`  
-> **目標**：快速安全更新 `insurance-data.json` 內各產品最新保費、折扣率及 Promo Code。  
-> **維護週期**：每月 1 號、各季度首日、季節性促銷檔期（詳見年度運營日曆），或保司官宣突發推廣活動時。
+# 更新保費與有效優惠
 
----
+整理日期：2026-09-18。返回 [維護入口](../README.md)。
 
-## ⚡ 步驟 1：鎖定更新目標與取得官方證據
+premium_range 是資料快照，不是可付款價格；沒有同一報價基礎就不能劃原價、算最平、年化或作保費排序。promo 需 valid_from、valid_until、reviewed_at、source_url（HTTPS）、conditions；日期要實際有效，覆核不可來自未來。用共享 promoDisplay 及 usePolicyCalendar，不在元件自行判斷。超過31日未覆核、過期、未有日期、歷史產品均隱藏優惠。香港時間到期日結束即失效，測試到期前後及已打開頁面午夜更新。不得用其他渠道優惠充當所有用戶適用，也不可把同品牌折扣套到別的計劃。
+## 共通驗證
 
-1. 查閱保司官網或官方宣傳小冊子，確認優惠活動有效日期及條件。
-2. 記錄三大核心數值：
-   - **優惠代碼 (Promo Code)**：如 `MONEYSMART20`、`AUTO15`（若無需 Code 則留空）。
-   - **折扣力度 (Discount)**：如 `20% OFF`、`85 折`。
-   - **保費變動**：原價 `original_price` 與 折扣價 `discounted_price`（必須符合算術邏輯）。
-
----
-
-## 🛠️ 步驟 2：修改 `public/data/insurance-data.json`
-
-打開 [`public/data/insurance-data.json`](../../../public/data/insurance-data.json)，在目標產品物件中更新以下欄位：
-
-```json
-{
-  "id": "pet-onedegree",
-  "original_price": 1560,
-  "discounted_price": 1248,
-  "promo": {
-    "tag": "首年保費 8 折",
-    "code": "PROMO2026",
-    "discount": "20% OFF",
-    "note": "輸入優惠碼享首年保費 8 折；送免費寵物身體檢查",
-    "original_price": 1560,
-    "discounted_price": 1248,
-    "buy_url": "https://www.onedegree.hk/zh-hk/pet-insurance"
-  }
-}
-```
-
-*若有批量更新需求，可參考 `scripts/enrich_promo_codes.py`。*
-
----
-
-## 🔍 步驟 3：運行全量校驗與測試
-
-在終端機運行以下指令，確保無語法損壞或邏輯回歸：
-
-```bash
-# 1. 驗證篩選器及 JSON 數據結構完整性
-npm run test:filters
-
-# 2. 運行全套單元測試
-npm test
-
-# 3. 確保 TypeScript 構建無損
-npm run build
-```
-
----
-
-## 📌 步驟 4：版本登記與提交
-
-依據項目規範，修改 [`src/lib/version.ts`](../../../src/lib/version.ts) 內之構建編號：
-
-```typescript
-export const BUILD_NUMBER = "20260911.02"; // 遞增次數
-export const BUILD_DATE = "2026-09-11";
-```
-
----
-
-## 🚫 防錯紅線與避坑指南
-
-1. ❌ **嚴禁憑空發明 Promo Code**：必須經官網實測可用或官方授權公佈。
-2. ❌ **折扣金額算術衝突**：若寫了 8 折，原價 1000 蚊但折扣價寫 700 蚊會引發投訴！
-3. ❌ **過期 Promo 必須清除**：若優惠到期，應刪除 `promo.code`，僅保留基本常設保費。
-
----
-
-## 🔗 相關手冊導航
-- 📄 [PDF 說明書更新與引用校對 SOP](./update-pdf-terms-and-quotes.md)
-- ➕ [新增保險產品全流程 SOP](./add-new-product.md)
-- 🗄️ [產品停售或歸檔 SOP](./deprecate-product.md)
-- 🧭 [返回維護總手冊](../README.md)
+Node 22、鎖定依賴：`npm ci`。執行 `npm test`、`npm run lint -- --max-warnings=0`、`npm run build`、`npm run test:filters`。內容變更另跑對應 evidence/citation/maintenance 檢查。
+PDF 審核用 `python scripts/audit_evidence.py --as-of YYYY-MM-DD`，日期必須來自實際審核，不可冒充全面條款更新。同步更新 BUILD_NUMBER／BUILD_DATE，保留個別測試結果和未能檢查項目。只提 PR，不自動合併。

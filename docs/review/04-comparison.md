@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # 比較準確性與摘要命中
 
 已修復可重現案例：不保障／不適用／待確認／零保障額不再因出現關鍵字算命中；計劃名稱不當保障依據；排除條款提及同一特點時保守地要求人工核對。重複 tag id 去重。租車自負額關鍵字移除一般「自負額」以免把其他自負額誤算租車保障。

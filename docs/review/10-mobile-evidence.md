@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # 保障對照的手機閱讀與分段展示
 
 實際#14截圖反映：390px手機原表格需橫向捲動才看見狀態／來源；整段表格很長，亦令截圖只截到中段而不是標題及操作。此次改動不碰保障金額、排序或判斷邏輯。

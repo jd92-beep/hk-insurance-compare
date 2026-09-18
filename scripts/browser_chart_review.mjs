@@ -17,12 +17,14 @@ try {
       page.on('pageerror', error => errors.push(String(error)));
       try {
         await page.goto(`http://127.0.0.1:4173/category/${category}`);
+        await page.getByText('進階：按相同計算單位對照金額', { exact: true }).click();
         const panel = page.locator('[data-evidence-chart]');
         await panel.waitFor({ timeout: 20000 });
         const select = panel.getByRole('combobox', { name: '選擇保障項目' });
         const values = await select.locator('option').evaluateAll(options => options.map(option => option.value));
         assert.ok(values.length, 'No actual benefit options');
-        const total = data.products.filter(product => product.category === category).length;
+        const total = Number(await page.locator('[data-catalogue-total]').getAttribute('data-catalogue-total'));
+        assert.ok(total > 0 && total <= data.products.filter(product => product.category === category).length);
         const rows = viewport.width < 768 ? panel.locator('[data-evidence-card]') : panel.locator('tbody tr');
         assert.equal(await rows.count(), Math.min(6, total), 'Overview is not bounded');
         assert.ok(await rows.first().isVisible(), 'Wrong responsive presentation');

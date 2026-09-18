@@ -55,7 +55,7 @@ export const CATEGORY_META: Record<string, CategoryMeta> = {
     id: "life",
     color: "#5B4FA6",
     icon: "/cat-life.svg",
-    tagline: "定期壽險邊間平？保費、吸煙界定、續保條款比清楚。",
+    tagline: "同一保額同年期，核對保費、健康申報及續保條款。",
   },
   "critical-illness": {
     id: "critical-illness",
@@ -79,13 +79,13 @@ export const CATEGORY_META: Record<string, CategoryMeta> = {
     id: "high-end-medical",
     color: "#0F4C81",
     icon: "/cat-medical.svg",
-    tagline: "全數賠償、終身千萬保額、全球名醫免找數，私家病房點樣揀？",
+    tagline: "先核對病房、保障地區、自付費及分項限制。",
   },
   "top-up-medical": {
     id: "top-up-medical",
     color: "#0284C7",
     icon: "/cat-medical.svg",
-    tagline: "打工仔填補公司醫保 Shortfall，超額賠償、離職保證轉保權一次過睇。",
+    tagline: "核對現有醫保、自付費計法及轉工後保障安排。",
   },
   motor: {
     id: "motor",

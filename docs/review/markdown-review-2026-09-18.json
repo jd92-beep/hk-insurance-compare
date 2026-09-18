@@ -1,0 +1,257 @@
+{
+  "reviewed_at": "2026-09-18",
+  "files": [
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "AGENTS.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "GEMINI.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "README.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/README.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/categories/01-travel.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/categories/02-medical.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/categories/03-high-end-medical.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/categories/04-top-up-medical.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/categories/05-life.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/categories/06-critical-illness.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/categories/07-accident.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/categories/08-home.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/categories/09-pet.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/categories/10-motor.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/categories/11-domestic-helper.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/core-rules-and-architecture.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/workflows/add-new-product.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/workflows/deprecate-product.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/workflows/update-pdf-terms-and-quotes.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/maintenance/workflows/update-pricing-and-promo.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/review-2026-09-18-plan.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/review/02-motion.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/03-pdf.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/04-comparison.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/05-evidence-audit.md",
+      "treatment": "regenerated-ledger"
+    },
+    {
+      "path": "docs/review/07-site-quality.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/08-evidence-chart.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/09-pdf-version-integrity.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/10-feature-conflicts.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/10-mobile-evidence.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/11-neutral-stamps.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/2026-09-08-comparison-export.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/2026-09-08-saved-comparisons.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/2026-09-11-content-pass-ins04-ins05.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/2026-09-11-integration-trust-saved-export.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/2026-09-11-polish-motion-copy.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/2026-09-11-trust-and-honesty.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/2026-09-18-evidence.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/review/2026-09-18-release.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "docs/review/benchmark-audit-report-2026.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/citation-ingestion-safety.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/review/problem-register-2026-09-06.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-09-06-complete-review.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-09-08-postmerge-improvements.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-09-03-medical-hub-high-end-topup-design.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "handoff/00-current-status.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "handoff/01-what-has-been-done.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "handoff/02-current-problems.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "handoff/03-next-phases.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "handoff/04-goals.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "handoff/05-notes-for-next-agent.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "handoff/06-pr-merge-status-2026-09-06.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "handoff/README.md",
+      "treatment": "current-contract-reviewed"
+    },
+    {
+      "path": "handoff/archive/pre-audit-2026-09-06/01-what-has-been-done.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "handoff/archive/pre-audit-2026-09-06/02-current-problems.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "handoff/archive/pre-audit-2026-09-06/03-next-phases.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "handoff/archive/pre-audit-2026-09-06/04-goals.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "handoff/archive/pre-audit-2026-09-06/05-notes-for-next-agent.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "handoff/archive/pre-audit-2026-09-06/AGENTS.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "handoff/archive/pre-audit-2026-09-06/GEMINI.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "handoff/archive/pre-audit-2026-09-06/README.md",
+      "treatment": "historical-body-preserved"
+    },
+    {
+      "path": "info.md",
+      "treatment": "current-contract-reviewed"
+    }
+  ]
+}

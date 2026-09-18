@@ -2,26 +2,25 @@ import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { createFrameLoop, particleBudget, seededRandom } from "@/lib/motion-runtime";
 
-/** Faceted optical gems: pre-rendered atlas, perspective depth, no WebGL payload. */
-function jewel(hue: string): HTMLCanvasElement {
+import { projectGem } from "@/lib/depth-geometry";
+
+const FRAMES = 24;
+/** Cache real rotated 3D facets in a bounded atlas; animation only composites sprites. */
+function jewel(hue: string, frame: number): HTMLCanvasElement {
   const tile = document.createElement("canvas"); tile.width = tile.height = 96;
-  const c = tile.getContext("2d")!;
-  c.translate(48, 48);
-  const glow = c.createRadialGradient(-5, -8, 1, 0, 0, 44);
-  glow.addColorStop(0, `${hue}45`); glow.addColorStop(1, `${hue}00`);
-  c.fillStyle = glow; c.fillRect(-48, -48, 96, 96);
-  const points = [[0, -24], [17, -10], [21, 9], [0, 26], [-20, 9], [-16, -11]];
-  c.beginPath(); points.forEach(([x,y], i) => i ? c.lineTo(x,y) : c.moveTo(x,y)); c.closePath();
-  const body = c.createLinearGradient(-18, -24, 20, 26);
-  body.addColorStop(0, "#ffffff"); body.addColorStop(.36, `${hue}aa`); body.addColorStop(1, `${hue}33`);
-  c.fillStyle = body; c.fill(); c.strokeStyle = `${hue}aa`; c.lineWidth = .8; c.stroke();
-  points.forEach(([x,y], i) => {
-    const next = points[(i + 1) % points.length];
-    c.beginPath(); c.moveTo(-3,-4); c.lineTo(x,y); c.lineTo(next[0],next[1]); c.closePath();
-    c.fillStyle = i % 2 ? "#ffffff44" : `${hue}22`; c.fill();
-    c.strokeStyle = "#ffffff66"; c.lineWidth = .55; c.stroke();
-  });
-  c.fillStyle = "#ffffffdd"; c.fillRect(-8,-14,2,7);
+  const c = tile.getContext("2d"); if (!c) return tile;
+  c.translate(48, 43);
+  const rgb = [1,3,5].map(offset => parseInt(hue.slice(offset, offset+2), 16));
+  const yaw = frame / FRAMES * Math.PI * 2;
+  const geometry = projectGem(.37 + Math.sin(yaw)*.16, yaw);
+  c.fillStyle = `${hue}12`; c.beginPath(); c.ellipse(3, 33, 23, 5, 0, 0, Math.PI*2); c.fill();
+  for (const face of geometry) {
+    c.beginPath(); face.points.forEach((p,i) => i ? c.lineTo(p.x*30,p.y*30) : c.moveTo(p.x*30,p.y*30)); c.closePath();
+    const tint = face.light > .7 ? (face.light-.7)*2.5 : 0;
+    const color = rgb.map(channel => Math.round(channel*(.48+face.light*.5)*(1-tint)+248*tint));
+    c.fillStyle = `rgb(${color.join(",")})`; c.fill();
+    c.strokeStyle = "rgba(255,255,255,.30)"; c.lineWidth = .55; c.stroke();
+  }
   return tile;
 }
 
@@ -33,8 +32,8 @@ export default function ParticleField({ className, density = 1 }: { className?: 
     const ctx = canvas.getContext("2d", { alpha: true }); if (!ctx) return;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)"), coarse = matchMedia("(pointer: coarse)");
     const random = seededRandom(92831);
-    const atlas = ["#0e7c66", "#b58a48", "#779cae", "#c8102e"].map(jewel);
-    const particles = Array.from({ length: particleBudget(density, coarse.matches) }, (_, i) => ({
+    const atlas = ["#0e7c66", "#b58a48", "#779cae", "#c8102e"].map(hue => Array.from({ length: FRAMES }, (_, frame) => jewel(hue, frame)));
+    let particles = Array.from({ length: particleBudget(density, coarse.matches) }, (_, i) => ({
       u: random(), v: random(), z: .18 + random() * .82, phase: random() * Math.PI * 2,
       vx: 0, vy: 0, ox: 0, oy: 0, sprite: i % 4,
     }));
@@ -61,17 +60,18 @@ export default function ParticleField({ className, density = 1 }: { className?: 
         p.vx += ((dx / (distance || 1)) * force - p.ox * 6.5 - p.vx * 5.5) * dt;
         p.vy += ((dy / (distance || 1)) * force - p.oy * 6.5 - p.vy * 5.5) * dt;
         p.ox += p.vx * dt; p.oy += p.vy * dt;
-        const size = (22 + p.z * 34) * depth;
+        const size = (30 + p.z * 48) * depth;
         ctx.save(); ctx.translate(x + p.ox, y + p.oy);
-        ctx.rotate(p.phase + elapsed * .09 * depth);
-        ctx.scale(.72 + .28 * Math.cos(elapsed * .25 + p.phase) ** 2, 1);
+        ctx.rotate(Math.sin(p.phase) * .3);
         ctx.globalAlpha = .3 + p.z * .55;
-        ctx.drawImage(atlas[p.sprite], -size / 2, -size / 2, size, size); ctx.restore();
+        const frame = Math.floor((elapsed * .8 * depth + p.phase * FRAMES / (Math.PI*2)) % FRAMES);
+        ctx.drawImage(atlas[p.sprite][frame], -size / 2, -size / 2, size, size); ctx.restore();
       }
     };
     const loop = createFrameLoop(draw);
     const sync = () => {
       last = 0;
+      if (reduced.matches) { leave(); for (const p of particles) p.ox = p.oy = p.vx = p.vy = 0; }
       if (visible && !document.hidden && !reduced.matches) loop.start();
       else { loop.stop(); if (visible && !document.hidden) draw(performance.now()); }
     };
@@ -82,16 +82,22 @@ export default function ParticleField({ className, density = 1 }: { className?: 
       pointer.x = e.clientX - r.left; pointer.y = e.clientY - r.top;
     };
     const leave = () => { pointer.x = pointer.y = -10000; };
+    const updatePointerBudget = () => {
+      const budget = particleBudget(density, coarse.matches);
+      if (particles.length > budget) particles = particles.slice(0, budget);
+      while (particles.length < budget) particles.push({ u: random(), v: random(), z: .18+random()*.82, phase: random()*Math.PI*2, vx: 0, vy: 0, ox: 0, oy: 0, sprite: particles.length%4 });
+      leave(); sync();
+    };
     resize();
     const ro = new ResizeObserver(() => { resize(); if (reduced.matches) draw(performance.now()); }); ro.observe(host);
     const io = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }); io.observe(host);
     host.addEventListener("pointermove", move, { passive: true }); host.addEventListener("pointerleave", leave);
-    document.addEventListener("visibilitychange", sync); reduced.addEventListener("change", sync);
+    document.addEventListener("visibilitychange", sync); reduced.addEventListener("change", sync); coarse.addEventListener("change", updatePointerBudget);
     return () => {
       loop.stop(); ro.disconnect(); io.disconnect();
       host.removeEventListener("pointermove", move); host.removeEventListener("pointerleave", leave);
-      document.removeEventListener("visibilitychange", sync); reduced.removeEventListener("change", sync);
+      document.removeEventListener("visibilitychange", sync); reduced.removeEventListener("change", sync); coarse.removeEventListener("change", updatePointerBudget);
     };
   }, [density]);
-  return <canvas ref={canvasRef} aria-hidden="true" data-particle-quality="faceted-depth" className={cn("pointer-events-none absolute inset-0", className)} />;
+  return <canvas ref={canvasRef} aria-hidden="true" data-particle-quality="faceted-depth" data-gem-geometry="projected-3d-33-faces" className={cn("pointer-events-none absolute inset-0", className)} />;
 }

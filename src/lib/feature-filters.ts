@@ -36,7 +36,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
   travel: [
     {
       id: "full-cover",
-      label: "零自負額 / 全數賠償",
+      label: "零自負額（核對適用項目）",
       keywords: ["全數賠償", "全額賠償", "不設自負額", "無自負額", "零自負額", "0自負額", "全額支付", "不設分項", "實報實銷", "100%實報實銷"],
     },
     {
@@ -46,17 +46,17 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "sports-cover",
-      label: "滑雪 / 潛水等業餘及極限運動",
+      label: "運動保障（要核對實際活動）",
       keywords: ["業餘運動", "滑雪", "潛水", "業餘消閒運動", "消閒運動", "水上運動", "冬季運動", "高空彈跳", "熱氣球", "運動保障", "無高度限制", "無深度限制", "極限及消閒"],
     },
     {
       id: "mobile-laptop",
-      label: "手提電話 / 筆電 / 數碼設備損壞被盜",
+      label: "電話或電腦保障",
       keywords: ["手提電話", "流動設備", "平板電腦", "筆記型電腦", "電腦", "手機", "手提電腦", "電子產品", "電子設備", "數碼"],
     },
     {
       id: "flight-delay",
-      label: "航班延誤現金津貼（滿5-6小時起賠）",
+      label: "航班延誤（核對時數及原因）",
       keywords: ["旅程延誤", "航班延誤", "延誤現金", "延誤津貼", "行程延誤", "每滿6小時", "延誤6小時", "每滿5小時", "滿5小時起賠", "延誤現金賠償"],
     },
     {
@@ -66,7 +66,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "trip-cancel-cfar",
-      label: "任何原因取消 (CFAR) / 靈活取消行程",
+      label: "任何原因取消（CFAR；仍有限制）",
       keywords: ["因任何原因取消", "任何原因取消", "不可預見私事", "CFUR", "CFAR", "因任何不可預見私事取消行程", "取消旅程", "取消行程"],
     },
     {
@@ -76,7 +76,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "revisit-chinese-med",
-      label: "回港覆診含中醫跌打針灸",
+      label: "回港覆診或中醫",
       keywords: ["覆診", "回港後", "中醫", "跌打", "針灸", "回港覆診", "物理治療/脊醫", "骨傷"],
     },
     {
@@ -101,7 +101,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "personal-liability",
-      label: "個人第三者責任（含法律抗辯費用）",
+      label: "個人法律責任",
       keywords: ["個人責任", "第三者責任", "第三者法律責任", "個人法律責任", "法律責任", "訴訟費用"],
     },
     {
@@ -140,7 +140,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
   medical: [
     {
       id: "tax-deduction",
-      label: "稅務扣減 (最高HK$8,000)",
+      label: "自願醫保扣稅資料",
       keywords: ["稅務扣減", "扣稅", "HK$8,000", "8,000", "8000", "課稅年度", "自願醫保認可", "可扣稅"],
     },
     {
@@ -175,7 +175,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "kidney-dialysis",
-      label: "門診洗腎 / 血液透析全額保障",
+      label: "門診洗腎",
       keywords: ["洗腎", "透析", "血液透析", "腹膜透析", "門診透析"],
     },
     {
@@ -195,7 +195,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "congenital-conditions",
-      label: "先天性疾病保障 (8歲或以後)",
+      label: "先天性疾病（核對年齡及條件）",
       keywords: ["先天性", "先天性疾病", "8歲或以後", "8歲後"],
     },
     {
@@ -205,7 +205,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "icu-care",
-      label: "深切治療部 (ICU) 高額保障",
+      label: "深切治療部 (ICU) 保障",
       keywords: ["深切治療", "ICU", "加護病房"],
     },
     {
@@ -225,7 +225,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "second-medical-opinion",
-      label: "國際權威第二醫療意見及海外轉介服務",
+      label: "第二醫療意見或轉介",
       keywords: ["第二醫療意見", "第二意見", "國際權威", "海外名醫", "專科轉介", "專家會診", "國際第二意見", "海外轉介"],
     },
     {
@@ -249,32 +249,32 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "cashless-global",
-      label: "全球私家醫院出院免找數 (Direct Billing)",
+      label: "醫院直付（核對醫院及批核要求）",
       keywords: ["免找數", "直付", "醫療網絡直付", "預先批核", "全球出院免找數", "Direct Billing", "出院免找數網絡", "全港私家醫院出院免找數"],
     },
     {
       id: "private-room",
-      label: "標準私家房 / 半私家房全額保障",
+      label: "私家房或半私家房",
       keywords: ["標準私家房", "私家房", "單人房", "尊貴病房", "半私家房", "私家房級別"],
     },
     {
       id: "high-annual-limit",
-      label: "每年 2,000 萬至 4,000 萬超高保額",
+      label: "每年賠償上限",
       keywords: ["每年保障限額", "每年保障總額", "每年 HK$", "每年HK$", "每年最高", "20,000,000", "25,000,000", "30,000,000", "40,000,000", "33,000,000"],
     },
     {
       id: "unlimited-lifetime",
-      label: "不設終身保障上限 (No Lifetime Limit)",
+      label: "終身賠償上限",
       keywords: ["不設終身", "終身最高", "終身保障額", "終身保障總額", "No Lifetime Limit", "無終身保障上限", "不設終身保障限額"],
     },
     {
       id: "advanced-cancer-proton",
-      label: "頂級癌症標靶 / 質子重離子 / 免疫治療",
+      label: "癌症標靶 / 質子重離子 / 免疫治療",
       keywords: ["標靶", "化療", "質子治療", "免疫治療", "癌症藥物", "非手術癌症", "放射治療", "癌症基因組", "非手術癌症專項治療", "非手術癌症標靶治療"],
     },
     {
       id: "advanced-imaging-zero-copay",
-      label: "先進造影診斷 (CT/MRI/PET) 零共付全包",
+      label: "診斷造影（核對自付比例）",
       keywords: ["CT", "MRI", "PET", "診斷成像", "訂明診斷成像", "先進診斷", "先進影像造影", "影像造影", "0%共同保險", "免自負"],
     },
     {
@@ -284,12 +284,12 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "deductible-options",
-      label: "彈性自選自負額 (高達8萬墊底微調保費)",
+      label: "可選自負額",
       keywords: ["自付費", "墊底費", "自負額", "自付額", "無索償折扣", "0自付", "零自付", "共付額", "自選自付費"],
     },
     {
       id: "organ-transplant",
-      label: "重大器官移植專項手術費全包",
+      label: "重大器官移植手術費",
       keywords: ["器官移植", "活體器官", "移植手術", "重大器官移植", "器官移植專項"],
     },
     {
@@ -299,22 +299,22 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "icu-no-limit",
-      label: "深切治療部 (ICU) 無天數限制全包",
+      label: "深切治療（核對天數及上限）",
       keywords: ["深切治療", "ICU", "加護病房", "重症深切治療部"],
     },
     {
       id: "post-hosp-rehab",
-      label: "長達 365 日出院後居家護理及復康支援",
+      label: "出院後護理及復康",
       keywords: ["康復護理", "居家護士", "出院後護理", "物理治療", "出院後居家護理", "復康", "私家看護", "出院後復康支援", "長達365日"],
     },
     {
       id: "second-opinion-concierge",
-      label: "專屬健康管家與全球權威第二醫療意見",
+      label: "專屬健康管家與全球第二醫療意見",
       keywords: ["第二醫療意見", "健康管家", "專屬醫療顧問", "醫療個案管理", "醫療專案經理", "名醫轉介", "專家網絡", "臻一醫療", "綠色就醫通道"],
     },
     {
       id: "cashless-worldwide",
-      label: "全球頂尖私家醫院全數免找數直付簽賬",
+      label: "私家醫院直接結算",
       keywords: ["全球免找數", "環球免找數", "直付簽賬", "醫療費用預先批核", "出院免找數", "全球直付", "直付網絡", "全球醫療直付"],
     },
     {
@@ -329,7 +329,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "pregnancy-complications",
-      label: "懷孕嚴重併發症專項手術及深切治療全包",
+      label: "懷孕嚴重併發症手術及深切治療",
       keywords: ["妊娠併發症", "懷孕併發症", "產科併發症", "子癇", "胎盤早期剝離", "妊娠期手術", "宮外孕", "產科急症"],
     },
   ],
@@ -338,7 +338,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
   "top-up-medical": [
     {
       id: "smm-excess",
-      label: "SMM 80%–90% 高超額差額賠償",
+      label: "附加醫療（SMM；核對自付比例）",
       keywords: ["SMM", "差額賠償", "超額賠償", "超額差額", "超額醫療", "80%", "85%", "90%"],
     },
     {
@@ -348,17 +348,17 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "deductible-offset",
-      label: "僱主醫保直抵墊底費 (實現零自付)",
+      label: "公司醫保可否抵銷自負額",
       keywords: ["抵銷墊底費", "抵扣墊底費", "抵銷本計劃墊底費", "零自付", "抵扣自負額", "直接抵銷"],
     },
     {
       id: "guaranteed-conversion",
-      label: "離職/退休保證免驗身轉保個人醫保",
+      label: "離職或退休後轉保條件",
       keywords: ["保證轉保", "免核保轉保", "免核保轉換", "轉保個人醫保", "免驗身", "保證轉換", "離職或退休"],
     },
     {
       id: "simplified-underwriting",
-      label: "持有公司醫保免體檢簡易申報加入",
+      label: "核保及健康申報要求",
       keywords: ["免核保加入", "免體檢", "簡易投保", "簡易核保", "免繁複體檢", "簡易健康申報"],
     },
     {
@@ -373,7 +373,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "cancer-supplement",
-      label: "癌症自費標靶藥物及化療專項超額補充",
+      label: "癌症自費標靶藥物及化療超額補充",
       keywords: ["癌症藥物", "標靶", "化療", "放射治療", "癌症標靶治療", "自費癌症標靶藥物"],
     },
     {
@@ -427,7 +427,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "owner-occupier",
-      label: "自住業主全包方案 / 家居財物全險",
+      label: "自住業主及家居財物",
       keywords: ["自住", "自住業主", "業主自住", "家居財物", "家庭財產", "室內傢俬", "室內電器", "全包方案", "自住計劃"],
     },
     {
@@ -526,7 +526,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "premium-waiver",
-      label: "首次確診嚴重危疾即時永久豁免保費",
+      label: "危疾後保費豁免條件",
       keywords: ["豁免保費", "保費豁免", "免繳保費", "豁免往後", "永久豁免", "保費免繳"],
     },
     {
@@ -536,7 +536,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "icu-protection",
-      label: "深切治療部 (ICU) 住院專項保障",
+      label: "深切治療部 (ICU) 住院保障",
       keywords: ["深切治療", "ICU", "深切治療部", "深切治療病房"],
     },
     {
@@ -561,12 +561,12 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "stroke-cardio-extra",
-      label: "心臟及中風額外專項高額給付",
+      label: "心臟及中風額外高額給付",
       keywords: ["心臟及中風額外保障", "心臟病及中風多次賠償", "心血管", "急性心肌梗塞", "心臟病"],
     },
     {
       id: "simplified-exam-free",
-      label: "免驗身 / 簡易健康核保極速出單",
+      label: "免驗身 / 簡易健康核保出單",
       keywords: ["免體檢", "免驗身", "簡易核保", "3條健康問題", "3分鐘出單", "CareForAll", "純保障零儲蓄"],
     },
     {
@@ -581,12 +581,12 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "second-opinion-global",
-      label: "全球權威第二醫療意見與海外綠色通道",
+      label: "全球第二醫療意見與海外綠色通道",
       keywords: ["第二醫療意見", "海外醫療轉介", "專家意見", "醫療綠色通道", "歐美頂尖醫療"],
     },
     {
       id: "mental-health-extra",
-      label: "精神疾病 (嚴重抑鬱/思 پژ失調/躁鬱症) 專項賠償",
+      label: "精神疾病保障",
       keywords: ["精神疾病", "嚴重抑鬱", "思覺失調", "躁鬱症", "雙極性情緒病", "精神疾患", "重度抑鬱症", "精神健康", "情緒病賠償"],
     },
     {
@@ -625,12 +625,12 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "bone-fracture",
-      label: "骨折及關節脫臼專項現金津貼",
+      label: "骨折及關節脫臼現金津貼",
       keywords: ["骨折", "脫臼", "斷骨", "完全骨折", "不完全骨折", "骨裂", "關節脫臼", "骨折保障", "骨折及脫臼"],
     },
     {
       id: "chinese-bonesetter",
-      label: "中醫跌打及針灸專項門診",
+      label: "中醫跌打及針灸門診",
       keywords: ["跌打", "中醫", "針灸", "中醫治療", "中醫跌打", "骨傷", "中醫師", "骨傷科", "草藥"],
     },
     {
@@ -640,7 +640,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "accidental-disability",
-      label: "永久傷殘分級/完全殘廢 100-150% 賠償",
+      label: "永久傷殘（核對等級及比例）",
       keywords: ["永久傷殘", "完全殘廢", "永久完全傷殘", "喪失肢體", "失明", "雙目失明", "100%", "150%", "斷肢", "完全及永久", "永久部分傷殘", "分級賠償", "失聰"],
     },
     {
@@ -670,7 +670,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "no-medical-exam",
-      label: "免體檢極速核保 / 手機即時拍照理賠",
+      label: "核保及網上索償",
       keywords: ["免驗身", "免體檢", "免核保", "毋須驗身", "毋須體檢", "線上極速理賠", "一鍵線上拍照", "網上投保", "即時生效", "免驗身免核保"],
     },
     {
@@ -690,7 +690,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "coma-benefit",
-      label: "意外創傷引致持續昏迷專項危急慰問現金",
+      label: "意外創傷引致持續昏迷危急慰問現金",
       keywords: ["昏迷", "意外昏迷", "腦震盪昏迷", "昏迷津貼", "持續昏迷", "創傷昏迷", "昏迷給付", "昏迷慰問金"],
     },
     {
@@ -714,22 +714,22 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "no-medical-exam",
-      label: "免體檢極速投保 (最高達 400-1,000 萬保額)",
+      label: "核保要求及可投保額",
       keywords: ["免驗身", "免體檢", "免核保", "簡易核保", "毋須體檢", "免身體檢查", "網上核保", "簡易健康申報", "毋須健康申報", "不需體檢", "無需身體檢查", "毋須核保", "免體驗極速核保"],
     },
     {
       id: "terminal-illness",
-      label: "末期疾病提前預支 100% 身故保額",
+      label: "末期疾病預支賠償條件",
       keywords: ["末期疾病", "提前給付", "預先給付", "預支身故權益", "末期絕症", "末期保障", "預支身故賠償", "預先支付", "提前支付", "預支發放", "提前賠償"],
     },
     {
       id: "double-accidental-death",
-      label: "交通/突發意外雙倍身故賠償 (200%)",
+      label: "意外身故額外賠償",
       keywords: ["意外身故雙倍賠償", "雙倍身故", "額外身故", "意外身故", "雙倍賠償", "公共交通意外身故", "交通意外身故", "雙倍意外身故"],
     },
     {
       id: "conversion-privilege",
-      label: "保證免核保轉換終身壽險權 (Guaranteed Conversion)",
+      label: "轉換壽險條件",
       keywords: ["轉換權益", "轉換權", "免核保轉換", "保證轉換", "轉為終身", "轉換為終身", "可轉換", "Conversion", "轉換為終身保險", "保證免體檢轉換權", "轉換終身壽險", "終身保障計劃"],
     },
     {
@@ -744,7 +744,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "mortgage-protection",
-      label: "按揭供樓 / 房貸負債抵押專項保障",
+      label: "按揭供樓 / 房貸負債抵押保障",
       keywords: ["供樓保障", "樂安居", "按揭", "房貸", "負債", "信用卡欠款", "供樓"],
     },
     {
@@ -769,7 +769,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "suicide-clause",
-      label: "保單生效滿 1 年後自殺受保全額賠償",
+      label: "自殺相關條款及不保期",
       keywords: ["自殺", "自殺條款", "一年後自殺", "首年不保自殺", "13個月", "一年內自殺", "滿1年後自殺", "自殺受保", "首年後自殺涵蓋條款"],
     },
     {
@@ -818,7 +818,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "towing-service",
-      label: "24小時免費路面緊急拖車及路邊救援",
+      label: "拖車及路面救援（核對費用）",
       keywords: ["拖車", "道路救援", "緊急拖車", "路邊支援", "24小時免費拖車", "搭橋搭電", "爆胎換軚", "路面緊急", "中途急修", "24小時免費路邊救援"],
     },
     {
@@ -883,7 +883,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "flood-typhoon-waterlogging",
-      label: "極端暴雨水浸、颱風冧樹砸車全額免折舊賠償",
+      label: "水浸或颱風損害",
       keywords: ["水浸", "暴雨浸車", "颱風冧樹", "樹木倒塌", "天災水浸", "黑雨積水", "水浸賠償", "冧樹砸車"],
     },
   ],
@@ -892,12 +892,12 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
   "domestic-helper": [
     {
       id: "statutory-ec",
-      label: "法定僱員補償 1 億責任保障 (勞保標配)",
+      label: "僱員補償及僱主責任",
       keywords: ["僱員補償", "100,000,000", "1億", "僱主法定責任", "勞工保險", "勞保", "僱主責任", "僱主法律責任", "法定僱員補償責任"],
     },
     {
       id: "medical-surgery",
-      label: "外傭外科手術及住院醫療開支全包",
+      label: "外傭外科手術及住院醫療開支",
       keywords: ["住院及手術", "外科手術", "住院費用", "嚴重疾病住院", "手術及住院", "住院醫療", "大手術", "外科手術及住院", "入住醫院費用", "住院及外科手術"],
     },
     {
@@ -907,12 +907,12 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "dental-care",
-      label: "牙科急症止痛 / 補牙拔牙專項護理",
+      label: "牙科急症止痛 / 補牙拔牙護理",
       keywords: ["牙科費用", "牙科", "牙醫費用", "牙科保障", "牙科醫療", "牙齒護理", "牙科保健", "牙科重大意外", "緊急牙科", "拔牙或補牙", "口腔手術"],
     },
     {
       id: "clinical-bonesetter",
-      label: "中醫跌打骨傷及針灸專項門診",
+      label: "中醫跌打骨傷及針灸門診",
       keywords: ["中醫", "跌打", "針灸", "骨傷", "中醫骨傷", "中醫跌打", "中醫骨傷跌打針灸門診"],
     },
     {
@@ -1001,7 +1001,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "cancer-chemo",
-      label: "寵物癌症化療、放射治療及標靶專項",
+      label: "寵物癌症化療、放射治療及標靶",
       keywords: ["癌症", "化療", "放療", "放射治療", "癌症化療", "標靶", "癌症一次性現金", "腫瘤"],
     },
     {
@@ -1021,12 +1021,12 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "microchip-free",
-      label: "全品種貓狗免植晶片投保 / 疫苗紀錄即可",
+      label: "寵物品種、晶片及疫苗要求",
       keywords: ["免植晶片", "無須晶片", "毋須晶片", "免晶片", "無須植入晶片", "疫苗注射紀錄卡辨識", "免植晶片貓狗通保", "免植晶片全品種投保"],
     },
     {
       id: "advanced-imaging",
-      label: "先進造影診斷 (CT / MRI) 專項保障",
+      label: "先進造影診斷 (CT / MRI) 保障",
       keywords: ["CT", "MRI", "先進影像", "先進造影", "造影診斷", "先進造影診斷"],
     },
     {
@@ -1051,7 +1051,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "freedom-vet-choice",
-      label: "全港註冊獸醫診所自由選擇（不限指定網絡）",
+      label: "獸醫網絡及診所選擇",
       keywords: ["自由選擇", "全港持牌", "自由選", "全港註冊獸醫", "全港持牌獸醫診所自由選"],
     },
     {
@@ -1061,7 +1061,7 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
     },
     {
       id: "skin-allergy-cover",
-      label: "常見貓狗皮膚過敏、真菌感染及外耳炎專項門診藥費",
+      label: "常見貓狗皮膚過敏、真菌感染及外耳炎門診藥費",
       keywords: ["皮膚過敏", "異位性皮膚炎", "真菌感染", "濕疹", "外耳炎", "皮膚病", "止痕藥", "皮膚治療", "皮膚炎症"],
     },
     {
@@ -1171,7 +1171,7 @@ export const CATEGORY_PERSONA_PRESETS: Record<string, PersonaPreset[]> = {
   "high-end-medical": [
     {
       id: "private-room-zero-deductible",
-      label: "👑 頂級私家房零自付尊尚方案",
+      label: "👑 私家房零自付尊尚方案",
       icon: "👑",
       description: "入住私家單人房尊貴病房，主要醫療費用 100% 全數報銷零自付，兼享全球名院出院直付免找數",
       tagIds: ["private-room", "full-cover-all", "cashless-global", "icu-no-limit"],
@@ -1187,7 +1187,7 @@ export const CATEGORY_PERSONA_PRESETS: Record<string, PersonaPreset[]> = {
     },
     {
       id: "cancer-proton-full-cover",
-      label: "⚡ 癌症質子重離子全包精準治療",
+      label: "⚡ 癌症質子重離子精準治療",
       icon: "⚡",
       description: "突破性納入昂貴質子重離子治療、高端自費標靶免疫藥物及 CT/MRI 先進造影零自付全額賠償",
       tagIds: ["advanced-cancer-proton", "advanced-imaging-zero-copay", "full-cover-all", "post-hosp-rehab"],
@@ -1251,7 +1251,7 @@ export const CATEGORY_PERSONA_PRESETS: Record<string, PersonaPreset[]> = {
     },
     {
       id: "owner-comprehensive",
-      label: "🏡 自住業主全包旗艦",
+      label: "🏡 自住業主旗艦",
       icon: "🏡",
       description: "私樓自住業主全方位守護，涵蓋財物全險、外牆公用責任分攤及裝修保障",
       tagIds: ["owner-occupier", "building-third-party", "renovation-cover", "temp-accommodation"],
@@ -1311,7 +1311,7 @@ export const CATEGORY_PERSONA_PRESETS: Record<string, PersonaPreset[]> = {
     },
     {
       id: "lifetime-dividend-savings",
-      label: "💎 儲蓄分紅終身全包與良性病變預防",
+      label: "💎 儲蓄分紅終身與良性病變預防",
       icon: "💎",
       description: "終身儲蓄分紅滾存財富，兼享良性腫瘤切除手術賠償、多重重大危疾及深切治療 (ICU) 全包",
       tagIds: ["savings-cash-value", "benign-tumor-surgery", "multi-claim-major", "icu-protection"],
@@ -1375,7 +1375,7 @@ export const CATEGORY_PERSONA_PRESETS: Record<string, PersonaPreset[]> = {
     },
     {
       id: "instant-no-exam",
-      label: "⚡ 簡易免體檢極速投保",
+      label: "⚡ 簡易免體檢投保",
       icon: "⚡",
       description: "全網上投保，幾分鐘免驗身極速出單，兼備保證續保及滿一年後自殺受保條款",
       tagIds: ["no-medical-exam", "term-life", "guaranteed-renewable", "suicide-clause"],
@@ -1515,7 +1515,7 @@ export const CATEGORY_PERSONA_PRESETS: Record<string, PersonaPreset[]> = {
     },
     {
       id: "surgery-all-in",
-      label: "🏥 純醫療全包手術狂 (手術+造影+癌症)",
+      label: "🏥 純醫療手術狂 (手術+造影+癌症)",
       icon: "🏥",
       description: "醫療開支最怕開刀！鎖定外科手術麻醉、CT/MRI 先進造影及癌症化療",
       tagIds: ["surgery-anesthesia", "advanced-imaging", "cancer-chemo"],

@@ -22,8 +22,8 @@ import { cn } from "@/lib/utils";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-/** 「試睇」示範：旅遊保險熱門對照（AIG / Blue Cross / AXA） */
-const DEMO_IDS = ["travel-aig", "travel-blue-cross", "travel-axa"];
+/** 「試睇」示範：旅遊資料操作示範，唔係推薦或人氣排名 */
+const DEMO_IDS = ["travel-axa", "travel-msig", "travel-zurich"];
 
 /** 詞級標題進場（design：h1 詞級 SplitText 0.7s） */
 function SplitWords({ words, className }: { words: string[]; className?: string }) {
@@ -86,7 +86,7 @@ function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => v
           <button
             type="button"
             onClick={onRemove}
-            className="shrink-0 rounded-full p-1 text-ink-faint transition-colors hover:bg-red-wash hover:text-red"
+            className="inline-flex h-11 w-11 items-center justify-center shrink-0 rounded-full p-1 text-ink-faint transition-colors hover:bg-red-wash hover:text-red"
             aria-label={`移除 ${product.product_name_zh || product.product_name}`}
           >
             <X size={15} />
@@ -94,7 +94,7 @@ function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => v
         </div>
         <Link
           to={`/product/${product.id}`}
-          className="line-clamp-2 text-[15px] font-medium leading-[1.5] text-ink transition-colors hover:text-red"
+          className="text-base font-medium leading-[1.5] text-ink transition-colors hover:text-red"
         >
           {product.product_name_zh || product.product_name}
         </Link>
@@ -123,8 +123,8 @@ function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => v
               href={buyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-[8px] bg-red px-2.5 py-1 text-[11.5px] font-bold text-paper transition-all hover:bg-red/90 shadow-xs active:scale-95"
-              title="前往官網即時投保／報價"
+              className="inline-flex items-center gap-1 rounded-[8px] bg-red px-2.5 py-1 text-sm font-bold min-h-11 text-paper transition-all hover:bg-red/90 shadow-xs active:scale-95"
+              title="前往保險公司核對條款及報價"
             >
               <span>{pricing.buyLabel ?? "官網報價"}</span>
               <ExternalLink size={11} />
@@ -191,7 +191,7 @@ function EmptyStateView({ onDemo }: { onDemo: () => void }) {
           className="chip border bg-paper text-ink-soft transition-colors hover:border-red hover:text-red"
           style={{ borderColor: "var(--line-strong)" }}
         >
-          試睇：旅遊保險熱門對照（AIG · Blue Cross · AXA）
+          試用比較：AXA · MSIG · Zurich（操作示範，唔係推薦）
         </button>
       </motion.div>
     </div>

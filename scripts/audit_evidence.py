@@ -83,7 +83,7 @@ def build(root,as_of):
         'category_counts':dict(categories),'category_metadata_counts':registry,
         'documents':list(documents.values()),'products':products}
     output=root/'public/data/evidence-audit.json';output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
-    md=['# 全庫來源與 PDF 審核','',f'審核日期：{as_of}；資料 SHA-256：`{report["source_dataset_sha256"]}`。',
+    md=['# 全庫來源與 PDF 審核','','> 2026-09-18 文件覆核：此報告是機械來源核對，唔係現行條款認證。見 [本輪交付](2026-09-18-release.md)。','',f'審核日期：{as_of}；資料 SHA-256：`{report["source_dataset_sha256"]}`。',
         '',f'{len(products)} 款產品、{len(categories)} 類、{len(documents)} 份 PDF；逐項檢查 {sum(counts.values())} 個保障／citation 引用。',
         '', '**重要：literal-match 只代表摘錄存在於該頁，不代表足以支持保障主張，亦不代表版本最新。**',
         '', '| 檢查狀態 | 引用數 |','|---|---:|',*[f'| {key} | {val} |' for key,val in sorted(counts.items())],

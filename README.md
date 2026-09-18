@@ -1,81 +1,51 @@
-# 保險格價站 HK InsureCompare 🛡️📊
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Current scope and remaining limitations: [delivery review](docs/review/2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
 
-香港保險產品比較網站 — 一站式深入比較 **11 大保險類別、158 份真實保單、39 間保險公司**。
+# 保險資料比較站 · HK InsureCompare
 
-**所有數據來自保險公司官方文件**（產品小冊子、保單條款 Policy Wording、保費表 PDF 及政府公開數據），每個產品均附官方來源連結與逐條引文系統（文件名 + 頁碼 + 原文句子，一撳直達官方出處，全站收錄 1,500+ 條權威引文）。
+繁體中文（香港）的保險資料比較 SPA。先睇保障同限制，再向保險公司核對條款及個別報價。
 
----
+## 資料範圍與限制
 
-## 🌟 核心特色
+目前 JSON 有 158 個資料記錄及 11 個類別；數量包括歷史／待核對記錄，唔係全市場或仍在售產品的保證。
+資料快照日期仍為 2026-09-02。2026-09-18 的全庫審核核對來源連結和機械引文一致性，**並未逐份核實所有現行保障**。
+HTTP 成功、PDF 存在、雜湊吻合或文字命中，都唔等於條款解讀正確。
 
-- **11 大保險類別**：
-  1. ✈️ 旅遊保險 (20 款)
-  2. 🏥 自願醫保 VHIS (28 款)
-  3. 💎 高端醫療保險 (10 款)
-  4. 💼 差額 Top-up 醫保 (7 款)
-  5. 🏠 家居保險 (16 款)
-  6. 🩺 危疾保險 (13 款)
-  7. 🦺 個人意外保險 (14 款)
-  8. 🕊️ 定期壽險 (14 款)
-  9. 🚗 汽車保險 (13 款)
-  10. 👩‍🍳 家傭保險 (12 款)
-  11. 🐶🐱 寵物保險 (11 款)
-- **🧠 智慧條款篩選與契合度評分引擎 (Smart Match)**：
-  - **147 個高價值特點標籤**：針對現代香港人實際需要（如「租車自負額」、「數碼器材保障」、「大廈外牆責任」、「癌症標靶」、「爆水喉急修」等），精準匹配官方條款。
-  - **51 個熱門場景預設 (Persona Presets)**：一鍵套用「自駕遊達人」、「滑雪水上運動」、「租客首選」、「收租業主防坑」、「打工仔填補差額」等情境。
-  - **零空屏體驗**：符合最多條件者自動置頂排序，支援智能推薦與嚴格全中 (AND) 切換，嚴格模式 0 結果自動觸發友好 Fallback。
-- **158 個深度產品詳情頁**：保障上限、保費年齡階梯、計劃級別、主要條款、不保事項、資料出處（逐條引文）、官方來源。
-- **對比工具**：2–3 份產品並排對照，canonical 保障項目對齊、最高賠償高亮、可分享連結。
-- **自願醫保認可產品名單 (`/vhis`)**：涵蓋 vhis.gov.hk 全部 33 份標準計劃 + 70 份靈活計劃（103 個認可產品），附官方條款及保費表連結。
-- **全域搜尋 (⌘K)**、39 間保險公司名錄、投保指南（詞彙表 + FAQ）、數據方法說明。
-- 全站繁體中文（香港粵語在地化用語）。
+## 使用方式
 
----
+類別頁預設卡片：搜尋公司／產品名稱，按需要展開條件篩選，加入最多三份資料作比較。
+桌面用有標題的比較表；手機按同一問題逐份對照，毋須在 A/B/C 分頁之間記住金額。
+不保事項、計劃級別和自負額先於保費；保留逐項來源、PDF 原文、儲存／分享比較及 Markdown 匯出。
+進階數值對照需主動展開，只比較可解析且計算單位一致的摘要，唔排名或評定最適合。
+沒有即時報價、沒有個人適合度百分比、沒有全市場最平承諾。已過期或未有有效日期的優惠唔會當作現行優惠。
 
-## 🛠️ 技術棧
+## 技術與開發
 
-- **前端核心**：React 19 · TypeScript 5 · Vite 7
-- **樣式系統**：Tailwind CSS 3.4 · Radix UI / shadcn/ui
-- **動效與滾動**：GSAP (ScrollTrigger) · Framer Motion · Lenis
-- **搜尋面板**：cmdk (⌘K)
-- **路由導航**：react-router 7
+React、TypeScript、Vite、Tailwind、Radix；實際版本以 package-lock.json 為準。Node 22：
 
----
-
-## 💻 本地開發與質量驗證
-
-```bash
-# 安裝依賴
-npm install
-
-# 啟動開發伺服器
+```sh
+npm ci
 npm run dev
-
-# 構建生產包 (tsc + vite)
+npm test
+npm run lint -- --max-warnings=0
 npm run build
-
-# 代碼規範檢查 (維持 22 baseline 錯誤，0 新增錯誤)
-npm run lint
-
-# 執行 84,000+ 組合過濾引擎回歸測試
-npx tsx scripts/verify_filter_combinations.ts
-npx tsx scripts/verify_filter_boundary_deep.ts
-
-# 更新政府官方自願醫保數據 (可選)
-python3 scripts/build_vhis.py
+npm run test:filters
+npm run check:maintenance
+python -m unittest discover -s tests -p 'test_evidence_audit.py'
 ```
 
----
+最後兩類檢查要分清「資料內容待修」與程式執行錯誤；唔好為通過檢查而填寫假金額或引文。
+3D 效果使用有界傾斜、靜態立體陰影及預先投影的 Canvas 寶石圖集，並非 WebGL 物理光線追蹤。
+觸控、鍵盤焦點及減少動態效果偏好會停止卡片傾斜；背景分頁與畫面外寶石暫停重繪。
 
-## 🚀 部署架構
+## 交付與維護
 
-專案託管於 **Cloudflare Pages**（Git 整合，push 上 `master` 分支自動觸發 build 與全球 CDN 部署）：
-- **正式生產網域**：https://insurance.tommychu2025.dpdns.org
-- **備用生產網域**：https://hk-insurance-compare-ejh.pages.dev
-- **構建設定**：`npm run build`，輸出目錄 `dist/`，Node 22 (`.nvmrc`)，SPA 路由導向 `public/_redirects`。
+master 連接部署；未經額外批准，不合併、不開 auto-merge、不更改正式部署。現有服務可能自動產生 review branch 預覽。
 
----
+- [本輪實作／測試／未完成項目](docs/review/2026-09-18-release.md)
+- [158 個記錄的來源覆核](docs/review/2026-09-18-evidence.md)
+- [維護手冊](docs/maintenance/README.md)
+- [Agent 工作契約](AGENTS.md)
 
-## 📄 免責聲明
-
-本網站資料僅供參考與學術研究用途，所有保障內容、保費、自負額及條款細則一律以各保險公司現行官方小冊子及正式保單合約條款為準。本網站並非保險中介人或代理人，不提供任何形式之投保建議或銷售。投保前請向持牌保險中介人或保險公司查詢。資料最後核對與快照日期：2026-09-04。
+本網站資料僅供參考，唔構成個人投保建議。投保前請核對現行正式條款及個別承保結果。

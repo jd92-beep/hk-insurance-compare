@@ -1,3 +1,7 @@
+<!-- review-2026-09-18 -->
+> **2026-09-18 documentation review:** Historical record; its old counts, screenshots, commands and completion claims are not current acceptance evidence. [delivery review](2026-09-18-release.md). No blanket policy-currentness certificate.
+<!-- /review-2026-09-18 -->
+
 # 2026-09-11 Content pass — INS-04 / INS-05 (bounded, local evidence only)
 
 Branch: `review/20260911-integration` (includes trust work + PR #22/#23 features)  

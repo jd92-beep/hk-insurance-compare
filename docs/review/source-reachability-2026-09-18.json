@@ -1,0 +1,3400 @@
+{
+  "audited_at": "2026-09-18",
+  "baseline_dataset_sha256": "724c24f386f2d601e6a9c4ca0b59282734134c05d1191421d522c6bf9837012e",
+  "method": "bounded-public-https-get; reachability only; redirects, dates and hashes do not certify identity, version, sale availability or benefits",
+  "not_policy_verification": true,
+  "results": [
+    {
+      "url": "https://ap.bluecross.com.hk/shared/forms/HomeSafePlusApplicationForm.pdf",
+      "products": [
+        "home-blue-cross"
+      ],
+      "http_status": null,
+      "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>"
+    },
+    {
+      "url": "https://ap.bluecross.com.hk/shared/leaflets/HomeSafePlusProtectionBrochure_CHI_Leaflet_20251204.pdf",
+      "products": [
+        "home-blue-cross"
+      ],
+      "http_status": null,
+      "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>"
+    },
+    {
+      "url": "https://ap.bluecross.com.hk/shared/leaflets/HomeSafe_Protection_Insurance_Direct_Leaflet.pdf",
+      "products": [
+        "home-blue-cross"
+      ],
+      "http_status": null,
+      "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>"
+    },
+    {
+      "url": "https://ap.bluecross.com.hk/shared/leaflets/LovePet_Leaflet.pdf",
+      "products": [
+        "pet-blue-cross"
+      ],
+      "http_status": null,
+      "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>"
+    },
+    {
+      "url": "https://ap.bluecross.com.hk/shared/leaflets/MaidSafe_Insurance_Leaflet.pdf",
+      "products": [
+        "domestic-helper-blue-cross"
+      ],
+      "http_status": null,
+      "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>"
+    },
+    {
+      "url": "https://ap.bluecross.com.hk/shared/leaflets/Personal_Accident_Leaflet_Chi.pdf",
+      "products": [
+        "accident-blue-cross"
+      ],
+      "http_status": null,
+      "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>"
+    },
+    {
+      "url": "https://ap.bluecross.com.hk/shared/leaflets/TravelSmart_Leaflet_Chi.pdf",
+      "products": [
+        "travel-blue-cross"
+      ],
+      "http_status": null,
+      "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>"
+    },
+    {
+      "url": "https://assets-global.website-files.com/65ae2d5da5418c07ad1ed6fe/65ae2d5da5418c07ad1ed950_P3_zu.pdf",
+      "products": [
+        "domestic-helper-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://assets-global.website-files.com/65ae2d5da5418c07ad1ed6fe/65ae2d5da5418c07ad1ed950_P3_zu.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://assets.bowtie.com.hk/5ee7a33b5edf8fb0bcb51fdd/65f40ee352870aeb3eb1e909_VHIS_Standard_Flexi_%20Brochure_Dec_2024_low.pdf",
+      "products": [
+        "medical-bowtie"
+      ],
+      "http_status": 200,
+      "final_url": "https://assets.bowtie.com.hk/5ee7a33b5edf8fb0bcb51fdd/65f40ee352870aeb3eb1e909_VHIS_Standard_Flexi_%20Brochure_Dec_2024_low.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://axa-prod.s3.amazonaws.com/axahk%2Fe59e663e-02e8-4eaf-b602-17f509934fd0_imotor-policy_en.pdf",
+      "products": [
+        "motor-axa"
+      ],
+      "http_status": 403,
+      "error": "Forbidden"
+    },
+    {
+      "url": "https://b2c.cntaiping.com.hk/v20/motor/0851-prp",
+      "products": [
+        "motor-china-taiping"
+      ],
+      "http_status": 412,
+      "error": "Precondition Failed"
+    },
+    {
+      "url": "https://bank.za.group/hk/insurance",
+      "products": [
+        "life-za-insure"
+      ],
+      "http_status": 200,
+      "final_url": "https://bank.za.group/hk/insurance",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://bolttechinsurance.hk/brochure/PetInsurance.pdf",
+      "products": [
+        "pet-bolttech"
+      ],
+      "http_status": 200,
+      "final_url": "https://bolttechinsurance.hk/brochure/PetInsurance.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://cdn.zaticdn.com/life/common/website/v2/Product%20Brochure%20-%20ZA%20Life-TC.pdf",
+      "products": [
+        "life-za-insure"
+      ],
+      "http_status": 200,
+      "final_url": "https://cdn.zaticdn.com/life/common/website/v2/Product%20Brochure%20-%20ZA%20Life-TC.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://edge.sitecorecloud.io/zurichinsurf8c0-zwpshared-prod-d824/media/project/zurich-headless/hongkong/docs/individuals/motor-insurance/private-motor-car-insurance/nev_fs_zh.pdf",
+      "products": [
+        "motor-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://edge.sitecorecloud.io/zurichinsurf8c0-zwpshared-prod-d824/media/project/zurich-headless/hongkong/docs/individuals/motor-insurance/private-motor-car-insurance/nev_fs_zh.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://gi.zurich.com.hk/resources/generic/TravelResources/zh/hk/TravelCare-leaflet-Chinese.pdf",
+      "products": [
+        "travel-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://gi.zurich.com.hk/resources/generic/TravelResources/zh/hk/TravelCare-leaflet-Chinese.pdf",
+      "content_type": "application/pdf;charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://info.zurich.com.hk/policy/PAM-DIR-002-07-2025.pdf",
+      "products": [
+        "accident-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://info.zurich.com.hk/policy/PAM-DIR-002-07-2025.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://info.zurich.com.hk/policy/TSP-002-08-2026-2.pdf",
+      "products": [
+        "travel-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://info.zurich.com.hk/policy/TSP-002-08-2026-2.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://info.zurich.com.hk/policy/ZHM-DIR-002-04-2023.pdf",
+      "products": [
+        "home-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://info.zurich.com.hk/policy/ZHM-DIR-002-04-2023.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://insure.msig.hk/AEON/promotion/motorquote-tc",
+      "products": [
+        "motor-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://insure.msig.hk/AEON/zh/promotion/motorquote-tc",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://insure.msig.hk/Channels/zh/travel-insurance",
+      "products": [
+        "travel-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://insure.msig.hk/Channels/zh/travel-insurance",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://insure.msig.hk/Direct/en/home-insurance",
+      "products": [
+        "home-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://insure.msig.hk/Direct/en/home-insurance",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://insure.za.group/hk/",
+      "products": [
+        "life-za-insure"
+      ],
+      "http_status": 200,
+      "final_url": "https://insure.za.group/v2/hk",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://insure.za.group/hk/critical-illness",
+      "products": [
+        "critical-illness-za-insure"
+      ],
+      "http_status": 200,
+      "final_url": "https://insure.za.group/hk/critical-illness",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://insure.za.group/hk/productdetail?goodsId=223035",
+      "products": [
+        "life-za-insure"
+      ],
+      "http_status": 200,
+      "final_url": "https://insure.za.group/v2/hk/product-detail/223035",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://manulife-campaign.com.hk/manulife/hk/product/manuterm-manuterm-benefit.php",
+      "products": [
+        "life-manulife"
+      ],
+      "http_status": 200,
+      "final_url": "https://manulife-campaign.com.hk/manulife/hk/product/manuterm-manuterm-benefit.php",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://odhk.blob.core.windows.net/home/Homev8.pdf",
+      "products": [
+        "home-onedegree"
+      ],
+      "http_status": 200,
+      "final_url": "https://odhk.blob.core.windows.net/home/Homev8.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://odhk.blob.core.windows.net/home/product-brochure-zh.pdf",
+      "products": [
+        "home-onedegree"
+      ],
+      "http_status": 200,
+      "final_url": "https://odhk.blob.core.windows.net/home/product-brochure-zh.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://retailbank.hsbc.com.hk/ins/en/campaign/chillout-getcovered/",
+      "products": [
+        "critical-illness-hsbc-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://retailbank.hsbc.com.hk/ins/en/campaign/chillout-getcovered/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://retailbank.hsbc.com.hk/ins1/zh-cn/life-protection-plans/",
+      "products": [
+        "life-hsbc-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://retailbank.hsbc.com.hk/ins1/zh-cn/life-protection-plans/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aia.com.hk/",
+      "products": [
+        "topup-aia-extra-medic"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aia.com.hk/content/dam/hk-wise/pdf/products/individuals/en/essence-on-your-side/EssenceOnYourSideInsurancePlan_en.pdf.coredownload.inline.pdf",
+      "products": [
+        "critical-illness-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/content/dam/hk-wise/pdf/products/individuals/en/essence-on-your-side/EssenceOnYourSideInsurancePlan_en.pdf.coredownload.inline.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.aia.com.hk/content/dam/hk-wise/pdf/products/individuals/en/on-your-side-plan-2/OnYourSideInsurancePlan2_en.pdf",
+      "products": [
+        "critical-illness-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/content/dam/hk-wise/pdf/products/individuals/en/on-your-side-plan-2/OnYourSideInsurancePlan2_en.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.aia.com.hk/content/dam/hk/en/pdf/product-brochure/individuals/xtraprotect/XtraProtect_ma_en.pdf.coredownload.inline.pdf",
+      "products": [
+        "accident-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/content/dam/hk/en/pdf/product-brochure/individuals/xtraprotect/XtraProtect_ma_en.pdf.coredownload.inline.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aia.com.hk/content/dam/hk/zh-hk/pdf/product-brochure/individuals/easyguard-term-life/EasyGuardTermLife_tc.pdf.coredownload.inline.pdf",
+      "products": [
+        "life-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/content/dam/hk/zh-hk/pdf/product-brochure/individuals/easyguard-term-life/EasyGuardTermLife_tc.pdf.coredownload.inline.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aia.com.hk/en/about-aia/about-us/media-centre/press-releases/2025/aia-press-release-20251121",
+      "products": [
+        "critical-illness-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/en/about-aia/about-us/media-centre/press-releases/2025/aia-press-release-20251121",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aia.com.hk/en/products/health/critical-illness",
+      "products": [
+        "critical-illness-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/en/products/health/critical-illness",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aia.com.hk/en/products/health/essence-on-your-side-insurance-plan",
+      "products": [
+        "critical-illness-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/en/products/health/essence-on-your-side-insurance-plan",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aia.com.hk/en/products/health/on-your-side-insurance-plan-2",
+      "products": [
+        "critical-illness-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/en/products/health/on-your-side-insurance-plan-2",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aia.com.hk/en/products/health/xtra-protect",
+      "products": [
+        "accident-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/en/products/health/xtra-protect",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aia.com.hk/zh-hk/about-aia/about-us/media-centre/press-releases/2024/aia-press-release-20240423",
+      "products": [
+        "medical-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/zh-hk/about-aia/about-us/media-centre/press-releases/2024/aia-press-release-20240423",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aia.com.hk/zh-hk/our-products/medical-protection.html",
+      "products": [
+        "high-end-aia-ceo"
+      ],
+      "http_status": null,
+      "error": "ValueError: Only public HTTPS endpoints on port 443 are allowed"
+    },
+    {
+      "url": "https://www.aia.com.hk/zh-hk/products/health/vhis-flexi",
+      "products": [
+        "medical-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/zh-hk/products/health/vhis-flexi",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aia.com.hk/zh-hk/products/health/vhis-select-wise",
+      "products": [
+        "medical-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/zh-hk/products/health/vhis-select-wise",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aia.com.hk/zh-hk/products/life/easyguard-term-life-plan",
+      "products": [
+        "life-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aia.com.hk/zh-hk/products/life/easyguard-term-life-plan",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aig.com.hk/content/dam/aig/apac/hong-kong/documents/brochure/20240813_auto_direct_comprehensive_brochure_v3.pdf",
+      "products": [
+        "motor-aig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aig.com.hk/content/dam/aig/apac/hong-kong/documents/brochure/20240813_auto_direct_comprehensive_brochure_v3.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.aig.com.hk/personal/annual-travel-insurance",
+      "products": [
+        "travel-aig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aig.com.hk/personal/annual-travel-insurance",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aig.com.hk/zh/campaign-pages/tips-to-get-a-car-insurance-quote",
+      "products": [
+        "motor-aig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aig.com.hk/zh/campaign-pages/tips-to-get-a-car-insurance-quote",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aig.com.hk/zh/personal/auto",
+      "products": [
+        "motor-aig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aig.com.hk/zh/personal/auto",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aig.com.hk/zh/personal/car-insurance-quote",
+      "products": [
+        "motor-aig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aig.com.hk/zh/personal/car-insurance-quote",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aig.com.hk/zh/personal/travel-insurance",
+      "products": [
+        "travel-aig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.aig.com.hk/zh/personal/travel-insurance",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.aig.com.hk/zh/personal/travel-insurance/travelsafe",
+      "products": [
+        "travel-aig"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.allianz-assistance.com.hk/zh_HK.html",
+      "products": [
+        "travel-allianz"
+      ],
+      "http_status": null,
+      "error": "URLError: <urlopen error timed out>"
+    },
+    {
+      "url": "https://www.allianz-travel.com.hk/zh_HK/products.html",
+      "products": [
+        "travel-allianz"
+      ],
+      "http_status": 403,
+      "error": "Forbidden"
+    },
+    {
+      "url": "https://www.allianz-travel.com.hk/zh_HK/products/cancellation-or-change-of-journey-for-any-unforeseen-reason-cfur.html",
+      "products": [
+        "travel-allianz"
+      ],
+      "http_status": 403,
+      "error": "Forbidden"
+    },
+    {
+      "url": "https://www.allianz.com.hk/zh-hk/personal/pet-insurance.html",
+      "products": [
+        "pet-allianz"
+      ],
+      "http_status": null,
+      "error": "gaierror: [Errno -5] No address associated with hostname"
+    },
+    {
+      "url": "https://www.asiainsurance.hk/documents/travel_leaflet_2025.pdf",
+      "products": [
+        "travel-asia-insurance"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.asiainsurance.hk/zh/personal-insurance/travel-insurance",
+      "products": [
+        "travel-asia-insurance"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.avo.com.hk/zh-hk/pet-insurance",
+      "products": [
+        "pet-avo"
+      ],
+      "http_status": null,
+      "error": "gaierror: [Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://www.axa.com.hk/en/accident-disability-protection",
+      "products": [
+        "accident-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/en/accident-disability-protection",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/en/article/axa-launches-smarthelperplus",
+      "products": [
+        "domestic-helper-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/en/article/axa-launches-smarthelperplus",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/en/care-for-all-critical-illness-plan",
+      "products": [
+        "critical-illness-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/en/care-for-all-critical-illness-plan",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/en/critical-illness-protection",
+      "products": [
+        "critical-illness-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/en/critical-illness-protection",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/en/domestic-helper",
+      "products": [
+        "domestic-helper-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/en/domestic-helper",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/en/home-insurance-protection/",
+      "products": [
+        "home-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/en/home-insurance-protection/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/en/multipro-series",
+      "products": [
+        "critical-illness-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/en/multipro-series",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/en/smart-protect-plus",
+      "products": [
+        "accident-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/en/smart-protect-plus",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/en/total-assure-plus-critical-illness",
+      "products": [
+        "critical-illness-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/en/total-assure-plus-critical-illness",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/en/travel-insurance-protection",
+      "products": [
+        "travel-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/en/travel-insurance-protection",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/imotor-optional-cover-zh",
+      "products": [
+        "motor-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRb7rrpReVYa4eTq_H702cVC1-AXAiMotor-OptionalCover-Chi--VC10221-OC-C-P-H702c-.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/imotor-product-coverage-zh",
+      "products": [
+        "motor-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRb7qrpReVYa4eTo_H701cVC1-AXAiMotor-ProductCoverage-Chi--VC10221-PC-C-P-H701c-.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/pdf?axa-helper-product-brochure-combined-direct-en",
+      "products": [
+        "domestic-helper-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRRwA7pReVYa4YF8_AXA_SmartHelperPlusPB_-A4DirectVersion_combine-_noprinting_Sep23E.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/total-assure-plus-critical-illness-pb-en",
+      "products": [
+        "critical-illness-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aShErnNYClf9nijL_LPPM907-RDETotalAssurePlusTotalAssurePlusBabyProProductBrochure_HK%26MA-Eng-.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.axa.com.hk/vc11122-h424",
+      "products": [
+        "motor-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://hk-axa-web-2024.cdn.prismic.io/hk-axa-web-2024/aRb88rpReVYa4eX0_H424VC1-AXAiMotor-Policy-bilingual--VC11122-B_V1-N-H424-.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.axa.com.hk/zh/axa-wiseguard-medical-insurance-plan",
+      "products": [
+        "medical-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/zh/axa-wiseguard-medical-insurance-plan",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/zh/axa-wiseguard-pro-medical-insurance-plan",
+      "products": [
+        "medical-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/zh/axa-wiseguard-pro-medical-insurance-plan",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/zh/car-insurance-protection",
+      "products": [
+        "motor-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/zh/car-insurance-protection",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/zh/global-elite-plan",
+      "products": [
+        "high-end-axa-global-elite"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/zh/global-elite-plan",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/zh/home-insurance-protection",
+      "products": [
+        "home-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/zh/home-insurance-protection/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term",
+      "products": [
+        "life-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/zh/smart-elite-term-smart-term",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/zh/smart-excess",
+      "products": [
+        "topup-axa-smart-excess"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/zh/smart-excess",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/zh/smartprotect-plus",
+      "products": [
+        "accident-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/zh/smartprotect-plus",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.axa.com.hk/zh/travel-insurance-protection",
+      "products": [
+        "travel-axa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.axa.com.hk/zh/travel-insurance-protection",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.blue.com.hk/blog/hk/%E4%BF%9D%E9%9A%AA%E7%9F%A5%E8%AD%98/can-friends-or-non-relatives-be-beneficiaries-in-insurance",
+      "products": [
+        "life-blue"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.blue.com.hk/blog/hk/%E4%BF%9D%E9%9A%AA%E7%9F%A5%E8%AD%98/can-friends-or-non-relatives-be-beneficiaries-in-insurance",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.blue.com.hk/blog/hk/%E4%BF%9D%E9%9A%AA%E7%9F%A5%E8%AD%98/guide-to-avoiding-orphan-policies",
+      "products": [
+        "life-blue"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.blue.com.hk/blog/hk/%E4%BF%9D%E9%9A%AA%E7%9F%A5%E8%AD%98/guide-to-avoiding-orphan-policies",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.blue.com.hk/hk/wecare-personal-accident-protection-plan",
+      "products": [
+        "accident-blue"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.blue.com.hk/",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.blue.com.hk/static/3a724f98d4fdb6609adcd1de2a84c494/21015372-WeCare_109-_Refundable_Critical_Illness_Protector-EN.pdf",
+      "products": [
+        "critical-illness-blue"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.blue.com.hk/static/3a724f98d4fdb6609adcd1de2a84c494/21015372-WeCare_109-_Refundable_Critical_Illness_Protector-EN.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.blue.com.hk/zh/wecare-3-in-1-protector",
+      "products": [
+        "critical-illness-blue"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.blue.com.hk/",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bluecross.com.hk/ch/General/Motor/",
+      "products": [
+        "motor-blue-cross"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.bluecross.com.hk/ch/HomeInsurance/HomeSafe-Protection-Plus-Online/landing",
+      "products": [
+        "home-blue-cross"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bluecross.com.hk/ch/HomeInsurance/HomeSafe-Protection-Plus-Online/landing",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bluecross.com.hk/ch/HomeInsurance/homesafe-protection-plus-online/Information",
+      "products": [
+        "home-blue-cross"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bluecross.com.hk/ch/HomeInsurance/homesafe-protection-plus-online/Information",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bluecross.com.hk/ch/HomeSafe-Protection-Insurance/Information",
+      "products": [
+        "home-blue-cross"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bluecross.com.hk/ch/HomeSafe-Protection-Insurance/Information",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bluecross.com.hk/ch/LovePet/Information",
+      "products": [
+        "pet-blue-cross"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bluecross.com.hk/ch/LovePet/Information",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bluecross.com.hk/ch/MaidSafe-Insurance/Information",
+      "products": [
+        "domestic-helper-blue-cross"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bluecross.com.hk/ch/MaidSafe-Insurance/Information",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bluecross.com.hk/ch/Personal-Accident-Insurance/Application",
+      "products": [
+        "accident-blue-cross"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bluecross.com.hk/ch/Personal-Accident-Insurance/Application",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bluecross.com.hk/ch/Personal-Accident-Insurance/Information",
+      "products": [
+        "accident-blue-cross"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bluecross.com.hk/ch/Personal-Accident-Insurance/Information",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bluecross.com.hk/ch/Travel-Smart/Application",
+      "products": [
+        "travel-blue-cross"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bluecross.com.hk/ch/Travel-Smart/Application",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bluecross.com.hk/ch/downloads/NewOthers",
+      "products": [
+        "home-blue-cross",
+        "travel-blue-cross"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bluecross.com.hk/ch/downloads/NewOthers",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bocgins.com/FileStatic//Proposal_Form/_Banking_Agency/_Household//PremierHomeComprehensiveInsuranceProposalFormTC.pdf",
+      "products": [
+        "home-boc-group-insurance"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bocgins.com/FileStatic//Proposal_Form/_Banking_Agency/_Household//PremierHomeComprehensiveInsuranceProposalFormTC.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bocgins.com/motor/",
+      "products": [
+        "motor-boc-group-insurance"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bocgins.com/motor/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bochk.com/dam/insurance/coverage_tc.pdf",
+      "products": [
+        "accident-boc-group-insurance"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bochk.com/dam/insurance/coverage_tc.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bochk.com/dam/insurance/life/CI188/CI188Tc.pdf",
+      "products": [
+        "critical-illness-boc-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bochk.com/dam/insurance/life/CI188/CI188Tc.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.bochk.com/tc/insurance/family/helper.html",
+      "products": [
+        "domestic-helper-boc-group-insurance"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bochk.com/tc/insurance/family/helper.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bochk.com/tc/insurance/family/premier.html",
+      "products": [
+        "home-boc-group-insurance"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bochk.com/tc/insurance/family/premier.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bochk.com/tc/insurance/gba/gbacar.html",
+      "products": [
+        "motor-boc-group-insurance"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bochk.com/tc/insurance/gba/gbacar.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bochk.com/tc/insurance/medical/accident.html",
+      "products": [
+        "accident-boc-group-insurance"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bochk.com/tc/insurance/medical/accident.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bochk.com/tc/insurance/travel/motor.html",
+      "products": [
+        "motor-boc-group-insurance"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bochk.com/tc/insurance/travel/motor.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bochk.com/tc/insurance/travel/universal.html",
+      "products": [
+        "travel-boc-group-insurance"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bochk.com/tc/insurance/travel/universal.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.boclife.com.hk/sc/news/bochk-and-boc-life-launch-vhis-plan-offering-up-to-hkd33-million-medical-protection.html",
+      "products": [
+        "medical-boc-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.boclife.com.hk/sc/news/bochk-and-boc-life-launch-vhis-plan-offering-up-to-hkd33-million-medical-protection.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.boclife.com.hk/tc/product-information.html",
+      "products": [
+        "life-boc-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.boclife.com.hk/tc/product-information.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.boclife.com.hk/tc/product/best-care-critical-illness-plan.html",
+      "products": [
+        "critical-illness-boc-life"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.boclife.com.hk/tc/product/smartviva-flexi-vhis.html",
+      "products": [
+        "medical-boc-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.boclife.com.hk/tc/product/smartviva-flexi-vhis.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html",
+      "products": [
+        "life-boc-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.boclife.com.hk/tc/product/term-plan-term-life-insurance-plan.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bolttechinsurance.hk/",
+      "products": [
+        "pet-bolttech"
+      ],
+      "http_status": 200,
+      "final_url": "https://bolttechinsurance.hk/en/",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bowtie.com.hk/",
+      "products": [
+        "topup-bowtie-combat"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bowtie.com.hk/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bowtie.com.hk/blog/zh/%E4%BF%9D%E9%9A%AA%E7%9F%A5%E8%AD%98/bowtie-%E8%87%AA%E9%A1%98%E9%86%AB%E4%BF%9D-%E4%BF%9D%E8%B2%BB%E8%A1%A8/",
+      "products": [
+        "medical-bowtie"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bowtie.com.hk/blog/zh/%E4%BF%9D%E9%9A%AA%E7%9F%A5%E8%AD%98/bowtie-%E8%87%AA%E9%A1%98%E9%86%AB%E4%BF%9D-%E4%BF%9D%E8%B2%BB%E8%A1%A8/",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bowtie.com.hk/blog/zh/learn/%E4%BA%BA%E5%A3%BD%E4%BF%9D%E9%9A%AA-%E5%AE%9A%E6%9C%9F%E4%BA%BA%E5%A3%BD/",
+      "products": [
+        "life-bowtie"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bowtie.com.hk/blog/zh/learn/%E4%BA%BA%E5%A3%BD%E4%BF%9D%E9%9A%AA-%E5%AE%9A%E6%9C%9F%E4%BA%BA%E5%A3%BD/",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bowtie.com.hk/blog/zh/learn/%E4%BA%BA%E5%A3%BD%E4%BF%9D%E9%9A%AA-%E7%B4%94%E4%BA%BA%E5%A3%BD-%E5%AE%9A%E6%9C%9F%E4%BA%BA%E5%A3%BD-%E6%AF%94%E8%BC%83/",
+      "products": [
+        "life-bowtie"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bowtie.com.hk/blog/zh/learn/%E4%BA%BA%E5%A3%BD%E4%BF%9D%E9%9A%AA-%E7%B4%94%E4%BA%BA%E5%A3%BD-%E5%AE%9A%E6%9C%9F%E4%BA%BA%E5%A3%BD-%E6%AF%94%E8%BC%83/",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bowtie.com.hk/blog/zh/learn/%E8%87%AA%E9%A1%98%E9%86%AB%E4%BF%9D-%E4%BF%9D%E8%B2%BB/",
+      "products": [
+        "medical-bowtie"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bowtie.com.hk/blog/zh/learn/%E8%87%AA%E9%A1%98%E9%86%AB%E4%BF%9D-%E4%BF%9D%E8%B2%BB/",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bowtie.com.hk/blog/zh/pet-insurance-comparison/",
+      "products": [
+        "pet-bowtie"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.bowtie.com.hk/en/insurance/critical-illness",
+      "products": [
+        "critical-illness-bowtie"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bowtie.com.hk/en/insurance/critical-illness",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bowtie.com.hk/zh-hk/car-insurance",
+      "products": [
+        "motor-bowtie"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.bowtie.com.hk/zh-hk/pet-insurance",
+      "products": [
+        "pet-bowtie"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.bowtie.com.hk/zh-hk/touchwood-accident-insurance",
+      "products": [
+        "accident-bowtie"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.bowtie.com.hk/zh/insurance/term-life",
+      "products": [
+        "life-bowtie"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bowtie.com.hk/zh/insurance/term-life",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bowtie.com.hk/zh/insurance/vhis/pink",
+      "products": [
+        "high-end-bowtie-pink"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.bupa.com.hk/tc/about-vhis/hero-policy/",
+      "products": [
+        "medical-bupa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bupa.com.hk/tc/about-vhis/hero-policy/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bupa.com.hk/tc/individual/medical-insurance/bupa-global-health-plans/",
+      "products": [
+        "high-end-bupa-elite"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.bupa.com.hk/tc/individual/medical-insurance/top-up/",
+      "products": [
+        "topup-bupa-carepro"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.bupa.com.hk/tc/medical-insurance/vhis-faq/",
+      "products": [
+        "medical-bupa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bupa.com.hk/tc/medical-insurance/vhis-faq/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bupa.com.hk/tc/medical-insurance/vhis-info/",
+      "products": [
+        "medical-bupa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bupa.com.hk/tc/medical-insurance/vhis-info/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bupa.com.hk/tc/medical-insurance/vhis-info/voluntary-health-insurance-schemes-comparison-2026/",
+      "products": [
+        "medical-bupa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.bupa.com.hk/tc/medical-insurance/vhis-info/voluntary-health-insurance-schemes-comparison-2026/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.chinalife.com.hk/zh-hk",
+      "products": [
+        "life-china-life-overseas"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.chinalife.com.hk/zh-hk",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection",
+      "products": [
+        "life-china-life-overseas"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.chinalife.com.hk/zh-hk/products/insurance/life-protection",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.chubb.com/hk-en/personal/personal-accident-benefit.html",
+      "products": [
+        "accident-chubb"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.chubb.com/hk-en/personal/personal-accident-benefit.html",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.chubb.com/hk-en/personal/personal-accident-insurance.html",
+      "products": [
+        "accident-chubb"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.chubb.com/hk-en/personal/personal-accident-insurance.html",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html",
+      "products": [
+        "accident-chubb"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.chubb.com/hk-zh/personal/home-insurance.html",
+      "products": [
+        "home-chubb"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.chubb.com/hk-zh/personal/home-insurance.html",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html",
+      "products": [
+        "travel-chubb"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.chubb.com/hk-zh/personal/leisure-travel-insurance.html",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.chubb.com/hk-zh/personal/life-insurance/critical-illness.html",
+      "products": [
+        "critical-illness-chubb-life"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.chubb.com/hk-zh/personal/life-insurance/term-life.html",
+      "products": [
+        "life-chubb-life"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.cigna.com.hk/",
+      "products": [
+        "topup-cigna-plus"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.cigna.com.hk/zh-hant/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.cigna.com.hk/iwov-resources/docs/VMIS/VMIS-VHIS-Premium-Table_TC.pdf",
+      "products": [
+        "medical-cigna"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.cigna.com.hk/iwov-resources/docs/VMIS/VMIS-VHIS-Premium-Table_TC.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.cigna.com.hk/iwov-resources/docs/VMIS/VMIS_VHIS_TC.pdf",
+      "products": [
+        "medical-cigna"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.cigna.com.hk/iwov-resources/docs/VMIS/VMIS_VHIS_TC.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.cigna.com.hk/iwov-resources/docs/campaign/2026-Q1-VHIS-Extra-Premium-Discount-TnC-TC.pdf",
+      "products": [
+        "medical-cigna"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.cigna.com.hk/iwov-resources/docs/campaign/2026-Q1-VHIS-Extra-Premium-Discount-TnC-TC.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.cigna.com.hk/zh-hant/medical-insurance/vhis/",
+      "products": [
+        "medical-cigna"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.cigna.com.hk/zh-hant/medical-insurance/vhis/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.cignaglobal.com/",
+      "products": [
+        "high-end-cigna-global"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.cignaglobal.com/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.cntaiping.com/upload/cms/hk/202409/13193012hytf.pdf",
+      "products": [
+        "travel-cntaiping"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.cntaiping.com/upload/cms/hk/202409/13193012hytf.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.dahsing.com/html/en/insurance/general_insurance/domestic_helper_insurance.html",
+      "products": [
+        "domestic-helper-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsing.com/html/en/insurance/general_insurance/domestic_helper_insurance.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.dahsing.com/html/tc/credit_card/latest_offers/special_online_insurance_offer.html",
+      "products": [
+        "motor-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsing.com/html/tc/credit_card/latest_offers/special_online_insurance_offer.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.dahsing.com/html/tc/insurance/general_insurance/domestic_helper_insurance.html",
+      "products": [
+        "home-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsing.com/html/tc/insurance/general_insurance/domestic_helper_insurance.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.dahsing.com/html/tc/insurance/general_insurance/personal_protector_insurance_plan.html",
+      "products": [
+        "accident-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsing.com/html/tc/insurance/general_insurance/personal_protector_insurance_plan.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.dahsing.com/html/tc/insurance/pet.html",
+      "products": [
+        "pet-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsing.com/html/tc/insurance/pet.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.dahsing.com/pdf/wm/WMD_GI_HomeSure.pdf",
+      "products": [
+        "home-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsing.com/pdf/wm/WMD_GI_HomeSure.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.dahsing.com/pdf/wm/WMD_GI_MaidSure.pdf",
+      "products": [
+        "domestic-helper-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsing.com/pdf/wm/WMD_GI_MaidSure.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.dahsinginsurance.com/",
+      "products": [
+        "travel-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsinginsurance.com/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.dahsinginsurance.com/b2c/api/fileCenter/file/BTP/product_brochure.pdf",
+      "products": [
+        "travel-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsinginsurance.com/b2c/api/fileCenter/file/BTP/product_brochure.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.dahsinginsurance.com/b2c/api/fileCenter/file/MO/policy_wordings.pdf",
+      "products": [
+        "motor-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsinginsurance.com/b2c/api/fileCenter/file/MO/policy_wordings.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.dahsinginsurance.com/b2c/api/fileCenter/file/PA/%E3%80%8C%E5%BF%83%E6%84%8F%E4%BF%9D%E3%80%8D%E5%80%8B%E4%BA%BA%E6%84%8F%E5%A4%96%E4%BF%9D%E9%9A%9C%E8%A8%88%E5%8A%83%E4%BF%9D%E5%96%AE%E6%A2%9D%E6%AC%BE%20(%E7%94%B12023%E5%B9%B48%E6%9C%881%E6%97%A5%E6%88%96%E4%B9%8B%E5%BE%8C%E6%8A%95%E4%BF%9D%EF%BC%8F2023%E5%B9%B411%E6%9C%881%E6%97%A5%E6%88%96%E4%B9%8B%E5%BE%8C%E7%BA%8C%E4%BF%9D%E7%9A%84%E4%BF%9D%E5%96%AE).pdf",
+      "products": [
+        "accident-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsinginsurance.com/b2c/api/fileCenter/file/PA/%E3%80%8C%E5%BF%83%E6%84%8F%E4%BF%9D%E3%80%8D%E5%80%8B%E4%BA%BA%E6%84%8F%E5%A4%96%E4%BF%9D%E9%9A%9C%E8%A8%88%E5%8A%83%E4%BF%9D%E5%96%AE%E6%A2%9D%E6%AC%BE%20(%E7%94%B12023%E5%B9%B48%E6%9C%881%E6%97%A5%E6%88%96%E4%B9%8B%E5%BE%8C%E6%8A%95%E4%BF%9D%EF%BC%8F2023%E5%B9%B411%E6%9C%881%E6%97%A5%E6%88%96%E4%B9%8B%E5%BE%8C%E7%BA%8C%E4%BF%9D%E7%9A%84%E4%BF%9D%E5%96%AE).pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.dahsinginsurance.com/b2c/api/fileCenter/file/PPA/proposal_form.pdf",
+      "products": [
+        "accident-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsinginsurance.com/b2c/api/fileCenter/file/PPA/proposal_form.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.dahsinginsurance.com/b2c/api/fileCenter/file/TP/policy_wordings.pdf",
+      "products": [
+        "travel-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsinginsurance.com/b2c/api/fileCenter/file/TP/policy_wordings.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.dahsinginsurance.com/product/2/motor",
+      "products": [
+        "motor-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.dahsinginsurance.com/product/2/motor",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.directasia.com.hk/zh-hk/car-insurance/",
+      "products": [
+        "motor-directasia"
+      ],
+      "http_status": null,
+      "error": "gaierror: [Errno -2] Name or service not known"
+    },
+    {
+      "url": "https://www.fubonbank.com.hk/tc/insurance/general-insurance/travel-insurance-plan.html",
+      "products": [
+        "travel-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fubonbank.com.hk/tc/insurance/general-insurance/travel-insurance-plan.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/-/media/documents/product/life/FWD-HNW-Noble-Term-PB-TC.pdf",
+      "products": [
+        "life-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/-/media/documents/product/life/FWD-HNW-Noble-Term-PB-TC.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.fwd.com.hk/en/accident-disability/",
+      "products": [
+        "accident-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/en/accident-disability/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/en/critical-illness/",
+      "products": [
+        "critical-illness-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/en/critical-illness/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt25e07adc6a609913/6492a128cc30bb0079b070a5/B25_TravelCare_(2023.0620).pdf",
+      "products": [
+        "travel-bolttech"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt25e07adc6a609913/6492a128cc30bb0079b070a5/B25_TravelCare_(2023.0620).pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt391ae1f3d4b2c60e/vCare_Medical_Plan_PB_TC_with_premium_schedule_final.pdf",
+      "products": [
+        "medical-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt391ae1f3d4b2c60e/vCare_Medical_Plan_PB_TC_with_premium_schedule_final.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf",
+      "products": [
+        "travel-bolttech"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt9c2f51f8dc918b05/63670e9d2b6d754895c56062/myterm-pb-tc.pdf",
+      "products": [
+        "life-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt9c2f51f8dc918b05/63670e9d2b6d754895c56062/myterm-pb-tc.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.fwd.com.hk/images/v3/assets/blt563fac53dd3a847c/blt5de7382c12bba9dd/647dc1d1f478a9a7f77f09f8/FWD_MyTerm_Plus_TC_Final.pdf",
+      "products": [
+        "life-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/images/v3/assets/blt563fac53dd3a847c/blt5de7382c12bba9dd/647dc1d1f478a9a7f77f09f8/FWD_MyTerm_Plus_TC_Final.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/images/v3/assets/blt563fac53dd3a847c/blte32110ac62806af5/625ebdca058af94c8ab63819/MySafe-Accident-Protection-Plan-Policy-Provisions-Double.pdf",
+      "products": [
+        "accident-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/images/v3/assets/blt563fac53dd3a847c/blte32110ac62806af5/625ebdca058af94c8ab63819/MySafe-Accident-Protection-Plan-Policy-Provisions-Double.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.fwd.com.hk/online-insurance/mysafe-accident-protection-plan/en/",
+      "products": [
+        "accident-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/online-insurance/mysafe-accident-protection-plan/en/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/online-insurance/mytravel-insurance/",
+      "products": [
+        "travel-bolttech",
+        "travel-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/online-insurance/mytravel-insurance/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/online-insurance/pets-insurance/",
+      "products": [
+        "pet-bolttech"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/online-insurance/pets-insurance/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/online-insurance/term-critical-illness/en/",
+      "products": [
+        "critical-illness-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/online-insurance/term-critical-illness/en/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/online-insurance/vhis-vcare-medical-plan/",
+      "products": [
+        "medical-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/online-insurance/vhis-vcare-medical-plan/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/online-insurance/vhis-vprime-medical-plan/",
+      "products": [
+        "medical-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/online-insurance/vhis-vprime-medical-plan/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/zh/critical-illness/crisis-onemaster-series/",
+      "products": [
+        "critical-illness-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/zh/critical-illness/crisis-onemaster-series/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/zh/critical-illness/easycover-critical-illness-plan/",
+      "products": [
+        "critical-illness-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/zh/critical-illness/easycover-critical-illness-plan/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/zh/general-insurance/car-insurance/",
+      "products": [
+        "motor-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/zh/404/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/zh/general-insurance/domestic-helper-insurance/",
+      "products": [
+        "domestic-helper-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/zh/404/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/zh/general-insurance/home-insurance/",
+      "products": [
+        "home-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/zh/404/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/zh/general-insurance/pet-insurance/",
+      "products": [
+        "pet-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/zh/404/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/zh/medical/",
+      "products": [
+        "high-end-fwd-premier"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/zh/404/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/zh/press/fwd-hong-kong-launches-crisis-onemaster-series-to-support-the-healthcare-needs-of-families1-support-physical-and-mental-health-of-gen-sando-with-tailored-protections-and-services-for-the-elderly/",
+      "products": [
+        "critical-illness-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/zh/press/fwd-hong-kong-launches-crisis-onemaster-series-to-support-the-healthcare-needs-of-families1-support-physical-and-mental-health-of-gen-sando-with-tailored-protections-and-services-for-the-elderly/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/zh/top-up/",
+      "products": [
+        "topup-fwd-supplementary"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/zh/404/",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fwd.com.hk/zh/vhis/vfamily/",
+      "products": [
+        "medical-fwd"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.fwd.com.hk/zh/vhis/vfamily/",
+      "content_type": "text/html",
+      "truncated": true
+    },
+    {
+      "url": "https://www.generali.com.hk/tc/products/travel/bravo-travel-insurance",
+      "products": [
+        "travel-generali"
+      ],
+      "http_status": 403,
+      "error": "Forbidden"
+    },
+    {
+      "url": "https://www.generali.com.hk/zh-hk/general-insurance/domestic-helper",
+      "products": [
+        "domestic-helper-generali"
+      ],
+      "http_status": 403,
+      "error": "Forbidden"
+    },
+    {
+      "url": "https://www.generali.com.hk/zh-hk/general-insurance/personal-accident",
+      "products": [
+        "accident-generali"
+      ],
+      "http_status": 403,
+      "error": "Forbidden"
+    },
+    {
+      "url": "https://www.generali.com.hk/zh-hk/life-insurance/critical-illness/lionguardian",
+      "products": [
+        "critical-illness-generali"
+      ],
+      "http_status": 403,
+      "error": "Forbidden"
+    },
+    {
+      "url": "https://www.generali.com.hk/zh-hk/life-insurance/protection/term-life",
+      "products": [
+        "life-generali"
+      ],
+      "http_status": 403,
+      "error": "Forbidden"
+    },
+    {
+      "url": "https://www.generali.com.hk/zh_HK/travel-insurance",
+      "products": [
+        "travel-generali"
+      ],
+      "http_status": 403,
+      "error": "Forbidden"
+    },
+    {
+      "url": "https://www.hangseng.com/zh-hk/personal/insurance-planning/travel-insurance/",
+      "products": [
+        "travel-hang-seng"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.heyavo.com/",
+      "products": [
+        "home-avo"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.heyavo.com/",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.heyavo.com/zh-hk/products/home",
+      "products": [
+        "home-avo"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.heyavo.com/zh-hk/products/home",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.heyavo.com/zh-hk/products/travel",
+      "products": [
+        "travel-avo"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.heyavo.com/zh-hk/products/travel",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.hk.cntaiping.com/product/110849.html",
+      "products": [
+        "home-china-taiping",
+        "travel-cntaiping"
+      ],
+      "http_status": 412,
+      "error": "Precondition Failed"
+    },
+    {
+      "url": "https://www.hk.cntaiping.com/product/110850.html",
+      "products": [
+        "domestic-helper-cntaiping"
+      ],
+      "http_status": 412,
+      "error": "Precondition Failed"
+    },
+    {
+      "url": "https://www.hk.cntaiping.com/product/110851.html",
+      "products": [
+        "motor-china-taiping"
+      ],
+      "http_status": 412,
+      "error": "Precondition Failed"
+    },
+    {
+      "url": "https://www.hk.cntaiping.com/product/110858.html",
+      "products": [
+        "motor-china-taiping"
+      ],
+      "http_status": 412,
+      "error": "Precondition Failed"
+    },
+    {
+      "url": "https://www.hsbc.com.hk/zh-hk/insurance/products/critical-illness/swift-guard/",
+      "products": [
+        "critical-illness-hsbc-life"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.hsbc.com.hk/zh-hk/insurance/products/home/domestic-helper/",
+      "products": [
+        "domestic-helper-hsbc"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.hsbc.com.hk/zh-hk/insurance/products/home/residencesurance/",
+      "products": [
+        "home-hsbc"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.hsbc.com.hk/zh-hk/insurance/products/medical/vhis-flexi/",
+      "products": [
+        "medical-hsbc-life"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.hsbc.com.hk/zh-hk/insurance/products/travel/",
+      "products": [
+        "travel-hsbc"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/travel/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.hsbc.com.hk/zh-hk/insurance/products/travel/travelsurance/",
+      "products": [
+        "travel-hsbc"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.libertyinsurance.com.hk/sites/libertyhk/files/documents/Motor_all/Privilege_Motor/Brochure_Privilege_Motor.pdf",
+      "products": [
+        "motor-liberty"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.libertyinternational.com/get-document/72beb793-8619-450b-93df-ed97548ec000",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.libertyinsurance.com.hk/sites/libertyhk/files/documents/Motor_all/pf_private_motor_motorcycle_privilege_agent.pdf",
+      "products": [
+        "motor-liberty"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.libertyinternational.com/get-document/d6adcf89-7d8a-4ca2-813c-a942f87ae9dc",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.libertyinsurance.com.hk/zh/DrivetoChina",
+      "products": [
+        "motor-liberty"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.libertyinternational.com/hk-zh/DrivetoChina",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.libertyinsurance.com.hk/zh/private-motor",
+      "products": [
+        "motor-liberty"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.libertyinternational.com/hk-zh/private-motor",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.libertyinsurance.com.hk/zh/privilege-motor",
+      "products": [
+        "motor-liberty"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.libertyinternational.com/hk-zh/privilege-motor",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.libertyinternational.com/hk-en/home-protector-plus",
+      "products": [
+        "home-liberty"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.libertyinternational.com/hk-en/home-protector-plus",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.livibank.com/dam/pdf/insurance/GI-Pet/Pet-Care-Provision-(PET.2023.pdf)",
+      "products": [
+        "pet-bolttech"
+      ],
+      "http_status": null,
+      "error": "ValueError: Only public HTTPS endpoints on port 443 are allowed"
+    },
+    {
+      "url": "https://www.manulife.com.hk/content/dam/insurance/hk/en/documents/products/health/incomeguard-critical-illness-protector.pdf",
+      "products": [
+        "critical-illness-manulife"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.manulife.com.hk/content/dam/insurance/hk/en/documents/products/health/incomeguard-critical-illness-protector.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.manulife.com.hk/en/individual/about/newsroom/manulife-launches-critical-illness-plans-incomeguard-and-incomeshield.html",
+      "products": [
+        "critical-illness-manulife"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.manulife.com.hk/en/individual/about/newsroom/manulife-launches-critical-illness-plans-incomeguard-and-incomeshield.html",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.manulife.com.hk/en/individual/products/health/critical-illness-protection/incomeguard-critical-illness-protector.html",
+      "products": [
+        "critical-illness-manulife"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.manulife.com.hk/en/individual/products/health/critical-illness-protection/incomeguard-critical-illness-protector.html",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.manulife.com.hk/en/individual/products/health/critical-illness-protection/incomeshield-critical-illness-protector.html",
+      "products": [
+        "critical-illness-manulife"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.manulife.com.hk/en/individual/products/health/critical-illness-protection/incomeshield-critical-illness-protector.html",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.manulife.com.hk/en/individual/products/health/critical-illness-protection/manuvital-care.html",
+      "products": [
+        "critical-illness-manulife"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.manulife.com.hk/en/individual/products/health/critical-illness-protection/manuvital-care.html",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.manulife.com.hk/zh-hk/individual/about/newsroom/manulife-launches-critical-illness-plans-incomeguard-and-incomeshield.html",
+      "products": [
+        "critical-illness-manulife"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.manulife.com.hk/zh-hk/individual/about/newsroom/manulife-launches-critical-illness-plans-incomeguard-and-incomeshield.html",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.manulife.com.hk/zh-hk/individual/products/general-insurance/travel-insurance.html",
+      "products": [
+        "travel-manulife"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.manulife.com.hk/zh-hk/individual/products/general-insurance/travel-insurance.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.manulife.com.hk/zh-hk/individual/products/health.html",
+      "products": [
+        "high-end-manulife-supreme"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis.html",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis/voluntary-health-insurance-scheme/manulife-supreme-vhis-flexi-plan.html",
+      "products": [
+        "medical-manulife"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.manulife.com.hk/zh-hk/individual/products/health/vhis/voluntary-health-insurance-scheme/manulife-supreme-vhis-flexi-plan.html",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html",
+      "products": [
+        "life-manulife"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.manulife.com.hk/zh-hk/individual/products/life/life-protection/manuterm.html",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.msig.com.hk/en/claims/hong-kong/personal-insurance/personal-accident",
+      "products": [
+        "accident-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.msig.com.hk/en/claims/hong-kong/personal-insurance/personal-accident",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.msig.com.hk/en/personal-insurance/domestic-helper-insurance",
+      "products": [
+        "domestic-helper-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.msig.com.hk/en/personal-insurance/ihelper-insurance",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.msig.com.hk/en/personal-insurance/happy-tailsr-pet-insurance",
+      "products": [
+        "pet-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.msig.com.hk/en/personal-insurance/happy-tailsr-pet-insurance",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.msig.com.hk/en/personal-insurance/isafe-accident-insurance",
+      "products": [
+        "accident-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.msig.com.hk/en/personal-insurance/isafe-accident-insurance",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.msig.com.hk/en/personal-insurance/itravel-go-single-trip",
+      "products": [
+        "travel-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.msig.com.hk/en/personal-insurance/itravel-go-single-trip",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.msig.com.hk/personal-insurance/private-motor-car",
+      "products": [
+        "motor-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.msig.com.hk/zh-hant/personal-insurance/private-motor-car",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.msig.com.hk/sites/msig_hk/files/H1044_iTravel_Go_%28Single%29_23.4.2026_4.pdf",
+      "products": [
+        "travel-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.msig.com.hk/sites/msig_hk/files/H1044_iTravel_Go_%28Single%29_23.4.2026_4.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.msig.com.hk/sites/msig_hk/files/H1045_iTravel_Go_%28Annual%29_23.4.2026_0.pdf",
+      "products": [
+        "travel-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.msig.com.hk/sites/msig_hk/files/H1045_iTravel_Go_%28Annual%29_23.4.2026_0.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.msig.com.hk/sites/msig_hk/files/HappyTails-Brochure-ENG.pdf",
+      "products": [
+        "pet-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.msig.com.hk/sites/msig_hk/files/HappyTails-Brochure-ENG.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.msig.com.hk/sites/msig_hk/files/iHelper%20Insurance%20Brochure_March%202026.pdf",
+      "products": [
+        "domestic-helper-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.msig.com.hk/sites/msig_hk/files/iHelper%20Insurance%20Brochure_March%202026.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.msig.com.hk/zh-hant/node/6031",
+      "products": [
+        "home-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.msig.com.hk/zh-hant/node/6031",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.msig.com.hk/zh-hant/personal-insurance/private-motor-car",
+      "products": [
+        "motor-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.msig.com.hk/zh-hant/personal-insurance/private-motor-car",
+      "content_type": "text/html; charset=UTF-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.onedegree.hk/en-us/pet-insurance",
+      "products": [
+        "pet-onedegree"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.onedegree.hk/en-us/pet-insurance",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.onedegree.hk/zh-hk/home-insurance",
+      "products": [
+        "home-onedegree"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.onedegree.hk/zh-hk/home-insurance",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.onedegree.hk/zh-hk/pet-insurance",
+      "products": [
+        "pet-onedegree"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.onedegree.hk/zh-hk/pet-insurance",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.onedegree.hk/zh-hk/travel-insurance",
+      "products": [
+        "travel-asia-insurance"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.prudential.com.hk/",
+      "products": [
+        "topup-prudential-mediextra"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.prudential.com.hk/tc/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.prudential.com.hk/content/dam/prudential-phkl/pdf/en/brochure/pruhealth-critical-illness-extended-care-iii-product-brochure.pdf",
+      "products": [
+        "critical-illness-prudential"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.prudential.com.hk/content/dam/prudential-phkl/pdf/en/brochure/pruhealth-critical-illness-extended-care-iii-product-brochure.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.prudential.com.hk/content/dam/prudential-phkl/pdf/tc/macau/brochure/pruterm-family-protector-product-brochure.pdf.coredownload.inline.pdf",
+      "products": [
+        "life-prudential"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.prudential.com.hk/content/dam/prudential-phkl/pdf/tc/macau/brochure/pruterm-family-protector-product-brochure.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.prudential.com.hk/en/products/health/",
+      "products": [
+        "critical-illness-prudential"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.prudential.com.hk/en/products/health/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.prudential.com.hk/en/products/health/critical-illness/pruhealth-critical-illness-extended-care-iii/",
+      "products": [
+        "critical-illness-prudential"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.prudential.com.hk/en/products/health/critical-illness/pruhealth-critical-illness-extended-care-iii/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.prudential.com.hk/tc/.galleries/pdf/brochure/prucare-accident-cover-series-product-brochure.pdf",
+      "products": [
+        "accident-prudential"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.prudential.com.hk/content/dam/prudential-phkl/pdf/tc/brochure/prucare-accident-cover-series-product-brochure.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.prudential.com.hk/tc/claims-and-services/claims/claims-made-easy/accident-disability/",
+      "products": [
+        "accident-prudential"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.prudential.com.hk/tc/claims-and-services/claims/claims-made-easy/accident-disability/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.prudential.com.hk/tc/general-insurance/travel-insurance/pruchoice-travel/",
+      "products": [
+        "travel-prudential"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.prudential.com.hk/tc/health-insurance/",
+      "products": [
+        "high-end-prudential-apex"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.prudential.com.hk/tc/products/health/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.prudential.com.hk/tc/products/health/medical/prudential-VHIS-series/",
+      "products": [
+        "medical-prudential"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.prudential.com.hk/tc/products/health/medical/prudential-VHIS-series/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.prudential.com.hk/tc/products/health/medical/prudential-VHIS-series/pruhealth-flexichoice-medical-plan/",
+      "products": [
+        "medical-prudential"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.prudential.com.hk/tc/products/health/medical/prudential-VHIS-series/pruhealth-flexichoice-medical-plan/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.prudential.com.hk/tc/products/health/medical/prudential-VHIS-series/pruhealth-vhis-vip-plan/",
+      "products": [
+        "medical-prudential"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.prudential.com.hk/tc/products/health/medical/prudential-VHIS-series/pruhealth-vhis-vip-plan/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.prudential.com.hk/tc/products/life/life-protection/pruterm-family-protector/",
+      "products": [
+        "life-prudential"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.prudential.com.hk/tc/products/life/life-protection/pruterm-family-protector/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.prudential.com.hk/tc/products/travel-and-leisure/",
+      "products": [
+        "travel-prudential"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.prudential.com.hk/tc/products/travel-and-leisure/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.prudential.com.hk/zh-hk/general-insurance/home/",
+      "products": [
+        "home-prudential"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.prudential.com.hk/zh-hk/general-insurance/pet/",
+      "products": [
+        "pet-prudential"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.qbe.com/hk/zh-hk/personal-insurance/home-insurance",
+      "products": [
+        "home-qbe"
+      ],
+      "http_status": 403,
+      "error": "Forbidden"
+    },
+    {
+      "url": "https://www.qbe.com/media/qbe/asia/hongkong/files/agy/hksi_home_plus_protection_brochure.pdf",
+      "products": [
+        "home-qbe"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.qbe.com/media/qbe/asia/hongkong/files/agy/hksi_home_plus_protection_brochure.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.qbe.com/media/qbe/asia/hongkong/files/domestic-helper-protector-plan.pdf",
+      "products": [
+        "domestic-helper-qbe"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.qbe.com/media/qbe/asia/hongkong/files/domestic-helper-protector-plan.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.qbe.com/media/qbe/asia/hongkong/files/home-insurance-renewal/qbe_home_policy_wording_mil.pdf",
+      "products": [
+        "home-qbe"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.qbe.com/media/qbe/asia/hongkong/files/home-insurance-renewal/qbe_home_policy_wording_mil.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.qbe.com/media/qbe/asia/hongkong/files/personal-insurance/domestic-helper/hksi--domestic-helper-protector-plan-uwdbdmhv52001.pdf",
+      "products": [
+        "domestic-helper-qbe"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.qbe.com/media/qbe/asia/hongkong/files/personal-insurance/domestic-helper/hksi--domestic-helper-protector-plan-uwdbdmhv52001.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.qbe.com/media/qbe/asia/hongkong/files/personal-insurance/motor/qbe-motor-insurance-brochure---final.pdf",
+      "products": [
+        "motor-qbe"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.qbe.com/media/qbe/asia/hongkong/files/personal-insurance/motor/qbe-motor-insurance-brochure---final.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.qbe.com/media/qbe/asia/hongkong/files/personal-insurance/motor/qbe-motor-supersurance-brochure-1.pdf",
+      "products": [
+        "motor-qbe"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.qbe.com/media/qbe/asia/hongkong/files/personal-insurance/motor/qbe-motor-supersurance-brochure-1.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.qbe.com/media/qbe/asia/hongkong/files/qtouch/announcements/motor-policy-wordinguwdpvpcv22112304.pdf",
+      "products": [
+        "motor-qbe"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.qbe.com/media/qbe/asia/hongkong/files/qtouch/announcements/motor-policy-wordinguwdpvpcv22112304.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.starrinsurance.com.hk/static/products/pdf/starr_travelead_brochure_current.pdf",
+      "products": [
+        "travel-starr"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.starrinsurance.com.hk/zh-hk/domestic-helper-insurance",
+      "products": [
+        "domestic-helper-starr"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.starrinsurance.com.hk/zh-hk/home-insurance",
+      "products": [
+        "home-starr"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.starrinsurance.com.hk/zh-hk/products/travel/travelead",
+      "products": [
+        "travel-starr"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.starrinsurance.com.hk/zh-hk/travelead",
+      "products": [
+        "travel-starr"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.sunlife.com.hk/content/dam/sunlife/regional/hong-kong/documents/CMC_E.pdf",
+      "products": [
+        "critical-illness-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/content/dam/sunlife/regional/hong-kong/documents/CMC_E.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.sunlife.com.hk/content/dam/sunlife/regional/hong-kong/documents/One_Five_Term_TC.pdf",
+      "products": [
+        "life-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/content/dam/sunlife/regional/hong-kong/documents/One_Five_Term_TC.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.sunlife.com.hk/content/dam/sunlife/regional/hong-kong/documents/SunHealth-LovePromise_PB_EN.pdf",
+      "products": [
+        "critical-illness-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/content/dam/sunlife/regional/hong-kong/documents/SunHealth-LovePromise_PB_EN.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.sunlife.com.hk/content/dam/sunlife/regional/hong-kong/documents/WeHealth%20Prestige%20-%20Plan%204%20Chi.pdf",
+      "products": [
+        "medical-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/content/dam/sunlife/regional/hong-kong/documents/WeHealth%20Prestige%20-%20Plan%204%20Chi.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.sunlife.com.hk/content/dam/sunlife/regional/hong-kong/documents/WeHealth_Prestige_TC.pdf",
+      "products": [
+        "medical-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/content/dam/sunlife/regional/hong-kong/documents/WeHealth_Prestige_TC.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.sunlife.com.hk/en/insurance/health/critical-illness/",
+      "products": [
+        "critical-illness-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/en/insurance/health/critical-illness/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.sunlife.com.hk/zh-hans/insurance/health/voluntary-health-insurance-scheme/wehealth-prestige/",
+      "products": [
+        "medical-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/zh-hans/insurance/health/voluntary-health-insurance-scheme/wehealth-prestige/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.sunlife.com.hk/zh-hant/insurance/health/",
+      "products": [
+        "critical-illness-sun-life",
+        "medical-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/zh-hant/insurance/health/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.sunlife.com.hk/zh-hant/insurance/health/critical-illness/",
+      "products": [
+        "critical-illness-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/zh-hant/insurance/health/critical-illness/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.sunlife.com.hk/zh-hant/insurance/health/voluntary-health-insurance-scheme/wehealth-preferred/",
+      "products": [
+        "medical-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/zh-hant/insurance/health/voluntary-health-insurance-scheme/wehealth-preferred/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.sunlife.com.hk/zh-hant/insurance/health/voluntary-health-insurance-scheme/wehealth-prestige/",
+      "products": [
+        "medical-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/zh-hant/insurance/health/voluntary-health-insurance-scheme/wehealth-prestige/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.sunlife.com.hk/zh-hant/insurance/life-insurance/term-life-insurance/",
+      "products": [
+        "life-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/zh-hant/insurance/life-insurance/term-life-insurance/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.sunlife.com.hk/zh-hant/insurance/life-insurance/term-life-insurance/one-five-year-term-plan-ii/",
+      "products": [
+        "life-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/zh-hant/insurance/life-insurance/term-life-insurance/one-five-year-term-plan-ii/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.sunlife.com.hk/zh-hant/insurance/life-insurance/term-life-insurance/sunplus/",
+      "products": [
+        "life-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.sunlife.com.hk/zh-hant/insurance/life-insurance/term-life-insurance/sunplus/",
+      "content_type": "text/html;charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.sunlife.com.hk/zh-hk/insurance/accident/",
+      "products": [
+        "accident-sun-life"
+      ],
+      "http_status": 403,
+      "error": "Forbidden"
+    },
+    {
+      "url": "https://www.sunlife.com.hk/zh-hk/insurance/health-and-medical/sunhealth-prestige/",
+      "products": [
+        "high-end-sun-life-prestige"
+      ],
+      "http_status": 403,
+      "error": "Forbidden"
+    },
+    {
+      "url": "https://www.vhis.gov.hk",
+      "products": [
+        "medical-boc-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00036/F00036-01-000-02-PlanDoc-c.pdf",
+      "products": [
+        "medical-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00036/F00036-01-000-02-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00036/F00036-01-000-02-StandardPremium-c.pdf",
+      "products": [
+        "medical-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00036/F00036-01-000-02-StandardPremium-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00040/F00040-01-000-05-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-bupa"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00040/F00040-01-000-05-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00041/F00041-04-000-04-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-manulife"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00041/F00041-04-000-04-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00049/F00049-09-000-03-PlanDoc-c.pdf",
+      "products": [
+        "medical-hsbc-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00049/F00049-09-000-03-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00050/F00050-02-000-04-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-prudential"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00050/F00050-02-000-04-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00063/F00063-01-000-01-PlanDoc-c.pdf",
+      "products": [
+        "medical-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00063/F00063-01-000-01-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00063/F00063-01-000-01-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-sun-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/fp/F00063/F00063-01-000-01-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/hfp/F00022/F00022-03-000-03-002-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-aia"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/hfp/F00022/F00022-03-000-03-002-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/hsp/S00022/S00022-01-000-01-001-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-boc-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/hsp/S00022/S00022-01-000-01-001-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00012/S00012-01-000-03-PlanDoc-c.pdf",
+      "products": [
+        "medical-bolttech"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00012/S00012-01-000-03-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00012/S00012-01-000-03-StandardPremium-c.pdf",
+      "products": [
+        "medical-bolttech"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00012/S00012-01-000-03-StandardPremium-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00016/S00016-01-000-02-PlanDoc-c.pdf",
+      "products": [
+        "medical-china-taiping"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00016/S00016-01-000-02-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00016/S00016-01-000-02-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-china-taiping"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00016/S00016-01-000-02-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00017/S00017-01-000-02-PlanDoc-c.pdf",
+      "products": [
+        "medical-liberty-international"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00017/S00017-01-000-02-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00017/S00017-01-000-02-StandardPremium-c.pdf",
+      "products": [
+        "medical-liberty-international"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00017/S00017-01-000-02-StandardPremium-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00019/S00019-01-000-03-PlanDoc-c.pdf",
+      "products": [
+        "medical-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00019/S00019-01-000-03-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00019/S00019-01-000-03-StandardPremium-c.pdf",
+      "products": [
+        "medical-dah-sing"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00019/S00019-01-000-03-StandardPremium-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00021/S00021-01-000-02-PlanDoc-c.pdf",
+      "products": [
+        "medical-china-life-overseas"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00021/S00021-01-000-02-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00021/S00021-01-000-02-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-china-life-overseas"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00021/S00021-01-000-02-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00023/S00023-01-000-03-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-bowtie"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00023/S00023-01-000-03-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00025/S00025-01-000-02-PlanDoc-c.pdf",
+      "products": [
+        "medical-yf-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00025/S00025-01-000-02-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00025/S00025-01-000-02-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-yf-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00025/S00025-01-000-02-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00027/S00027-01-000-02-PlanDoc-c.pdf",
+      "products": [
+        "medical-asia-insurance"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00027/S00027-01-000-02-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00027/S00027-01-000-02-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-asia-insurance"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00027/S00027-01-000-02-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00028/S00028-01-000-03-PlanDoc-c.pdf",
+      "products": [
+        "medical-chow-tai-fook-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00028/S00028-01-000-03-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00028/S00028-01-000-03-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-chow-tai-fook-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00028/S00028-01-000-03-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00029/S00029-01-000-02-PlanDoc-c.pdf",
+      "products": [
+        "medical-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00029/S00029-01-000-02-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00029/S00029-01-000-02-StandardPremium-c.pdf",
+      "products": [
+        "medical-msig"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00029/S00029-01-000-02-StandardPremium-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00032/S00032-01-000-02-PlanDoc-c.pdf",
+      "products": [
+        "medical-blue-cross"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00032/S00032-01-000-02-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00032/S00032-01-000-02-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-blue-cross"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00032/S00032-01-000-02-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00035/S00035-01-000-02-PlanDoc-c.pdf",
+      "products": [
+        "medical-boc-group-insurance"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00035/S00035-01-000-02-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00035/S00035-01-000-02-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-boc-group-insurance"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00035/S00035-01-000-02-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00037/S00037-01-000-02-PlanDoc-c.pdf",
+      "products": [
+        "medical-hong-kong-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00037/S00037-01-000-02-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00037/S00037-01-000-02-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-hong-kong-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00037/S00037-01-000-02-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00039/S00039-01-000-02-PlanDoc-c.pdf",
+      "products": [
+        "medical-china-taiping-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00039/S00039-01-000-02-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00039/S00039-01-000-02-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-china-taiping-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00039/S00039-01-000-02-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00040/S00040-01-000-02-PlanDoc-c.pdf",
+      "products": [
+        "medical-well-link-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00040/S00040-01-000-02-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00040/S00040-01-000-02-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-well-link-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00040/S00040-01-000-02-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00043/S00043-01-000-01-PlanDoc-c.pdf",
+      "products": [
+        "medical-avo"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00043/S00043-01-000-01-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00043/S00043-01-000-01-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-avo"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00043/S00043-01-000-01-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00044/S00044-01-000-03-PlanDoc-c.pdf",
+      "products": [
+        "medical-chubb-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00044/S00044-01-000-03-PlanDoc-c.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00044/S00044-01-000-03-StandardPremium-Bilingual.pdf",
+      "products": [
+        "medical-chubb-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/certifiedplan/sp/S00044/S00044-01-000-03-StandardPremium-Bilingual.pdf",
+      "content_type": "application/pdf",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/doc/en/information_centre/Standard_Plan_Premium_Summary_Male.xlsx",
+      "products": [
+        "medical-asia-insurance",
+        "medical-avo",
+        "medical-blue-cross",
+        "medical-boc-group-insurance",
+        "medical-bolttech",
+        "medical-china-life-overseas",
+        "medical-china-taiping",
+        "medical-china-taiping-life",
+        "medical-chow-tai-fook-life",
+        "medical-chubb-life",
+        "medical-dah-sing",
+        "medical-hong-kong-life",
+        "medical-liberty-international",
+        "medical-msig",
+        "medical-well-link-life",
+        "medical-yf-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/doc/en/information_centre/Standard_Plan_Premium_Summary_Male.xlsx",
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/public/data/flexi-plans.csv",
+      "products": [
+        "medical-asia-insurance",
+        "medical-avo",
+        "medical-blue-cross",
+        "medical-boc-group-insurance",
+        "medical-bolttech",
+        "medical-china-life-overseas",
+        "medical-china-taiping",
+        "medical-china-taiping-life",
+        "medical-chow-tai-fook-life",
+        "medical-chubb-life",
+        "medical-dah-sing",
+        "medical-hong-kong-life",
+        "medical-liberty-international",
+        "medical-msig",
+        "medical-well-link-life",
+        "medical-yf-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/public/data/flexi-plans.csv",
+      "content_type": "text/csv",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/public/data/standard-plans.csv",
+      "products": [
+        "medical-asia-insurance",
+        "medical-avo",
+        "medical-blue-cross",
+        "medical-boc-group-insurance",
+        "medical-bolttech",
+        "medical-china-life-overseas",
+        "medical-china-taiping",
+        "medical-china-taiping-life",
+        "medical-chow-tai-fook-life",
+        "medical-chubb-life",
+        "medical-dah-sing",
+        "medical-hong-kong-life",
+        "medical-liberty-international",
+        "medical-msig",
+        "medical-well-link-life",
+        "medical-yf-life"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/public/data/standard-plans.csv",
+      "content_type": "text/csv",
+      "truncated": false
+    },
+    {
+      "url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html",
+      "products": [
+        "medical-aia",
+        "medical-asia-insurance",
+        "medical-avo",
+        "medical-axa",
+        "medical-blue-cross",
+        "medical-boc-group-insurance",
+        "medical-boc-life",
+        "medical-bolttech",
+        "medical-bowtie",
+        "medical-bupa",
+        "medical-china-life-overseas",
+        "medical-china-taiping",
+        "medical-china-taiping-life",
+        "medical-chow-tai-fook-life",
+        "medical-chubb-life",
+        "medical-cigna",
+        "medical-dah-sing",
+        "medical-fwd",
+        "medical-hong-kong-life",
+        "medical-hsbc-life",
+        "medical-liberty-international",
+        "medical-manulife",
+        "medical-msig",
+        "medical-prudential",
+        "medical-sun-life",
+        "medical-well-link-life",
+        "medical-yf-life",
+        "medical-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.vhis.gov.hk/tc/consumer_corner/list-plans.html",
+      "content_type": "text/html",
+      "truncated": false
+    },
+    {
+      "url": "https://www.zurich.com.hk/en/products/home/helpersafe-insurance-plan",
+      "products": [
+        "domestic-helper-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.zurich.com.hk/en/products/home/helpersafe-insurance-plan",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.zurich.com.hk/en/products/travel",
+      "products": [
+        "travel-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.zurich.com.hk/en/products/travel",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.zurich.com.hk/zh-hk/individuals/health-insurance/medelite",
+      "products": [
+        "high-end-zurich-medelite"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.zurich.com.hk/zh-hk/individuals/motor-insurance",
+      "products": [
+        "motor-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.zurich.com.hk/zh-hk/products/motor",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.zurich.com.hk/zh-hk/individuals/pet-insurance",
+      "products": [
+        "pet-zurich"
+      ],
+      "http_status": 404,
+      "error": "Not Found"
+    },
+    {
+      "url": "https://www.zurich.com.hk/zh-hk/products/accident-and-health/personal-accident/breezy-care-personal-accident-insurance-plan",
+      "products": [
+        "accident-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.zurich.com.hk/zh-hk/products/accident-and-health/personal-accident/breezy-care-personal-accident-insurance-plan",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.zurich.com.hk/zh-hk/products/home/breezy-home-insurance-plan-householder",
+      "products": [
+        "home-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.zurich.com.hk/zh-hk/products/home/breezy-home-insurance-plan-householder",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.zurich.com.hk/zh-hk/products/home/breezy-home-insurance-plan-landlord",
+      "products": [
+        "home-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.zurich.com.hk/zh-hk/products/home/breezy-home-insurance-plan-landlord",
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false
+    },
+    {
+      "url": "https://www.zurichcare.com.hk/UAf/uaf_ch/lib/pdf/G19006%20VHIS%20Brochure_CN_online.pdf",
+      "products": [
+        "medical-zurich"
+      ],
+      "http_status": 200,
+      "final_url": "https://www.zurichcare.com.hk/UAf/uaf_ch/lib/pdf/G19006%20VHIS%20Brochure_CN_online.pdf",
+      "content_type": "application/pdf",
+      "truncated": true
+    }
+  ]
+}

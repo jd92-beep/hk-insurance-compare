@@ -10,7 +10,7 @@ import { parsePremiumCurve } from "@/components/product/vhis-utils";
 /**
  * S2.2 保費資料：--paper-2 紙卡（左 4px 類別色邊）。
  * premium_range / premium_notes 原樣呈現；有公開保費 → 附對數尺規。
- * premium_notes 以「官方標準保費（年繳，港元）：」開頭 → parse 出年齡保費表，
+ * premium_notes 以「資料快照內的標準保費（年繳，港元）：」開頭 → parse 出年齡保費表，
  * 任何格式不符自動 fallback 純文字。標題旁可掛引文標記（citationEntries）。
  */
 export default function PremiumSection({
@@ -28,7 +28,7 @@ export default function PremiumSection({
     <div>
       <SectionHeading
         index="02"
-        title="保費資料"
+        title="保費資料（非即時報價）"
         aside={citationEntries && <CitationRef entries={citationEntries} />}
       />
       <motion.div
@@ -51,7 +51,7 @@ export default function PremiumSection({
         {curve ? (
           <div className="mt-5">
             <p className="mb-2.5 text-small font-bold text-ink-soft">
-              官方標準保費（年繳，港元）
+              資料快照內的標準保費（年繳，港元）
             </p>
             <div
               className="overflow-hidden rounded-card border bg-paper"
@@ -108,7 +108,7 @@ export default function PremiumSection({
           <div className="mt-6">
             <PriceRangeBar product={product} />
             <p className="mt-1 text-small text-ink-faint">
-              尺規顯示此產品保費範圍喺同類產品光譜（對數刻度）上嘅位置，僅供參考。
+              請先確認保費表的計劃級別、年齡、自付費及生效日期；續保價亦可能不同。
             </p>
           </div>
         )}

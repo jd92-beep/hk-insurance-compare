@@ -1,5 +1,6 @@
-import { priceDisplay, promoDisplay } from "@/lib/premium-display";
-import { ExternalLink, FileText, Plus, Check, Sparkles, Copy } from "lucide-react";
+import VerifiedPromotion from "@/components/VerifiedPromotion";
+import { priceDisplay } from "@/lib/premium-display";
+import { ExternalLink, FileText, Plus, Check } from "lucide-react";
 import { useNavigate } from "react-router";
 import type { Product } from "@/types/insurance";
 import type { FeatureMatchResult } from "@/lib/feature-filters";
@@ -8,7 +9,7 @@ import { useCompare } from "@/providers/CompareProvider";
 import PriceRangeBar from "@/components/PriceRangeBar";
 import StampBadge from "@/components/StampBadge";
 import { cn } from "@/lib/utils";
-import { toastPromoCopy, toastCompareToggle, copyTextToClipboard } from "@/lib/ui-feedback";
+import { toastCompareToggle } from "@/lib/ui-feedback";
 import { motion } from "framer-motion";
 import { MOTION } from "@/lib/motion-runtime";
 
@@ -35,11 +36,7 @@ export default function ProductCard({
   const highlights = (product.coverage ?? []).slice(0, 3);
   const sourceUrl = product.source_urls?.[0];
   const pricing = priceDisplay(product);
-  const promo = promoDisplay(product);
   const buyUrl = pricing.buyUrl;
-  const origPrice = pricing.originalPrice;
-  const discPrice = pricing.discountedPrice;
-  const hasDiscount = pricing.hasDiscount;
 
   const goDetail = () => navigate(`/product/${product.id}`);
 
@@ -127,64 +124,7 @@ export default function ProductCard({
           </div>
         )}
 
-        {/* 推廣折扣優惠與優惠碼 Badge */}
-        {promo.present && (
-          <div
-            className="flex flex-wrap items-center justify-between gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-2.5 py-1.5 text-[12px] font-medium"
-            onClick={(e) => e.stopPropagation()}
-            title={promo.disclaimer}
-          >
-            <div className="flex flex-wrap items-center gap-1.5">
-              <span className="inline-flex items-center gap-1 font-bold text-amber-900 dark:text-amber-200">
-                <Sparkles size={13} className="shrink-0 text-amber-600 dark:text-amber-400" />
-                {promo.badgeLabel}
-              </span>
-              {promo.discount && (
-                <span className="rounded bg-amber-500/20 px-1.5 py-0.2 text-[11px] font-bold text-amber-800 dark:text-amber-300">
-                  {promo.discount}
-                </span>
-              )}
-            </div>
-            {promo.code ? (
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  const code = promo.code!;
-                  void copyTextToClipboard(code).then((ok) => toastPromoCopy(ok, code));
-                }}
-                className="group/btn inline-flex items-center gap-1 rounded border border-amber-400/40 bg-paper px-2 py-0.5 font-mono text-[11px] font-bold text-amber-800 shadow-xs transition-all hover:scale-105 hover:border-amber-500 hover:bg-amber-100/60 active:scale-95 dark:bg-paper-2 dark:text-amber-200"
-                title="點擊複製優惠碼；期限／資格請向官網核實"
-              >
-                <span>{promo.code}</span>
-                <Copy size={11} className="text-amber-600 transition-transform group-hover/btn:scale-110" />
-              </button>
-            ) : promo.note ? (
-              <span className="text-[11px] text-ink-soft line-clamp-1" title={promo.note}>
-                {promo.note}
-              </span>
-            ) : null}
-          </div>
-        )}
-
-
-        {/* 官方即時折後價與劃線原價（參考價，以官網為準） */}
-        {hasDiscount && origPrice && discPrice && (
-          <div className="flex items-baseline gap-2 pt-0.5">
-            <span className="text-[12.5px] font-grotesk text-ink-faint line-through">
-              HK${origPrice.toLocaleString()}
-            </span>
-            <span className="font-grotesk text-[19px] font-black text-red">
-              HK${discPrice.toLocaleString()}
-            </span>
-            <span className="rounded bg-red/10 px-1.5 py-0.5 font-sans text-[11px] font-bold text-red">
-              {pricing.discountLabel}
-            </span>
-            <span className="text-[11px] text-ink-faint" title={pricing.disclaimer}>
-              （參考價，以官網為準）
-            </span>
-          </div>
-        )}
+        <VerifiedPromotion product={product} />
 
         {/* 保費尺規 / 即時報價 */}
         <PriceRangeBar product={product} />

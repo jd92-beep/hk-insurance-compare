@@ -1,3 +1,4 @@
+import VerifiedPromotion from "@/components/VerifiedPromotion";
 import { purchaseUrl } from "@/lib/product-availability";
 import { ExternalLink, FileText } from "lucide-react";
 import type { Product } from "@/types/insurance";
@@ -54,8 +55,6 @@ export default function ProductSideRail({
 
   const hasFacts = facts.annualLimitAmount || facts.premium30 || certs.length > 0;
   const buyUrl = purchaseUrl(product);
-  const origPrice = product.original_price ?? product.promo?.original_price;
-  const discPrice = product.discounted_price ?? product.promo?.discounted_price;
 
   return (
     <aside className={className}>
@@ -82,7 +81,7 @@ export default function ProductSideRail({
                 )}
                 {facts.premium30 && (
                   <div>
-                    <dt className="text-small text-ink-faint">30 歲年繳保費</dt>
+                    <dt className="text-small text-ink-faint">30 歲年繳保費（資料快照）</dt>
                     <dd className="font-grotesk text-[15px] font-bold leading-[1.5] text-ink">
                       男 HK${facts.premium30.male}
                       <span className="mx-1.5 text-ink-faint">／</span>女 HK$
@@ -109,33 +108,7 @@ export default function ProductSideRail({
               </>
             )}
 
-            {/* 即時折後價 / 劃線原價展示 */}
-            {discPrice && origPrice && (
-              <div className="mt-4 rounded-lg bg-red-wash/40 p-3 border border-red/20">
-                <p className="text-[11px] font-bold text-red">網上官方即時優惠</p>
-                <div className="mt-1 flex items-baseline gap-2">
-                  <span className="font-grotesk text-[13px] text-ink-faint line-through">
-                    HK${origPrice.toLocaleString()}
-                  </span>
-                  <span className="font-grotesk text-[20px] font-black text-red">
-                    HK${discPrice.toLocaleString()}
-                  </span>
-                  {product.promo?.discount && (
-                    <span className="rounded bg-red/10 px-1.5 py-0.5 text-[11px] font-bold text-red">
-                      {product.promo.discount}
-                    </span>
-                  )}
-                </div>
-                {product.promo?.code && (
-                  <div className="mt-1.5 flex items-center justify-between text-[11px]">
-                    <span className="text-ink-faint">優惠碼:</span>
-                    <span className="font-mono font-bold text-amber-800 dark:text-amber-300 bg-amber-100/70 dark:bg-amber-950/40 px-1.5 py-0.5 rounded">
-                      {product.promo.code}
-                    </span>
-                  </div>
-                )}
-              </div>
-            )}
+            <div className="mt-4"><VerifiedPromotion product={product} /></div>
 
             {buyUrl && (
               <a
@@ -144,7 +117,7 @@ export default function ProductSideRail({
                 rel="noopener noreferrer"
                 className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-[10px] bg-red px-4 py-2.5 text-small font-bold text-paper shadow-md transition-all hover:bg-red/90 hover:shadow-lg active:scale-95"
               >
-                <span>前往官網投保／報價</span>
+                <span>往官方網站核對</span>
                 <ExternalLink size={14} />
               </a>
             )}

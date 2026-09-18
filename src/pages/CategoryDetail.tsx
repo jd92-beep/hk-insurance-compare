@@ -1,3 +1,6 @@
+import { promoDisplay } from "@/lib/premium-display";
+import { isReferenceOnlyProduct } from "@/lib/product-availability";
+import { usePolicyCalendar } from "@/hooks/use-policy-calendar";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -19,7 +22,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import EmptyState from "@/components/EmptyState";
 import ProductCard from "@/components/ProductCard";
 import FilterBar from "@/components/category/FilterBar";
-import type { SortKey, ViewMode, TravelTripType, TravelRegion, PriceRangeKey } from "@/components/category/FilterBar";
+import type { SortKey, ViewMode, TravelTripType, TravelRegion } from "@/components/category/FilterBar";
 import ProductTable from "@/components/category/ProductTable";
 import UniversalComparisonChart from "@/components/category/UniversalComparisonChart";
 import TravelFlagshipBanner from "@/components/category/TravelFlagshipBanner";
@@ -39,7 +42,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { CATEGORY_META, categorySpectrum, premiumSortKey } from "@/lib/categories";
+import { CATEGORY_META } from "@/lib/categories";
 import {
   useCategories,
   useInsuranceData,
@@ -70,39 +73,16 @@ function AnimatedTitle({ text, className }: { text: string; className?: string }
   );
 }
 
-/** 排序 key 統一年繳化（/月 ×12、/日 ×365），避免月繳價同年繳價直接比大細 */
-function getProductPremiumKey(p: { premium_available: boolean; premium_range: string }): number {
-  return p.premium_available ? premiumSortKey(p.premium_range) : Number.POSITIVE_INFINITY;
-}
-
 /** 類別詳情（模板）`/category/:categoryId`（design/category.md S1–S6） */
 export default function CategoryDetail() {
   const { categoryId } = useParams<{ categoryId: string }>();
   const { loading, generatedAt } = useInsuranceData();
   const categories = useCategories();
   const directProducts = useProducts(categoryId);
-  const allMedicalProducts = useProducts("medical");
+  const products = directProducts;
   const isMobile = useIsMobile();
-
-  // 若 categoryId 為高端醫療或 Top-up 醫療且尚無專屬獨立產品，智能由自願醫保中提取對應高端／靈活或差額計劃
-  const products = useMemo(() => {
-    if (directProducts.length > 0) return directProducts;
-    if (categoryId === "high-end-medical") {
-      const highEndKeywords = ["高端", "尊耀", "尊衛您", "非凡", "Pink", "優越", "尚賓", "晉悅", "智尊守慧", "靈活"];
-      return allMedicalProducts.filter((p) => {
-        const text = `${p.product_name} ${p.product_name_zh} ${(p.plan_tiers || []).join(" ")}`;
-        return highEndKeywords.some((kw) => text.includes(kw));
-      });
-    }
-    if (categoryId === "top-up-medical") {
-      const topUpKeywords = ["差額", "SMM", "附加", "自付", "靈活配", "更衛您", "守護"];
-      return allMedicalProducts.filter((p) => {
-        const text = `${p.product_name} ${p.product_name_zh} ${(p.plan_tiers || []).join(" ")} ${p.premium_notes || ""}`;
-        return topUpKeywords.some((kw) => text.includes(kw));
-      });
-    }
-    return directProducts;
-  }, [directProducts, categoryId, allMedicalProducts]);
+  const today = usePolicyCalendar();
+  const [includeHistorical, setIncludeHistorical] = useState(false);
 
   const isTravel = categoryId === "travel";
   const [searchParams] = useSearchParams();
@@ -113,15 +93,12 @@ export default function CategoryDetail() {
   });
   const [onlyPremium, setOnlyPremium] = useState(false);
   const [sort, setSort] = useState<SortKey>("default");
-  const [premiumDir, setPremiumDir] = useState<"asc" | "desc">("asc");
   const [view, setView] = useState<ViewMode>("table");
 
   // 旅遊保險專屬篩選維度（旅程類型、覆蓋地區、即時折扣）
   const [travelTripType, setTravelTripType] = useState<TravelTripType>("all");
   const [travelRegion, setTravelRegion] = useState<TravelRegion>("all");
   const [onlyPromo, setOnlyPromo] = useState(false);
-  // 💰 按價錢篩選（支援折後實付價預算過濾）
-  const [priceRange, setPriceRange] = useState<PriceRangeKey>("all");
   // 🎯 智能保障挑選面板展開狀態（需求：預設收起 Collapsed，不佔用垂直空間）
   const [isFeaturePanelOpen, setIsFeaturePanelOpen] = useState(false);
   // 🏷️ 特點標籤漸進式揭示（Progressive Disclosure：預設只展開前 9 項精選）
@@ -162,7 +139,6 @@ export default function CategoryDetail() {
       .sort((a, b) => a.name.localeCompare(b.name));
   }, [products]);
 
-  const spectrum = useMemo(() => categorySpectrum(products), [products]);
 
   const categoryFeatureTags = useMemo(
     () => getCategoryFeatureTags(categoryId || ""),
@@ -171,7 +147,7 @@ export default function CategoryDetail() {
 
   // 1. 先套用基礎條件（公司、有保費、旅遊維度）並送入智能契合度評分引擎
   const rankedFeatureData = useMemo(() => {
-    let list = products;
+    let list = includeHistorical ? products : products.filter((product) => !isReferenceOnlyProduct(product));
     if (selectedInsurers.length > 0) {
       list = list.filter((p) => selectedInsurers.includes(p.insurer));
     }
@@ -180,43 +156,23 @@ export default function CategoryDetail() {
     // 旅遊保險專屬維度過濾
     if (isTravel) {
       if (travelTripType === "single") {
-        list = list.filter((p) => p.trip_type === "single" || p.trip_type === "both" || !p.trip_type);
+        list = list.filter((p) => p.trip_type === "single" || p.trip_type === "both");
       } else if (travelTripType === "annual") {
         list = list.filter((p) => p.trip_type === "annual" || p.trip_type === "both");
       }
 
       if (travelRegion === "asia") {
-        list = list.filter((p) => (p.destination_scope ? p.destination_scope.includes("asia") : true));
+        list = list.filter((p) => Boolean(p.destination_scope?.includes("asia")));
       } else if (travelRegion === "worldwide") {
-        list = list.filter((p) => (p.destination_scope ? p.destination_scope.includes("worldwide") : true));
+        list = list.filter((p) => Boolean(p.destination_scope?.includes("worldwide")));
       } else if (travelRegion === "gba") {
         list = list.filter((p) => (p.destination_scope ? p.destination_scope.includes("gba") : false));
       }
 
       if (onlyPromo) {
-        list = list.filter((p) => Boolean(p.promo));
+        list = list.filter((p) => promoDisplay(p, new Date(`${today}T12:00:00+08:00`)).present);
       }
     }
-
-    // 💰 按價錢篩選：以折後實付價 discounted_price 或 original_price 或年繳化保費數字為準
-    if (priceRange !== "all") {
-      list = list.filter((p) => {
-        if (!p.premium_available) return false;
-        // 取得產品實付價或折後基準價
-        const effPrice =
-          p.discounted_price ??
-          p.promo?.discounted_price ??
-          p.original_price ??
-          premiumSortKey(p.premium_range);
-        if (!Number.isFinite(effPrice) || effPrice <= 0) return false;
-        if (priceRange === "under100") return effPrice <= 100;
-        if (priceRange === "100to250") return effPrice >= 100 && effPrice <= 250;
-        if (priceRange === "250to500") return effPrice >= 250 && effPrice <= 500;
-        if (priceRange === "over500") return effPrice > 500;
-        return true;
-      });
-    }
-
 
     return filterAndRankProductsByFeatures(
       list,
@@ -232,7 +188,8 @@ export default function CategoryDetail() {
     travelTripType,
     travelRegion,
     onlyPromo,
-    priceRange,
+    today,
+    includeHistorical,
     selectedFeatures,
     categoryId,
     featureMatchMode,
@@ -247,53 +204,14 @@ export default function CategoryDetail() {
     return map;
   }, [rankedFeatureData]);
 
-  // 2. 最終排序：支援預設推薦、契合度最高、保費升/降序、最高保額、性價比推薦、公司字母A-Z
+  // Keyword-match ordering is not a price, suitability or claims ranking.
   const filtered = useMemo(() => {
-    const list = rankedFeatureData.results.map((r) => r.product);
-    if (sort === "default") {
-      return list;
-    }
-    const sorted = [...list];
-
-    if (sort === "fit-score") {
-      sorted.sort((a, b) => {
-        const ma = productMatchMap.get(a.id);
-        const mb = productMatchMap.get(b.id);
-        const countA = ma?.matchedCount ?? 0;
-        const countB = mb?.matchedCount ?? 0;
-        if (countA !== countB) return countB - countA;
-        const scoreA = ma?.score ?? 0;
-        const scoreB = mb?.score ?? 0;
-        if (scoreA !== scoreB) return scoreB - scoreA;
-        const ka = getProductPremiumKey(a);
-        const kb = getProductPremiumKey(b);
-        return ka - kb;
-      });
-    } else if (sort === "premium-asc" || (sort === "premium" && premiumDir === "asc")) {
-      sorted.sort((a, b) => {
-        const ka = getProductPremiumKey(a);
-        const kb = getProductPremiumKey(b);
-        const aNone = !Number.isFinite(ka);
-        const bNone = !Number.isFinite(kb);
-        if (aNone !== bNone) return aNone ? 1 : -1;
-        return ka - kb;
-      });
-    } else if (sort === "premium-desc" || (sort === "premium" && premiumDir === "desc")) {
-      sorted.sort((a, b) => {
-        const ka = getProductPremiumKey(a);
-        const kb = getProductPremiumKey(b);
-        const aNone = !Number.isFinite(ka);
-        const bNone = !Number.isFinite(kb);
-        if (aNone !== bNone) return aNone ? 1 : -1;
-        return kb - ka;
-      });
-    } else if (sort === "insurer-az" || sort === "insurer") {
-      sorted.sort((a, b) => a.insurer.localeCompare(b.insurer) || a.id.localeCompare(b.id));
-    } else if (sort === "coverage") {
-      sorted.sort((a, b) => (b.coverage?.length ?? 0) - (a.coverage?.length ?? 0));
-    }
-    return sorted;
-  }, [rankedFeatureData, sort, premiumDir, productMatchMap]);
+    const list = rankedFeatureData.results.map((result) => result.product);
+    if (sort === "insurer-az") return [...list].sort((a, b) => a.insurer.localeCompare(b.insurer) || a.id.localeCompare(b.id));
+    if (sort === "fit-score") return [...list].sort((a, b) =>
+      (productMatchMap.get(b.id)?.matchedCount ?? 0) - (productMatchMap.get(a.id)?.matchedCount ?? 0) || a.id.localeCompare(b.id));
+    return list;
+  }, [rankedFeatureData, sort, productMatchMap]);
 
   // 🔍 特點即時微型搜尋欄輸入字串
   const [featureSearchQuery, setFeatureSearchQuery] = useState("");
@@ -305,11 +223,10 @@ export default function CategoryDetail() {
     setSelectedInsurers([]);
     setOnlyPremium(false);
     setSort("default");
-    setPremiumDir("asc");
     setTravelTripType("all");
     setTravelRegion("all");
     setOnlyPromo(false);
-    setPriceRange("all");
+    setIncludeHistorical(false);
     setIsFeaturePanelOpen(false);
     setIsExpandedTags(false);
     setSelectedFeatures([]);
@@ -381,7 +298,7 @@ export default function CategoryDetail() {
     selectedInsurers.length > 0 ||
     onlyPremium ||
     sort !== "default" ||
-    priceRange !== "all" ||
+    includeHistorical ||
     selectedFeatures.length > 0 ||
     Boolean(featureSearchQuery) ||
     (isTravel && (travelTripType !== "all" || travelRegion !== "all" || onlyPromo));
@@ -390,9 +307,8 @@ export default function CategoryDetail() {
     setSelectedInsurers([]);
     setOnlyPremium(false);
     setSort("default");
-    setPremiumDir("asc");
     setSelectedFeatures([]);
-    setPriceRange("all");
+    setIncludeHistorical(false);
     setFeatureMatchMode("smart");
     setFeatureSearchQuery("");
     if (isTravel) {
@@ -412,29 +328,6 @@ export default function CategoryDetail() {
     setSelectedInsurers((prev) =>
       prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name],
     );
-  };
-
-  const handleSortChange = (s: SortKey) => {
-    setSort(s);
-    if (s === "premium-asc" || s === "premium") setPremiumDir("asc");
-    if (s === "premium-desc") setPremiumDir("desc");
-  };
-
-  const handleTogglePremiumSort = () => {
-    if (sort === "premium-asc") {
-      setSort("premium-desc");
-      setPremiumDir("desc");
-    } else if (sort === "premium-desc") {
-      setSort("premium-asc");
-      setPremiumDir("asc");
-    } else if (sort === "premium") {
-      const nextDir = premiumDir === "asc" ? "desc" : "asc";
-      setPremiumDir(nextDir);
-      setSort(nextDir === "asc" ? "premium-asc" : "premium-desc");
-    } else {
-      setSort("premium-asc");
-      setPremiumDir("asc");
-    }
   };
 
   /* ── 未載入 ── */
@@ -1156,8 +1049,7 @@ export default function CategoryDetail() {
         onlyPremium={onlyPremium}
         onTogglePremium={() => setOnlyPremium((v) => !v)}
         sort={sort}
-        premiumDir={premiumDir}
-        onSortChange={handleSortChange}
+        onSortChange={setSort}
         view={effectiveView}
         onViewChange={setView}
         showViewToggle={!isMobile}
@@ -1172,8 +1064,8 @@ export default function CategoryDetail() {
         onTravelRegionChange={setTravelRegion}
         onlyPromo={onlyPromo}
         onTogglePromo={() => setOnlyPromo((v) => !v)}
-        priceRange={priceRange}
-        onPriceRangeChange={setPriceRange}
+        includeHistorical={includeHistorical}
+        onToggleHistorical={() => setIncludeHistorical((value) => !value)}
         activeFeatureCount={selectedFeatures.length}
       />
 
@@ -1219,15 +1111,6 @@ export default function CategoryDetail() {
                     products={filtered}
                     color={color}
                     coverageKeywords={copy.coverageKeywords}
-                    spectrum={spectrum}
-                    premiumSortDir={
-                      sort === "premium-asc" || (sort === "premium" && premiumDir === "asc")
-                        ? "asc"
-                        : sort === "premium-desc" || (sort === "premium" && premiumDir === "desc")
-                          ? "desc"
-                          : null
-                    }
-                    onTogglePremiumSort={handleTogglePremiumSort}
                     productMatchMap={productMatchMap}
                   />
                 </motion.div>

@@ -1,25 +1,18 @@
+import VerifiedPromotion from "@/components/VerifiedPromotion";
 import { purchaseUrl } from "@/lib/product-availability";
 import { Fragment, useState, type MouseEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  ArrowDown,
-  ArrowUp,
   Check,
   ChevronDown,
-  Copy,
   ExternalLink,
   FileText,
   Plus,
-  Sparkles,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
-import { toastPromoCopy, copyTextToClipboard } from "@/lib/ui-feedback";
 import type { CoverageItem, Product } from "@/types/insurance";
-import type { PremiumSpectrum } from "@/lib/categories";
 import type { FeatureMatchResult } from "@/lib/feature-filters";
-import { parsePremiumAmounts, premiumUnitHint } from "@/lib/categories";
-import PriceRangeBar from "@/components/PriceRangeBar";
 import StampBadge from "@/components/StampBadge";
 import PdfViewerDrawer from "@/components/product/PdfViewerDrawer";
 import { useCompare } from "@/providers/CompareProvider";
@@ -27,10 +20,6 @@ import { cn } from "@/lib/utils";
 
 function truncate(text: string, max: number): string {
   return text.length > max ? `${text.slice(0, max)}…` : text;
-}
-
-function formatHKD(n: number): string {
-  return `HK$${n.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
 }
 
 /** 表格「重點保障」欄：按類別關鍵字揀 coverage 項目，唔夠就用順序補夠 2 項 */
@@ -145,41 +134,7 @@ function ExpandedRow({
           className="overflow-hidden"
         >
           <div className="grid grid-cols-1 gap-6 py-5 md:grid-cols-2">
-            {product.promo && (
-              <div className="col-span-full rounded-lg border border-amber-500/30 bg-amber-500/10 p-3.5 text-small">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 font-bold text-amber-900 dark:text-amber-200">
-                      <Sparkles size={14} className="shrink-0 text-amber-600 dark:text-amber-400" />
-                      專屬推廣優惠：{product.promo.tag}
-                    </span>
-                    {product.promo.discount && (
-                      <span className="rounded bg-amber-500/20 px-1.5 py-0.5 text-[11px] font-bold text-amber-800 dark:text-amber-300">
-                        {product.promo.discount}
-                      </span>
-                    )}
-                  </div>
-                  {product.promo.code && (
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        const code = product.promo!.code!;
-                        void copyTextToClipboard(code).then((ok) => toastPromoCopy(ok, code));
-                      }}
-                      className="inline-flex items-center gap-1.5 rounded border border-amber-400/40 bg-paper px-2.5 py-1 font-mono text-[11.5px] font-bold text-amber-800 shadow-2xs transition-transform hover:scale-105 active:scale-95 hover:bg-amber-100 dark:bg-paper-2 dark:text-amber-200"
-                      title="點擊複製優惠碼；期限／資格請向官網核實"
-                    >
-                      <span>複製優惠碼: {product.promo.code}</span>
-                      <Copy size={12} className="text-amber-600" />
-                    </button>
-                  )}
-                </div>
-                {product.promo.note && (
-                  <p className="mt-1.5 text-[12px] text-ink-soft">{product.promo.note}</p>
-                )}
-              </div>
-            )}
+            <div className="col-span-full"><VerifiedPromotion product={product} /></div>
             <div>
               <p className="mb-2.5 text-small font-bold text-ink">
                 全部保障項目
@@ -254,18 +209,11 @@ export default function ProductTable({
   products,
   color,
   coverageKeywords,
-  spectrum,
-  premiumSortDir,
-  onTogglePremiumSort,
   productMatchMap,
 }: {
   products: Product[];
   color: string;
   coverageKeywords: string[];
-  spectrum: PremiumSpectrum | null;
-  /** null = 未按保費排序 */
-  premiumSortDir: "asc" | "desc" | null;
-  onTogglePremiumSort: () => void;
   productMatchMap?: Map<string, FeatureMatchResult>;
 }) {
   const navigate = useNavigate();
@@ -331,20 +279,7 @@ export default function ProductTable({
         <thead className="sticky top-[72px] z-20">
           <tr className="border-b" style={{ borderColor: "var(--line-strong)" }}>
             <th className={cn(thBase, "w-[21%] px-5")}>保險公司 / 產品</th>
-            <th className={cn(thBase, "w-[19%]")}>
-              <button
-                type="button"
-                onClick={onTogglePremiumSort}
-                className="inline-flex items-center gap-1 transition-colors hover:text-red"
-              >
-                保費範圍
-                {premiumSortDir === "asc" && <ArrowUp size={13} className="text-red" />}
-                {premiumSortDir === "desc" && <ArrowDown size={13} className="text-red" />}
-                {premiumSortDir === null && (
-                  <ArrowUp size={13} className="opacity-30" aria-hidden="true" />
-                )}
-              </button>
-            </th>
+            <th className={cn(thBase, "w-[19%]")}>保費資料（非即時報價）</th>
             <th className={cn(thBase, "w-[15%]")}>計劃層級</th>
             <th className={cn(thBase, "w-[21%]")}>重點保障</th>
             <th className={cn(thBase, "w-[13%]")}>主要條款</th>
@@ -356,8 +291,6 @@ export default function ProductTable({
           {products.map((p, i) => {
             const inTray = compare.has(p.id);
             const expanded = expandedId === p.id;
-            const amounts = p.premium_available ? parsePremiumAmounts(p.premium_range) : [];
-            const unitHint = p.premium_available ? premiumUnitHint(p.premium_range) : null;
             const keyCoverage = pickKeyCoverage(p.coverage ?? [], coverageKeywords);
             const tiers = p.plan_tiers ?? [];
             const sourceUrl = p.source_urls?.[0];
@@ -428,33 +361,7 @@ export default function ProductTable({
                         </span>
                       </div>
                     )}
-                    {p.promo && (
-                      <div className="mt-1.5 flex flex-wrap items-center gap-1">
-                        <span className="inline-flex items-center gap-1 rounded border border-amber-500/30 bg-amber-500/15 px-1.5 py-0.5 text-[11px] font-bold text-amber-900 dark:text-amber-200">
-                          <Sparkles size={11} className="shrink-0 text-amber-600 dark:text-amber-400" />
-                          {p.promo.tag}
-                        </span>
-                        {p.promo.discount && (
-                          <span className="rounded bg-amber-500/20 px-1 py-0.2 text-[10px] font-bold text-amber-800 dark:text-amber-300">
-                            {p.promo.discount}
-                          </span>
-                        )}
-                        {p.promo.code && (
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              void copyTextToClipboard(p.promo!.code!).then((ok) => toastPromoCopy(ok, p.promo!.code!));
-                            }}
-                            className="inline-flex items-center gap-0.5 rounded border border-amber-400/40 bg-paper px-1.5 py-0.5 font-mono text-[10.5px] font-bold text-amber-800 shadow-2xs hover:bg-amber-100/70 dark:bg-paper-2 dark:text-amber-200"
-                            title="點擊複製優惠碼"
-                          >
-                            <span>碼: {p.promo.code}</span>
-                            <Copy size={9} className="ml-0.5 text-amber-600" />
-                          </button>
-                        )}
-                      </div>
-                    )}
+                    <VerifiedPromotion product={p} />
                     <span className="mt-1.5 inline-flex items-center gap-1 text-[12px] font-medium text-ink-faint transition-colors group-hover:text-ink-soft">
                       <ChevronDown
                         size={13}
@@ -464,49 +371,13 @@ export default function ProductTable({
                     </span>
                   </td>
 
-                  {/* 保費範圍（完整顯示，唔截斷；支援實付折後價與劃線原價） */}
                   <td className="px-4 py-4 align-top">
-                    {p.premium_available && amounts.length > 0 ? (
-                      <div>
-                        {/* 若有即時官方折扣，顯示劃線原價與實付折後價 */}
-                        {((p.discounted_price && p.original_price && p.original_price > p.discounted_price) ||
-                          (p.promo?.discounted_price && p.promo?.original_price && p.promo.original_price > p.promo.discounted_price)) && (
-                          <div className="flex items-baseline gap-1.5 mb-0.5">
-                            <span className="text-[12px] font-grotesk text-ink-faint line-through">
-                              HK${(p.original_price || p.promo?.original_price)?.toLocaleString()}
-                            </span>
-                            <span className="font-grotesk text-[17px] font-black text-red">
-                              HK${(p.discounted_price || p.promo?.discounted_price)?.toLocaleString()} 起
-                            </span>
-                            <span className="rounded bg-red/10 px-1 py-0.2 text-[10px] font-bold text-red">
-                              {p.promo?.discount || "折後價"}
-                            </span>
-                          </div>
-                        )}
-                        <span className="text-price text-ink">
-                          {formatHKD(Math.min(...amounts))}
-                          {Math.max(...amounts) !== Math.min(...amounts) && (
-                            <span className="text-ink-faint"> 起</span>
-                          )}
-                          {unitHint && (
-                            <span className="ml-1.5 font-sans text-[11.5px] font-medium text-ink-faint">
-                              {unitHint}
-                            </span>
-                          )}
-                        </span>
-                        <PriceRangeBar product={p} spectrum={spectrum} className="mt-1 h-12" />
-                        <span className="mt-1 block whitespace-normal break-words text-[12.5px] leading-[1.6] text-ink-faint">
-                          {p.premium_range}
-                        </span>
-                      </div>
-                    ) : (
-                      <div>
-                        <span className="chip bg-amber-wash font-bold text-amber">官網即時報價</span>
-                        <span className="mt-2 block whitespace-normal break-words text-small leading-[1.6] text-ink-faint">
-                          {p.premium_range}
-                        </span>
-                      </div>
-                    )}
+                    <p className="font-semibold text-ink">{p.premium_available ? "有參考保費資料" : "需個別報價"}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-ink-soft">不同年齡、計劃及保障期，唔可以直接比價。</p>
+                    <details className="mt-2" onClick={(event) => event.stopPropagation()}>
+                      <summary className="min-h-11 cursor-pointer content-center text-sm font-semibold text-jade">查看保費資料快照</summary>
+                      <p className="mt-2 whitespace-normal break-words text-sm leading-relaxed text-ink-soft">{p.premium_range}</p>
+                    </details>
                   </td>
 
                   {/* 計劃層級 */}

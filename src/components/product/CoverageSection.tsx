@@ -117,8 +117,9 @@ function CoverageItemTitle({
             href={sourceUrl}
             target={`doc_viewer_${productId.replace(/[^a-zA-Z0-9_-]/g, "_")}`}
             rel="noreferrer"
-            className="text-ink-faint transition-colors hover:text-jade"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center text-ink-soft transition-colors hover:text-jade"
             title="在新分頁獨立開啟"
+            aria-label={`${item}：在新分頁開啟來源`}
           >
             <ExternalLink size={12} className="shrink-0" />
           </a>
@@ -136,7 +137,7 @@ function CoverageItemTitle({
       {hasDoc && (
         <span className="inline-flex items-center gap-1 text-[11px] font-normal leading-normal text-ink-faint">
           <span>
-            📄 官方出處：{documentName ?? "官方文件"}
+            資料來源：{documentName ?? "官方文件"}
             {page != null ? ` · 第 ${page} 頁` : ""}
           </span>
         </span>

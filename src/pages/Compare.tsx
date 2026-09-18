@@ -399,11 +399,6 @@ export default function Compare() {
           </Link>
         )}
         <CompareShareButton ids={products.map(product => product.id)} className="inline-flex h-[52px] items-center gap-2 rounded-[10px] px-4 text-small font-bold text-ink-soft transition-colors hover:text-red" />
-        <ComparisonExportButton
-          key={`bottom-${products.map(product => product.id).join(",")}`}
-          products={products}
-          snapshotDate={generatedAt}
-        />
       </motion.div>
 
       {/* S5 比較須知 */}

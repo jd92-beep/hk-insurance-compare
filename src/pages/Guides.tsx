@@ -5,6 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import GuideCard from "@/components/guides/GuideCard";
 import GlossarySection from "@/components/guides/GlossarySection";
 import FaqAccordion from "@/components/guides/FaqAccordion";
+import ClaimResourcesSection from "@/components/guides/ClaimResourcesSection";
 import { GUIDES } from "@/components/guides/guides-data";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -92,6 +93,9 @@ export default function Guides() {
 
       {/* S4 常見問題 */}
       <FaqAccordion />
+
+      {/* S4.5 投保／索償教育資源（唔係中介人、唔提供投保建議） */}
+      <ClaimResourcesSection />
 
       {/* S5 底部 CTA */}
       <section className="pb-24 md:pb-32">

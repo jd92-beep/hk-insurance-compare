@@ -1,10 +1,12 @@
 import { useMemo, useState, type ReactNode } from 'react';
+import { Link } from 'react-router';
 import type { Product } from '@/types/insurance';
 import { resolveCoverage } from '@/components/compare/canonical-benefits';
-import { CoverageLimitCell, DocumentsCell, ExclusionsCell, KeyTermsCell, PlanTiersCell, PremiumNotesCell, PremiumRangeCell, SourceLinksCell } from '@/components/compare/cells';
+import { CoverageLimitCell, DocumentsCell, EvidenceStatusCell, ExclusionsCell, KeyTermsCell, PlanTiersCell, PremiumNotesCell, PremiumRangeCell, SourceLinksCell } from '@/components/compare/cells';
+import { COMPARE_GLOSSARY_NOTE } from '@/lib/evidence-status';
 
 /** Semantic table. Differences are textual differences, never a product winner. */
-export default function ComparisonGrid({ products }: { products: Product[]; spare?: boolean }) {
+export default function ComparisonGrid({ products, generatedAt }: { products: Product[]; spare?: boolean; generatedAt?: string }) {
   const [differencesOnly, setDifferencesOnly] = useState(false);
   const resolved = useMemo(() => resolveCoverage(products), [products]);
   const rows = [...resolved.matched, ...resolved.others].filter(row => !differencesOnly || new Set(row.limits.map(value => value?.trim() || '未提供')).size > 1);
@@ -29,8 +31,16 @@ export default function ComparisonGrid({ products }: { products: Product[]; spar
           {row('保費有咩條件？', p => <PremiumNotesCell product={p} />)}
           {row('記錄的文件名稱', p => <DocumentsCell product={p} />)}
           {row('原文來源', p => <SourceLinksCell product={p} />)}
+          {row('來源欄位狀態（非核實）', p => <EvidenceStatusCell product={p} generatedAt={generatedAt} />)}
         </tbody>
       </table>
     </div>
+    <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+      {COMPARE_GLOSSARY_NOTE}
+      {' '}
+      <Link to="/guides" className="inline-flex min-h-11 items-center font-semibold text-jade underline underline-offset-2">
+        投保指南・詞彙
+      </Link>
+    </p>
   </div>;
 }

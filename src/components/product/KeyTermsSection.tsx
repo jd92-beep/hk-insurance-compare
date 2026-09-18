@@ -7,6 +7,7 @@ import SectionHeading, {
 } from "@/components/product/SectionHeading";
 import CitationRef from "@/components/product/citation/CitationRef";
 import type { CitationEntry } from "@/components/product/citation/citation-utils";
+import { GlossaryMoreLink, GlossaryText } from "@/components/guides/GlossaryTerm";
 import { cn } from "@/lib/utils";
 
 const PREVIEW_LEN = 40;
@@ -75,7 +76,7 @@ export default function KeyTermsSection({
                   §
                 </span>
                 <span className="flex-1 text-[15px] leading-[1.8] text-ink">
-                  {/* 收合：前 40 字預覽 */}
+                  {/* 收合：前 40 字預覽（abbr-only，避免巢狀 button） */}
                   <span
                     className={cn(
                       "grid transition-all",
@@ -83,7 +84,9 @@ export default function KeyTermsSection({
                     )}
                     style={{ transitionDuration: "350ms", transitionTimingFunction: QUART_CSS }}
                   >
-                    <span className="block overflow-hidden">{preview}</span>
+                    <span className="block overflow-hidden">
+                      <GlossaryText text={preview} interactive={false} />
+                    </span>
                   </span>
                   {/* 展開：完整原文 */}
                   <span
@@ -93,7 +96,9 @@ export default function KeyTermsSection({
                     )}
                     style={{ transitionDuration: "350ms", transitionTimingFunction: QUART_CSS }}
                   >
-                    <span className="block overflow-hidden">{term}</span>
+                    <span className="block overflow-hidden">
+                      <GlossaryText text={term} interactive={false} />
+                    </span>
                   </span>
                 </span>
                 <Plus
@@ -109,9 +114,12 @@ export default function KeyTermsSection({
           );
         })}
       </motion.ul>
-      <p className="mt-3 text-small text-ink-faint">
-        以上為官方文件節錄，完整條款以保單原文為準。
-      </p>
+      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1">
+        <p className="text-small text-ink-faint">
+          以上為官方文件節錄，完整條款以保單原文為準。詞義只作教育用途，唔代表呢份保單一定有該項保障。
+        </p>
+        <GlossaryMoreLink />
+      </div>
     </div>
   );
 }

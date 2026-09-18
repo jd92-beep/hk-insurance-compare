@@ -368,6 +368,84 @@ export interface FaqItem {
   a: string;
 }
 
+export interface ClaimResourceBlock {
+  id: string;
+  title: string;
+  points: string[];
+}
+
+export interface ClaimResourceLink {
+  org: string;
+  label: string;
+  href: string;
+}
+
+export interface ClaimResources {
+  intro: string;
+  notAdvisor: string;
+  disclaimer: string;
+  blocks: ClaimResourceBlock[];
+  officialLinks: ClaimResourceLink[];
+}
+
+/**
+ * 投保／索償教育資源（education, NOT advice）。
+ * 只連結官方教育／投訴入口；唔提供投保建議、唔保證賠償、唔報任何成功率。
+ */
+export const CLAIM_RESOURCES: ClaimResources = {
+  intro:
+    "以下係一般教育資訊，幫你認得保單常見字眼同準備方向。賠唔賠、賠幾多，一律以你份保單條款同保險公司處理結果為準。",
+  notAdvisor: "本網站唔係中介人，唔提供投保建議。",
+  disclaimer:
+    "本站只做資料整理同比較，唔賣保險、唔做轉介、唔持有保險牌照。索償文件要求、通知時限等因公司同產品而異，以保單為準；本站唔保證賠償，亦唔會估算你嘅個案結果。",
+  blocks: [
+    {
+      id: "before-buying",
+      title: "投保前核對",
+      points: [
+        "核對不保事項：邊啲情況保單列明唔賠，逐項睇清楚。",
+        "核對等候期：生效後幾耐先有保障，危疾／醫療尤其重要。",
+        "核對自負額（墊底費）：你要先自己承擔幾多，點計。",
+        "核對計劃層級：同一產品唔同級別，保額同條款可以差好遠。",
+        "保留官方文件：產品小冊子、保費表、條款同投保確認，留低先有得對。",
+      ],
+    },
+    {
+      id: "claim-prep",
+      title: "索償常見要準備",
+      points: [
+        "收據同付款證明：門診、住院、藥費等原始單據要齊。",
+        "醫療報告／診斷證明：按保險公司要求提供副本或正本。",
+        "通知時限：幾時要通知保險公司、幾時交文件，以保單條款為準，唔同計劃唔一樣。",
+        "填妥索償表格：資料要同醫療文件一致，避免來回補件。",
+        "本站唔保證賠償：準備齊文件唔等於一定賠，結果以保單同批核為準。",
+      ],
+    },
+  ],
+  officialLinks: [
+    {
+      org: "IFEC",
+      label: "投資者及理財教育委員會（理財教育資料）",
+      href: "https://www.ifec.org.hk",
+    },
+    {
+      org: "IA",
+      label: "保監局教育專區（education.ia.org.hk）",
+      href: "https://education.ia.org.hk",
+    },
+    {
+      org: "ICB",
+      label: "保險投訴局（Insurance Complaints Bureau）",
+      href: "https://www.icb.org.hk",
+    },
+    {
+      org: "VHIS",
+      label: "自願醫保官方網站（vhis.gov.hk）",
+      href: "https://www.vhis.gov.hk",
+    },
+  ],
+};
+
 export const FAQS: FaqItem[] = [
   {
     q: "本站嘅數據可唔可以信？",

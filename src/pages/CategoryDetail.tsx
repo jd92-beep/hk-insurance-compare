@@ -71,7 +71,7 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
       <p className="mt-4 max-w-3xl text-lg leading-relaxed text-ink-soft">{copy.sub}</p>
       <p className="mt-3 max-w-3xl text-base leading-relaxed text-ink-soft">先揀資料 → 加入比較 → 核對條款。本站唔係全市場清單，亦唔提供個人投保建議。</p>
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-line bg-paper-2 px-4 py-3 text-sm text-ink-soft">
-        <span>資料快照：{generatedAt}；唔代表全部條款已更新。<Link to="/data-quality" className="ml-2 inline-flex min-h-11 items-center font-semibold text-jade underline">查看覆核狀態</Link></span>
+        <span>資料快照：{generatedAt}；唔代表全部條款已更新。<Link to="/data-quality" className="ml-2 inline-flex min-h-11 items-center font-semibold text-jade underline">查看覆核狀態</Link><Link to={`/guides#${categoryId}`} className="ml-2 inline-flex min-h-11 items-center font-semibold text-jade underline">睇「點揀」指南</Link></span>
         <Link to="/compare" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-line-strong bg-paper px-4 font-semibold text-ink"><Scale size={18} aria-hidden="true" />開啟比較清單</Link>
       </div>
       <label htmlFor="catalogue-search" className="mt-6 block text-base font-bold text-ink">搵保險公司或產品名稱</label>
@@ -81,7 +81,7 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
     {tags.length > 0 && <section className="site-container pt-5">
       <details className="rounded-xl border border-line bg-paper p-4">
         <summary className="min-h-11 cursor-pointer py-2 text-base font-bold text-ink">再按保障項目篩選{selectedFeatures.length ? `（已揀 ${selectedFeatures.length} 項）` : '（可略過）'}</summary>
-        <p className="mt-2 text-base leading-relaxed text-ink-soft">呢度只搵摘要入面相關字眼，唔代表已確認受保。限制同不保事項仍然要睇原文。</p>
+        <p className="mt-2 text-base leading-relaxed text-ink-soft">呢度只搵摘要入面相關字眼，唔代表已確認受保。限制同不保事項仍然要睇原文。例如「自駕遊」可以試篩「租車」；「滑雪」可以試篩相關運動標籤——呢啲只係檢索條件，唔係投保建議。</p>
         <label className="mt-4 block text-sm font-semibold text-ink">搵保障項目<input value={featureQuery} onChange={e => setFeatureQuery(e.target.value)} type="search" maxLength={80} className="mt-2 block min-h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-base" placeholder="例如：租車、醫療" /></label>
         <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {tags.filter(tag => `${tag.label} ${tag.keywords.join(' ')}`.toLowerCase().includes(featureQuery.trim().toLowerCase())).map(tag => <label key={tag.id} className="flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border border-line px-3 py-3 text-base leading-relaxed text-ink"><input type="checkbox" checked={selectedFeatures.includes(tag.id)} onChange={() => setSelectedFeatures(current => current.includes(tag.id) ? current.filter(id => id !== tag.id) : [...current, tag.id])} className="mt-1 h-5 w-5 shrink-0 accent-[var(--jade)]" />{tag.label}</label>)}

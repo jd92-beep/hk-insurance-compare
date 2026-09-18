@@ -263,12 +263,12 @@ export default function TravelFlagshipBanner({
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="rounded bg-amber-400 px-2 py-0.5 text-[11px] font-bold text-amber-950">
-                        精算結果
+                        簡單分類結果
                       </span>
                       <span className="text-[14px] font-bold text-amber-300">
                         {calculation.isAnnualBetter
-                          ? "推薦購買：全年旅遊保險（Annual Multi-Trip Plan）"
-                          : "推薦購買：單次旅程保險（Single Trip Plan）"}
+                          ? "若旅程頻密，可先研究全年計劃條款（唔係購買建議）"
+                          : "若以單次旅程為主，可先比較單次計劃條款（唔係購買建議）"}
                       </span>
                     </div>
                     <p className="mt-1 text-[13px] text-sky-100/90">

@@ -7,6 +7,7 @@ import { useCategories, useInsuranceData, useInsurers, useProducts } from "@/pro
 import { useSearch } from "@/providers/SearchProvider";
 import { getLenis } from "@/lib/lenis";
 import { matchesSearchQuery } from "@/lib/search-query";
+import { isReferenceOnlyProduct } from "@/lib/product-availability";
 
 /** Real modal semantics, keyboard containment and native scrolling inside search results. */
 export default function SearchPalette() {
@@ -22,7 +23,9 @@ export default function SearchPalette() {
   const results = useMemo(() => {
     const matchedCategories = categories.filter(c => matchesSearchQuery(`${c.name_zh} ${c.id}`, deferred));
     const matchedInsurers = insurers.filter(i => matchesSearchQuery(`${i.name} ${i.name_zh}`, deferred));
-    const matchedProducts = products.filter(p => matchesSearchQuery(`${p.product_name} ${p.product_name_zh} ${p.insurer} ${p.insurer_zh} ${p.category} ${(p.plan_tiers ?? []).join(" ")}`, deferred));
+    const matchedProducts = products
+      .filter(p => matchesSearchQuery(`${p.product_name} ${p.product_name_zh} ${p.insurer} ${p.insurer_zh} ${p.category} ${(p.plan_tiers ?? []).join(" ")}`, deferred))
+      .sort((a, b) => Number(isReferenceOnlyProduct(a)) - Number(isReferenceOnlyProduct(b)));
     return { categories: matchedCategories, insurers: matchedInsurers, products: matchedProducts };
   }, [deferred, categories, insurers, products]);
   const count = results.categories.length + results.insurers.length + results.products.length;
@@ -85,6 +88,7 @@ export default function SearchPalette() {
             {!!results.products.length && <Command.Group heading="保險產品" className="[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:text-ink-faint">
               {results.products.slice(0, 12).map(p => <Command.Item key={p.id} value={`prod-${p.id}`} onSelect={() => go(`/product/${encodeURIComponent(p.id)}`)} className={rowStyle}>
                 <FileText size={16} className="shrink-0" aria-hidden="true" /><span className="min-w-0 flex-1"><span className="block leading-relaxed">{p.product_name_zh || p.product_name}</span><span className="text-xs text-ink-faint">{p.insurer_zh} · {categories.find(c => c.id === p.category)?.name_zh ?? p.category}</span></span>
+                {isReferenceOnlyProduct(p) && <span className="chip shrink-0 bg-paper-3 text-[10px] text-ink-faint">舊資料／暫不作新投保參考</span>}
               </Command.Item>)}
             </Command.Group>}
           </Command.List>

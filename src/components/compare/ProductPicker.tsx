@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { useCategories, useProducts } from "@/providers/InsuranceDataProvider";
 import { CATEGORY_META, CATEGORY_ORDER, categoryColor } from "@/lib/categories";
+import { isReferenceOnlyProduct } from "@/lib/product-availability";
 import { cn } from "@/lib/utils";
 
 /**
@@ -51,6 +52,7 @@ export default function ProductPicker({
     for (const list of byCat.values()) {
       list.sort(
         (a, b) =>
+          Number(isReferenceOnlyProduct(a)) - Number(isReferenceOnlyProduct(b)) ||
           a.insurer_zh.localeCompare(b.insurer_zh, "zh-Hant-HK") ||
           (a.product_name_zh || a.product_name).localeCompare(
             b.product_name_zh || b.product_name,
@@ -148,6 +150,11 @@ export default function ProductPicker({
                               <span className="font-grotesk">{p.insurer}</span>
                               <span className="ml-1.5">{p.insurer_zh}</span>
                             </span>
+                            {isReferenceOnlyProduct(p) && (
+                              <span className="mt-1 inline-flex rounded bg-paper-3 px-1.5 py-0.5 text-[10.5px] text-ink-faint">
+                                舊資料／暫不作新投保參考
+                              </span>
+                            )}
                           </span>
                           {selected ? (
                             <span className="chip shrink-0 bg-jade-wash font-bold text-jade">

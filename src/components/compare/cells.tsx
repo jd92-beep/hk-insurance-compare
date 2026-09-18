@@ -2,7 +2,14 @@ import { useState } from "react";
 import { ExternalLink, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import type { Product } from "@/types/insurance";
+import EvidenceChip from "@/components/EvidenceChip";
+import { GlossaryText, GlossaryMoreLink } from "@/components/guides/GlossaryTerm";
 import { cn } from "@/lib/utils";
+
+/** 來源欄位狀態（非核實）：欄位齊唔等於保單內容已核實 */
+export function EvidenceStatusCell({ product, generatedAt }: { product: Product; generatedAt?: string }) {
+  return <EvidenceChip product={product} generatedAt={generatedAt} />;
+}
 
 /** 保費範圍原文（有公開保費 → 左側 jade 圓點；有折後價 → 標為參考價） */
 export function PremiumRangeCell({ product }: { product: Product }) {
@@ -102,7 +109,7 @@ export function KeyTermsCell({ product }: { product: Product }) {
         {shown.map((t, i) => (
           <li key={i} className="flex gap-2">
             <span className="mt-[8px] h-1 w-1 shrink-0 rounded-full bg-ink-faint" />
-            <span>{t}</span>
+            <GlossaryText text={t} interactive />
           </li>
         ))}
       </ul>
@@ -115,6 +122,7 @@ export function KeyTermsCell({ product }: { product: Product }) {
           {expanded ? "收合" : `展開全部 ${terms.length} 條`}
         </button>
       )}
+      <GlossaryMoreLink className="w-fit" />
     </div>
   );
 }
@@ -124,14 +132,17 @@ export function ExclusionsCell({ product }: { product: Product }) {
   const list = product.exclusions ?? [];
   if (list.length === 0) return <span className="text-base text-ink-soft">未提供（唔等於不保）</span>;
   return (
-    <ul className="flex flex-col gap-1.5 text-base leading-relaxed text-ink-soft">
-      {list.map((e, i) => (
-        <li key={i} className="flex gap-2">
-          <span className="mt-[8px] h-1 w-1 shrink-0 rounded-full bg-amber" />
-          <span>{e}</span>
-        </li>
-      ))}
-    </ul>
+    <div className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-1.5 text-base leading-relaxed text-ink-soft">
+        {list.map((e, i) => (
+          <li key={i} className="flex gap-2">
+            <span className="mt-[8px] h-1 w-1 shrink-0 rounded-full bg-amber" />
+            <GlossaryText text={e} interactive />
+          </li>
+        ))}
+      </ul>
+      <GlossaryMoreLink className="w-fit" />
+    </div>
   );
 }
 

@@ -1,39 +1,51 @@
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { useProducts } from "@/providers/InsuranceDataProvider";
+import { isReferenceOnlyProduct } from "@/lib/product-availability";
+import { canonicalBenefitsFor } from "@/components/compare/canonical-benefits";
 import type { Product } from "@/types/insurance";
 import TiltCard from "@/components/fx/TiltCard";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-function findCoverage(p: Product, keyword: string): string {
-  const hit = p.coverage.find((c) => c.item.includes(keyword));
-  return hit ? hit.limit : "—";
+/** Prefer a non-reference, non-archived product from the same category. */
+function pickFeatured(travel: Product[]): Product[] {
+  const active = travel.filter((p) => !isReferenceOnlyProduct(p) && p.record_status !== "archived");
+  const pool = active.length >= 2 ? active : travel.filter((p) => !isReferenceOnlyProduct(p));
+  // Stable order: more coverage rows first, then id for determinism (not a quality rank).
+  return [...pool]
+    .sort((a, b) => (b.coverage?.length ?? 0) - (a.coverage?.length ?? 0) || a.id.localeCompare(b.id))
+    .slice(0, 3);
 }
 
-const FEATURED_IDS = ["travel-aig", "travel-blue-cross", "travel-axa"];
+function coverageByKeywords(p: Product, keywords: string[]): string {
+  for (const kw of keywords) {
+    const hit = (p.coverage ?? []).find((c) => c.item.includes(kw));
+    if (hit) return hit.limit;
+  }
+  return "未提供（唔等於沒有保障）";
+}
 
-/** S5 精選比較預覽 —「即刻試睇：旅遊保險」 */
+/** S5 精選比較預覽 —示範用，唔係推薦。 */
 export default function FeaturedCompare() {
   const travel = useProducts("travel");
   const navigate = useNavigate();
-  const featured = FEATURED_IDS.map((id) => travel.find((p) => p.id === id)).filter(
-    (p): p is Product => Boolean(p),
-  );
+  const featured = pickFeatured(travel);
+  const benefits = canonicalBenefitsFor("travel");
+  const cancelKw = benefits.find((b) => b.id === "cancellation")?.keywords ?? ["取消旅程"];
+  const medicalKw = benefits.find((b) => b.id === "medical")?.keywords ?? ["醫療"];
 
-  // 金額係格價站核心數據：完整顯示，換行都唔准截斷成「HK$3…」
   const rows: { label: string; render: (p: Product) => string }[] = [
-    { label: "保費", render: (p) => (p.premium_available ? p.premium_range : "官網即時報價") },
-    { label: "醫療保障上限", render: (p) => findCoverage(p, "醫療") },
-    { label: "行程取消", render: (p) => findCoverage(p, "取消") },
-    { label: "官方文件", render: (p) => `${p.documents_found.length} 份` },
+    { label: "保費欄位（快照）", render: (p) => (p.premium_available ? p.premium_range : "官網即時報價／未公開") },
+    { label: "醫療相關摘要", render: (p) => coverageByKeywords(p, medicalKw) },
+    { label: "取消旅程相關摘要", render: (p) => coverageByKeywords(p, cancelKw) },
+    { label: "官方文件數", render: (p) => `${p.documents_found?.length ?? 0} 份` },
   ];
 
   return (
     <section className="py-24 md:py-32">
       <div className="site-container grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
-        {/* 左 4 欄 */}
         <motion.div
           className="lg:col-span-4"
           initial="hidden"
@@ -48,7 +60,7 @@ export default function FeaturedCompare() {
             唔使逐個官網格價，<br />一個表睇晒。
           </motion.h2>
           <motion.p variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } } }} className="mt-5 max-w-[38em] text-ink-soft">
-            以旅遊保險為例——同類產品並排，保費、醫療保障、行程取消、高危活動逐項對照。
+            以旅遊保險為例——同類產品並排，睇保費欄位、保障摘要同文件數。呢個係操作示範，唔係推薦或核保結果；完整條款請打開原文。
           </motion.p>
           <motion.div variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } } }}>
             <Link to="/category/travel" className="group mt-7 inline-flex items-center gap-1.5 font-bold text-red">
@@ -58,7 +70,6 @@ export default function FeaturedCompare() {
           </motion.div>
         </motion.div>
 
-        {/* 右 8 欄：迷你比較表 */}
         <motion.div
           className="lg:col-span-8"
           initial={{ opacity: 0, y: 40 }}
@@ -66,73 +77,44 @@ export default function FeaturedCompare() {
           viewport={{ once: true, margin: "-20% 0px" }}
           transition={{ duration: 0.8, ease: EASE_OUT_EXPO }}
         >
-          {/* 迷你比較表：3D 傾斜互動（大表面，角度收細到 3°） */}
-          <TiltCard className="rounded-card" max={3}>
-          <div
-            onClick={() => navigate("/category/travel")}
-            className="cursor-pointer overflow-hidden rounded-card border bg-paper shadow-card transition-shadow duration-300 hover:shadow-lift"
-            style={{ borderColor: "var(--line)" }}
-            role="link"
-            aria-label="前往旅遊保險比較"
-          >
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[560px] border-collapse text-left">
-                <thead>
-                  <tr className="border-b bg-paper-2" style={{ borderColor: "var(--line)" }}>
-                    <th className="px-5 py-3.5 text-small font-bold text-ink-soft">保障項目</th>
-                    {featured.map((p) => (
-                      <th key={p.id} className="px-5 py-3.5 text-small">
-                        <Link
-                          to={`/product/${p.id}`}
-                          onClick={(e) => e.stopPropagation()}
-                          className="font-bold text-ink transition-colors hover:text-red"
-                        >
-                          {p.insurer} {p.insurer_zh}
-                        </Link>
-                        <span className="line-clamp-2 block max-w-[170px] text-[12px] font-normal leading-[1.5] text-ink-faint">
-                          {p.product_name_zh || p.product_name}
-                        </span>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map((row, ri) => (
-                    <motion.tr
-                      key={row.label}
-                      initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0.4 }}
-                      whileInView={{ clipPath: "inset(0 0 0% 0)", opacity: 1 }}
-                      viewport={{ once: true, margin: "-10% 0px" }}
-                      transition={{ duration: 0.5, delay: 0.2 + ri * 0.06, ease: EASE_OUT_EXPO }}
-                      className="border-b transition-colors last:border-b-0 hover:bg-paper-2"
-                      style={{ borderColor: "var(--line)", background: ri % 2 === 1 ? "rgba(24,29,46,.025)" : "transparent" }}
-                    >
-                      <td className="px-5 py-3.5 align-top text-small font-bold text-ink">{row.label}</td>
+          <TiltCard className="rounded-card" max={4}>
+            <div className="overflow-hidden rounded-card border bg-paper shadow-card" style={{ borderColor: "var(--line)" }}>
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[560px] border-collapse text-left">
+                  <caption className="sr-only">旅遊保險示範比較（非推薦）</caption>
+                  <thead>
+                    <tr className="border-b" style={{ borderColor: "var(--line)" }}>
+                      <th scope="col" className="px-4 py-3 text-small text-ink-faint">項目</th>
                       {featured.map((p) => (
-                        <td key={p.id} className="whitespace-normal break-words px-5 py-3.5 align-top text-small leading-[1.6] text-ink-soft">
-                          {row.render(p)}
-                        </td>
+                        <th key={p.id} scope="col" className="px-4 py-3">
+                          <button
+                            type="button"
+                            onClick={() => navigate(`/product/${p.id}`)}
+                            className="text-left font-bold text-ink underline-offset-2 hover:text-red hover:underline"
+                          >
+                            {p.insurer_zh}
+                            <span className="mt-0.5 block text-small font-medium text-ink-soft">{p.product_name_zh || p.product_name}</span>
+                          </button>
+                        </th>
                       ))}
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {rows.map((row) => (
+                      <tr key={row.label} className="border-b last:border-0" style={{ borderColor: "var(--line)" }}>
+                        <th scope="row" className="px-4 py-3 text-small font-medium text-ink-soft">{row.label}</th>
+                        {featured.map((p) => (
+                          <td key={p.id} className="px-4 py-3 text-small text-ink">{row.render(p)}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="border-t bg-paper-2 px-4 py-3 text-xs text-ink-soft" style={{ borderColor: "var(--line)" }}>
+                摘要對照唔等於計劃層級一致或保障可直接比較；唔同類別／層級產品勿按金額排名。
+              </p>
             </div>
-            <div className="flex flex-wrap items-center justify-between gap-2 border-t bg-paper-2 px-5 py-3 text-small text-ink-faint" style={{ borderColor: "var(--line)" }}>
-              <span>以上僅為部分項目，完整比較請入類別頁</span>
-              {featured[0]?.source_urls[0] && (
-                <a
-                  href={featured[0].source_urls[0]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-1 font-medium text-jade hover:underline"
-                >
-                  官方來源 <ExternalLink size={12} />
-                </a>
-              )}
-            </div>
-          </div>
           </TiltCard>
         </motion.div>
       </div>

@@ -86,8 +86,9 @@ export default function Categories() {
     () => allProducts.filter((p) => p.premium_available).length,
     [allProducts],
   );
-  const medical = categories.find((c) => c.id === "medical");
-  const motor = categories.find((c) => c.id === "motor");
+  const medicalProducts = allProducts.filter((p) => p.category === "medical");
+  const motorProducts = allProducts.filter((p) => p.category === "motor");
+  const medicalWithPremium = medicalProducts.filter((p) => p.premium_available).length;
 
   const productsByCat = useMemo(() => {
     const map = new Map<string, typeof allProducts>();
@@ -301,23 +302,23 @@ export default function Categories() {
         <div className="site-container grid grid-cols-2 gap-y-10 py-14 lg:grid-cols-4">
           <div className="flex flex-col items-center gap-2 text-center">
             <p className="text-stat text-jade">
-              <CountUp to={premiumTotal || 46} />
-              <span className="text-ink-faint"> / {allProducts.length || 85}</span>
+              <CountUp to={premiumTotal || 0} />
+              <span className="text-ink-faint"> / {allProducts.length || "—"}</span>
             </p>
-            <p className="text-small text-ink-soft">份產品有官方公開保費</p>
+            <p className="text-small text-ink-soft">份產品有官方公開保費（站內快照）</p>
           </div>
           <div className="flex flex-col items-center gap-2 text-center">
             <p className="text-stat text-jade">
-              <CountUp to={medical?.insurers_with_premium ?? 12} duration={1.4} />
-              <span className="text-ink-faint"> / {medical?.count ?? 12}</span>
+              <CountUp to={medicalWithPremium || 0} duration={1.4} />
+              <span className="text-ink-faint"> / {medicalProducts.length || "—"}</span>
             </p>
-            <p className="text-small text-ink-soft">自願醫保全部有保費表</p>
+            <p className="text-small text-ink-soft">自願醫保產品有公開保費欄位（並非全部）</p>
           </div>
           <div className="flex flex-col items-center gap-2 text-center">
             <p className="text-stat text-amber">
-              <CountUp to={motor?.count ?? 9} duration={1.6} />
+              <CountUp to={motorProducts.length || 0} duration={1.6} />
             </p>
-            <p className="text-small text-ink-soft">類汽車保險產品全部需即時報價</p>
+            <p className="text-small text-ink-soft">類汽車保險產品（多數需即時報價）</p>
           </div>
           <div className="flex flex-col items-center gap-2 text-center">
             <p className="font-grotesk text-[clamp(28px,3.4vw,40px)] font-bold leading-none text-ink">
@@ -341,7 +342,7 @@ export default function Categories() {
             <p className="eyebrow mb-4 text-ink-faint">COVERAGE MAP</p>
             <h2 className="display-2 text-ink">邊間公司，保邊啲？</h2>
             <p className="mt-5 max-w-[38em] text-ink-soft">
-              {insurers.length || 27} 間公司 × 9 個類別嘅覆蓋一覽。點格仔可以直接去該類別嘅產品列表。
+              {insurers.length || "—"} 間公司 × {categories.length || "—"} 個類別嘅覆蓋一覽。點格仔可以直接去該類別嘅產品列表。
             </p>
           </motion.div>
           <motion.div

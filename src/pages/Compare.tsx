@@ -1,5 +1,11 @@
 import { priceDisplay } from "@/lib/premium-display";
 import { MOTION } from "@/lib/motion-runtime";
+import {
+  CROSS_CATEGORY_COMPARE_NOTICE,
+  MULTI_TIER_COMPARE_NOTICE,
+  hasMultiplePlanTiers,
+  spansMultipleCategories,
+} from "@/lib/evidence-status";
 import ComparisonExportButton from "@/components/compare/ComparisonExportButton";
 import SavedComparisons from "@/components/compare/SavedComparisons";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -8,6 +14,7 @@ import { ArrowRight, ExternalLink, Plus, RotateCcw, X } from "lucide-react";
 import { Link, useSearchParams } from "react-router";
 import type { Product } from "@/types/insurance";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import EvidenceChip from "@/components/EvidenceChip";
 import StampBadge from "@/components/StampBadge";
 import ComparisonGrid from "@/components/compare/ComparisonGrid";
 import MobileCompare from "@/components/compare/MobileCompare";
@@ -45,15 +52,20 @@ function SplitWords({ words, className }: { words: string[]; className?: string 
   );
 }
 
-/** 已填產品欄（S2）：類別色頂條 + 公司 + 產品名 + 保費狀態 chip + 官方投保 + × 移除 */
-function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => void }) {
+/** 已填產品欄（S2）：類別色頂條 + 公司 + 產品名 + 來源欄位 chip + 保費狀態 + 官方核對 + × 移除 */
+function FilledSlot({
+  product,
+  generatedAt,
+  onRemove,
+}: {
+  product: Product;
+  generatedAt?: string;
+  onRemove: () => void;
+}) {
   const color = categoryColor(product.category);
   const icon = CATEGORY_META[product.category]?.icon;
   const pricing = priceDisplay(product);
   const buyUrl = pricing.buyUrl;
-  const origPrice = pricing.originalPrice;
-  const discPrice = pricing.discountedPrice;
-  const hasDiscount = pricing.hasDiscount;
 
   return (
     <motion.div
@@ -99,22 +111,7 @@ function FilledSlot({ product, onRemove }: { product: Product; onRemove: () => v
           {product.product_name_zh || product.product_name}
         </Link>
 
-        {hasDiscount && origPrice && discPrice && (
-          <div className="flex flex-wrap items-baseline gap-1.5 pt-0.5">
-            <span className="text-[12px] font-grotesk text-ink-faint line-through">
-              HK${origPrice.toLocaleString()}
-            </span>
-            <span className="font-grotesk text-[16px] font-black text-red">
-              HK${discPrice.toLocaleString()}
-            </span>
-            <span
-              className="rounded bg-red/10 px-1.5 py-0.2 text-[10.5px] font-bold text-red"
-              title={pricing.disclaimer}
-            >
-              {pricing.discountLabel}
-            </span>
-          </div>
-        )}
+        <EvidenceChip product={product} generatedAt={generatedAt} className="pt-0.5" />
 
         <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
           <PremiumStatusCell product={product} />
@@ -296,6 +293,8 @@ export default function Compare() {
   const spare = products.length < COMPARE_LIMIT ? 1 : 0;
   const slotColumns = `200px repeat(${products.length + spare}, minmax(0, 1fr))`;
   const firstCategory = products[0]?.category;
+  const multiCategory = spansMultipleCategories(products);
+  const multiTier = hasMultiplePlanTiers(products);
 
   return (
     <div className="site-container-wide pb-24">
@@ -348,6 +347,29 @@ export default function Compare() {
         onRestore={restoreSaved}
       />
 
+      {(multiCategory || multiTier) && (
+        <motion.div
+          initial={{ opacity: 0, y: MOTION.enterY, scale: MOTION.enterScale }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={MOTION.springy}
+          className="mb-6 flex flex-col gap-3"
+          role="status"
+          aria-live="polite"
+        >
+          {multiCategory && (
+            <aside className="rounded-card border-l-4 border-amber bg-amber-wash p-5">
+              <h2 className="h3-style text-ink">比較基準唔一致</h2>
+              <p className="mt-2 text-small leading-relaxed text-ink-soft">{CROSS_CATEGORY_COMPARE_NOTICE}</p>
+            </aside>
+          )}
+          {multiTier && (
+            <aside className="rounded-card border-l-4 border-amber bg-amber-wash p-5">
+              <p className="text-small leading-relaxed text-ink-soft">{MULTI_TIER_COMPARE_NOTICE}</p>
+            </aside>
+          )}
+        </motion.div>
+      )}
+
       {isMobile ? (
         <MobileCompare products={products} onRemove={compare.remove} />
       ) : (
@@ -363,7 +385,12 @@ export default function Compare() {
               </div>
               <AnimatePresence mode="popLayout" key={urlSwapCount}>
                 {products.map((p) => (
-                  <FilledSlot key={p.id} product={p} onRemove={() => compare.remove(p.id)} />
+                  <FilledSlot
+                    key={p.id}
+                    product={p}
+                    generatedAt={generatedAt}
+                    onRemove={() => compare.remove(p.id)}
+                  />
                 ))}
               </AnimatePresence>
               {spare > 0 && <EmptySlot onPick={() => setPickerOpen(true)} />}
@@ -371,7 +398,7 @@ export default function Compare() {
           </div>
 
           {/* S3 對照表 */}
-          <ComparisonGrid products={products} spare={spare > 0} />
+          <ComparisonGrid products={products} spare={spare > 0} generatedAt={generatedAt} />
         </>
       )}
 

@@ -767,7 +767,7 @@ export default function CategoryDetail() {
         </div>
       </section>
 
-      {/* ── S2 智能保障挑選面板（條款契合度推薦） ───────────────── */}
+      {/* ── S2 摘要條件挑選面板（關鍵字對照排序） ───────────────── */}
       {categoryFeatureTags.length > 0 && (
         <section className="border-b border-line/60 bg-paper py-5 max-md:py-4">
           <div className="site-container">
@@ -882,7 +882,7 @@ export default function CategoryDetail() {
                                   </span>
                                 </div>
                                 <p className="mt-1 text-[12.5px] text-ink-soft">
-                                  已選 {selectedFeatures.length} 項核心條款，依契合度多至少置頂排序，最貼近心水方案永遠排最前。
+                                  已選 {selectedFeatures.length} 項摘要條件，按對到項目多至少排序。呢個只係關鍵字對照，唔係核保、理賠或「最適合你」嘅保證；記得打開原文同不保事項。
                                 </p>
                               </div>
                             </div>

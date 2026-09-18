@@ -1,21 +1,21 @@
 # 全庫來源與 PDF 審核
 
-審核日期：2026-09-06；資料 SHA-256：`951c7fe786e4f4800a684b8840f4e907e360ceebb3ea976f2be223df83c1455a`。
+審核日期：2026-09-06；資料 SHA-256：`724c24f386f2d601e6a9c4ca0b59282734134c05d1191421d522c6bf9837012e`。
 
-158 款產品、11 類、81 份 PDF；逐項檢查 3582 個保障／citation 引用。
+158 款產品、11 類、81 份 PDF；逐項檢查 3583 個保障／citation 引用。
 
 **重要：literal-match 只代表摘錄存在於該頁，不代表足以支持保障主張，亦不代表版本最新。**
 
 | 檢查狀態 | 引用數 |
 |---|---:|
-| external-only | 1447 |
+| external-only | 1449 |
 | invalid-or-missing-page | 5 |
 | literal-match | 312 |
 | missing-source | 396 |
-| no-text | 49 |
+| no-text | 48 |
 | not-found | 1373 |
 
-同一 quote 被不同保障重用的引用：956。每一項仍需人工核對。
+同一 quote 被不同保障重用的引用：955。每一項仍需人工核對。
 
 ## 每款產品覆核清單
 
@@ -100,7 +100,7 @@
 | life-blue | life | 0 | 0 | 13 | 未核實 |
 | life-bowtie | life | 0 | 0 | 13 | 未核實 |
 | life-china-life-overseas | life | 11 | 0 | 12 | 未核實 |
-| life-fwd | life | 0 | 0 | 13 | 未核實 |
+| life-fwd | life | 0 | 0 | 12 | 未核實 |
 | life-hsbc-life | life | 0 | 0 | 11 | 未核實 |
 | life-manulife | life | 0 | 0 | 10 | 未核實 |
 | life-prudential | life | 11 | 0 | 8 | 未核實 |

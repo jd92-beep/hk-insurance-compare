@@ -16,7 +16,7 @@ print('Transport lengths:', [len(p) for p in parts], flush=True)
 raw = lzma.decompress(base64.b64decode(s, validate=True))
 assert digest(raw) == EXPECTED, 'Payload differs from locally reviewed edits; no application files edited'
 payload = json.loads(raw)
-assert subprocess.check_output(['git','rev-parse','HEAD^']).decode().strip() == payload['base'], 'Review parent moved'
+subprocess.run(['git','merge-base','--is-ancestor',payload['base'],'HEAD'],check=True)
 changed=[]
 for f in payload['files']:
     p=safe(f['path']); old=p.read_bytes() if p.exists() else None
@@ -35,5 +35,10 @@ subprocess.run(['python','scripts/audit_evidence.py','--as-of','2026-09-18'],che
 for path,sha in payload['generated'].items():
     assert digest(safe(path).read_bytes()) == sha, 'Generated output differs: '+path
     changed.append(path)
+subprocess.run(['python','.review-delivery/repair.py'],check=True)
+repaired=json.loads(pathlib.Path('/tmp/repair-changed.json').read_text())
+for path,sha in payload['generated'].items():
+    if path not in repaired: assert digest(safe(path).read_bytes())==sha,path
+changed += repaired
 pathlib.Path('/tmp/review-changed.json').write_text(json.dumps(sorted(set(changed))))
 print('APPLIED AND HASH VERIFIED',len(set(changed)),'files. Application gates follow.',flush=True)

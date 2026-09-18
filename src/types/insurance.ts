@@ -5,6 +5,9 @@ export interface CoverageItem {
   document_name?: string;
   page?: number | null;
   quote?: string;
+  /** Item-level review only; not certification of the whole policy. */
+  reviewed_at?: string;
+  review_scope?: string;
 }
 
 /** 單條資料引文：claim 嚟自邊份官方文件、邊頁、邊句原文 */
@@ -47,16 +50,18 @@ export interface Product {
   destination_scope?: ("asia" | "worldwide" | "gba")[];
   /** 產品推廣折扣優惠與優惠碼 */
   promo?: ProductPromo;
-  /** 官方標準原價（數值，例如 145） */
+  /** Legacy snapshot amount; not a verified quote and must not drive display/ranking. */
   original_price?: number;
-  /** 官方即時折後實付價（數值，例如 109） */
+  /** Legacy snapshot amount; no verified quote basis. */
   discounted_price?: number;
-  /** 官方即時投保／選購頁面直達網址 */
+  /** Candidate official destination; not proof of current availability. */
   official_buy_url?: string;
   /**
    * Optional site-record lifecycle. Absent = unknown — not proof the product
    * is currently on sale or that any document was re-verified.
    */
+  /** Explicit partial-review limitations; never a blanket freshness badge. */
+  review_notes?: string[];
   record_status?: "active" | "unverified" | "discontinued" | "archived";
   last_verified_at?: string | null;
   source_document_version?: string | null;
@@ -64,6 +69,12 @@ export interface Product {
 
 export interface ProductPromo {
   tag: string;
+  /** Campaign evidence is separate from policy/benefit verification. Dates use HK calendar days. */
+  valid_from?: string;
+  valid_until?: string;
+  reviewed_at?: string;
+  source_url?: string;
+  conditions?: string;
   code?: string | null;
   discount?: string;
   note?: string;

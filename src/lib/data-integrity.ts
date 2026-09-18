@@ -1,3 +1,4 @@
+import { snapshotDate } from "./calendar-date.ts";
 import type { InsuranceData, Product, CoverageItem, Citation } from "../types/insurance";
 const record=(v: unknown): v is Record<string,unknown> => !!v && typeof v === "object" && !Array.isArray(v);
 /** Missing evidence stays missing; present malformed evidence is an input error. */
@@ -59,6 +60,16 @@ export function parseInsuranceData(value: unknown): InsuranceData {
         page: evidencePage(c.page, `${path}.page`),
       };
     });
+    if (p.review_notes !== undefined && (!Array.isArray(p.review_notes) || !p.review_notes.every(n => typeof n === "string"))) throw Error("覆核說明格式不正確。");
+    if (p.promo !== undefined && p.promo !== null) {
+      if (!record(p.promo)) throw Error("優惠 promo 格式不正確。");
+      for (const key of ["tag", "code", "discount", "note", "buy_url", "valid_from", "valid_until", "reviewed_at", "source_url", "conditions"]) {
+        if (p.promo[key] !== undefined && p.promo[key] !== null && typeof p.promo[key] !== "string") throw Error(`優惠 promo.${key} 必須是文字。`);
+      }
+      for (const key of ["original_price", "discounted_price"]) {
+        if (p.promo[key] !== undefined && (typeof p.promo[key] !== "number" || !Number.isFinite(p.promo[key]) || p.promo[key] < 0)) throw Error(`優惠 promo.${key} 格式不正確。`);
+      }
+    }
     const record_status = optionalLifecycle(p.record_status, `${p.id}.record_status`);
     const last_verified_at = optionalLifecycle(p.last_verified_at, `${p.id}.last_verified_at`);
     const source_document_version = optionalLifecycle(p.source_document_version, `${p.id}.source_document_version`);
@@ -71,7 +82,7 @@ export function parseInsuranceData(value: unknown): InsuranceData {
     } as unknown as Product;
   });
   return {
-    generated_at: typeof value.generated_at==="string"&&/^\d{4}-\d{2}-\d{2}(?:T.*)?$/.test(value.generated_at)?value.generated_at:"未提供",
+    generated_at: snapshotDate(value.generated_at) ?? "未提供",
     products,
     categories: value.categories.map(c=>({id:c.id,name_zh:c.name_zh,count:products.filter(p=>p.category===c.id).length,
       insurers_with_premium:new Set(products.filter(p=>p.category===c.id&&p.premium_available).map(p=>p.insurer)).size})),

@@ -1,6 +1,6 @@
 # 全庫來源與 PDF 審核
 
-審核日期：2026-09-06；資料 SHA-256：`724c24f386f2d601e6a9c4ca0b59282734134c05d1191421d522c6bf9837012e`。
+審核日期：2026-09-18；資料 SHA-256：`678cd4def57ad10803d22158cf6d89df3310fac95bc0d8276702c1dfb8eadde8`。
 
 158 款產品、11 類、81 份 PDF；逐項檢查 3583 個保障／citation 引用。
 
@@ -8,12 +8,12 @@
 
 | 檢查狀態 | 引用數 |
 |---|---:|
-| external-only | 1449 |
+| external-only | 1451 |
 | invalid-or-missing-page | 5 |
 | literal-match | 312 |
-| missing-source | 396 |
+| missing-source | 417 |
 | no-text | 48 |
-| not-found | 1373 |
+| not-found | 1350 |
 
 同一 quote 被不同保障重用的引用：955。每一項仍需人工核對。
 
@@ -60,7 +60,7 @@
 | medical-hong-kong-life | medical | 0 | 0 | 0 | 未核實 |
 | medical-liberty-international | medical | 0 | 0 | 0 | 未核實 |
 | medical-msig | medical | 0 | 0 | 0 | 未核實 |
-| medical-manulife | medical | 0 | 0 | 0 | 未核實 |
+| medical-manulife | medical | 0 | 21 | 0 | 未核實 |
 | medical-prudential | medical | 0 | 0 | 0 | 未核實 |
 | medical-sun-life | medical | 0 | 0 | 0 | 未核實 |
 | medical-well-link-life | medical | 0 | 0 | 0 | 未核實 |

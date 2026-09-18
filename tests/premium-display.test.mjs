@@ -23,12 +23,12 @@ test('promo prices are labelled as reference material, not a guaranteed live quo
   });
   const price = priceDisplay(p);
   const promo = promoDisplay(p);
-  assert.equal(price.hasDiscount, true);
+  assert.equal(price.hasDiscount, false);
   assert.equal(price.isReferencePrice, true);
   assert.equal(price.disclaimer, PREMIUM_SNAPSHOT_DISCLAIMER);
   assert.equal(promo.isReference, true);
   assert.ok(promo.disclaimer.includes('官網'));
-  assert.equal(price.buyLabel, '官網投保');
+  assert.equal(price.buyLabel, '往官方網站核對');
 });
 
 test('missing promo does not invent a discount badge', () => {
@@ -40,7 +40,9 @@ test('missing promo does not invent a discount badge', () => {
 test('undated promo fallback label does not claim current buyability', () => {
   const p = product({ promo: { tag: '', discount: '9折' } });
   const promo = promoDisplay(p);
-  assert.equal(promo.badgeLabel, PROMO_REFERENCE_LABEL);
+  assert.equal(promo.badgeLabel, "");
+  assert.equal(promo.present, false);
+  assert.ok(PROMO_REFERENCE_LABEL.includes("未核實"));
   assert.ok(!promo.badgeLabel.includes('實付'));
 });
 

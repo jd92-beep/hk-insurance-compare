@@ -1,0 +1,58 @@
+name: Review source bundle
+on:
+  push:
+    branches: ["review/20260918-**"]
+permissions:
+  contents: read
+jobs:
+  source-bundle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Package tracked review inputs without credentials or binary assets
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, subprocess, zipfile
+          allowed = {'.ts', '.tsx', '.js', '.mjs', '.cjs', '.json', '.md', '.css', '.html', '.yml', '.yaml', '.py', '.txt'}
+          tracked = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          paths = [p for p in tracked if p and pathlib.Path(p).is_file() and
+                   (pathlib.Path(p).suffix in allowed or p in {'.nvmrc', '.gitignore'}) and
+                   not any(part.startswith('.env') for part in pathlib.Path(p).parts)]
+          sha = subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode().strip()
+          with zipfile.ZipFile('review-source.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for path in paths:
+                  archive.write(path, path)
+              archive.writestr('review-snapshot.json', json.dumps({'head': sha, 'files': paths, 'omitted': 'Binary assets/PDFs and environment files; not a policy validation.'}, indent=2))
+          print(f'Packaged {len(paths)} tracked text files at {sha}')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: review-source-${{ github.sha }}
+          path: review-source.zip
+          retention-days: 7
+          if-no-files-found: error
+      - uses: actions/setup-node@v4
+        if: contains(github.event.head_commit.message, '[review-bundle]')
+        with:
+          node-version: 22
+          cache: npm
+      - name: Prepare lockfile-exact offline review runtime
+        if: contains(github.event.head_commit.message, '[review-bundle]')
+        run: |
+          npm ci
+          tar -czf /tmp/review-runtime.tar.gz node_modules
+          git archive --format=tar.gz -o /tmp/review-repository.tar.gz HEAD -- . ':!*.env*' ':!*.pem' ':!*.key'
+          sha256sum package-lock.json /tmp/review-runtime.tar.gz /tmp/review-repository.tar.gz > /tmp/review-runtime-sha256.txt
+      - uses: actions/upload-artifact@v4
+        if: contains(github.event.head_commit.message, '[review-bundle]')
+        with:
+          name: review-runtime-${{ github.sha }}
+          path: |
+            /tmp/review-runtime.tar.gz
+            /tmp/review-repository.tar.gz
+            /tmp/review-runtime-sha256.txt
+          retention-days: 1
+          if-no-files-found: error

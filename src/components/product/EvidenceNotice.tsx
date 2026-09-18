@@ -10,12 +10,13 @@ export default function EvidenceNotice({ product }: { product: Product }) {
   const summary = productEvidenceSummary(product);
   const lifecycle = productLifecycle(product, generatedAt);
   return <aside className="site-container my-5" aria-label="資料核實狀態">
-    <div className="rounded-xl border border-amber/30 bg-amber/5 p-4 text-sm leading-relaxed">
-      <strong className="text-ink">資料狀態透明度</strong>
+    <div className="rounded-xl border border-amber/30 bg-amber/5 p-4 text-base leading-relaxed">
+      <strong className="text-ink">先睇資料限制</strong>
       <p className="mt-1 text-ink-soft">
         {summary.complete}/{summary.total} 項保障有來源、摘錄及頁碼欄位（完整欄位比例 {Math.round(summary.completeRatio * 100)}%）。
         欄位齊全唔代表內容正確；{lifecycle.statusLabel}。{lifecycle.snapshotNote}。
       </p>
+      {product.review_notes?.map(note => <p key={note} className="mt-3 font-medium text-ink">{note}</p>)}
       {product.id === "travel-aig" && <p className="mt-3 font-medium text-ink">{AIG_TRAVEL_NOTICE.text} <a href={AIG_TRAVEL_NOTICE.source} target="_blank" rel="noopener noreferrer" className="underline">官方公告（檢視：{AIG_TRAVEL_NOTICE.checkedAt}）</a></p>}
       <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
         <Link className="inline-flex min-h-11 items-center font-semibold text-jade underline" to={`/data-quality?product=${encodeURIComponent(product.id)}`}>查看此產品逐條審核</Link>

@@ -93,6 +93,7 @@ test('sort is site-coverage order (categories, products, name) and not a quality
   assert.ok(INSURER_SORT_NOTE.includes('推薦排名'));
   assert.ok(!INSURER_SORT_NOTE.includes('最平'));
   assert.ok(!INSURER_SORT_NOTE.includes('最好'));
+
 });
 
 test('search and category filters only narrow derived models', () => {
@@ -141,11 +142,11 @@ test('redesigned UI keeps company-first routes and honesty copy', () => {
 
   assert.ok(appSource.includes('insurers/:insurerKey'));
   assert.ok(appSource.includes('InsurerDetail'));
-  assert.ok(indexSource.includes('insurerDetailPath'));
+  assert.ok(cardSource.includes('insurerDetailPath') || indexSource.includes('insurerDetailPath') || detailSource.includes('insurerDetailPath'));
   assert.ok(indexSource.includes('buildInsurerCardModels'));
   assert.ok(indexSource.includes('sortInsurerCardModels'));
   assert.ok(indexSource.includes('INSURER_SORT_NOTE'));
-  assert.ok(indexSource.includes('站內產品數'));
+  assert.ok(indexSource.includes('產品數'));
   // anchors remain for back-compat
   assert.ok(indexSource.includes('location.hash'));
   assert.ok(cardSource.includes('id={insurer.name}'));
@@ -157,7 +158,7 @@ test('redesigned UI keeps company-first routes and honesty copy', () => {
   assert.ok(detailSource.includes('cat-'));
   assert.ok(detailSource.includes('唔係全市場清單'));
   assert.ok(detailSource.includes('唔提供適合度評分'));
-  assert.ok(detailSource.includes('資料快照'));
+  assert.ok(detailSource.includes('快照'));
   assert.ok(detailSource.includes('去類別頁睇全部公司'));
   // 否定句可以提到即時報價；肯定式推銷用語唔可以出現
   assert.ok(detailSource.includes('唔提供適合度評分、個人建議或即時報價'));

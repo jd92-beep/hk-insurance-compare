@@ -90,7 +90,7 @@ export default function InsurerDetail() {
       <div className="site-container py-16">
         <EmptyState
           title="搵唔到呢間保險公司"
-          description="公司名錄只反映站內快照收錄；請返回保險公司頁再揀。"
+          description="請返回保險公司名錄再揀。"
         />
         <div className="mt-6 flex justify-center">
           <Link to="/insurers" className="btn-primary">
@@ -129,7 +129,7 @@ export default function InsurerDetail() {
 
         <div className="mt-6 flex flex-wrap gap-2.5">
           <span className="chip border bg-paper text-ink" style={{ borderColor: "var(--line-strong)" }}>
-            <span className="font-grotesk font-bold">{totalProducts}</span> 份站內產品
+            <span className="font-grotesk font-bold">{totalProducts}</span> 份產品
           </span>
           <span className="chip border bg-paper text-ink" style={{ borderColor: "var(--line-strong)" }}>
             <span className="font-grotesk font-bold">{sections.length}</span> 個類別
@@ -139,24 +139,16 @@ export default function InsurerDetail() {
           </span>
         </div>
 
-        <div
-          className="mt-5 rounded-xl border border-line bg-paper-2 px-4 py-3 text-sm leading-relaxed text-ink-soft"
-          data-testid="insurer-detail-disclaimer"
-        >
-          <p>
-            資料快照：{generatedAt}。以下只列出站內快照收錄到嘅產品，唔係全市場清單，亦唔代表條款已全面核實或現行在售。
-          </p>
-          <p className="mt-2">
-            產品按保險類別分組，方便你由公司行去類別；唔提供適合度評分、個人建議或即時報價。
-            <Link to="/data-quality" className="ml-2 font-semibold text-jade underline">
-              查看覆核狀態
-            </Link>
-            <Link to="/compare" className="ml-3 inline-flex min-h-11 items-center gap-1 font-semibold text-jade underline">
-              <Scale size={14} aria-hidden="true" />
-              開啟比較清單
-            </Link>
-          </p>
-          <p className="mt-2 text-ink-faint">{INSURER_SORT_NOTE}</p>
+        <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-ink-soft" data-testid="insurer-detail-disclaimer">
+          <span>
+            快照 {generatedAt} · 唔係全市場清單；唔提供適合度評分、個人建議或即時報價。
+          </span>
+          <Link to="/data-quality" className="font-semibold text-jade underline">覆核狀態</Link>
+          <Link to="/compare" className="inline-flex min-h-11 items-center gap-1 font-semibold text-jade underline">
+            <Scale size={14} aria-hidden="true" />
+            比較清單
+          </Link>
+          <span className="text-xs text-ink-faint">{INSURER_SORT_NOTE}</span>
         </div>
 
         {sections.length > 1 && (
@@ -193,8 +185,8 @@ export default function InsurerDetail() {
       {sections.length === 0 ? (
         <section className="site-container py-8">
           <EmptyState
-            title="站內快照暫時冇呢間公司嘅產品"
-            description="唔代表市場上冇相關產品；請返回公司名錄或類別頁。"
+            title="暫時冇呢間公司嘅產品"
+            description="返回公司名錄或類別頁繼續。"
           />
         </section>
       ) : (
@@ -203,17 +195,17 @@ export default function InsurerDetail() {
               do not look like isolated single cards with empty right gutters. */}
           {allProducts.length >= 2 && (
             <section
-              className="site-container scroll-mt-[104px] pb-4 pt-2"
+              className="site-container scroll-mt-[88px] pb-4 pt-2"
               aria-labelledby="insurer-all-products"
               data-testid="insurer-products-overview"
             >
               <div className="mb-5 flex flex-wrap items-end justify-between gap-3 border-b pb-4" style={{ borderColor: "var(--line)" }}>
                 <div>
                   <h2 id="insurer-all-products" className="h3-style text-ink">
-                    全部站內產品一覽
+                    全部產品
                   </h2>
                   <p className="mt-1 text-small text-ink-faint">
-                    同一公司多類別產品並排顯示；類別詳情見下方分組。唔係推薦排序。
+                    按下方類別分組
                   </p>
                 </div>
               </div>
@@ -241,7 +233,7 @@ export default function InsurerDetail() {
               <section
                 key={section.categoryId}
                 id={`cat-${section.categoryId}`}
-                className="site-container scroll-mt-[104px] py-8"
+                className="site-container scroll-mt-[88px] py-6"
                 aria-labelledby={`insurer-cat-${section.categoryId}`}
                 data-insurer-category={section.categoryId}
               >
@@ -267,8 +259,7 @@ export default function InsurerDetail() {
                       </span>
                     </div>
                     <p className="mt-1 text-small text-ink-faint">
-                      只顯示 {insurer.name_zh} 喺呢個類別嘅站內產品。
-                      {section.products.length === 1 ? "（單一產品，卡片用盡整行闊度）" : ""}
+                      {insurer.name_zh} · {label}
                     </p>
                   </div>
                   <Link

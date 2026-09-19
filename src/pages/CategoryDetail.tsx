@@ -4,12 +4,21 @@ import { Search, Scale } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import EmptyState from '@/components/EmptyState';
 import ProductCard from '@/components/ProductCard';
+import HowWeRankCard from '@/components/trust/HowWeRankCard';
 import FilterBar, { type SortKey, type ViewMode, type TravelTripType, type TravelRegion } from '@/components/category/FilterBar';
 import ProductTable from '@/components/category/ProductTable';
+import CategoryDecisionGuide from '@/components/category/CategoryDecisionGuide';
 import { categoryCopy } from '@/components/category/copy';
 import { CATEGORY_META } from '@/lib/categories';
 import { filterCatalogue } from '@/lib/catalogue-search';
-import { filterAndRankProductsByFeatures, getCategoryFeatureTags, type FeatureMatchMode } from '@/lib/feature-filters';
+import {
+  filterAndRankProductsByFeatures,
+  getCategoryFeatureTags,
+  getCategoryPersonaPresets,
+  type FeatureMatchMode,
+  type PersonaPreset,
+} from '@/lib/feature-filters';
+import { MEDICAL_PATH_CHIPS, isMedicalFamilyCategory } from '@/lib/research-intents';
 import { useInsuranceData, useProducts } from '@/providers/InsuranceDataProvider';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { usePolicyCalendar } from '@/hooks/use-policy-calendar';
@@ -45,7 +54,13 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
   const isTravel = categoryId === 'travel';
   const color = CATEGORY_META[categoryId]?.color ?? 'var(--jade)';
   const tags = getCategoryFeatureTags(categoryId);
+  const validTagIds = useMemo(() => new Set(tags.map(tag => tag.id)), [tags]);
+  const personaPresets = useMemo(() => getCategoryPersonaPresets(categoryId), [categoryId]);
   const insurerOptions = useMemo(() => [...new Map(products.map(p => [p.insurer, p.insurer_zh])).entries()].map(([name, name_zh]) => ({ name, name_zh })).sort((a,b) => a.name.localeCompare(b.name)), [products]);
+  const applyPersonaPreset = (preset: PersonaPreset) => {
+    const ids = [...new Set([...preset.tagIds, ...preset.featureIds])].filter(id => validTagIds.has(id));
+    setSelectedFeatures(ids);
+  };
   const ranked = useMemo(() => {
     const candidates = filterCatalogue(products, { query, insurers: selectedInsurers, onlyPremium, onlyPromo: isTravel && onlyPromo, includeHistorical, trip: isTravel ? trip : 'all', region: isTravel ? region : 'all', now: new Date(`${today}T12:00:00+08:00`) });
     return filterAndRankProductsByFeatures(candidates, selectedFeatures, categoryId, matchMode).results;
@@ -74,10 +89,56 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
         <span>資料快照：{generatedAt}；唔代表全部條款已更新。<Link to="/data-quality" className="ml-2 inline-flex min-h-11 items-center font-semibold text-jade underline">查看覆核狀態</Link><Link to={`/guides#${categoryId}`} className="ml-2 inline-flex min-h-11 items-center font-semibold text-jade underline">睇「點揀」指南</Link></span>
         <Link to="/compare" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-line-strong bg-paper px-4 font-semibold text-ink"><Scale size={18} aria-hidden="true" />開啟比較清單</Link>
       </div>
+      <div className="mt-5">
+        <HowWeRankCard snapshotDate={generatedAt} sort={sort} onSortChange={setSort} categoryId={categoryId} />
+      </div>
+      {isMedicalFamilyCategory(categoryId) && (
+        <nav aria-label="醫療路徑導航" className="mt-4 flex flex-wrap items-center gap-2" data-testid="medical-path-chips">
+          <span className="text-sm font-semibold text-ink-soft">醫療路徑：</span>
+          {MEDICAL_PATH_CHIPS.map((chip) => (
+            <Link
+              key={chip.id}
+              to={chip.to}
+              className="inline-flex min-h-11 items-center rounded-lg border border-line bg-paper px-3 text-sm font-semibold text-ink hover:border-jade hover:text-jade"
+            >
+              {chip.label}
+            </Link>
+          ))}
+        </nav>
+      )}
       <label htmlFor="catalogue-search" className="mt-6 block text-base font-bold text-ink">搵保險公司或產品名稱</label>
       <div className="relative mt-2 max-w-2xl"><Search size={20} aria-hidden="true" className="absolute left-4 top-4 text-ink-soft" /><input id="catalogue-search" type="search" value={query} onChange={e => setQuery(e.target.value)} maxLength={120} placeholder="例如：安盛、AXA、產品名稱" className="h-12 w-full rounded-xl border border-line-strong bg-paper pl-12 pr-4 text-base text-ink" /></div>
     </header>
-    <FilterBar insurers={insurerOptions} selectedInsurers={selectedInsurers} onToggleInsurer={name => setSelectedInsurers(current => current.includes(name) ? current.filter(n => n !== name) : [...current, name])} onClearInsurers={() => setSelectedInsurers([])} onlyPremium={onlyPremium} onTogglePremium={() => setOnlyPremium(v => !v)} onlyPromo={onlyPromo} onTogglePromo={() => setOnlyPromo(v => !v)} includeHistorical={includeHistorical} onToggleHistorical={() => setIncludeHistorical(v => !v)} sort={sort} onSortChange={setSort} view={view} onViewChange={setView} showViewToggle={!mobile} shown={shown.length} total={products.length} onReset={reset} hasActiveFilters={active} isTravel={isTravel} travelTripType={trip} onTravelTripTypeChange={setTrip} travelRegion={region} onTravelRegionChange={setRegion} activeFeatureCount={selectedFeatures.length} />
+    {/* Non-blocking decision scaffold — never blocks filters or results */}
+    <CategoryDecisionGuide categoryId={categoryId} />
+    {personaPresets.length > 0 && (
+      <section className="site-container pt-5" aria-label="摘要檢索情境快捷鍵">
+        <div className="rounded-xl border border-line bg-paper-2 px-4 py-3">
+          <p className="text-sm font-bold text-ink">摘要檢索</p>
+          <p className="mt-1 text-sm leading-relaxed text-ink-soft">
+            以下情境只係幫你快速填入篩選條件（filter shortcuts），唔代表適合度、投保建議或產品推薦。命中摘要仍要核對原文限制同不保事項。
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {personaPresets.map(preset => (
+              <button
+                key={preset.id}
+                type="button"
+                onClick={() => applyPersonaPreset(preset)}
+                title={preset.description}
+                className="chip min-h-11 border bg-paper text-ink transition-colors hover:border-jade hover:text-jade"
+                style={{ borderColor: 'var(--line-strong)' }}
+              >
+                <span className="font-grotesk text-[11px] font-bold text-jade">摘要檢索</span>
+                <span className="ml-2">{preset.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+    <div id="category-filter-controls">
+      <FilterBar insurers={insurerOptions} selectedInsurers={selectedInsurers} onToggleInsurer={name => setSelectedInsurers(current => current.includes(name) ? current.filter(n => n !== name) : [...current, name])} onClearInsurers={() => setSelectedInsurers([])} onlyPremium={onlyPremium} onTogglePremium={() => setOnlyPremium(v => !v)} onlyPromo={onlyPromo} onTogglePromo={() => setOnlyPromo(v => !v)} includeHistorical={includeHistorical} onToggleHistorical={() => setIncludeHistorical(v => !v)} sort={sort} onSortChange={setSort} view={view} onViewChange={setView} showViewToggle={!mobile} shown={shown.length} total={products.length} onReset={reset} hasActiveFilters={active} isTravel={isTravel} travelTripType={trip} onTravelTripTypeChange={setTrip} travelRegion={region} onTravelRegionChange={setRegion} activeFeatureCount={selectedFeatures.length} />
+    </div>
     {tags.length > 0 && <section className="site-container pt-5">
       <details className="rounded-xl border border-line bg-paper p-4">
         <summary className="min-h-11 cursor-pointer py-2 text-base font-bold text-ink">再按保障項目篩選{selectedFeatures.length ? `（已揀 ${selectedFeatures.length} 項）` : '（可略過）'}</summary>

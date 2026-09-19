@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import TiltCard from "@/components/fx/TiltCard";
+import { CATEGORY_ORDER } from "@/lib/categories";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -35,7 +36,7 @@ export default function GuidesTeaser() {
                 variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } } }}
                 className="mt-3 text-ink-soft"
               >
-                投保指南用大白話解釋 9 類保險嘅揀選重點，附保險詞彙表。
+                投保指南用大白話解釋 {CATEGORY_ORDER.length} 類保險嘅揀選重點，附保險詞彙表。
               </motion.p>
               <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } } }}>
                 <Link to="/guides" className="btn-primary group mt-6">

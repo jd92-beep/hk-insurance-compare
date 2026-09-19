@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "audited_at": "2026-09-18",
-  "source_dataset_sha256": "678cd4def57ad10803d22158cf6d89df3310fac95bc0d8276702c1dfb8eadde8",
+  "source_dataset_sha256": "42ad17aa55b90f17cd4316cfb626cd8d8dcb88b0b9bcee22d42330a5d19395ca",
   "method": "offline-mirror-literal-audit; not semantic or freshness certification",
   "summary": {
-    "products": 158,
+    "products": 162,
     "categories": 11,
     "pdfs": 81,
-    "coverage_rows": 2601,
+    "coverage_rows": 2615,
     "entry_statuses": {
       "literal-match": 312,
-      "external-only": 1451,
+      "external-only": 1472,
       "not-found": 1350,
       "missing-source": 417,
       "invalid-or-missing-page": 5,
@@ -24,9 +24,9 @@
     "high-end-medical": 10,
     "top-up-medical": 7,
     "home": 16,
-    "life": 14,
-    "critical-illness": 13,
-    "accident": 14,
+    "life": 15,
+    "critical-illness": 14,
+    "accident": 16,
     "motor": 13,
     "domestic-helper": 12,
     "pet": 11
@@ -37,9 +37,9 @@
     "high-end-medical": 10,
     "top-up-medical": 7,
     "home": 16,
-    "life": 14,
-    "critical-illness": 13,
-    "accident": 14,
+    "life": 15,
+    "critical-illness": 14,
+    "accident": 16,
     "motor": 13,
     "domestic-helper": 12,
     "pet": 11
@@ -37954,6 +37954,273 @@
           "item": "",
           "source": "https://www.onedegree.hk/zh-hk/travel-insurance",
           "page": "1",
+          "status": "external-only",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "id": "life-zurich-term",
+      "category": "life",
+      "name": "至安心定期壽險計劃",
+      "latest_content_status": "unverified",
+      "semantic_claim_status": "requires-human-review",
+      "source_candidates": [
+        "https://www.zurich.com.hk/zh-hk/products/term-life/zurich-term-life-insurance-plan",
+        "https://edge.sitecorecloud.io/zurichinsurf8c0-zwpshared-prod-d824/media/project/zurich-headless/hongkong/docs/individuals/life-insurance/zurich-term-life-insurance-plan/product-brochure-tc.pdf",
+        "https://edge.sitecorecloud.io/zurichinsurf8c0-zwpshared-prod-d824/media/project/zurich-headless/hongkong/docs/individuals/life-insurance/zurich-term-life-insurance-plan/policy-provision-tc.pdf"
+      ],
+      "counts": {
+        "external-only": 7
+      },
+      "reused_quote_claims": 0,
+      "next_action": "核對官方現行產品／計劃級別、文件版次與生效日期；重新映射逐條保障，不以下載日或文字命中冒認核實。",
+      "entries": [
+        {
+          "kind": "coverage",
+          "index": 0,
+          "item": "身故賠償",
+          "source": "https://www.zurich.com.hk/zh-hk/products/term-life/zurich-term-life-insurance-plan",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "coverage",
+          "index": 1,
+          "item": "末期疾病保障",
+          "source": "https://www.zurich.com.hk/zh-hk/products/term-life/zurich-term-life-insurance-plan",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "coverage",
+          "index": 2,
+          "item": "身故賠償支付選項",
+          "source": "https://www.zurich.com.hk/zh-hk/products/term-life/zurich-term-life-insurance-plan",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "coverage",
+          "index": 3,
+          "item": "保證續保",
+          "source": "https://www.zurich.com.hk/zh-hk/products/term-life/zurich-term-life-insurance-plan",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "citation",
+          "index": 0,
+          "item": "身故賠償與最高/最低保障額（官方產品資訊）",
+          "source": "https://www.zurich.com.hk/zh-hk/products/term-life/zurich-term-life-insurance-plan",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "citation",
+          "index": 1,
+          "item": "末期疾病保障上限",
+          "source": "https://www.zurich.com.hk/zh-hk/products/term-life/zurich-term-life-insurance-plan",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "citation",
+          "index": 2,
+          "item": "保證續保至100歲、保費續保年期1/5/10年",
+          "source": "https://www.zurich.com.hk/zh-hk/products/term-life/zurich-term-life-insurance-plan",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "id": "critical-illness-zurich-care",
+      "category": "critical-illness",
+      "name": "至全護危疾保障計劃",
+      "latest_content_status": "unverified",
+      "semantic_claim_status": "requires-human-review",
+      "source_candidates": [
+        "https://www.zurich.com.hk/zh-hk/products/accident-and-health/critical-illness/zurich-care-critical-illness-insurance-plan",
+        "https://edge.sitecorecloud.io/zurichinsurf8c0-zwpshared-prod-d824/media/project/zurich-headless/hongkong/docs/individuals/life-insurance/zurich-care-critical-illness-insurance-plan/product_factsheet_tc.pdf",
+        "https://edge.sitecorecloud.io/zurichinsurf8c0-zwpshared-prod-d824/media/project/zurich-headless/hongkong/docs/individuals/life-insurance/zurich-care-critical-illness-insurance-plan/product_provision_ncb.pdf",
+        "https://edge.sitecorecloud.io/zurichinsurf8c0-zwpshared-prod-d824/media/project/zurich-headless/hongkong/docs/individuals/life-insurance/zurich-care-critical-illness-insurance-plan/product_provision_pureplan.pdf"
+      ],
+      "counts": {
+        "external-only": 6
+      },
+      "reused_quote_claims": 0,
+      "next_action": "核對官方現行產品／計劃級別、文件版次與生效日期；重新映射逐條保障，不以下載日或文字命中冒認核實。",
+      "entries": [
+        {
+          "kind": "coverage",
+          "index": 0,
+          "item": "危疾保障範圍",
+          "source": "https://www.zurich.com.hk/zh-hk/products/accident-and-health/critical-illness/zurich-care-critical-illness-insurance-plan",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "coverage",
+          "index": 1,
+          "item": "癌症藥物賠償",
+          "source": "https://www.zurich.com.hk/zh-hk/products/accident-and-health/critical-illness/zurich-care-critical-illness-insurance-plan",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "coverage",
+          "index": 2,
+          "item": "保費回贈利益",
+          "source": "https://www.zurich.com.hk/zh-hk/products/accident-and-health/critical-illness/zurich-care-critical-illness-insurance-plan",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "coverage",
+          "index": 3,
+          "item": "深切治療部額外補助",
+          "source": "https://www.zurich.com.hk/zh-hk/products/accident-and-health/critical-illness/zurich-care-critical-illness-insurance-plan",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "citation",
+          "index": 0,
+          "item": "81種危疾與癌症藥物賠償上限",
+          "source": "https://www.zurich.com.hk/zh-hk/products/accident-and-health/critical-illness/zurich-care-critical-illness-insurance-plan",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "citation",
+          "index": 1,
+          "item": "等候期90日、繕發年齡1–66歲",
+          "source": "https://www.zurich.com.hk/zh-hk/products/accident-and-health/critical-illness/zurich-care-critical-illness-insurance-plan",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "id": "accident-manulife-thankful-care",
+      "category": "accident",
+      "name": "相伴無憂個人意外保險計劃",
+      "latest_content_status": "unverified",
+      "semantic_claim_status": "requires-human-review",
+      "source_candidates": [
+        "https://www.manulife.com.hk/zh-hk/individual/products/health/accident-protection/thankful-care.html",
+        "https://www.manulife.com.hk/content/dam/insurance/hk/zh-hk/documents/products/health/thankful-care.pdf",
+        "https://www.manulife.com.hk/zh-hk/individual/products/health/accident-protection.html"
+      ],
+      "counts": {
+        "external-only": 4
+      },
+      "reused_quote_claims": 0,
+      "next_action": "核對官方現行產品／計劃級別、文件版次與生效日期；重新映射逐條保障，不以下載日或文字命中冒認核實。",
+      "entries": [
+        {
+          "kind": "coverage",
+          "index": 0,
+          "item": "意外身故／喪失功能或傷殘／完全傷殘賠償",
+          "source": "https://www.manulife.com.hk/zh-hk/individual/products/health/accident-protection/thankful-care.html",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "coverage",
+          "index": 1,
+          "item": "指定意外事故雙倍賠償",
+          "source": "https://www.manulife.com.hk/zh-hk/individual/products/health/accident-protection/thankful-care.html",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "coverage",
+          "index": 2,
+          "item": "非意外身故／退保或失效現金保障",
+          "source": "https://www.manulife.com.hk/zh-hk/individual/products/health/accident-protection/thankful-care.html",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "citation",
+          "index": 0,
+          "item": "意外保障達名義金額100%及指定事故雙倍賠償",
+          "source": "https://www.manulife.com.hk/zh-hk/individual/products/health/accident-protection/thankful-care.html",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "id": "accident-manulife-take-care",
+      "category": "accident",
+      "name": "「萬無一失」個人意外保障計劃 / 附加保障2",
+      "latest_content_status": "unverified",
+      "semantic_claim_status": "requires-human-review",
+      "source_candidates": [
+        "https://www.manulife.com.hk/zh-hk/individual/products/health/accident-protection/take-care-personal-accident-plan-benefit-2.html",
+        "https://www.manulife.com.hk/content/dam/insurance/hk/zh-hk/documents/products/health/take-care-2-personal-accident-plan-2-product-brochure.pdf",
+        "https://www.manulife.com.hk/content/dam/insurance/hk/zh-hk/documents/products/health/take-care-2-benefit.pdf",
+        "https://www.manulife.com.hk/zh-hk/individual/products/health/accident-protection.html"
+      ],
+      "counts": {
+        "external-only": 4
+      },
+      "reused_quote_claims": 0,
+      "next_action": "核對官方現行產品／計劃級別、文件版次與生效日期；重新映射逐條保障，不以下載日或文字命中冒認核實。",
+      "entries": [
+        {
+          "kind": "coverage",
+          "index": 0,
+          "item": "意外身故／喪失功能或傷殘／完全傷殘",
+          "source": "https://www.manulife.com.hk/zh-hk/individual/products/health/accident-protection/take-care-personal-accident-plan-benefit-2.html",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "coverage",
+          "index": 1,
+          "item": "意外受傷醫療保障",
+          "source": "https://www.manulife.com.hk/zh-hk/individual/products/health/accident-protection/take-care-personal-accident-plan-benefit-2.html",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "coverage",
+          "index": 2,
+          "item": "續保獎賞",
+          "source": "https://www.manulife.com.hk/zh-hk/individual/products/health/accident-protection/take-care-personal-accident-plan-benefit-2.html",
+          "page": null,
+          "status": "external-only",
+          "flags": []
+        },
+        {
+          "kind": "citation",
+          "index": 0,
+          "item": "醫療開支高達名義金額/保障額6%及續保每年遞增5%上限25%",
+          "source": "https://www.manulife.com.hk/zh-hk/individual/products/health/accident-protection/take-care-personal-accident-plan-benefit-2.html",
+          "page": null,
           "status": "external-only",
           "flags": []
         }

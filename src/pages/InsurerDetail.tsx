@@ -18,6 +18,17 @@ import {
 } from "@/lib/insurer-catalogue";
 import type { Insurer } from "@/types/insurance";
 
+/**
+ * Density-aware card grid.
+ * Many insurers ship 1 product per category — a 2/3-col grid would leave
+ * an empty right gutter. Single products fill the row; 2+ use foldable cols.
+ */
+function productGridClass(count: number): string {
+  if (count <= 1) return "grid grid-cols-1 items-start gap-6";
+  if (count === 2) return "grid grid-cols-1 items-start gap-6 fold:grid-cols-2";
+  return "grid grid-cols-1 items-start gap-6 fold:grid-cols-2 lg:grid-cols-3";
+}
+
 function resolveInsurer(raw: string, insurers: Insurer[]): Insurer | undefined {
   const direct = insurers.find((ins) => ins.name === raw);
   if (direct) return direct;
@@ -47,10 +58,11 @@ export default function InsurerDetail() {
     () => (insurer ? groupInsurerProductsByCategory(products, insurer.name) : []),
     [products, insurer],
   );
-  const totalProducts = useMemo(
-    () => sections.reduce((n, s) => n + s.products.length, 0),
+  const allProducts = useMemo(
+    () => sections.flatMap((s) => s.products),
     [sections],
   );
+  const totalProducts = allProducts.length;
   const premiumCount = useMemo(
     () =>
       insurer
@@ -90,7 +102,7 @@ export default function InsurerDetail() {
   }
 
   return (
-    <div className="pb-16">
+    <div className="min-w-0 pb-16">
       <header className="site-container pb-8 pt-[88px]">
         <Breadcrumbs
           items={[
@@ -186,56 +198,95 @@ export default function InsurerDetail() {
           />
         </section>
       ) : (
-        sections.map((section) => {
-          const label = categoryName(categories, section.categoryId);
-          return (
+        <>
+          {/* Overview: all products in one dense grid so multi-category insurers (e.g. Bowtie)
+              do not look like isolated single cards with empty right gutters. */}
+          {allProducts.length >= 2 && (
             <section
-              key={section.categoryId}
-              id={`cat-${section.categoryId}`}
-              className="site-container scroll-mt-[104px] py-8"
-              aria-labelledby={`insurer-cat-${section.categoryId}`}
-              data-insurer-category={section.categoryId}
+              className="site-container scroll-mt-[104px] pb-4 pt-2"
+              aria-labelledby="insurer-all-products"
+              data-testid="insurer-products-overview"
             >
-              <div
-                className="mb-5 flex flex-wrap items-end justify-between gap-3 border-b pb-4"
-                style={{ borderColor: "var(--line)" }}
-              >
+              <div className="mb-5 flex flex-wrap items-end justify-between gap-3 border-b pb-4" style={{ borderColor: "var(--line)" }}>
                 <div>
-                  <div className="flex items-center gap-2.5">
-                    <span
-                      className="h-3 w-3 rounded-[4px]"
-                      style={{ background: categoryColor(section.categoryId) }}
-                      aria-hidden="true"
-                    />
-                    <h2
-                      id={`insurer-cat-${section.categoryId}`}
-                      className="h3-style text-ink"
-                    >
-                      {label}
-                    </h2>
-                    <span className="chip bg-paper-3 text-ink-soft">
-                      <span className="font-grotesk font-bold">{section.products.length}</span> 份
-                    </span>
-                  </div>
+                  <h2 id="insurer-all-products" className="h3-style text-ink">
+                    全部站內產品一覽
+                  </h2>
                   <p className="mt-1 text-small text-ink-faint">
-                    只顯示 {insurer.name_zh} 喺呢個類別嘅站內產品。
+                    同一公司多類別產品並排顯示；類別詳情見下方分組。唔係推薦排序。
                   </p>
                 </div>
-                <Link
-                  to={categoryPath(section.categoryId)}
-                  className="inline-flex min-h-11 items-center text-small font-bold text-jade underline-offset-2 hover:underline"
-                >
-                  去類別頁睇全部公司
-                </Link>
               </div>
-              <div className="grid grid-cols-1 items-start gap-6 fold:grid-cols-2 lg:grid-cols-3">
-                {section.products.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+              <div className={productGridClass(allProducts.length)}>
+                {allProducts.map((product) => (
+                  <div key={`ov-${product.id}`} className="min-w-0">
+                    <p className="mb-2 flex items-center gap-2 text-small font-semibold text-ink-soft">
+                      <span
+                        className="h-2 w-2 rounded-full"
+                        style={{ background: categoryColor(product.category) }}
+                        aria-hidden="true"
+                      />
+                      {categoryName(categories, product.category)}
+                    </p>
+                    <ProductCard product={product} />
+                  </div>
                 ))}
               </div>
             </section>
-          );
-        })
+          )}
+
+          {sections.map((section) => {
+            const label = categoryName(categories, section.categoryId);
+            return (
+              <section
+                key={section.categoryId}
+                id={`cat-${section.categoryId}`}
+                className="site-container scroll-mt-[104px] py-8"
+                aria-labelledby={`insurer-cat-${section.categoryId}`}
+                data-insurer-category={section.categoryId}
+              >
+                <div
+                  className="mb-5 flex flex-wrap items-end justify-between gap-3 border-b pb-4"
+                  style={{ borderColor: "var(--line)" }}
+                >
+                  <div>
+                    <div className="flex items-center gap-2.5">
+                      <span
+                        className="h-3 w-3 rounded-[4px]"
+                        style={{ background: categoryColor(section.categoryId) }}
+                        aria-hidden="true"
+                      />
+                      <h2
+                        id={`insurer-cat-${section.categoryId}`}
+                        className="h3-style text-ink"
+                      >
+                        {label}
+                      </h2>
+                      <span className="chip bg-paper-3 text-ink-soft">
+                        <span className="font-grotesk font-bold">{section.products.length}</span> 份
+                      </span>
+                    </div>
+                    <p className="mt-1 text-small text-ink-faint">
+                      只顯示 {insurer.name_zh} 喺呢個類別嘅站內產品。
+                      {section.products.length === 1 ? "（單一產品，卡片用盡整行闊度）" : ""}
+                    </p>
+                  </div>
+                  <Link
+                    to={categoryPath(section.categoryId)}
+                    className="inline-flex min-h-11 items-center text-small font-bold text-jade underline-offset-2 hover:underline"
+                  >
+                    去類別頁睇全部公司
+                  </Link>
+                </div>
+                <div className={productGridClass(section.products.length)}>
+                  {section.products.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </>
       )}
 
       <section className="site-container flex flex-col items-center gap-4 py-16 text-center">

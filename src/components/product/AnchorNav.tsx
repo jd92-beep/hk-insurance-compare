@@ -90,7 +90,7 @@ export default function AnchorNav({ className }: { className?: string }) {
   const activeIndex = PRODUCT_SECTIONS.findIndex((s) => s.id === active);
 
   return (
-    <nav aria-label="產品檔案分節" className={cn("w-[200px] shrink-0", className)}>
+    <nav aria-label="產品檔案分節" className={cn("compare-label-col min-w-0 shrink-0", className)}>
       {/* 閱讀進度 */}
       <div className="mb-4 pl-4">
         <div className="flex items-baseline justify-between">

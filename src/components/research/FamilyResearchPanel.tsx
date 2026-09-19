@@ -40,7 +40,7 @@ export default function FamilyResearchPanel() {
         請勿輸入身份證、病歷或任何敏感個人資料。唔係核保、報價或「最適合你」評分。
       </p>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-6 grid grid-cols-1 gap-4 fold:grid-cols-2 lg:grid-cols-4">
         {profiles.map((profile, index) => (
           <motion.article
             key={profile.id}

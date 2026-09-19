@@ -75,7 +75,7 @@ export default function Promises() {
           whileInView="show"
           viewport={{ once: true, margin: "-18% 0px" }}
           transition={{ staggerChildren: 0.1 }}
-          className="grid grid-cols-1 gap-6 md:grid-cols-3"
+          className="grid grid-cols-1 gap-6 fold:grid-cols-3"
         >
           {PROMISES.map((p) => (
             <motion.div

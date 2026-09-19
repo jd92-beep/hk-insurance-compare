@@ -29,7 +29,7 @@ export default function ClaimResourcesSection() {
           <p className="mt-5 max-w-[38em] text-ink-soft">{CLAIM_RESOURCES.intro}</p>
         </motion.div>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-4 fold:grid-cols-2">
           {CLAIM_RESOURCES.blocks.map((block, index) => {
             const Icon = BLOCK_ICONS[index] ?? FolderOpen;
             return (

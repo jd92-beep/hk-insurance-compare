@@ -176,7 +176,7 @@ export default function Categories() {
       <section className="pb-24 max-md:pb-16">
         <div className="site-container">
           {loading ? (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-12">
+            <div className="grid grid-cols-1 gap-6 fold:grid-cols-2 lg:grid-cols-12">
               {Array.from({ length: 6 }).map((_, i) => (
                 <div
                   key={i}
@@ -185,7 +185,7 @@ export default function Categories() {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-12">
+            <div className="grid grid-cols-1 gap-6 fold:grid-cols-2 lg:grid-cols-12">
               {GRID_ORDER.map(({ id, span }, i) => {
                 const category = categories.find((c) => c.id === id);
                 if (!category) return null;

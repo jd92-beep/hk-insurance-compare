@@ -31,7 +31,7 @@ export default function Documents() {
     </div>
     {loading && <p role="status">正在載入文件目錄…</p>}
     {error && <p role="alert">{error}</p>}
-    <div className="grid items-start gap-6 lg:grid-cols-[300px_minmax(0,1fr)]">
+    <div className="grid grid-cols-1 items-start gap-6 fold:grid-cols-[minmax(11rem,28%)_minmax(0,1fr)] lg:grid-cols-[minmax(15rem,300px)_minmax(0,1fr)]">
       <aside className="min-w-0 rounded-2xl border bg-paper p-4">
         <label className="mb-2 flex items-center gap-2 text-sm font-bold" htmlFor="document-search"><Search size={16} />搜尋產品或公司</label>
         <input id="document-search" value={search} onChange={e => setSearch(e.target.value)} className="min-h-11 w-full rounded-lg border bg-paper px-3 text-sm" placeholder="例如：旅遊、保泰、AXA" />

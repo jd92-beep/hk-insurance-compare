@@ -228,7 +228,7 @@ export default function InsurerDetail() {
                   去類別頁睇全部公司
                 </Link>
               </div>
-              <div className="grid items-start gap-6 md:grid-cols-2 xl:grid-cols-3">
+              <div className="grid grid-cols-1 items-start gap-6 fold:grid-cols-2 lg:grid-cols-3">
                 {section.products.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}

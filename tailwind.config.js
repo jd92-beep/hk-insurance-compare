@@ -4,6 +4,12 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      /** Foldable / mid-width screens: half-open ~573–717, unfolded ~843–904 */
+      screens: {
+        fold: "600px",
+        unfold: "840px",
+        widefold: "900px",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -105,6 +111,12 @@ module.exports = {
       maxWidth: {
         site: "1280px",
         wide: "1440px",
+      },
+      screens: {
+        /* Foldable half-open / large phone — multi-col before default md (768) */
+        fold: "560px",
+        /* Foldable unfolded common band — 3-col cards before default xl (1280) */
+        "fold-wide": "840px",
       },
       keyframes: {
         "accordion-down": {

@@ -295,7 +295,7 @@ export default function Insurers() {
               <ChevronDown size={14} className="pointer-events-none absolute right-3 text-ink-faint" />
             </label>
             <label
-              className="flex h-10 w-[200px] items-center gap-2 rounded-[10px] border bg-paper px-3"
+              className="flex h-10 w-full min-w-[9rem] max-w-[220px] flex-1 items-center gap-2 rounded-[10px] border bg-paper px-3 sm:w-[200px] sm:flex-none"
               style={{ borderColor: "var(--line-strong)" }}
             >
               <Search size={14} className="shrink-0 text-ink-faint" />
@@ -330,7 +330,7 @@ export default function Insurers() {
             <p className="mb-4 text-small text-ink-soft">
               點擊公司卡，睇晒該公司站內產品（按保險類別分組）。
             </p>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 fold:grid-cols-2 lg:grid-cols-3">
               {filtered.map((model, i) => (
                 <InsurerCard
                   key={model.insurer.name}
@@ -360,7 +360,7 @@ export default function Insurers() {
             <p className="eyebrow text-red">LANDSCAPE</p>
             <h2 className="display-2 mt-4 text-ink">傳統大行 vs 虛擬保險。</h2>
           </motion.div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:col-span-8">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-8">
             {LANDSCAPE.map((group, gi) => (
               <motion.div
                 key={group.title}

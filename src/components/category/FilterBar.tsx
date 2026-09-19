@@ -45,7 +45,7 @@ export default function FilterBar({
     <div id={panelId} hidden={!isOpen} className="border-t border-line bg-paper-2/40">
       <div className="site-container flex flex-col gap-5 py-5">
         <p className="rounded-xl border border-amber/20 bg-amber/5 p-3 text-sm leading-relaxed text-ink-soft">本站唔提供即時報價，所以唔按價錢排高低。請先揀保障條件，再用同一年齡、計劃及保障期向公司報價。</p>
-        {isTravel && <div className="grid gap-5 md:grid-cols-2">
+        {isTravel && <div className="grid gap-5 fold:grid-cols-2">
           <fieldset><legend className="mb-2 text-base font-bold text-ink">你要單次定全年旅保？</legend><div className="flex flex-wrap gap-2">
             {([{ id: "all", label: "全部" }, { id: "single", label: "單次旅程" }, { id: "annual", label: "全年多次" }] as const).map(({ id, label }) => <FilterChip key={id} active={travelTripType === id} onClick={() => onTravelTripTypeChange?.(id)}>{label}</FilterChip>)}
           </div></fieldset>

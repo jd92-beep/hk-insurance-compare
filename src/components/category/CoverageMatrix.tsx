@@ -53,10 +53,10 @@ export default function CoverageMatrix({
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full min-w-[640px] border-collapse">
+      <table className="w-full min-w-[480px] border-collapse fold:min-w-[640px]">
         <thead>
           <tr>
-            <th className="w-[180px] min-w-[180px] px-2 pb-3 text-left align-bottom text-small font-bold text-ink-faint">
+            <th className="w-[22%] min-w-[7rem] px-2 pb-3 text-left align-bottom text-small font-bold text-ink-faint fold:w-[180px] fold:min-w-[180px]">
               保險公司
             </th>
             {orderedCats.map((c) => {

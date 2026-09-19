@@ -45,7 +45,7 @@ export default function SavedComparisons({selected,catalog,snapshotDate,onRestor
       {state.issue&&<div role="alert" className="mt-4 rounded-xl bg-amber/10 p-3 text-sm">{state.issue}<button type="button" className="ml-2 min-h-11 text-jade underline" onClick={()=>{setNotice("");store.refresh();}}>重新讀取收藏</button></div>}
       <p role="status" aria-live="polite" className="mt-3 text-sm text-jade">{notice}</p>
       {!state.sets.length&&!state.issue&&<p className="py-4 text-sm text-ink-soft">未有收藏。儲存後可在同一瀏覽器重開，清除瀏覽器資料會移除收藏。</p>}
-      <ul className="mt-4 grid gap-4 md:grid-cols-2">
+      <ul className="mt-4 grid grid-cols-1 gap-4 fold:grid-cols-2">
         {state.sets.map(set=>{
           const review=reviewSavedSet(set,catalog);
           return <li key={set.id} className="min-w-0 rounded-xl border border-line bg-paper-2/40 p-4" data-saved-set>

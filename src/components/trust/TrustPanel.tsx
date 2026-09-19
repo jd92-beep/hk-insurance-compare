@@ -33,7 +33,7 @@ export default function TrustPanel({ snapshotDate }: { snapshotDate?: string }) 
         <p className="mt-2 text-xs text-ink-faint">資料快照：{snapshotDate}（唔代表條款已全數更新）</p>
       ) : null}
 
-      <div className="mt-6 grid gap-4 md:grid-cols-2">
+      <div className="mt-6 grid grid-cols-1 gap-4 fold:grid-cols-2">
         {TRUST_PANEL.promises.map((item, index) => (
           <motion.article
             key={item.id}

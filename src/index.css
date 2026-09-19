@@ -115,7 +115,7 @@
   }
 }
 
-html, body {
+html, body, #root {
   max-width: 100%;
   overflow-x: clip;
 }

@@ -26,7 +26,7 @@ export default function VhisSchemeFacts({ compact = false }: { compact?: boolean
         </a>
       </div>
       <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">{VHIS_SCHEME_FACTS.disclaimer}</p>
-      <div className={`mt-5 grid grid-cols-1 gap-4 fold:grid-cols-3`}>
+      <div className="mt-5 grid grid-cols-1 gap-4 fold:grid-cols-2 fold-wide:grid-cols-3">
         {VHIS_SCHEME_FACTS.standardVsFlexi.map((item) => (
           <article key={item.id} className="rounded-xl border border-line bg-paper p-4">
             <h3 className="text-base font-bold text-ink">{item.title}</h3>

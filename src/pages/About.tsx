@@ -54,7 +54,7 @@ export default function About() {
   return (
     <>
       {/* S1 頁首（置中） */}
-      <section className="pb-14 pt-[88px]">
+      <section className="pb-14 pt-[68px]">
         <div className="site-container">
           <Breadcrumbs items={[{ label: "首頁", to: "/" }, { label: "關於數據" }]} />
           <div className="mx-auto mt-10 flex max-w-[760px] flex-col items-center text-center">

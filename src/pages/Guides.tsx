@@ -42,7 +42,7 @@ export default function Guides() {
   return (
     <>
       {/* S1 頁首 */}
-      <section className="pb-16 pt-[88px]">
+      <section className="pb-16 pt-[68px]">
         <div className="site-container">
           <Breadcrumbs items={[{ label: "首頁", to: "/" }, { label: "投保指南" }]} />
           <div className="mt-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-12">

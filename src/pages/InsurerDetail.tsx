@@ -103,7 +103,7 @@ export default function InsurerDetail() {
 
   return (
     <div className="min-w-0 pb-16">
-      <header className="site-container pb-8 pt-[88px]">
+      <header className="site-container pb-6 pt-[68px]">
         <Breadcrumbs
           items={[
             { label: "首頁", to: "/" },

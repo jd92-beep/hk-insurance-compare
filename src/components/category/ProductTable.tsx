@@ -263,7 +263,7 @@ export default function ProductTable({
   const COL_SPAN = 7;
 
   const thBase =
-    "sticky top-[72px] z-20 bg-paper/95 backdrop-blur-md px-4 py-3.5 text-left text-base font-bold text-ink-soft border-b border-line-strong [box-shadow:inset_0_-1px_0_var(--line-strong)]";
+    "sticky top-16 z-20 bg-paper/95 backdrop-blur-md px-4 py-3.5 text-left text-base font-bold text-ink-soft border-b border-line-strong [box-shadow:inset_0_-1px_0_var(--line-strong)]";
 
   return (
     <div
@@ -272,7 +272,7 @@ export default function ProductTable({
     >
       <table className="w-full border-collapse text-left text-base leading-[1.55] max-lg:min-w-[900px] max-md:min-w-[760px] lg:min-w-0 ">
         <caption className="p-4 text-left text-base leading-relaxed text-ink-soft">只係網站摘要，唔係全市場或即時報價。請先對齊計劃級別、自負額及不保事項。</caption>
-        <thead className="sticky top-[72px] z-20">
+        <thead className="sticky top-16 z-20">
           <tr className="border-b" style={{ borderColor: "var(--line-strong)" }}>
             <th scope="col" className={cn(thBase, "w-[21%] px-5")}>保險公司 / 產品</th>
             <th scope="col" className={cn(thBase, "w-[19%]")}>保費資料（非即時報價）</th>

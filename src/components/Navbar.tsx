@@ -89,7 +89,7 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 h-[72px] transition-all duration-300",
+        "sticky top-0 z-50 h-16 transition-all duration-300",
         scrolled && "border-b bg-paper/80 backdrop-blur-[12px]",
       )}
       style={scrolled ? { borderColor: "var(--line)" } : { borderColor: "transparent" }}
@@ -312,7 +312,7 @@ export default function Navbar() {
             transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
             className="fixed inset-0 z-[70] flex flex-col bg-paper min-[1200px]:hidden"
           >
-            <div className="site-container flex h-[72px] shrink-0 items-center justify-between">
+            <div className="site-container flex h-16 shrink-0 items-center justify-between">
               <span className="flex items-center gap-2.5">
                 <img src="/logo-mark.svg" alt="" width={28} height={28} />
                 <span className="font-serif text-[18px] font-bold">保險格價站</span>

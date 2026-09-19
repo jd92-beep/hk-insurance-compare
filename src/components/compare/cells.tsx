@@ -13,7 +13,10 @@ export function EvidenceStatusCell({ product, generatedAt }: { product: Product;
 
 /** 保費範圍原文（有公開保費 → 左側 jade 圓點；有折後價 → 標為參考價） */
 export function PremiumRangeCell({ product }: { product: Product }) {
-  return <div className="space-y-2"><p className="text-sm font-semibold text-ink-soft">資料快照，唔係你嘅實際報價。</p><p className="break-words text-base leading-relaxed text-ink">{product.premium_range || '未提供參考保費'}</p></div>;
+  return <div className="space-y-2">
+    <p className="text-sm font-semibold text-ink-soft">資料快照，唔係你嘅實際報價；本站唔提供即時試算。</p>
+    <p className="break-words text-base leading-relaxed text-ink">{product.premium_range || '未提供參考保費'}</p>
+  </div>;
 }
 
 /** 保費備註（small） */
@@ -22,12 +25,12 @@ export function PremiumNotesCell({ product }: { product: Product }) {
   return <p className="text-base leading-relaxed text-ink-soft">{product.premium_notes}</p>;
 }
 
-/** 公開保費狀態：jade「✓ 有」/ amber「向公司查詢報價」；唔宣稱已核實現行保費 */
+/** 公開保費狀態：快照欄位，唔係即時報價保證 */
 export function PremiumStatusCell({ product }: { product: Product }) {
   if (product.premium_available) {
-    return <span className="chip bg-jade-wash font-bold text-jade" title="快照標示有公開保費欄位；現行價格以官網為準">有參考保費資料</span>;
+    return <span className="chip bg-jade-wash font-bold text-jade" title="快照標示有公開保費欄位；本站唔提供即時報價">快照有公開保費文字</span>;
   }
-  return <span className="chip bg-amber-wash font-bold text-amber">向公司查詢報價</span>;
+  return <span className="chip bg-amber-wash font-bold text-amber" title="需到保險公司官網即時報價；本站唔代報價">需官網即時報價</span>;
 }
 
 /** 超過呢個長度嘅 limit 預設 clamp 3 行，撳「展開全文」睇晒 */

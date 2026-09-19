@@ -1,5 +1,6 @@
 import VerifiedPromotion from "@/components/VerifiedPromotion";
 import { purchaseUrl } from "@/lib/product-availability";
+import { quotePathway } from "@/lib/quote-pathway";
 import { ExternalLink, FileText } from "lucide-react";
 import type { Product } from "@/types/insurance";
 import CertCodeChip from "@/components/product/CertCodeChip";
@@ -52,6 +53,7 @@ export default function ProductSideRail({
   const facts = deriveKeyFacts(product);
   const certs = extractCertEntries(product);
   const docs = quickDocLinks(product);
+  const pathway = quotePathway(product);
 
   const hasFacts = facts.annualLimitAmount || facts.premium30 || certs.length > 0;
   const buyUrl = purchaseUrl(product);
@@ -115,12 +117,15 @@ export default function ProductSideRail({
                 href={buyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-[10px] bg-red px-4 py-2.5 text-small font-bold text-paper shadow-md transition-all hover:bg-red/90 hover:shadow-lg active:scale-95"
+                className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-[10px] bg-red px-4 py-2.5 text-small font-bold text-paper shadow-md transition-all hover:scale-[1.03] hover:bg-red-deep hover:shadow-lg active:scale-95"
               >
-                <span>往官方網站核對</span>
+                <span>{pathway.buyLabel ?? "往官網即時報價／核對"}</span>
                 <ExternalLink size={14} />
               </a>
             )}
+            <p className="mt-2 text-[11px] leading-snug text-ink-faint">
+              本站唔提供即時保費試算。快照文字／年齡表只係參考；真正報價請用保險公司官網。
+            </p>
 
             <CompareCTA productId={product.id} className={cn("w-full px-4", (hasFacts || buyUrl) && "mt-3")} />
 

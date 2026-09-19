@@ -6,6 +6,7 @@ import SectionHeading, { EASE_OUT_EXPO } from "@/components/product/SectionHeadi
 import CitationRef from "@/components/product/citation/CitationRef";
 import type { CitationEntry } from "@/components/product/citation/citation-utils";
 import { parsePremiumCurve } from "@/components/product/vhis-utils";
+import QuotePathwayCard from "@/components/premium/QuotePathwayCard";
 
 /**
  * S2.2 保費資料：--paper-2 紙卡（左 4px 類別色邊）。
@@ -112,6 +113,10 @@ export default function PremiumSection({
             </p>
           </div>
         )}
+
+        <div className="mt-6">
+          <QuotePathwayCard product={product} />
+        </div>
       </motion.div>
     </div>
   );

@@ -7,6 +7,7 @@ import {
   type InsurerCategoryCount,
   insurerDetailPath,
 } from "@/lib/insurer-catalogue";
+import TiltCard from "@/components/fx/TiltCard";
 import { cn } from "@/lib/utils";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -39,6 +40,7 @@ export default function InsurerCard({
   const detailHref = insurerDetailPath(insurer.name);
 
   return (
+    <TiltCard max={9} glare className="rounded-card">
     <motion.article
       id={insurer.name}
       layout="position"
@@ -46,7 +48,7 @@ export default function InsurerCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-8% 0px" }}
       transition={{ duration: 0.6, delay: staggerDelay, ease: EASE_OUT_EXPO }}
-      className="group relative flex min-w-0 scroll-mt-[88px] flex-col gap-3 rounded-card border bg-paper p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
+      className="depth-card group relative flex min-w-0 scroll-mt-[88px] flex-col gap-3 rounded-card border bg-paper p-5"
       style={{ borderColor: "var(--line)" }}
       data-insurer-card={insurer.name}
     >
@@ -77,7 +79,7 @@ export default function InsurerCard({
             </Link>
           </p>
         </div>
-        <div className="shrink-0 text-right transition-transform duration-300 group-hover:scale-105">
+        <div className="shrink-0 text-right transition-transform duration-300 group-hover:scale-105 depth-z-icon">
           <p className="font-grotesk text-[32px] font-bold leading-none text-red">
             {insurer.productCount}
           </p>
@@ -95,7 +97,7 @@ export default function InsurerCard({
               <Link
                 key={categoryId}
                 to={`${detailHref}#cat-${categoryId}`}
-                className="chip inline-flex items-center gap-1.5 transition-opacity hover:opacity-80"
+                className="chip chip-3d inline-flex items-center gap-1.5 transition-opacity hover:opacity-80"
                 style={{
                   background: `color-mix(in srgb, ${color} 12%, transparent)`,
                   color,
@@ -171,5 +173,6 @@ export default function InsurerCard({
         <ArrowRight size={14} />
       </Link>
     </motion.article>
+    </TiltCard>
   );
 }

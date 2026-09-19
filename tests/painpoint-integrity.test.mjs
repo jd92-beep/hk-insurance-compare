@@ -30,5 +30,5 @@ test('evidence summary never claims verified policy content', () => {
 
 test('category counts in data snapshot are 11 not hardcoded 9', () => {
   assert.equal(data.categories.length, 11);
-  assert.equal(data.products.length, 158);
+  assert.equal(data.products.length, 162);
 });

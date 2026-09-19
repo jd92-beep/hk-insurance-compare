@@ -77,7 +77,7 @@ export default function FeaturedCompare() {
           viewport={{ once: true, margin: "-20% 0px" }}
           transition={{ duration: 0.8, ease: EASE_OUT_EXPO }}
         >
-          <TiltCard className="rounded-card" max={4}>
+          <TiltCard className="rounded-card" max={8}>
             <div className="overflow-hidden rounded-card border bg-paper shadow-card" style={{ borderColor: "var(--line)" }}>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[420px] border-collapse text-left fold:min-w-[560px]">

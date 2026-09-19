@@ -34,7 +34,7 @@ export default function CategoryIndexCard({
     <Link
       to={`/category/${category.id}`}
       className={cn(
-        "group relative flex flex-col gap-4 overflow-hidden rounded-card border bg-paper p-8 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift",
+        "depth-card group relative flex flex-col gap-4 overflow-hidden rounded-card border bg-paper p-8 shadow-card",
         className,
       )}
       style={{ borderColor: "var(--line)" }}

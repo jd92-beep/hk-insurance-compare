@@ -5,7 +5,7 @@ import { parseInsuranceData, safeFragment } from '../src/lib/data-integrity.ts';
 const dataset=()=>JSON.parse(readFileSync('public/data/insurance-data.json','utf8'));
 test('all actual products survive validation; category counts come from actual rows',()=>{
  const raw=dataset();raw.categories[0].count=9999;const data=parseInsuranceData(raw);
- assert.equal(data.products.length,158);for(const c of data.categories)assert.equal(c.count,data.products.filter(p=>p.category===c.id).length);
+ assert.equal(data.products.length,162);for(const c of data.categories)assert.equal(c.count,data.products.filter(p=>p.category===c.id).length);
 });
 test('bad shapes, duplicate IDs and orphan categories fail before rendering',()=>{
  assert.throws(()=>parseInsuranceData({products:[]}));

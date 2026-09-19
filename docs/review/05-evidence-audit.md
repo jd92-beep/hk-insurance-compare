@@ -2,15 +2,15 @@
 
 > 2026-09-18 文件覆核：此報告是機械來源核對，唔係現行條款認證。見 [本輪交付](2026-09-18-release.md)。
 
-審核日期：2026-09-18；資料 SHA-256：`678cd4def57ad10803d22158cf6d89df3310fac95bc0d8276702c1dfb8eadde8`。
+審核日期：2026-09-18；資料 SHA-256：`42ad17aa55b90f17cd4316cfb626cd8d8dcb88b0b9bcee22d42330a5d19395ca`。
 
-158 款產品、11 類、81 份 PDF；逐項檢查 3583 個保障／citation 引用。
+162 款產品、11 類、81 份 PDF；逐項檢查 3604 個保障／citation 引用。
 
 **重要：literal-match 只代表摘錄存在於該頁，不代表足以支持保障主張，亦不代表版本最新。**
 
 | 檢查狀態 | 引用數 |
 |---|---:|
-| external-only | 1451 |
+| external-only | 1472 |
 | invalid-or-missing-page | 5 |
 | literal-match | 312 |
 | missing-source | 417 |
@@ -181,6 +181,10 @@
 | high-end-zurich-medelite | high-end-medical | 0 | 14 | 0 | 未核實 |
 | high-end-sun-life-prestige | high-end-medical | 0 | 14 | 0 | 未核實 |
 | travel-asia-insurance | travel | 0 | 13 | 0 | 未核實 |
+| life-zurich-term | life | 0 | 0 | 0 | 未核實 |
+| critical-illness-zurich-care | critical-illness | 0 | 0 | 0 | 未核實 |
+| accident-manulife-thankful-care | accident | 0 | 0 | 0 | 未核實 |
+| accident-manulife-take-care | accident | 0 | 0 | 0 | 未核實 |
 
 ## 修復順序
 

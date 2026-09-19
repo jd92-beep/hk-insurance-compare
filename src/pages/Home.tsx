@@ -1,29 +1,38 @@
 import { lazy, Suspense } from "react";
 import Hero from "@/pages/home/Hero";
-import InsurerMarquee from "@/pages/home/InsurerMarquee";
-import CategoryGrid from "@/pages/home/CategoryGrid";
-import MethodStory from "@/pages/home/MethodStory";
-import Promises from "@/pages/home/Promises";
-import GuidesTeaser from "@/pages/home/GuidesTeaser";
-import FinalCTA from "@/pages/home/FinalCTA";
-import DisclaimerToast from "@/pages/home/DisclaimerToast";
 
+/** Below-fold home sections stay out of the critical hero chunk. */
+const InsurerMarquee = lazy(() => import("@/pages/home/InsurerMarquee"));
+const CategoryGrid = lazy(() => import("@/pages/home/CategoryGrid"));
+const MethodStory = lazy(() => import("@/pages/home/MethodStory"));
+const Promises = lazy(() => import("@/pages/home/Promises"));
+const GuidesTeaser = lazy(() => import("@/pages/home/GuidesTeaser"));
+const FinalCTA = lazy(() => import("@/pages/home/FinalCTA"));
+const DisclaimerToast = lazy(() => import("@/pages/home/DisclaimerToast"));
 const FeaturedCompare = lazy(() => import("@/pages/home/FeaturedCompare"));
 const VhisSchemeFacts = lazy(() => import("@/components/vhis/VhisSchemeFacts"));
 const FamilyResearchPanel = lazy(() => import("@/components/research/FamilyResearchPanel"));
 
-/** 首頁 `/`（design/home.md S0–S8） */
+/** 首頁 `/`（design/home.md S0–S8）— critical path = Hero shell only */
 export default function Home() {
   return (
     <>
       <Hero />
-      <InsurerMarquee />
-      <CategoryGrid />
-      <MethodStory />
+      <Suspense fallback={<div className="site-container py-8 text-sm text-ink-faint">載入保險公司名單…</div>}>
+        <InsurerMarquee />
+      </Suspense>
+      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入保險類別…</div>}>
+        <CategoryGrid />
+      </Suspense>
+      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入方法說明…</div>}>
+        <MethodStory />
+      </Suspense>
       <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入示範比較…</div>}>
         <FeaturedCompare />
       </Suspense>
-      <Promises />
+      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入承諾說明…</div>}>
+        <Promises />
+      </Suspense>
       <Suspense fallback={<div className="site-container py-8 text-sm text-ink-faint">載入制度重點…</div>}>
         <div className="site-container pb-10">
           <VhisSchemeFacts />
@@ -34,9 +43,15 @@ export default function Home() {
           <FamilyResearchPanel />
         </div>
       </Suspense>
-      <GuidesTeaser />
-      <FinalCTA />
-      <DisclaimerToast />
+      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入投保指南…</div>}>
+        <GuidesTeaser />
+      </Suspense>
+      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入結尾行動區…</div>}>
+        <FinalCTA />
+      </Suspense>
+      <Suspense fallback={null}>
+        <DisclaimerToast />
+      </Suspense>
     </>
   );
 }

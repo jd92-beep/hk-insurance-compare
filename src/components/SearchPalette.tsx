@@ -8,6 +8,7 @@ import { useSearch } from "@/providers/SearchProvider";
 import { getLenis } from "@/lib/lenis";
 import { matchesSearchQuery } from "@/lib/search-query";
 import { isReferenceOnlyProduct } from "@/lib/product-availability";
+import { insurerDetailPath } from "@/lib/insurer-catalogue";
 import {
   EDUCATION_GROUP_HEADING,
   educationNavItems,
@@ -144,7 +145,7 @@ export default function SearchPalette() {
               </Command.Item>)}
             </Command.Group>}
             {!!results.insurers.length && <Command.Group heading="保險公司" className={groupHeadingClass}>
-              {results.insurers.slice(0, 6).map(i => <Command.Item key={i.name} value={`ins-${i.name}`} onSelect={() => go(`/insurers#${encodeURIComponent(i.name)}`)} className={rowStyle}>
+              {results.insurers.slice(0, 6).map(i => <Command.Item key={i.name} value={`ins-${i.name}`} onSelect={() => go(insurerDetailPath(i.name))} className={rowStyle}>
                 <Building2 size={16} aria-hidden="true" /><span className="min-w-0 flex-1">{i.name_zh} <span className="font-grotesk text-ink-soft">{i.name}</span></span><span className="text-xs text-ink-faint">{i.productCount} 份產品</span>
               </Command.Item>)}
             </Command.Group>}

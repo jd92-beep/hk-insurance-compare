@@ -6,6 +6,8 @@ import GuideCard from "@/components/guides/GuideCard";
 import GlossarySection from "@/components/guides/GlossarySection";
 import FaqAccordion from "@/components/guides/FaqAccordion";
 import ClaimResourcesSection from "@/components/guides/ClaimResourcesSection";
+import VhisSchemeFacts from "@/components/vhis/VhisSchemeFacts";
+import FamilyResearchPanel from "@/components/research/FamilyResearchPanel";
 import { GUIDES } from "@/components/guides/guides-data";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -90,6 +92,14 @@ export default function Guides() {
 
       {/* S3 保險詞彙表（深色段） */}
       <GlossarySection />
+
+      <section id="vhis" className="site-container scroll-mt-28 py-16">
+        <VhisSchemeFacts />
+      </section>
+
+      <section id="family" className="site-container scroll-mt-28 pb-16">
+        <FamilyResearchPanel />
+      </section>
 
       {/* S4 常見問題 */}
       <FaqAccordion />

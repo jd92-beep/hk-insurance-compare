@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { lazy, Suspense, useRef } from "react";
 import { ArrowRight, Search } from "lucide-react";
 import { Link } from "react-router";
 import gsap from "gsap";
@@ -11,8 +11,10 @@ import { scrollToElement } from "@/lib/lenis";
 import { StampSealIcon } from "@/components/StampSealIcon";
 import Magnetic from "@/components/Magnetic";
 import AuroraBackground from "@/components/fx/AuroraBackground";
-import ParticleField from "@/components/fx/ParticleField";
 import TiltCard from "@/components/fx/TiltCard";
+
+/** Canvas particles are decorative — keep them off the hero critical path. */
+const ParticleField = lazy(() => import("@/components/fx/ParticleField"));
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -181,7 +183,9 @@ export default function Hero() {
           >
             <AuroraBackground />
           </motion.div>
-          <ParticleField />
+          <Suspense fallback={null}>
+            <ParticleField />
+          </Suspense>
         </>
       )}
       {/* mobile 底部加多啲 padding：首訪免責聲明 toast（fixed 底條）唔會冚住 9/85/27 統計行 */}

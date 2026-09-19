@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router";
 import { useInsurers } from "@/providers/InsuranceDataProvider";
+import { insurerDetailPath } from "@/lib/insurer-catalogue";
 
 /** S2 保險公司跑馬燈 */
 export default function InsurerMarquee() {
@@ -28,7 +29,7 @@ export default function InsurerMarquee() {
             {row.map((ins, i) => (
               <span key={`${ins.name}-${i}`} className="inline-flex items-center gap-8 pr-8" aria-hidden={i >= insurers.length}>
                 <Link
-                  to={`/insurers#${ins.name}`}
+                  to={insurerDetailPath(ins.name)}
                   className="text-[15px] transition-colors hover:text-red"
                   tabIndex={i >= insurers.length ? -1 : undefined}
                 >

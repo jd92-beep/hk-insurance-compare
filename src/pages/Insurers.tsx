@@ -13,20 +13,28 @@ import {
   useProducts,
 } from "@/providers/InsuranceDataProvider";
 import { CATEGORY_ORDER, categoryColor } from "@/lib/categories";
+import {
+  INSURER_SORT_NOTE,
+  buildInsurerCardModels,
+  filterInsurerCardModels,
+  filterInsurerCardModelsByCategory,
+  insurerDetailPath,
+  sortInsurerCardModels,
+} from "@/lib/insurer-catalogue";
 import { getLenis } from "@/lib/lenis";
 import { cn } from "@/lib/utils";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-type SortKey = "count" | "name" | "premium";
+type SortKey = "coverage" | "name" | "premium";
 
 const SORT_OPTIONS: { value: SortKey; label: string }[] = [
-  { value: "count", label: "產品數由多至少（預設）" },
+  { value: "coverage", label: "站內產品數／覆蓋排序（預設）" },
   { value: "name", label: "公司名 A–Z" },
-  { value: "premium", label: "有公開保費優先" },
+  { value: "premium", label: "有公開保費欄優先" },
 ];
 
-/** S4 編輯小欄嘅公司分組（label → insurer name 錨點） */
+/** 編輯小欄：公司分組（label → insurer key，點擊去公司產品頁） */
 const LANDSCAPE: { title: string; body: string; names: [string, string][] }[] = [
   {
     title: "傳統保險公司",
@@ -85,7 +93,11 @@ function scrollToInsurer(name: string): void {
   }
 }
 
-/** 保險公司名錄 `/insurers`（design/insurers.md S1–S5） */
+/**
+ * 保險公司名錄 `/insurers`（company-first）
+ * 卡片以公司為核心；點擊進入 `/insurers/:insurerKey` 睇晒該公司產品（按類別分組）。
+ * 保留 `#INSURER` 錨點滾動＋閃框，兼容舊連結／瀏覽器腳本。
+ */
 export default function Insurers() {
   const { loading, error } = useInsuranceData();
   const insurers = useInsurers();
@@ -94,7 +106,7 @@ export default function Insurers() {
   const location = useLocation();
 
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
-  const [sortKey, setSortKey] = useState<SortKey>("count");
+  const [sortKey, setSortKey] = useState<SortKey>("coverage");
   const [query, setQuery] = useState("");
   const [flashId, setFlashId] = useState<string | null>(null);
 
@@ -103,24 +115,27 @@ export default function Insurers() {
     [products],
   );
 
+  const cardModels = useMemo(
+    () => buildInsurerCardModels(products, insurers),
+    [products, insurers],
+  );
+
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    let list = insurers.filter((ins) => {
-      if (categoryFilter !== "all" && !ins.categories.includes(categoryFilter)) return false;
-      if (q && !ins.name.toLowerCase().includes(q) && !ins.name_zh.toLowerCase().includes(q)) {
-        return false;
-      }
-      return true;
-    });
-    list = [...list].sort((a, b) => {
-      if (sortKey === "name") return a.name.localeCompare(b.name);
-      if (sortKey === "premium") {
-        return b.premiumCount - a.premiumCount || b.productCount - a.productCount;
-      }
-      return b.productCount - a.productCount;
-    });
-    return list;
-  }, [insurers, categoryFilter, sortKey, query]);
+    let list = filterInsurerCardModelsByCategory(cardModels, categoryFilter);
+    list = filterInsurerCardModels(list, query);
+    if (sortKey === "name") {
+      return [...list].sort((a, b) => a.insurer.name.localeCompare(b.insurer.name));
+    }
+    if (sortKey === "premium") {
+      return [...list].sort(
+        (a, b) =>
+          b.premiumCount - a.premiumCount ||
+          b.totalProducts - a.totalProducts ||
+          a.insurer.name.localeCompare(b.insurer.name),
+      );
+    }
+    return sortInsurerCardModels(list);
+  }, [cardModels, categoryFilter, sortKey, query]);
 
   const productsByInsurer = useMemo(() => {
     const map = new Map<string, typeof products>();
@@ -132,13 +147,12 @@ export default function Insurers() {
     return map;
   }, [products]);
 
-  // URL hash 錨點（如 /insurers#AXA，大小寫皆可）→ 滾到對應公司卡 + 紅框閃爍
+  // URL hash 錨點（如 /insurers#AXA）→ 滾到對應公司卡 + 紅框閃爍
   useEffect(() => {
     if (insurers.length === 0 || !location.hash) return;
     const hash = safeFragment(location.hash).toLowerCase();
     const target = insurers.find((ins) => ins.name.toLowerCase() === hash);
     if (!target) return;
-    // 若目標被篩選隱藏，先重設篩選
     setCategoryFilter("all");
     setQuery("");
     const timer = window.setTimeout(() => {
@@ -152,7 +166,7 @@ export default function Insurers() {
 
   const resetFilters = () => {
     setCategoryFilter("all");
-    setSortKey("count");
+    setSortKey("coverage");
     setQuery("");
   };
 
@@ -173,7 +187,7 @@ export default function Insurers() {
 
   return (
     <div>
-      {/* S1 頁首 */}
+      {/* S1 頁首：公司行 mental model */}
       <header className="site-container pb-14 pt-[88px]">
         <Breadcrumbs items={[{ label: "首頁", to: "/" }, { label: "保險公司" }]} className="mb-5" />
         <p className="eyebrow text-red">
@@ -181,7 +195,7 @@ export default function Insurers() {
           <span className="eyebrow-zh ml-3 font-sans text-ink-soft">保險公司</span>
         </p>
         <h1 className="display-2 mt-4 text-ink">
-          <SplitWords words={[`${insurers.length} 間保險公司，`, "邊間保邊啲？"]} />
+          <SplitWords words={[`${insurers.length} 間保險公司，`, "逐間睇佢哋賣啲乜。"]} />
         </h1>
         <motion.p
           initial={{ opacity: 0, y: 18 }}
@@ -189,13 +203,17 @@ export default function Insurers() {
           transition={{ duration: 0.6, delay: 0.35, ease: EASE_OUT_EXPO }}
           className="mt-4 max-w-[36em] text-ink-soft"
         >
-          由傳統大行到虛擬保險，逐間睇佢哋喺 {categories.length} 大類別嘅產品覆蓋同保費公開情況。
+          以公司為核心：每張卡列出站內收錄嘅產品數同類別覆蓋。點擊公司，即睇晒佢喺
+          {" "}
+          {categories.length}
+          {" "}
+          大類別嘅產品（按旅遊／醫療／危疾等分組）。
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5, ease: EASE_OUT_EXPO }}
-          className="mt-6 flex flex-wrap gap-2.5"
+          className="mt-6 flex flex-wrap items-center gap-2.5"
         >
           <span className="chip border bg-paper text-ink" style={{ borderColor: "var(--line-strong)" }}>
             <span className="font-grotesk font-bold">{insurers.length}</span> 間公司
@@ -204,9 +222,11 @@ export default function Insurers() {
             <span className="font-grotesk font-bold">{products.length}</span> 份產品
           </span>
           <span className="chip bg-jade-wash font-bold text-jade">
-            <span className="font-grotesk">{premiumTotal}</span> 份有公開保費
+            <span className="font-grotesk">{premiumTotal}</span> 份有公開保費欄
           </span>
+          <span className="chip bg-paper-3 text-ink-faint">資料快照 · 唔係全市場清單</span>
         </motion.div>
+        <p className="mt-3 max-w-[42em] text-small text-ink-faint">{INSURER_SORT_NOTE}</p>
       </header>
 
       {/* S2 篩選列（sticky） */}
@@ -218,8 +238,7 @@ export default function Insurers() {
         style={{ borderColor: "var(--line)" }}
       >
         <div className="site-container flex flex-wrap items-center gap-3 py-3">
-          {/* 類別 chips */}
-          <div className="flex flex-1 flex-wrap items-center gap-1.5" role="group" aria-label="按類別篩選">
+          <div className="flex flex-1 flex-wrap items-center gap-1.5" role="group" aria-label="按類別篩選公司">
             <button
               type="button"
               onClick={() => setCategoryFilter("all")}
@@ -231,7 +250,7 @@ export default function Insurers() {
               )}
               style={categoryFilter === "all" ? undefined : { borderColor: "var(--line-strong)" }}
             >
-              全部
+              全部公司
             </button>
             {CATEGORY_ORDER.map((catId) => {
               const name = categories.find((c) => c.id === catId)?.name_zh ?? catId;
@@ -258,7 +277,6 @@ export default function Insurers() {
             })}
           </div>
 
-          {/* 排序 + 搜尋 + 結果數 */}
           <div className="flex flex-wrap items-center gap-3">
             <label className="relative flex items-center">
               <select
@@ -285,7 +303,7 @@ export default function Insurers() {
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="搜尋公司…"
+                placeholder="搜尋公司名…"
                 className="min-w-0 w-full bg-transparent text-small text-ink outline-none placeholder:text-ink-faint"
                 aria-label="搜尋保險公司"
               />
@@ -298,32 +316,38 @@ export default function Insurers() {
         </div>
       </motion.div>
 
-      {/* S3 公司卡網格 */}
-      <section className="site-container py-14">
+      {/* S3 公司卡網格（點擊去公司產品頁） */}
+      <section className="site-container py-14" aria-label="保險公司卡片">
         {filtered.length === 0 ? (
           <EmptyState
-            title="呢個類別暫時冇呢間公司嘅產品"
-            description="試下重設篩選，或者睇返本站公司名錄。"
+            title="搵唔到符合條件嘅公司"
+            description="試下重設篩選，或者用公司中英文名再搜一次。空結果唔代表市場上冇呢間公司。"
             onReset={resetFilters}
             resetLabel="重設篩選"
           />
         ) : (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((ins, i) => (
-              <InsurerCard
-                key={ins.name}
-                insurer={ins}
-                products={productsByInsurer.get(ins.name) ?? []}
-                categories={categories}
-                index={i}
-                flash={flashId === ins.name}
-              />
-            ))}
-          </div>
+          <>
+            <p className="mb-4 text-small text-ink-soft">
+              點擊公司卡，睇晒該公司站內產品（按保險類別分組）。
+            </p>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {filtered.map((model, i) => (
+                <InsurerCard
+                  key={model.insurer.name}
+                  insurer={model.insurer}
+                  products={productsByInsurer.get(model.insurer.name) ?? []}
+                  categories={categories}
+                  categoryCounts={model.categoryCounts}
+                  index={i}
+                  flash={flashId === model.insurer.name}
+                />
+              ))}
+            </div>
+          </>
         )}
       </section>
 
-      {/* S4 虛擬保險 vs 傳統保險（編輯小欄） */}
+      {/* S4 傳統 vs 虛擬（編輯小欄；連結去公司產品頁） */}
       <section className="border-y bg-paper-2" style={{ borderColor: "var(--line)" }}>
         <div className="site-container grid gap-10 py-24 lg:grid-cols-12">
           <motion.div
@@ -343,7 +367,7 @@ export default function Insurers() {
                 initial={{ opacity: 0, x: gi === 0 ? -24 : 24 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-20% 0px" }}
-                transition={{ duration: 0.7, delay: gi * 0.1, ease: EASE_OUT_EXPO }}
+                transition={{ duration: 0.7, delay: gi * 0.06, ease: EASE_OUT_EXPO }}
                 className="flex flex-col gap-4 rounded-card border bg-paper p-7 shadow-card"
                 style={{ borderColor: "var(--line)" }}
               >
@@ -353,23 +377,20 @@ export default function Insurers() {
                     .filter(([, key]) => insurers.some((ins) => ins.name === key))
                     .map(([label, key], i, arr) => (
                       <span key={key}>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            scrollToInsurer(key);
-                            setFlashId(key);
-                            window.setTimeout(() => setFlashId(null), 1500);
-                          }}
+                        <Link
+                          to={insurerDetailPath(key)}
                           className="font-medium text-ink underline decoration-red/40 underline-offset-4 transition-colors hover:text-red hover:decoration-red"
                         >
                           {label}
-                        </button>
+                        </Link>
                         {i < arr.length - 1 ? "、" : ""}
                       </span>
                     ))}
                   {" "}等——{group.body}
                 </p>
-                <p className="mt-auto text-[12px] text-ink-faint">分類僅為方便理解，並非官方類別。</p>
+                <p className="mt-auto text-[12px] text-ink-faint">
+                  分類僅為方便理解，並非官方類別。點擊可睇該公司站內產品。
+                </p>
               </motion.div>
             ))}
           </div>

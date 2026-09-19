@@ -62,8 +62,7 @@ export default function Guides() {
                 transition={{ duration: 0.7, delay: 0.35, ease: EASE_OUT_EXPO }}
                 className="mt-6 max-w-[34em] text-ink-soft"
               >
-                墊底費、等候期、不保事項……保險條款唔使怕。每個類別一篇「點揀」重點，
-                加埋大白話詞彙表，格價之前打底。
+                每個類別一篇「點揀」重點＋大白話詞彙表，格價前打底。
               </motion.p>
             </div>
             <motion.div

@@ -228,12 +228,11 @@ export default function Vhis() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE_OUT_EXPO, delay: 0.4 }}
           >
-            自願醫保嘅認可產品分兩類：
+            認可產品分兩類：
             <span className="font-bold text-ink">標準計劃</span>
-            係政府劃一條款嘅固定設計，邊間公司買基本保障都一樣；
+            ＝政府劃一條款；
             <span className="font-bold text-ink">靈活計劃</span>
-            就喺標準保障之上，提供更高或者更廣嘅保障。以下名單全部嚟自
-            vhis.gov.hk 官方公開數據，逐份附官方條款同保費表連結。
+            ＝喺標準保障之上再擴充。名單來自 vhis.gov.hk，附官方條款同保費表連結。
           </motion.p>
 
           <div className="mt-8">
@@ -574,9 +573,9 @@ export default function Vhis() {
             className="mx-auto max-w-[640px] border-t pt-6 text-center text-small text-ink-faint"
             style={{ borderColor: "var(--line)" }}
           >
-            本頁名單由 vhis.gov.hk 官方公開數據生成（scripts/build_vhis.py），最後更新{" "}
+            名單來自 vhis.gov.hk（build_vhis.py），最後更新{" "}
             <span className="font-grotesk font-bold">{data.fetched_at}</span>
-            ；保障及保費以保險公司官方文件為準。
+            ；保障及保費以官方文件為準。
           </p>
         </div>
       </section>

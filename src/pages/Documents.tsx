@@ -27,7 +27,7 @@ export default function Documents() {
     <div className="mb-8 max-w-3xl">
       <p className="eyebrow text-jade">PDF 中心 · SOURCE LIBRARY</p>
       <h1 className="mt-3 font-serif text-4xl font-bold leading-tight md:text-5xl">原文，逐條對照。</h1>
-      <p className="mt-4 leading-relaxed text-ink-soft">由保障摘要直接去到來源頁碼，核對原文、限制同計劃級別。鏡像係本站保存嘅文件副本；唔代表已確認為保險公司最新版本。</p>
+      <p className="mt-4 leading-relaxed text-ink-soft">由保障摘要去到來源頁碼核對原文。鏡像係本站副本，唔代表保險公司最新版本。</p>
     </div>
     {loading && <p role="status">正在載入文件目錄…</p>}
     {error && <p role="alert">{error}</p>}
@@ -54,7 +54,7 @@ export default function Documents() {
         {product && <div className="border-b p-5">
           <Link to={`/product/${product.id}`} className="text-sm font-semibold text-jade">{product.insurer_zh} · {product.product_name_zh}</Link>
           {selected && <><h2 className="mt-2 font-serif text-xl font-bold">{selected.item}</h2><p className="mt-1 text-sm text-ink-soft">{selected.limit}</p></>}
-          {repeated > 1 && <p role="note" className="mt-3 rounded-lg bg-amber/10 p-3 text-sm">同一摘錄用於 {repeated} 項不同保障，需逐項覆核；即使文字高亮成功，都唔可以視為呢項保障已獲證實。</p>}
+          {repeated > 1 && <p role="note" className="mt-3 rounded-lg bg-amber/10 p-3 text-sm">同一摘錄用於 {repeated} 項保障，需逐項覆核；高亮成功唔代表呢項保障已獲證實。</p>}
           {selected?.quote && <details className="mt-3 text-sm"><summary className="cursor-pointer py-2 font-semibold">查看待核對摘錄</summary><blockquote className="max-h-40 overflow-auto border-l-2 border-jade pl-3 leading-relaxed">{selected.quote}</blockquote></details>}
           <div className="mt-3 flex flex-wrap gap-2">
             {target && <a className="btn-ghost min-h-11 text-sm" href={`${target.url}${target.local ? `#page=${target.page}` : ""}`} target="_blank" rel="noopener noreferrer">{target.local ? "鏡像原檔" : "來源網站"}<ExternalLink size={14} /></a>}

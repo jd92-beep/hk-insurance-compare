@@ -3,7 +3,7 @@ import { purchaseUrl } from "./product-availability.ts";
 import { calendarDate, hongKongDate, pastOrToday } from "./calendar-date.ts";
 
 export const PREMIUM_SNAPSHOT_DISCLAIMER =
-  "保費要按年齡、計劃、保障期及自付費重新報價。本站唔提供即時報價，優惠仍須到官網確認。";
+  "唔係報價；保費及優惠以官網為準。";
 export const PROMO_REFERENCE_LABEL = "優惠未核實，請向保險公司確認";
 
 export interface PriceDisplay {
@@ -62,7 +62,7 @@ export function promoDisplay(product: Product, now: Date = new Date()): PromoDis
   if (source.protocol !== "https:" || source.username || source.password) return none;
   return {
     present: true, tag: promo.tag, discount: promo.discount, code: promo.code ?? undefined,
-    note: `優惠至 ${end}（香港時間）。${promo.conditions} 檢視日期：${reviewed}；仍以官網最新條款為準。`,
+    note: `優惠至 ${end}（香港時間）。${promo.conditions} 檢視：${reviewed}；以官網為準。`,
     isReference: true, badgeLabel: promo.tag || "已記錄優惠條件（仍須確認）",
     disclaimer: PREMIUM_SNAPSHOT_DISCLAIMER, sourceUrl: source.href, validUntil: end, reviewedAt: reviewed,
   };

@@ -94,6 +94,15 @@ export default function SearchPalette() {
                 <p className="px-1 text-sm text-ink-soft">
                   {query ? `搵唔到「${query}」相關產品／公司／類別。` : "輸入關鍵字，或直接用下面教育／導航重點。"}
                 </p>
+                {query && (
+                  <button
+                    type="button"
+                    className="btn-ghost mt-3 min-h-11"
+                    onClick={() => { setQuery(""); input.current?.focus(); }}
+                  >
+                    清除搜尋
+                  </button>
+                )}
                 <p className="mt-2 px-1 text-xs font-semibold text-ink-faint">教育／導航重點</p>
                 <div className="mt-2 flex flex-wrap gap-2 px-1">
                   {emptyChips.map((chip) => (

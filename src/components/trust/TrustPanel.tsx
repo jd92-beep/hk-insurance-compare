@@ -9,6 +9,14 @@ import {
   isOfficialEduHref,
 } from "@/lib/trust-methodology";
 
+/** UI bullets only — honesty keywords stay; source of truth remains trust-methodology. */
+const SHORT_PROMISES = [
+  { id: "no-account", title: "唔使開戶口", body: "瀏覽、搜尋、比較都唔使註冊。" },
+  { id: "no-phone", title: "唔收電話／電郵", body: "冇 lead form，唔會轉介 agent。" },
+  { id: "official-only", title: "只列官方連結", body: "唔代辦投保、唔代收投訴。" },
+  { id: "no-sell", title: "唔賣資料", body: "唔賣保險、唔收轉介費。" },
+];
+
 /**
  * Site trust boundary: no accounts, no phone capture, official links only.
  * Not a broker; never invents complaint or claim statistics.
@@ -24,17 +32,19 @@ export default function TrustPanel({ snapshotDate }: { snapshotDate?: string }) 
       transition={MOTION.springSoft}
       className="rounded-card border border-line bg-paper p-5 md:p-7"
     >
-      <p className="eyebrow text-red">{TRUST_PANEL.kicker}</p>
+      <p className="eyebrow text-red">TRUST · 本站邊界</p>
       <h2 id="trust-panel-title" className="mt-2 font-serif text-2xl font-bold text-ink md:text-3xl">
         {TRUST_PANEL.title}
       </h2>
-      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">{TRUST_PANEL.lead}</p>
+      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+        資料整理同比較工具，唔係中介人。自己研究、自己改排序、自己對官方文件。
+      </p>
       {snapshotDate ? (
-        <p className="mt-2 text-xs text-ink-faint">資料快照：{snapshotDate}（唔代表條款已全數更新）</p>
+        <p className="mt-2 text-xs text-ink-faint">快照 {snapshotDate} · 非報價</p>
       ) : null}
 
       <div className="mt-6 grid grid-cols-1 gap-4 fold:grid-cols-2">
-        {TRUST_PANEL.promises.map((item, index) => (
+        {SHORT_PROMISES.map((item, index) => (
           <motion.article
             key={item.id}
             initial={{ opacity: 0, y: MOTION.enterY / 2 }}
@@ -55,9 +65,11 @@ export default function TrustPanel({ snapshotDate }: { snapshotDate?: string }) 
         data-testid="vhis-fraud-warning"
       >
         <h3 className="text-base font-bold text-ink">{VHIS_FRAUD_WARNING.title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-ink-soft">{VHIS_FRAUD_WARNING.body}</p>
+        <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+          認可名單同稅務只信 www.vhis.gov.hk 同保監局官方域名；非官方連結要求填身份證／信用卡要提高警覺。
+        </p>
         <p className="mt-2 text-sm font-semibold text-ink">
-          只信：{VHIS_FRAUD_WARNING.trustedHostLabels.join(" · ")}
+          只信：www.vhis.gov.hk · 保監局官方域名
         </p>
         <div className="mt-2 flex flex-wrap gap-3">
           {VHIS_FRAUD_WARNING.trustedHrefs.map((href) => (
@@ -77,9 +89,11 @@ export default function TrustPanel({ snapshotDate }: { snapshotDate?: string }) 
 
       <div className="mt-6 rounded-xl border border-amber/30 bg-amber/5 p-4" data-testid="complaint-data-note">
         <h3 className="text-base font-bold text-ink">{COMPLAINT_DATA_NOTE.title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-ink-soft">{COMPLAINT_DATA_NOTE.body}</p>
+        <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+          投訴數字請查官方；本站唔編造或排名投訴統計。
+        </p>
         <p className="mt-2 text-sm font-bold text-ink" data-testid="complaint-not-denial">
-          {COMPLAINT_DATA_NOTE.limitLine}
+          投訴宗數 ≠ 拒賠率。
         </p>
         {isOfficialEduHref(COMPLAINT_DATA_NOTE.officialLink.href) ? (
           <a
@@ -95,8 +109,8 @@ export default function TrustPanel({ snapshotDate }: { snapshotDate?: string }) 
       </div>
 
       <div className="mt-6">
-        <h3 className="text-base font-bold text-ink">官方教育／制度入口</h3>
-        <p className="mt-1 text-sm text-ink-soft">只列官方公開網站；本站唔代辦投保、唔代收投訴。</p>
+        <h3 className="text-base font-bold text-ink">官方入口</h3>
+        <p className="mt-1 text-sm text-ink-soft">只列官方公開網站；唔代辦投保、唔代收投訴。</p>
         <ul className="mt-3 flex flex-col gap-2">
           {OFFICIAL_EDU_LINKS.filter((link) => isOfficialEduHref(link.href)).map((link) => (
             <li key={link.id}>
@@ -123,7 +137,7 @@ export default function TrustPanel({ snapshotDate }: { snapshotDate?: string }) 
       </div>
 
       <p className="mt-5 text-xs leading-relaxed text-ink-faint">
-        本站並非持牌保險中介人，唔提供個人投保建議，亦唔保證賠償結果。
+        非持牌中介人 · 唔提供個人投保建議 · 唔保證賠償結果。
       </p>
     </motion.section>
   );

@@ -225,8 +225,7 @@ export default function Hero() {
             <Chars text="。" />
           </h1>
           <p data-hero-sub className="mt-7 max-w-[34em] text-[20px] font-medium leading-[1.7] text-ink-soft">
-            由旅遊、醫療到家居保障，按你嘅需要逐項比較。
-            睇清保障範圍、價錢同限制，再打開來源文件核對。
+            旅遊到醫療，逐項比較保障、價錢同限制，附官方文件。
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <Magnetic>
@@ -241,7 +240,7 @@ export default function Hero() {
               </button>
             </Magnetic>
             <Link to="/categories" data-hero-cta className="btn-ghost">
-              瀏覽所有保險類別
+              全部類別
             </Link>
           </div>
           {/* 快速搜尋條 */}
@@ -254,7 +253,7 @@ export default function Hero() {
           >
             <Search size={18} className="shrink-0 text-ink-faint" />
             <span className="flex-1 truncate text-[15px] text-ink-faint">
-              搜尋保險公司或產品，例如：旅遊保險、AXA、自願醫保…
+              搜尋公司或產品
             </span>
             <kbd className="shrink-0 rounded border bg-paper-2 px-1.5 py-0.5 font-grotesk text-[11px] text-ink-faint" style={{ borderColor: "var(--line)" }}>
               ⌘K
@@ -313,7 +312,7 @@ export default function Hero() {
               <div className="absolute -bottom-4 -left-4" style={{ transform: "translateZ(70px)" }}>
                 <div
                   className="hero-stamp will-change-transform"
-                  title="整理自官方文件快照，唔代表已核實現行版本"
+                  title="官方文件快照 · 非報價"
                 >
                   <StampSealIcon size={120} className="text-red" />
                 </div>

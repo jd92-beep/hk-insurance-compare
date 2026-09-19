@@ -30,13 +30,13 @@ export default function GuidesTeaser() {
                 variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } } }}
                 className="font-serif text-[26px] font-bold leading-[1.25] text-ink max-md:text-[22px]"
               >
-                墊底費、等候期、不保事項……睇唔明條款？
+                條款睇唔明？
               </motion.h3>
               <motion.p
                 variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } } }}
                 className="mt-3 text-ink-soft"
               >
-                投保指南用大白話解釋 {CATEGORY_ORDER.length} 類保險嘅揀選重點，附保險詞彙表。
+                {CATEGORY_ORDER.length} 類保險指南，附詞彙表。
               </motion.p>
               <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } } }}>
                 <Link to="/guides" className="btn-primary group mt-6">

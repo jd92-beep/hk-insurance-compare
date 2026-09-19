@@ -141,7 +141,7 @@ export default function InsurerDetail() {
 
         <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-ink-soft" data-testid="insurer-detail-disclaimer">
           <span>
-            快照 {generatedAt} · 唔係全市場清單；唔提供適合度評分、個人建議或即時報價。
+            快照 {generatedAt} · 非全市場 · 唔提供適合度評分或報價。
           </span>
           <Link to="/data-quality" className="font-semibold text-jade underline">覆核狀態</Link>
           <Link to="/compare" className="inline-flex min-h-11 items-center gap-1 font-semibold text-jade underline">
@@ -157,7 +157,7 @@ export default function InsurerDetail() {
             className="mt-5 flex flex-wrap items-center gap-2"
             data-testid="insurer-category-jump"
           >
-            <span className="text-sm font-semibold text-ink-soft">跳去類別：</span>
+            <span className="text-sm font-semibold text-ink-soft">類別：</span>
             {sections.map((section) => {
               const label = categoryName(categories, section.categoryId);
               return (
@@ -204,9 +204,6 @@ export default function InsurerDetail() {
                   <h2 id="insurer-all-products" className="h3-style text-ink">
                     全部產品
                   </h2>
-                  <p className="mt-1 text-small text-ink-faint">
-                    按下方類別分組
-                  </p>
                 </div>
               </div>
               <div className={productGridClass(allProducts.length)}>
@@ -258,15 +255,12 @@ export default function InsurerDetail() {
                         <span className="font-grotesk font-bold">{section.products.length}</span> 份
                       </span>
                     </div>
-                    <p className="mt-1 text-small text-ink-faint">
-                      {insurer.name_zh} · {label}
-                    </p>
                   </div>
                   <Link
                     to={categoryPath(section.categoryId)}
                     className="inline-flex min-h-11 items-center text-small font-bold text-jade underline-offset-2 hover:underline"
                   >
-                    去類別頁睇全部公司
+                    睇全部公司
                   </Link>
                 </div>
                 <div className={productGridClass(section.products.length)}>
@@ -283,7 +277,7 @@ export default function InsurerDetail() {
       <section className="site-container flex flex-col items-center gap-4 py-16 text-center">
         <h2 className="h3-style text-ink">想跨公司比較？</h2>
         <p className="max-w-[36em] text-ink-soft">
-          返回名錄揀其他公司，或者直接用並排比較工具核對你關心嘅產品。
+          用並排比較工具核對你關心嘅產品。
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Link to="/insurers" className="btn-primary">

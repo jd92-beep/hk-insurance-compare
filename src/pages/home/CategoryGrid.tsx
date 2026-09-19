@@ -32,7 +32,7 @@ export default function CategoryGrid() {
             <p className="eyebrow mb-4 text-ink-faint">INSURANCE CATEGORIES</p>
             <h2 className="display-2 text-ink">你想比較邊一類？</h2>
             <p className="mt-4 max-w-[38em] text-ink-soft">
-              揀一個類別，即刻見到唔同保險公司同類保單嘅保障、價錢同條款分別。
+              揀類別，即刻比較唔同公司嘅保障、價錢同條款。
             </p>
           </div>
           <Link

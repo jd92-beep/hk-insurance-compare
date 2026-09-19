@@ -18,35 +18,35 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Suspense fallback={<div className="site-container py-8 text-sm text-ink-faint">載入保險公司名單…</div>}>
+      <Suspense fallback={<div className="site-container py-8 text-sm text-ink-faint">載入中…</div>}>
         <InsurerMarquee />
       </Suspense>
-      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入保險類別…</div>}>
+      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入中…</div>}>
         <CategoryGrid />
       </Suspense>
-      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入方法說明…</div>}>
+      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入中…</div>}>
         <MethodStory />
       </Suspense>
-      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入示範比較…</div>}>
+      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入中…</div>}>
         <FeaturedCompare />
       </Suspense>
-      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入承諾說明…</div>}>
+      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入中…</div>}>
         <Promises />
       </Suspense>
-      <Suspense fallback={<div className="site-container py-8 text-sm text-ink-faint">載入制度重點…</div>}>
+      <Suspense fallback={<div className="site-container py-8 text-sm text-ink-faint">載入中…</div>}>
         <div className="site-container pb-10">
           <VhisSchemeFacts />
         </div>
       </Suspense>
-      <Suspense fallback={<div className="site-container py-8 text-sm text-ink-faint">載入家庭研究清單…</div>}>
+      <Suspense fallback={<div className="site-container py-8 text-sm text-ink-faint">載入中…</div>}>
         <div className="site-container pb-12">
           <FamilyResearchPanel />
         </div>
       </Suspense>
-      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入投保指南…</div>}>
+      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入中…</div>}>
         <GuidesTeaser />
       </Suspense>
-      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入結尾行動區…</div>}>
+      <Suspense fallback={<div className="site-container py-10 text-sm text-ink-faint">載入中…</div>}>
         <FinalCTA />
       </Suspense>
       <Suspense fallback={null}>

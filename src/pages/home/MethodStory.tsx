@@ -13,15 +13,15 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 const STEPS = [
   {
     title: "官方網站逐頁睇",
-    body: "先記錄產品頁、保障表同保費表來源，缺失資料明確列出。",
+    body: "記錄產品頁、保障表、保費表來源；缺漏照列。",
   },
   {
     title: "官方文件逐份捉",
-    body: "產品冊子、保單條款 PDF、自負額表——分清鏡像版本、頁碼同摘錄。",
+    body: "冊子、條款 PDF、自負額表：對齊版本同頁碼。",
   },
   {
     title: "結構化逐項排",
-    body: "保障上限、保費範圍、主要條款、不保事項，統一格式先好比較。有來源可逐條核對，未核實項目清楚提示。",
+    body: "保障、保費、條款、不保事項統一格式；有源可核，未核實會標示。",
   },
 ];
 
@@ -143,7 +143,7 @@ export default function MethodStory() {
           </div>
           {/* 左 5 欄：步驟 */}
           <div className="lg:col-span-5">
-            <p className="eyebrow mb-4 text-red">OUR METHOD · 數據點嚟</p>
+            <p className="eyebrow mb-4 text-red">OUR METHOD · 方法</p>
             <h2 className="display-2 text-paper">每條資料，<br />都搵到官方出處。</h2>
             <div className="mt-10 flex flex-col gap-6">
               {STEPS.map((s, i) => {

@@ -55,7 +55,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.7, delay: 0.2, ease: EASE_OUT_EXPO }}
           className="mt-5 text-ink-soft"
         >
-          由保障摘要去到來源原文，睇清已知資料同待核實嘅缺口。
+          摘要到來源原文，一處睇清。
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -71,7 +71,7 @@ export default function FinalCTA() {
             </button>
           </Magnetic>
           <Link to="/insurers" className="btn-ghost">
-            瀏覽保險公司名錄
+            公司名錄
           </Link>
         </motion.div>
       </div>

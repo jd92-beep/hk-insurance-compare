@@ -170,7 +170,7 @@ export default function Insurers() {
               <span className="eyebrow-zh ml-3 font-sans text-ink-soft">保險公司</span>
             </p>
             <h1 className="display-2 mt-2 text-ink">
-              <SplitWords words={[`${insurers.length} 間保險公司，`, "逐間睇佢哋賣啲乜。"]} />
+              <SplitWords words={[`${insurers.length} 間保險公司，`, "逐間睇產品。"]} />
             </h1>
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -178,7 +178,7 @@ export default function Insurers() {
               transition={{ duration: 0.45, delay: 0.2, ease: EASE_OUT_EXPO }}
               className="mt-2 max-w-[36em] text-small text-ink-soft"
             >
-              點擊公司卡，按類別睇產品。
+              按類別篩選，再入公司頁。
             </motion.p>
           </div>
           <div className="flex flex-col items-start gap-2 sm:items-end">
@@ -325,7 +325,7 @@ export default function Insurers() {
         {filtered.length === 0 ? (
           <EmptyState
             title="搵唔到符合條件嘅公司"
-            description="試下重設篩選，或用公司名再搜一次。"
+            description="重設篩選或改搜尋字。"
             onReset={resetFilters}
             resetLabel="重設篩選"
           />
@@ -357,7 +357,7 @@ export default function Insurers() {
         transition={{ duration: 0.5, ease: EASE_OUT_EXPO }}
         className="site-container flex flex-col items-center gap-4 py-12 text-center"
       >
-        <h2 className="h3-style text-ink">揀好公司，不如並排睇產品。</h2>
+        <h2 className="h3-style text-ink">揀好公司，並排睇產品。</h2>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Link to="/compare" className="btn-primary">
             去比較工具

@@ -50,7 +50,7 @@ export default function GuidesTeaser() {
               className="shrink-0"
             >
               {/* 指南插畫 3D 傾斜互動 */}
-              <TiltCard className="rounded-[12px]" max={6}>
+              <TiltCard className="rounded-[12px]" max={10}>
                 <img
                   src="/guides-hero.svg"
                   alt="保單文件、放大鏡同紅色批註嘅紙雕插畫"

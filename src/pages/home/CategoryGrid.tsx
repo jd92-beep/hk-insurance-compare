@@ -60,7 +60,7 @@ export default function CategoryGrid() {
               }}
             >
               {/* 3D 傾斜 + 高光掃層（reduced-motion / 觸控自動原樣 render） */}
-              <TiltCard className="h-full rounded-card" max={6}>
+              <TiltCard className="h-full rounded-card" max={11}>
                 <CategoryCard category={c} className="h-full" />
               </TiltCard>
             </motion.div>

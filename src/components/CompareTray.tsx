@@ -29,7 +29,7 @@ export default function CompareTray() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 80, opacity: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 28 }}
-          className="fixed bottom-6 left-1/2 z-50 w-[calc(100%-40px)] max-w-[720px] -translate-x-1/2"
+          className="fixed bottom-6 left-1/2 z-50 w-[calc(100%-24px)] max-w-[720px]"
           style={{ x: "-50%" }}
         >
           <div className="flex items-center gap-3 rounded-full bg-ink py-2.5 pl-5 pr-2.5 text-paper shadow-lift">

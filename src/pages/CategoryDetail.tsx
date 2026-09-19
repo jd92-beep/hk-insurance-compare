@@ -163,7 +163,7 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
     </section>
     <section className="site-container pt-6" aria-labelledby="questions-title">
       <h2 id="questions-title" className="font-serif text-2xl font-bold text-ink">報價前，問清楚三件事</h2>
-      <div className="mt-5 grid grid-cols-1 gap-5 fold:grid-cols-3">{copy.highlights.map((hint, index) => <article key={hint.title} className="depth-surface rounded-card border border-line bg-paper p-5"><span aria-hidden="true" className="font-grotesk text-3xl text-amber">0{index + 1}</span><h3 className="mt-3 text-lg font-bold text-ink">{hint.title}</h3><p className="mt-2 text-base leading-relaxed text-ink-soft">{hint.body}</p></article>)}</div>
+      <div className="mt-5 grid grid-cols-1 gap-5 fold:grid-cols-2 fold-wide:grid-cols-3">{copy.highlights.map((hint, index) => <article key={hint.title} className="depth-surface min-w-0 rounded-card border border-line bg-paper p-5"><span aria-hidden="true" className="font-grotesk text-3xl text-amber">0{index + 1}</span><h3 className="mt-3 text-lg font-bold text-ink">{hint.title}</h3><p className="mt-2 text-base leading-relaxed text-ink-soft">{hint.body}</p></article>)}</div>
       <div className="mt-8 space-y-3">{copy.faq.map(faq => <details key={faq.q} className="rounded-xl border border-line bg-paper px-5 py-3"><summary className="min-h-11 cursor-pointer py-2 text-lg font-semibold text-ink">{faq.q}</summary><p className="pb-3 pt-2 text-base leading-relaxed text-ink-soft">{faq.a}</p></details>)}</div>
     </section>
   </div>;

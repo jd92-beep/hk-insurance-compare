@@ -109,7 +109,7 @@ export default function ProductDetail() {
   const hasCitations = citationEntries.length > 0;
 
   return (
-    <div className="min-w-0 overflow-x-clip">
+    <div className="min-w-0 max-w-full overflow-x-clip">
       {/* S1 產品頁首 */}
       <ProductHeader product={product} />
       <EvidenceNotice product={product} />

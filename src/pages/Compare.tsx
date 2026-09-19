@@ -170,7 +170,7 @@ function EmptyStateView({ onDemo }: { onDemo: () => void }) {
       >
         <h1 className="display-2 text-ink">仲未揀產品</h1>
         <p className="mx-auto mt-3 max-w-[34em] text-ink-soft">
-          去任何類別頁，撳「+ 加入比較」，最多揀 3 份並排對照。
+          喺類別頁撳「+ 加入比較」，最多 3 份並排對照。
         </p>
       </motion.div>
       <motion.div
@@ -316,7 +316,7 @@ export default function Compare() {
             transition={{ duration: 0.6, delay: 0.35, ease: EASE_OUT_EXPO }}
             className="mt-3 max-w-[32em] text-ink-soft"
           >
-            網站摘要對照，唔係即時報價或投保建議。
+            網站摘要，唔係報價或投保建議。
           </motion.p>
         </div>
         <motion.div
@@ -403,7 +403,7 @@ export default function Compare() {
             )}
           </div>
           <p className="mt-3 text-sm leading-relaxed text-ink-faint">
-            只提供核對問題框架，唔係排名或適合度判斷。
+            只提供核對框架，唔係排名或適合度判斷。
           </p>
         </aside>
       )}
@@ -486,8 +486,7 @@ export default function Compare() {
         <h2 className="h3-style text-ink">比較須知</h2>
         <ol className="mt-3 flex list-decimal flex-col gap-2 pl-5 text-small text-ink-soft">
           <li>計劃層級未必一致；投保前細閱保單條款。</li>
-          <li>保費以官網報價為準；本站唔作估算。</li>
-          <li>快照 {generatedAt}；儲存／匯出都唔係報價或投保建議。</li>
+          <li>保費以官網為準；快照 {generatedAt}；儲存／匯出唔係報價或投保建議。</li>
         </ol>
       </motion.aside>
 

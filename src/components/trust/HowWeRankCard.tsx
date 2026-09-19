@@ -70,9 +70,9 @@ export default function HowWeRankCard({
       <div className="mt-5 rounded-xl border border-line bg-paper p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h3 className="text-base font-bold text-ink">排列方式（你可以改）</h3>
+            <h3 className="text-base font-bold text-ink">排列方式</h3>
             <p className="mt-1 text-sm text-ink-soft" data-testid="how-we-rank-active-sort">
-              而家：{active.label} — {active.explanation}
+              而家：{active.label}
             </p>
           </div>
           {onSortChange ? (
@@ -102,12 +102,12 @@ export default function HowWeRankCard({
           )}
         </div>
         <p className="mt-3 text-xs leading-relaxed text-ink-faint">
-          預設＝{HOW_WE_RANK.defaultSortShort}。本站冇 lead form、唔賣資料、冇適合度分數。
+          預設＝{HOW_WE_RANK.defaultSortShort}。冇 lead form、唔賣資料、冇適合度分數。
           {categoryId ? (
             <>
               {" "}
               <Link to="/guides#trust" className="min-h-11 inline-flex items-center font-semibold text-jade underline">
-                睇完整信任邊界
+                完整信任邊界
               </Link>
             </>
           ) : null}

@@ -44,31 +44,31 @@ export default function FilterBar({
     </div>
     <div id={panelId} hidden={!isOpen} className="border-t border-line bg-paper-2/40">
       <div className="site-container flex flex-col gap-5 py-5">
-        <p className="rounded-xl border border-amber/20 bg-amber/5 p-3 text-sm leading-relaxed text-ink-soft">本站唔提供即時報價，所以唔按價錢排高低。請先揀保障條件，再用同一年齡、計劃及保障期向公司報價。</p>
+        <p className="rounded-xl border border-amber/20 bg-amber/5 p-3 text-sm leading-relaxed text-ink-soft">唔按價錢排序。揀好條件後，用相同計劃向公司報價。</p>
         {isTravel && <div className="grid gap-5 fold:grid-cols-2">
-          <fieldset><legend className="mb-2 text-base font-bold text-ink">你要單次定全年旅保？</legend><div className="flex flex-wrap gap-2">
+          <fieldset><legend className="mb-2 text-base font-bold text-ink">單次定全年？</legend><div className="flex flex-wrap gap-2">
             {([{ id: "all", label: "全部" }, { id: "single", label: "單次旅程" }, { id: "annual", label: "全年多次" }] as const).map(({ id, label }) => <FilterChip key={id} active={travelTripType === id} onClick={() => onTravelTripTypeChange?.(id)}>{label}</FilterChip>)}
           </div></fieldset>
           <fieldset><legend className="mb-2 text-base font-bold text-ink">保障地區</legend><div className="flex flex-wrap gap-2">
-            {([{ id: "all", label: "全部" }, { id: "asia", label: "亞洲" }, { id: "worldwide", label: "全球（須核對限制）" }, { id: "gba", label: "大灣區" }] as const).map(({ id, label }) => <FilterChip key={id} active={travelRegion === id} onClick={() => onTravelRegionChange?.(id)}>{label}</FilterChip>)}
-          </div><p className="mt-2 text-sm text-ink-soft">選定地區後，資料未註明地區的產品不會當作符合。</p></fieldset>
+            {([{ id: "all", label: "全部" }, { id: "asia", label: "亞洲" }, { id: "worldwide", label: "全球（核對限制）" }, { id: "gba", label: "大灣區" }] as const).map(({ id, label }) => <FilterChip key={id} active={travelRegion === id} onClick={() => onTravelRegionChange?.(id)}>{label}</FilterChip>)}
+          </div><p className="mt-2 text-sm text-ink-soft">資料未註明地區者不會當作符合。</p></fieldset>
         </div>}
-        <fieldset><legend className="mb-2 text-base font-bold text-ink">保險公司／產品品牌（可揀多間）</legend>
+        <fieldset><legend className="mb-2 text-base font-bold text-ink">保險公司／品牌（可多選）</legend>
           <div className="flex flex-wrap gap-2"><FilterChip active={!selectedInsurers.length} onClick={onClearInsurers}>全部</FilterChip>{insurers.map((insurer) => <FilterChip key={insurer.name} active={selectedInsurers.includes(insurer.name)} onClick={() => onToggleInsurer(insurer.name)}>{insurer.name_zh || insurer.name}</FilterChip>)}</div>
         </fieldset>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-          <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm text-ink"><input type="checkbox" checked={onlyPremium} onChange={onTogglePremium} className="h-5 w-5 accent-[var(--jade)]" />只顯示有參考保費資料</label>
-          {isTravel && <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm text-ink"><input type="checkbox" checked={onlyPromo} onChange={onTogglePromo} className="h-5 w-5 accent-[var(--jade)]" />只顯示有已記錄期限的優惠</label>}
+          <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm text-ink"><input type="checkbox" checked={onlyPremium} onChange={onTogglePremium} className="h-5 w-5 accent-[var(--jade)]" />有參考保費資料</label>
+          {isTravel && <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm text-ink"><input type="checkbox" checked={onlyPromo} onChange={onTogglePromo} className="h-5 w-5 accent-[var(--jade)]" />有已記錄優惠</label>}
           <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm text-ink"><input type="checkbox" checked={includeHistorical} onChange={onToggleHistorical} className="h-5 w-5 accent-[var(--jade)]" />包括停售／歷史資料</label>
           <label className="flex min-h-11 flex-wrap items-center gap-2 text-sm font-semibold text-ink">排列方式
             <select value={sort} onChange={(event) => onSortChange(event.target.value as SortKey)} className="min-h-11 max-w-full rounded-lg border border-line-strong bg-paper px-3 text-sm text-ink">
-              <option value="default">預設（按所選摘要條件）</option>
-              <option value="fit-score" disabled={!activeFeatureCount}>摘要符合項目由多至少</option>
-              <option value="insurer-az">公司英文名稱 A–Z</option>
+              <option value="default">預設（摘要命中）</option>
+              <option value="fit-score" disabled={!activeFeatureCount}>摘要符合由多至少</option>
+              <option value="insurer-az">公司英文名 A–Z</option>
             </select>
           </label>
         </div>
-        <p className="text-sm leading-relaxed text-ink-soft">篩選只對照本站摘要，唔代表適合你、保證受保或理賠結果。</p>
+        <p className="text-sm leading-relaxed text-ink-soft">篩選只對照摘要，唔代表適合或受保。</p>
       </div>
     </div>
   </div>;

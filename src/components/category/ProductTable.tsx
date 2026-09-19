@@ -271,7 +271,7 @@ export default function ProductTable({
       style={{ borderColor: "var(--line)" }}
     >
       <table className="w-full border-collapse text-left text-base leading-[1.55] max-lg:min-w-[900px] max-md:min-w-[760px] lg:min-w-0 ">
-        <caption className="p-4 text-left text-base leading-relaxed text-ink-soft">只係網站摘要，唔係全市場或即時報價。請先對齊計劃級別、自負額及不保事項。</caption>
+        <caption className="p-4 text-left text-base leading-relaxed text-ink-soft">網站摘要，唔係全市場或即時報價。先對齊級別、自付及不保。</caption>
         <thead className="sticky top-16 z-20">
           <tr className="border-b" style={{ borderColor: "var(--line-strong)" }}>
             <th scope="col" className={cn(thBase, "w-[21%] px-5")}>保險公司 / 產品</th>
@@ -328,7 +328,7 @@ export default function ProductTable({
                         {p.product_name_zh || p.product_name}
                       </button>
                     </span>
-                    {match && match.totalSelected > 0 && <p className="mt-2 text-sm text-ink-soft">摘要對到 {match.matchedCount}/{match.totalSelected} 項，仍要核對原文。</p>}
+                    {match && match.totalSelected > 0 && <p className="mt-2 text-sm text-ink-soft">摘要對照 {match.matchedCount}/{match.totalSelected} · 仍要核對原文</p>}
                     <VerifiedPromotion product={p} />
                     <button type="button" aria-expanded={expanded} onClick={() => toggleRow(p.id)} className="min-h-11 mt-1.5 inline-flex items-center gap-1 text-base font-medium text-ink-faint transition-colors group-hover:text-ink-soft">
                       <ChevronDown
@@ -341,7 +341,7 @@ export default function ProductTable({
 
                   <td className="px-4 py-4 align-top">
                     <p className="font-semibold text-ink">{p.premium_available ? "有參考保費資料" : "需個別報價"}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-ink-soft">不同年齡、計劃及保障期，唔可以直接比價。</p>
+                    <p className="mt-1 text-sm leading-relaxed text-ink-soft">唔同年齡／計劃／保障期，唔可直接比價。</p>
                     <details className="mt-2" onClick={(event) => event.stopPropagation()}>
                       <summary className="min-h-11 cursor-pointer content-center text-sm font-semibold text-jade">查看保費資料快照</summary>
                       <p className="mt-2 whitespace-normal break-words text-sm leading-relaxed text-ink-soft">{p.premium_range}</p>

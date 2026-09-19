@@ -90,7 +90,7 @@ export default function ProductDetail() {
           title="搵唔到呢份產品"
           description={
             error ??
-            "呢個產品連結可能已經過期，或者網址打錯咗。試下由類別頁重新揀過。"
+            "連結可能已過期或網址錯誤。請由類別頁重新揀選。"
           }
         />
         <p className="mt-8">

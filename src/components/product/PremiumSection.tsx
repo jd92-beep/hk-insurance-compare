@@ -109,7 +109,7 @@ export default function PremiumSection({
           <div className="mt-6">
             <PriceRangeBar product={product} />
             <p className="mt-1 text-small text-ink-faint">
-              請先確認保費表的計劃級別、年齡、自付費及生效日期；續保價亦可能不同。
+              先核對計劃級別、年齡、自付費及生效日期；續保價可能不同。
             </p>
           </div>
         )}

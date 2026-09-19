@@ -25,21 +25,21 @@ export default function ProductCard({ product, className, match }: { product: Pr
         <div>
           <p className="text-base font-semibold text-ink-soft">{product.insurer_zh} <span className="font-grotesk">{product.insurer}</span></p>
           <h3 className="mt-2 text-xl font-bold leading-relaxed text-ink"><Link className="rounded hover:text-jade hover:underline focus-visible:outline-offset-4" to={`/product/${product.id}`}>{title}</Link></h3>
-          <p className="mt-2 text-sm font-medium text-ink-soft">{historical ? '舊資料／暫不作新投保參考' : '資料摘要・未全面核實現行條款'}</p>
+          <p className="mt-2 text-sm font-medium text-ink-soft">{historical ? '舊資料／唔作新投保參考' : '資料摘要・未全面核實現行條款'}</p>
         </div>
-        {multiplePlans && <p className="rounded-lg border border-amber/30 bg-amber/5 p-3 text-sm leading-relaxed text-ink">包含多個級別：以下保障唔一定屬於同一份計劃。請先確認你揀嘅級別。</p>}
-        {match && match.totalSelected > 0 && <p className="rounded-lg bg-paper-2 p-3 text-sm leading-relaxed text-ink-soft">摘要對到 <strong className="text-ink">{match.matchedCount} / {match.totalSelected}</strong> 項搜尋條件；唔係適合度評分，亦唔代表已確認受保。</p>}
+        {multiplePlans && <p className="rounded-lg border border-amber/30 bg-amber/5 p-3 text-sm leading-relaxed text-ink">多個級別：保障未必同一計劃，先確認你揀嘅級別。</p>}
+        {match && match.totalSelected > 0 && <p className="rounded-lg bg-paper-2 p-3 text-sm leading-relaxed text-ink-soft">摘要對照 <strong className="text-ink">{match.matchedCount}/{match.totalSelected}</strong> · 非核保結果</p>}
         <PriceRangeBar product={product} />
         <VerifiedPromotion product={product} />
         <section aria-label="保障摘要">
-          <h4 className="text-base font-bold text-ink">保咩？先核對呢啲項目</h4>
-          <p className="mt-1 text-sm text-ink-soft">限額及條件以所選計劃原文為準。</p>
-          {product.coverage.length ? <dl className="mt-3 space-y-3">{product.coverage.slice(0, 2).map((row, i) => <div key={`${row.item}-${i}`}><dt className="text-base font-semibold text-ink">{row.item}</dt><dd className="mt-1 text-base leading-relaxed text-ink-soft">{row.limit}</dd></div>)}</dl> : <p className="mt-2 text-base text-ink-soft">本站未提供可比較摘要；請向公司索取保障表。</p>}
+          <h4 className="text-base font-bold text-ink">保障摘要</h4>
+          <p className="mt-1 text-sm text-ink-soft">限額及條件以計劃原文為準。</p>
+          {product.coverage.length ? <dl className="mt-3 space-y-3">{product.coverage.slice(0, 2).map((row, i) => <div key={`${row.item}-${i}`}><dt className="text-base font-semibold text-ink">{row.item}</dt><dd className="mt-1 text-base leading-relaxed text-ink-soft">{row.limit}</dd></div>)}</dl> : <p className="mt-2 text-base text-ink-soft">未提供可比較摘要；請向公司索取保障表。</p>}
         </section>
         <section className="rounded-xl border border-amber/30 bg-amber/5 p-4" aria-label="不保與限制">
-          <h4 className="text-base font-bold text-ink">咩情況可能唔保？</h4>
-          <p className="mt-2 text-base leading-relaxed text-ink-soft">{product.exclusions[0] || '本站未提供完整不保事項；唔代表沒有除外條款。'}</p>
-          <Link to={`/product/${product.id}`} className="mt-2 inline-flex min-h-11 items-center gap-2 text-base font-semibold text-jade underline">睇全部限制同來源 <ArrowRight size={16} aria-hidden="true" /></Link>
+          <h4 className="text-base font-bold text-ink">可能唔保</h4>
+          <p className="mt-2 text-base leading-relaxed text-ink-soft">{product.exclusions[0] || '未提供完整不保事項；唔代表沒有除外條款。'}</p>
+          <Link to={`/product/${product.id}`} className="mt-2 inline-flex min-h-11 items-center gap-2 text-base font-semibold text-jade underline">全部限制同來源 <ArrowRight size={16} aria-hidden="true" /></Link>
         </section>
         <div className="mt-1 grid grid-cols-2 gap-3 border-t border-line pt-4">
           <Link to={`/product/${product.id}`} className="inline-flex min-h-12 items-center justify-center rounded-xl border border-line-strong px-3 py-3 text-center text-base font-bold text-ink hover:bg-paper-2">睇計劃詳情</Link>

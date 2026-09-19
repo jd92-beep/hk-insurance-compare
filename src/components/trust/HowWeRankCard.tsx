@@ -80,7 +80,7 @@ export default function HowWeRankCard({
       <div className="mt-5 rounded-xl border border-line bg-paper p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h3 className="text-base font-bold text-ink">排序方式</h3>
+            <h3 className="text-base font-bold text-ink">排列方式</h3>
             <p className="mt-1 text-sm text-ink-soft" data-testid="how-we-rank-active-sort">
               而家：{active.label}
             </p>
@@ -112,7 +112,7 @@ export default function HowWeRankCard({
           )}
         </div>
         <p className="mt-3 text-xs leading-relaxed text-ink-faint">
-          預設＝摘要命中（非贊助）· 唔賣資料 · 冇適合度分數。
+          預設＝摘要命中（唔係贊助）· 唔賣資料 · 冇適合度分數。
           {categoryId ? (
             <>
               {" "}

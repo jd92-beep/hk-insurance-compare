@@ -46,7 +46,7 @@ export default function ExclusionsSection({
       >
         <p className="flex items-start gap-2 text-small text-ink-soft">
           <TriangleAlert size={16} className="mt-[2px] shrink-0 text-amber" aria-hidden="true" />
-          以下為節錄，完整不保事項以保單條款為準。主題檢索只係字面整理，唔代表已證實不保。
+          節錄；完整不保以保單條款為準。主題檢索唔代表已證實不保。
         </p>
         <ul
           className={cn(

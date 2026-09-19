@@ -10,9 +10,9 @@ export const HOW_WE_RANK = {
   cardTitle: "我哋點樣排",
   cardKicker: "HOW WE RANK · 排序方法",
   alwaysVisibleLead:
-    "呢張卡會一直顯示，唔會收埋。預設排序係「摘要命中排序」——只係對照網站摘要同你揀嘅條件，唔係贊助位、佣金排名或「最適合你」評分。你可以自己改排列方式。",
+    "預設係「摘要命中排序」——只對照網站摘要同你揀嘅條件，唔係贊助位、佣金排名或適合度評分。可自行改排列。",
   snapshotLabelPrefix: "資料快照",
-  snapshotNote: "排序只反映快照入面已整理嘅摘要；快照唔等於現行條款。",
+  snapshotNote: "排序只反映快照摘要；快照唔等於現行條款。",
   defaultSortId: "default" as CatalogueSortId,
   defaultSortLabel: "摘要命中排序",
   defaultSortShort: "預設：摘要命中排序（非贊助）",
@@ -26,27 +26,27 @@ export const HOW_WE_RANK_POINTS: ReadonlyArray<{ id: string; title: string; body
   {
     id: "default-sort",
     title: "預設＝摘要命中排序",
-    body: "冇揀篩選時，產品按資料快照入面嘅摘要檢索結果呈現；有揀保障項目時，會反映摘要對到幾多條件。命中唔等於受保、唔等於批核、唔等於賠得到。",
+    body: "按快照摘要同你嘅條件呈現。命中唔等於受保、批核或賠償。",
   },
   {
     id: "user-sort",
     title: "你可以改排列方式",
-    body: "篩選器可改做「公司英文名稱 A–Z」或「摘要符合項目由多至少」。改咗排序只影響展示次序，唔會改變保單內容，亦唔會變成推薦。",
+    body: "可改「公司英文名 A–Z」或「摘要符合項目由多至少」。只影響展示次序。",
   },
   {
     id: "no-sponsored",
     title: "唔係贊助排序",
-    body: "本站唔賣保險、唔收轉介費，目錄冇付費置頂。邊份排前面，取決於資料快照同你套用嘅條件，唔取決於邊間俾錢。",
+    body: "唔賣保險、唔收轉介費、冇付費置頂。",
   },
   {
     id: "no-lead-no-data",
-    title: "冇留資料表格、唔賣資料",
-    body: "站內冇電話／電郵收集表格去「幫你搵 agent」，亦唔會將你嘅搜尋或比較行為賣俾第三者。比較清單只存喺你部機。",
+    title: "冇留資料、唔賣資料",
+    body: "冇收集電話／電郵嘅 lead form；比較清單只存喺你部機。",
   },
   {
     id: "no-suitability",
     title: "冇「適合度」分數",
-    body: "本站唔會輸出「最適合你」評分、核保機會或預計賠償率。任何分數式命中只係摘要檢索結果，唔係個人建議。",
+    body: "唔輸出最適合你評分、核保機會或預計賠償率；命中只係摘要檢索。",
   },
 ] as const;
 
@@ -59,19 +59,19 @@ export const SORT_METHODOLOGY: ReadonlyArray<{
   {
     id: "default",
     label: "預設（摘要命中排序）",
-    explanation: "按資料快照摘要同目前條件嘅對應情況呈現；冇商業排序。",
+    explanation: "按快照摘要同目前條件對應呈現；冇商業排序。",
     sponsored: false,
   },
   {
     id: "fit-score",
     label: "摘要符合項目由多至少",
-    explanation: "只喺你揀咗保障項目檢索時有用；分數係命中項目數，唔係適合度。",
+    explanation: "只喺揀咗保障項目時有用；分數係命中數，唔係適合度。",
     sponsored: false,
   },
   {
     id: "insurer-az",
     label: "公司英文名稱 A–Z",
-    explanation: "純字母順序，方便已知公司名時搵嘢；唔代表任何品質排序。",
+    explanation: "純字母順序，唔代表品質排序。",
     sponsored: false,
   },
 ] as const;

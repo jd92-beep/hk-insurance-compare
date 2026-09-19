@@ -116,7 +116,7 @@ export default function KeyTermsSection({
       </motion.ul>
       <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1">
         <p className="text-small text-ink-faint">
-          以上為官方文件節錄，完整條款以保單原文為準。詞義只作教育用途，唔代表呢份保單一定有該項保障。
+          官方文件節錄；完整條款以保單原文為準。詞義僅供參考。
         </p>
         <GlossaryMoreLink />
       </div>

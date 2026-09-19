@@ -109,6 +109,7 @@ export default function Insurers() {
   const [sortKey, setSortKey] = useState<SortKey>("coverage");
   const [query, setQuery] = useState("");
   const [flashId, setFlashId] = useState<string | null>(null);
+  const [showCategoryChips, setShowCategoryChips] = useState(false);
 
   const premiumTotal = useMemo(
     () => products.filter((p) => p.premium_available).length,
@@ -187,133 +188,165 @@ export default function Insurers() {
 
   return (
     <div>
-      {/* S1 頁首：公司行 mental model */}
-      <header className="site-container pb-14 pt-[88px]">
-        <Breadcrumbs items={[{ label: "首頁", to: "/" }, { label: "保險公司" }]} className="mb-5" />
-        <p className="eyebrow text-red">
-          INSURERS
-          <span className="eyebrow-zh ml-3 font-sans text-ink-soft">保險公司</span>
-        </p>
-        <h1 className="display-2 mt-4 text-ink">
-          <SplitWords words={[`${insurers.length} 間保險公司，`, "逐間睇佢哋賣啲乜。"]} />
-        </h1>
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35, ease: EASE_OUT_EXPO }}
-          className="mt-4 max-w-[36em] text-ink-soft"
-        >
-          以公司為核心：每張卡列出站內收錄嘅產品數同類別覆蓋。點擊公司，即睇晒佢喺
-          {" "}
-          {categories.length}
-          {" "}
-          大類別嘅產品（按旅遊／醫療／危疾等分組）。
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5, ease: EASE_OUT_EXPO }}
-          className="mt-6 flex flex-wrap items-center gap-2.5"
-        >
-          <span className="chip border bg-paper text-ink" style={{ borderColor: "var(--line-strong)" }}>
-            <span className="font-grotesk font-bold">{insurers.length}</span> 間公司
-          </span>
-          <span className="chip border bg-paper text-ink" style={{ borderColor: "var(--line-strong)" }}>
-            <span className="font-grotesk font-bold">{products.length}</span> 份產品
-          </span>
-          <span className="chip bg-jade-wash font-bold text-jade">
-            <span className="font-grotesk">{premiumTotal}</span> 份有公開保費欄
-          </span>
-          <span className="chip bg-paper-3 text-ink-faint">資料快照 · 唔係全市場清單</span>
-        </motion.div>
-        <p className="mt-3 max-w-[42em] text-small text-ink-faint">{INSURER_SORT_NOTE}</p>
-      </header>
-
-      {/* S2 篩選列（sticky） */}
-      <motion.div
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.6, ease: EASE_OUT_EXPO }}
-        className="sticky top-[72px] z-30 border-y bg-paper/85 backdrop-blur-[12px]"
-        style={{ borderColor: "var(--line)" }}
-      >
-        <div className="site-container flex flex-wrap items-center gap-3 py-3">
-          <div className="flex flex-1 flex-wrap items-center gap-1.5" role="group" aria-label="按類別篩選公司">
-            <button
-              type="button"
-              onClick={() => setCategoryFilter("all")}
-              className={cn(
-                "chip border transition-colors",
-                categoryFilter === "all"
-                  ? "border-ink bg-ink text-paper"
-                  : "bg-paper text-ink-soft hover:bg-paper-3",
-              )}
-              style={categoryFilter === "all" ? undefined : { borderColor: "var(--line-strong)" }}
-            >
-              全部公司
-            </button>
-            {CATEGORY_ORDER.map((catId) => {
-              const name = categories.find((c) => c.id === catId)?.name_zh ?? catId;
-              const active = categoryFilter === catId;
-              return (
-                <button
-                  key={catId}
-                  type="button"
-                  onClick={() => setCategoryFilter(active ? "all" : catId)}
-                  className={cn(
-                    "chip border transition-colors",
-                    active ? "border-ink bg-ink text-paper" : "bg-paper text-ink-soft hover:bg-paper-3",
-                  )}
-                  style={active ? undefined : { borderColor: "var(--line-strong)" }}
-                >
-                  <span
-                    className="h-2 w-2 rounded-full"
-                    style={{ background: categoryColor(catId) }}
-                    aria-hidden="true"
-                  />
-                  {name}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3">
-            <label className="relative flex items-center">
-              <select
-                value={sortKey}
-                onChange={(e) => setSortKey(e.target.value as SortKey)}
-                className="h-10 appearance-none rounded-[10px] border bg-paper pl-3.5 pr-9 text-small font-medium text-ink outline-none transition-colors hover:bg-paper-2"
-                style={{ borderColor: "var(--line-strong)" }}
-                aria-label="排序方式"
-              >
-                {SORT_OPTIONS.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown size={14} className="pointer-events-none absolute right-3 text-ink-faint" />
-            </label>
-            <label
-              className="flex h-10 w-full min-w-[9rem] max-w-[220px] flex-1 items-center gap-2 rounded-[10px] border bg-paper px-3 sm:w-[200px] sm:flex-none"
-              style={{ borderColor: "var(--line-strong)" }}
-            >
-              <Search size={14} className="shrink-0 text-ink-faint" />
-              <input
-                type="search"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="搜尋公司名…"
-                className="min-w-0 w-full bg-transparent text-small text-ink outline-none placeholder:text-ink-faint"
-                aria-label="搜尋保險公司"
-              />
-            </label>
-            <p className="text-small text-ink-faint">
-              顯示 <span className="font-grotesk font-bold text-ink">{filtered.length}</span> /{" "}
-              <span className="font-grotesk">{insurers.length}</span> 間
+      {/* S1 頁首：公司行 mental model — 緊湊，避免 logo 下方大空隙 */}
+      <header className="site-container pb-5 pt-[68px]">
+        <Breadcrumbs items={[{ label: "首頁", to: "/" }, { label: "保險公司" }]} className="mb-3" />
+        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+          <div className="min-w-0 flex-1">
+            <p className="eyebrow text-red">
+              INSURERS
+              <span className="eyebrow-zh ml-3 font-sans text-ink-soft">保險公司</span>
             </p>
+            <h1 className="display-2 mt-2 text-ink">
+              <SplitWords words={[`${insurers.length} 間保險公司，`, "逐間睇佢哋賣啲乜。"]} />
+            </h1>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.2, ease: EASE_OUT_EXPO }}
+              className="mt-2 max-w-[40em] text-small text-ink-soft"
+            >
+              以公司為核心：每張卡列出站內產品數同類別覆蓋。點擊公司，即睇晒佢喺{" "}
+              {categories.length} 大類別嘅產品（按類別分組）。
+            </motion.p>
+          </div>
+          <div className="flex flex-col items-start gap-2 sm:items-end">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="chip border bg-paper text-ink" style={{ borderColor: "var(--line-strong)" }}>
+                <span className="font-grotesk font-bold">{insurers.length}</span> 間公司
+              </span>
+              <span className="chip border bg-paper text-ink" style={{ borderColor: "var(--line-strong)" }}>
+                <span className="font-grotesk font-bold">{products.length}</span> 份產品
+              </span>
+              <span className="chip bg-jade-wash font-bold text-jade">
+                <span className="font-grotesk">{premiumTotal}</span> 份有公開保費欄
+              </span>
+            </div>
+            <p className="max-w-[36em] text-xs text-ink-faint sm:text-right">{INSURER_SORT_NOTE}</p>
           </div>
         </div>
+      </header>
+
+      {/* S2 篩選列：sticky 只保留一行工具列；類別 chips 收埋喺可展開區，唔會成日佔住螢幕 */}
+      <motion.div
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35, delay: 0.25, ease: EASE_OUT_EXPO }}
+        className="sticky top-16 z-30 border-y bg-paper/90 backdrop-blur-[12px]"
+        style={{ borderColor: "var(--line)" }}
+        data-testid="insurers-filter-bar"
+      >
+        <div className="site-container flex flex-wrap items-center gap-2 py-2">
+          <label
+            className="flex h-9 min-w-0 flex-1 items-center gap-2 rounded-[10px] border bg-paper px-2.5 sm:max-w-[220px] sm:flex-none"
+            style={{ borderColor: "var(--line-strong)" }}
+          >
+            <Search size={14} className="shrink-0 text-ink-faint" />
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="搜尋公司名…"
+              className="min-w-0 w-full bg-transparent text-small text-ink outline-none placeholder:text-ink-faint"
+              aria-label="搜尋保險公司"
+            />
+          </label>
+
+          <label className="relative flex items-center">
+            <select
+              value={categoryFilter}
+              onChange={(e) => setCategoryFilter(e.target.value)}
+              className="h-9 max-w-[11.5rem] appearance-none truncate rounded-[10px] border bg-paper pl-2.5 pr-7 text-small font-medium text-ink outline-none"
+              style={{ borderColor: "var(--line-strong)" }}
+              aria-label="按類別篩選公司"
+            >
+              <option value="all">全部類別</option>
+              {CATEGORY_ORDER.map((catId) => (
+                <option key={catId} value={catId}>
+                  {categories.find((c) => c.id === catId)?.name_zh ?? catId}
+                </option>
+              ))}
+            </select>
+            <ChevronDown size={13} className="pointer-events-none absolute right-2 text-ink-faint" />
+          </label>
+
+          <label className="relative flex items-center">
+            <select
+              value={sortKey}
+              onChange={(e) => setSortKey(e.target.value as SortKey)}
+              className="h-9 max-w-[12rem] appearance-none truncate rounded-[10px] border bg-paper pl-2.5 pr-7 text-small font-medium text-ink outline-none"
+              style={{ borderColor: "var(--line-strong)" }}
+              aria-label="排序方式"
+            >
+              {SORT_OPTIONS.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+            <ChevronDown size={13} className="pointer-events-none absolute right-2 text-ink-faint" />
+          </label>
+
+          <p className="ml-auto shrink-0 text-xs text-ink-faint">
+            <span className="font-grotesk font-bold text-ink">{filtered.length}</span>
+            <span className="mx-0.5">/</span>
+            <span className="font-grotesk">{insurers.length}</span>
+          </p>
+
+          <button
+            type="button"
+            onClick={() => setShowCategoryChips((v) => !v)}
+            className="inline-flex h-9 shrink-0 items-center gap-1 rounded-[10px] border px-2.5 text-xs font-semibold text-ink-soft hover:bg-paper-2"
+            style={{ borderColor: "var(--line-strong)" }}
+            aria-expanded={showCategoryChips}
+          >
+            類別標籤
+            <ChevronDown size={13} className={cn("transition-transform", showCategoryChips && "rotate-180")} />
+          </button>
+        </div>
+
+        {showCategoryChips && (
+          <div className="site-container border-t pb-2 pt-2" style={{ borderColor: "var(--line)" }}>
+            <div className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-1 [scrollbar-width:thin]" role="group" aria-label="按類別篩選公司（標籤）">
+              <button
+                type="button"
+                onClick={() => setCategoryFilter("all")}
+                className={cn(
+                  "chip shrink-0 border text-xs transition-colors",
+                  categoryFilter === "all"
+                    ? "border-ink bg-ink text-paper"
+                    : "bg-paper text-ink-soft hover:bg-paper-3",
+                )}
+                style={categoryFilter === "all" ? undefined : { borderColor: "var(--line-strong)" }}
+              >
+                全部公司
+              </button>
+              {CATEGORY_ORDER.map((catId) => {
+                const name = categories.find((c) => c.id === catId)?.name_zh ?? catId;
+                const active = categoryFilter === catId;
+                return (
+                  <button
+                    key={catId}
+                    type="button"
+                    onClick={() => setCategoryFilter(active ? "all" : catId)}
+                    className={cn(
+                      "chip shrink-0 border text-xs transition-colors",
+                      active ? "border-ink bg-ink text-paper" : "bg-paper text-ink-soft hover:bg-paper-3",
+                    )}
+                    style={active ? undefined : { borderColor: "var(--line-strong)" }}
+                  >
+                    <span
+                      className="mr-1 inline-block h-2 w-2 rounded-full align-middle"
+                      style={{ background: categoryColor(catId) }}
+                      aria-hidden="true"
+                    />
+                    {name}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </motion.div>
 
       {/* S3 公司卡網格（點擊去公司產品頁） */}

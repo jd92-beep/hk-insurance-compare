@@ -329,7 +329,7 @@ export default function Vhis() {
 
       {/* ── 篩選工具列 ───────────────────────────────────────── */}
       <motion.div
-        className="sticky top-[72px] z-40 border-b bg-paper"
+        className="sticky top-16 z-40 border-b bg-paper"
         style={{ borderColor: "var(--line)" }}
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}

@@ -413,7 +413,7 @@ export default function Compare() {
       ) : (
         <>
           {/* S2 產品欄頭（sticky） */}
-          <div className="sticky top-[72px] z-30">
+          <div className="sticky top-16 z-30">
             <div
               className="grid bg-paper/85 backdrop-blur-[12px]"
               style={

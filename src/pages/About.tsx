@@ -73,8 +73,7 @@ export default function About() {
               transition={{ duration: 0.7, delay: 0.35, ease: EASE_OUT_EXPO }}
               className="mt-6 text-ink-soft"
             >
-              保險格價站唔賣保險、唔收轉介費。我哋只做一件事：
-              將保險公司官方文件嘅資料，整理成你睇得明嘅比較。
+              唔賣保險、唔收轉介費；只將官方文件整理成你睇得明嘅比較。
             </motion.p>
             <motion.div
               initial={{ opacity: 0 }}
@@ -109,10 +108,10 @@ export default function About() {
           >
             <h3 className="h3-style text-ink">發現資料有誤？</h3>
             <p className="mt-4 text-ink-soft">
-              保險產品更新頻繁。如發現本網站資料與官方文件不符，請經產品頁嘅「官方來源」連結核實最新版本——嗰度先係最準確嘅答案。
+              資料同官方文件不符？去產品頁「官方來源」核實最新版本。
             </p>
             <p className="mt-6 text-small text-ink-faint">
-              本網站為獨立資料整理項目，與各保險公司並無從屬關係。各公司名稱及產品名稱之商標權屬其持有人。
+              獨立資料項目，與保險公司無從屬關係；商標權屬各持有人。
             </p>
           </motion.div>
         </div>

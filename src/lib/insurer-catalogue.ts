@@ -21,7 +21,7 @@ export interface InsurerProductSection {
 
 /** 預設排序：產品數／覆蓋；唔係質素、適合度或推薦排名 */
 export const INSURER_SORT_NOTE =
-  "按產品數同類別覆蓋排序，唔係質素、適合度或推薦排名。";
+  "產品數／覆蓋排序，唔係質素、適合度或推薦排名。";
 
 /** 公司詳情頁路徑（insurer key 需編碼，支援空格／括號） */
 export function insurerDetailPath(insurerKey: string): string {

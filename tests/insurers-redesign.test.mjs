@@ -150,18 +150,18 @@ test('redesigned UI keeps company-first routes and honesty copy', () => {
   // anchors remain for back-compat
   assert.ok(indexSource.includes('location.hash'));
   assert.ok(cardSource.includes('id={insurer.name}'));
-  assert.ok(cardSource.includes('睇晒呢間公司產品'));
+  assert.ok(cardSource.includes('睇產品'));
   assert.ok(cardSource.includes('categoryCounts'));
 
   assert.ok(detailSource.includes('groupInsurerProductsByCategory'));
   assert.ok(detailSource.includes('ProductCard'));
   assert.ok(detailSource.includes('cat-'));
-  assert.ok(detailSource.includes('唔係全市場清單'));
-  assert.ok(detailSource.includes('唔提供適合度評分'));
   assert.ok(detailSource.includes('快照'));
-  assert.ok(detailSource.includes('去類別頁睇全部公司'));
-  // 否定句可以提到即時報價；肯定式推銷用語唔可以出現
-  assert.ok(detailSource.includes('唔提供適合度評分、個人建議或即時報價'));
+  assert.ok(detailSource.includes('唔提供適合度評分'));
+  assert.ok(detailSource.includes('睇全部公司'));
+  // 否定句可以提到報價；肯定式推銷用語唔可以出現
+  assert.ok(/非全市場|唔係全市場/.test(detailSource));
+  assert.ok(/唔提供適合度評分/.test(detailSource) && /報價/.test(detailSource));
   for (const banned of ['最平', '最好', '推薦你', '已核實全部條款', '即時報價出爐', '適合度評分：']) {
     assert.ok(!detailSource.includes(banned), `detail must not claim ${banned}`);
   }

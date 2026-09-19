@@ -167,7 +167,7 @@ export default function InsurerCard({
           "transition-colors hover:text-red-deep hover:underline",
         )}
       >
-        睇晒呢間公司產品
+        睇產品
         <ArrowRight size={14} />
       </Link>
     </motion.article>

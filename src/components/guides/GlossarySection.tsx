@@ -99,7 +99,7 @@ export default function GlossarySection() {
           <p className="eyebrow text-red">GLOSSARY · 詞彙表</p>
           <h2 className="display-2 mt-4 text-paper">詞彙表，講人話。</h2>
           <p className="mt-5 max-w-[38em] text-paper/70">
-            保單條款入面嘅術語，用香港人聽得明嘅講法解一次。點卡可以睇例句。
+            條款術語用人話解一次；點卡睇例句。
           </p>
         </motion.div>
 

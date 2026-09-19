@@ -119,7 +119,7 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
         <div className="rounded-xl border border-line bg-paper-2 px-4 py-3">
           <p className="text-sm font-bold text-ink">情境快捷</p>
           <p className="mt-1 text-sm leading-relaxed text-ink-soft">
-            一鍵填入篩選條件；命中仍要核對原文。
+            一鍵填入條件；命中仍要核對原文。
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
             {personaPresets.map(preset => (
@@ -145,12 +145,12 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
     {tags.length > 0 && <section className="site-container pt-5">
       <details className="rounded-xl border border-line bg-paper p-4">
         <summary className="min-h-11 cursor-pointer py-2 text-base font-bold text-ink">再按保障項目篩選{selectedFeatures.length ? `（已揀 ${selectedFeatures.length} 項）` : '（可略過）'}</summary>
-        <p className="mt-2 text-base leading-relaxed text-ink-soft">只對摘要字眼做檢索；限制以原文為準。</p>
+        <p className="mt-2 text-base leading-relaxed text-ink-soft">只檢索摘要字眼；限制以原文為準。</p>
         <label className="mt-4 block text-sm font-semibold text-ink">搵保障項目<input value={featureQuery} onChange={e => setFeatureQuery(e.target.value)} type="search" maxLength={80} className="mt-2 block min-h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-base" placeholder="例如：租車、醫療" /></label>
         <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {tags.filter(tag => `${tag.label} ${tag.keywords.join(' ')}`.toLowerCase().includes(featureQuery.trim().toLowerCase())).map(tag => <label key={tag.id} className="flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border border-line px-3 py-3 text-base leading-relaxed text-ink"><input type="checkbox" checked={selectedFeatures.includes(tag.id)} onChange={() => setSelectedFeatures(current => current.includes(tag.id) ? current.filter(id => id !== tag.id) : [...current, tag.id])} className="mt-1 h-5 w-5 shrink-0 accent-[var(--jade)]" />{tag.label}</label>)}
         </div>
-        <fieldset className="mt-4 flex flex-wrap gap-4 text-base text-ink"><legend className="mb-2 font-bold">點樣篩選？</legend>{([{ id: 'smart', label: '保留部分符合的資料' }, { id: 'strict', label: '只顯示全部所選項目都有對應摘要' }] as const).map(mode => <label key={mode.id} className="flex min-h-11 items-center gap-2"><input type="radio" name="feature-mode" value={mode.id} checked={matchMode === mode.id} onChange={() => setMatchMode(mode.id)} className="h-5 w-5" />{mode.label}</label>)}</fieldset>
+        <fieldset className="mt-4 flex flex-wrap gap-4 text-base text-ink"><legend className="mb-2 font-bold">點樣篩選？</legend>{([{ id: 'smart', label: '部分符合' }, { id: 'strict', label: '全部所選都有對應摘要' }] as const).map(mode => <label key={mode.id} className="flex min-h-11 items-center gap-2"><input type="radio" name="feature-mode" value={mode.id} checked={matchMode === mode.id} onChange={() => setMatchMode(mode.id)} className="h-5 w-5" />{mode.label}</label>)}</fieldset>
         {selectedFeatures.length > 0 && <button type="button" onClick={() => setSelectedFeatures([])} className="mt-3 min-h-11 rounded-lg border border-line-strong px-4 text-base font-semibold text-ink">清除保障項目</button>}
       </details>
     </section>}

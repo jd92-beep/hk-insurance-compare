@@ -24,7 +24,7 @@ function coverageByKeywords(p: Product, keywords: string[]): string {
     const hit = (p.coverage ?? []).find((c) => c.item.includes(kw));
     if (hit) return hit.limit;
   }
-  return "未提供（唔等於沒有保障）";
+  return "未提供";
 }
 
 /** S5 精選比較預覽 —示範用，唔係推薦。 */
@@ -37,10 +37,10 @@ export default function FeaturedCompare() {
   const medicalKw = benefits.find((b) => b.id === "medical")?.keywords ?? ["醫療"];
 
   const rows: { label: string; render: (p: Product) => string }[] = [
-    { label: "保費欄位（快照）", render: (p) => (p.premium_available ? p.premium_range : "官網即時報價／未公開") },
-    { label: "醫療相關摘要", render: (p) => coverageByKeywords(p, medicalKw) },
-    { label: "取消旅程相關摘要", render: (p) => coverageByKeywords(p, cancelKw) },
-    { label: "官方文件數", render: (p) => `${p.documents_found?.length ?? 0} 份` },
+    { label: "保費（快照）", render: (p) => (p.premium_available ? p.premium_range : "官網報價／未公開") },
+    { label: "醫療摘要", render: (p) => coverageByKeywords(p, medicalKw) },
+    { label: "取消旅程", render: (p) => coverageByKeywords(p, cancelKw) },
+    { label: "文件數", render: (p) => `${p.documents_found?.length ?? 0} 份` },
   ];
 
   return (
@@ -60,7 +60,7 @@ export default function FeaturedCompare() {
             唔使逐個官網格價，<br />一個表睇晒。
           </motion.h2>
           <motion.p variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } } }} className="mt-5 max-w-[38em] text-ink-soft">
-            以旅遊保險為例——同類產品並排，睇保費欄位、保障摘要同文件數。呢個係操作示範，唔係推薦或核保結果；完整條款請打開原文。
+            旅遊保險示範：並排保費欄位、保障摘要同文件數。示範唔係推薦；條款以原文為準。
           </motion.p>
           <motion.div variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } } }}>
             <Link to="/category/travel" className="group mt-7 inline-flex items-center gap-1.5 font-bold text-red">
@@ -112,7 +112,7 @@ export default function FeaturedCompare() {
                 </table>
               </div>
               <p className="border-t bg-paper-2 px-4 py-3 text-xs text-ink-soft" style={{ borderColor: "var(--line)" }}>
-                摘要對照唔等於計劃層級一致或保障可直接比較；唔同類別／層級產品勿按金額排名。
+                示範 · 非推薦 · 勿跨類別按金額排名
               </p>
             </div>
           </TiltCard>

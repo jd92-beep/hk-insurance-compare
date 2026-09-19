@@ -144,7 +144,7 @@ export default function Categories() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.65, ease: EASE_OUT_EXPO, delay: 0.35 }}
               >
-                每個類別入面，我哋將唔同保險公司嘅同類產品並排——價錢範圍、保障項目、賠償上限、主要條款、不保事項，整理自官方文件快照；現行條款仍要打開原文核對。
+                同類產品並排：保費、保障、上限、條款及不保，整理自官方快照；現行條款請核對原文。
               </motion.p>
               <motion.p
                 className="mt-6 border-t pt-4 text-small text-ink-soft"

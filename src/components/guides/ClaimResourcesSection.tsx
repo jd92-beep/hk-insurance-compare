@@ -72,7 +72,7 @@ export default function ClaimResourcesSection() {
         >
           <h3 className="text-[18px] font-bold text-ink">官方教育同投訴入口</h3>
           <p className="mt-2 text-base text-ink-soft">
-            以下只係連結去官方教育／投訴機構網站，方便你自己做功課。本站唔代表、唔代辦、唔代收投訴。
+            連結去官方教育／投訴網站，方便你自己做功課；本站唔代表、唔代辦投訴。
           </p>
           <ul className="mt-4 flex flex-col gap-2">
             {CLAIM_RESOURCES.officialLinks.map((link) => (

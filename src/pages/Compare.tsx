@@ -314,9 +314,9 @@ export default function Compare() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35, ease: EASE_OUT_EXPO }}
-            className="mt-3 max-w-[38em] text-ink-soft"
+            className="mt-3 max-w-[32em] text-ink-soft"
           >
-            以下為本站資料摘要，完整性及版本仍須核對來源；唔係即時報價或投保建議。
+            網站摘要對照，唔係即時報價或投保建議。
           </motion.p>
         </div>
         <motion.div
@@ -403,7 +403,7 @@ export default function Compare() {
             )}
           </div>
           <p className="mt-3 text-sm leading-relaxed text-ink-faint">
-            此 strip 只提供核對問題框架（唔係產品排名、嚴寬比較或適合度判斷）。跨類別時請以各產品所屬類別嘅基準分開核對。
+            只提供核對問題框架，唔係排名或適合度判斷。
           </p>
         </aside>
       )}
@@ -484,17 +484,10 @@ export default function Compare() {
         className="mx-auto max-w-[820px] rounded-card border-l-4 border-amber bg-amber-wash p-7"
       >
         <h2 className="h3-style text-ink">比較須知</h2>
-        <ol className="mt-4 flex list-decimal flex-col gap-2.5 pl-5 text-small text-ink-soft">
-          <li>
-            各產品計劃層級唔同，上表以網站摘要與來源對照，未必能逐項一對一；投保前請細閱保單條款。
-          </li>
-          <li>「官網即時報價」表示公司按個人資料報價，本站不作估算。</li>
-          <li>
-            資料快照：{generatedAt}。保費及條款或已更新，一切以官方最新文件為準。
-          </li>
-          <li>
-            儲存比較只保留產品識別同資料指紋，唔係鎖定保費；匯出核對摘要亦唔係報價或投保建議。
-          </li>
+        <ol className="mt-3 flex list-decimal flex-col gap-2 pl-5 text-small text-ink-soft">
+          <li>計劃層級未必一致；投保前細閱保單條款。</li>
+          <li>保費以官網報價為準；本站唔作估算。</li>
+          <li>快照 {generatedAt}；儲存／匯出都唔係報價或投保建議。</li>
         </ol>
       </motion.aside>
 

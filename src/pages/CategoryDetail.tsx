@@ -84,10 +84,13 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
       <p className="eyebrow mt-6 text-jade">{copy.english}</p>
       <h1 className="mt-2 font-serif text-3xl font-bold leading-tight text-ink md:text-5xl">{copy.h1}</h1>
       <p className="mt-4 max-w-3xl text-lg leading-relaxed text-ink-soft">{copy.sub}</p>
-      <p className="mt-3 max-w-3xl text-base leading-relaxed text-ink-soft">先揀資料 → 加入比較 → 核對條款。本站唔係全市場清單，亦唔提供個人投保建議。</p>
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-line bg-paper-2 px-4 py-3 text-sm text-ink-soft">
-        <span>資料快照：{generatedAt}；唔代表全部條款已更新。<Link to="/data-quality" className="ml-2 inline-flex min-h-11 items-center font-semibold text-jade underline">查看覆核狀態</Link><Link to={`/guides#${categoryId}`} className="ml-2 inline-flex min-h-11 items-center font-semibold text-jade underline">睇「點揀」指南</Link></span>
-        <Link to="/compare" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-line-strong bg-paper px-4 font-semibold text-ink"><Scale size={18} aria-hidden="true" />開啟比較清單</Link>
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-line bg-paper-2 px-4 py-2.5 text-sm text-ink-soft">
+        <span>
+          快照 {generatedAt}
+          <Link to="/data-quality" className="ml-2 font-semibold text-jade underline">覆核狀態</Link>
+          <Link to={`/guides#${categoryId}`} className="ml-2 font-semibold text-jade underline">點揀指南</Link>
+        </span>
+        <Link to="/compare" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-line-strong bg-paper px-4 font-semibold text-ink"><Scale size={18} aria-hidden="true" />比較清單</Link>
       </div>
       <div className="mt-5">
         <HowWeRankCard snapshotDate={generatedAt} sort={sort} onSortChange={setSort} categoryId={categoryId} />
@@ -114,9 +117,9 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
     {personaPresets.length > 0 && (
       <section className="site-container pt-5" aria-label="摘要檢索情境快捷鍵">
         <div className="rounded-xl border border-line bg-paper-2 px-4 py-3">
-          <p className="text-sm font-bold text-ink">摘要檢索</p>
+          <p className="text-sm font-bold text-ink">情境快捷</p>
           <p className="mt-1 text-sm leading-relaxed text-ink-soft">
-            以下情境只係幫你快速填入篩選條件（filter shortcuts），唔代表適合度、投保建議或產品推薦。命中摘要仍要核對原文限制同不保事項。
+            一鍵填入篩選條件；命中仍要核對原文。
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
             {personaPresets.map(preset => (
@@ -128,7 +131,7 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
                 className="chip min-h-11 border bg-paper text-ink transition-colors hover:border-jade hover:text-jade"
                 style={{ borderColor: 'var(--line-strong)' }}
               >
-                <span className="font-grotesk text-[11px] font-bold text-jade">摘要檢索</span>
+                <span className="font-grotesk text-[11px] font-bold text-jade">快捷</span>
                 <span className="ml-2">{preset.label}</span>
               </button>
             ))}
@@ -142,7 +145,7 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
     {tags.length > 0 && <section className="site-container pt-5">
       <details className="rounded-xl border border-line bg-paper p-4">
         <summary className="min-h-11 cursor-pointer py-2 text-base font-bold text-ink">再按保障項目篩選{selectedFeatures.length ? `（已揀 ${selectedFeatures.length} 項）` : '（可略過）'}</summary>
-        <p className="mt-2 text-base leading-relaxed text-ink-soft">呢度只搵摘要入面相關字眼，唔代表已確認受保。限制同不保事項仍然要睇原文。例如「自駕遊」可以試篩「租車」；「滑雪」可以試篩相關運動標籤——呢啲只係檢索條件，唔係投保建議。</p>
+        <p className="mt-2 text-base leading-relaxed text-ink-soft">只對摘要字眼做檢索；限制以原文為準。</p>
         <label className="mt-4 block text-sm font-semibold text-ink">搵保障項目<input value={featureQuery} onChange={e => setFeatureQuery(e.target.value)} type="search" maxLength={80} className="mt-2 block min-h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-base" placeholder="例如：租車、醫療" /></label>
         <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {tags.filter(tag => `${tag.label} ${tag.keywords.join(' ')}`.toLowerCase().includes(featureQuery.trim().toLowerCase())).map(tag => <label key={tag.id} className="flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border border-line px-3 py-3 text-base leading-relaxed text-ink"><input type="checkbox" checked={selectedFeatures.includes(tag.id)} onChange={() => setSelectedFeatures(current => current.includes(tag.id) ? current.filter(id => id !== tag.id) : [...current, tag.id])} className="mt-1 h-5 w-5 shrink-0 accent-[var(--jade)]" />{tag.label}</label>)}
@@ -152,12 +155,12 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
       </details>
     </section>}
     <section className="site-container py-6" aria-label="產品搜尋結果" aria-busy={loading}>
-      {loading ? <p role="status" className="py-12 text-base text-ink">載入資料中…</p> : error ? <EmptyState title="暫時載入唔到資料" description="唔好將載入失敗當作沒有產品。請重試。" onReset={retry} resetLabel="重新載入" /> : shown.length === 0 ? <EmptyState title="暫時搵唔到符合條件嘅資料" description="可能係資料未註明，唔代表市場上冇呢類保障。試吓減少條件。" onReset={reset} /> : mobile || view === 'cards' ? <div className="grid grid-cols-1 items-start gap-6 fold:grid-cols-2 lg:grid-cols-3">{shown.map(product => <ProductCard key={product.id} product={product} match={matches.get(product.id)} />)}</div> : <ProductTable products={shown} color={color} coverageKeywords={copy.coverageKeywords} productMatchMap={matches} />}
+      {loading ? <p role="status" className="py-12 text-base text-ink">載入資料中…</p> : error ? <EmptyState title="暫時載入唔到資料" description="請重試。" onReset={retry} resetLabel="重新載入" /> : shown.length === 0 ? <EmptyState title="搵唔到符合條件嘅產品" description="試吓減少條件。" onReset={reset} /> : mobile || view === 'cards' ? <div className="grid grid-cols-1 items-start gap-6 fold:grid-cols-2 lg:grid-cols-3">{shown.map(product => <ProductCard key={product.id} product={product} match={matches.get(product.id)} />)}</div> : <ProductTable products={shown} color={color} coverageKeywords={copy.coverageKeywords} productMatchMap={matches} />}
     </section>
     <section className="site-container py-4">
       <details className="rounded-xl border border-line bg-paper px-5 py-3" onToggle={event => setShowAdvanced(event.currentTarget.open)}>
         <summary className="min-h-11 cursor-pointer py-2 text-base font-bold text-ink">進階：按相同計算單位對照金額</summary>
-        <p className="pt-2 text-base text-ink-soft">金額大唔代表更適合。呢個對照保留不同單位、限制及未確認資料，唔作產品排名。</p>
+        <p className="pt-2 text-base text-ink-soft">金額對照僅供核對，唔作排名。</p>
         {showAdvanced && <Suspense fallback={<p role="status" className="py-6">載入數值對照…</p>}><UniversalComparisonChart products={shown} /></Suspense>}
       </details>
     </section>

@@ -46,7 +46,7 @@ export default function InsurerCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-8% 0px" }}
       transition={{ duration: 0.6, delay: staggerDelay, ease: EASE_OUT_EXPO }}
-      className="group relative flex min-w-0 scroll-mt-[104px] flex-col gap-4 rounded-card border bg-paper p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
+      className="group relative flex min-w-0 scroll-mt-[88px] flex-col gap-3 rounded-card border bg-paper p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
       style={{ borderColor: "var(--line)" }}
       data-insurer-card={insurer.name}
     >
@@ -126,13 +126,13 @@ export default function InsurerCard({
             <span className="h-2 w-2 rounded-full bg-jade" />
             <span className="text-ink-soft">
               <span className="font-grotesk font-bold text-jade">{insurer.premiumCount}</span>
-              {" "}份有公開保費欄
+              {" "}有公開保費
             </span>
           </>
         ) : (
           <>
             <span className="h-2 w-2 rounded-full bg-amber" />
-            <span className="font-medium text-amber">站內未見公開保費欄</span>
+            <span className="font-medium text-amber">未見公開保費</span>
           </>
         )}
       </p>

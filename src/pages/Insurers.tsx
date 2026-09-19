@@ -18,7 +18,6 @@ import {
   buildInsurerCardModels,
   filterInsurerCardModels,
   filterInsurerCardModelsByCategory,
-  insurerDetailPath,
   sortInsurerCardModels,
 } from "@/lib/insurer-catalogue";
 import { getLenis } from "@/lib/lenis";
@@ -29,36 +28,9 @@ const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 type SortKey = "coverage" | "name" | "premium";
 
 const SORT_OPTIONS: { value: SortKey; label: string }[] = [
-  { value: "coverage", label: "站內產品數／覆蓋排序（預設）" },
+  { value: "coverage", label: "產品數（預設）" },
   { value: "name", label: "公司名 A–Z" },
-  { value: "premium", label: "有公開保費欄優先" },
-];
-
-/** 編輯小欄：公司分組（label → insurer key，點擊去公司產品頁） */
-const LANDSCAPE: { title: string; body: string; names: [string, string][] }[] = [
-  {
-    title: "傳統保險公司",
-    body: "產品線全，部分保費需經代理或即時報價。",
-    names: [
-      ["AIA 友邦", "AIA"],
-      ["AXA 安盛", "AXA"],
-      ["Prudential 保誠", "Prudential"],
-      ["Manulife 宏利", "Manulife"],
-      ["HSBC Life 滙豐人壽", "HSBC Life"],
-    ],
-  },
-  {
-    title: "虛擬／網上保險",
-    body: "網上投保為主，保費表普遍公開透明。",
-    names: [
-      ["Bowtie 保泰", "Bowtie"],
-      ["Blue", "Blue"],
-      ["ZA Insure 眾安", "ZA Insure"],
-      ["OneDegree", "OneDegree"],
-      ["Avo 安我", "Avo"],
-      ["bolttech 保特", "bolttech"],
-    ],
-  },
+  { value: "premium", label: "有公開保費優先" },
 ];
 
 /** 詞級標題進場 */
@@ -204,10 +176,9 @@ export default function Insurers() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.2, ease: EASE_OUT_EXPO }}
-              className="mt-2 max-w-[40em] text-small text-ink-soft"
+              className="mt-2 max-w-[36em] text-small text-ink-soft"
             >
-              以公司為核心：每張卡列出站內產品數同類別覆蓋。點擊公司，即睇晒佢喺{" "}
-              {categories.length} 大類別嘅產品（按類別分組）。
+              點擊公司卡，按類別睇產品。
             </motion.p>
           </div>
           <div className="flex flex-col items-start gap-2 sm:items-end">
@@ -219,10 +190,10 @@ export default function Insurers() {
                 <span className="font-grotesk font-bold">{products.length}</span> 份產品
               </span>
               <span className="chip bg-jade-wash font-bold text-jade">
-                <span className="font-grotesk">{premiumTotal}</span> 份有公開保費欄
+                <span className="font-grotesk">{premiumTotal}</span> 有保費欄
               </span>
             </div>
-            <p className="max-w-[36em] text-xs text-ink-faint sm:text-right">{INSURER_SORT_NOTE}</p>
+            <p className="max-w-[28em] text-[11px] text-ink-faint sm:text-right">{INSURER_SORT_NOTE}</p>
           </div>
         </div>
       </header>
@@ -300,7 +271,7 @@ export default function Insurers() {
             style={{ borderColor: "var(--line-strong)" }}
             aria-expanded={showCategoryChips}
           >
-            類別標籤
+            類別
             <ChevronDown size={13} className={cn("transition-transform", showCategoryChips && "rotate-180")} />
           </button>
         </div>
@@ -349,21 +320,18 @@ export default function Insurers() {
         )}
       </motion.div>
 
-      {/* S3 公司卡網格（點擊去公司產品頁） */}
-      <section className="site-container py-14" aria-label="保險公司卡片">
+      {/* S3 公司卡網格 */}
+      <section className="site-container py-8" aria-label="保險公司卡片">
         {filtered.length === 0 ? (
           <EmptyState
             title="搵唔到符合條件嘅公司"
-            description="試下重設篩選，或者用公司中英文名再搜一次。空結果唔代表市場上冇呢間公司。"
+            description="試下重設篩選，或用公司名再搜一次。"
             onReset={resetFilters}
             resetLabel="重設篩選"
           />
         ) : (
           <>
-            <p className="mb-4 text-small text-ink-soft">
-              點擊公司卡，睇晒該公司站內產品（按保險類別分組）。
-            </p>
-            <div className="grid grid-cols-1 gap-6 fold:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-5 fold:grid-cols-2 lg:grid-cols-3">
               {filtered.map((model, i) => (
                 <InsurerCard
                   key={model.insurer.name}
@@ -381,65 +349,16 @@ export default function Insurers() {
       </section>
 
       {/* S4 傳統 vs 虛擬（編輯小欄；連結去公司產品頁） */}
-      <section className="border-y bg-paper-2" style={{ borderColor: "var(--line)" }}>
-        <div className="site-container grid gap-10 py-24 lg:grid-cols-12">
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-20% 0px" }}
-            transition={{ duration: 0.7, ease: EASE_OUT_EXPO }}
-            className="lg:col-span-4"
-          >
-            <p className="eyebrow text-red">LANDSCAPE</p>
-            <h2 className="display-2 mt-4 text-ink">傳統大行 vs 虛擬保險。</h2>
-          </motion.div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-8">
-            {LANDSCAPE.map((group, gi) => (
-              <motion.div
-                key={group.title}
-                initial={{ opacity: 0, x: gi === 0 ? -24 : 24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-20% 0px" }}
-                transition={{ duration: 0.7, delay: gi * 0.06, ease: EASE_OUT_EXPO }}
-                className="flex flex-col gap-4 rounded-card border bg-paper p-7 shadow-card"
-                style={{ borderColor: "var(--line)" }}
-              >
-                <h3 className="h3-style text-ink">{group.title}</h3>
-                <p className="text-small text-ink-soft">
-                  {group.names
-                    .filter(([, key]) => insurers.some((ins) => ins.name === key))
-                    .map(([label, key], i, arr) => (
-                      <span key={key}>
-                        <Link
-                          to={insurerDetailPath(key)}
-                          className="font-medium text-ink underline decoration-red/40 underline-offset-4 transition-colors hover:text-red hover:decoration-red"
-                        >
-                          {label}
-                        </Link>
-                        {i < arr.length - 1 ? "、" : ""}
-                      </span>
-                    ))}
-                  {" "}等——{group.body}
-                </p>
-                <p className="mt-auto text-[12px] text-ink-faint">
-                  分類僅為方便理解，並非官方類別。點擊可睇該公司站內產品。
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* S5 底部 CTA */}
+      {/* 底部 CTA */}
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-12% 0px" }}
         transition={{ duration: 0.5, ease: EASE_OUT_EXPO }}
-        className="site-container flex flex-col items-center gap-6 py-20 text-center"
+        className="site-container flex flex-col items-center gap-4 py-12 text-center"
       >
         <h2 className="h3-style text-ink">揀好公司，不如並排睇產品。</h2>
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-3">
           <Link to="/compare" className="btn-primary">
             去比較工具
             <ArrowRight size={17} />

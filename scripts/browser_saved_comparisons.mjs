@@ -28,7 +28,7 @@ try{
      if(scenario==='changed-missing'){
       const changed=structuredClone(dataset);changed.products=changed.products.filter(p=>p.id!=='travel-msig');changed.products.find(p=>p.id==='travel-axa').coverage[0].limit='TEST changed summary';
       await page.route('**/data/insurance-data.json',r=>r.fulfill({json:changed}));await page.reload();panel=await open(page);
-      await panel.getByText(/1 款網站資料或來源指紋已變動/).waitFor();await panel.getByText(/目前缺少/).waitFor();
+      await panel.getByText(/1 款資料或來源指紋已變動/).waitFor();await panel.getByText(/目前缺少/).waitFor();
       assert.equal(JSON.parse(await page.evaluate(key=>localStorage.getItem(key),key)).sets[0].products.length,2,'Saved record silently replaced');
       await panel.getByRole('button',{name:'載入仍有資料的 1 款',exact:true}).click();
       await page.waitForURL(url=>url.searchParams.get('ids')==='travel-axa');

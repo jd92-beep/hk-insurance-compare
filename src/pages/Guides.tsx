@@ -8,6 +8,9 @@ import FaqAccordion from "@/components/guides/FaqAccordion";
 import ClaimResourcesSection from "@/components/guides/ClaimResourcesSection";
 import VhisSchemeFacts from "@/components/vhis/VhisSchemeFacts";
 import FamilyResearchPanel from "@/components/research/FamilyResearchPanel";
+import MedicalPathCompare from "@/components/research/MedicalPathCompare";
+import TrustPanel from "@/components/trust/TrustPanel";
+import { useInsuranceData } from "@/providers/InsuranceDataProvider";
 import { GUIDES } from "@/components/guides/guides-data";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -35,6 +38,7 @@ function HeroTitle() {
 
 /** 投保指南・詞彙 `/guides`（design/guides.md S1–S5） */
 export default function Guides() {
+  const { generatedAt } = useInsuranceData();
   return (
     <>
       {/* S1 頁首 */}
@@ -99,6 +103,14 @@ export default function Guides() {
 
       <section id="family" className="site-container scroll-mt-28 pb-16">
         <FamilyResearchPanel />
+      </section>
+
+      <section id="medical-path" className="site-container scroll-mt-28 pb-16">
+        <MedicalPathCompare />
+      </section>
+
+      <section id="trust" className="site-container scroll-mt-28 pb-16">
+        <TrustPanel snapshotDate={generatedAt} />
       </section>
 
       {/* S4 常見問題 */}

@@ -1,13 +1,27 @@
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Command } from "cmdk";
-import { Building2, FileText, LayoutGrid, Search, X } from "lucide-react";
+import { BookOpen, Building2, FileText, GraduationCap, LayoutGrid, MapPin, Search, X } from "lucide-react";
 import { useNavigate } from "react-router";
 import { useCategories, useInsuranceData, useInsurers, useProducts } from "@/providers/InsuranceDataProvider";
 import { useSearch } from "@/providers/SearchProvider";
 import { getLenis } from "@/lib/lenis";
 import { matchesSearchQuery } from "@/lib/search-query";
 import { isReferenceOnlyProduct } from "@/lib/product-availability";
+import {
+  EDUCATION_GROUP_HEADING,
+  educationNavItems,
+  emptyStateIntentChips,
+  type EducationNavItem,
+} from "@/lib/research-intents";
+import { OFFICIAL_EDU_LINKS } from "@/lib/trust-methodology";
+
+function educationIcon(kind: EducationNavItem["kind"]) {
+  if (kind === "glossary") return BookOpen;
+  if (kind === "vhis-fact" || kind === "medical-path") return MapPin;
+  if (kind === "guide") return BookOpen;
+  return GraduationCap;
+}
 
 /** Real modal semantics, keyboard containment and native scrolling inside search results. */
 export default function SearchPalette() {
@@ -28,7 +42,10 @@ export default function SearchPalette() {
       .sort((a, b) => Number(isReferenceOnlyProduct(a)) - Number(isReferenceOnlyProduct(b)));
     return { categories: matchedCategories, insurers: matchedInsurers, products: matchedProducts };
   }, [deferred, categories, insurers, products]);
-  const count = results.categories.length + results.insurers.length + results.products.length;
+  const education = useMemo(() => educationNavItems(deferred, 10), [deferred]);
+  const emptyChips = useMemo(() => emptyStateIntentChips(8), []);
+  const count = results.categories.length + results.insurers.length + results.products.length + education.length;
+  const catalogueCount = results.categories.length + results.insurers.length + results.products.length;
   useEffect(() => {
     if (!open) return;
     const lenis = getLenis();
@@ -41,6 +58,7 @@ export default function SearchPalette() {
     setOpen(false); setQuery(""); navigate(to);
   };
   const rowStyle = "flex min-h-11 cursor-pointer items-center gap-3 rounded-lg px-3 py-3 text-sm text-ink aria-selected:bg-jade/10 aria-selected:text-jade";
+  const groupHeadingClass = "[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:text-ink-faint";
   return <Dialog.Root open={open} onOpenChange={setOpen} modal>
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 z-[100] bg-ink/40 backdrop-blur-sm" />
@@ -68,29 +86,96 @@ export default function SearchPalette() {
             <Dialog.Close className="flex min-h-11 min-w-11 items-center justify-center rounded-lg hover:bg-paper-2 focus-visible:ring-2 focus-visible:ring-jade" aria-label="關閉搜尋"><X size={18} /></Dialog.Close>
           </div>
           <p className="border-b px-4 py-2 text-xs text-ink-soft" role="status" aria-live="polite">
-            {loading ? "正在載入產品資料…" : error ? "產品資料未能載入；你仍可前往類別頁。" : `${count} 項搜尋結果；產品最多顯示前 12 項。`}
+            {loading ? "正在載入產品資料…" : error ? "產品資料未能載入；你仍可前往類別頁。" : `${count} 項搜尋結果（目錄 ${catalogueCount}；教育／導航 ${education.length}）；產品最多顯示前 12 項。`}
           </p>
           <Command.List className="max-h-[55dvh] overflow-y-auto overscroll-contain p-2" data-lenis-prevent aria-busy={loading || query !== deferred}>
-            {!loading && !count && <div className="px-4 py-8 text-center text-sm text-ink-soft">
-              <p>搵唔到「{query}」相關結果，試下公司名稱或保險類別。</p>
-              <button className="btn-ghost mt-3 min-h-11" onClick={() => { setQuery(""); input.current?.focus(); }}>清除搜尋</button>
-            </div>}
-            {!!results.categories.length && <Command.Group heading="保險類別" className="[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:text-ink-faint">
+            {!loading && !catalogueCount && (
+              <div className="px-3 py-6" data-testid="search-empty-education">
+                <p className="px-1 text-sm text-ink-soft">
+                  {query ? `搵唔到「${query}」相關產品／公司／類別。` : "輸入關鍵字，或直接用下面教育／導航重點。"}
+                </p>
+                {query && (
+                  <button
+                    type="button"
+                    className="btn-ghost mt-3 min-h-11"
+                    onClick={() => { setQuery(""); input.current?.focus(); }}
+                  >
+                    清除搜尋
+                  </button>
+                )}
+                <p className="mt-2 px-1 text-xs font-semibold text-ink-faint">教育／導航重點</p>
+                <div className="mt-2 flex flex-wrap gap-2 px-1">
+                  {emptyChips.map((chip) => (
+                    <button
+                      key={chip.id}
+                      type="button"
+                      className="chip min-h-11 bg-jade-wash text-sm font-semibold text-jade"
+                      onClick={() => go(chip.to)}
+                    >
+                      {chip.label}
+                    </button>
+                  ))}
+                </div>
+                <p className="mt-4 px-1 text-xs font-semibold text-ink-faint">官方入口</p>
+                <div className="mt-2 flex flex-wrap gap-2 px-1">
+                  {OFFICIAL_EDU_LINKS.slice(0, 4).map((link) => (
+                    <a
+                      key={link.id}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="chip min-h-11 bg-paper-3 text-xs text-ink-soft"
+                    >
+                      {link.org}
+                    </a>
+                  ))}
+                  <button type="button" className="chip min-h-11 bg-paper-3 text-xs text-ink-soft" onClick={() => go("/guides")}>
+                    投保指南
+                  </button>
+                  <button type="button" className="chip min-h-11 bg-paper-3 text-xs text-ink-soft" onClick={() => go("/vhis")}>
+                    VHIS 名單
+                  </button>
+                </div>
+              </div>
+            )}
+            {!!results.categories.length && <Command.Group heading="保險類別" className={groupHeadingClass}>
               {results.categories.map(c => <Command.Item key={c.id} value={`cat-${c.id}`} onSelect={() => go(`/category/${encodeURIComponent(c.id)}`)} className={rowStyle}>
                 <LayoutGrid size={16} aria-hidden="true" /><span className="min-w-0 flex-1">{c.name_zh}</span><span className="text-xs text-ink-faint">{c.count} 份產品</span>
               </Command.Item>)}
             </Command.Group>}
-            {!!results.insurers.length && <Command.Group heading="保險公司" className="[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:text-ink-faint">
+            {!!results.insurers.length && <Command.Group heading="保險公司" className={groupHeadingClass}>
               {results.insurers.slice(0, 6).map(i => <Command.Item key={i.name} value={`ins-${i.name}`} onSelect={() => go(`/insurers#${encodeURIComponent(i.name)}`)} className={rowStyle}>
                 <Building2 size={16} aria-hidden="true" /><span className="min-w-0 flex-1">{i.name_zh} <span className="font-grotesk text-ink-soft">{i.name}</span></span><span className="text-xs text-ink-faint">{i.productCount} 份產品</span>
               </Command.Item>)}
             </Command.Group>}
-            {!!results.products.length && <Command.Group heading="保險產品" className="[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:text-ink-faint">
+            {!!results.products.length && <Command.Group heading="保險產品" className={groupHeadingClass}>
               {results.products.slice(0, 12).map(p => <Command.Item key={p.id} value={`prod-${p.id}`} onSelect={() => go(`/product/${encodeURIComponent(p.id)}`)} className={rowStyle}>
                 <FileText size={16} className="shrink-0" aria-hidden="true" /><span className="min-w-0 flex-1"><span className="block leading-relaxed">{p.product_name_zh || p.product_name}</span><span className="text-xs text-ink-faint">{p.insurer_zh} · {categories.find(c => c.id === p.category)?.name_zh ?? p.category}</span></span>
                 {isReferenceOnlyProduct(p) && <span className="chip shrink-0 bg-paper-3 text-[10px] text-ink-faint">舊資料／暫不作新投保參考</span>}
               </Command.Item>)}
             </Command.Group>}
+            {!!education.length && (
+              <Command.Group heading={EDUCATION_GROUP_HEADING} className={groupHeadingClass} data-testid="search-education-group">
+                {education.map((item) => {
+                  const Icon = educationIcon(item.kind);
+                  return (
+                    <Command.Item
+                      key={item.id}
+                      value={`edu-${item.id}`}
+                      onSelect={() => go(item.to)}
+                      className={rowStyle}
+                    >
+                      <Icon size={16} className="shrink-0 text-jade" aria-hidden="true" />
+                      <span className="min-w-0 flex-1">
+                        <span className="block leading-relaxed">{item.label}</span>
+                        <span className="text-xs text-ink-faint">{item.sublabel}</span>
+                      </span>
+                      <span className="chip shrink-0 bg-jade-wash text-[10px] text-jade">教育</span>
+                    </Command.Item>
+                  );
+                })}
+              </Command.Group>
+            )}
           </Command.List>
           <div className="flex flex-wrap items-center justify-between gap-2 border-t px-4 py-2 text-xs text-ink-faint">
             <span>↑↓ 選擇 · Enter 前往 · Esc 關閉</span>

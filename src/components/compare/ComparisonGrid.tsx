@@ -2,7 +2,7 @@ import { useMemo, useState, type ReactNode } from 'react';
 import { Link } from 'react-router';
 import type { Product } from '@/types/insurance';
 import { resolveCoverage } from '@/components/compare/canonical-benefits';
-import { CoverageLimitCell, DocumentsCell, EvidenceStatusCell, ExclusionsCell, KeyTermsCell, PlanTiersCell, PremiumNotesCell, PremiumRangeCell, SourceLinksCell } from '@/components/compare/cells';
+import { CoverageLimitCell, DocumentsCell, EvidenceStatusCell, ExclusionThemesCell, ExclusionsCell, KeyTermsCell, PlanTiersCell, PremiumNotesCell, PremiumRangeCell, SourceLinksCell } from '@/components/compare/cells';
 import { COMPARE_GLOSSARY_NOTE } from '@/lib/evidence-status';
 
 /** Semantic table. Differences are textual differences, never a product winner. */
@@ -21,6 +21,7 @@ export default function ComparisonGrid({ products, generatedAt }: { products: Pr
         <tbody>
           {group('01 先睇級別同限制')}
           {row('邊個計劃級別？', p => <PlanTiersCell product={p} />)}
+          {row('不保主題（字面檢索）', p => <ExclusionThemesCell product={p} />)}
           {row('咩情況唔保？', p => <ExclusionsCell product={p} />)}
           {row('自己要付幾多？', p => <div><p className="mb-3 text-sm text-ink-soft">以下係摘要，唔係自付金額計算。請在原文核對自負額、自付比例及計算期間。</p><KeyTermsCell product={p} /></div>)}
           {group('02 再睇保障摘要')}

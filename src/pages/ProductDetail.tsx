@@ -153,6 +153,8 @@ export default function ProductDetail() {
             <section id="pd-exclusions" style={SECTION_SCROLL_MARGIN}>
               <ExclusionsSection
                 exclusions={product.exclusions ?? []}
+                keyTerms={product.key_terms ?? []}
+                coverage={product.coverage ?? []}
                 citationEntries={entriesForGroup(citationEntries, "exclusions")}
               />
             </section>

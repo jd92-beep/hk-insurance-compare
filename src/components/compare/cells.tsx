@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import type { Product } from "@/types/insurance";
 import EvidenceChip from "@/components/EvidenceChip";
 import { GlossaryText, GlossaryMoreLink } from "@/components/guides/GlossaryTerm";
+import ExclusionThemes from "@/components/product/ExclusionThemes";
 import { cn } from "@/lib/utils";
 
 /** 來源欄位狀態（非核實）：欄位齊唔等於保單內容已核實 */
@@ -146,6 +147,20 @@ export function ExclusionsCell({ product }: { product: Product }) {
       </ul>
       <GlossaryMoreLink className="w-fit" />
     </div>
+  );
+}
+
+/** 不保主題字面檢索儲存格：命中≠已證實不保；冇命中≠受保 */
+export function ExclusionThemesCell({ product }: { product: Product }) {
+  return (
+    <ExclusionThemes
+      compact
+      product={{
+        exclusions: product.exclusions ?? [],
+        key_terms: product.key_terms ?? [],
+        coverage: product.coverage ?? [],
+      }}
+    />
   );
 }
 

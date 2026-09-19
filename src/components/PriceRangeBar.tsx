@@ -1,15 +1,29 @@
 import type { Product } from "@/types/insurance";
-import type { PremiumSpectrum } from "@/lib/categories";
+import { quotePathway } from "@/lib/quote-pathway";
 import { cn } from "@/lib/utils";
 
-/** Compatibility entrypoint: a quote-basis notice replaces the misleading cross-product price ruler. */
+/** Compatibility entrypoint: snapshot premium context + official quote pathway (no live quote). */
 export default function PriceRangeBar({ product, className }: {
   product: Product;
-  spectrum?: PremiumSpectrum | null;
+  spectrum?: unknown;
   className?: string;
 }) {
-  return <div className={cn("rounded-lg border border-line bg-paper-2/60 px-3 py-2 text-sm leading-relaxed", className)}>
-    <p className="font-semibold text-ink">{product.premium_available ? "有參考保費資料" : "保費需個別報價"}</p>
-    <p className="text-ink-soft">要按年齡、計劃及保障期核對，唔可以直接比價。</p>
-  </div>;
+  const pathway = quotePathway(product);
+  return (
+    <div className={cn("rounded-lg border border-line bg-paper-2/60 px-3 py-2 text-sm leading-relaxed", className)}>
+      <p className="font-semibold text-ink">{pathway.headline}</p>
+      <p className="text-ink-soft">{pathway.snapshotText || "未提供公開保費文字。"}</p>
+      <p className="mt-1 text-xs text-ink-faint">{pathway.disclaimer}</p>
+      {pathway.buyUrl && pathway.buyLabel && (
+        <a
+          href={pathway.buyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 inline-flex min-h-11 items-center text-sm font-bold text-jade underline"
+        >
+          {pathway.buyLabel}
+        </a>
+      )}
+    </div>
+  );
 }

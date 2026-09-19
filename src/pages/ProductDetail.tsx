@@ -109,7 +109,7 @@ export default function ProductDetail() {
   const hasCitations = citationEntries.length > 0;
 
   return (
-    <>
+    <div className="min-w-0 overflow-x-clip">
       {/* S1 產品頁首 */}
       <ProductHeader product={product} />
       <EvidenceNotice product={product} />
@@ -117,12 +117,13 @@ export default function ProductDetail() {
       {/* 重點一覽卡（medical 專用：認可編號 + 關鍵數字 + 保證亮點，有數據先顯示） */}
       <KeyFactsCard product={product} />
 
-      {/* S2 內容：錨點導航（xl+）+ 主欄 + 重點側欄（lg+） */}
+      {/* S2 內容：錨點導航（xl+）+ 主欄 + 重點側欄（fold-wide+） */}
       <section className="pb-20 pt-4 max-md:pb-14 max-md:pt-3">
-        <div className="site-container flex gap-8 xl:gap-10">
+        <div className="site-container flex min-w-0 flex-col gap-8 fold-wide:flex-row fold-wide:items-start xl:gap-10">
           {/* lg 闊度擺唔落三欄，呢個範圍由右側重點欄取代錨點導航 */}
           <AnchorNav className="sticky top-[140px] hidden self-start xl:block" />
-          <div className="flex w-full min-w-0 max-w-[780px] flex-col gap-14">
+          {/* Mid widths fill container; readable measure when side rail / anchor nav present */}
+          <div className="flex w-full min-w-0 max-w-none flex-col gap-14 xl:max-w-[780px]">
             <section id="pd-coverage" style={SECTION_SCROLL_MARGIN}>
               <CoverageSection
                 coverage={product.coverage ?? []}
@@ -169,7 +170,7 @@ export default function ProductDetail() {
             </section>
           </div>
           {/* 右側 sticky 重點欄：關鍵數字 + 加入比較 + 官方文件快連 */}
-          <ProductSideRail product={product} color={color} className="hidden lg:block" />
+          <ProductSideRail product={product} color={color} className="hidden w-full shrink-0 fold-wide:block fold-wide:w-[min(17rem,30%)] lg:w-[min(300px,34%)] xl:w-[280px]" />
         </div>
       </section>
 
@@ -199,6 +200,6 @@ export default function ProductDetail() {
           </div>
         </motion.div>
       </section>
-    </>
+    </div>
   );
 }

@@ -49,7 +49,7 @@ export default function CategoryGrid() {
           whileInView="show"
           viewport={{ once: true, margin: "-15% 0px" }}
           transition={{ staggerChildren: 0.08 }}
-          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-6 fold:grid-cols-2 lg:grid-cols-3"
         >
           {sortedCategories.map((c) => (
             <motion.div

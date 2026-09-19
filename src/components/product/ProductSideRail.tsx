@@ -60,7 +60,7 @@ export default function ProductSideRail({
 
   return (
     <aside className={className}>
-      <div className="sticky top-[100px] w-[260px] shrink-0 xl:w-[280px]">
+      <div className="sticky top-[100px] w-full max-w-[300px] min-w-0">
         <div
           className="overflow-hidden rounded-card border bg-paper shadow-card"
           style={{ borderColor: "var(--line)" }}

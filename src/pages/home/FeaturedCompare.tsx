@@ -80,7 +80,7 @@ export default function FeaturedCompare() {
           <TiltCard className="rounded-card" max={4}>
             <div className="overflow-hidden rounded-card border bg-paper shadow-card" style={{ borderColor: "var(--line)" }}>
               <div className="overflow-x-auto">
-                <table className="w-full min-w-[560px] border-collapse text-left">
+                <table className="w-full min-w-[420px] border-collapse text-left fold:min-w-[560px]">
                   <caption className="sr-only">旅遊保險示範比較（非推薦）</caption>
                   <thead>
                     <tr className="border-b" style={{ borderColor: "var(--line)" }}>

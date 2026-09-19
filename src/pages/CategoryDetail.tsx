@@ -144,7 +144,7 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
         <summary className="min-h-11 cursor-pointer py-2 text-base font-bold text-ink">再按保障項目篩選{selectedFeatures.length ? `（已揀 ${selectedFeatures.length} 項）` : '（可略過）'}</summary>
         <p className="mt-2 text-base leading-relaxed text-ink-soft">呢度只搵摘要入面相關字眼，唔代表已確認受保。限制同不保事項仍然要睇原文。例如「自駕遊」可以試篩「租車」；「滑雪」可以試篩相關運動標籤——呢啲只係檢索條件，唔係投保建議。</p>
         <label className="mt-4 block text-sm font-semibold text-ink">搵保障項目<input value={featureQuery} onChange={e => setFeatureQuery(e.target.value)} type="search" maxLength={80} className="mt-2 block min-h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-base" placeholder="例如：租車、醫療" /></label>
-        <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {tags.filter(tag => `${tag.label} ${tag.keywords.join(' ')}`.toLowerCase().includes(featureQuery.trim().toLowerCase())).map(tag => <label key={tag.id} className="flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border border-line px-3 py-3 text-base leading-relaxed text-ink"><input type="checkbox" checked={selectedFeatures.includes(tag.id)} onChange={() => setSelectedFeatures(current => current.includes(tag.id) ? current.filter(id => id !== tag.id) : [...current, tag.id])} className="mt-1 h-5 w-5 shrink-0 accent-[var(--jade)]" />{tag.label}</label>)}
         </div>
         <fieldset className="mt-4 flex flex-wrap gap-4 text-base text-ink"><legend className="mb-2 font-bold">點樣篩選？</legend>{([{ id: 'smart', label: '保留部分符合的資料' }, { id: 'strict', label: '只顯示全部所選項目都有對應摘要' }] as const).map(mode => <label key={mode.id} className="flex min-h-11 items-center gap-2"><input type="radio" name="feature-mode" value={mode.id} checked={matchMode === mode.id} onChange={() => setMatchMode(mode.id)} className="h-5 w-5" />{mode.label}</label>)}</fieldset>
@@ -152,7 +152,7 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
       </details>
     </section>}
     <section className="site-container py-6" aria-label="產品搜尋結果" aria-busy={loading}>
-      {loading ? <p role="status" className="py-12 text-base text-ink">載入資料中…</p> : error ? <EmptyState title="暫時載入唔到資料" description="唔好將載入失敗當作沒有產品。請重試。" onReset={retry} resetLabel="重新載入" /> : shown.length === 0 ? <EmptyState title="暫時搵唔到符合條件嘅資料" description="可能係資料未註明，唔代表市場上冇呢類保障。試吓減少條件。" onReset={reset} /> : mobile || view === 'cards' ? <div className="grid items-start gap-6 md:grid-cols-2 xl:grid-cols-3">{shown.map(product => <ProductCard key={product.id} product={product} match={matches.get(product.id)} />)}</div> : <ProductTable products={shown} color={color} coverageKeywords={copy.coverageKeywords} productMatchMap={matches} />}
+      {loading ? <p role="status" className="py-12 text-base text-ink">載入資料中…</p> : error ? <EmptyState title="暫時載入唔到資料" description="唔好將載入失敗當作沒有產品。請重試。" onReset={retry} resetLabel="重新載入" /> : shown.length === 0 ? <EmptyState title="暫時搵唔到符合條件嘅資料" description="可能係資料未註明，唔代表市場上冇呢類保障。試吓減少條件。" onReset={reset} /> : mobile || view === 'cards' ? <div className="grid grid-cols-1 items-start gap-6 fold:grid-cols-2 lg:grid-cols-3">{shown.map(product => <ProductCard key={product.id} product={product} match={matches.get(product.id)} />)}</div> : <ProductTable products={shown} color={color} coverageKeywords={copy.coverageKeywords} productMatchMap={matches} />}
     </section>
     <section className="site-container py-4">
       <details className="rounded-xl border border-line bg-paper px-5 py-3" onToggle={event => setShowAdvanced(event.currentTarget.open)}>
@@ -163,7 +163,7 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
     </section>
     <section className="site-container pt-6" aria-labelledby="questions-title">
       <h2 id="questions-title" className="font-serif text-2xl font-bold text-ink">報價前，問清楚三件事</h2>
-      <div className="mt-5 grid gap-5 md:grid-cols-3">{copy.highlights.map((hint, index) => <article key={hint.title} className="depth-surface rounded-card border border-line bg-paper p-5"><span aria-hidden="true" className="font-grotesk text-3xl text-amber">0{index + 1}</span><h3 className="mt-3 text-lg font-bold text-ink">{hint.title}</h3><p className="mt-2 text-base leading-relaxed text-ink-soft">{hint.body}</p></article>)}</div>
+      <div className="mt-5 grid grid-cols-1 gap-5 fold:grid-cols-3">{copy.highlights.map((hint, index) => <article key={hint.title} className="depth-surface rounded-card border border-line bg-paper p-5"><span aria-hidden="true" className="font-grotesk text-3xl text-amber">0{index + 1}</span><h3 className="mt-3 text-lg font-bold text-ink">{hint.title}</h3><p className="mt-2 text-base leading-relaxed text-ink-soft">{hint.body}</p></article>)}</div>
       <div className="mt-8 space-y-3">{copy.faq.map(faq => <details key={faq.q} className="rounded-xl border border-line bg-paper px-5 py-3"><summary className="min-h-11 cursor-pointer py-2 text-lg font-semibold text-ink">{faq.q}</summary><p className="pb-3 pt-2 text-base leading-relaxed text-ink-soft">{faq.a}</p></details>)}</div>
     </section>
   </div>;

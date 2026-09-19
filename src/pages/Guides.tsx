@@ -86,7 +86,7 @@ export default function Guides() {
       {/* S2 九類指南卡 */}
       <section className="pb-24 md:pb-32">
         <div className="site-container">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 fold:grid-cols-2 lg:grid-cols-3">
             {GUIDES.map((guide, i) => (
               <GuideCard key={guide.id} guide={guide} index={i} />
             ))}

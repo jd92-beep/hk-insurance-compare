@@ -46,7 +46,7 @@ export default function MedicalPathCompare() {
       </p>
 
       <div className="mt-5 overflow-x-auto" data-lenis-prevent>
-        <table className="w-full min-w-[720px] border-collapse text-left text-sm" data-testid="medical-path-table">
+        <table className="w-full min-w-[480px] border-collapse text-left text-sm fold:min-w-[640px] lg:min-w-[720px]" data-testid="medical-path-table">
           <caption className="sr-only">醫療路徑教育維度對照（非優劣排名）</caption>
           <thead>
             <tr className="border-b border-line">

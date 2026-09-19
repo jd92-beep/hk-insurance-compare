@@ -51,7 +51,7 @@ export default function HowWeRankCard({
       </p>
       <p className="mt-2 max-w-3xl text-xs leading-relaxed text-ink-faint">{HOW_WE_RANK.snapshotNote}</p>
 
-      <ul className="mt-5 grid gap-3 md:grid-cols-2">
+      <ul className="mt-5 grid grid-cols-1 gap-3 fold:grid-cols-2">
         {HOW_WE_RANK_POINTS.map((point, index) => (
           <motion.li
             key={point.id}

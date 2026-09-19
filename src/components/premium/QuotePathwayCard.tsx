@@ -78,7 +78,7 @@ export default function QuotePathwayCard({
         <div className="mt-5">
           <h4 className="text-base font-bold text-ink">去官網報價前，準備定呢啲</h4>
           <p className="mt-1 text-sm text-ink-soft">只係準備清單，唔係核保問卷，亦唔會上載。</p>
-          <ul className="mt-3 grid gap-2 md:grid-cols-2">
+          <ul className="mt-3 grid grid-cols-1 gap-2 fold:grid-cols-2">
             {QUOTE_PREP_ITEMS.map((item, index) => (
               <motion.li
                 key={item.id}

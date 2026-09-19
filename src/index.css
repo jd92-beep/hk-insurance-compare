@@ -115,17 +115,28 @@
   }
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 @layer components {
-  /* 全站容器：max-width 1280px，左右 padding clamp(20px, 4vw, 48px) */
+  /* 全站容器：max-width 1280px
+     padding 用 clamp(16px, 3.2vw, 48px)：foldable 中段寬度 (560–900) 保留 ≥92% 可用闊度 */
   .site-container {
     @apply mx-auto w-full max-w-site;
-    padding-left: clamp(20px, 4vw, 48px);
-    padding-right: clamp(20px, 4vw, 48px);
+    padding-left: clamp(16px, 3.2vw, 48px);
+    padding-right: clamp(16px, 3.2vw, 48px);
   }
   .site-container-wide {
     @apply mx-auto w-full max-w-wide;
-    padding-left: clamp(20px, 4vw, 48px);
-    padding-right: clamp(20px, 4vw, 48px);
+    padding-left: clamp(16px, 3.2vw, 48px);
+    padding-right: clamp(16px, 3.2vw, 48px);
+  }
+
+  /* 比較表左標籤欄：中段寬度收細，desktop 仍可讀 */
+  .compare-label-col {
+    width: clamp(7.5rem, 18vw, 12.5rem);
   }
 
   .eyebrow {

@@ -8,7 +8,7 @@ import {
 } from "@/lib/evidence-status";
 import ComparisonExportButton from "@/components/compare/ComparisonExportButton";
 import SavedComparisons from "@/components/compare/SavedComparisons";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ExternalLink, Plus, RotateCcw, X } from "lucide-react";
 import { Link, useSearchParams } from "react-router";
@@ -292,7 +292,8 @@ export default function Compare() {
   }
 
   const spare = products.length < COMPARE_LIMIT ? 1 : 0;
-  const slotColumns = `200px repeat(${products.length + spare}, minmax(0, 1fr))`;
+  /* Fluid left label column: clamp via .compare-label-col; product slots take remaining width */
+  const slotColumns = `var(--compare-label-col, clamp(7.5rem, 18vw, 12.5rem)) repeat(${products.length + spare}, minmax(0, 1fr))`;
   const firstCategory = products[0]?.category;
   const multiCategory = spansMultipleCategories(products);
   const multiTier = hasMultiplePlanTiers(products);
@@ -413,9 +414,17 @@ export default function Compare() {
         <>
           {/* S2 產品欄頭（sticky） */}
           <div className="sticky top-[72px] z-30">
-            <div className="grid bg-paper/85 backdrop-blur-[12px]" style={{ gridTemplateColumns: slotColumns }}>
+            <div
+              className="grid bg-paper/85 backdrop-blur-[12px]"
+              style={
+                {
+                  gridTemplateColumns: slotColumns,
+                  "--compare-label-col": "clamp(7.5rem, 18vw, 12.5rem)",
+                } as CSSProperties
+              }
+            >
               <div
-                className="flex items-end border-b px-4 pb-3 text-[12px] text-ink-faint"
+                className="compare-label-col flex items-end border-b px-3 pb-3 text-[12px] text-ink-faint fold:px-4"
                 style={{ borderColor: "var(--line)" }}
               >
                 網站摘要與來源對照

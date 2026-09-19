@@ -128,7 +128,7 @@ function ExpandedRow({
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="overflow-hidden"
         >
-          <div className="grid grid-cols-1 gap-6 py-5 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 py-5 fold:grid-cols-2">
             <div className="col-span-full"><VerifiedPromotion product={product} /></div>
             <div>
               <p className="mb-2.5 text-base font-bold text-ink">
@@ -270,7 +270,7 @@ export default function ProductTable({
       className="rounded-card border bg-paper shadow-card max-lg:overflow-x-auto"
       style={{ borderColor: "var(--line)" }}
     >
-      <table className="w-full border-collapse text-left text-base leading-[1.55] max-lg:min-w-[1080px] ">
+      <table className="w-full border-collapse text-left text-base leading-[1.55] max-lg:min-w-[900px] max-md:min-w-[760px] lg:min-w-0 ">
         <caption className="p-4 text-left text-base leading-relaxed text-ink-soft">只係網站摘要，唔係全市場或即時報價。請先對齊計劃級別、自負額及不保事項。</caption>
         <thead className="sticky top-[72px] z-20">
           <tr className="border-b" style={{ borderColor: "var(--line-strong)" }}>

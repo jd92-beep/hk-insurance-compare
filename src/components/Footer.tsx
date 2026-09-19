@@ -62,7 +62,7 @@ export default function Footer() {
         <div className="pointer-events-none absolute -bottom-40 -right-24" aria-hidden="true">
           <StampSealIcon size={480} className="animate-spin-slow text-paper opacity-[.06]" />
         </div>
-        <div className="site-container relative grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
+        <div className="site-container relative grid grid-cols-1 gap-10 py-16 fold:grid-cols-2 lg:grid-cols-4">
           {/* ① 品牌 */}
           <div className="flex flex-col gap-4">
             <Link to="/" className="flex items-center gap-2.5">

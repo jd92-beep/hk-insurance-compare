@@ -189,7 +189,7 @@ export default function Hero() {
         </>
       )}
       {/* mobile 底部加多啲 padding：首訪免責聲明 toast（fixed 底條）唔會冚住 9/85/27 統計行 */}
-      <div className="site-container relative grid min-h-[92dvh] grid-cols-1 items-center gap-12 pb-16 pt-24 max-md:pb-36 lg:grid-cols-12 lg:gap-8">
+      <div className="site-container relative grid min-h-[92dvh] grid-cols-1 items-center gap-12 overflow-x-clip pb-16 pt-24 max-md:pb-36 lg:grid-cols-12 lg:gap-8">
         {/* 漂浮裝飾層（左欄文字後面，近/遠兩層） */}
         {!reduced && (
           <>

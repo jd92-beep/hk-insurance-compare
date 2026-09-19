@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select";
 import { useVhisRegistry } from "@/hooks/use-vhis-registry";
 import type { VhisFlexiProduct, VhisStandardPlan, VhisStatus } from "@/types/vhis";
+import VhisSchemeFacts from "@/components/vhis/VhisSchemeFacts";
 import { cn } from "@/lib/utils";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -234,6 +235,10 @@ export default function Vhis() {
             就喺標準保障之上，提供更高或者更廣嘅保障。以下名單全部嚟自
             vhis.gov.hk 官方公開數據，逐份附官方條款同保費表連結。
           </motion.p>
+
+          <div className="mt-8">
+            <VhisSchemeFacts compact />
+          </div>
 
           {/* 統計 chips */}
           <motion.div

@@ -79,7 +79,7 @@ export default function InsurerCard({
             </Link>
           </p>
         </div>
-        <div className="shrink-0 text-right transition-transform duration-300 group-hover:scale-105 depth-z-icon">
+        <div className="shrink-0 text-right transition-transform duration-300 group-hover:scale-105">
           <p className="font-grotesk text-[32px] font-bold leading-none text-red">
             {insurer.productCount}
           </p>
@@ -97,7 +97,7 @@ export default function InsurerCard({
               <Link
                 key={categoryId}
                 to={`${detailHref}#cat-${categoryId}`}
-                className="chip chip-3d inline-flex items-center gap-1.5 transition-opacity hover:opacity-80"
+                className="chip inline-flex items-center gap-1.5 transition-opacity hover:opacity-80"
                 style={{
                   background: `color-mix(in srgb, ${color} 12%, transparent)`,
                   color,

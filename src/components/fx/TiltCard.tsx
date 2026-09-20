@@ -13,9 +13,8 @@ const finePointer = () => window.matchMedia(pointerQuery).matches;
 const serverPointer = () => false;
 
 /**
- * Depth stage: perspective + optional tilt/glare.
- * Text stays on a 2D face (no translateZ) so type is always sharp;
- * depth comes from shadows + rotate, not lifting copy into a 3D layer.
+ * Depth stage. At rest the face is a **plain 2D div** (no perspective/z/rotate)
+ * so card copy stays pixel-sharp. Tilt/glare only mount while the pointer moves.
  */
 export default function TiltCard({ children, className, max = 12, glare = true, perspective = 1200 }: {
   children: React.ReactNode; className?: string; max?: number; glare?: boolean; perspective?: number;
@@ -34,41 +33,53 @@ export default function TiltCard({ children, className, max = 12, glare = true, 
   const glareY = useTransform(x, [-max, max], [88, 12]);
   const glareBg = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,.22), transparent 62%)`;
   const reset = () => { x.set(0); y.set(0); setHovering(false); };
-  return <div ref={stage} className={cn("tilt-stage perspective-card relative", className)} data-tilt-enabled={enabled ? "true" : "false"}
-    style={{ perspective: Math.max(800, Number.isFinite(perspective) ? perspective : 1200) }}
-    onPointerMove={event => {
-      if (!enabled || event.pointerType === "touch") return;
-      const rect = stage.current?.getBoundingClientRect();
-      if (!rect) return;
-      setHovering(true);
-      const angle = tiltAt(event.clientX-rect.left, event.clientY-rect.top, rect.width, rect.height, max);
-      x.set(angle.x); y.set(angle.y);
-    }}
-    onPointerLeave={reset} onPointerCancel={reset}
-    onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
-  >
-    <motion.div
-      className="tilt-face h-full w-full"
+
+  // Resting: zero 3D chrome — perspective must not sit on the text raster path.
+  return (
+    <div
+      ref={stage}
+      className={cn("tilt-stage relative card-text-sharp", className)}
+      data-tilt-enabled={enabled ? "true" : "false"}
       data-tilt-active={active ? "true" : "false"}
-      style={{
-        rotateX: active ? rotateX : 0,
-        rotateY: active ? rotateY : 0,
-        transformStyle: "flat",
-        boxShadow: active
-          ? "0 18px 40px -20px rgba(27,43,37,.45), 0 36px 60px -36px rgba(27,43,37,.35)"
-          : "0 10px 28px -16px rgba(27,43,37,.28), 0 22px 40px -28px rgba(27,43,37,.2)",
+      style={active ? { perspective: Math.max(800, perspective || 1200) } : undefined}
+      onPointerMove={(event) => {
+        if (!enabled || event.pointerType === "touch") return;
+        const rect = stage.current?.getBoundingClientRect();
+        if (!rect) return;
+        setHovering(true);
+        const angle = tiltAt(event.clientX - rect.left, event.clientY - rect.top, rect.width, rect.height, max);
+        x.set(angle.x);
+        y.set(angle.y);
       }}
+      onPointerLeave={reset}
+      onPointerCancel={reset}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
     >
-      <div className="relative h-full w-full">
-        {children}
-      </div>
-      {glare && active && (
+      {!active ? (
+        <div className="tilt-face h-full w-full" style={{ transform: "none" }}>
+          {children}
+        </div>
+      ) : (
         <motion.div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-20 rounded-[inherit]"
-          style={{ background: glareBg, mixBlendMode: "soft-light" }}
-        />
+          className="tilt-face h-full w-full"
+          style={{
+            rotateX,
+            rotateY,
+            transformStyle: "flat",
+            boxShadow: "0 18px 40px -20px rgba(27,43,37,.45), 0 36px 60px -36px rgba(27,43,37,.35)",
+          }}
+        >
+          <div className="relative h-full w-full">{children}</div>
+          {glare && (
+            <motion.div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-20 rounded-[inherit]"
+              style={{ background: glareBg, mixBlendMode: "soft-light" }}
+            />
+          )}
+        </motion.div>
       )}
-    </motion.div>
-  </div>;
+    </div>
+  );
 }

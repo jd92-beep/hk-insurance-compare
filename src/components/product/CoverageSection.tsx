@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ExternalLink, Eye } from "lucide-react";
+import { ExternalLink, Eye, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import type { CoverageItem } from "@/types/insurance";
 import SectionHeading, { EASE_OUT_EXPO } from "@/components/product/SectionHeading";
@@ -35,15 +35,12 @@ function resolveSourceInfo(c: CoverageItem, citationEntries?: CitationEntry[]) {
       quote: c.quote,
     };
   }
-  // 智能 fallback：如果 citationEntries 有對應保障項目，自動對齊
   if (citationEntries && citationEntries.length > 0) {
     const match = citationEntries.find((entry) => {
       const summary = (entry.citation.claim_summary || "").trim();
       const quote = (entry.citation.quote || "").trim();
       const item = c.item.trim();
       if (entry.citation.claim_field !== "coverage" || item.length === 0 || summary.length === 0) return false;
-      // 防止空字串/子字串誤配之餘，接納真實格式「個人責任 HK$2,000,000」、
-      // 「緊急醫療費用—全年計劃 …」：item 必須係完整前綴，後面跟分隔符或開括號
       const ITEM_SEPARATORS = new Set(["：", ":", "—", "–", "-", "·", "／", "/", " ", "（", "("]);
       const summaryMatches =
         summary === item || (summary.startsWith(item) && ITEM_SEPARATORS.has(summary.charAt(item.length)));
@@ -68,8 +65,7 @@ function resolveSourceInfo(c: CoverageItem, citationEntries?: CitationEntry[]) {
 
 /**
  * 保障項目標題渲染組件：
- * 支援點擊呼叫內置 PDF 閱讀抽屜（同份文件無感跳頁，不重新下載），
- * 同時支援新分頁開啟與官方出處佐證。
+ * 支援點擊呼叫內置 PDF 閱讀抽屜，同時支援新分頁開啟與官方出處佐證。
  */
 function CoverageItemTitle({
   item,
@@ -114,7 +110,6 @@ function CoverageItemTitle({
             />
           </button>
 
-          {/* 右側新分頁按鈕：鎖定相同 window 名稱，避免重複開分頁 */}
           <a
             href={sourceUrl}
             target={`doc_viewer_${productId.replace(/[^a-zA-Z0-9_-]/g, "_")}`}
@@ -149,11 +144,181 @@ function CoverageItemTitle({
 }
 
 /**
+ * 方案 A：多欄矩陣對比表格組件（Multi-Plan Comparison Matrix Table）
+ * - 左側第一欄保障項目固定凍結（Sticky Column）
+ * - 右側各子計劃獨立並排成欄，每格只顯示該計劃專屬限額
+ * - 支援平滑橫向滾動，告別一坨長文字重疊截斷
+ */
+function MultiPlanMatrixTable({
+  coverage,
+  tiers,
+  citationEntries,
+  onOpenDoc,
+  onSelectTier,
+  productId,
+}: {
+  coverage: CoverageItem[];
+  tiers: PlanTierItem[];
+  citationEntries?: CitationEntry[];
+  onOpenDoc: (c: CoverageItem, info: ReturnType<typeof resolveSourceInfo>, effectiveLimit?: string) => void;
+  onSelectTier?: (tierId: string | null) => void;
+  productId: string;
+}) {
+  const groups = groupBenefitRows(coverage);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-10% 0px" }}
+      transition={{ duration: 0.5, ease: EASE_OUT_EXPO }}
+      className="flex flex-col gap-2"
+    >
+      {/* 橫向滑動提示 */}
+      <div className="flex items-center justify-between px-1 text-[12px] text-ink-faint">
+        <span className="inline-flex items-center gap-1">
+          <span>✦ 多計劃規格橫向對照矩陣</span>
+          <span className="hidden sm:inline">（各欄獨立顯示專屬限額）</span>
+        </span>
+        <span className="font-grotesk text-[11px]">
+          ← 左右滑動對照全部 {tiers.length} 個計劃 →
+        </span>
+      </div>
+
+      <div
+        className="relative overflow-x-auto rounded-[12px] border bg-paper shadow-card scrollbar-none"
+        style={{ borderColor: "var(--line)" }}
+      >
+        <table className="w-full border-collapse text-left">
+          <thead>
+            <tr className="border-b" style={{ borderColor: "var(--line-strong)" }}>
+              {/* 凍結首欄：保障項目 */}
+              <th
+                className="sticky left-0 z-20 bg-paper-2 px-4 py-3 text-small font-bold text-ink-soft min-w-[170px] sm:min-w-[210px] border-r shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]"
+                style={{ borderColor: "var(--line)" }}
+              >
+                保障項目
+              </th>
+
+              {/* 後續各子計劃獨立欄位 */}
+              {tiers.map((t) => (
+                <th
+                  key={t.id}
+                  className="bg-paper-2 px-4 py-3 align-top min-w-[180px] max-w-[250px] border-r last:border-r-0"
+                  style={{ borderColor: "var(--line)" }}
+                >
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center justify-between gap-1.5">
+                      <span className="font-sans text-[14px] font-bold text-ink truncate" title={t.name}>
+                        {t.name}
+                      </span>
+                      {t.code && (
+                        <span className="rounded bg-jade-wash px-1.5 py-0.5 font-grotesk text-[10px] font-bold text-jade shrink-0">
+                          {t.code}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex items-center justify-between gap-1 text-[11px] text-ink-faint">
+                      <span>{t.roomType || (t.isStandard ? "普通房" : "靈活規格")}</span>
+                      {onSelectTier && (
+                        <button
+                          type="button"
+                          onClick={() => onSelectTier(t.id)}
+                          className="text-[11px] font-medium text-jade hover:underline inline-flex items-center gap-0.5 cursor-pointer shrink-0"
+                          title={`專注檢視「${t.name}」細項`}
+                        >
+                          <span>專注</span>
+                          <ArrowRight size={10} />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+
+          {groups.map((group) => (
+            <tbody key={group.label}>
+              <tr className="border-b" style={{ borderColor: "var(--line)" }}>
+                <td
+                  colSpan={tiers.length + 1}
+                  className="bg-paper-2/60 px-4 pb-1.5 pt-2.5 text-[11px] font-bold tracking-[0.1em] text-ink-faint"
+                >
+                  {group.label}
+                </td>
+              </tr>
+
+              {group.rows.map((c, i) => {
+                const headline = c.item === "每年保障限額";
+                const info = resolveSourceInfo(c, citationEntries);
+
+                return (
+                  <tr
+                    key={`${c.item}-${i}`}
+                    className={cn(
+                      "border-b transition-colors duration-150 last:border-b-0 hover:bg-paper-2/50",
+                      headline && "bg-jade-wash/40"
+                    )}
+                    style={{ borderColor: "var(--line)" }}
+                  >
+                    {/* 左側 Sticky 保障項目 */}
+                    <td
+                      className={cn(
+                        "sticky left-0 z-10 bg-paper px-4 py-3 align-top font-sans text-[14px] leading-[1.6] border-r shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]",
+                        headline && "bg-jade-wash/70 font-bold"
+                      )}
+                      style={{ borderColor: "var(--line)" }}
+                    >
+                      <CoverageItemTitle
+                        item={c.item}
+                        headline={headline}
+                        sourceUrl={info.sourceUrl}
+                        documentName={info.documentName}
+                        page={info.page}
+                        textSizeClass="text-[14px]"
+                        onPreviewDoc={() => onOpenDoc(c, info)}
+                        productId={productId}
+                      />
+                    </td>
+
+                    {/* 各子計劃專屬限額格 */}
+                    {tiers.map((t) => {
+                      const tierLimit = extractTierCoverageLimit(c.limit, t);
+                      return (
+                        <td
+                          key={t.id}
+                          className={cn(
+                            "px-4 py-3 align-top text-[14px] leading-[1.6] border-r last:border-r-0 font-sans",
+                            headline
+                              ? "font-grotesk text-[15px] font-bold text-jade"
+                              : "text-ink"
+                          )}
+                          style={{ borderColor: "var(--line)" }}
+                        >
+                          <div className="whitespace-pre-line break-words">
+                            {tierLimit}
+                          </div>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          ))}
+        </table>
+      </div>
+    </motion.div>
+  );
+}
+
+/**
  * S2.1 保障一覽。
- * 預設：左保障項目 + 右賠償上限，髮線分行（附錄 3）。
- * standardTable（自願醫保標準計劃規格）：分組 definition 表卡
- * （保障限額 → 基本保障 → 靈活計劃），「每年保障限額」headline 行 jade 強調。
- * 標題旁可掛引文標記（citationEntries）。
+ * - 多計劃產品在「全部計劃對比」下自動升級為【多欄對比矩陣表格】（方案 A）
+ * - 選擇特定計劃時展示該計劃的【專注視圖】
+ * - 單一計劃產品維持原標準視圖
  */
 export default function CoverageSection({
   coverage,
@@ -172,7 +337,6 @@ export default function CoverageSection({
   selectedTier?: PlanTierItem | null;
   onSelectTier?: (tierId: string | null) => void;
 }) {
-  // 內置 PDF 抽屜閱讀器狀態（同份文件點第二格無感切換頁碼，不重複下載）
   const [activeDoc, setActiveDoc] = React.useState<{
     isOpen: boolean;
     pdfUrl?: string;
@@ -222,7 +386,17 @@ export default function CoverageSection({
         />
       )}
 
-      {standardTable ? (
+      {/* ── 方案 A：多計劃「全部對比」模式下的多欄對照矩陣 ── */}
+      {hasMultipleTiers && !selectedTier ? (
+        <MultiPlanMatrixTable
+          coverage={coverage}
+          tiers={tiers}
+          citationEntries={citationEntries}
+          onOpenDoc={handleOpenDoc}
+          onSelectTier={onSelectTier}
+          productId={productId}
+        />
+      ) : standardTable ? (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

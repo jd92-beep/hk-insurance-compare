@@ -77,15 +77,17 @@ function deriveTitleCodeMap(product: Product): Map<string, string> {
 
     // 提取常見具體旗艦子計劃名稱
     const KNOWN_SPECIFIC_NAMES = [
+      "智尊守慧",
       "尊耀",
       "睿選",
       "更衛您",
       "尊衛您",
+      "全護航",
+      "晉悅",
       "Pink",
+      "Bowtie Pink",
       "Hero",
       "非凡",
-      "晉悅",
-      "全護航",
       "尚賓",
       "港卓越",
       "港無憂",
@@ -97,6 +99,8 @@ function deriveTitleCodeMap(product: Product): Map<string, string> {
       "優健保",
       "摯稱心",
       "靈活自主",
+      "真智安心",
+      "守慧",
     ];
 
     for (const kw of KNOWN_SPECIFIC_NAMES) {
@@ -229,6 +233,25 @@ export function parseProductPlanTiers(product: Product): PlanTierItem[] {
 
     if (cleanName.includes("Bowtie Pink")) {
       cleanName = "Bowtie Pink";
+    } else if (cleanName.includes("智尊守慧")) {
+      cleanName = "智尊守慧靈活計劃";
+      code = code || "F00034";
+      if (!roomType) roomType = "普通房/半私家/私家";
+      badges.push("高端");
+    } else if (cleanName.includes("守慧") && (cleanName.includes("標準") || raw.includes("標準"))) {
+      cleanName = "守慧標準計劃";
+      code = code || "S00014";
+      if (!roomType) roomType = "普通房";
+    } else if (cleanName.includes("真智安心")) {
+      cleanName = "真智安心靈活計劃";
+      code = code || "F00017";
+    } else if (cleanName.includes("全護航")) {
+      cleanName = "全護航靈活計劃";
+      code = code || "F00019";
+      if (!roomType) roomType = "標準私家房";
+    } else if (cleanName.includes("晉悅")) {
+      cleanName = "晉悅靈活計劃";
+      code = code || "F00041";
     } else if (cleanName.includes("尊耀")) {
       cleanName = "尊耀計劃";
     } else if (cleanName.includes("睿選")) {
@@ -239,8 +262,32 @@ export function parseProductPlanTiers(product: Product): PlanTierItem[] {
       cleanName = "尊衛您計劃";
     } else if (cleanName.includes("Hero") || cleanName.includes("非凡")) {
       cleanName = "Bupa Hero 非凡";
+    } else if (cleanName.includes("尚賓")) {
+      cleanName = "尚賓靈活計劃";
+      code = code || "F00050";
+      badges.push("高端");
+    } else if (cleanName.includes("靈活自主")) {
+      cleanName = "靈活自主計劃";
+      code = code || "F00013";
+    } else if (cleanName.includes("摯稱心")) {
+      cleanName = "摯稱心靈活計劃";
+      code = code || "F00068";
+    } else if (cleanName.includes("港卓越")) {
+      cleanName = "港卓越靈活計劃";
+      code = code || "F00063";
+    } else if (cleanName.includes("港無憂")) {
+      cleanName = "港無憂靈活計劃";
+      code = code || "F00026";
+    } else if (cleanName.includes("港稱心")) {
+      cleanName = "港稱心靈活計劃";
+      code = code || "F00066";
+    } else if (cleanName.includes("智選無憂")) {
+      cleanName = "智選無憂+靈活計劃";
+      code = code || "F00036";
     } else if (cleanName.includes("：")) {
-      cleanName = cleanName.split("：")[0].trim();
+      // 安全處理冒號：先剝離括號內說明性冒號，再進行外層切割，避免殘留半邊括號
+      const noParenColon = cleanName.replace(/[（(][^）)]*：[^）)]*[）)]/g, "");
+      cleanName = noParenColon.split("：")[0].trim();
     } else {
       const subVariantMatch = cleanName.match(/靈活計劃[（(](基本|升級|優越|尊尚|智選)[）)]/);
       if (subVariantMatch) {
@@ -256,6 +303,18 @@ export function parseProductPlanTiers(product: Product): PlanTierItem[] {
       }
     }
 
+    // 清理單獨失配的半截括號
+    cleanName = cleanName.replace(/[（(][^）)]*$/, "").trim();
+
+    // 保誠及信諾標準計劃代碼補全
+    if (product.id === "medical-prudential" && cleanName.includes("標準")) {
+      code = code || "S00026";
+    } else if (product.id === "medical-cigna") {
+      if (cleanName.includes("標準")) code = code || "S00020";
+      else if (cleanName.includes("優越")) code = code || "F00028";
+      else if (cleanName.includes("附加") || cleanName.includes("SMM")) code = code || "F00029";
+    }
+
     // 標準化精簡名稱
     if (cleanName === "自願醫保標準計劃" || cleanName === "標準計劃" || cleanName.startsWith("標準計劃")) {
       cleanName = "標準計劃";
@@ -269,8 +328,16 @@ export function parseProductPlanTiers(product: Product): PlanTierItem[] {
     // 針對常見計劃注入關鍵詞
     if (cleanName.includes("尊耀")) keywords.push("尊耀", "尊耀計劃");
     if (cleanName.includes("睿選")) keywords.push("睿選", "睿選計劃");
-    if (cleanName.includes("標準")) keywords.push("標準", "標準計劃");
-    if (cleanName.includes("靈活")) keywords.push("靈活", "靈活計劃", "至尊靈活");
+    if (cleanName.includes("智尊守慧") || cleanName.includes("智尊")) {
+      keywords.push("智尊守慧", "智尊", "智尊守慧靈活計劃");
+    } else if (cleanName.includes("守慧") || (cleanName.includes("標準") && isVhis)) {
+      keywords.push("守慧", "標準計劃", "標準");
+    }
+    if (cleanName.includes("真智安心")) keywords.push("真智安心", "靈活計劃");
+    if (cleanName.includes("全護航")) keywords.push("全護航", "全護航靈活計劃");
+    if (cleanName.includes("晉悅")) keywords.push("晉悅", "晉悅靈活計劃");
+    if (!cleanName.includes("智尊") && cleanName.includes("標準")) keywords.push("標準", "標準計劃");
+    if (!cleanName.includes("智尊") && cleanName.includes("靈活")) keywords.push("靈活", "靈活計劃", "至尊靈活");
     if (cleanName.includes("Pink")) keywords.push("Pink", "Bowtie Pink");
     if (cleanName.includes("更衛您")) keywords.push("更衛您");
     if (cleanName.includes("尊衛您")) keywords.push("尊衛您");
@@ -303,6 +370,15 @@ export function parseProductPlanTiers(product: Product): PlanTierItem[] {
     });
   }
 
+  // 消除同產品內重複的子計劃名稱（例如多個同名「靈活計劃」，加上認可編號區隔）
+  const nameCount = new Map<string, number>();
+  results.forEach((r) => nameCount.set(r.name, (nameCount.get(r.name) || 0) + 1));
+  results.forEach((r) => {
+    if (nameCount.get(r.name)! > 1 && r.code) {
+      r.name = `${r.name} (${r.code})`;
+    }
+  });
+
   return results;
 }
 
@@ -318,7 +394,7 @@ export function parseProductPlanTiers(product: Product): PlanTierItem[] {
  * - `標準及尊衛您均不設終身保障限額（無上限賠償）` -> `不設終身保障限額（無上限賠償）`
  */
 function cleanSegmentPlanPrefix(segment: string, tier: PlanTierItem): string {
-  const s = segment.trim();
+  let s = segment.trim();
 
   // 若出現「...均不設終身保障限額...」或「與...均不設終身保障限額」模式，乾淨提取終身保障核心說明
   if (/^(?:與\s*)?.+均(不設終身保障限額.*)$/.test(s)) {
@@ -329,7 +405,7 @@ function cleanSegmentPlanPrefix(segment: string, tier: PlanTierItem): string {
   const escapedKws = kwList.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
 
   const corePlans =
-    "(?:標準(?!私家房)|靈活|至尊靈活|尊耀|睿選|更衛您|尊衛您|Bowtie Pink|Pink|智選|精選|優選|卓越|優尚|簡易|青銅|白銀|黃金|計劃[A-Z0-9一二三四]|Plan [A-Z0-9]|Lite|Plus|Gold|Silver|Platinum|基本|普通房|半私家房|標準私家房|私家房" +
+    "(?:標準(?!私家房)|靈活|至尊靈活|智尊守慧|智尊|守慧|真智安心|全護航|晉悅|尚賓|摯稱心|靈活自主|港卓越|港無憂|港稱心|尊耀|睿選|更衛您|尊衛您|Bowtie Pink|Pink|智選|精選|優選|卓越|優尚|簡易|青銅|白銀|黃金|計劃[A-Z0-9一二三四]|Plan [A-Z0-9]|Lite|Plus|Gold|Silver|Platinum|基本|普通房|半私家房|標準私家房|私家房" +
     (escapedKws.length > 0 ? "|" + escapedKws.join("|") : "") +
     ")";
 
@@ -351,9 +427,12 @@ function cleanSegmentPlanPrefix(segment: string, tier: PlanTierItem): string {
     const candidate = m[2].trim();
     // 確保候選文字不為純標點符號
     if (!/^[:：；;，,]+$/.test(candidate)) {
-      return candidate;
+      s = candidate;
     }
   }
+
+  // 二次安全修剪可能殘留的「靈活計劃」或「標準計劃」前綴
+  s = s.replace(/^(?:靈活計劃|標準計劃|至尊靈活|旗艦計劃)[\s:：]*/, "");
 
   return s;
 }
@@ -362,6 +441,15 @@ function cleanSegmentPlanPrefix(segment: string, tier: PlanTierItem): string {
  * 檢查某個 segment 是否明確符合當前計劃（避免「標準私家房」被誤判為「標準計劃」）
  */
 function isSegmentMatchingTier(segment: string, tier: PlanTierItem): boolean {
+  // 防禦：若當前為標準計劃，但段落純講智尊守慧且未提及標準計劃，拒絕匹配
+  if (tier.isStandard && (segment.includes("智尊守慧") || segment.includes("智尊")) && !segment.includes("標準計劃")) {
+    return false;
+  }
+  // 防禦：若當前為智尊守慧，但段落為標準計劃且未提及智尊，拒絕匹配
+  if (tier.name.includes("智尊") && segment.includes("標準計劃") && !segment.includes("智尊")) {
+    return false;
+  }
+
   for (const kw of tier.keywords) {
     if (!kw) continue;
     if (kw === "標準") {

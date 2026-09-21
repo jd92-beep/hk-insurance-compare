@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import {
   handleCardClickNavigation,
   isCardInteractiveTarget,
@@ -190,4 +191,21 @@ test('defaultPrevented click events do not trigger navigation', () => {
 
   assert.equal(result, false);
   assert.equal(navigatedTo, null);
+});
+
+test('PriceSortedCards FlatPriceCard and MinimalQuoteCard integrate handleCardClickNavigation', () => {
+  const source = readFileSync('src/components/category/PriceSortedCards.tsx', 'utf8');
+  assert.ok(source.includes('handleCardClickNavigation'), 'PriceSortedCards 必須導入並使用 handleCardClickNavigation');
+
+  // Check MinimalQuoteCard
+  const minimalQuoteCardMatch = source.match(/export function MinimalQuoteCard[\s\S]*?<\/article>/);
+  assert.ok(minimalQuoteCardMatch, 'MinimalQuoteCard 應存在');
+  assert.ok(minimalQuoteCardMatch[0].includes('handleCardClickNavigation(e, detailHref, navigate)'), 'MinimalQuoteCard 必須監聽 onClick 導航');
+  assert.ok(minimalQuoteCardMatch[0].includes('cursor-pointer'), 'MinimalQuoteCard 必須具有 cursor-pointer 類別');
+
+  // Check FlatPriceCard
+  const flatPriceCardMatch = source.match(/export function FlatPriceCard[\s\S]*?<\/article>/);
+  assert.ok(flatPriceCardMatch, 'FlatPriceCard 應存在');
+  assert.ok(flatPriceCardMatch[0].includes('handleCardClickNavigation(e, detailHref, navigate)'), 'FlatPriceCard 必須監聽 onClick 導航');
+  assert.ok(flatPriceCardMatch[0].includes('cursor-pointer'), 'FlatPriceCard 必須具有 cursor-pointer 類別');
 });

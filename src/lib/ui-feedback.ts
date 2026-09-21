@@ -49,3 +49,20 @@ export function toastCompareToggle(productLabel: string, added: boolean, blocked
     style: { fontSize: "14px", fontWeight: 600, padding: "12px 16px" },
   });
 }
+
+export function toastFavoriteToggle(productLabel: string, added: boolean): void {
+  if (added) {
+    toast.success(`❤️ 已加入我的最愛：${productLabel}`, {
+      position: "top-center",
+      duration: 3500,
+      style: { fontSize: "15px", fontWeight: 700, padding: "14px 18px" },
+    });
+    return;
+  }
+  toast(`已從我的最愛移除：${productLabel}`, {
+    position: "top-center",
+    duration: 3000,
+    style: { fontSize: "14px", fontWeight: 600, padding: "12px 16px" },
+  });
+}
+

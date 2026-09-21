@@ -1,11 +1,13 @@
 import { useMemo } from "react";
-import { Link } from "react-router";
-import { Check, ExternalLink, Plus } from "lucide-react";
+import { Link, useNavigate } from "react-router";
+import { Check, ExternalLink, Heart, Plus } from "lucide-react";
 import type { FlatProductItem } from "@/lib/price-sorting";
 import { purchaseUrl } from "@/lib/product-availability";
 import { useCompare } from "@/providers/CompareProvider";
-import { toastCompareToggle } from "@/lib/ui-feedback";
+import { useFavorites } from "@/providers/FavoritesProvider";
+import { toastCompareToggle, toastFavoriteToggle } from "@/lib/ui-feedback";
 import { getInsurerColor } from "@/lib/insurer-colors";
+import { handleCardClickNavigation } from "@/lib/card-navigation";
 import Card3DGem from "@/components/fx/Card3DGem";
 import TiltCard from "@/components/fx/TiltCard";
 import { cn } from "@/lib/utils";
@@ -15,14 +17,18 @@ import { cn } from "@/lib/utils";
  * 僅顯示公司名、保險計劃名、需報價提示，十分簡短！
  */
 export function MinimalQuoteCard({ item }: { item: FlatProductItem }) {
+  const navigate = useNavigate();
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const isFav = isFavorite(item.product.id);
   const buyUrl = purchaseUrl(item.product);
   const detailHref = `/product/${item.product.id}${item.tier ? `?tier=${item.tier.id}` : ""}`;
   const highlightColor = getInsurerColor(item.product.insurer || item.insurerZh);
 
   return (
     <article
-      className="relative flex flex-col justify-between overflow-hidden rounded-xl border border-line bg-paper-2/70 p-4 shadow-xs transition-all hover:border-line-strong hover:bg-paper"
+      className="relative flex flex-col justify-between overflow-hidden rounded-xl border border-line bg-paper-2/70 p-4 shadow-xs transition-all hover:border-line-strong hover:bg-paper cursor-pointer"
       aria-label={`${item.insurerZh} ${item.title}`}
+      onClick={(e) => handleCardClickNavigation(e, detailHref, navigate)}
     >
       <div
         className="absolute top-0 left-0 right-0 h-1"
@@ -35,9 +41,30 @@ export function MinimalQuoteCard({ item }: { item: FlatProductItem }) {
             <span className="inline-block w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: highlightColor }} />
             {item.insurerZh} <span className="font-grotesk">{item.insurer}</span>
           </p>
-          <span className="rounded bg-amber-wash px-2 py-0.5 text-[11px] font-bold text-amber">
-            需往官網即時報價
-          </span>
+          <div className="flex items-center gap-1.5">
+            <span className="rounded bg-amber-wash px-2 py-0.5 text-[11px] font-bold text-amber">
+              需往官網即時報價
+            </span>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                toggleFavorite(item.product.id);
+                toastFavoriteToggle(item.title, !isFav);
+              }}
+              aria-label={isFav ? `取消收藏 ${item.title}` : `加入我的最愛 ${item.title}`}
+              title={isFav ? "已在我的最愛（點擊取消）" : "加入我的最愛"}
+              className={cn(
+                "flex h-6 w-6 shrink-0 items-center justify-center rounded-md border transition-all",
+                isFav
+                  ? "border-red/40 bg-red-wash text-red"
+                  : "border-line bg-paper text-ink-faint hover:border-line-strong hover:text-red"
+              )}
+            >
+              <Heart size={13} className={cn(isFav && "fill-red text-red")} />
+            </button>
+          </div>
         </div>
 
         <h4 className="mt-2 text-base font-bold leading-snug text-ink truncate" title={item.title}>
@@ -80,8 +107,11 @@ export function MinimalQuoteCard({ item }: { item: FlatProductItem }) {
  * 具有明確保費參考的平鋪產品卡片
  */
 export function FlatPriceCard({ item }: { item: FlatProductItem }) {
+  const navigate = useNavigate();
   const compare = useCompare();
+  const { isFavorite, toggleFavorite } = useFavorites();
   const selected = compare.has(item.product.id);
+  const isFav = isFavorite(item.product.id);
   const buyUrl = purchaseUrl(item.product);
   const detailHref = `/product/${item.product.id}${item.tier ? `?tier=${item.tier.id}` : ""}`;
   const highlightColor = getInsurerColor(item.product.insurer || item.insurerZh);
@@ -103,8 +133,9 @@ export function FlatPriceCard({ item }: { item: FlatProductItem }) {
   return (
     <TiltCard max={10} glare className="h-full rounded-card">
       <article
-        className="depth-surface group relative flex h-full flex-col justify-between overflow-hidden rounded-card border border-line bg-paper"
+        className="depth-surface group relative flex h-full cursor-pointer flex-col justify-between overflow-hidden rounded-card border border-line bg-paper"
         aria-label={`${item.insurerZh} ${item.title}`}
+        onClick={(e) => handleCardClickNavigation(e, detailHref, navigate)}
       >
         <div className="h-1.5 depth-z-bar" style={{ background: highlightColor }} aria-hidden="true" />
         <div className="p-5 md:p-6 flex flex-col justify-between h-full">
@@ -113,9 +144,30 @@ export function FlatPriceCard({ item }: { item: FlatProductItem }) {
               <p className="text-sm font-semibold text-ink-soft">
                 {item.insurerZh} <span className="font-grotesk">{item.insurer}</span>
               </p>
-              <div className="shrink-0 rounded-lg border border-line-strong/20 bg-paper-2/60 p-1 shadow-xs">
-                <Card3DGem size={20} color={highlightColor} glow={false} />
-              </div>
+              {/* 互動式最愛收藏按鈕 */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  toggleFavorite(item.product.id);
+                  toastFavoriteToggle(item.title, !isFav);
+                }}
+                aria-label={isFav ? `取消收藏 ${item.title}` : `加入我的最愛 ${item.title}`}
+                title={isFav ? "已加入我的最愛（點擊取消）" : "加入我的最愛"}
+                className={cn(
+                  "shrink-0 flex items-center justify-center rounded-lg border p-1 shadow-xs transition-all duration-300",
+                  isFav
+                    ? "border-red/40 bg-red-wash/60 text-red shadow-sm scale-105 hover:scale-110"
+                    : "border-line-strong/20 bg-paper-2/60 text-ink-soft hover:scale-105 hover:border-line-strong hover:bg-paper hover:shadow-sm"
+                )}
+              >
+                {isFav ? (
+                  <Heart size={18} className="fill-red text-red drop-shadow-xs" />
+                ) : (
+                  <Card3DGem size={20} color={highlightColor} glow={false} />
+                )}
+              </button>
             </div>
 
             <h3 className="mt-2 text-lg font-bold leading-snug text-ink">
@@ -216,6 +268,14 @@ export default function PriceSortedCards({ items }: { items: FlatProductItem[] }
   const pricedItems = items.filter((i) => !i.isQuoteOnly && i.numericPrice !== null);
   const quoteItems = items.filter((i) => i.isQuoteOnly || i.numericPrice === null);
 
+  const hasSingleTravel = pricedItems.some((i) => i.priceDisplay.includes("單次"));
+  const hasAnnualTravel = pricedItems.some((i) => i.priceDisplay.includes("全年"));
+  const sortBasisLabel = hasSingleTravel
+    ? "按單次/每日保費基準排序"
+    : hasAnnualTravel
+      ? "按全年保費基準排序"
+      : "按換算年費基準排序";
+
   return (
     <div className="flex flex-col gap-8">
       {/* 有保費數據的獨立產品卡片 */}
@@ -223,7 +283,7 @@ export default function PriceSortedCards({ items }: { items: FlatProductItem[] }
         <div className="flex flex-col gap-3">
           <div className="flex items-center justify-between text-xs font-bold text-ink-soft">
             <span>有參考保費之獨立計劃 ({pricedItems.length})</span>
-            <span className="text-ink-faint">按換算年費基準排序</span>
+            <span className="text-ink-faint">{sortBasisLabel}</span>
           </div>
           <div className="grid grid-cols-1 items-stretch gap-6 fold:grid-cols-2 lg:grid-cols-3">
             {pricedItems.map((item) => (

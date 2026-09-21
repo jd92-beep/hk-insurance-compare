@@ -27,11 +27,42 @@ import { usePolicyCalendar } from '@/hooks/use-policy-calendar';
 export default function CategoryDetail() {
   const { categoryId = '' } = useParams();
   const [params] = useSearchParams();
-  return <Catalogue key={`${categoryId}:${params.get('insurer') ?? ''}`} categoryId={categoryId} initialInsurer={params.get('insurer') ?? ''} />;
+  const insurer = params.get('insurer') ?? '';
+  const tripParam = params.get('trip') ?? '';
+  const sortParam = params.get('sort') ?? '';
+  const initialTrip: TravelTripType = tripParam === 'single' || tripParam === 'annual' ? tripParam : 'all';
+  const initialSort: SortKey =
+    sortParam === 'price-asc' || sortParam === 'price_asc'
+      ? 'price-asc'
+      : sortParam === 'price-desc' || sortParam === 'price_desc'
+        ? 'price-desc'
+        : sortParam === 'insurer-az'
+          ? 'insurer-az'
+          : 'default';
+
+  return (
+    <Catalogue
+      key={`${categoryId}:${insurer}:${tripParam}:${sortParam}`}
+      categoryId={categoryId}
+      initialInsurer={insurer}
+      initialTrip={initialTrip}
+      initialSort={initialSort}
+    />
+  );
 }
 const UniversalComparisonChart = lazy(() => import('@/components/category/UniversalComparisonChart'));
 
-function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initialInsurer: string }) {
+function Catalogue({
+  categoryId,
+  initialInsurer,
+  initialTrip = 'all',
+  initialSort = 'default',
+}: {
+  categoryId: string;
+  initialInsurer: string;
+  initialTrip?: TravelTripType;
+  initialSort?: SortKey;
+}) {
   const { loading, error, retry, generatedAt } = useInsuranceData();
   const products = useProducts(categoryId);
   const mobile = useIsMobile();
@@ -43,9 +74,9 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
   const [onlyPremium, setOnlyPremium] = useState(false);
   const [onlyPromo, setOnlyPromo] = useState(false);
   const [includeHistorical, setIncludeHistorical] = useState(false);
-  const [trip, setTrip] = useState<TravelTripType>('all');
+  const [trip, setTrip] = useState<TravelTripType>(initialTrip);
   const [region, setRegion] = useState<TravelRegion>('all');
-  const [sort, setSort] = useState<SortKey>('default');
+  const [sort, setSort] = useState<SortKey>(initialSort);
   const [view, setView] = useState<ViewMode>('cards');
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
   const [matchMode, setMatchMode] = useState<FeatureMatchMode>('smart');
@@ -74,9 +105,12 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
   const isPriceSort = sort === 'price-asc' || sort === 'price-desc';
   const priceSortedItems = useMemo(() => {
     if (!isPriceSort) return [];
-    const flat = flattenProductsForPriceSort(shown);
+    const flat = flattenProductsForPriceSort(shown, {
+      categoryId,
+      trip: isTravel ? trip : undefined,
+    });
     return sortFlatProductsByPrice(flat, sort === 'price-asc' ? 'asc' : 'desc');
-  }, [shown, isPriceSort, sort]);
+  }, [shown, isPriceSort, sort, categoryId, isTravel, trip]);
   const active = Boolean(query || selectedInsurers.length || onlyPremium || onlyPromo || includeHistorical || trip !== 'all' || region !== 'all' || selectedFeatures.length || sort !== 'default');
   const reset = () => {
     setQuery(''); setSelectedInsurers([]); setOnlyPremium(false); setOnlyPromo(false); setIncludeHistorical(false);

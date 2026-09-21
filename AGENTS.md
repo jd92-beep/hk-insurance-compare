@@ -13,6 +13,9 @@
 <!-- review-2026-09-21-features -->
 > **2026-09-21 Six Feature Polish delivery:** Colorful cards, selling points, VHIS en & jumps, 3-tier PDF selector Build `20260921.12` — [six feature polish](docs/review/2026-09-21-six-feature-polish.md).
 <!-- /review-2026-09-21-features -->
+<!-- review-2026-09-21-favorites -->
+> **2026-09-21 Favorites & Travel Pricing delivery:** LocalStorage favorites, heart badge, travel single/annual pricing sort & safe route aliases Build `20260921.14` — [delivery review](docs/review/2026-09-21-favorites-and-travel-fixes.md).
+<!-- /review-2026-09-21-favorites -->
 
 # AGENTS.md
 

@@ -19,6 +19,7 @@ const intentionalExports = {
   'src/components/ui/sidebar.tsx': ['useSidebar'],
   'src/components/ui/toggle.tsx': ['toggleVariants'],
   'src/providers/CompareProvider.tsx': ['useCompare'],
+  'src/providers/FavoritesProvider.tsx': ['useFavorites'],
   'src/providers/InsuranceDataProvider.tsx': ['useInsuranceData', 'useProducts', 'useProduct', 'useInsurers', 'useCategories'],
   'src/providers/SearchProvider.tsx': ['useSearch'],
 };

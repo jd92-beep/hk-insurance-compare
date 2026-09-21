@@ -1,12 +1,13 @@
 import { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { Check, Plus, ArrowRight, ChevronDown } from 'lucide-react';
+import { Check, Plus, ArrowRight, ChevronDown, Heart } from 'lucide-react';
 import type { Product } from '@/types/insurance';
 import type { FeatureMatchResult } from '@/lib/feature-filters';
 import { getInsurerColor } from '@/lib/insurer-colors';
 import { isReferenceOnlyProduct } from '@/lib/product-availability';
 import { useCompare } from '@/providers/CompareProvider';
-import { toastCompareToggle } from '@/lib/ui-feedback';
+import { useFavorites } from '@/providers/FavoritesProvider';
+import { toastCompareToggle, toastFavoriteToggle } from '@/lib/ui-feedback';
 import { handleCardClickNavigation } from '@/lib/card-navigation';
 import PriceRangeBar from '@/components/PriceRangeBar';
 import VerifiedPromotion from '@/components/VerifiedPromotion';
@@ -19,7 +20,9 @@ export default function ProductCard({ product, className, match }: { product: Pr
   const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
   const compare = useCompare();
+  const { isFavorite, toggleFavorite } = useFavorites();
   const selected = compare.has(product.id);
+  const isFav = isFavorite(product.id);
   const title = product.product_name_zh || product.product_name;
   const historical = isReferenceOnlyProduct(product);
   const multiplePlans = product.plan_tiers.length > 1;
@@ -81,13 +84,30 @@ export default function ProductCard({ product, className, match }: { product: Pr
                 </span>
               )}
             </p>
-            {/* 3D 幾何質感容器（每間保險公司專屬獨立 highlight 顏色） */}
-            <div
-              className="shrink-0 depth-z-icon flex items-center justify-center rounded-lg border border-line-strong/20 bg-paper-2/60 p-1 shadow-xs transition-transform duration-300 group-hover:scale-105"
-              aria-hidden="true"
+            {/* 互動式最愛收藏按鈕（寶石/心形切換） */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                toggleFavorite(product.id);
+                toastFavoriteToggle(title, !isFav);
+              }}
+              aria-label={isFav ? `取消收藏 ${title}` : `加入我的最愛 ${title}`}
+              title={isFav ? "已加入我的最愛（點擊取消）" : "加入我的最愛"}
+              className={cn(
+                "shrink-0 depth-z-icon flex items-center justify-center rounded-lg border p-1 shadow-xs transition-all duration-300",
+                isFav
+                  ? "border-red/40 bg-red-wash/60 text-red shadow-sm scale-105 hover:scale-110"
+                  : "border-line-strong/20 bg-paper-2/60 text-ink-soft hover:scale-105 hover:border-line-strong hover:bg-paper hover:shadow-sm"
+              )}
             >
-              <Card3DGem size={22} color={highlightColor} glow={false} />
-            </div>
+              {isFav ? (
+                <Heart size={20} className="fill-red text-red drop-shadow-xs" />
+              ) : (
+                <Card3DGem size={22} color={highlightColor} glow={false} />
+              )}
+            </button>
           </div>
           <h3 className="mt-2 text-lg font-bold leading-snug text-ink">
             <Link className="rounded hover:text-jade hover:underline focus-visible:outline-offset-4" to={`/product/${product.id}`}>

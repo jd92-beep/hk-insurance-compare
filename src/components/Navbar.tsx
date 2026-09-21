@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Menu, Scale, Search, X } from "lucide-react";
+import { ChevronDown, Heart, Menu, Scale, Search, X } from "lucide-react";
 import { Link, useLocation } from "react-router";
 import { useCategories } from "@/providers/InsuranceDataProvider";
 import { useCompare } from "@/providers/CompareProvider";
+import { useFavorites } from "@/providers/FavoritesProvider";
 import { useSearch } from "@/providers/SearchProvider";
 import { CATEGORY_META } from "@/lib/categories";
 import { cn } from "@/lib/utils";
@@ -44,6 +45,7 @@ const NAV_LINKS = [
   { label: "首頁", to: "/", match: (p: string) => p === "/" },
   { label: "保險類別", to: "/categories", match: (p: string) => p.startsWith("/categor"), mega: true },
   { label: "比較工具", to: "/compare", match: (p: string) => p.startsWith("/compare") },
+  { label: "我的最愛", to: "/favorites", match: (p: string) => p.startsWith("/favorites") },
   { label: "保險公司", to: "/insurers", match: (p: string) => p.startsWith("/insurers") },
   { label: "自願醫保名單", to: "/vhis", match: (p: string) => p.startsWith("/vhis") },
   { label: "PDF 中心", to: "/documents", match: (p: string) => p.startsWith("/documents") },
@@ -61,6 +63,7 @@ export default function Navbar() {
   const categories = useCategories();
   const otherCategories = categories.filter((c) => c.id !== "medical");
   const compare = useCompare();
+  const favorites = useFavorites();
   const search = useSearch();
 
   useEffect(() => {
@@ -253,7 +256,7 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* 右：搜尋 + 比較 + 漢堡 */}
+        {/* 右：搜尋 + 我的最愛 + 比較 + 漢堡 */}
         <div className="flex items-center gap-1.5">
           <button
             type="button"
@@ -267,6 +270,28 @@ export default function Navbar() {
               ⌘K
             </kbd>
           </button>
+          <Link
+            to="/favorites"
+            className="relative flex items-center rounded-[10px] border px-3 py-2 text-ink-soft transition-colors hover:bg-paper-2 hover:text-ink"
+            style={{ borderColor: "var(--line)" }}
+            aria-label={`我的最愛（已收藏 ${favorites.count} 份產品）`}
+          >
+            <Heart size={16} className={cn("transition-colors", favorites.count > 0 && "fill-red text-red")} />
+            <AnimatePresence mode="popLayout">
+              {favorites.count > 0 && (
+                <motion.span
+                  key={favorites.count}
+                  initial={{ scale: 0.4 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 18 }}
+                  className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-red px-1 font-grotesk text-[10px] font-bold text-paper"
+                >
+                  {favorites.count}
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </Link>
           <Link
             to="/compare"
             className="relative flex items-center rounded-[10px] border px-3 py-2 text-ink-soft transition-colors hover:bg-paper-2 hover:text-ink"
@@ -441,10 +466,15 @@ export default function Navbar() {
                   ) : (
                     <Link
                       to={link.to}
-                      className="block border-b py-4 font-serif text-[24px] font-bold text-ink"
+                      className="flex items-center justify-between border-b py-4 font-serif text-[24px] font-bold text-ink"
                       style={{ borderColor: "var(--line)" }}
                     >
-                      {link.label}
+                      <span>{link.label}</span>
+                      {link.to === "/favorites" && favorites.count > 0 && (
+                        <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-red px-2 font-grotesk text-xs font-bold text-paper">
+                          {favorites.count}
+                        </span>
+                      )}
                     </Link>
                   )}
                 </motion.div>

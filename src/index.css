@@ -363,6 +363,12 @@ html, body, #root {
 .chip-3d { transform: translateZ(var(--depth-z-chip)); box-shadow: 0 2px 0 rgba(27,43,37,.08), 0 6px 12px -6px rgba(27,43,37,.25); }
 .tilt-stage { isolation: isolate; }
 .tilt-face { backface-visibility: hidden; }
+/* Face chrome tracks the child card, never an empty stretched stage */
+.tilt-stage > .tilt-face { height: 100%; }
+.tilt-face-card > :is(.depth-card, .depth-surface, .shadow-card, article, a) {
+  height: 100%;
+  box-sizing: border-box;
+}
 .depth-surface, .depth-card { border-top-color: rgba(255,255,255,.95); }
 .tilt-stage:focus-within { z-index: 2; }
 /* Layered accent face for cards with category color bar */

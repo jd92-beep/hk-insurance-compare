@@ -1,4 +1,4 @@
-import { useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { tiltAt } from "@/lib/depth-geometry";
@@ -14,9 +14,10 @@ const serverPointer = () => false;
 
 /**
  * Web3D-style depth stage: perspective tilt + glare + layered face.
- * Stage/face/shadow must match the card bounds — callers pass `h-full`
- * and the child card must also be `h-full`, or grid stretch leaves a
- * light empty plate under short cards.
+ * - At rest: Zero translateZ and clean resting rotation so text is 100% vector-sharp (pixel-sharp).
+ * - Interactive: Smooth 3D tilt + dynamic lift + glare reflection.
+ * - Settle: Spring physics smoothly returns to (0,0), then settles cleanly with zero floating point jitter.
+ * Stage/face/shadow match card bounds — callers pass `h-full` to prevent empty plates under short cards.
  */
 export default function TiltCard({ children, className, max = 12, glare = true, perspective = 1200 }: {
   children: React.ReactNode; className?: string; max?: number; glare?: boolean; perspective?: number;
@@ -26,48 +27,105 @@ export default function TiltCard({ children, className, max = 12, glare = true, 
   const fine = useSyncExternalStore(subscribePointer, finePointer, serverPointer);
   const [focused, setFocused] = useState(false);
   const enabled = fine && !reduced && !focused;
+
+  const [isInteracting, setIsInteracting] = useState(false);
+  const [isSettled, setIsSettled] = useState(true);
+  const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const x = useMotionValue(0), y = useMotionValue(0);
   const rotateX = useSpring(x, { stiffness: 280, damping: 18, mass: 0.55 });
   const rotateY = useSpring(y, { stiffness: 280, damping: 18, mass: 0.55 });
-  const lift = useSpring(enabled ? 8 : 0, { stiffness: 200, damping: 20 });
+  // At rest, lift is strictly 0 so resting text stays directly on the baseline canvas plane
+  const lift = useSpring(0, { stiffness: 200, damping: 20 });
   const glareX = useTransform(y, [-max, max], [12, 88]);
   const glareY = useTransform(x, [-max, max], [88, 12]);
   const glareBg = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,.22), transparent 62%)`;
-  const reset = () => { x.set(0); y.set(0); };
-  return <div ref={stage} className={cn("tilt-stage perspective-card relative h-full", className)} data-tilt-enabled={enabled ? "true" : "false"}
-    style={{ perspective: Math.max(800, Number.isFinite(perspective) ? perspective : 1200) }}
-    onPointerMove={event => {
-      if (!enabled || event.pointerType === "touch") return;
-      const rect = stage.current?.getBoundingClientRect();
-      if (!rect) return;
-      const angle = tiltAt(event.clientX-rect.left, event.clientY-rect.top, rect.width, rect.height, max);
-      x.set(angle.x); y.set(angle.y);
-      lift.set(12);
-    }}
-    onPointerLeave={() => { reset(); lift.set(enabled ? 8 : 0); }}
-    onPointerCancel={() => { reset(); lift.set(enabled ? 8 : 0); }}
-    onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
-  >
-    <motion.div
-      className="tilt-face preserve-3d h-full w-full"
-      style={{
-        rotateX,
-        rotateY,
-        z: lift,
-        transformStyle: "preserve-3d",
+
+  const reset = () => {
+    setIsInteracting(false);
+    x.set(0);
+    y.set(0);
+    lift.set(0);
+    if (settleTimer.current) clearTimeout(settleTimer.current);
+    // After spring physics naturally returns to rest (~320ms), settle cleanly to avoid subpixel floating point blur
+    settleTimer.current = setTimeout(() => {
+      setIsSettled(true);
+    }, 320);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (settleTimer.current) clearTimeout(settleTimer.current);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={stage}
+      className={cn("tilt-stage perspective-card relative h-full", className)}
+      data-tilt-enabled={enabled ? "true" : "false"}
+      data-tilt-active={isInteracting ? "true" : "false"}
+      data-tilt-settled={isSettled ? "true" : "false"}
+      style={{ perspective: Math.max(800, Number.isFinite(perspective) ? perspective : 1200) }}
+      onPointerEnter={() => {
+        if (!enabled) return;
+        if (settleTimer.current) {
+          clearTimeout(settleTimer.current);
+          settleTimer.current = null;
+        }
+        setIsSettled(false);
       }}
+      onPointerMove={event => {
+        if (!enabled || event.pointerType === "touch") return;
+        const rect = stage.current?.getBoundingClientRect();
+        if (!rect) return;
+        if (settleTimer.current) {
+          clearTimeout(settleTimer.current);
+          settleTimer.current = null;
+        }
+        setIsInteracting(true);
+        setIsSettled(false);
+        const angle = tiltAt(event.clientX - rect.left, event.clientY - rect.top, rect.width, rect.height, max);
+        x.set(angle.x);
+        y.set(angle.y);
+        lift.set(12);
+      }}
+      onPointerLeave={reset}
+      onPointerCancel={reset}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
     >
-      {/* Face shadow only when a child card actually paints the face — avoids a ghost plate on empty stage height */}
-      <div className="tilt-face-card relative h-full w-full" style={{ transform: "translateZ(12px)" }}>
-        {children}
-      </div>
-      {glare && enabled && (
-        <motion.div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-20 rounded-[inherit]"
-          style={{ background: glareBg, mixBlendMode: "soft-light" }}
-        />
-      )}
-    </motion.div>
-  </div>;
+      <motion.div
+        className="tilt-face preserve-3d h-full w-full"
+        style={{
+          rotateX: isSettled ? 0 : rotateX,
+          rotateY: isSettled ? 0 : rotateY,
+          z: isSettled ? 0 : lift,
+          transformStyle: "preserve-3d",
+        }}
+      >
+        {/*
+          Content card container:
+          - At rest (settled): NO forced translateZ(12px), text stays 100% vector-sharp without GPU bilinear texture blur.
+          - During interactive 3D tilt: subtle translateZ(8px) parallax adds real spatial depth.
+        */}
+        <div
+          className="tilt-face-card relative h-full w-full"
+          style={{
+            transform: isSettled ? "none" : "translateZ(8px)",
+            transition: isSettled ? "transform 0.15s ease-out" : undefined,
+          }}
+        >
+          {children}
+        </div>
+        {glare && enabled && !isSettled && (
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-20 rounded-[inherit]"
+            style={{ background: glareBg, mixBlendMode: "soft-light" }}
+          />
+        )}
+      </motion.div>
+    </div>
+  );
 }

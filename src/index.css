@@ -327,7 +327,7 @@ html, body, #root {
   --depth-z-icon: 22px;
 }
 
-/* Optical depth / Web3D card shell */
+/* Optical depth / Web3D card shell — text stays 100% crisp and vector-sharp at rest */
 .depth-surface,
 .depth-card,
 .shadow-card {
@@ -341,8 +341,10 @@ html, body, #root {
     0 8px 0 -4px rgba(27,43,37,.06),
     0 14px 28px -16px rgba(27,43,37,.38),
     0 28px 56px -28px rgba(27,43,37,.32);
-  transform: translateZ(0);
   transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 .depth-card { transform-style: preserve-3d; }
 .group:hover > .depth-surface,
@@ -360,9 +362,15 @@ html, body, #root {
 .depth-z-bar { transform: translateZ(var(--depth-z-bar)); }
 .depth-z-icon { transform: translateZ(var(--depth-z-icon)); }
 .depth-z-chip { transform: translateZ(var(--depth-z-chip)); }
-.chip-3d { transform: translateZ(var(--depth-z-chip)); box-shadow: 0 2px 0 rgba(27,43,37,.08), 0 6px 12px -6px rgba(27,43,37,.25); }
+.chip-3d { box-shadow: 0 2px 0 rgba(27,43,37,.08), 0 6px 12px -6px rgba(27,43,37,.25); }
 .tilt-stage { isolation: isolate; }
-.tilt-face { backface-visibility: hidden; }
+.tilt-face,
+.tilt-face-card {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 /* Face chrome tracks the child card, never an empty stretched stage */
 .tilt-stage > .tilt-face { height: 100%; }
 .tilt-face-card > :is(.depth-card, .depth-surface, .shadow-card, article, a) {

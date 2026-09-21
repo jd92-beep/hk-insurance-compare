@@ -9,6 +9,7 @@ import { toastCompareToggle } from '@/lib/ui-feedback';
 import PriceRangeBar from '@/components/PriceRangeBar';
 import VerifiedPromotion from '@/components/VerifiedPromotion';
 import TiltCard from '@/components/fx/TiltCard';
+import Card3DGem from '@/components/fx/Card3DGem';
 import { cn } from '@/lib/utils';
 
 /** Separate links/buttons: selecting text, opening details and using a keyboard never navigates the card accidentally. */
@@ -19,11 +20,20 @@ export default function ProductCard({ product, className, match }: { product: Pr
   const historical = isReferenceOnlyProduct(product);
   const multiplePlans = product.plan_tiers.length > 1;
   return <TiltCard max={10} glare className={cn('h-full rounded-card', className)}>
-    <article className="depth-surface relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-paper" aria-label={`${product.insurer_zh} ${title}`}>
+    <article className="depth-surface group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-paper" aria-label={`${product.insurer_zh} ${title}`}>
       <div className="h-1.5 depth-z-bar" style={{ background: categoryColor(product.category) }} aria-hidden="true" />
-      <div className="flex flex-col gap-4 p-5 md:p-6" style={{ transform: 'translateZ(12px)' }}>
+      <div className="flex flex-col gap-4 p-5 md:p-6">
         <div>
-          <p className="text-base font-semibold text-ink-soft">{product.insurer_zh} <span className="font-grotesk">{product.insurer}</span></p>
+          <div className="flex items-start justify-between gap-3">
+            <p className="text-base font-semibold text-ink-soft">{product.insurer_zh} <span className="font-grotesk">{product.insurer}</span></p>
+            {/* 3D 幾何質感容器（獨立圖層，與排版文字解耦以防 blur） */}
+            <div
+              className="shrink-0 depth-z-icon flex items-center justify-center rounded-lg border border-line-strong/20 bg-paper-2/60 p-1 shadow-xs transition-transform duration-300 group-hover:scale-105"
+              aria-hidden="true"
+            >
+              <Card3DGem size={22} color={categoryColor(product.category)} glow={false} />
+            </div>
+          </div>
           <h3 className="mt-2 text-xl font-bold leading-relaxed text-ink"><Link className="rounded hover:text-jade hover:underline focus-visible:outline-offset-4" to={`/product/${product.id}`}>{title}</Link></h3>
           <p className="mt-2 text-sm font-medium text-ink-soft">{historical ? '舊資料／唔作新投保參考' : '資料摘要・未全面核實現行條款'}</p>
         </div>

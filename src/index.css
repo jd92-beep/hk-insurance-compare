@@ -327,7 +327,7 @@ html, body, #root {
   --depth-z-icon: 22px;
 }
 
-/* Optical depth / Web3D card shell — text stays sharp at rest */
+/* Optical depth / Web3D card shell */
 .depth-surface,
 .depth-card,
 .shadow-card {
@@ -341,26 +341,15 @@ html, body, #root {
     0 8px 0 -4px rgba(27,43,37,.06),
     0 14px 28px -16px rgba(27,43,37,.38),
     0 28px 56px -28px rgba(27,43,37,.32);
-  /* No transform at rest — GPU layers blur CJK type in Chromium */
-  transform: none;
+  transform: translateZ(0);
   transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease;
 }
-.card-text-sharp,
-.card-text-sharp * {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-.card-text-sharp .tilt-face {
-  transform: none !important;
-}
-.card-text-sharp[data-tilt-active="true"] .tilt-face {
-  transform: none; /* framer sets rotate inline while active */
-}
+.depth-card { /* preserve-3d on text cards causes blurry rasterization in Chromium */ }
 .group:hover > .depth-surface,
 .group:hover > .depth-card,
 .depth-surface:hover,
 .depth-card:hover {
+  /* Lift with 2D transform only — never rotate/Z text layers at rest */
   transform: translateY(-4px);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.98),
@@ -373,24 +362,26 @@ html, body, #root {
 .depth-z-icon,
 .depth-z-chip,
 .chip-3d {
+  /* Decorative only — never apply translateZ to text-bearing nodes (blur risk). */
   transform: none;
 }
 .chip-3d { box-shadow: 0 2px 0 rgba(27,43,37,.08), 0 6px 12px -6px rgba(27,43,37,.25); }
 .tilt-stage { isolation: isolate; }
 .tilt-face {
   backface-visibility: hidden;
+  /* Keep type crisp when the card sits on a composited layer */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 .depth-surface, .depth-card { border-top-color: rgba(255,255,255,.95); }
 .tilt-stage:focus-within { z-index: 2; }
-/* Category accent bar may float on hover only — never at rest */
+/* Layered accent face for cards with category color bar */
 .depth-surface > [aria-hidden="true"].h-1,
 .depth-surface > div.h-1,
-.depth-surface > div.h-\[3px\],
-.depth-surface > div.h-1\.5 {
-  transform: none;
+.depth-surface > div.h-\[3px\] {
+  transform: translateZ(18px);
+  box-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
 @media (prefers-reduced-motion: reduce), (pointer: coarse) {
   .tilt-face { transform: none !important; }

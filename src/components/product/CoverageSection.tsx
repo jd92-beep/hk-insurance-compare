@@ -204,7 +204,7 @@ function MultiPlanMatrixTable({
               {tiers.map((t) => (
                 <th
                   key={t.id}
-                  className="bg-paper-2 px-4 py-3 align-top min-w-[180px] max-w-[250px] border-r last:border-r-0"
+                  className="bg-paper-2 px-4 py-3 align-top min-w-[170px] border-r last:border-r-0"
                   style={{ borderColor: "var(--line)" }}
                 >
                   <div className="flex flex-col gap-1">

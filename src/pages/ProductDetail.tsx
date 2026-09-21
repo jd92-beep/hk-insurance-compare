@@ -1,8 +1,8 @@
-import EvidenceNotice from "@/components/product/EvidenceNotice";
 import { useEffect, useMemo } from "react";
 import { Link, useParams, useSearchParams } from "react-router";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
+import { cn } from "@/lib/utils";
 import {
   useCategories,
   useInsuranceData,
@@ -142,18 +142,46 @@ export default function ProductDetail() {
     <div className="min-w-0 max-w-full overflow-x-clip">
       {/* S1 產品頁首 */}
       <ProductHeader product={product} />
-      <EvidenceNotice product={product} />
 
-      {/* 重點一覽卡（medical 專用：認可編號 + 關鍵數字 + 保證亮點，有數據先顯示） */}
-      <KeyFactsCard product={product} />
+      {/* 頂部雙卡並排 Deck（位於「來源參考」之下）：
+          - 左卡：「自願醫保認可產品」卡片（縮小靠左，佔 7 欄）
+          - 右卡：「重點一覽」卡片（靠右，佔 5 欄，動態響應計劃切換）
+          - 兩卡並排列出，完全不阻礙下方 S2 內容與多欄矩陣表格向右全寬伸展
+      */}
+      <div className="site-container my-6">
+        <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-12">
+          {/* 左卡：自願醫保認可產品（medical 專用） */}
+          {product.category === "medical" && (
+            <div className="flex flex-col lg:col-span-7">
+              <KeyFactsCard product={product} className="h-full" />
+            </div>
+          )}
 
-      {/* S2 內容：錨點導航（xl+）+ 主欄 + 重點側欄（fold-wide+） */}
-      <section className="pb-20 pt-4 max-md:pb-14 max-md:pt-3">
+          {/* 右卡：重點一覽（隨選中計劃即時動態連動） */}
+          <div
+            className={cn(
+              "flex flex-col",
+              product.category === "medical" ? "lg:col-span-5" : "max-w-xl lg:col-span-12"
+            )}
+          >
+            <ProductSideRail
+              product={product}
+              color={color}
+              selectedTier={selectedTier}
+              onSelectTier={handleSelectTier}
+              isTopDeck
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* S2 內容：錨點導航（xl+）+ 全寬主欄（已徹底移除側欄限制，多欄對比矩陣表格用盡寬度） */}
+      <section className="pb-20 pt-2 max-md:pb-14">
         <div className="site-container flex min-w-0 flex-col gap-8 fold-wide:flex-row fold-wide:items-start xl:gap-10">
-          {/* lg 闊度擺唔落三欄，呢個範圍由右側重點欄取代錨點導航 */}
+          {/* xl 闊度顯示左側錨點導航 */}
           <AnchorNav className="sticky top-[140px] hidden self-start xl:block" />
-          {/* Mid widths fill container; readable measure when side rail / anchor nav present */}
-          <div className="flex w-full min-w-0 max-w-none flex-col gap-14 xl:max-w-[780px]">
+          {/* 主欄：全寬展開，不再受 xl:max-w-[780px] 限制，多欄對比表格完全用盡右側寬度 */}
+          <div className="flex w-full min-w-0 flex-1 flex-col gap-14">
             <section id="pd-coverage" style={SECTION_SCROLL_MARGIN}>
               <CoverageSection
                 coverage={product.coverage ?? []}
@@ -207,14 +235,6 @@ export default function ProductDetail() {
               <SourcesSection product={product} />
             </section>
           </div>
-          {/* 右側 sticky 重點欄：關鍵數字 + 加入比較 + 官方文件快連 */}
-          <ProductSideRail
-            product={product}
-            color={color}
-            selectedTier={selectedTier}
-            onSelectTier={handleSelectTier}
-            className="hidden w-full shrink-0 fold-wide:block fold-wide:w-[min(17rem,30%)] lg:w-[min(300px,34%)] xl:w-[280px]"
-          />
         </div>
       </section>
 

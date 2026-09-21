@@ -2,7 +2,7 @@
 > **2026-09-18 documentation review:** Current scope and remaining limitations: [delivery review](docs/review/2026-09-18-release.md). No blanket policy-currentness certificate.
 <!-- /review-2026-09-18 -->
 <!-- review-2026-09-21 -->
-> **2026-09-21 UI delivery:** Sharp card text at rest with decoupled Web3D gem and optical depth Build `20260921.06` — [sharp web3d cards](docs/review/2026-09-21-sharp-web3d-cards.md).
+> **2026-09-21 UI delivery:** Card blanket click navigation & plan tiers separation Build `20260921.07` — [card click and plan tiers](docs/review/2026-09-21-card-click-and-plan-tiers.md).
 <!-- /review-2026-09-21 -->
 
 # GEMINI.md — current project memory, not a completion certificate

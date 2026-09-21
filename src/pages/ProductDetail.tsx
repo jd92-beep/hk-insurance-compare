@@ -1,6 +1,6 @@
 import EvidenceNotice from "@/components/product/EvidenceNotice";
-import { useEffect } from "react";
-import { Link, useParams } from "react-router";
+import { useEffect, useMemo } from "react";
+import { Link, useParams, useSearchParams } from "react-router";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import {
@@ -20,6 +20,7 @@ import AnchorNav from "@/components/product/AnchorNav";
 import CoverageSection from "@/components/product/CoverageSection";
 import PremiumSection from "@/components/product/PremiumSection";
 import PlanTiersSection from "@/components/product/PlanTiersSection";
+import { parseProductPlanTiers, getPlanTierById } from "@/components/product/plan-parser";
 import KeyTermsSection from "@/components/product/KeyTermsSection";
 import ExclusionsSection from "@/components/product/ExclusionsSection";
 import SourcesSection from "@/components/product/SourcesSection";
@@ -40,6 +41,7 @@ const SECTION_SCROLL_MARGIN = { scrollMarginTop: "110px" } as const;
  */
 export default function ProductDetail() {
   const { productId } = useParams<{ productId: string }>();
+  const [searchParams, setSearchParams] = useSearchParams();
   const product = useProduct(productId);
   const { loading, error } = useInsuranceData();
   const categories = useCategories();
@@ -48,6 +50,34 @@ export default function ProductDetail() {
   const category = categories.find((c) => c.id === product?.category);
   const catName = category?.name_zh ?? product?.category ?? "";
   const displayTitle = product ? deriveSeriesInfo(product, catName).title : "";
+
+  // 解析當前產品的多個子計劃
+  const planTiers = useMemo(
+    () => (product ? parseProductPlanTiers(product) : []),
+    [product]
+  );
+
+  // URL 參數中指定的子計劃（例如 ?tier=f00074 或 ?tier=standard）
+  const tierParam = searchParams.get("tier");
+  const selectedTier = useMemo(
+    () => getPlanTierById(planTiers, tierParam) ?? null,
+    [planTiers, tierParam]
+  );
+
+  const handleSelectTier = (tierId: string | null) => {
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        if (tierId) {
+          next.set("tier", tierId);
+        } else {
+          next.delete("tier");
+        }
+        return next;
+      },
+      { replace: true }
+    );
+  };
 
   // SEO：<title> = 「{產品名}｜{公司} — 保險格價站」（附錄 6）
   useEffect(() => {
@@ -133,6 +163,9 @@ export default function ProductDetail() {
                   isStandardBenefitTable(product.coverage ?? [])
                 }
                 citationEntries={entriesForGroup(citationEntries, "coverage")}
+                tiers={planTiers}
+                selectedTier={selectedTier}
+                onSelectTier={handleSelectTier}
               />
             </section>
             <section id="pd-premium" style={SECTION_SCROLL_MARGIN}>
@@ -143,7 +176,12 @@ export default function ProductDetail() {
               />
             </section>
             <section id="pd-tiers" style={SECTION_SCROLL_MARGIN}>
-              <PlanTiersSection product={product} color={color} />
+              <PlanTiersSection
+                product={product}
+                color={color}
+                selectedTierId={selectedTier?.id}
+                onSelectTier={handleSelectTier}
+              />
             </section>
             <section id="pd-terms" style={SECTION_SCROLL_MARGIN}>
               <KeyTermsSection

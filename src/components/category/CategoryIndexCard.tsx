@@ -1,9 +1,10 @@
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import type { Category, Product } from "@/types/insurance";
 import { CATEGORY_META } from "@/lib/categories";
 import CategorySpectrum from "@/components/category/CategorySpectrum";
 import { categoryCopy } from "@/components/category/copy";
+import { handleCardClickNavigation } from "@/lib/card-navigation";
 import { cn } from "@/lib/utils";
 
 /**
@@ -25,19 +26,21 @@ export default function CategoryIndexCard({
   insurerCount: number;
   className?: string;
 }) {
+  const navigate = useNavigate();
   const meta = CATEGORY_META[category.id];
   const copy = categoryCopy(category.id);
   const color = meta?.color ?? "#181D2E";
   const noPremium = category.insurers_with_premium === 0;
+  const detailHref = `/category/${category.id}`;
 
   return (
-    <Link
-      to={`/category/${category.id}`}
+    <article
       className={cn(
-        "depth-card group relative flex flex-col gap-4 overflow-hidden rounded-card border bg-paper p-8 shadow-card",
+        "depth-card group relative flex cursor-pointer flex-col gap-4 overflow-hidden rounded-card border bg-paper p-8 shadow-card",
         className,
       )}
       style={{ borderColor: "var(--line)" }}
+      onClick={(e) => handleCardClickNavigation(e, detailHref, navigate)}
     >
       {/* 頂部 4px 類別色條 */}
       <div
@@ -64,7 +67,12 @@ export default function CategoryIndexCard({
       {/* 類別名 + 英文 */}
       <div>
         <h3 className="font-serif text-[26px] font-bold leading-[1.25] text-ink max-md:text-[22px]">
-          {category.name_zh}
+          <Link
+            to={detailHref}
+            className="hover:text-red focus-visible:outline-offset-4"
+          >
+            {category.name_zh}
+          </Link>
         </h3>
         <p className="eyebrow mt-1.5 text-ink-faint">{copy?.english ?? category.id.toUpperCase()}</p>
       </div>
@@ -102,11 +110,14 @@ export default function CategoryIndexCard({
           <span className="font-grotesk font-bold text-ink">{category.count}</span> 份產品 ·{" "}
           <span className="font-grotesk font-bold text-ink">{insurerCount}</span> 間公司
         </span>
-        <span className="inline-flex items-center gap-1 text-small font-bold text-red">
+        <Link
+          to={detailHref}
+          className="inline-flex items-center gap-1 text-small font-bold text-red transition-colors hover:text-red-deep"
+        >
           進入比較
           <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
-        </span>
+        </Link>
       </div>
-    </Link>
+    </article>
   );
 }

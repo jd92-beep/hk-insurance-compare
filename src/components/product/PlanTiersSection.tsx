@@ -38,12 +38,29 @@ function TierSourceLink({ url, className }: { url?: string; className?: string }
 export default function PlanTiersSection({
   product,
   color,
+  selectedTierId,
+  onSelectTier,
 }: {
   product: Product;
   color: string;
+  selectedTierId?: string | null;
+  onSelectTier?: (tierId: string | null) => void;
 }) {
   const tiers = product.plan_tiers ?? [];
-  const [activeTab, setActiveTab] = useState(0);
+  const [manualTab, setManualTab] = useState<number | null>(null);
+  const [lastPropTier, setLastPropTier] = useState(selectedTierId);
+
+  if (selectedTierId !== lastPropTier) {
+    setLastPropTier(selectedTierId);
+    setManualTab(null);
+  }
+
+  const matchedIdx = selectedTierId
+    ? tiers.findIndex((t) => t.toLowerCase().includes(selectedTierId.toLowerCase()))
+    : -1;
+
+  const activeTab = manualTab ?? (matchedIdx !== -1 ? matchedIdx : 0);
+
   if (tiers.length === 0) return null;
   const single = tiers.length === 1;
   const sourceUrl = product.source_urls?.[0];
@@ -67,7 +84,15 @@ export default function PlanTiersSection({
                 type="button"
                 role="tab"
                 aria-selected={isActive}
-                onClick={() => setActiveTab(i)}
+                onClick={() => {
+                  setManualTab(i);
+                  if (onSelectTier) {
+                    const codeMatch = tier.match(/[SF]\d{5}/);
+                    if (codeMatch) {
+                      onSelectTier(codeMatch[0].toLowerCase());
+                    }
+                  }
+                }}
                 className={cn(
                   "chip border font-bold transition-all duration-300 active:scale-[0.96]",
                   isActive

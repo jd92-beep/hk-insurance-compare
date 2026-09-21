@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { Check, Plus, ArrowRight } from 'lucide-react';
 import type { Product } from '@/types/insurance';
 import type { FeatureMatchResult } from '@/lib/feature-filters';
@@ -6,6 +6,7 @@ import { categoryColor } from '@/lib/categories';
 import { isReferenceOnlyProduct } from '@/lib/product-availability';
 import { useCompare } from '@/providers/CompareProvider';
 import { toastCompareToggle } from '@/lib/ui-feedback';
+import { handleCardClickNavigation } from '@/lib/card-navigation';
 import PriceRangeBar from '@/components/PriceRangeBar';
 import VerifiedPromotion from '@/components/VerifiedPromotion';
 import TiltCard from '@/components/fx/TiltCard';
@@ -14,13 +15,19 @@ import { cn } from '@/lib/utils';
 
 /** Separate links/buttons: selecting text, opening details and using a keyboard never navigates the card accidentally. */
 export default function ProductCard({ product, className, match }: { product: Product; className?: string; match?: FeatureMatchResult }) {
+  const navigate = useNavigate();
   const compare = useCompare();
   const selected = compare.has(product.id);
   const title = product.product_name_zh || product.product_name;
   const historical = isReferenceOnlyProduct(product);
   const multiplePlans = product.plan_tiers.length > 1;
+  const detailHref = `/product/${product.id}`;
   return <TiltCard max={10} glare className={cn('h-full rounded-card', className)}>
-    <article className="depth-surface group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-paper" aria-label={`${product.insurer_zh} ${title}`}>
+    <article
+      className="depth-surface group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-card border border-line bg-paper"
+      aria-label={`${product.insurer_zh} ${title}`}
+      onClick={(e) => handleCardClickNavigation(e, detailHref, navigate)}
+    >
       <div className="h-1.5 depth-z-bar" style={{ background: categoryColor(product.category) }} aria-hidden="true" />
       <div className="flex flex-col gap-4 p-5 md:p-6">
         <div>

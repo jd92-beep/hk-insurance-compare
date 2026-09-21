@@ -6,6 +6,8 @@ import SectionHeading, { EASE_OUT_EXPO } from "@/components/product/SectionHeadi
 import CitationRef from "@/components/product/citation/CitationRef";
 import type { CitationEntry } from "@/components/product/citation/citation-utils";
 import PdfViewerDrawer from "@/components/product/PdfViewerDrawer";
+import PlanSelectorBar from "@/components/product/PlanSelectorBar";
+import { extractTierCoverageLimit, type PlanTierItem } from "@/components/product/plan-parser";
 import { cn } from "@/lib/utils";
 
 /** 標準計劃保障表分組：限額行置頂，靈活計劃級別排尾，其餘為基本保障 */
@@ -158,11 +160,17 @@ export default function CoverageSection({
   standardTable = false,
   citationEntries,
   productId = "insurance",
+  tiers = [],
+  selectedTier = null,
+  onSelectTier,
 }: {
   coverage: CoverageItem[];
   standardTable?: boolean;
   citationEntries?: CitationEntry[];
   productId?: string;
+  tiers?: PlanTierItem[];
+  selectedTier?: PlanTierItem | null;
+  onSelectTier?: (tierId: string | null) => void;
 }) {
   // 內置 PDF 抽屜閱讀器狀態（同份文件點第二格無感切換頁碼，不重複下載）
   const [activeDoc, setActiveDoc] = React.useState<{
@@ -179,7 +187,8 @@ export default function CoverageSection({
 
   const handleOpenDoc = (
     c: CoverageItem,
-    info: ReturnType<typeof resolveSourceInfo>
+    info: ReturnType<typeof resolveSourceInfo>,
+    effectiveLimit?: string
   ) => {
     if (!info.sourceUrl) return;
     setActiveDoc({
@@ -188,10 +197,13 @@ export default function CoverageSection({
       documentName: info.documentName,
       page: info.page,
       itemTitle: c.item,
-      limitText: c.limit,
+      limitText: effectiveLimit || c.limit,
       quote: info.quote,
     });
   };
+
+  const hasMultipleTiers = tiers && tiers.length > 1;
+
   return (
     <div>
       <SectionHeading
@@ -199,6 +211,17 @@ export default function CoverageSection({
         title="保障一覽"
         aside={citationEntries && <CitationRef entries={citationEntries} />}
       />
+
+      {/* 智能計劃切換器（PlanSelectorBar） */}
+      {hasMultipleTiers && onSelectTier && (
+        <PlanSelectorBar
+          tiers={tiers}
+          selectedTierId={selectedTier?.id}
+          onSelectTier={onSelectTier}
+          className="mb-6"
+        />
+      )}
+
       {standardTable ? (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -215,7 +238,7 @@ export default function CoverageSection({
                   保障項目
                 </th>
                 <th className="bg-paper-2 px-5 py-3 text-right text-small font-bold text-ink-soft">
-                  賠償限額
+                  {selectedTier ? `${selectedTier.name} 賠償限額` : "賠償限額"}
                 </th>
               </tr>
             </thead>
@@ -232,6 +255,9 @@ export default function CoverageSection({
                 {group.rows.map((c, i) => {
                   const headline = c.item === "每年保障限額";
                   const info = resolveSourceInfo(c, citationEntries);
+                  const effectiveLimit = extractTierCoverageLimit(c.limit, selectedTier);
+                  const isFiltered = Boolean(selectedTier && effectiveLimit !== c.limit);
+
                   return (
                     <tr
                       key={`${c.item}-${i}`}
@@ -254,7 +280,7 @@ export default function CoverageSection({
                           documentName={info.documentName}
                           page={info.page}
                           textSizeClass="text-[15px]"
-                          onPreviewDoc={() => handleOpenDoc(c, info)}
+                          onPreviewDoc={() => handleOpenDoc(c, info, effectiveLimit)}
                           productId={productId}
                         />
                       </td>
@@ -263,10 +289,20 @@ export default function CoverageSection({
                           "px-5 py-3.5 text-right align-top text-[15px] leading-[1.7]",
                           headline
                             ? "font-grotesk text-[16px] font-bold text-jade"
-                            : "text-ink-soft",
+                            : isFiltered
+                              ? "font-medium text-ink"
+                              : "text-ink-soft",
                         )}
                       >
-                        {c.limit}
+                        <div>{effectiveLimit}</div>
+                        {isFiltered && (
+                          <div
+                            className="mt-0.5 text-[11px] font-normal text-ink-faint cursor-help"
+                            title={`原始全部計劃條款：${c.limit}`}
+                          >
+                            已聚焦專屬限額
+                          </div>
+                        )}
                       </td>
                     </tr>
                   );
@@ -285,6 +321,9 @@ export default function CoverageSection({
         >
           {coverage.map((c, i) => {
             const info = resolveSourceInfo(c, citationEntries);
+            const effectiveLimit = extractTierCoverageLimit(c.limit, selectedTier);
+            const isFiltered = Boolean(selectedTier && effectiveLimit !== c.limit);
+
             return (
               <motion.li
                 key={`${c.item}-${i}`}
@@ -300,12 +339,27 @@ export default function CoverageSection({
                   documentName={info.documentName}
                   page={info.page}
                   textSizeClass="text-[16px]"
-                  onPreviewDoc={() => handleOpenDoc(c, info)}
+                  onPreviewDoc={() => handleOpenDoc(c, info, effectiveLimit)}
                   productId={productId}
                 />
-                <span className="text-[15px] leading-[1.7] text-ink-soft sm:max-w-[60%] sm:shrink-0 sm:text-right">
-                  {c.limit}
-                </span>
+                <div className="flex flex-col sm:max-w-[60%] sm:shrink-0 sm:items-end">
+                  <span
+                    className={cn(
+                      "text-[15px] leading-[1.7] sm:text-right",
+                      isFiltered ? "font-medium text-ink" : "text-ink-soft"
+                    )}
+                  >
+                    {effectiveLimit}
+                  </span>
+                  {isFiltered && (
+                    <span
+                      className="text-[11px] text-ink-faint sm:text-right cursor-help"
+                      title={`原始全部計劃條款：${c.limit}`}
+                    >
+                      已聚焦專屬限額
+                    </span>
+                  )}
+                </div>
               </motion.li>
             );
           })}

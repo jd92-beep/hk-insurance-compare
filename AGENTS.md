@@ -1,6 +1,9 @@
 <!-- review-2026-09-18 -->
 > **2026-09-18 documentation review:** Current scope and remaining limitations: [delivery review](docs/review/2026-09-18-release.md). No blanket policy-currentness certificate.
 <!-- /review-2026-09-18 -->
+<!-- review-2026-09-21 -->
+> **2026-09-21 UI delivery:** 3D card height/ghost-plate fix on `master` PR #46 Build `20260921.02` — [3D card height fill](docs/review/2026-09-21-3d-card-height-fill.md).
+<!-- /review-2026-09-21 -->
 
 # AGENTS.md
 

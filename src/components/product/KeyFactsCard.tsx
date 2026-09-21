@@ -22,7 +22,13 @@ function FactTile({ label, children }: { label: string; children: React.ReactNod
  * 下面係關鍵數字 tiles（每年保障限額／30 歲保費／提供形式／投保年齡）
  * 同保證類亮點 chips（保證續保／冷靜期／稅務扣減）。
  */
-export default function KeyFactsCard({ product }: { product: Product }) {
+export default function KeyFactsCard({
+  product,
+  className,
+}: {
+  product: Product;
+  className?: string;
+}) {
   if (product.category !== "medical") return null;
 
   const certs = extractCertEntries(product);
@@ -43,14 +49,14 @@ export default function KeyFactsCard({ product }: { product: Product }) {
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: EASE_OUT_EXPO, delay: 0.35 }}
-      className="site-container mb-6"
+      className={className || "site-container mb-6"}
     >
       <div
-        className="overflow-hidden rounded-card border bg-paper shadow-card"
+        className="flex h-full flex-col justify-between overflow-hidden rounded-card border bg-paper shadow-card"
         style={{ borderColor: "var(--line)" }}
       >
         <div className="h-[3px] w-full" style={{ background: "var(--jade)" }} />
-        <div className="flex flex-col gap-5 p-6 md:p-7">
+        <div className="flex flex-1 flex-col justify-between gap-5 p-5 md:p-6">
           {/* ── 認可行：badge + 認可編號 + 名單連結 ── */}
           {certs.length > 0 && (
             <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
@@ -101,7 +107,7 @@ export default function KeyFactsCard({ product }: { product: Product }) {
 
           {/* ── 關鍵數字 tiles ── */}
           {hasTiles && (
-            <div className="grid grid-cols-2 gap-2.5 md:grid-cols-4">
+            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-2 xl:grid-cols-4">
               {facts.annualLimitRaw && (
                 <FactTile label="每年保障限額">
                   {facts.annualLimitAmount ? (

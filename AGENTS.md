@@ -4,6 +4,9 @@
 <!-- review-2026-09-21 -->
 > **2026-09-21 UI delivery:** Multi-plan comparison matrix & cross-insurer audit Build `20260921.09` — [multi-plan matrix & audit](docs/review/2026-09-21-multi-plan-matrix-and-audit.md).
 <!-- /review-2026-09-21 -->
+<!-- review-2026-09-21-layout -->
+> **2026-09-21 Layout delivery:** Top deck side-by-side & full-width matrix Build `20260921.10` — [layout review](docs/review/2026-09-21-layout-top-deck-and-fullwidth-matrix.md).
+<!-- /review-2026-09-21-layout -->
 
 # AGENTS.md
 

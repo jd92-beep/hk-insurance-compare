@@ -45,11 +45,13 @@ export interface ProductSideRailProps {
   selectedTier?: PlanTierItem | null;
   onSelectTier?: (tierId: string | null) => void;
   className?: string;
+  isTopDeck?: boolean;
 }
 
 /**
- * 產品頁右側 sticky 欄（lg+）：重點數字濃縮版 + 加入比較 CTA + 官方文件快連。
- * 支援與特定子計劃（Plan Tier）動態連動，展示專屬限額與卡片；未選中時展示全局一覽。
+ * 產品頁重點卡片：重點數字濃縮版 + 加入比較 CTA + 官方文件快連。
+ * - 支援作為頂部並排卡片（isTopDeck）
+ * - 支援與特定子計劃（Plan Tier）動態連動，展示專屬限額與卡片；未選中時展示全局一覽。
  */
 export default function ProductSideRail({
   product,
@@ -57,6 +59,7 @@ export default function ProductSideRail({
   selectedTier,
   onSelectTier,
   className,
+  isTopDeck = false,
 }: ProductSideRailProps) {
   const facts = deriveKeyFacts(product);
   const certs = extractCertEntries(product);
@@ -89,15 +92,17 @@ export default function ProductSideRail({
     certs.length > 0;
   const buyUrl = purchaseUrl(product);
 
-  return (
-    <aside className={className}>
-      <div className="sticky top-[100px] w-full max-w-[300px] min-w-0">
-        <div
-          className="overflow-hidden rounded-card border bg-paper shadow-card"
-          style={{ borderColor: "var(--line)" }}
-        >
-          <div className="h-[3px] w-full" style={{ background: color }} />
-          <div className="p-5">
+  const cardContent = (
+    <div
+      className={cn(
+        "overflow-hidden rounded-card border bg-paper shadow-card",
+        isTopDeck && "flex h-full flex-col justify-between"
+      )}
+      style={{ borderColor: "var(--line)" }}
+    >
+      <div className="h-[3px] w-full" style={{ background: color }} />
+      <div className={cn("p-5", isTopDeck && "flex flex-1 flex-col justify-between md:p-6")}>
+        <div>
             {hasFacts && (
               <>
                 {/* 頂部標題列：選中計劃時標注專屬規格並提供重設按鈕 */}
@@ -270,6 +275,17 @@ export default function ProductSideRail({
             )}
           </div>
         </div>
+      </div>
+  );
+
+  if (isTopDeck) {
+    return <div className={cn("w-full h-full min-w-0", className)}>{cardContent}</div>;
+  }
+
+  return (
+    <aside className={className}>
+      <div className="sticky top-[100px] w-full max-w-[300px] min-w-0">
+        {cardContent}
       </div>
     </aside>
   );

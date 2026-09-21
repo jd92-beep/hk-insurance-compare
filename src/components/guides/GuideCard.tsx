@@ -17,14 +17,14 @@ export default function GuideCard({ guide, index }: { guide: GuideEntry; index: 
   const color = meta?.color ?? "#181D2E";
 
   return (
-    <TiltCard max={8} glare className="rounded-card">
+    <TiltCard max={8} glare className="h-full rounded-card">
     <motion.article
       id={guide.id}
       initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-15% 0px" }}
       transition={{ duration: 0.7, delay: (index % 3) * 0.08, ease: EASE_OUT_EXPO }}
-      className="depth-card group relative flex scroll-mt-24 flex-col overflow-hidden rounded-card border bg-paper p-7 shadow-card"
+      className="depth-card group relative flex h-full scroll-mt-24 flex-col overflow-hidden rounded-card border bg-paper p-7 shadow-card"
       style={{ borderColor: "var(--line)" }}
     >
       {/* 頂部類別色條 */}

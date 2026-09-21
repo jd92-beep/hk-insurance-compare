@@ -54,6 +54,7 @@ export default function CategoryGrid() {
           {sortedCategories.map((c) => (
             <motion.div
               key={c.id}
+              className="h-full"
               variants={{
                 hidden: { opacity: 0, y: 36 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE_OUT_EXPO } },

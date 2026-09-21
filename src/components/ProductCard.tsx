@@ -18,8 +18,8 @@ export default function ProductCard({ product, className, match }: { product: Pr
   const title = product.product_name_zh || product.product_name;
   const historical = isReferenceOnlyProduct(product);
   const multiplePlans = product.plan_tiers.length > 1;
-  return <TiltCard max={10} glare className={cn('rounded-card', className)}>
-    <article className="depth-surface relative flex flex-col overflow-hidden rounded-card border border-line bg-paper" aria-label={`${product.insurer_zh} ${title}`}>
+  return <TiltCard max={10} glare className={cn('h-full rounded-card', className)}>
+    <article className="depth-surface relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-paper" aria-label={`${product.insurer_zh} ${title}`}>
       <div className="h-1.5 depth-z-bar" style={{ background: categoryColor(product.category) }} aria-hidden="true" />
       <div className="flex flex-col gap-4 p-5 md:p-6" style={{ transform: 'translateZ(12px)' }}>
         <div>

@@ -40,7 +40,7 @@ export default function InsurerCard({
   const detailHref = insurerDetailPath(insurer.name);
 
   return (
-    <TiltCard max={9} glare className="rounded-card">
+    <TiltCard max={9} glare className="h-full rounded-card">
     <motion.article
       id={insurer.name}
       layout="position"
@@ -48,7 +48,7 @@ export default function InsurerCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-8% 0px" }}
       transition={{ duration: 0.6, delay: staggerDelay, ease: EASE_OUT_EXPO }}
-      className="depth-card group relative flex min-w-0 scroll-mt-[88px] flex-col gap-3 rounded-card border bg-paper p-5"
+      className="depth-card group relative flex h-full min-w-0 scroll-mt-[88px] flex-col gap-3 rounded-card border bg-paper p-5"
       style={{ borderColor: "var(--line)" }}
       data-insurer-card={insurer.name}
     >

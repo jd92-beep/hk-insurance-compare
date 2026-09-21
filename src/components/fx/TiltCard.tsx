@@ -96,18 +96,18 @@ export default function TiltCard({ children, className, max = 12, glare = true, 
       onBlur={() => setFocused(false)}
     >
       <motion.div
-        className="tilt-face preserve-3d h-full w-full"
+        className={cn("tilt-face h-full w-full", !isSettled && "preserve-3d")}
         style={{
           rotateX: isSettled ? 0 : rotateX,
           rotateY: isSettled ? 0 : rotateY,
           z: isSettled ? 0 : lift,
-          transformStyle: "preserve-3d",
+          transformStyle: isSettled ? "flat" : "preserve-3d",
         }}
       >
         {/*
           Content card container:
-          - At rest (settled): NO forced translateZ(12px), text stays 100% vector-sharp without GPU bilinear texture blur.
-          - During interactive 3D tilt: subtle translateZ(8px) parallax adds real spatial depth.
+          - At rest (settled): transformStyle is "flat", NO forced translateZ, text & 1px border rules stay 100% vector-sharp with 2D pixel snapping.
+          - During interactive 3D tilt: transformStyle switches to "preserve-3d", subtle translateZ(8px) parallax adds real spatial depth.
         */}
         <div
           className="tilt-face-card relative h-full w-full"

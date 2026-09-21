@@ -68,8 +68,7 @@ export default function GuideCard({ guide, index }: { guide: GuideEntry; index: 
       <div className="mt-auto pt-6">
         <Link
           to={`/category/${guide.id}`}
-          className="inline-flex items-center gap-1.5 border-t pt-4 text-small font-bold text-red transition-colors hover:text-red-deep w-full"
-          style={{ borderColor: "var(--line)" }}
+          className="inline-flex items-center gap-1.5 border-t border-line-strong pt-4 text-small font-bold text-red transition-colors hover:text-red-deep w-full"
         >
           去格價
           <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />

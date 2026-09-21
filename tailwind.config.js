@@ -60,6 +60,10 @@ module.exports = {
           ring: "hsl(var(--sidebar-ring))",
         },
         /* ── 保險格價站 design tokens ─────────────────────── */
+        line: {
+          DEFAULT: "var(--line)",
+          strong: "var(--line-strong)",
+        },
         paper: {
           DEFAULT: "#F7F4EE",
           2: "#EFEAE0",

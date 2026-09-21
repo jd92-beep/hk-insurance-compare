@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { ExternalLink, RotateCcw, Search } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -17,9 +18,72 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useVhisRegistry } from "@/hooks/use-vhis-registry";
+import { useInsurers, useProducts } from "@/providers/InsuranceDataProvider";
+import type { Insurer, Product } from "@/types/insurance";
 import type { VhisFlexiProduct, VhisStandardPlan, VhisStatus } from "@/types/vhis";
 import VhisSchemeFacts from "@/components/vhis/VhisSchemeFacts";
 import { cn } from "@/lib/utils";
+
+function cleanCompanyName(name: string): string {
+  return (name || "")
+    .replace(/保險|人壽|（香港）|（海外）|\(海外\)|\(香港\)|有限公司|股份有限公司|集團/g, "")
+    .trim()
+    .toLowerCase();
+}
+
+function findProductForVhis(
+  plan: { cert_base?: string; cert_no?: string; company_zh: string; company_en: string },
+  products: Product[],
+  isFlexi = false
+): string {
+  const cert = isFlexi
+    ? (plan.cert_base || "")
+    : (plan.cert_base || (plan.cert_no ? plan.cert_no.split("-")[0] : ""));
+  const medical = products.filter((p) => p.category === "medical");
+
+  if (cert) {
+    const p = medical.find(
+      (m) =>
+        m.product_name_zh?.includes(cert) ||
+        (m.plan_tiers && m.plan_tiers.some((t) => t.includes(cert)))
+    );
+    if (p) return `/product/${p.id}`;
+  }
+
+  const cZh = cleanCompanyName(plan.company_zh);
+  const matchedZh = medical.find((m) => {
+    const mZh = cleanCompanyName(m.insurer_zh);
+    return cZh && mZh && (cZh.includes(mZh) || mZh.includes(cZh));
+  });
+  if (matchedZh) return `/product/${matchedZh.id}`;
+
+  const cEn = (plan.company_en || "").toLowerCase();
+  const matchedEn = medical.find((m) => {
+    const mEn = (m.insurer || "").toLowerCase();
+    return cEn && mEn && (cEn.includes(mEn) || mEn.includes(cEn));
+  });
+  if (matchedEn) return `/product/${matchedEn.id}`;
+
+  return `/category/medical?search=${encodeURIComponent(cZh || plan.company_zh)}`;
+}
+
+function getInsurerLink(
+  companyZh: string,
+  companyEn: string,
+  insurers: Insurer[]
+): string {
+  const cZh = cleanCompanyName(companyZh);
+  const found = insurers.find(
+    (ins) =>
+      ins.name_zh === companyZh ||
+      ins.name.toLowerCase() === companyEn.toLowerCase() ||
+      (cZh && cleanCompanyName(ins.name_zh).includes(cZh)) ||
+      (cZh && cZh.includes(cleanCompanyName(ins.name_zh))) ||
+      companyEn.toLowerCase().includes(ins.name.toLowerCase()) ||
+      ins.name.toLowerCase().includes(companyEn.toLowerCase())
+  );
+  return found ? `/insurers/${encodeURIComponent(found.name)}` : `/insurers`;
+}
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 /** 醫療類別色（= tailwind jade） */
@@ -113,6 +177,8 @@ function AnimatedTitle({ text, className }: { text: string; className?: string }
 /** 自願醫保認可產品名單 `/vhis`（vhis.gov.hk 官方公開數據） */
 export default function Vhis() {
   const { data, loading, error } = useVhisRegistry();
+  const insurers = useInsurers();
+  const products = useProducts();
 
   const [planType, setPlanType] = useState<PlanTypeFilter>("all");
   const [company, setCompany] = useState<string>("all");
@@ -466,14 +532,30 @@ export default function Vhis() {
                             transition={{ duration: 0.3, delay: i < 9 ? i * 0.04 : 0 }}
                           >
                             <td className="px-5 py-4 align-top">
-                              <span className="block font-sans font-medium leading-snug text-ink">
-                                {p.name_zh}
-                              </span>
+                              <Link
+                                to={findProductForVhis(p, products, false)}
+                                className="group inline-flex items-center gap-1 font-sans font-bold leading-snug text-ink hover:text-jade transition-colors"
+                              >
+                                <span className="group-hover:underline">{p.name_zh}</span>
+                                <span className="text-xs text-jade select-none">→</span>
+                              </Link>
                               <span className="mt-1 block font-grotesk text-[12px] text-ink-faint">
                                 {p.cert_no}
                               </span>
                             </td>
-                            <td className="px-4 py-4 align-top text-ink-soft">{p.company_zh}</td>
+                            <td className="px-4 py-4 align-top text-ink-soft">
+                              <div className="flex flex-col">
+                                <Link
+                                  to={getInsurerLink(p.company_zh, p.company_en, insurers)}
+                                  className="font-medium text-ink hover:text-jade hover:underline transition-colors"
+                                >
+                                  {p.company_zh}
+                                </Link>
+                                <span className="font-grotesk text-[11px] text-ink-faint mt-0.5 leading-tight">
+                                  {p.company_en}
+                                </span>
+                              </div>
+                            </td>
                             <td className="px-4 py-4 align-top whitespace-nowrap text-ink-soft">
                               {p.effective_date_zh}
                             </td>
@@ -533,18 +615,47 @@ export default function Vhis() {
                           </span>
                         </AccordionTrigger>
                         <AccordionContent>
-                          <div className="flex flex-col gap-1 pb-2">
-                            <p className="mb-2 text-small text-ink-faint">
-                              {p.company_zh}・生效日期 {p.effective_date_zh}
-                            </p>
+                          <div className="flex flex-col gap-2 pb-2">
+                            <div className="mb-2 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-line bg-paper-2/50 p-3">
+                              <div className="flex flex-col">
+                                <Link
+                                  to={getInsurerLink(p.company_zh, p.company_en, insurers)}
+                                  className="text-small font-bold text-ink hover:text-jade hover:underline transition-colors"
+                                >
+                                  {p.company_zh}
+                                </Link>
+                                <span className="font-grotesk text-xs text-ink-faint mt-0.5">
+                                  {p.company_en}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <span className="text-xs text-ink-faint">
+                                  生效日期：{p.effective_date_zh}
+                                </span>
+                                <Link
+                                  to={findProductForVhis(p, products, true)}
+                                  className="inline-flex items-center gap-1 rounded-lg border border-jade/40 bg-jade-wash px-3 py-1.5 text-xs font-bold text-jade hover:bg-jade hover:text-paper transition-all"
+                                >
+                                  <span>查看站內計劃介紹</span>
+                                  <span>→</span>
+                                </Link>
+                              </div>
+                            </div>
                             {p.levels.map((lv) => (
                               <div
                                 key={lv.cert_no}
                                 className="flex flex-wrap items-center gap-x-4 gap-y-1.5 rounded-[10px] px-3 py-2.5 transition-colors hover:bg-paper-2"
                               >
-                                <span className="min-w-[180px] flex-1 font-medium text-ink">
+                                <Link
+                                  to={findProductForVhis(
+                                    { cert_base: p.cert_base, cert_no: lv.cert_no, company_zh: p.company_zh, company_en: p.company_en },
+                                    products,
+                                    true
+                                  )}
+                                  className="min-w-[180px] flex-1 font-medium text-ink hover:text-jade hover:underline transition-colors"
+                                >
                                   {lv.level_zh}
-                                </span>
+                                </Link>
                                 <span className="font-grotesk text-[12px] text-ink-faint">
                                   {lv.cert_no}
                                 </span>

@@ -1,26 +1,17 @@
 import { motion } from "framer-motion";
-import { ArrowRight, BadgeCheck, ShieldCheck } from "lucide-react";
+import { ArrowRight, BadgeCheck, FileCheck2, ShieldCheck, Sparkles } from "lucide-react";
 import { Link } from "react-router";
 import type { Product } from "@/types/insurance";
 import CertCodeChip from "@/components/product/CertCodeChip";
 import { deriveKeyFacts, extractCertEntries } from "@/components/product/vhis-utils";
 import { EASE_OUT_EXPO } from "@/components/product/SectionHeading";
 
-/** 重點數字 tile（label 小字 + value 大字），有數據先 render */
-function FactTile({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="rounded-[10px] bg-paper-2 px-4 py-3.5">
-      <p className="text-[11px] font-bold tracking-[0.08em] text-ink-faint">{label}</p>
-      <div className="mt-1.5">{children}</div>
-    </div>
-  );
-}
-
 /**
- * 頁首下方「重點一覽」卡（medical 產品專用，有數據先顯示）：
- * 自願醫保認可 badge + S/F 認可編號 chips（續保專用 amber 款）＋ 官方認可名單連結，
- * 下面係關鍵數字 tiles（每年保障限額／30 歲保費／提供形式／投保年齡）
- * 同保證類亮點 chips（保證續保／冷靜期／稅務扣減）。
+ * 頁首「自願醫保認可產品」資質卡（medical 專用）：
+ * - 官方合資格徽章與認可名單快連
+ * - 結構化清晰分組：標準計劃 vs 靈活計劃 vs 續保專用認可編號
+ * - 三大自願醫保法定保障柱石（保證續保、稅務扣減、冷靜期）
+ * - 投保年齡與形式規格微型指標
  */
 export default function KeyFactsCard({
   product,
@@ -34,6 +25,8 @@ export default function KeyFactsCard({
   const certs = extractCertEntries(product);
   const facts = deriveKeyFacts(product);
   const active = certs.filter((c) => !c.renewalOnly);
+  const standardCerts = active.filter((c) => c.kind === "standard");
+  const flexiCerts = active.filter((c) => c.kind !== "standard");
   const renewalOnly = certs.filter((c) => c.renewalOnly);
 
   const hasTiles =
@@ -57,119 +50,131 @@ export default function KeyFactsCard({
       >
         <div className="h-[3px] w-full" style={{ background: "var(--jade)" }} />
         <div className="flex flex-1 flex-col justify-between gap-5 p-5 md:p-6">
-          {/* ── 認可行：badge + 認可編號 + 名單連結 ── */}
-          {certs.length > 0 && (
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
-              <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-jade-wash text-jade">
-                  <ShieldCheck size={20} aria-hidden="true" />
-                </span>
-                <div>
-                  <p className="font-sans text-[15px] font-bold leading-snug text-jade">
+          {/* ── 頂部官方認證 Header ── */}
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-jade-wash text-jade shadow-xs">
+                <ShieldCheck size={22} aria-hidden="true" />
+              </span>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h3 className="font-sans text-[16px] font-bold leading-tight text-ink">
                     自願醫保認可產品
-                  </p>
-                  <p className="mt-0.5 text-small text-ink-faint">
-                    已列入醫務衞生局官方認可名單
-                  </p>
+                  </h3>
+                  <span className="rounded bg-jade-wash px-1.5 py-0.5 font-grotesk text-[10px] font-bold text-jade">
+                    VHIS
+                  </span>
                 </div>
+                <p className="mt-0.5 text-xs text-ink-faint">
+                  已獲醫務衞生局審批並納入官方合資格名冊
+                </p>
               </div>
-
-              <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-2 gap-y-2">
-                {active.map((c) => (
-                  <span key={c.code} className="inline-flex items-center gap-1.5">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-ink-faint">
-                      {c.kind === "standard" ? "標準計劃" : "靈活計劃"}
-                    </span>
-                    <CertCodeChip code={c.code} />
-                  </span>
-                ))}
-                {renewalOnly.map((c) => (
-                  <span key={c.code} className="inline-flex items-center gap-1.5">
-                    <CertCodeChip code={c.code} renewalOnly />
-                    <span className="text-[11px] font-bold text-amber">只供現有保單續保</span>
-                  </span>
-                ))}
-              </div>
-
-              <Link
-                to="/vhis"
-                className="group inline-flex shrink-0 items-center gap-1.5 text-small font-bold text-jade transition-colors hover:underline"
-              >
-                官方認可名單
-                <ArrowRight
-                  size={15}
-                  className="transition-transform duration-300 group-hover:translate-x-0.5"
-                  aria-hidden="true"
-                />
-              </Link>
             </div>
-          )}
 
-          {/* ── 關鍵數字 tiles ── */}
-          {hasTiles && (
-            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-2 xl:grid-cols-4">
-              {facts.annualLimitRaw && (
-                <FactTile label="每年保障限額">
-                  {facts.annualLimitAmount ? (
-                    <p className="font-grotesk text-[19px] font-bold leading-tight text-ink">
-                      {facts.annualLimitAmount}
-                    </p>
-                  ) : (
-                    <p className="text-small font-medium leading-[1.5] text-ink">
-                      {facts.annualLimitRaw}
-                    </p>
-                  )}
-                </FactTile>
+            <Link
+              to="/vhis"
+              className="group inline-flex shrink-0 items-center gap-1 rounded-full border border-line bg-paper-2 px-3 py-1.5 text-xs font-bold text-jade transition-all hover:border-jade hover:bg-jade-wash hover:underline"
+            >
+              <span>官方名冊</span>
+              <ArrowRight
+                size={12}
+                className="transition-transform duration-300 group-hover:translate-x-0.5"
+                aria-hidden="true"
+              />
+            </Link>
+          </div>
+
+          {/* ── 認可編號分組矩陣（結構化清晰呈現，告別雜亂堆砌） ── */}
+          {certs.length > 0 && (
+            <div
+              className="flex flex-col gap-2.5 rounded-xl border bg-paper-2/50 p-3.5"
+              style={{ borderColor: "var(--line)" }}
+            >
+              <div className="flex items-center justify-between text-[11px] font-bold tracking-wider text-ink-faint">
+                <span>政府認可計劃編號 ({certs.length})</span>
+                <span className="font-medium text-ink-faint">點擊編號可查核條款</span>
+              </div>
+
+              {standardCerts.length > 0 && (
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="shrink-0 rounded bg-jade-wash px-2 py-0.5 text-[11px] font-bold text-jade">
+                    標準計劃
+                  </span>
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {standardCerts.map((c) => (
+                      <CertCodeChip key={c.code} code={c.code} />
+                    ))}
+                  </div>
+                </div>
               )}
-              {facts.premium30 && (
-                <FactTile label="30 歲年繳保費">
-                  <p className="font-grotesk text-[15px] font-bold leading-[1.5] text-ink">
-                    <span className="mr-1 font-sans text-[11px] font-medium text-ink-faint">男</span>
-                    HK${facts.premium30.male}
-                  </p>
-                  <p className="font-grotesk text-[15px] font-bold leading-[1.5] text-ink">
-                    <span className="mr-1 font-sans text-[11px] font-medium text-ink-faint">女</span>
-                    HK${facts.premium30.female}
-                  </p>
-                </FactTile>
+
+              {flexiCerts.length > 0 && (
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="shrink-0 rounded bg-ink/10 px-2 py-0.5 text-[11px] font-bold text-ink">
+                    靈活計劃
+                  </span>
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {flexiCerts.map((c) => (
+                      <CertCodeChip key={c.code} code={c.code} />
+                    ))}
+                  </div>
+                </div>
               )}
-              {!facts.premium30 && facts.premiumFallback && (
-                <FactTile label="保費參考">
-                  <p className="line-clamp-3 text-small font-medium leading-[1.6] text-ink">
-                    {facts.premiumFallback}
-                  </p>
-                </FactTile>
-              )}
-              {facts.formType && (
-                <FactTile label="提供形式">
-                  <p className="font-sans text-[16px] font-bold leading-tight text-ink">
-                    {facts.formType}
-                  </p>
-                </FactTile>
-              )}
-              {facts.entryAge && (
-                <FactTile label="新單投保年齡">
-                  <p className="font-grotesk text-[19px] font-bold leading-tight text-ink">
-                    {facts.entryAge}
-                    <span className="ml-1 font-sans text-[12px] font-medium text-ink-faint">歲</span>
-                  </p>
-                </FactTile>
+
+              {renewalOnly.length > 0 && (
+                <div className="flex flex-wrap items-center gap-2 border-t pt-2" style={{ borderColor: "var(--line)" }}>
+                  <span className="shrink-0 rounded bg-amber-wash px-2 py-0.5 text-[11px] font-bold text-amber">
+                    只供續保
+                  </span>
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {renewalOnly.map((c) => (
+                      <CertCodeChip key={c.code} code={c.code} renewalOnly />
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
           )}
 
-          {/* ── 保證類亮點 chips ── */}
-          {facts.guarantees.length > 0 && (
-            <div className="flex flex-wrap gap-1.5">
-              {facts.guarantees.map((g) => (
-                <span
-                  key={g}
-                  className="chip bg-jade-wash font-medium text-jade"
-                >
-                  <BadgeCheck size={13} aria-hidden="true" />
-                  {g}
+          {/* ── 自願醫保法定保障柱石與核心規格 ── */}
+          <div className="grid grid-cols-3 gap-2 text-center">
+            <div className="flex flex-col items-center justify-center rounded-lg border bg-paper-2/40 p-2.5" style={{ borderColor: "var(--line)" }}>
+              <Sparkles size={16} className="text-jade mb-1" />
+              <p className="text-[12px] font-bold text-ink">保證續保</p>
+              <p className="text-[10px] text-ink-faint mt-0.5">終身或至 100 歲</p>
+            </div>
+            <div className="flex flex-col items-center justify-center rounded-lg border bg-paper-2/40 p-2.5" style={{ borderColor: "var(--line)" }}>
+              <FileCheck2 size={16} className="text-jade mb-1" />
+              <p className="text-[12px] font-bold text-ink">稅務扣減</p>
+              <p className="text-[10px] text-ink-faint mt-0.5">每名最高 $8,000</p>
+            </div>
+            <div className="flex flex-col items-center justify-center rounded-lg border bg-paper-2/40 p-2.5" style={{ borderColor: "var(--line)" }}>
+              <BadgeCheck size={16} className="text-jade mb-1" />
+              <p className="text-[12px] font-bold text-ink">冷靜期保障</p>
+              <p className="text-[10px] text-ink-faint mt-0.5">21 天全額退款</p>
+            </div>
+          </div>
+
+          {/* ── 底部微型指標 Chips ── */}
+          {(facts.formType || facts.entryAge || facts.annualLimitRaw) && (
+            <div className="flex flex-wrap items-center justify-between gap-2 border-t pt-3 text-xs" style={{ borderColor: "var(--line)" }}>
+              <div className="flex flex-wrap items-center gap-2">
+                {facts.formType && (
+                  <span className="rounded border bg-paper px-2 py-0.5 font-medium text-ink-soft" style={{ borderColor: "var(--line)" }}>
+                    提供形式：{facts.formType}
+                  </span>
+                )}
+                {facts.entryAge && (
+                  <span className="rounded border bg-paper px-2 py-0.5 font-medium text-ink-soft" style={{ borderColor: "var(--line)" }}>
+                    新單年齡：0–{facts.entryAge} 歲
+                  </span>
+                )}
+              </div>
+              {facts.annualLimitAmount && (
+                <span className="font-grotesk text-xs font-bold text-jade">
+                  最高每年限額 {facts.annualLimitAmount}
                 </span>
-              ))}
+              )}
             </div>
           )}
         </div>

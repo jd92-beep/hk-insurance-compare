@@ -4,10 +4,10 @@ import { Search, Scale } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import EmptyState from '@/components/EmptyState';
 import ProductCard from '@/components/ProductCard';
-import HowWeRankCard from '@/components/trust/HowWeRankCard';
+import PriceSortedCards from '@/components/category/PriceSortedCards';
+import { flattenProductsForPriceSort, sortFlatProductsByPrice } from '@/lib/price-sorting';
 import FilterBar, { type SortKey, type ViewMode, type TravelTripType, type TravelRegion } from '@/components/category/FilterBar';
 import ProductTable from '@/components/category/ProductTable';
-import CategoryDecisionGuide from '@/components/category/CategoryDecisionGuide';
 import { categoryCopy } from '@/components/category/copy';
 import { CATEGORY_META } from '@/lib/categories';
 import { filterCatalogue } from '@/lib/catalogue-search';
@@ -71,6 +71,12 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
     if (sort === 'insurer-az') rows.sort((a,b) => a.insurer.localeCompare(b.insurer) || a.id.localeCompare(b.id));
     return rows;
   }, [ranked, sort]);
+  const isPriceSort = sort === 'price-asc' || sort === 'price-desc';
+  const priceSortedItems = useMemo(() => {
+    if (!isPriceSort) return [];
+    const flat = flattenProductsForPriceSort(shown);
+    return sortFlatProductsByPrice(flat, sort === 'price-asc' ? 'asc' : 'desc');
+  }, [shown, isPriceSort, sort]);
   const active = Boolean(query || selectedInsurers.length || onlyPremium || onlyPromo || includeHistorical || trip !== 'all' || region !== 'all' || selectedFeatures.length || sort !== 'default');
   const reset = () => {
     setQuery(''); setSelectedInsurers([]); setOnlyPremium(false); setOnlyPromo(false); setIncludeHistorical(false);
@@ -85,16 +91,14 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
       <h1 className="mt-2 font-serif text-3xl font-bold leading-tight text-ink md:text-5xl">{copy.h1}</h1>
       <p className="mt-4 max-w-3xl text-lg leading-relaxed text-ink-soft">{copy.sub}</p>
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-line bg-paper-2 px-4 py-2.5 text-sm text-ink-soft">
-        <span>
-          快照 {generatedAt}
-          <Link to="/data-quality" className="ml-2 font-semibold text-jade underline">覆核狀態</Link>
-          <Link to={`/guides#${categoryId}`} className="ml-2 font-semibold text-jade underline">點揀指南</Link>
+        <span className="flex items-center gap-3">
+          <Link to={`/guides#${categoryId}`} className="font-semibold text-jade underline">點揀指南</Link>
+          <span className="text-line-strong">·</span>
+          <Link to="/data-quality" className="font-semibold text-jade underline">資料覆核狀態</Link>
         </span>
         <Link to="/compare" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-line-strong bg-paper px-4 font-semibold text-ink"><Scale size={18} aria-hidden="true" />比較清單</Link>
       </div>
-      <div className="mt-5">
-        <HowWeRankCard snapshotDate={generatedAt} sort={sort} onSortChange={setSort} categoryId={categoryId} />
-      </div>
+      {/* HowWeRankCard removed from visible layout per user instructions */}
       {isMedicalFamilyCategory(categoryId) && (
         <nav aria-label="醫療路徑導航" className="mt-4 flex flex-wrap items-center gap-2" data-testid="medical-path-chips">
           <span className="text-sm font-semibold text-ink-soft">醫療路徑：</span>
@@ -112,8 +116,6 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
       <label htmlFor="catalogue-search" className="mt-6 block text-base font-bold text-ink">搵保險公司或產品名稱</label>
       <div className="relative mt-2 max-w-2xl"><Search size={20} aria-hidden="true" className="absolute left-4 top-4 text-ink-soft" /><input id="catalogue-search" type="search" value={query} onChange={e => setQuery(e.target.value)} maxLength={120} placeholder="例如：安盛、AXA、產品名稱" className="h-12 w-full rounded-xl border border-line-strong bg-paper pl-12 pr-4 text-base text-ink" /></div>
     </header>
-    {/* Non-blocking decision scaffold — never blocks filters or results */}
-    <CategoryDecisionGuide categoryId={categoryId} />
     {personaPresets.length > 0 && (
       <section className="site-container pt-5" aria-label="摘要檢索情境快捷鍵">
         <div className="rounded-xl border border-line bg-paper-2 px-4 py-3">
@@ -155,7 +157,21 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
       </details>
     </section>}
     <section className="site-container py-6" aria-label="產品搜尋結果" aria-busy={loading}>
-      {loading ? <p role="status" className="py-12 text-base text-ink">載入資料中…</p> : error ? <EmptyState title="暫時載入唔到資料" description="請重試。" onReset={retry} resetLabel="重新載入" /> : shown.length === 0 ? <EmptyState title="搵唔到符合條件嘅產品" description="試吓減少條件。" onReset={reset} /> : mobile || view === 'cards' ? <div className="grid grid-cols-1 items-start gap-6 fold:grid-cols-2 lg:grid-cols-3">{shown.map(product => <ProductCard key={product.id} product={product} match={matches.get(product.id)} />)}</div> : <ProductTable products={shown} color={color} coverageKeywords={copy.coverageKeywords} productMatchMap={matches} />}
+      {loading ? (
+        <p role="status" className="py-12 text-base text-ink">載入資料中…</p>
+      ) : error ? (
+        <EmptyState title="暫時載入唔到資料" description="請重試。" onReset={retry} resetLabel="重新載入" />
+      ) : shown.length === 0 ? (
+        <EmptyState title="搵唔到符合條件嘅產品" description="試吓減少條件。" onReset={reset} />
+      ) : isPriceSort ? (
+        <PriceSortedCards items={priceSortedItems} />
+      ) : mobile || view === 'cards' ? (
+        <div className="grid grid-cols-1 items-start gap-6 fold:grid-cols-2 lg:grid-cols-3">
+          {shown.map(product => <ProductCard key={product.id} product={product} match={matches.get(product.id)} />)}
+        </div>
+      ) : (
+        <ProductTable products={shown} color={color} coverageKeywords={copy.coverageKeywords} productMatchMap={matches} />
+      )}
     </section>
     <section className="site-container py-4">
       <details className="rounded-xl border border-line bg-paper px-5 py-3" onToggle={event => setShowAdvanced(event.currentTarget.open)}>
@@ -169,5 +185,12 @@ function Catalogue({ categoryId, initialInsurer }: { categoryId: string; initial
       <div className="mt-5 grid grid-cols-1 gap-5 fold:grid-cols-2 fold-wide:grid-cols-3">{copy.highlights.map((hint, index) => <article key={hint.title} className="depth-surface min-w-0 rounded-card border border-line bg-paper p-5"><span aria-hidden="true" className="font-grotesk text-3xl text-amber">0{index + 1}</span><h3 className="mt-3 text-lg font-bold text-ink">{hint.title}</h3><p className="mt-2 text-base leading-relaxed text-ink-soft">{hint.body}</p></article>)}</div>
       <div className="mt-8 space-y-3">{copy.faq.map(faq => <details key={faq.q} className="rounded-xl border border-line bg-paper px-5 py-3"><summary className="min-h-11 cursor-pointer py-2 text-lg font-semibold text-ink">{faq.q}</summary><p className="pb-3 pt-2 text-base leading-relaxed text-ink-soft">{faq.a}</p></details>)}</div>
     </section>
+    {/* 頁面底部快照日期與資料備註（依用戶指示移至頁底） */}
+    <footer className="site-container mt-12 pb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-line bg-paper-2/70 px-5 py-3.5 text-sm text-ink-soft">
+        <span>資料快照日期：<strong className="font-grotesk font-bold text-ink">{generatedAt}</strong>（整理自官方文件快照；唔代表現行版本已逐條核實）</span>
+        <Link to="/data-quality" className="font-semibold text-jade underline">查看覆核狀態與方法</Link>
+      </div>
+    </footer>
   </div>;
 }

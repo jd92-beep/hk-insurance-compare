@@ -302,15 +302,14 @@ export default function ProductHeader({ product }: { product: Product }) {
             </motion.div>
           </div>
 
-          {/* ── 右 4 欄「檔案卡」（sticky） ─────────────── */}
+          {/* ── 右 4 欄「檔案卡」 ─────────────── */}
           <motion.aside
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: EASE_OUT_EXPO, delay: 0.5 }}
-            className="lg:col-span-4 lg:-mb-24"
+            className="lg:col-span-4"
           >
-            {/* 負 margin 令檔案卡向下延伸入 S2 右側空位，避免 hero CTA 同內容區之間出現大片空白帶 */}
-            <div className="paper-card overflow-hidden lg:sticky lg:top-[100px]">
+            <div className="paper-card overflow-hidden">
               <div className="h-[3px] w-full" style={{ background: color }} />
               <div className="p-7">
                 <div className="flex items-center gap-4">

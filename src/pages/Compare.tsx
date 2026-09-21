@@ -25,7 +25,6 @@ import { useInsuranceData } from "@/providers/InsuranceDataProvider";
 import { useCompare, COMPARE_LIMIT } from "@/providers/CompareProvider";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { CATEGORY_META, categoryColor } from "@/lib/categories";
-import { CATEGORY_DECISIONS } from "@/lib/category-decisions";
 import { cn } from "@/lib/utils";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -297,7 +296,6 @@ export default function Compare() {
   const firstCategory = products[0]?.category;
   const multiCategory = spansMultipleCategories(products);
   const multiTier = hasMultiplePlanTiers(products);
-  const decisionBaseline = firstCategory ? CATEGORY_DECISIONS[firstCategory] : undefined;
 
   return (
     <div className="site-container-wide pb-24">
@@ -373,40 +371,7 @@ export default function Compare() {
         </motion.div>
       )}
 
-      {decisionBaseline && (
-        <aside
-          className="mb-6 rounded-xl border border-line bg-paper-2 px-4 py-4"
-          aria-label="比較基準檢索框架"
-        >
-          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-            <div className="min-w-0">
-              <p className="text-xs font-bold tracking-[.14em] text-jade">比較基準 · 摘要檢索框架</p>
-              <p className="mt-2 text-base font-semibold leading-relaxed text-ink">
-                {decisionBaseline.question}
-              </p>
-              <ul className="mt-2 flex flex-col gap-1.5">
-                {decisionBaseline.compare.map(([label, text]) => (
-                  <li key={label} className="text-sm leading-relaxed text-ink-soft">
-                    <span className="font-semibold text-ink">{label}</span>
-                    {`：${text}`}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {firstCategory && (
-              <Link
-                to={`/category/${firstCategory}#category-filter-controls`}
-                className="inline-flex min-h-11 shrink-0 items-center text-sm font-semibold text-jade underline underline-offset-2"
-              >
-                用同一基準去篩選
-              </Link>
-            )}
-          </div>
-          <p className="mt-3 text-sm leading-relaxed text-ink-faint">
-            只提供核對框架，唔係排名或適合度判斷。
-          </p>
-        </aside>
-      )}
+
 
       {isMobile ? (
         <MobileCompare products={products} onRemove={compare.remove} />

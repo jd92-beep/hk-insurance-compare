@@ -159,3 +159,111 @@ test("getPlanTierById 正確依 ID、認可編號或名稱定位子計劃", () =
   assert.equal(getPlanTierById(tiers, "invalid-tier-id"), undefined);
   assert.equal(getPlanTierById(tiers, null), undefined);
 });
+
+test("PlanSelectorBar 在 selectedTierId 為 undefined 或 null 時 100% 保持全部計劃選中（防 undefined===undefined 誤匹配）", () => {
+  const data = dataset();
+  // 取出包含無 code 子計劃的產品（如 Bowtie 或 Bupa）
+  const bowtie = data.products.find((p) => p.id === "medical-bowtie");
+  const tiers = parseProductPlanTiers(bowtie);
+  const tierWithoutCode = tiers.find((t) => !t.code);
+  assert.ok(tierWithoutCode, "應存在至少一個沒有 code 的子計劃");
+
+  const resolveActive = (selectedTierId) => {
+    const normalizedSelectedId = selectedTierId?.trim().toLowerCase() || null;
+    const activeTier = normalizedSelectedId
+      ? tiers.find(
+          (t) =>
+            t.id.toLowerCase() === normalizedSelectedId ||
+            (Boolean(t.code) && t.code.toLowerCase() === normalizedSelectedId)
+        )
+      : null;
+    const isAllSelected = !activeTier;
+    return { activeTier, isAllSelected };
+  };
+
+  // 1. undefined 情況
+  const resUndefined = resolveActive(undefined);
+  assert.equal(resUndefined.activeTier, null, "selectedTierId 為 undefined 時 activeTier 應為 null");
+  assert.equal(resUndefined.isAllSelected, true, "isAllSelected 應為 true");
+
+  // 2. null 情況
+  const resNull = resolveActive(null);
+  assert.equal(resNull.activeTier, null, "selectedTierId 為 null 時 activeTier 應為 null");
+  assert.equal(resNull.isAllSelected, true, "isAllSelected 應為 true");
+
+  // 3. 空字串情況
+  const resEmpty = resolveActive("  ");
+  assert.equal(resEmpty.activeTier, null, "selectedTierId 為空字串時 activeTier 應為 null");
+  assert.equal(resEmpty.isAllSelected, true, "isAllSelected 應為 true");
+
+  // 4. 有效選中情況
+  const validTier = tiers[0];
+  const resValid = resolveActive(validTier.id);
+  assert.equal(resValid.activeTier?.id, validTier.id, "有指定 ID 時應正確匹配子計劃");
+  assert.equal(resValid.isAllSelected, false, "isAllSelected 應為 false");
+});
+
+test("ProductSideRail 專屬規格連動：每年與終身保障限額動態提取", () => {
+  const data = dataset();
+
+  // 1. AIA 產品測試
+  const aia = data.products.find((p) => p.id === "medical-aia");
+  const aiaTiers = parseProductPlanTiers(aia);
+  const zunYao = aiaTiers.find((t) => t.code === "F00074");
+  const standard = aiaTiers.find((t) => t.code === "S00013");
+
+  const aiaAnnualItem = aia.coverage.find((c) => c.item.includes("每年保障限額"));
+  const aiaLifetimeItem = aia.coverage.find((c) => c.item.includes("終身保障限額"));
+
+  // 尊耀計劃
+  assert.equal(
+    extractTierCoverageLimit(aiaAnnualItem.limit, zunYao),
+    "每保單年度 HK$12,000,000",
+    "尊耀計劃每年限額動態提取"
+  );
+  assert.equal(
+    extractTierCoverageLimit(aiaLifetimeItem.limit, zunYao),
+    "終身保障限額高達 HK$60,000,000",
+    "尊耀計劃終身限額動態提取"
+  );
+
+  // 標準計劃
+  assert.equal(
+    extractTierCoverageLimit(aiaAnnualItem.limit, standard),
+    "HK$420,000",
+    "標準計劃每年限額動態提取"
+  );
+  assert.equal(
+    extractTierCoverageLimit(aiaLifetimeItem.limit, standard),
+    "不設上限",
+    "標準計劃終身限額動態提取"
+  );
+
+  // 2. Bupa Hero 終身無上限賠償測試
+  const bupa = data.products.find((p) => p.id === "medical-bupa");
+  const bupaTiers = parseProductPlanTiers(bupa);
+  const heroTier = bupaTiers.find((t) => t.name.includes("Hero"));
+  const bupaLifetimeItem = bupa.coverage.find((c) => c.item.includes("終身保障限額"));
+
+  assert.equal(
+    extractTierCoverageLimit(bupaLifetimeItem.limit, heroTier),
+    "不設終身保障限額（無上限賠償）",
+    "Bupa Hero 終身保障限額動態提取應無冗餘前綴"
+  );
+
+  // 3. FWD 尊衛您計劃
+  const fwd = data.products.find((p) => p.id === "medical-fwd");
+  const fwdTiers = parseProductPlanTiers(fwd);
+  const zunWeiTier = fwdTiers.find((t) => t.name.includes("尊衛您"));
+  const fwdAnnualItem = fwd.coverage.find((c) => c.item.includes("每年保障限額"));
+  const fwdLifetimeItem = fwd.coverage.find((c) => c.item.includes("終身保障限額"));
+
+  assert.equal(
+    extractTierCoverageLimit(fwdAnnualItem.limit, zunWeiTier),
+    "靈活計劃每保單年度高達 HK$16,500,000"
+  );
+  assert.equal(
+    extractTierCoverageLimit(fwdLifetimeItem.limit, zunWeiTier),
+    "不設終身保障限額（無上限賠償）"
+  );
+});

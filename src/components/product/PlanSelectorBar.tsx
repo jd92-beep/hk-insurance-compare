@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { Check, ChevronRight, Layers } from "lucide-react";
+import { ChevronRight, Layers } from "lucide-react";
 import type { PlanTierItem } from "@/components/product/plan-parser";
-import CertCodeChip, { RenewalOnlyBadge } from "@/components/product/CertCodeChip";
 import { cn } from "@/lib/utils";
 
 export interface PlanSelectorBarProps {
@@ -34,9 +33,14 @@ export default function PlanSelectorBar({
 }: PlanSelectorBarProps) {
   if (!tiers || tiers.length === 0) return null;
 
-  const activeTier = tiers.find(
-    (t) => t.id === selectedTierId || t.code?.toLowerCase() === selectedTierId?.toLowerCase()
-  );
+  const normalizedSelectedId = selectedTierId?.trim().toLowerCase() || null;
+  const activeTier = normalizedSelectedId
+    ? tiers.find(
+        (t) =>
+          t.id.toLowerCase() === normalizedSelectedId ||
+          (Boolean(t.code) && t.code!.toLowerCase() === normalizedSelectedId)
+      )
+    : null;
   const isAllSelected = !activeTier;
 
   return (
@@ -157,71 +161,6 @@ export default function PlanSelectorBar({
           })}
         </div>
       </div>
-
-      {/* ── 專注視圖卡片（Focused Plan Banner） ── */}
-      {activeTier && (
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -6 }}
-          transition={{ duration: 0.3 }}
-          className="relative overflow-hidden rounded-[10px] border bg-paper p-4 shadow-card"
-          style={{ borderColor: "var(--line)" }}
-        >
-          {/* 左側翡翠綠強調飾條 */}
-          <div
-            className="absolute left-0 top-0 bottom-0 w-[4px]"
-            style={{ background: "var(--jade)" }}
-          />
-
-          <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-col gap-1.5 pl-2">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1 text-[11px] font-bold tracking-wider text-jade">
-                  <Check size={14} className="stroke-[2.5]" />
-                  <span>已切換至專注視圖</span>
-                </span>
-                <span className="font-sans text-[16px] font-bold text-ink">
-                  {activeTier.name}
-                </span>
-                {activeTier.code && <CertCodeChip code={activeTier.code} />}
-                {activeTier.renewalOnly && <RenewalOnlyBadge />}
-              </div>
-
-              {/* 房型與專屬屬性 */}
-              <div className="flex flex-wrap items-center gap-1.5 text-[12px] text-ink-soft">
-                {activeTier.roomType && (
-                  <span className="rounded bg-paper-2 px-2 py-0.5 font-medium">
-                    房型級別：{activeTier.roomType}
-                  </span>
-                )}
-                {activeTier.badges
-                  ?.filter((b) => b !== activeTier.roomType)
-                  .map((badge) => (
-                    <span
-                      key={badge}
-                      className="rounded bg-jade-wash px-2 py-0.5 font-medium text-jade"
-                    >
-                      {badge}
-                    </span>
-                  ))}
-                <span className="text-ink-faint">
-                  · 下方保障項目已聚焦此計劃獨立限額與條款
-                </span>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => onSelectTier(null)}
-              className="self-start rounded-[6px] border bg-paper-2 px-3 py-1.5 text-[12px] font-medium text-ink-soft transition-colors hover:bg-paper-3 hover:text-ink sm:self-center shrink-0 cursor-pointer"
-              style={{ borderColor: "var(--line)" }}
-            >
-              返回全部計劃對比 ↩
-            </button>
-          </div>
-        </motion.div>
-      )}
     </div>
   );
 }

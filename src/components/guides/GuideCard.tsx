@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import type { GuideEntry } from "@/components/guides/guides-data";
 import { CATEGORY_META } from "@/lib/categories";
 import TiltCard from "@/components/fx/TiltCard";
+import { handleCardClickNavigation } from "@/lib/card-navigation";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -15,6 +16,8 @@ const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 export default function GuideCard({ guide, index }: { guide: GuideEntry; index: number }) {
   const meta = CATEGORY_META[guide.id];
   const color = meta?.color ?? "#181D2E";
+  const navigate = useNavigate();
+  const detailHref = `/category/${guide.id}`;
 
   return (
     <TiltCard max={8} glare className="h-full rounded-card">
@@ -24,8 +27,9 @@ export default function GuideCard({ guide, index }: { guide: GuideEntry; index: 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-15% 0px" }}
       transition={{ duration: 0.7, delay: (index % 3) * 0.08, ease: EASE_OUT_EXPO }}
-      className="depth-card group relative flex h-full scroll-mt-24 flex-col overflow-hidden rounded-card border bg-paper p-7 shadow-card"
+      className="depth-card group relative flex h-full cursor-pointer scroll-mt-24 flex-col overflow-hidden rounded-card border bg-paper p-7 shadow-card"
       style={{ borderColor: "var(--line)" }}
+      onClick={(e) => handleCardClickNavigation(e, detailHref, navigate)}
     >
       {/* 頂部類別色條 */}
       <motion.div

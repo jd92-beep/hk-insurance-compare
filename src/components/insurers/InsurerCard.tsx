@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import type { Category, Insurer, Product } from "@/types/insurance";
 import { CATEGORY_META, categoryColor } from "@/lib/categories";
 import {
@@ -8,6 +8,7 @@ import {
   insurerDetailPath,
 } from "@/lib/insurer-catalogue";
 import TiltCard from "@/components/fx/TiltCard";
+import { handleCardClickNavigation } from "@/lib/card-navigation";
 import { cn } from "@/lib/utils";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -35,6 +36,7 @@ export default function InsurerCard({
   /** 錨點到達：閃一次紅色外框 */
   flash?: boolean;
 }) {
+  const navigate = useNavigate();
   const preview = products.slice(0, 3);
   const staggerDelay = index < 9 ? index * 0.06 : 0;
   const detailHref = insurerDetailPath(insurer.name);
@@ -48,9 +50,10 @@ export default function InsurerCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-8% 0px" }}
       transition={{ duration: 0.6, delay: staggerDelay, ease: EASE_OUT_EXPO }}
-      className="depth-card group relative flex h-full min-w-0 scroll-mt-[88px] flex-col gap-3 rounded-card border bg-paper p-5"
+      className="depth-card group relative flex h-full min-w-0 cursor-pointer scroll-mt-[88px] flex-col gap-3 rounded-card border bg-paper p-5"
       style={{ borderColor: "var(--line)" }}
       data-insurer-card={insurer.name}
+      onClick={(e) => handleCardClickNavigation(e, detailHref, navigate)}
     >
       {flash && (
         <motion.span

@@ -20,8 +20,8 @@ export default function ProductCard({ product, className, match }: { product: Pr
   const multiplePlans = product.plan_tiers.length > 1;
   return <TiltCard max={10} glare className={cn('rounded-card', className)}>
     <article className="depth-surface relative flex flex-col overflow-hidden rounded-card border border-line bg-paper" aria-label={`${product.insurer_zh} ${title}`}>
-      <div className="h-1.5" style={{ background: categoryColor(product.category) }} aria-hidden="true" />
-      <div className="flex flex-col gap-4 p-5 md:p-6">
+      <div className="h-1.5 depth-z-bar" style={{ background: categoryColor(product.category) }} aria-hidden="true" />
+      <div className="flex flex-col gap-4 p-5 md:p-6" style={{ transform: 'translateZ(12px)' }}>
         <div>
           <p className="text-base font-semibold text-ink-soft">{product.insurer_zh} <span className="font-grotesk">{product.insurer}</span></p>
           <h3 className="mt-2 text-xl font-bold leading-relaxed text-ink"><Link className="rounded hover:text-jade hover:underline focus-visible:outline-offset-4" to={`/product/${product.id}`}>{title}</Link></h3>

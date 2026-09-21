@@ -7,3 +7,4 @@ scripts/.cache/
 artifacts/
 scratch/
 foldable-qa-evidence/
+.playwright-cli/

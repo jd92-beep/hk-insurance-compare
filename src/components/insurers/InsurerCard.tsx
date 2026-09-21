@@ -79,7 +79,7 @@ export default function InsurerCard({
             </Link>
           </p>
         </div>
-        <div className="shrink-0 text-right transition-transform duration-300 group-hover:scale-105 depth-z-icon">
+        <div className="shrink-0 text-right transition-transform duration-300 group-hover:scale-105">
           <p className="font-grotesk text-[32px] font-bold leading-none text-red">
             {insurer.productCount}
           </p>

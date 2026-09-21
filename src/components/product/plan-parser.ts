@@ -274,6 +274,8 @@ export function parseProductPlanTiers(product: Product): PlanTierItem[] {
     if (cleanName.includes("Pink")) keywords.push("Pink", "Bowtie Pink");
     if (cleanName.includes("更衛您")) keywords.push("更衛您");
     if (cleanName.includes("尊衛您")) keywords.push("尊衛您");
+    if (cleanName.includes("Hero")) keywords.push("Hero", "Bupa Hero");
+    if (cleanName.includes("非凡")) keywords.push("非凡");
 
     // 非自願醫保常規關鍵詞（如旅遊保險、家傭保險等）
     const matchSimplePlan = cleanName.match(/(計劃[A-Z0-9一二三四]|Plan [A-Z0-9]|Lite|Plus|Gold|Silver|Platinum|青銅|白銀|黃金|精選|全面|標準|綜合|優尚|簡易)/i);
@@ -317,6 +319,12 @@ export function parseProductPlanTiers(product: Product): PlanTierItem[] {
  */
 function cleanSegmentPlanPrefix(segment: string, tier: PlanTierItem): string {
   const s = segment.trim();
+
+  // 若出現「...均不設終身保障限額...」或「與...均不設終身保障限額」模式，乾淨提取終身保障核心說明
+  if (/^(?:與\s*)?.+均(不設終身保障限額.*)$/.test(s)) {
+    return s.replace(/^(?:與\s*)?.+均(不設終身保障限額.*)$/, "$1");
+  }
+
   const kwList = Array.from(new Set([...(tier.keywords || []), tier.name].filter(Boolean)));
   const escapedKws = kwList.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
 

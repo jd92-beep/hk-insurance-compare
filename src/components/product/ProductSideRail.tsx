@@ -3,6 +3,8 @@ import { purchaseUrl } from "@/lib/product-availability";
 import { quotePathway } from "@/lib/quote-pathway";
 import { ExternalLink, FileText } from "lucide-react";
 import type { Product } from "@/types/insurance";
+import type { PlanTierItem } from "@/components/product/plan-parser";
+import { extractTierCoverageLimit } from "@/components/product/plan-parser";
 import CertCodeChip from "@/components/product/CertCodeChip";
 import CompareCTA from "@/components/product/CompareCTA";
 import {
@@ -37,25 +39,54 @@ function quickDocLinks(product: Product): { url: string; text: string }[] {
     .slice(0, 4);
 }
 
+export interface ProductSideRailProps {
+  product: Product;
+  color: string;
+  selectedTier?: PlanTierItem | null;
+  onSelectTier?: (tierId: string | null) => void;
+  className?: string;
+}
+
 /**
  * 產品頁右側 sticky 欄（lg+）：重點數字濃縮版 + 加入比較 CTA + 官方文件快連。
- * 全部內容按數據存在與否渲染；mobile 收埋（重點一覽卡已覆蓋）。
+ * 支援與特定子計劃（Plan Tier）動態連動，展示專屬限額與卡片；未選中時展示全局一覽。
  */
 export default function ProductSideRail({
   product,
   color,
+  selectedTier,
+  onSelectTier,
   className,
-}: {
-  product: Product;
-  color: string;
-  className?: string;
-}) {
+}: ProductSideRailProps) {
   const facts = deriveKeyFacts(product);
   const certs = extractCertEntries(product);
   const docs = quickDocLinks(product);
   const pathway = quotePathway(product);
 
-  const hasFacts = facts.annualLimitAmount || facts.premium30 || certs.length > 0;
+  // 動態計算每年保障限額：有選中 selectedTier 且 coverage 中有「每年保障限額」時，調用 extractTierCoverageLimit 萃取專屬限額；否則回退到 facts.annualLimitAmount
+  const annualItem = (product.coverage ?? []).find((c) =>
+    c.item.includes("每年保障限額")
+  );
+  const dynamicAnnualLimit =
+    selectedTier && annualItem
+      ? extractTierCoverageLimit(annualItem.limit, selectedTier) || facts.annualLimitAmount
+      : facts.annualLimitAmount;
+
+  // 動態計算終身保障限額：有選中 selectedTier 時，萃取該計劃專屬終身限額（例如「不設終身保障限額（無上限賠償）」）
+  const lifetimeItem = (product.coverage ?? []).find((c) =>
+    c.item.includes("終身保障限額")
+  );
+  const dynamicLifetimeLimit =
+    selectedTier && lifetimeItem
+      ? extractTierCoverageLimit(lifetimeItem.limit, selectedTier)
+      : null;
+
+  const hasFacts =
+    Boolean(dynamicAnnualLimit) ||
+    Boolean(dynamicLifetimeLimit) ||
+    Boolean(facts.premium30) ||
+    Boolean(selectedTier) ||
+    certs.length > 0;
   const buyUrl = purchaseUrl(product);
 
   return (
@@ -69,43 +100,124 @@ export default function ProductSideRail({
           <div className="p-5">
             {hasFacts && (
               <>
-                <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-ink-faint">
-                  重點一覽
-                </p>
-                <dl className="mt-3 flex flex-col gap-2.5">
-                {facts.annualLimitAmount && (
-                  <div>
-                    <dt className="text-small text-ink-faint">每年保障限額</dt>
-                    <dd className="font-grotesk text-[18px] font-bold leading-snug text-ink">
-                      {facts.annualLimitAmount}
-                    </dd>
+                {/* 頂部標題列：選中計劃時標注專屬規格並提供重設按鈕 */}
+                {selectedTier ? (
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-1.5">
+                      <span className="inline-block h-2 w-2 rounded-full bg-jade" />
+                      <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-jade">
+                        重點一覽 · 專屬規格
+                      </span>
+                    </div>
+                    {onSelectTier && (
+                      <button
+                        type="button"
+                        onClick={() => onSelectTier(null)}
+                        className="text-[11px] font-medium text-ink-soft hover:text-jade hover:underline cursor-pointer transition-colors"
+                      >
+                        重設回全覽 ↩
+                      </button>
+                    )}
                   </div>
+                ) : (
+                  <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-ink-faint">
+                    重點一覽
+                  </p>
                 )}
-                {facts.premium30 && (
-                  <div>
-                    <dt className="text-small text-ink-faint">30 歲年繳保費（資料快照）</dt>
-                    <dd className="font-grotesk text-[15px] font-bold leading-[1.5] text-ink">
-                      男 HK${facts.premium30.male}
-                      <span className="mx-1.5 text-ink-faint">／</span>女 HK$
-                      {facts.premium30.female}
-                    </dd>
-                  </div>
-                )}
-                {certs.length > 0 && (
-                  <div>
-                    <dt className="text-small text-ink-faint">認可編號</dt>
-                    <dd className="mt-1 flex flex-wrap gap-1">
-                      {certs.slice(0, 4).map((c) => (
-                        <CertCodeChip key={c.code} code={c.code} renewalOnly={c.renewalOnly} />
-                      ))}
-                      {certs.length > 4 && (
-                        <span className="text-small text-ink-faint">
-                          +{certs.length - 4}
-                        </span>
+
+                {/* 選中計劃時的專屬卡片（計劃名稱、專屬認可編號、房型等） */}
+                {selectedTier && (
+                  <div
+                    className="mt-3 rounded-[8px] border bg-paper-2/70 p-3"
+                    style={{ borderColor: "var(--line)" }}
+                  >
+                    <div className="flex flex-wrap items-center justify-between gap-1.5">
+                      <span className="font-sans text-[14px] font-bold text-ink">
+                        {selectedTier.name}
+                      </span>
+                      {selectedTier.code && (
+                        <CertCodeChip
+                          code={selectedTier.code}
+                          renewalOnly={selectedTier.renewalOnly}
+                        />
                       )}
-                    </dd>
+                    </div>
+                    {(selectedTier.roomType ||
+                      (selectedTier.badges && selectedTier.badges.length > 0)) && (
+                      <div className="mt-2 flex flex-wrap items-center gap-1.5 text-[11px]">
+                        {selectedTier.roomType && (
+                          <span
+                            className="rounded border bg-paper px-1.5 py-0.5 font-medium text-ink-soft"
+                            style={{ borderColor: "var(--line)" }}
+                          >
+                            房型：{selectedTier.roomType}
+                          </span>
+                        )}
+                        {selectedTier.badges
+                          ?.filter((b) => b !== selectedTier.roomType)
+                          .map((badge) => (
+                            <span
+                              key={badge}
+                              className="rounded bg-jade-wash px-1.5 py-0.5 font-medium text-jade"
+                            >
+                              {badge}
+                            </span>
+                          ))}
+                      </div>
+                    )}
                   </div>
                 )}
+
+                <dl className="mt-3 flex flex-col gap-2.5">
+                  {dynamicAnnualLimit && (
+                    <div>
+                      <dt className="text-small text-ink-faint">
+                        {selectedTier
+                          ? `${selectedTier.name} 每年保障限額`
+                          : "每年保障限額"}
+                      </dt>
+                      <dd className="font-grotesk text-[18px] font-bold leading-snug text-ink">
+                        {dynamicAnnualLimit}
+                      </dd>
+                    </div>
+                  )}
+                  {selectedTier && dynamicLifetimeLimit && (
+                    <div>
+                      <dt className="text-small text-ink-faint">終身保障限額</dt>
+                      <dd className="font-grotesk text-[15px] font-bold leading-snug text-ink">
+                        {dynamicLifetimeLimit}
+                      </dd>
+                    </div>
+                  )}
+                  {facts.premium30 && (
+                    <div>
+                      <dt className="text-small text-ink-faint">30 歲年繳保費（資料快照）</dt>
+                      <dd className="font-grotesk text-[15px] font-bold leading-[1.5] text-ink">
+                        男 HK${facts.premium30.male}
+                        <span className="mx-1.5 text-ink-faint">／</span>女 HK$
+                        {facts.premium30.female}
+                      </dd>
+                    </div>
+                  )}
+                  {!selectedTier && certs.length > 0 && (
+                    <div>
+                      <dt className="text-small text-ink-faint">認可編號</dt>
+                      <dd className="mt-1 flex flex-wrap gap-1">
+                        {certs.slice(0, 4).map((c) => (
+                          <CertCodeChip
+                            key={c.code}
+                            code={c.code}
+                            renewalOnly={c.renewalOnly}
+                          />
+                        ))}
+                        {certs.length > 4 && (
+                          <span className="text-small text-ink-faint">
+                            +{certs.length - 4}
+                          </span>
+                        )}
+                      </dd>
+                    </div>
+                  )}
                 </dl>
               </>
             )}

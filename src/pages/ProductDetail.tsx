@@ -208,7 +208,13 @@ export default function ProductDetail() {
             </section>
           </div>
           {/* 右側 sticky 重點欄：關鍵數字 + 加入比較 + 官方文件快連 */}
-          <ProductSideRail product={product} color={color} className="hidden w-full shrink-0 fold-wide:block fold-wide:w-[min(17rem,30%)] lg:w-[min(300px,34%)] xl:w-[280px]" />
+          <ProductSideRail
+            product={product}
+            color={color}
+            selectedTier={selectedTier}
+            onSelectTier={handleSelectTier}
+            className="hidden w-full shrink-0 fold-wide:block fold-wide:w-[min(17rem,30%)] lg:w-[min(300px,34%)] xl:w-[280px]"
+          />
         </div>
       </section>
 

@@ -8,6 +8,7 @@ import { useFavorites } from "@/providers/FavoritesProvider";
 import { toastCompareToggle, toastFavoriteToggle } from "@/lib/ui-feedback";
 import { getInsurerColor } from "@/lib/insurer-colors";
 import { handleCardClickNavigation } from "@/lib/card-navigation";
+import { deriveCardSellingPoints } from "@/lib/product-card-data";
 import Card3DGem from "@/components/fx/Card3DGem";
 import TiltCard from "@/components/fx/TiltCard";
 import { cn } from "@/lib/utils";
@@ -117,18 +118,7 @@ export function FlatPriceCard({ item }: { item: FlatProductItem }) {
   const highlightColor = getInsurerColor(item.product.insurer || item.insurerZh);
 
   // 提取核心賣點
-  const sellingPoints = useMemo(() => {
-    const points: string[] = [];
-    if (item.product.coverage && item.product.coverage.length > 0) {
-      for (const cov of item.product.coverage) {
-        if (points.length >= 2) break;
-        if (cov.item && cov.limit && cov.limit !== "未提供" && cov.limit !== "未收錄") {
-          points.push(`${cov.item}：${cov.limit}`);
-        }
-      }
-    }
-    return points;
-  }, [item.product]);
+  const sellingPoints = useMemo(() => deriveCardSellingPoints(item.product).slice(0, 2), [item.product]);
 
   return (
     <TiltCard max={10} glare className="h-full rounded-card">
@@ -191,7 +181,10 @@ export function FlatPriceCard({ item }: { item: FlatProductItem }) {
                   {sellingPoints.map((sp, idx) => (
                     <li key={idx} className="flex items-start gap-1">
                       <span className="font-bold select-none text-[11px]" style={{ color: highlightColor }}>✓</span>
-                      <span className="line-clamp-1 text-[11px]">{sp}</span>
+                      <span className="line-clamp-1 text-[11px]">
+                        <strong className="text-ink mr-0.5">{sp.label}：</strong>
+                        <span className="text-ink-soft">{sp.text}</span>
+                      </span>
                     </li>
                   ))}
                 </ul>

@@ -78,42 +78,42 @@ export function quotePathway(product: Product): QuotePathway {
   if (curve && curve.rows.length > 0) {
     return {
       mode: "published-age-table",
-      headline: "有年齡保費表（唔係你嘅報價）",
+      headline: "官方年齡保費表（快照數據）",
       snapshotText,
       hasAgeTable: true,
       ageTableRowCount: curve.rows.length,
       buyUrl,
       buyLabel: buyUrl ? "往官網核對現行報價" : null,
       notes,
-      disclaimer: "站內保費只係快照，唔係你嘅報價；本站唔提供即時試算。",
+      disclaimer: "站內保費為官方文件快照，非個人報價；本站唔提供即時保費試算。",
     };
   }
 
   if (product.premium_available && hasDigits(snapshotText)) {
     return {
       mode: "published-schedule",
-      headline: "有公開保費文字（唔係你嘅報價）",
+      headline: "官方參考保費（快照數據）",
       snapshotText,
       hasAgeTable: false,
       ageTableRowCount: 0,
       buyUrl,
       buyLabel: buyUrl ? "往官網即時報價／核對" : null,
       notes,
-      disclaimer: "站內保費只係快照，唔係你嘅報價；本站唔提供即時試算。",
+      disclaimer: "站內保費為官方文件快照，非個人報價；本站唔提供即時保費試算。",
     };
   }
 
   if (buyUrl) {
     return {
       mode: "official-quote-only",
-      headline: "保費需公司即時報價",
+      headline: "官方即時報價（需官網試算）",
       snapshotText,
       hasAgeTable: false,
       ageTableRowCount: 0,
       buyUrl,
       buyLabel: "往官網即時報價",
       notes,
-      disclaimer: "本站唔提供即時保費試算；報價入口唔等於可投保。",
+      disclaimer: "本站唔提供即時保費試算；實際保費以保險公司官網核保為準。",
     };
   }
 

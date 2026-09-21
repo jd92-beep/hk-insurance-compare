@@ -19,6 +19,11 @@ import { DEFAULT_CATEGORIES } from "@/lib/categories";
 import { toastCompareToggle, toastFavoriteToggle } from "@/lib/ui-feedback";
 import { handleCardClickNavigation } from "@/lib/card-navigation";
 import TiltCard from "@/components/fx/TiltCard";
+import {
+  deriveCardPlanTiers,
+  deriveCardSellingPoints,
+  deriveCompactPremium,
+} from "@/lib/product-card-data";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/types/insurance";
 
@@ -122,7 +127,7 @@ export default function Favorites() {
         </div>
 
         {/* 頂部操作按鈕 */}
-        {count > 0 && (
+        {favoriteProducts.length > 0 && (
           <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
@@ -153,13 +158,13 @@ export default function Favorites() {
             </div>
             <h3 className="font-serif text-lg font-bold text-ink">確定清空所有最愛計劃？</h3>
             <p className="mt-2 text-sm text-ink-soft">
-              清空後將無法復原瀏覽器中保存的 {count} 份保險計劃。
+              清空後將無法復原瀏覽器中保存的 {favoriteProducts.length} 份保險計劃。
             </p>
             <div className="mt-6 flex items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={() => setShowClearConfirm(false)}
-                className="rounded-xl border border-line px-4 py-2 text-xs font-bold text-ink hover:bg-paper-2"
+                className="rounded-xl border border-line bg-paper px-4 py-2 text-xs font-bold text-ink hover:bg-paper-2 transition-colors"
               >
                 取消
               </button>
@@ -169,7 +174,7 @@ export default function Favorites() {
                   clearFavorites();
                   setShowClearConfirm(false);
                 }}
-                className="rounded-xl bg-red px-4 py-2 text-xs font-bold text-paper transition-opacity hover:opacity-90"
+                className="rounded-xl border border-red bg-red px-4 py-2 text-xs font-bold text-paper hover:bg-red-hover transition-colors"
               >
                 確認清空
               </button>
@@ -178,9 +183,9 @@ export default function Favorites() {
         </div>
       )}
 
-      {/* 分類篩選 Tabs */}
-      {count > 0 && availableCategories.length > 1 && (
-        <div className="mt-6 flex flex-wrap items-center gap-2 border-b border-line/60 pb-4">
+      {/* 分類篩選 Tabs（當有多個不同分類的最愛計劃時顯示） */}
+      {availableCategories.length > 1 && (
+        <div className="mt-6 flex flex-wrap items-center gap-2 border-b border-line/60 pb-3">
           <button
             type="button"
             onClick={() => setActiveCategory("all")}
@@ -213,7 +218,7 @@ export default function Favorites() {
 
       {/* 內容區：清單或空狀態 */}
       <div className="mt-8">
-        {count === 0 ? (
+        {favoriteProducts.length === 0 ? (
           /* 空狀態 Empty State */
           <div className="flex flex-col items-center justify-center rounded-2xl border border-line bg-paper-2/40 py-16 px-4 text-center">
             <div className="flex h-16 w-16 items-center justify-center rounded-full border border-line bg-paper shadow-xs">
@@ -337,34 +342,60 @@ export default function Favorites() {
                           </Link>
                         </h2>
 
-                        {/* 計劃層級與亮點 */}
-                        {product.plan_tiers && product.plan_tiers.length > 0 && (
-                          <div className="mt-2 flex flex-wrap gap-1">
-                            {product.plan_tiers.slice(0, 3).map((tier, idx) => (
-                              <span
-                                key={idx}
-                                className="rounded bg-paper-2 border border-line px-1.5 py-0.5 text-[11px] font-medium text-ink-soft"
-                              >
-                                {tier}
-                              </span>
-                            ))}
-                            {product.plan_tiers.length > 3 && (
-                              <span className="rounded bg-paper-2 px-1.5 py-0.5 text-[11px] font-medium text-ink-faint">
-                                +{product.plan_tiers.length - 3} 計劃
-                              </span>
-                            )}
-                          </div>
-                        )}
+                        {/* 計劃層級標籤 */}
+                        {(() => {
+                          const tiersData = deriveCardPlanTiers(product);
+                          const sellingPoints = deriveCardSellingPoints(product);
+                          const compactPrem = deriveCompactPremium(product);
 
-                        {/* 參考保費 */}
-                        <div className="mt-3.5 rounded-lg border border-line bg-paper-2/60 p-3">
-                          <p className="text-[11px] font-bold text-ink-faint">
-                            {pathway.headline}
-                          </p>
-                          <p className="mt-0.5 font-grotesk text-base font-bold text-ink">
-                            {pathway.snapshotText || "需往官網即時報價"}
-                          </p>
-                        </div>
+                          return (
+                            <div className="mt-2.5 flex flex-col gap-2.5">
+                              {/* 級別膠囊 */}
+                              {tiersData.tiers.length > 0 && (
+                                <div className="flex flex-wrap items-center gap-1.5">
+                                  {tiersData.tiers.slice(0, 3).map((tier, idx) => (
+                                    <span
+                                      key={idx}
+                                      className="rounded-md bg-paper-2 border border-line px-2 py-0.5 text-[11px] font-medium text-ink-soft"
+                                    >
+                                      {tier}
+                                    </span>
+                                  ))}
+                                  {tiersData.deductibles && (
+                                    <span className="rounded-md bg-paper-2/80 border border-line-faint px-1.5 py-0.5 text-[10px] text-ink-faint">
+                                      自付費: {tiersData.deductibles}
+                                    </span>
+                                  )}
+                                </div>
+                              )}
+
+                              {/* 精選官方核心保障賣點 */}
+                              {sellingPoints.length > 0 && (
+                                <ul className="space-y-1 rounded-lg border border-line/60 bg-paper-2/40 p-2.5 text-xs">
+                                  {sellingPoints.slice(0, 2).map((sp, idx) => (
+                                    <li key={idx} className="flex items-baseline gap-1.5 leading-snug">
+                                      <span className="text-jade font-bold shrink-0 text-xs">✓</span>
+                                      <span className="text-ink">
+                                        <strong className="font-semibold text-ink-strong">{sp.label}：</strong>
+                                        <span className="text-ink-soft">{sp.text}</span>
+                                      </span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+
+                              {/* 參考保費單行條 */}
+                              <div className="flex items-center justify-between rounded-lg border border-line bg-paper-2/60 px-3 py-1.5">
+                                <span className="text-[11px] font-medium text-ink-faint">
+                                  {compactPrem.subtext || "官方快照"}
+                                </span>
+                                <span className="font-grotesk text-xs font-bold text-ink">
+                                  {compactPrem.text}
+                                </span>
+                              </div>
+                            </div>
+                          );
+                        })()}
                       </div>
 
                       {/* 底部按鈕組 */}

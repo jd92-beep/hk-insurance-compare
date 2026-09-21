@@ -16,6 +16,9 @@
 <!-- review-2026-09-21-favorites -->
 > **2026-09-21 Favorites & Travel Pricing delivery:** LocalStorage favorites, heart badge, travel single/annual pricing sort & safe route aliases Build `20260921.14` — [delivery review](docs/review/2026-09-21-favorites-and-travel-fixes.md).
 <!-- /review-2026-09-21-favorites -->
+<!-- review-2026-09-22-selling-points -->
+> **2026-09-22 Card Selling Points & Terms Redesign delivery:** Reorganized pricing, plan tiers and terms, concise selling points without initial disclaimer banners Build `20260922.01` — [card redesign review](docs/review/2026-09-22-card-selling-points-and-terms-redesign.md).
+<!-- /review-2026-09-22-selling-points -->
 
 # AGENTS.md
 

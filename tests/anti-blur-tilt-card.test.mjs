@@ -22,6 +22,10 @@ test('TiltCard has anti-blur architecture: 0 resting lift and non-forced transla
   assert.ok(tiltCardSource.includes('rotateY'));
   assert.ok(tiltCardSource.includes('perspective'));
   assert.ok(tiltCardSource.includes('glare'));
+
+  // transformStyle must be "flat" when settled to enable 2D vector pixel snapping for crisp borders and hairlines
+  assert.ok(tiltCardSource.includes('transformStyle: isSettled ? "flat" : "preserve-3d"'));
+  assert.ok(tiltCardSource.includes('!isSettled && "preserve-3d"'));
 });
 
 test('ProductCard copy container does not apply inline translateZ', () => {
@@ -49,4 +53,14 @@ test('index.css depth cards retain physical 3D shadows and edges without resting
   assert.ok(indexCssSource.includes('.depth-z-icon'));
   assert.ok(indexCssSource.includes('.depth-z-chip'));
   assert.ok(indexCssSource.includes('.chip-3d'));
+
+  // Crisp perimeter borders: depth-surface, depth-card, shadow-card have solid contrast rules
+  assert.ok(indexCssSource.includes('border-color: rgba(24, 29, 46, 0.22)'));
+  assert.ok(indexCssSource.includes('border-top-color: rgba(255, 255, 255, 0.95)'));
+  assert.ok(indexCssSource.includes('border-bottom-color: rgba(24, 29, 46, 0.26)'));
+
+  // depth-card is flat at rest and switches to preserve-3d when active/hover
+  assert.ok(indexCssSource.includes('.depth-card { transform-style: flat; }'));
+  assert.ok(indexCssSource.includes('transform-style: preserve-3d;'));
 });
+

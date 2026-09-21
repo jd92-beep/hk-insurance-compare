@@ -1,8 +1,8 @@
 # 2026-09-21 · Sharp Card Text with Decoupled Web3D Gem & Optical Depth
 
-**Branch:** `review/20260921-sharp-web3d-cards`  
-**Version:** APP_VERSION **1.8.7** · BUILD_NUMBER **20260921.05** · BUILD_DATE 2026-09-21  
-**Scope:** UI / Web3D presentation only. Insurance claims, policy data, zh-HK copy unchanged.
+**Branch:** `review/20260921-sharp-rules-and-exclusions`  
+**Version:** APP_VERSION **1.8.7** · BUILD_NUMBER **20260921.06** · BUILD_DATE 2026-09-21  
+**Scope:** UI / Web3D presentation only. Border rules, divider rules, exclusion rules clarity enhancement.
 
 ## Problem (user report)
 

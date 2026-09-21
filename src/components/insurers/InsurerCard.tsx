@@ -141,17 +141,17 @@ export default function InsurerCard({
 
       {/* 產品預覽（最多 3 行） */}
       {preview.length > 0 && (
-        <ul className="flex flex-col gap-1 border-t pt-3 text-small" style={{ borderColor: "var(--line)" }}>
+        <ul className="flex flex-col gap-1 border-t border-line-strong pt-3 text-small">
           {preview.map((p) => (
             <li key={p.id}>
               <Link
                 to={`/product/${p.id}`}
-                className="flex items-baseline gap-1.5 text-ink-soft transition-colors hover:text-red"
+                className="flex items-baseline gap-1.5 font-medium text-ink transition-colors hover:text-red"
               >
-                <span aria-hidden="true">·</span>
+                <span aria-hidden="true" className="font-bold text-red">·</span>
                 <span className="min-w-0 truncate">
                   {p.product_name_zh || p.product_name}
-                  <span className="ml-1.5 text-ink-faint">
+                  <span className="ml-1.5 font-normal text-ink-soft">
                     （{categories.find((c) => c.id === p.category)?.name_zh ?? p.category}）
                   </span>
                 </span>

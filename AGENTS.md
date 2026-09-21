@@ -2,7 +2,7 @@
 > **2026-09-18 documentation review:** Current scope and remaining limitations: [delivery review](docs/review/2026-09-18-release.md). No blanket policy-currentness certificate.
 <!-- /review-2026-09-18 -->
 <!-- review-2026-09-21 -->
-> **2026-09-21 UI delivery:** Plan tiers dynamic linkage & focus view bugfixes Build `20260921.08` — [plan tiers linkage & fixes](docs/review/2026-09-21-plan-tiers-linkage-and-fixes.md).
+> **2026-09-21 UI delivery:** Multi-plan comparison matrix & cross-insurer audit Build `20260921.09` — [multi-plan matrix & audit](docs/review/2026-09-21-multi-plan-matrix-and-audit.md).
 <!-- /review-2026-09-21 -->
 
 # AGENTS.md

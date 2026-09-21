@@ -260,10 +260,44 @@ test("ProductSideRail 專屬規格連動：每年與終身保障限額動態提�
 
   assert.equal(
     extractTierCoverageLimit(fwdAnnualItem.limit, zunWeiTier),
-    "靈活計劃每保單年度高達 HK$16,500,000"
+    "每保單年度高達 HK$16,500,000",
+    "FWD 尊衛您每年限額動態提取應無冗餘靈活計劃前綴"
   );
   assert.equal(
     extractTierCoverageLimit(fwdLifetimeItem.limit, zunWeiTier),
     "不設終身保障限額（無上限賠償）"
+  );
+
+  // 4. AXA 智尊守慧與標準計劃測試
+  const axa = data.products.find((p) => p.id === "medical-axa");
+  const axaTiers = parseProductPlanTiers(axa);
+  const axaZhiZun = axaTiers.find((t) => t.code === "F00034");
+  const axaStandard = axaTiers.find((t) => t.code === "S00014");
+
+  assert.ok(axaZhiZun, "應正確識別智尊守慧靈活計劃 F00034");
+  assert.ok(axaStandard, "應正確識別守慧標準計劃 S00014");
+
+  const axaAnnualItem = axa.coverage.find((c) => c.item.includes("每年保障限額"));
+  const axaLifetimeItem = axa.coverage.find((c) => c.item.includes("終身保障限額"));
+
+  assert.equal(
+    extractTierCoverageLimit(axaAnnualItem.limit, axaZhiZun),
+    "每保單年度高達 HK$20,000,000",
+    "AXA 智尊守慧每年限額精準提取"
+  );
+  assert.equal(
+    extractTierCoverageLimit(axaLifetimeItem.limit, axaZhiZun),
+    "終身保障限額高達 HK$80,000,000",
+    "AXA 智尊守慧終身限額精準提取"
+  );
+  assert.equal(
+    extractTierCoverageLimit(axaAnnualItem.limit, axaStandard),
+    "HK$420,000",
+    "AXA 守慧標準計劃每年限額精準提取"
+  );
+  assert.equal(
+    extractTierCoverageLimit(axaLifetimeItem.limit, axaStandard),
+    "不設上限",
+    "AXA 守慧標準計劃終身限額精準提取"
   );
 });

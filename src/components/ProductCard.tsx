@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { Check, Plus, ArrowRight, ChevronDown } from 'lucide-react';
 import type { Product } from '@/types/insurance';
 import type { FeatureMatchResult } from '@/lib/feature-filters';
-import { categoryColor } from '@/lib/categories';
+import { getInsurerColor } from '@/lib/insurer-colors';
 import { isReferenceOnlyProduct } from '@/lib/product-availability';
 import { useCompare } from '@/providers/CompareProvider';
 import { toastCompareToggle } from '@/lib/ui-feedback';
@@ -24,35 +24,111 @@ export default function ProductCard({ product, className, match }: { product: Pr
   const historical = isReferenceOnlyProduct(product);
   const multiplePlans = product.plan_tiers.length > 1;
   const detailHref = `/product/${product.id}`;
+  const highlightColor = getInsurerColor(product.insurer || product.insurer_zh);
+
+  // 提取核心賣點（Selling Points），在縮細卡片時精準呈現最有價值的保障
+  const sellingPoints = useMemo(() => {
+    const points: string[] = [];
+    // 1. 優先從 coverage 提取高價值項目（如每年保障額、終身保障額、住院及手術等）
+    if (product.coverage && product.coverage.length > 0) {
+      for (const cov of product.coverage) {
+        if (points.length >= 3) break;
+        if (
+          cov.item &&
+          cov.limit &&
+          cov.limit !== '未提供' &&
+          cov.limit !== '未收錄' &&
+          cov.limit !== '依細項上限'
+        ) {
+          points.push(`${cov.item}：${cov.limit}`);
+        }
+      }
+    }
+    // 2. 從 plan_tiers 提取包含的計劃層級
+    if (points.length < 3 && product.plan_tiers && product.plan_tiers.length > 0) {
+      const validTiers = product.plan_tiers.filter(Boolean);
+      if (validTiers.length > 0) {
+        points.push(`涵蓋計劃：${validTiers.slice(0, 2).join('、')}${validTiers.length > 2 ? '等' : ''}`);
+      }
+    }
+    // 3. 從 key_terms 提取關鍵條款亮點
+    if (points.length < 3 && product.key_terms && product.key_terms.length > 0) {
+      for (const term of product.key_terms) {
+        if (points.length >= 3) break;
+        if (term && !points.includes(term)) {
+          points.push(term);
+        }
+      }
+    }
+    return points;
+  }, [product]);
+
   return <TiltCard max={10} glare className={cn('h-full rounded-card', className)}>
     <article
       className="depth-surface group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-card border border-line bg-paper"
       aria-label={`${product.insurer_zh} ${title}`}
       onClick={(e) => handleCardClickNavigation(e, detailHref, navigate)}
     >
-      <div className="h-1.5 depth-z-bar" style={{ background: categoryColor(product.category) }} aria-hidden="true" />
-      <div className="flex flex-col gap-4 p-5 md:p-6">
+      <div className="h-1.5 depth-z-bar" style={{ background: highlightColor }} aria-hidden="true" />
+      <div className="flex flex-col gap-3 p-5 md:p-6">
         <div>
           <div className="flex items-start justify-between gap-3">
-            <p className="text-base font-semibold text-ink-soft">{product.insurer_zh} <span className="font-grotesk">{product.insurer}</span></p>
-            {/* 3D 幾何質感容器（獨立圖層，與排版文字解耦以防 blur） */}
+            <p className="text-sm font-semibold text-ink-soft flex items-center gap-2">
+              <span>{product.insurer_zh} <span className="font-grotesk">{product.insurer}</span></span>
+              {historical && (
+                <span className="rounded bg-amber-wash px-1.5 py-0.5 text-[10px] font-bold text-amber">
+                  歷史資料
+                </span>
+              )}
+            </p>
+            {/* 3D 幾何質感容器（每間保險公司專屬獨立 highlight 顏色） */}
             <div
               className="shrink-0 depth-z-icon flex items-center justify-center rounded-lg border border-line-strong/20 bg-paper-2/60 p-1 shadow-xs transition-transform duration-300 group-hover:scale-105"
               aria-hidden="true"
             >
-              <Card3DGem size={22} color={categoryColor(product.category)} glow={false} />
+              <Card3DGem size={22} color={highlightColor} glow={false} />
             </div>
           </div>
-          <h3 className="mt-2 text-xl font-bold leading-relaxed text-ink"><Link className="rounded hover:text-jade hover:underline focus-visible:outline-offset-4" to={`/product/${product.id}`}>{title}</Link></h3>
-          <p className="mt-2 text-sm font-medium text-ink-soft">{historical ? '舊資料／唔作新投保參考' : '資料摘要・未全面核實現行條款'}</p>
+          <h3 className="mt-2 text-lg font-bold leading-snug text-ink">
+            <Link className="rounded hover:text-jade hover:underline focus-visible:outline-offset-4" to={`/product/${product.id}`}>
+              {title}
+            </Link>
+          </h3>
         </div>
-        {multiplePlans && <p className="rounded-lg border border-amber/50 bg-amber/5 p-3 text-sm font-medium leading-relaxed text-ink">多個級別：保障未必同一計劃，先確認你揀嘅級別。</p>}
-        {match && match.totalSelected > 0 && <p className="rounded-lg bg-paper-2 p-3 text-sm leading-relaxed text-ink-soft">摘要對照 <strong className="text-ink">{match.matchedCount}/{match.totalSelected}</strong> · 非核保結果</p>}
+
+        {/* 核心賣點 (Selling Points) 區塊：精準凸顯保障重點 */}
+        {sellingPoints.length > 0 && (
+          <div className="rounded-xl border border-line bg-paper-2/70 p-3 text-xs">
+            <p className="font-bold text-ink-soft uppercase tracking-wider text-[11px] mb-1.5 flex items-center gap-1.5">
+              <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: highlightColor }} />
+              核心保障賣點 · SELLING POINTS
+            </p>
+            <ul className="space-y-1 text-ink font-medium">
+              {sellingPoints.map((sp, idx) => (
+                <li key={idx} className="flex items-start gap-1.5">
+                  <span className="font-bold select-none" style={{ color: highlightColor }}>✓</span>
+                  <span className="line-clamp-1">{sp}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {match && match.totalSelected > 0 && (
+          <p className="rounded-lg bg-paper-2 px-3 py-2 text-xs leading-relaxed text-ink-soft">
+            摘要對照 <strong className="text-ink">{match.matchedCount}/{match.totalSelected}</strong> · 非核保結果
+          </p>
+        )}
         <PriceRangeBar product={product} />
         <VerifiedPromotion product={product} />
         {/* 展開詳細計劃 (See More) 摺疊區域：預設收摺縮短 1/3 長度 */}
         {expanded && (
           <div className="flex flex-col gap-4 pt-1 animate-in fade-in duration-200">
+            {multiplePlans && (
+              <p className="rounded-lg border border-amber/50 bg-amber/5 p-2.5 text-xs font-medium leading-relaxed text-ink">
+                多個級別：此系列涵蓋不同保障級別，請先確認你所選的具體計劃。
+              </p>
+            )}
             <section aria-label="保障摘要">
               <h4 className="text-base font-bold text-ink">保障摘要</h4>
               <p className="mt-1 text-sm text-ink-soft">限額及條件以計劃原文為準。</p>

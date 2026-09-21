@@ -217,18 +217,18 @@ export default function Categories() {
                 viewport={{ once: true, margin: "-15% 0px" }}
                 transition={{ duration: 0.7, ease: EASE_OUT_EXPO }}
               >
-                <div className="flex h-full flex-col justify-between gap-6 rounded-card bg-ink p-8 text-paper shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
+                <div className="flex h-full flex-col justify-between gap-6 rounded-card border border-line bg-paper p-8 text-ink shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
                   <div>
-                    <p className="eyebrow mb-4 text-paper/50">COMPARE TOOL</p>
-                    <h3 className="font-serif text-[26px] font-bold leading-[1.25] max-md:text-[22px]">
+                    <p className="eyebrow mb-4 text-ink-faint">COMPARE TOOL</p>
+                    <h3 className="font-serif text-[26px] font-bold leading-[1.25] text-ink max-md:text-[22px]">
                       心水產品，並排對照
                     </h3>
 
                     {basketProducts.length > 0 ? (
                       <div className="mt-4">
-                        <p className="text-small text-paper/70">
+                        <p className="text-small text-ink-soft">
                           你嘅比較籃有{" "}
-                          <span className="font-grotesk font-bold text-paper">
+                          <span className="font-grotesk font-bold text-ink">
                             {basketProducts.length}/{COMPARE_LIMIT}
                           </span>{" "}
                           份產品：
@@ -237,7 +237,7 @@ export default function Categories() {
                           {basketProducts.map((p) => (
                             <span
                               key={p.id}
-                              className="chip border border-white/20 bg-white/10 text-paper/90"
+                              className="chip border border-line bg-paper-2 text-ink"
                             >
                               {p.insurer_zh} {p.product_name_zh || p.product_name}
                             </span>
@@ -245,13 +245,13 @@ export default function Categories() {
                         </div>
                       </div>
                     ) : (
-                      <p className="mt-3 max-w-[32em] text-small text-paper/70">
+                      <p className="mt-3 max-w-[32em] text-small text-ink-soft">
                         喺任何類別揀最多 {COMPARE_LIMIT} 份產品，保障逐項對齊，一個表睇晒分別。
                       </p>
                     )}
 
                     {/* 熱門比較組合 */}
-                    <p className="mt-5 text-[12px] font-bold uppercase tracking-[0.14em] text-paper/40">
+                    <p className="mt-5 text-[12px] font-bold uppercase tracking-[0.14em] text-ink-soft">
                       熱門比較組合
                     </p>
                     <ul className="mt-2.5 flex flex-col gap-2">
@@ -259,15 +259,15 @@ export default function Categories() {
                         <li key={combo.label}>
                           <Link
                             to={`/compare?ids=${combo.ids.join(",")}`}
-                            className="group/link inline-flex items-center gap-2 text-small font-medium text-paper/80 transition-colors hover:text-paper"
+                            className="group/link inline-flex items-center gap-2 text-small font-medium text-ink transition-colors hover:text-red"
                           >
-                            <span className="h-1 w-1 rounded-full bg-red" aria-hidden="true" />
+                            <span className="h-1.5 w-1.5 rounded-full bg-red" aria-hidden="true" />
                             <span className="underline-offset-4 group-hover/link:underline">
                               {combo.label}
                             </span>
                             <ArrowRight
                               size={13}
-                              className="text-paper/40 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:text-red"
+                              className="text-ink-faint transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:text-red"
                             />
                           </Link>
                         </li>

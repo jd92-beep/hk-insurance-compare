@@ -10,6 +10,9 @@
 <!-- review-2026-09-21-polish -->
 > **2026-09-21 UI Polish & Price Sort delivery:** Overlap fix, card polish & flat price sort Build `20260921.11` — [ui polish & price sort](docs/review/2026-09-21-ui-polish-overlap-fix-and-price-sort.md).
 <!-- /review-2026-09-21-polish -->
+<!-- review-2026-09-21-features -->
+> **2026-09-21 Six Feature Polish delivery:** Colorful cards, selling points, VHIS en & jumps, 3-tier PDF selector Build `20260921.12` — [six feature polish](docs/review/2026-09-21-six-feature-polish.md).
+<!-- /review-2026-09-21-features -->
 
 # AGENTS.md
 

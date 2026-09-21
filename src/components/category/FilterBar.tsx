@@ -2,7 +2,7 @@ import { useId, useState, type ReactNode } from "react";
 import { Check, ChevronDown, Filter, LayoutGrid, RotateCcw, Table2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export type SortKey = "default" | "fit-score" | "insurer-az";
+export type SortKey = "default" | "fit-score" | "insurer-az" | "price-asc" | "price-desc";
 export type ViewMode = "table" | "cards";
 export type TravelTripType = "all" | "single" | "annual";
 export type TravelRegion = "all" | "asia" | "worldwide" | "gba";
@@ -44,7 +44,7 @@ export default function FilterBar({
     </div>
     <div id={panelId} hidden={!isOpen} className="border-t border-line bg-paper-2/40">
       <div className="site-container flex flex-col gap-5 py-5">
-        <p className="rounded-xl border border-amber/20 bg-amber/5 p-3 text-sm leading-relaxed text-ink-soft">唔按價錢排序。揀好條件後，用相同計劃向公司報價。</p>
+        <p className="rounded-xl border border-jade/20 bg-jade/5 p-3 text-sm leading-relaxed text-ink-soft">依價錢排序時，各公司之獨立產品將分拆平鋪列出；未有明確保費者將排於最後並提示需往官網即時報價。</p>
         {isTravel && <div className="grid gap-5 fold:grid-cols-2">
           <fieldset><legend className="mb-2 text-base font-bold text-ink">單次定全年？</legend><div className="flex flex-wrap gap-2">
             {([{ id: "all", label: "全部" }, { id: "single", label: "單次旅程" }, { id: "annual", label: "全年多次" }] as const).map(({ id, label }) => <FilterChip key={id} active={travelTripType === id} onClick={() => onTravelTripTypeChange?.(id)}>{label}</FilterChip>)}
@@ -60,9 +60,11 @@ export default function FilterBar({
           <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm text-ink"><input type="checkbox" checked={onlyPremium} onChange={onTogglePremium} className="h-5 w-5 accent-[var(--jade)]" />有參考保費資料</label>
           {isTravel && <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm text-ink"><input type="checkbox" checked={onlyPromo} onChange={onTogglePromo} className="h-5 w-5 accent-[var(--jade)]" />有已記錄優惠</label>}
           <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm text-ink"><input type="checkbox" checked={includeHistorical} onChange={onToggleHistorical} className="h-5 w-5 accent-[var(--jade)]" />包括停售／歷史資料</label>
-          <label className="flex min-h-11 flex-wrap items-center gap-2 text-sm font-semibold text-ink">排列方式
-            <select value={sort} onChange={(event) => onSortChange(event.target.value as SortKey)} className="min-h-11 max-w-full rounded-lg border border-line-strong bg-paper px-3 text-sm text-ink">
+          <label htmlFor="catalogue-sort" className="flex min-h-11 flex-wrap items-center gap-2 text-sm font-semibold text-ink">排列方式
+            <select id="catalogue-sort" value={sort} onChange={(event) => onSortChange(event.target.value as SortKey)} className="min-h-11 max-w-full rounded-lg border border-line-strong bg-paper px-3 text-sm text-ink">
               <option value="default">預設（摘要命中）</option>
+              <option value="price-asc">保費：由低至高 ↑</option>
+              <option value="price-desc">保費：由高至低 ↓</option>
               <option value="fit-score" disabled={!activeFeatureCount}>摘要符合由多至少</option>
               <option value="insurer-az">公司英文名 A–Z</option>
             </select>

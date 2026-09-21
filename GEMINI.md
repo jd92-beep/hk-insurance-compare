@@ -7,6 +7,9 @@
 <!-- review-2026-09-21-layout -->
 > **2026-09-21 Layout delivery:** Top deck side-by-side & full-width matrix Build `20260921.10` — [layout review](docs/review/2026-09-21-layout-top-deck-and-fullwidth-matrix.md).
 <!-- /review-2026-09-21-layout -->
+<!-- review-2026-09-21-polish -->
+> **2026-09-21 UI Polish & Price Sort delivery:** Overlap fix, card polish & flat price sort Build `20260921.11` — [ui polish & price sort](docs/review/2026-09-21-ui-polish-overlap-fix-and-price-sort.md).
+<!-- /review-2026-09-21-polish -->
 
 # GEMINI.md — current project memory, not a completion certificate
 

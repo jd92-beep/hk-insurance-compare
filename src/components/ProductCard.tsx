@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { Check, Plus, ArrowRight } from 'lucide-react';
+import { Check, Plus, ArrowRight, ChevronDown } from 'lucide-react';
 import type { Product } from '@/types/insurance';
 import type { FeatureMatchResult } from '@/lib/feature-filters';
 import { categoryColor } from '@/lib/categories';
@@ -15,6 +16,7 @@ import { cn } from '@/lib/utils';
 
 /** Separate links/buttons: selecting text, opening details and using a keyboard never navigates the card accidentally. */
 export default function ProductCard({ product, className, match }: { product: Product; className?: string; match?: FeatureMatchResult }) {
+  const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
   const compare = useCompare();
   const selected = compare.has(product.id);
@@ -48,16 +50,37 @@ export default function ProductCard({ product, className, match }: { product: Pr
         {match && match.totalSelected > 0 && <p className="rounded-lg bg-paper-2 p-3 text-sm leading-relaxed text-ink-soft">摘要對照 <strong className="text-ink">{match.matchedCount}/{match.totalSelected}</strong> · 非核保結果</p>}
         <PriceRangeBar product={product} />
         <VerifiedPromotion product={product} />
-        <section aria-label="保障摘要">
-          <h4 className="text-base font-bold text-ink">保障摘要</h4>
-          <p className="mt-1 text-sm text-ink-soft">限額及條件以計劃原文為準。</p>
-          {product.coverage.length ? <dl className="mt-3 space-y-3">{product.coverage.slice(0, 2).map((row, i) => <div key={`${row.item}-${i}`}><dt className="text-base font-semibold text-ink">{row.item}</dt><dd className="mt-1 text-base leading-relaxed text-ink-soft">{row.limit}</dd></div>)}</dl> : <p className="mt-2 text-base text-ink-soft">未提供可比較摘要；請向公司索取保障表。</p>}
-        </section>
-        <section className="rounded-xl border border-amber/50 bg-amber/5 p-4" aria-label="不保與限制">
-          <h4 className="text-base font-bold text-ink">可能唔保</h4>
-          <p className="mt-2 text-base leading-relaxed text-ink">{product.exclusions[0] || '未提供完整不保事項；唔代表沒有除外條款。'}</p>
-          <Link to={`/product/${product.id}`} className="mt-2 inline-flex min-h-11 items-center gap-2 text-base font-semibold text-jade underline">全部限制同來源 <ArrowRight size={16} aria-hidden="true" /></Link>
-        </section>
+        {/* 展開詳細計劃 (See More) 摺疊區域：預設收摺縮短 1/3 長度 */}
+        {expanded && (
+          <div className="flex flex-col gap-4 pt-1 animate-in fade-in duration-200">
+            <section aria-label="保障摘要">
+              <h4 className="text-base font-bold text-ink">保障摘要</h4>
+              <p className="mt-1 text-sm text-ink-soft">限額及條件以計劃原文為準。</p>
+              {product.coverage.length ? <dl className="mt-3 space-y-3">{product.coverage.slice(0, 2).map((row, i) => <div key={`${row.item}-${i}`}><dt className="text-base font-semibold text-ink">{row.item}</dt><dd className="mt-1 text-base leading-relaxed text-ink-soft">{row.limit}</dd></div>)}</dl> : <p className="mt-2 text-base text-ink-soft">未提供可比較摘要；請向公司索取保障表。</p>}
+            </section>
+            <section className="rounded-xl border border-amber/50 bg-amber/5 p-4" aria-label="不保與限制">
+              <h4 className="text-base font-bold text-ink">可能唔保</h4>
+              <p className="mt-2 text-base leading-relaxed text-ink">{product.exclusions[0] || '未提供完整不保事項；唔代表沒有除外條款。'}</p>
+              <Link to={`/product/${product.id}`} className="mt-2 inline-flex min-h-11 items-center gap-2 text-base font-semibold text-jade underline">全部限制同來源 <ArrowRight size={16} aria-hidden="true" /></Link>
+            </section>
+          </div>
+        )}
+
+        {/* 下方居中「See More」切換按鈕 */}
+        <div className="flex justify-center pt-1">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setExpanded((v) => !v);
+            }}
+            className="group inline-flex items-center gap-1.5 rounded-full border border-line bg-paper-2/80 px-4 py-1.5 text-xs font-bold text-ink-soft transition-all hover:border-jade hover:bg-jade-wash hover:text-jade active:scale-95 cursor-pointer"
+            aria-expanded={expanded}
+          >
+            <span>{expanded ? '收起詳細計劃' : '查看詳細計劃 (See More)'}</span>
+            <ChevronDown size={14} className={cn('transition-transform duration-300', expanded && 'rotate-180')} aria-hidden="true" />
+          </button>
+        </div>
         <div className="mt-1 grid grid-cols-2 gap-3 border-t border-line-strong pt-4">
           <Link to={`/product/${product.id}`} className="inline-flex min-h-12 items-center justify-center rounded-xl border border-line-strong px-3 py-3 text-center text-base font-bold text-ink hover:bg-paper-2">睇計劃詳情</Link>
           <button type="button" aria-pressed={selected} disabled={!selected && compare.isFull} onClick={() => {

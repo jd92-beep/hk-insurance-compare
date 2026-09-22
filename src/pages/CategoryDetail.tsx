@@ -1,6 +1,6 @@
 import { lazy, Suspense, useMemo, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router';
-import { Search, Scale } from 'lucide-react';
+import { Search } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import EmptyState from '@/components/EmptyState';
 import ProductCard from '@/components/ProductCard';
@@ -18,7 +18,6 @@ import {
   type FeatureMatchMode,
   type PersonaPreset,
 } from '@/lib/feature-filters';
-import { MEDICAL_PATH_CHIPS, isMedicalFamilyCategory } from '@/lib/research-intents';
 import { useInsuranceData, useProducts } from '@/providers/InsuranceDataProvider';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { usePolicyCalendar } from '@/hooks/use-policy-calendar';
@@ -124,29 +123,7 @@ function Catalogue({
       <p className="eyebrow mt-6 text-jade">{copy.english}</p>
       <h1 className="mt-2 font-serif text-3xl font-bold leading-tight text-ink md:text-5xl">{copy.h1}</h1>
       <p className="mt-4 max-w-3xl text-lg leading-relaxed text-ink-soft">{copy.sub}</p>
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-line bg-paper-2 px-4 py-2.5 text-sm text-ink-soft">
-        <span className="flex items-center gap-3">
-          <Link to={`/guides#${categoryId}`} className="font-semibold text-jade underline">點揀指南</Link>
-          <span className="text-line-strong">·</span>
-          <Link to="/data-quality" className="font-semibold text-jade underline">資料覆核狀態</Link>
-        </span>
-        <Link to="/compare" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-line-strong bg-paper px-4 font-semibold text-ink"><Scale size={18} aria-hidden="true" />比較清單</Link>
-      </div>
-      {/* HowWeRankCard removed from visible layout per user instructions */}
-      {isMedicalFamilyCategory(categoryId) && (
-        <nav aria-label="醫療路徑導航" className="mt-4 flex flex-wrap items-center gap-2" data-testid="medical-path-chips">
-          <span className="text-sm font-semibold text-ink-soft">醫療路徑：</span>
-          {MEDICAL_PATH_CHIPS.map((chip) => (
-            <Link
-              key={chip.id}
-              to={chip.to}
-              className="inline-flex min-h-11 items-center rounded-lg border border-line bg-paper px-3 text-sm font-semibold text-ink hover:border-jade hover:text-jade"
-            >
-              {chip.label}
-            </Link>
-          ))}
-        </nav>
-      )}
+      {/* HowWeRankCard, 點揀指南, MEDICAL_PATH_CHIPS (醫療路徑) removed from visible layout per user instructions */}
       <label htmlFor="catalogue-search" className="mt-6 block text-base font-bold text-ink">搵保險公司或產品名稱</label>
       <div className="relative mt-2 max-w-2xl"><Search size={20} aria-hidden="true" className="absolute left-4 top-4 text-ink-soft" /><input id="catalogue-search" type="search" value={query} onChange={e => setQuery(e.target.value)} maxLength={120} placeholder="例如：安盛、AXA、產品名稱" className="h-12 w-full rounded-xl border border-line-strong bg-paper pl-12 pr-4 text-base text-ink" /></div>
     </header>

@@ -19,6 +19,9 @@
 <!-- review-2026-09-22-selling-points -->
 > **2026-09-22 Card Selling Points & Terms Redesign delivery:** Reorganized pricing, plan tiers and terms, concise selling points without initial disclaimer banners Build `20260922.01` — [card redesign review](docs/review/2026-09-22-card-selling-points-and-terms-redesign.md).
 <!-- /review-2026-09-22-selling-points -->
+<!-- review-2026-09-22-card-compact-and-highend-scenarios -->
+> **2026-09-22 Card Compact & High-End Scenarios delivery:** 40% height reduction, focused selling points, 5 pain-point scenario filters, navigation rows removed Build `20260922.02` — [delivery review](docs/review/2026-09-22-card-compact-and-highend-scenarios.md).
+<!-- /review-2026-09-22-card-compact-and-highend-scenarios -->
 
 # AGENTS.md
 

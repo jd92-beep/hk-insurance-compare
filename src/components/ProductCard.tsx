@@ -20,7 +20,6 @@ import { handleCardClickNavigation } from "@/lib/card-navigation";
 import {
   deriveCardSellingPoints,
   deriveCardPlanTiers,
-  deriveCompactPremium,
 } from "@/lib/product-card-data";
 import { quotePathway } from "@/lib/quote-pathway";
 import VerifiedPromotion from "@/components/VerifiedPromotion";
@@ -49,16 +48,13 @@ export default function ProductCard({
   const detailHref = `/product/${product.id}`;
   const highlightColor = getInsurerColor(product.insurer || product.insurer_zh);
 
-  // 1. 核心賣點（Selling Points）：官方提煉、清晰精煉，不再是大段文字
+  // 1. 核心保障賣點（Selling Points）：清晰聚焦、即時掌握核心特色
   const sellingPoints = useMemo(() => deriveCardSellingPoints(product), [product]);
 
-  // 2. 計劃層級（Plan Tiers）：獨立結構化呈現，包括 VHIS 認可編號及自付費選項
+  // 2. 計劃層級（Plan Tiers）：包含認可編號及自付費選項
   const planTiersInfo = useMemo(() => deriveCardPlanTiers(product), [product]);
 
-  // 3. 參考保費（Compact Premium）：首屏不再顯示厚重的「有公開保費文字」區塊，改為極簡清晰標籤
-  const compactPremium = useMemo(() => deriveCompactPremium(product), [product]);
-
-  // 4. 展開後所使用的詳細報價通道資料
+  // 3. 展開後所使用的詳細報價通道資料
   const pathway = useMemo(() => quotePathway(product), [product]);
 
   return (
@@ -75,11 +71,11 @@ export default function ProductCard({
           aria-hidden="true"
         />
 
-        <div className="flex flex-col gap-3 p-5 md:p-6">
+        <div className="flex flex-col gap-2.5 p-4 md:p-5">
           {/* 公司名稱與收藏按鈕 */}
           <div>
-            <div className="flex items-start justify-between gap-3">
-              <p className="flex items-center gap-2 text-sm font-semibold text-ink-soft">
+            <div className="flex items-start justify-between gap-2">
+              <p className="flex items-center gap-1.5 text-xs font-semibold text-ink-soft">
                 <span>
                   {product.insurer_zh}{" "}
                   <span className="font-grotesk">{product.insurer}</span>
@@ -110,15 +106,15 @@ export default function ProductCard({
                 )}
               >
                 {isFav ? (
-                  <Heart size={20} className="fill-red text-red drop-shadow-xs" />
+                  <Heart size={18} className="fill-red text-red drop-shadow-xs" />
                 ) : (
-                  <Card3DGem size={22} color={highlightColor} glow={false} />
+                  <Card3DGem size={20} color={highlightColor} glow={false} />
                 )}
               </button>
             </div>
 
             {/* 產品名稱 */}
-            <h3 className="mt-2 text-lg font-bold leading-snug text-ink">
+            <h3 className="mt-1 text-base font-bold leading-snug text-ink">
               <Link
                 className="rounded hover:text-jade hover:underline focus-visible:outline-offset-4"
                 to={detailHref}
@@ -127,57 +123,49 @@ export default function ProductCard({
               </Link>
             </h3>
 
-            {/* 計劃層級 (Plan Tiers) 獨立標籤列 */}
+            {/* 計劃層級 (Plan Tiers) 緊湊標籤列 */}
             {planTiersInfo.tiers.length > 0 && (
-              <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
-                <span className="text-[11px] font-bold text-ink-soft">計劃層級：</span>
-                {planTiersInfo.tiers.map((tier, idx) => (
+              <div className="mt-1.5 flex flex-wrap items-center gap-1">
+                <span className="text-[10px] font-bold text-ink-soft">層級：</span>
+                {planTiersInfo.tiers.slice(0, 3).map((tier, idx) => (
                   <span
                     key={idx}
-                    className="inline-flex items-center rounded-md border border-line bg-paper-2/80 px-2 py-0.5 text-[11px] font-semibold text-ink"
+                    className="inline-flex items-center rounded border border-line bg-paper-2/80 px-1.5 py-0.2 text-[10px] font-semibold text-ink"
                   >
                     {tier}
                   </span>
                 ))}
                 {planTiersInfo.vhisCode && (
-                  <span className="inline-flex items-center rounded-md border border-jade/30 bg-jade-wash/40 px-2 py-0.5 text-[11px] font-bold text-jade">
-                    認可編號 {planTiersInfo.vhisCode}
+                  <span className="inline-flex items-center rounded border border-jade/30 bg-jade-wash/40 px-1.5 py-0.2 text-[10px] font-bold text-jade">
+                    {planTiersInfo.vhisCode}
                   </span>
                 )}
                 {planTiersInfo.deductibles && (
                   <span className="text-[10px] text-ink-faint">
-                    自付費：{planTiersInfo.deductibles}
+                    自付：{planTiersInfo.deductibles}
                   </span>
                 )}
               </div>
             )}
           </div>
 
-          {/* 核心保障賣點 (Selling Points) 區塊：重點突出、簡明易掃描 */}
+          {/* 核心保障賣點 (Selling Points) 區塊：重點突出、精準乾淨 */}
           {sellingPoints.length > 0 && (
-            <div className="rounded-xl border border-line bg-paper-2/70 p-3 text-xs">
-              <p className="mb-2 flex items-center justify-between font-bold text-ink-soft">
-                <span className="flex items-center gap-1.5 uppercase tracking-wider text-[11px]">
-                  <span
-                    className="inline-block h-2 w-2 rounded-full"
-                    style={{ backgroundColor: highlightColor }}
-                  />
-                  官方核心保障賣點 · SELLING POINTS
-                </span>
-                <span className="text-[10px] text-ink-faint font-normal">精華摘要</span>
-              </p>
-              <ul className="space-y-1.5 text-ink">
+            <div className="rounded-lg border border-line/60 bg-paper-2/60 p-2.5 text-xs">
+              <ul className="space-y-1 text-ink">
                 {sellingPoints.map((sp, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
+                  <li key={idx} className="flex items-baseline gap-1.5 leading-snug">
                     <span
-                      className="font-bold select-none text-[12px] leading-tight"
-                      style={{ color: highlightColor }}
+                      className="inline-block shrink-0 rounded px-1.5 py-0.2 text-[10px] font-bold select-none"
+                      style={{
+                        backgroundColor: `${highlightColor}18`,
+                        color: highlightColor,
+                      }}
                     >
-                      ✓
+                      {sp.label}
                     </span>
-                    <span className="leading-snug">
-                      <strong className="font-bold text-ink mr-1">{sp.label}：</strong>
-                      <span className="font-medium text-ink-soft">{sp.text}</span>
+                    <span className="font-medium text-ink line-clamp-1" title={sp.text}>
+                      {sp.text}
                     </span>
                   </li>
                 ))}
@@ -187,23 +175,10 @@ export default function ProductCard({
 
           {/* 檢索摘要吻合指示 */}
           {match && match.totalSelected > 0 && (
-            <p className="rounded-lg bg-paper-2 px-3 py-1.5 text-xs leading-relaxed text-ink-soft">
+            <p className="rounded-md bg-paper-2 px-2.5 py-1 text-xs leading-relaxed text-ink-soft">
               摘要對照 <strong className="text-ink">{match.matchedCount}/{match.totalSelected}</strong> · 非核保結果
             </p>
           )}
-
-          {/* 首屏極簡參考保費標籤（取代原先冗長且重複的「有公開保費文字」區塊） */}
-          <div className="flex items-center justify-between rounded-lg border border-line bg-paper-2/40 px-3 py-2 text-xs">
-            <div className="flex items-center gap-1.5">
-              <span className="font-medium text-ink-soft">參考保費：</span>
-              <span className="font-grotesk font-bold text-ink">
-                {compactPremium.text}
-              </span>
-            </div>
-            <span className="rounded bg-paper px-1.5 py-0.5 text-[10px] font-medium text-ink-faint border border-line/60">
-              {compactPremium.subtext || "官方快照"}
-            </span>
-          </div>
 
           {/* 認證推廣優惠 */}
           <VerifiedPromotion product={product} />
@@ -321,10 +296,10 @@ export default function ProductCard({
           </div>
 
           {/* 底部雙按鈕：睇計劃詳情 & 加入比較 */}
-          <div className="mt-1 grid grid-cols-2 gap-3 border-t border-line-strong pt-4">
+          <div className="mt-1 grid grid-cols-2 gap-2.5 border-t border-line-strong pt-3">
             <Link
               to={detailHref}
-              className="inline-flex min-h-12 items-center justify-center rounded-xl border border-line-strong px-3 py-3 text-center text-base font-bold text-ink hover:bg-paper-2 transition-colors"
+              className="inline-flex min-h-10 items-center justify-center rounded-lg border border-line-strong px-2 py-2 text-center text-sm font-bold text-ink hover:bg-paper-2 transition-colors"
             >
               睇計劃詳情
             </Link>
@@ -342,16 +317,16 @@ export default function ProductCard({
                 toastCompareToggle(title, !selected);
               }}
               className={cn(
-                "inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border px-3 py-3 text-base font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50",
+                "inline-flex min-h-10 items-center justify-center gap-1.5 rounded-lg border px-2 py-2 text-sm font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50",
                 selected
                   ? "border-jade bg-jade-wash text-jade"
                   : "border-ink bg-ink text-paper hover:bg-ink-soft"
               )}
             >
               {selected ? (
-                <Check size={18} aria-hidden="true" />
+                <Check size={16} aria-hidden="true" />
               ) : (
-                <Plus size={18} aria-hidden="true" />
+                <Plus size={16} aria-hidden="true" />
               )}
               {selected ? "已加入比較" : "加入比較"}
             </button>

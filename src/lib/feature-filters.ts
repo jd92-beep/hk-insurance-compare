@@ -332,6 +332,11 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "懷孕嚴重併發症手術及深切治療",
       keywords: ["妊娠併發症", "懷孕併發症", "產科併發症", "子癇", "胎盤早期剝離", "妊娠期手術", "宮外孕", "產科急症"],
     },
+    {
+      id: "day-surgery-center",
+      label: "日間醫療中心手術及內窺鏡全數賠償",
+      keywords: ["日間醫療中心", "日間中心", "日間手術", "門診手術", "內窺鏡", "胃鏡", "腸鏡", "微創手術", "門診內窺鏡", "日間手術中心"],
+    },
   ],
 
   // 4. Top-up 差額醫療 (top-up-medical - 12 tags)
@@ -1167,39 +1172,47 @@ export const CATEGORY_PERSONA_PRESETS: Record<string, PersonaPreset[]> = {
     },
   ],
 
-  // 3. 高端醫療 (4 Presets)
+  // 3. 高端醫療 (5 Presets)
   "high-end-medical": [
     {
-      id: "private-room-zero-deductible",
-      label: "👑 私家房零自付尊尚方案",
-      icon: "👑",
-      description: "私家房、全數賠償、出院免找數",
-      tagIds: ["private-room", "full-cover-all", "cashless-global", "icu-no-limit"],
-      featureIds: ["private-room", "full-cover-all", "cashless-global", "icu-no-limit"],
+      id: "corporate-topup-value",
+      label: "💼 打工仔配合公司醫保慳保費",
+      icon: "💼",
+      description: "利用高墊底費平玩高端全保，退休免核保降自負額",
+      tagIds: ["deductible-options", "full-cover-all", "high-annual-limit", "unlimited-lifetime"],
+      featureIds: ["deductible-options", "full-cover-all", "high-annual-limit", "unlimited-lifetime"],
     },
     {
-      id: "global-cashless-concierge",
-      label: "🌐 亞洲 / 環球出院免找數與名醫禮賓",
-      icon: "🌐",
-      description: "環球／亞洲網絡、免找數、第二醫療意見",
-      tagIds: ["cashless-global", "second-opinion-concierge", "high-annual-limit", "full-cover-all"],
-      featureIds: ["cashless-global", "second-opinion-concierge", "high-annual-limit", "full-cover-all"],
-    },
-    {
-      id: "cancer-proton-full-cover",
-      label: "⚡ 癌症質子重離子精準治療",
+      id: "cancer-precision-full-cover",
+      label: "⚡ 癌症質子標靶全包專案",
       icon: "⚡",
-      description: "質子／標靶／免疫治療、CT/MRI 零自付",
+      description: "標靶藥與質子重離子全數賠償，造影零共同保險",
       tagIds: ["advanced-cancer-proton", "advanced-imaging-zero-copay", "full-cover-all", "post-hosp-rehab"],
       featureIds: ["advanced-cancer-proton", "advanced-imaging-zero-copay", "full-cover-all", "post-hosp-rehab"],
     },
     {
-      id: "family-deductible-value",
-      label: "🛡️ 中產家庭自負額高 CP 組合",
+      id: "private-room-cashless",
+      label: "👑 私家房免找數直通車",
+      icon: "👑",
+      description: "入住標準私家房免降級打折，私家醫院免找數直出",
+      tagIds: ["private-room", "cashless-global", "full-cover-all", "icu-no-limit"],
+      featureIds: ["private-room", "cashless-global", "full-cover-all", "icu-no-limit"],
+    },
+    {
+      id: "global-crossborder-freedom",
+      label: "🌐 亞洲環球名醫就醫自由",
+      icon: "🌐",
+      description: "亞洲環球名醫網絡直付，享國際第二專家會診",
+      tagIds: ["cashless-global", "second-opinion-concierge", "high-annual-limit", "full-cover-all"],
+      featureIds: ["cashless-global", "second-opinion-concierge", "high-annual-limit", "full-cover-all"],
+    },
+    {
+      id: "family-lifetime-care",
+      label: "🛡️ 家庭三代終身無憂方案",
       icon: "🛡️",
-      description: "自選墊底費＋高年度上限；配合公司醫保",
-      tagIds: ["deductible-options", "high-annual-limit", "unlimited-lifetime", "full-cover-all"],
-      featureIds: ["deductible-options", "high-annual-limit", "unlimited-lifetime", "full-cover-all"],
+      description: "終身無額度上限每年重置，保證終身續保包出院護理",
+      tagIds: ["unlimited-lifetime", "high-annual-limit", "post-hosp-rehab", "deductible-options"],
+      featureIds: ["unlimited-lifetime", "high-annual-limit", "post-hosp-rehab", "deductible-options"],
     },
   ],
 

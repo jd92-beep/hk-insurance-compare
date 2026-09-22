@@ -22,6 +22,9 @@
 <!-- review-2026-09-22-card-compact-and-highend-scenarios -->
 > **2026-09-22 Card Compact & High-End Scenarios delivery:** 40% height reduction, focused selling points, 5 pain-point scenario filters, navigation rows removed Build `20260922.02` — [delivery review](docs/review/2026-09-22-card-compact-and-highend-scenarios.md).
 <!-- /review-2026-09-22-card-compact-and-highend-scenarios -->
+<!-- review-2026-09-22-comprehensive-category-filters -->
+> **2026-09-22 Comprehensive Category Filters delivery:** Expanded 66 high-value filter tags across all 11 categories, FilterBar quick pills, and 117k deep boundary verification Build `20260922.03` — [delivery review](docs/review/2026-09-22-comprehensive-category-filters.md).
+<!-- /review-2026-09-22-comprehensive-category-filters -->
 
 # GEMINI.md — current project memory, not a completion certificate
 

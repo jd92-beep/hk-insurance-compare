@@ -134,6 +134,36 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "外遊期間香港寓所爆竊及家居財物損毀",
       keywords: ["家居爆竊", "外遊期間家居", "住所爆竊", "寓所被竊", "家居盜竊", "入屋犯法", "香港住所", "家居財物被竊"],
     },
+    {
+      id: "schengen-compliant",
+      label: "申根簽證合規高額醫療 (Schengen Compliant €30,000+)",
+      keywords: ["申根", "Schengen", "申根合規", "歐洲申根", "30,000歐元", "申根簽證", "1,200,000"],
+    },
+    {
+      id: "delay-cash-allowance",
+      label: "航班延誤現金津貼 (不論原因滿5-6小時即賠)",
+      keywords: ["延誤現金", "滿5小時", "滿6小時", "現金賠償", "延誤津貼", "每滿5小時", "每滿6小時", "現金津貼"],
+    },
+    {
+      id: "lost-wallet-cash",
+      label: "個人現金、銀包遺失及盜竊保障",
+      keywords: ["現金遺失", "個人錢財", "銀包", "現金意外遺失", "盜竊現金", "現金保障"],
+    },
+    {
+      id: "extreme-trekking-sports",
+      label: "登山健行及高海拔徒步 (Trekking / Hiking)",
+      keywords: ["徒步", "健行", "登山", "遠足", "Trekking", "Hiking", "高度限制", "高海拔"],
+    },
+    {
+      id: "hospital-deposit-guarantee",
+      label: "海外住院免押金 / 入院按金保證",
+      keywords: ["免押金", "住院按金", "入院按金", "免保證金", "免押金住院", "海外住院按金"],
+    },
+    {
+      id: "overseas-car-rental-breakdown",
+      label: "海外自駕壞車拖車及公路救援支援",
+      keywords: ["壞車", "公路救援", "自駕救援", "車輛自負額", "租車支援", "租車損壞"],
+    },
   ],
 
   // 2. 自願醫保 / 常規醫療 (medical - 16 tags)
@@ -238,6 +268,36 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "日間醫療中心網絡直付 (門診胃鏡腸鏡免找數)",
       keywords: ["日間醫療中心", "日間中心直付", "門診胃鏡", "門診腸鏡", "日間內窺鏡", "免找數", "直付中心", "醫療卡直付"],
     },
+    {
+      id: "flexi-plan-tier",
+      label: "靈活計劃 (Flexi Plan 特選高額升級)",
+      keywords: ["靈活計劃", "Flexi", "靈活", "升級保障", "靈活自願醫保"],
+    },
+    {
+      id: "standard-plan-tier",
+      label: "標準計劃 (Standard Plan 政府劃一基準)",
+      keywords: ["標準計劃", "Standard", "標準自願醫保", "政府標準"],
+    },
+    {
+      id: "semi-private-tier",
+      label: "半私家房級別保障 (Semi-Private)",
+      keywords: ["半私家", "半私家病房", "雙人房", "半私家房", "Semi-Private"],
+    },
+    {
+      id: "private-ward-tier",
+      label: "私家房級別保障 (Standard Private)",
+      keywords: ["私家房", "標準私家房", "單人房", "私家病房", "Private Room"],
+    },
+    {
+      id: "zero-deductible-plan",
+      label: "零自負額 / 全數由首元起賠 (zsh 墊底)",
+      keywords: ["零自付", "0自付", "零墊底", "0墊底", "零自負額", "0自負額", "無自負額", "免自付費", "首元起賠"],
+    },
+    {
+      id: "corporate-gap-deductible",
+      label: "特設自負額以銜接公司醫保 (HK.6萬 - 5萬墊底)",
+      keywords: ["16,000", "20,000", "25,000", "30,000", "50,000", "銜接公司醫保", "公司醫保搭檔", "特設自付費", "自選自付費"],
+    },
   ],
 
   // 3. 高端醫療 (high-end-medical - 14 tags)
@@ -337,6 +397,36 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "日間醫療中心手術及內窺鏡全數賠償",
       keywords: ["日間醫療中心", "日間中心", "日間手術", "門診手術", "內窺鏡", "胃鏡", "腸鏡", "微創手術", "門診內窺鏡", "日間手術中心"],
     },
+    {
+      id: "asia-region-cover",
+      label: "亞洲保障範圍 (性價比最高 / 涵蓋澳紐日本)",
+      keywords: ["亞洲", "亞洲及澳紐", "亞洲保障", "亞洲範圍", "亞洲計劃", "亞洲地區"],
+    },
+    {
+      id: "worldwide-excl-us",
+      label: "全球保障 (除美國外 - Worldwide excl. US)",
+      keywords: ["全球除美", "除美國", "排除美國", "不包括美國", "全球（不包括美國）", "全球（除美國外）"],
+    },
+    {
+      id: "worldwide-incl-us",
+      label: "全球最高規格保障 (包括美國 - Worldwide incl. US)",
+      keywords: ["全球（包括美國）", "全球含美", "包括美國", "全球保障（含美國）", "環球包括美國"],
+    },
+    {
+      id: "deductible-waiver-at-retirement",
+      label: "指定年齡免核保調低自負額 (50/55/60/65歲轉換權)",
+      keywords: ["調低自付費", "減自負額", "免核保調低", "免驗身減自付", "50歲", "55歲", "60歲", "65歲", "自負額調低權", "無須核保調低"],
+    },
+    {
+      id: "china-grade-3a-direct-billing",
+      label: "中國內地三甲醫院網絡免找數直付",
+      keywords: ["三甲醫院", "內地三甲", "中國內地指定醫院", "三級甲等", "內地免找數", "內地直付網絡"],
+    },
+    {
+      id: "heavy-ion-proton-therapy",
+      label: "質子重離子尖端治癌技術全額賠償",
+      keywords: ["質子", "重離子", "質子治療", "重離子治療", "養和質子", "先進放射治療", "癌症質子"],
+    },
   ],
 
   // 4. Top-up 差額醫療 (top-up-medical - 12 tags)
@@ -420,6 +510,36 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       id: "chinese-medicine-extra",
       label: "手術出院後中醫跌打骨傷差額補充",
       keywords: ["中醫骨傷", "跌打", "中醫差額", "中醫超額", "術後中醫", "針灸差額", "中草藥", "跌打差額"],
+    },
+    {
+      id: "smm-80-85-ratio",
+      label: "SMM 差額賠償 80%–85% (超額醫療補助)",
+      keywords: ["80%", "85%", "SMM", "80%–85%", "80%賠償", "85%賠償", "超額醫療"],
+    },
+    {
+      id: "high-deductible-full-reimburse",
+      label: "扣除墊底後 100% 全數實報實銷",
+      keywords: ["全數賠償", "100%", "全額賠償", "扣除自付費後全數", "100%實報實銷", "零自付"],
+    },
+    {
+      id: "conversion-on-retirement-resignation",
+      label: "離職或退休時免驗身轉為個人獨立醫保",
+      keywords: ["離職退休免驗身", "免核保轉換", "保證轉換個人", "免驗身保證轉保", "離職轉換", "退休轉保"],
+    },
+    {
+      id: "cancer-target-drug-in-smm",
+      label: "涵蓋非手術癌症自費標靶藥物超額補助",
+      keywords: ["標靶藥物", "自費標靶", "非手術癌症", "化療", "癌症藥物", "標靶治療差額"],
+    },
+    {
+      id: "corporate-direct-offset",
+      label: "公司醫保賠償額 100% 抵扣自負額 (零自付差額)",
+      keywords: ["公司醫保賠償額即抵銷", "抵銷墊底費", "抵扣自負額", "公司醫保直接抵扣", "零自付"],
+    },
+    {
+      id: "lifetime-guaranteed-renewal",
+      label: "終身續保相關條款 (不隨離職而中斷)",
+      keywords: ["終身保證續保", "保證每年續保", "續保至100歲", "終身續保", "保證終身"],
     },
   ],
 
@@ -515,6 +635,36 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "火災或嚴重水浸後廢物清理及泥頭搬遷雜費",
       keywords: ["廢物清理", "泥頭清理", "殘礫清理", "火災瓦礫", "水浸雜費", "清理費用", "清除殘礫", "泥頭搬運"],
     },
+    {
+      id: "trace-and-access-pipes",
+      label: "暗渠漏水水源探測及紅外線勘測 (Trace & Access)",
+      keywords: ["水源探測", "暗渠", "探測費", "漏水探測", "紅外線", "尋找水源", "水管破裂源頭探測費"],
+    },
+    {
+      id: "high-building-age-50",
+      label: "受保樓齡達50年或以上 (無樓齡嚴格限制)",
+      keywords: ["50年", "40年", "樓齡", "樓齡達50年", "不設樓齡上限", "受保樓齡"],
+    },
+    {
+      id: "village-house-tenement",
+      label: "村屋 / 唐樓 / 獨立屋可投保",
+      keywords: ["村屋", "唐樓", "獨立屋", "洋房", "低密度住宅", "三合土建造"],
+    },
+    {
+      id: "evil-tenant-malicious-damage",
+      label: "租客惡意破壞及故意損害賠償",
+      keywords: ["租客惡意破壞", "蓄意破壞", "惡意行為", "惡意損壞", "租客蓄意破壞"],
+    },
+    {
+      id: "landlord-rent-default",
+      label: "租金拖欠追討及租金損失保障",
+      keywords: ["租金損失", "租金拖欠", "未付租金", "追討租金", "欠租", "租客拖欠"],
+    },
+    {
+      id: "typhoon-black-rainstorm-cover",
+      label: "八號/十號風球及黑雨水浸吹裂窗戶全保",
+      keywords: ["颱風", "黑雨", "暴風雨", "十號風球", "八號風球", "水浸", "吹裂窗戶", "風暴損壞"],
+    },
   ],
 
   // 6. 危疾保險 (critical-illness - 14 tags)
@@ -608,6 +758,36 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       id: "loss-of-independent-existence",
       label: "喪失獨立生活能力 (ADL) 終身年金或每月生活津貼",
       keywords: ["喪失獨立生活能力", "日常生活活動", "ADL", "無法自理", "長期照顧", "護理津貼", "傷殘年金", "獨立生活能力"],
+    },
+    {
+      id: "pure-term-ci-consumption",
+      label: "定期純危疾 (Term CI / 無儲蓄成分純消費型)",
+      keywords: ["純危疾", "定期危疾", "純保障", "無儲蓄", "消費型", "純保障計劃", "Term CI"],
+    },
+    {
+      id: "whole-life-savings-ci",
+      label: "終身儲蓄型危疾 (具保證現金價值及分紅紅利)",
+      keywords: ["終身危疾", "儲蓄危疾", "現金價值", "分紅", "紅利", "終身保障", "儲蓄型"],
+    },
+    {
+      id: "multi-claim-cancer-stroke-cardiac",
+      label: "癌症、心臟病及中風多次多重賠償 (高達5-10次)",
+      keywords: ["多重賠償", "多次賠償", "多次索償", "三大危疾多重", "多達5次", "多達10次", "多達6次"],
+    },
+    {
+      id: "cancer-1yr-waiting-period",
+      label: "癌症 1 年快速等候期 (持續/新發癌症生活津貼)",
+      keywords: ["1年等候期", "等候期最少相隔1年", "1年快速", "相隔1年", "持續癌症津貼"],
+    },
+    {
+      id: "angioplasty-minor-advance",
+      label: "心臟血管成形術 (通波仔) 及原位癌早期預支 20%-25%",
+      keywords: ["通波仔", "血管成形術", "原位癌", "早期危疾", "預支", "20%", "25%"],
+    },
+    {
+      id: "unknown-virus-icu-benefit",
+      label: "未知傳染病或非定義嚴重疾病 ICU 連續住院賠償",
+      keywords: ["未知疾病", "ICU", "深切治療", "非定義疾病", "未知傳染病", "連續住院"],
     },
   ],
 
@@ -703,6 +883,36 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "意外導致言語能力喪失或聽覺永久受損專案賠償",
       keywords: ["聽覺受損", "言語能力喪失", "失聰", "失語", "耳膜破裂", "意外失聲", "聽力受損", "語言能力"],
     },
+    {
+      id: "public-transport-triple-indemnity",
+      label: "乘搭公共交通工具/客機雙倍至三倍賠償",
+      keywords: ["雙倍賠償", "三倍賠償", "公共交通工具", "客機", "雙倍", "三倍", "升降機"],
+    },
+    {
+      id: "bonesetter-no-referral",
+      label: "中醫跌打免西醫轉介信直接理賠",
+      keywords: ["跌打", "中醫跌打", "骨傷", "免轉介信", "中醫", "跌打骨傷", "中醫師"],
+    },
+    {
+      id: "accidental-physio-chiropractor",
+      label: "意外物理治療及脊醫門診實報實銷",
+      keywords: ["物理治療", "脊醫", "脊骨神經", "物理治療師", "專職醫療", "脊椎"],
+    },
+    {
+      id: "temporary-disability-weekly-cash",
+      label: "暫時完全傷殘停工每週入息津貼",
+      keywords: ["每週入息", "每週賠償", "每週意外入息", "暫時傷殘", "完全暫時傷殘", "暫時性傷殘"],
+    },
+    {
+      id: "burn-trauma-cosmetic",
+      label: "三級重大燒傷及面部整容創傷修復",
+      keywords: ["重大燒傷", "三級嚴重燒傷", "燒傷", "整容手術", "面部毀容", "疤痕"],
+    },
+    {
+      id: "amateur-sports-no-altitude-limit",
+      label: "滑雪、潛水、馬拉松等業餘消閒運動完全受保",
+      keywords: ["業餘及消閒運動", "滑雪", "潛水", "馬拉松", "消閒及業餘", "無高度限制", "水上運動"],
+    },
   ],
 
   // 8. 人壽保險 (life - 14 tags)
@@ -796,6 +1006,36 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       id: "funeral-service-support",
       label: "身故專業殯儀喪葬安排諮詢與家屬哀傷輔導",
       keywords: ["殯儀安排", "喪葬諮詢", "身故輔導", "喪葬服務", "哀傷輔導", "後事安排", "身故支援", "後事諮詢"],
+    },
+    {
+      id: "pure-term-life-high-leverage",
+      label: "定期人壽保險 (Term Life 純保障高槓桿)",
+      keywords: ["定期人壽", "定期壽險", "純人壽", "Term Life", "純保障", "純人壽保障", "消費型定期"],
+    },
+    {
+      id: "whole-life-savings-heritage",
+      label: "終身壽險 / 儲蓄分紅財富傳承",
+      keywords: ["終身人壽", "儲蓄分紅", "保證現金價值", "Whole Life", "傳承", "保單現金價值"],
+    },
+    {
+      id: "instant-online-exam-free",
+      label: "網上投保免體檢免驗身即時批核",
+      keywords: ["免驗身", "免體檢", "免核保", "網上核保", "簡易核保", "毋須體檢", "快速批核"],
+    },
+    {
+      id: "terminal-illness-advance-100",
+      label: "末期疾病提前預支 100% 身故賠償",
+      keywords: ["末期疾病", "提前賠償", "提前給付", "預先給付", "預支身故", "12個月"],
+    },
+    {
+      id: "guaranteed-renew-to-100",
+      label: "續保條款至 85 歲或 100 歲 (不因健康變差加 Loading)",
+      keywords: ["保證續保", "續保至100歲", "續保至85歲", "保證可續保", "終身續保"],
+    },
+    {
+      id: "non-smoker-health-discount",
+      label: "非吸煙者專屬特惠費率 (Non-smoker Discount)",
+      keywords: ["非吸煙", "非吸煙者", "優質非吸煙", "Non-smoker", "健康折扣", "特惠費率"],
     },
   ],
 
@@ -891,6 +1131,36 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "水浸或颱風損害",
       keywords: ["水浸", "暴雨浸車", "颱風冧樹", "樹木倒塌", "天災水浸", "黑雨積水", "水浸賠償", "冧樹砸車"],
     },
+    {
+      id: "ncd-protector-1claim-intact",
+      label: "無索償折扣 (NCD) 守護 (索償一次不扣減 NCD)",
+      keywords: ["NCD", "無索償折扣", "NCD保護", "NCD 守護", "維持折扣", "No Claim Discount"],
+    },
+    {
+      id: "windscreen-zero-excess-claim",
+      label: "擋風玻璃獨立免自負額賠償 (不扣 NCD)",
+      keywords: ["擋風玻璃", "免自負額", "免墊底", "車窗玻璃", "玻璃維修", "擋風玻璃保障"],
+    },
+    {
+      id: "new-for-old-first-year",
+      label: "新車首年全損以同廠同款全新車更換 (以新代舊)",
+      keywords: ["新車全損", "以新代舊", "新車換新", "全新車", "同廠全新", "以新換舊", "同款新車"],
+    },
+    {
+      id: "zero-depreciation-original-parts",
+      label: "零件更換維修原廠全新零折舊率賠償",
+      keywords: ["零折舊", "不設折舊", "全新零件", "折舊率豁免", "無折舊", "「零」折舊率修理"],
+    },
+    {
+      id: "ev-battery-charging-cable",
+      label: "電動車 (EV) 電池及家用充電樁/線專屬保障",
+      keywords: ["電動車", "EV", "充電器", "充電纜", "電池損壞", "家用充電設備", "充電樁"],
+    },
+    {
+      id: "roadside-free-towing-24h",
+      label: "24小時免費路邊救援及拖車支援",
+      keywords: ["24小時免費拖車", "緊急拖車", "道路救援", "路邊支援", "搭橋搭電", "爆胎換軚"],
+    },
   ],
 
   // 10. 家傭保險 (domestic-helper - 14 tags)
@@ -985,6 +1255,36 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       label: "外傭居所意外火災或水浸個人衣物行李損毀補貼",
       keywords: ["外傭衣物", "個人物品損壞", "外傭行李", "居所火災", "房間水浸", "私人物品賠償", "衣物損毀", "家傭財物"],
     },
+    {
+      id: "statutory-ec-100m-labour",
+      label: "法定僱員補償責任 1 億港元 (勞工保險標配)",
+      keywords: ["100,000,000", "1億", "法定僱員補償", "僱主法定責任", "勞保", "僱員補償"],
+    },
+    {
+      id: "clinical-card-outpatient-direct",
+      label: "門診醫療卡 / 網絡西醫診所免找數診治",
+      keywords: ["門診費用", "網絡西醫", "門診醫療卡", "醫療卡", "診所診症", "門診保障", "西醫網絡"],
+    },
+    {
+      id: "bonesetter-traditional-helper",
+      label: "中醫跌打骨傷及針灸門診費用",
+      keywords: ["中醫", "跌打", "針灸", "骨傷", "中醫骨傷", "中醫跌打"],
+    },
+    {
+      id: "helper-dishonesty-fraud",
+      label: "外傭誠信保障 (防盜竊、欺詐及擅自挪用僱主金錢)",
+      keywords: ["誠信保障", "忠誠保障", "盜竊", "擅自挪用", "金錢損失", "不誠實行為", "珠寶失竊"],
+    },
+    {
+      id: "rehiring-runaway-expenses-cover",
+      label: "外傭不辭而別 / 逃跑補聘新外傭費用津貼",
+      keywords: ["補聘", "重新招聘", "重聘費用", "更換家傭", "不辭而別", "更換新外傭", "招聘及簽證費"],
+    },
+    {
+      id: "anti-loan-locksmith-change",
+      label: "防外傭借貸追債 / 更換大門門鎖急修保障",
+      keywords: ["借貸", "大門門鎖", "換鎖", "更換門鎖", "財務公司", "門鎖或鐵閘鎖", "未經授權款項"],
+    },
   ],
 
   // 11. 寵物保險 (pet - 14 tags)
@@ -1078,6 +1378,36 @@ export const CATEGORY_FEATURE_TAGS: Record<string, FeatureFilterTag[]> = {
       id: "behavioural-training",
       label: "寵物行為失常/創傷後心理輔導與合格訓練師課程津貼",
       keywords: ["行為訓練", "行為失常", "心理輔導", "創傷輔導", "合格訓犬師", "行為矯治", "訓練課程", "行為偏差"],
+    },
+    {
+      id: "vet-consult-prescribed-drugs",
+      label: "註冊獸醫門診診金及處方藥物實報實銷",
+      keywords: ["獸醫診金", "處方藥物", "門診費用", "診所診症", "普通科及專科診金", "門診西醫", "診斷測試"],
+    },
+    {
+      id: "microchip-free-vaccine-card",
+      label: "免植入晶片投保 (可以疫苗注射紀錄卡辨識)",
+      keywords: ["免植晶片", "無須晶片", "毋須晶片", "免晶片", "疫苗注射紀錄卡辨識", "無須植入晶片"],
+    },
+    {
+      id: "third-party-dog-bite-liability",
+      label: "寵物襲擊/咬傷第三者公眾法律責任 (高達 150-200 萬)",
+      keywords: ["第三者責任", "公眾責任", "咬傷", "第三者身體傷亡", "第三者公眾責任", "第三者法律責任"],
+    },
+    {
+      id: "hereditary-patella-hip-cover",
+      label: "特定品種遺傳病受保 (髖關節/髕骨脫臼/青光眼)",
+      keywords: ["遺傳", "髖關節", "髕骨", "膝蓋骨", "青光眼", "IVDD", "特定品種"],
+    },
+    {
+      id: "chronic-illness-lifelong",
+      label: "終生慢性疾病持續護理 (腎衰竭/心臟病/糖尿病)",
+      keywords: ["慢性病", "慢性疾病", "持續護理", "終生慢性", "腎衰竭", "附加腎衰竭"],
+    },
+    {
+      id: "pet-cremation-funeral-comfort",
+      label: "寵物善終、火化及悼念禮儀慰問津貼",
+      keywords: ["善終", "火化", "寵物喪葬", "悼念禮儀", "身故費用", "寵物火化", "身故 / 殮葬服務"],
     },
   ],
 };

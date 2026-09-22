@@ -153,11 +153,42 @@ function Catalogue({
       </section>
     )}
     <div id="category-filter-controls">
-      <FilterBar insurers={insurerOptions} selectedInsurers={selectedInsurers} onToggleInsurer={name => setSelectedInsurers(current => current.includes(name) ? current.filter(n => n !== name) : [...current, name])} onClearInsurers={() => setSelectedInsurers([])} onlyPremium={onlyPremium} onTogglePremium={() => setOnlyPremium(v => !v)} onlyPromo={onlyPromo} onTogglePromo={() => setOnlyPromo(v => !v)} includeHistorical={includeHistorical} onToggleHistorical={() => setIncludeHistorical(v => !v)} sort={sort} onSortChange={setSort} view={view} onViewChange={setView} showViewToggle={!mobile} shown={shown.length} total={products.length} onReset={reset} hasActiveFilters={active} isTravel={isTravel} travelTripType={trip} onTravelTripTypeChange={setTrip} travelRegion={region} onTravelRegionChange={setRegion} activeFeatureCount={selectedFeatures.length} />
+      <FilterBar
+        insurers={insurerOptions}
+        selectedInsurers={selectedInsurers}
+        onToggleInsurer={name => setSelectedInsurers(current => current.includes(name) ? current.filter(n => n !== name) : [...current, name])}
+        onClearInsurers={() => setSelectedInsurers([])}
+        onlyPremium={onlyPremium}
+        onTogglePremium={() => setOnlyPremium(v => !v)}
+        onlyPromo={onlyPromo}
+        onTogglePromo={() => setOnlyPromo(v => !v)}
+        includeHistorical={includeHistorical}
+        onToggleHistorical={() => setIncludeHistorical(v => !v)}
+        sort={sort}
+        onSortChange={setSort}
+        view={view}
+        onViewChange={setView}
+        showViewToggle={!mobile}
+        shown={shown.length}
+        total={products.length}
+        onReset={reset}
+        hasActiveFilters={active}
+        isTravel={isTravel}
+        travelTripType={trip}
+        onTravelTripTypeChange={setTrip}
+        travelRegion={region}
+        onTravelRegionChange={setRegion}
+        activeFeatureCount={selectedFeatures.length}
+        quickFeatureTags={tags}
+        selectedFeatures={selectedFeatures}
+        onToggleFeature={id => setSelectedFeatures(current => current.includes(id) ? current.filter(fid => fid !== id) : [...current, id])}
+      />
     </div>
     {tags.length > 0 && <section className="site-container pt-5">
       <details className="rounded-xl border border-line bg-paper p-4">
-        <summary className="min-h-11 cursor-pointer py-2 text-base font-bold text-ink">再按保障項目篩選{selectedFeatures.length ? `（已揀 ${selectedFeatures.length} 項）` : '（可略過）'}</summary>
+        <summary className="min-h-11 cursor-pointer py-2 text-base font-bold text-ink">
+          再按保障項目篩選{selectedFeatures.length ? `（已揀 ${selectedFeatures.length} 項 / 共 ${tags.length} 項）` : `（共 ${tags.length} 項可選）`}
+        </summary>
         <p className="mt-2 text-base leading-relaxed text-ink-soft">只檢索摘要字眼；限制以原文為準。</p>
         <label className="mt-4 block text-sm font-semibold text-ink">搵保障項目<input value={featureQuery} onChange={e => setFeatureQuery(e.target.value)} type="search" maxLength={80} className="mt-2 block min-h-11 w-full rounded-lg border border-line-strong bg-paper px-3 text-base" placeholder="例如：租車、醫療" /></label>
         <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">

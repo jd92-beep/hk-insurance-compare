@@ -14,6 +14,7 @@ export default function FilterBar({
   sort, onSortChange, view, onViewChange, showViewToggle, shown, total, onReset, hasActiveFilters,
   isTravel = false, travelTripType = "all", onTravelTripTypeChange, travelRegion = "all", onTravelRegionChange,
   onlyPromo = false, onTogglePromo, activeFeatureCount = 0, includeHistorical = false, onToggleHistorical,
+  quickFeatureTags = [], selectedFeatures = [], onToggleFeature,
 }: {
   insurers: InsurerOption[]; selectedInsurers: string[]; onToggleInsurer: (name: string) => void; onClearInsurers: () => void;
   onlyPremium: boolean; onTogglePremium: () => void; sort: SortKey; onSortChange: (value: SortKey) => void;
@@ -23,6 +24,9 @@ export default function FilterBar({
   travelRegion?: TravelRegion; onTravelRegionChange?: (value: TravelRegion) => void;
   onlyPromo?: boolean; onTogglePromo?: () => void; activeFeatureCount?: number;
   includeHistorical?: boolean; onToggleHistorical?: () => void;
+  quickFeatureTags?: { id: string; label: string }[];
+  selectedFeatures?: string[];
+  onToggleFeature?: (tagId: string) => void;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const panelId = useId();
@@ -53,6 +57,24 @@ export default function FilterBar({
             {([{ id: "all", label: "全部" }, { id: "asia", label: "亞洲" }, { id: "worldwide", label: "全球（核對限制）" }, { id: "gba", label: "大灣區" }] as const).map(({ id, label }) => <FilterChip key={id} active={travelRegion === id} onClick={() => onTravelRegionChange?.(id)}>{label}</FilterChip>)}
           </div><p className="mt-2 text-sm text-ink-soft">資料未註明地區者不會當作符合。</p></fieldset>
         </div>}
+        {quickFeatureTags.length > 0 && (
+          <fieldset>
+            <legend className="mb-2 text-base font-bold text-ink">
+              熱門重點保障（點擊快速篩選）
+            </legend>
+            <div className="flex flex-wrap gap-2">
+              {quickFeatureTags.slice(0, 8).map((tag) => (
+                <FilterChip
+                  key={tag.id}
+                  active={Boolean(selectedFeatures.includes(tag.id))}
+                  onClick={() => onToggleFeature?.(tag.id)}
+                >
+                  {tag.label}
+                </FilterChip>
+              ))}
+            </div>
+          </fieldset>
+        )}
         <fieldset><legend className="mb-2 text-base font-bold text-ink">保險公司／品牌（可多選）</legend>
           <div className="flex flex-wrap gap-2"><FilterChip active={!selectedInsurers.length} onClick={onClearInsurers}>全部</FilterChip>{insurers.map((insurer) => <FilterChip key={insurer.name} active={selectedInsurers.includes(insurer.name)} onClick={() => onToggleInsurer(insurer.name)}>{insurer.name_zh || insurer.name}</FilterChip>)}</div>
         </fieldset>

@@ -11,6 +11,7 @@ import { handleCardClickNavigation } from "@/lib/card-navigation";
 import { deriveCardSellingPoints } from "@/lib/product-card-data";
 import Card3DGem from "@/components/fx/Card3DGem";
 import TiltCard from "@/components/fx/TiltCard";
+import { SketchFrame } from "@/components/fx/Sketch";
 import { cn } from "@/lib/utils";
 
 /**
@@ -121,13 +122,19 @@ export function FlatPriceCard({ item }: { item: FlatProductItem }) {
   const sellingPoints = useMemo(() => deriveCardSellingPoints(item.product).slice(0, 2), [item.product]);
 
   return (
-    <TiltCard max={10} glare className="h-full rounded-card">
+    <TiltCard max={10} glare sketch={highlightColor} className="h-full rounded-card">
       <article
-        className="depth-surface group relative flex h-full cursor-pointer flex-col justify-between overflow-hidden rounded-card border border-line bg-paper"
+        className="depth-surface card-accent sketch-card group relative flex h-full cursor-pointer flex-col justify-between overflow-hidden border bg-paper"
+        style={{ "--accent": highlightColor } as React.CSSProperties}
         aria-label={`${item.insurerZh} ${item.title}`}
         onClick={(e) => handleCardClickNavigation(e, detailHref, navigate)}
       >
-        <div className="h-1.5 depth-z-bar" style={{ background: highlightColor }} aria-hidden="true" />
+        <SketchFrame color={highlightColor} />
+        <div className="relative depth-z-bar" aria-hidden="true">
+          <svg viewBox="0 0 300 14" preserveAspectRatio="none" className="block h-3.5 w-full">
+            <path d="M0 6 C 40 2 80 10 130 6 S 220 2 300 7 L300 0 L0 0Z" fill={highlightColor} />
+          </svg>
+        </div>
         <div className="p-5 md:p-6 flex flex-col justify-between h-full">
           <div>
             <div className="flex items-start justify-between gap-2">
@@ -160,7 +167,7 @@ export function FlatPriceCard({ item }: { item: FlatProductItem }) {
               </button>
             </div>
 
-            <h3 className="mt-2 text-lg font-bold leading-snug text-ink">
+            <h3 className="mt-2 font-serif text-lg font-bold leading-snug text-ink">
               <Link to={detailHref} className="hover:text-jade hover:underline">
                 {item.title}
               </Link>
@@ -176,7 +183,7 @@ export function FlatPriceCard({ item }: { item: FlatProductItem }) {
 
             {/* 核心賣點 */}
             {sellingPoints.length > 0 && (
-              <div className="mt-2 rounded-lg border border-line bg-paper-2/60 p-2 text-xs">
+              <div className="mt-2 border-t border-dashed pt-2 text-xs" style={{ borderColor: `${highlightColor}55` }}>
                 <ul className="space-y-1 text-ink font-medium">
                   {sellingPoints.map((sp, idx) => (
                     <li key={idx} className="flex items-start gap-1">

@@ -59,7 +59,7 @@ module.exports = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        /* ── 保險格價站 design tokens ─────────────────────── */
+        /* ── 保險明選 design tokens ─────────────────────── */
         line: {
           DEFAULT: "var(--line)",
           strong: "var(--line-strong)",

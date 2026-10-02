@@ -6,26 +6,13 @@ const tiltCardSource = readFileSync('src/components/fx/TiltCard.tsx', 'utf8');
 const productCardSource = readFileSync('src/components/ProductCard.tsx', 'utf8');
 const indexCssSource = readFileSync('src/index.css', 'utf8');
 
-test('TiltCard has anti-blur architecture: 0 resting lift and non-forced translateZ at rest', () => {
-  // Resting lift must be 0 to prevent lifting resting text into a floating GPU raster layer
-  assert.match(tiltCardSource, /const lift = useSpring\(0/);
-
-  // Must track settled state to cleanly switch between dynamic 3D tilt and pixel-sharp resting vector text
-  assert.ok(tiltCardSource.includes('isSettled'));
-  assert.ok(tiltCardSource.includes('isInteracting'));
-
-  // Content card container must NOT force translateZ(12px) at rest
-  assert.ok(tiltCardSource.includes('isSettled ? "none" : "translateZ(8px)"'));
-
-  // Dynamic 3D tilt properties must remain intact
-  assert.ok(tiltCardSource.includes('rotateX'));
-  assert.ok(tiltCardSource.includes('rotateY'));
-  assert.ok(tiltCardSource.includes('perspective'));
-  assert.ok(tiltCardSource.includes('glare'));
-
-  // transformStyle must be "flat" when settled to enable 2D vector pixel snapping for crisp borders and hairlines
-  assert.ok(tiltCardSource.includes('transformStyle: isSettled ? "flat" : "preserve-3d"'));
-  assert.ok(tiltCardSource.includes('!isSettled && "preserve-3d"'));
+test('TiltCard hover never rotates or lifts the card in 3D (whole card stays sharp while hovered)', () => {
+  for (const banned of ['rotateX', 'rotateY', 'translateZ', 'preserve-3d']) {
+    assert.ok(!tiltCardSource.includes(banned), banned);
+  }
+  // glare stays, driven by CSS custom properties rather than per-frame React state
+  assert.ok(tiltCardSource.includes('tilt-glare'));
+  assert.ok(indexCssSource.includes('.tilt-stage:hover .tilt-glare'));
 });
 
 test('ProductCard copy container does not apply inline translateZ', () => {
@@ -58,8 +45,8 @@ test('index.css depth cards retain physical 3D shadows and edges without resting
   assert.ok(indexCssSource.includes('border-top-color: rgba(255, 255, 255, 0.95)'));
   assert.ok(indexCssSource.includes('border-bottom-color: rgba(46, 42, 69, 0.22)'));
 
-  // depth-card is flat at rest and switches to preserve-3d when active/hover
+  // depth-card stays flat, and the hover lift is a pure 2D translate (no rotate → no resampling blur)
   assert.ok(indexCssSource.includes('.depth-card { transform-style: flat; }'));
-  assert.ok(indexCssSource.includes('transform-style: preserve-3d;'));
+  assert.ok(!/translateY\(-6px\) rotate/.test(indexCssSource));
 });
 

@@ -127,7 +127,7 @@ export default function Layout() {
           return data?.products.find(p => p.insurer === key)?.insurer_zh ?? key;
         })()
       : ({ "/": "香港保險比較", "/categories": "保險類別", "/compare": "並排比較", "/documents": "PDF 中心", "/data-quality": "資料核查", "/insurers": "保險公司", "/guides": "投保指南", "/vhis": "自願醫保", "/about": "關於本站" } as Record<string,string>)[path];
-    document.title = `${title || "保險資料"}｜保險格價站`;
+    document.title = `${title || "保險資料"}｜保險明選`;
     document.documentElement.lang = "zh-Hant-HK";
   }, [location.pathname, data]);
 

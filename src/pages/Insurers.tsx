@@ -331,7 +331,7 @@ export default function Insurers() {
           />
         ) : (
           <>
-            <div className="grid grid-cols-1 gap-5 fold:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-8 fold:grid-cols-2 lg:grid-cols-3">
               {filtered.map((model, i) => (
                 <InsurerCard
                   key={model.insurer.name}

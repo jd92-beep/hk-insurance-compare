@@ -25,6 +25,7 @@ import { quotePathway } from "@/lib/quote-pathway";
 import VerifiedPromotion from "@/components/VerifiedPromotion";
 import TiltCard from "@/components/fx/TiltCard";
 import Card3DGem from "@/components/fx/Card3DGem";
+import { SketchFrame } from "@/components/fx/Sketch";
 import { cn } from "@/lib/utils";
 
 /** Separate links/buttons: selecting text, opening details and using a keyboard never navigates the card accidentally. */
@@ -64,38 +65,31 @@ export default function ProductCard({
   const pathway = useMemo(() => quotePathway(product), [product]);
 
   return (
-    <TiltCard max={10} glare className={cn("h-full rounded-card", className)}>
+    <TiltCard max={10} glare sketch={highlightColor} className={cn("h-full rounded-card", className)}>
       <article
-        className={cn(
-          "depth-surface group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-card border border-line bg-paper",
-          accent && "card-accent",
-        )}
-        style={accent ? ({ "--accent": accent } as React.CSSProperties) : undefined}
+        className="depth-surface card-accent sketch-card group relative flex h-full cursor-pointer flex-col overflow-hidden border bg-paper"
+        style={{ "--accent": highlightColor } as React.CSSProperties}
         aria-label={`${product.insurer_zh} ${title}`}
         onClick={(e) => handleCardClickNavigation(e, detailHref, navigate)}
       >
-        {accent ? (
-          /* hand-drawn brush stroke in the category colour + a hand-cut category tab */
-          <div className="relative depth-z-bar" aria-hidden="true">
-            <svg viewBox="0 0 300 14" preserveAspectRatio="none" className="block h-3.5 w-full">
-              <path d="M0 6 C 40 2 80 10 130 6 S 220 2 300 7 L300 0 L0 0Z" fill={accent} />
-              <path d="M4 9 C 60 5 120 12 180 8 S 260 6 296 10" fill="none" stroke={accent} strokeOpacity=".45" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-          </div>
-        ) : (
-          /* 頂部彩色品牌 Highlight 條 */
-          <div className="h-1.5 depth-z-bar" style={{ background: highlightColor }} aria-hidden="true" />
-        )}
-        {accent && categoryLabel && (
+        <SketchFrame color={highlightColor} />
+        {/* hand-drawn brush stroke in the card colour */}
+        <div className="relative depth-z-bar" aria-hidden="true">
+          <svg viewBox="0 0 300 14" preserveAspectRatio="none" className="block h-3.5 w-full">
+            <path d="M0 6 C 40 2 80 10 130 6 S 220 2 300 7 L300 0 L0 0Z" fill={highlightColor} />
+            <path d="M4 9 C 60 5 120 12 180 8 S 260 6 296 10" fill="none" stroke={highlightColor} strokeOpacity=".45" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        </div>
+        {categoryLabel && (
           <span
             className="absolute left-4 top-[18px] z-[2] -rotate-2 rounded-md px-2 py-0.5 font-serif text-[12px] font-bold text-white shadow-[0_2px_0_rgba(0,0,0,.15)] md:left-5"
-            style={{ background: accent }}
+            style={{ background: highlightColor }}
           >
             {categoryLabel}
           </span>
         )}
 
-        <div className={cn("flex flex-col gap-2.5 p-4 md:p-5", accent && categoryLabel && "pt-11 md:pt-11")}>
+        <div className={cn("flex flex-1 flex-col gap-2.5 p-4 md:p-5", categoryLabel && "pt-11 md:pt-11")}>
           {/* 公司名稱與收藏按鈕 */}
           <div>
             <div className="flex items-start justify-between gap-2">
@@ -138,7 +132,7 @@ export default function ProductCard({
             </div>
 
             {/* 產品名稱 */}
-            <h3 className="mt-1 text-base font-bold leading-snug text-ink">
+            <h3 className="mt-1 font-serif text-[17px] font-bold leading-snug text-ink">
               <Link
                 className="rounded hover:text-jade hover:underline focus-visible:outline-offset-4"
                 to={detailHref}
@@ -147,54 +141,29 @@ export default function ProductCard({
               </Link>
             </h3>
 
-            {/* 計劃層級 (Plan Tiers) 緊湊標籤列 */}
-            {planTiersInfo.tiers.length > 0 && (
-              <div className="mt-1.5 flex flex-wrap items-center gap-1">
-                <span className="text-[10px] font-bold text-ink-soft">層級：</span>
-                {planTiersInfo.tiers.slice(0, 3).map((tier, idx) => (
-                  <span
-                    key={idx}
-                    className="inline-flex items-center rounded border border-line bg-paper-2/80 px-1.5 py-0.2 text-[10px] font-semibold text-ink"
-                  >
-                    {tier}
-                  </span>
-                ))}
-                {planTiersInfo.vhisCode && (
-                  <span className="inline-flex items-center rounded border border-jade/30 bg-jade-wash/40 px-1.5 py-0.2 text-[10px] font-bold text-jade">
-                    {planTiersInfo.vhisCode}
-                  </span>
-                )}
-                {planTiersInfo.deductibles && (
-                  <span className="text-[10px] text-ink-faint">
-                    自付：{planTiersInfo.deductibles}
-                  </span>
-                )}
-              </div>
+            {/* 計劃層級：一行文字，唔再一排 chip */}
+            {(planTiersInfo.tiers.length > 0 || planTiersInfo.vhisCode) && (
+              <p className="mt-1 line-clamp-1 text-[12px] text-ink-soft" title={planTiersInfo.tiers.join(" · ")}>
+                {planTiersInfo.vhisCode && <span className="mr-1.5 font-grotesk font-bold text-jade">{planTiersInfo.vhisCode}</span>}
+                {planTiersInfo.tiers.slice(0, 2).join(" · ")}
+                {planTiersInfo.tiers.length > 2 && <span className="text-ink-faint"> 等 {planTiersInfo.tiers.length} 個計劃</span>}
+              </p>
             )}
           </div>
 
-          {/* 核心保障賣點 (Selling Points) 區塊：重點突出、精準乾淨 */}
+          {/* 核心保障賣點：手寫剔號 + 一行重點 */}
           {sellingPoints.length > 0 && (
-            <div className="rounded-lg border border-line/60 bg-paper-2/60 p-2.5 text-xs">
-              <ul className="space-y-1 text-ink">
-                {sellingPoints.map((sp, idx) => (
-                  <li key={idx} className="flex items-baseline gap-1.5 leading-snug">
-                    <span
-                      className="inline-block shrink-0 rounded px-1.5 py-0.2 text-[10px] font-bold select-none"
-                      style={{
-                        backgroundColor: `${highlightColor}18`,
-                        color: highlightColor,
-                      }}
-                    >
-                      {sp.label}
-                    </span>
-                    <span className="font-medium text-ink line-clamp-1" title={sp.text}>
-                      {sp.text}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul className="space-y-1.5 border-t border-dashed pt-2.5 text-[13px]" style={{ borderColor: `${highlightColor}55` }}>
+              {sellingPoints.map((sp, idx) => (
+                <li key={idx} className="flex items-baseline gap-2 leading-snug">
+                  <span className="shrink-0 font-hand text-[17px] font-bold leading-none" style={{ color: highlightColor }} aria-hidden="true">✓</span>
+                  <span className="min-w-0 line-clamp-1 text-ink" title={`${sp.label}：${sp.text}`}>
+                    <span className="font-bold">{sp.label}</span>
+                    <span className="text-ink-soft"> {sp.text}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
           )}
 
           {/* 檢索摘要吻合指示 */}
@@ -304,10 +273,10 @@ export default function ProductCard({
                 e.stopPropagation();
                 setExpanded((v) => !v);
               }}
-              className="group inline-flex items-center gap-1.5 rounded-full border border-line bg-paper-2/80 px-4 py-1.5 text-xs font-bold text-ink-soft transition-all hover:border-jade hover:bg-jade-wash hover:text-jade active:scale-95 cursor-pointer"
+              className="group inline-flex items-center gap-1 px-3 py-1 text-xs font-bold text-ink-soft underline decoration-dashed underline-offset-4 transition-colors hover:text-ink cursor-pointer"
               aria-expanded={expanded}
             >
-              <span>{expanded ? "收起詳細計劃" : "查看詳細計劃 (See More)"}</span>
+              <span>{expanded ? "收起" : "更多細節"}</span>
               <ChevronDown
                 size={14}
                 className={cn(
@@ -320,12 +289,12 @@ export default function ProductCard({
           </div>
 
           {/* 底部雙按鈕：睇計劃詳情 & 加入比較 */}
-          <div className="mt-1 grid grid-cols-2 gap-2.5 border-t border-line-strong pt-3">
+          <div className="mt-auto grid grid-cols-2 gap-2.5 pt-1">
             <Link
               to={detailHref}
               className="inline-flex min-h-10 items-center justify-center rounded-lg border border-line-strong px-2 py-2 text-center text-sm font-bold text-ink hover:bg-paper-2 transition-colors"
             >
-              睇計劃詳情
+              睇詳情
             </Link>
             <button
               type="button"

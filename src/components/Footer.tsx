@@ -84,7 +84,7 @@ export default function Footer() {
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-paper">
                 <img src="/brand/logo-mark-sm.png" alt="" width={32} height={32} className="h-8 w-8 object-contain" />
               </span>
-              <span className="font-serif text-[18px] font-bold">保險格價站</span>
+              <span className="font-serif text-[18px] font-bold">保險明選</span>
             </Link>
             <p className="font-serif text-[15px] font-bold text-paper/90">逐份官方文件幫你睇</p>
             <p className="font-hand text-[24px] font-bold text-amber">compare smarter, insure brighter</p>

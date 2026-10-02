@@ -109,3 +109,32 @@ export function PencilCircle({ className, color = "var(--red)" }: { className?: 
     </svg>
   );
 }
+
+/**
+ * Hand-drawn pencil outline for cards: an ink loop plus a looser second pass in the accent colour.
+ * Strokes are non-scaling so the line weight stays the same on any card size. Parent must be `relative`.
+ */
+export function SketchFrame({ color = "var(--ink)", className }: { color?: string; className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className={cn("sketch-frame-svg pointer-events-none absolute inset-0 z-[3] h-full w-full", className)} aria-hidden="true">
+      <path
+        d="M3.2 1.7 C30 0.9 70 2.3 96.9 1.5 C98.6 1.7 98.9 3.1 98.7 5 C99.2 35 98.4 70 98.8 95.4 C98.7 97.9 97.4 98.6 95 98.4 C65 99.1 35 98.2 4.6 98.7 C2.1 98.8 1.4 97.5 1.5 95 C1 65 1.9 30 1.3 4.6 C1.4 2.5 2.1 1.8 3.2 1.7Z"
+        fill="none"
+        stroke="#2E2A45"
+        strokeOpacity=".6"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
+      <path
+        d="M0.8 3.4 C30 2.6 70 3.8 99.3 2.8 M97.8 0.6 C97.2 30 98.3 70 97.6 99.4 M99.4 97.3 C70 97.9 30 96.8 0.7 97.6 M2.5 99.4 C2.1 70 3 30 2.4 0.6"
+        fill="none"
+        stroke={color}
+        strokeOpacity=".55"
+        strokeWidth="1.1"
+        strokeLinecap="round"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  );
+}

@@ -26,7 +26,7 @@ export function themeFor(path: string): Theme {
   if (path.startsWith("/guides")) return { key: "guides", label: "投保指南", tint: "#8A6BC4", doodle: "book" };
   if (path.startsWith("/about") || path.startsWith("/data-quality")) return { key: "about", label: "關於數據", tint: "#F2A71B", doodle: "sun" };
   if (path.startsWith("/product")) return { key: "product", label: "產品詳情", tint: "#3F9A5B", doodle: "cloud" };
-  return { key: "other", label: "保險格價站", tint: "#F2A71B", doodle: "sun" };
+  return { key: "other", label: "保險明選", tint: "#F2A71B", doodle: "sun" };
 }
 
 /* ───────────────────────── page enter choreography ───────────────────────── */

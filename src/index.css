@@ -443,19 +443,14 @@ html, body, #root {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
-/* At rest: flat to keep 2D vector pixel snapping. Active: preserve-3d for layered accents */
+/* Always flat: hover is a 2D lift so text keeps pixel snapping (no 3D resampling blur) */
 .depth-card { transform-style: flat; }
-.tilt-stage[data-tilt-settled="false"] .depth-card,
-.tilt-stage[data-tilt-active="true"] .depth-card,
-.group:hover > .depth-card,
-.depth-card:hover {
-  transform-style: preserve-3d;
-}
 .group:hover > .depth-surface,
 .group:hover > .depth-card,
 .depth-surface:hover,
-.depth-card:hover {
-  transform: translateY(-6px) rotate(-0.25deg);
+.depth-card:hover,
+.tilt-stage:hover .tilt-face-card > :is(.depth-card, .depth-surface, .shadow-card) {
+  transform: translateY(-6px);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.98),
     0 1px 0 #EDEAE4,
@@ -470,9 +465,52 @@ html, body, #root {
     0 30px 46px -20px rgba(var(--shadow-warm), 0.36),
     0 50px 80px -40px rgba(242, 167, 27, 0.35);
 }
-.depth-z-bar { transform: translateZ(var(--depth-z-bar)); }
-.depth-z-icon { transform: translateZ(var(--depth-z-icon)); }
-.depth-z-chip { transform: translateZ(var(--depth-z-chip)); }
+/* depth-z-* accents stay in the card plane (no translateZ) so hover never creates a blurry 3D layer */
+.depth-z-bar, .depth-z-icon, .depth-z-chip { position: relative; }
+.tilt-glare {
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 0%), rgba(255, 255, 255, 0.28), transparent 60%);
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.tilt-stage:hover .tilt-glare { opacity: 1; }
+/* hand-drawn cards: pencil-hatched cast shadow stays on the table while the card lifts */
+.tilt-sketch::before {
+  content: "";
+  position: absolute;
+  inset: 12px -8px -10px 10px;
+  z-index: -1;
+  border-radius: 26px 16px 28px 14px / 14px 28px 16px 26px;
+  background: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--sketch) 55%, transparent) 0 1.4px, transparent 1.4px 6px);
+  opacity: 0.6;
+  transition: opacity 0.35s ease, transform 0.35s var(--ease-paper);
+  pointer-events: none;
+}
+.tilt-sketch:hover::before { opacity: 0.85; transform: translate(3px, 4px); }
+/* the SVG pencil outline replaces the crisp CSS border and the inner frame */
+.sketch-card { border-color: transparent !important; }
+.sketch-card::before { display: none; }
+.sketch-card { border-radius: 22px 16px 24px 14px / 14px 24px 16px 22px; }
+
+/* subgrid cards (insurer index): five rows aligned across a grid row; every wrapper passes the tracks through */
+.subgrid-card,
+.subgrid-card > .tilt-face,
+.subgrid-card > .tilt-face > .tilt-face-card,
+.subgrid-card > .tilt-face > .tilt-face-card > article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-row: span 5;
+  min-width: 0;
+}
+.subgrid-card > .tilt-face,
+.subgrid-card > .tilt-face > .tilt-face-card,
+.subgrid-card > .tilt-face > .tilt-face-card > article { grid-row: 1 / -1; }
+.subgrid-card > .tilt-face > .tilt-face-card > article { row-gap: 12px; }
+
+/* PDF centre tour: marching dashed outline around the highlighted step */
+.tour-ants { animation: tour-ants 1.2s linear infinite; }
+@keyframes tour-ants { to { stroke-dashoffset: -36; } }
 .chip-3d { box-shadow: 0 2px 0 rgba(var(--shadow-warm), 0.12), 0 6px 12px -6px rgba(var(--shadow-warm), 0.3); }
 .tilt-stage { isolation: isolate; }
 .tilt-face,
@@ -499,7 +537,6 @@ html, body, #root {
 .depth-surface > [aria-hidden="true"].h-1,
 .depth-surface > div.h-1,
 .depth-surface > div.h-\[3px\] {
-  transform: translateZ(18px);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 @media (prefers-reduced-motion: reduce), (pointer: coarse) {

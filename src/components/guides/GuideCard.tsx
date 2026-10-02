@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router";
 import type { GuideEntry } from "@/components/guides/guides-data";
 import { CATEGORY_META } from "@/lib/categories";
 import TiltCard from "@/components/fx/TiltCard";
+import { SketchFrame } from "@/components/fx/Sketch";
 import { handleCardClickNavigation } from "@/lib/card-navigation";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -20,27 +21,29 @@ export default function GuideCard({ guide, index }: { guide: GuideEntry; index: 
   const detailHref = `/category/${guide.id}`;
 
   return (
-    <TiltCard max={8} glare className="h-full rounded-card">
+    <TiltCard max={8} glare sketch={color} className="h-full rounded-card">
     <motion.article
       id={guide.id}
       initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-15% 0px" }}
       transition={{ duration: 0.7, delay: (index % 3) * 0.08, ease: EASE_OUT_EXPO }}
-      className="depth-card group relative flex h-full cursor-pointer scroll-mt-24 flex-col overflow-hidden rounded-card border bg-paper p-7 shadow-card"
-      style={{ borderColor: "var(--line)" }}
+      className="depth-card card-accent sketch-card group relative flex h-full cursor-pointer scroll-mt-24 flex-col overflow-hidden border bg-paper p-7"
+      style={{ "--accent": color } as React.CSSProperties}
       onClick={(e) => handleCardClickNavigation(e, detailHref, navigate)}
     >
-      {/* 頂部類別色條 */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, margin: "-15% 0px" }}
-        transition={{ duration: 0.7, delay: 0.15 + (index % 3) * 0.08, ease: EASE_OUT_EXPO }}
-        className="absolute inset-x-0 top-0 h-[3px] origin-left"
-        style={{ background: color }}
-        aria-hidden="true"
-      />
+      <SketchFrame color={color} />
+      {/* 頂部類別色手繪筆觸 */}
+      <svg viewBox="0 0 300 14" preserveAspectRatio="none" className="absolute inset-x-0 top-0 block h-3.5 w-full" aria-hidden="true">
+        <motion.path
+          d="M0 6 C 40 2 80 10 130 6 S 220 2 300 7 L300 0 L0 0Z"
+          fill={color}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-15% 0px" }}
+          transition={{ duration: 0.7, delay: 0.15 + (index % 3) * 0.08, ease: EASE_OUT_EXPO }}
+        />
+      </svg>
       <div className="flex items-center gap-3">
         <span
           className="cat-icon h-8 w-8 shrink-0 transition-transform duration-300 group-hover:-rotate-6"
@@ -58,8 +61,8 @@ export default function GuideCard({ guide, index }: { guide: GuideEntry; index: 
       <ul className="mt-5 flex flex-col gap-4">
         {guide.tips.map((tip) => (
           <li key={tip.title} className="flex gap-2.5">
-            <span className="mt-px shrink-0 font-serif font-bold text-red" aria-hidden="true">
-              §
+            <span className="shrink-0 font-hand text-[19px] font-bold leading-none" style={{ color }} aria-hidden="true">
+              ✓
             </span>
             <p className="text-small text-ink-soft">
               <span className="font-bold text-ink">{tip.title}</span>
@@ -72,7 +75,8 @@ export default function GuideCard({ guide, index }: { guide: GuideEntry; index: 
       <div className="mt-auto pt-6">
         <Link
           to={`/category/${guide.id}`}
-          className="inline-flex items-center gap-1.5 border-t border-line-strong pt-4 text-small font-bold text-red transition-colors hover:text-red-deep w-full"
+          className="inline-flex items-center gap-1.5 border-t-2 border-dashed pt-4 text-small font-bold text-red transition-colors hover:text-red-deep w-full"
+          style={{ borderColor: `${color}55` }}
         >
           去格價
           <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />

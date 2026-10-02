@@ -9,6 +9,7 @@ import StampBadge from "@/components/StampBadge";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CompareCTA from "@/components/product/CompareCTA";
 import PremiumChip from "@/components/product/PremiumChip";
+import PremiumSpectrumCard from "@/components/product/PremiumSpectrumCard";
 import { EASE_OUT_EXPO } from "@/components/product/SectionHeading";
 
 /** 類別英文名（eyebrow 用） */
@@ -408,6 +409,7 @@ export default function ProductHeader({ product }: { product: Product }) {
                 </p>
               </div>
             </div>
+            <PremiumSpectrumCard product={product} color={color} catName={catName} />
           </motion.aside>
         </div>
       </div>

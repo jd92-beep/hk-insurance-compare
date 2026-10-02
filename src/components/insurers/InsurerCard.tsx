@@ -8,6 +8,8 @@ import {
   insurerDetailPath,
 } from "@/lib/insurer-catalogue";
 import TiltCard from "@/components/fx/TiltCard";
+import { SketchFrame } from "@/components/fx/Sketch";
+import { getInsurerColor } from "@/lib/insurer-colors";
 import { handleCardClickNavigation } from "@/lib/card-navigation";
 import { cn } from "@/lib/utils";
 
@@ -40,9 +42,12 @@ export default function InsurerCard({
   const preview = products.slice(0, 3);
   const staggerDelay = index < 9 ? index * 0.06 : 0;
   const detailHref = insurerDetailPath(insurer.name);
+  const brand = getInsurerColor(insurer.name);
 
   return (
-    <TiltCard max={9} glare className="h-full rounded-card">
+    // subgrid-card: the five rows (name / chips / premium / preview / CTA) share row tracks with the other cards in
+    // the same grid row, so every card in a row is equally tall and the dividers line up horizontally
+    <TiltCard max={9} glare sketch={brand} className="subgrid-card rounded-card">
     <motion.article
       id={insurer.name}
       layout="position"
@@ -50,8 +55,8 @@ export default function InsurerCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-8% 0px" }}
       transition={{ duration: 0.6, delay: staggerDelay, ease: EASE_OUT_EXPO }}
-      className="depth-card group relative flex h-full min-w-0 cursor-pointer scroll-mt-[88px] flex-col gap-3 rounded-card border bg-paper p-5"
-      style={{ borderColor: "var(--line)" }}
+      className="depth-card card-accent sketch-card group relative min-w-0 cursor-pointer scroll-mt-[88px] gap-y-3 bg-paper p-5"
+      style={{ "--accent": brand } as React.CSSProperties}
       data-insurer-card={insurer.name}
       onClick={(e) => handleCardClickNavigation(e, detailHref, navigate)}
     >
@@ -65,10 +70,11 @@ export default function InsurerCard({
         />
       )}
 
+      <SketchFrame color={brand} />
       {/* 頂行：公司名（點擊去公司頁） */}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h2 className="break-words font-grotesk text-[22px] font-bold leading-tight text-ink">
+          <h2 className="break-words font-serif text-[22px] font-bold leading-tight text-ink">
             <Link
               to={detailHref}
               className="rounded transition-colors hover:text-red focus-visible:outline-offset-4"
@@ -85,8 +91,8 @@ export default function InsurerCard({
       </div>
 
       {/* 類別 chips + 產品數（公司產品分組預覽） */}
-      {categoryCounts.length > 0 && (
-        <div className="flex flex-wrap gap-1.5" aria-label="站內類別覆蓋">
+      {/* always rendered: each card must keep exactly five subgrid rows */}
+        <div className="flex flex-wrap content-start gap-1.5" aria-label="站內類別覆蓋">
           {categoryCounts.map(({ categoryId, count }) => {
             const color = categoryColor(categoryId);
             const name = categories.find((c) => c.id === categoryId)?.name_zh ?? categoryId;
@@ -116,7 +122,6 @@ export default function InsurerCard({
             );
           })}
         </div>
-      )}
 
       {/* 保費公開情況（資料可得性，唔係報價） */}
       <p className="flex items-center gap-2 text-small">
@@ -137,8 +142,7 @@ export default function InsurerCard({
       </p>
 
       {/* 產品預覽（最多 3 行） */}
-      {preview.length > 0 && (
-        <ul className="flex flex-col gap-1 border-t border-line-strong pt-3 text-small">
+        <ul className="flex flex-col gap-1 border-t-2 border-dashed pt-3 text-small" style={{ borderColor: `${brand}55` }}>
           {preview.map((p) => (
             <li key={p.id}>
               <Link
@@ -156,13 +160,12 @@ export default function InsurerCard({
             </li>
           ))}
         </ul>
-      )}
 
       {/* 主 CTA：睇晒呢間公司全部產品（按類別分組） */}
       <Link
         to={detailHref}
         className={cn(
-          "mt-auto inline-flex w-fit items-center gap-1.5 text-small font-bold text-red",
+          "inline-flex w-fit items-center self-end gap-1.5 text-small font-bold text-red",
           "transition-colors hover:text-red-deep hover:underline",
         )}
       >

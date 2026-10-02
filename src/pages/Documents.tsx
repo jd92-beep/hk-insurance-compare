@@ -1,9 +1,11 @@
 import { lazy, Suspense, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router";
-import { Check, Copy, ExternalLink, FileText, Layers, Search } from "lucide-react";
+import { Check, Copy, ExternalLink, FileText, HelpCircle, Layers, Search } from "lucide-react";
 import { useCategories, useInsuranceData, useProducts } from "@/providers/InsuranceDataProvider";
 import { categoryName, CATEGORY_ORDER } from "@/lib/categories";
 import { evidenceEntries, evidenceHref, resolveEvidence, sourceTarget } from "@/lib/pdf-evidence";
+
+import PdfCenterTour from "@/components/documents/PdfCenterTour";
 
 const PdfEvidenceViewer = lazy(() => import("@/components/documents/PdfEvidenceViewer"));
 
@@ -14,6 +16,7 @@ export default function Documents() {
   const [params, setParams] = useSearchParams();
   const [search, setSearch] = useState("");
   const [notice, setNotice] = useState("");
+  const [replayTour, setReplayTour] = useState(0);
 
   const requested = params.get("product");
 
@@ -171,7 +174,16 @@ export default function Documents() {
         <p className="mt-4 leading-relaxed text-ink-soft">
           由保障摘要去到來源頁碼核對原文。鏡像係本站副本，唔代表保險公司最新版本。
         </p>
+        <button
+          type="button"
+          onClick={() => setReplayTour((n) => n + 1)}
+          className="mt-3 inline-flex items-center gap-1.5 text-small font-bold text-jade hover:underline"
+        >
+          <HelpCircle size={15} /> 點樣用？睇 3 步教學
+        </button>
       </div>
+
+      {!loading && products.length > 0 && <PdfCenterTour key={replayTour} force={replayTour > 0} />}
 
       {loading && <p role="status">正在載入文件目錄…</p>}
       {error && <p role="alert">{error}</p>}
@@ -224,7 +236,7 @@ export default function Documents() {
             </div>
           ) : (
             /* 正常三級階梯式級聯聯動 */
-            <div className="space-y-3.5 border-b border-line pb-4 mb-4">
+            <div className="space-y-3.5 border-b border-line pb-4 mb-4" data-tour="picker">
               {/* 第 1 級：保險類別 */}
               <div>
                 <label
@@ -322,6 +334,7 @@ export default function Documents() {
           </div>
 
           <div
+            data-tour="entries"
             className="max-h-72 overflow-y-auto space-y-1.5 lg:max-h-[28rem] pr-1"
             data-lenis-prevent
           >
@@ -363,7 +376,7 @@ export default function Documents() {
         </aside>
 
         {/* 右側 PDF 閱讀器與摘錄詳情 */}
-        <section className="min-w-0 overflow-hidden rounded-2xl border border-line bg-paper">
+        <section data-tour="viewer" className="min-w-0 overflow-hidden rounded-2xl border border-line bg-paper">
           {product && (
             <div className="border-b border-line p-5">
               <Link

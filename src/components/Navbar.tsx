@@ -106,10 +106,10 @@ export default function Navbar() {
         )}
        >
         {/* 左：品牌 */}
-        <Link to="/" className="group flex shrink-0 items-center gap-2" aria-label="保險格價站首頁">
+        <Link to="/" className="group flex shrink-0 items-center gap-2" aria-label="保險明選首頁">
           <img src="/brand/logo-mark-sm.png" alt="" width={36} height={36} className="h-9 w-9 object-contain transition-transform duration-500 group-hover:-rotate-12 group-hover:scale-110" />
           <span className="leading-none">
-            <span className="block font-serif text-[18px] font-bold text-ink">保險格價站</span>
+            <span className="block font-serif text-[18px] font-bold text-ink">保險明選</span>
             <span className="hidden font-hand text-[14px] font-bold text-red sm:block">insure brighter ☀</span>
           </span>
         </Link>
@@ -356,7 +356,7 @@ export default function Navbar() {
             <div className="site-container flex h-16 shrink-0 items-center justify-between">
               <span className="flex items-center gap-2.5">
                 <img src="/brand/logo-mark-sm.png" alt="" width={36} height={36} className="h-9 w-9 object-contain" />
-                <span className="font-serif text-[18px] font-bold">保險格價站</span>
+                <span className="font-serif text-[18px] font-bold">保險明選</span>
               </span>
               <button
                 type="button"

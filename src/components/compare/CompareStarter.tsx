@@ -8,7 +8,7 @@ import { CATEGORY_META, CATEGORY_ORDER } from "@/lib/categories";
 import { presetsFor } from "@/lib/compare-presets";
 import { resolveCoverage } from "@/components/compare/canonical-benefits";
 import TiltCard from "@/components/fx/TiltCard";
-import { Scribble } from "@/components/fx/Sketch";
+import { Scribble, SketchFrame } from "@/components/fx/Sketch";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -35,7 +35,7 @@ export default function CompareStarter({ onStart }: { onStart: (ids: string[]) =
     () => (preset ? preset.ids.map((id) => all.find((p) => p.id === id)).filter((p): p is Product => Boolean(p)) : []),
     [preset, all],
   );
-  const coverage = useMemo(() => (products.length ? resolveCoverage(products).matched.slice(0, 3) : []), [products]);
+  const coverage = useMemo(() => (products.length ? resolveCoverage(products).matched.slice(0, 2) : []), [products]);
   const color = CATEGORY_META[catId]?.color ?? "#2E2A45";
   const catName = categories.find((c) => c.id === catId)?.name_zh ?? "";
 
@@ -94,8 +94,7 @@ export default function CompareStarter({ onStart }: { onStart: (ids: string[]) =
 
       {/* sketchbook board */}
       <div
-        className="depth-card relative mx-auto mt-10 max-w-[1120px] rounded-[30px] border p-5 md:p-8"
-        style={{ backgroundImage: "repeating-linear-gradient(180deg, transparent 0 39px, rgba(78,158,219,.10) 39px 40px), linear-gradient(#fff,#fff)" }}
+        className="relative mx-auto mt-10 max-w-[1120px] p-1 md:p-2"
       >
         <div className="relative flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2.5">
@@ -135,22 +134,23 @@ export default function CompareStarter({ onStart }: { onStart: (ids: string[]) =
         {products.length === 0 ? (
           <p className="py-16 text-center text-ink-soft">呢個類別暫時未有足夠可比較嘅產品。</p>
         ) : (
-          <div className="relative mt-6 grid grid-cols-1 items-stretch gap-6 md:grid-cols-3" style={{ perspective: "1400px" }}>
+          <div className="relative mt-6 grid grid-cols-1 items-stretch gap-7 md:grid-cols-3">
             <AnimatePresence mode="popLayout" initial={false}>
               {products.map((p, i) => (
                 <motion.div
                   key={`${catId}-${p.id}`}
-                  initial={{ opacity: 0, rotateY: -35, y: 20 }}
-                  animate={{ opacity: 1, rotateY: 0, y: 0, transition: { delay: i * 0.08, duration: 0.55, ease: EASE } }}
-                  exit={{ opacity: 0, rotateY: 35, transition: { duration: 0.25 } }}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0, transition: { delay: i * 0.06, duration: 0.4, ease: EASE } }}
+                  exit={{ opacity: 0, transition: { duration: 0.15 } }}
                   className="h-full"
                 >
-                  <TiltCard className="h-full rounded-[22px]" max={9}>
+                  <TiltCard className="h-full rounded-[22px]" sketch={color}>
                     <article
-                      className="depth-surface card-accent relative flex h-full flex-col rounded-[22px] border p-5"
+                      className="depth-surface card-accent sketch-card relative flex h-full flex-col border p-5"
                       style={{ "--accent": color } as React.CSSProperties}
                     >
-                      <span className="font-hand text-[22px] font-bold text-ink-faint" aria-hidden="true">
+                      <SketchFrame color={color} />
+                      <span className="font-hand text-[22px] font-bold leading-none" style={{ color }} aria-hidden="true">
                         #{i + 1}
                       </span>
                       <p className="text-xs font-semibold text-ink-soft">
@@ -158,9 +158,9 @@ export default function CompareStarter({ onStart }: { onStart: (ids: string[]) =
                       </p>
                       <h3 className="mt-1 line-clamp-2 font-serif text-[18px] font-bold leading-snug text-ink">{p.product_name_zh || p.product_name}</h3>
                       <dl className="mt-4 flex flex-1 flex-col gap-3 text-[13px]">
-                        <div className="rounded-xl border border-dashed px-3 py-2" style={{ borderColor: `${color}55`, background: `${color}0D` }}>
-                          <dt className="text-[11px] font-bold text-ink-faint">保費（快照）</dt>
-                          <dd className="mt-0.5 line-clamp-3 font-medium text-ink">{p.premium_available ? p.premium_range : "官網報價／未公開"}</dd>
+                        <div>
+                          <dt className="text-[11px] font-bold text-ink-faint">保費</dt>
+                          <dd className="mt-0.5 line-clamp-2 font-bold text-ink">{p.premium_available ? p.premium_range : "官網報價／未公開"}</dd>
                         </div>
                         {coverage.map((row) => (
                           <div key={row.key}>
@@ -169,8 +169,8 @@ export default function CompareStarter({ onStart }: { onStart: (ids: string[]) =
                           </div>
                         ))}
                       </dl>
-                      <p className="mt-4 flex items-center gap-1.5 border-t border-dashed pt-3 text-[12px] text-ink-soft" style={{ borderColor: `${color}55` }}>
-                        <FileText size={13} style={{ color }} /> 官方文件 {p.documents_found?.length ?? 0} 份
+                      <p className="mt-4 flex items-center gap-1.5 border-t-2 border-dashed pt-3 text-[12px] text-ink-soft" style={{ borderColor: `${color}44` }}>
+                        <FileText size={13} style={{ color }} /> {p.documents_found?.length ?? 0} 份官方文件
                         <Link to={`/product/${p.id}`} className="ml-auto font-bold hover:underline" style={{ color }}>
                           詳情 →
                         </Link>

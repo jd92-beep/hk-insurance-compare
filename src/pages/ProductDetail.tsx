@@ -79,11 +79,11 @@ export default function ProductDetail() {
     );
   };
 
-  // SEO：<title> = 「{產品名}｜{公司} — 保險格價站」（附錄 6）
+  // SEO：<title> = 「{產品名}｜{公司} — 保險明選」（附錄 6）
   useEffect(() => {
     if (!product) return;
     const prev = document.title;
-    document.title = `${displayTitle}｜${product.insurer_zh || product.insurer} — 保險格價站`;
+    document.title = `${displayTitle}｜${product.insurer_zh || product.insurer} — 保險明選`;
     return () => {
       document.title = prev;
     };

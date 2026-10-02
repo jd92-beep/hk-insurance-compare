@@ -8,6 +8,7 @@ import {
 } from "@/lib/evidence-status";
 import ComparisonExportButton from "@/components/compare/ComparisonExportButton";
 import SavedComparisons from "@/components/compare/SavedComparisons";
+import CompareStarter from "@/components/compare/CompareStarter";
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ExternalLink, Plus, RotateCcw, X } from "lucide-react";
@@ -15,7 +16,6 @@ import { Link, useSearchParams } from "react-router";
 import type { Product } from "@/types/insurance";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import EvidenceChip from "@/components/EvidenceChip";
-import StampBadge from "@/components/StampBadge";
 import ComparisonGrid from "@/components/compare/ComparisonGrid";
 import MobileCompare from "@/components/compare/MobileCompare";
 import ProductPicker from "@/components/compare/ProductPicker";
@@ -29,8 +29,6 @@ import { cn } from "@/lib/utils";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-/** 「試睇」示範：旅遊資料操作示範，唔係推薦或人氣排名 */
-const DEMO_IDS = ["travel-axa", "travel-msig", "travel-zurich"];
 
 /** 詞級標題進場（design：h1 詞級 SplitText 0.7s） */
 function SplitWords({ words, className }: { words: string[]; className?: string }) {
@@ -151,50 +149,6 @@ function EmptySlot({ onPick }: { onPick: () => void }) {
   );
 }
 
-/** S0 空狀態 */
-function EmptyStateView({ onDemo }: { onDemo: () => void }) {
-  return (
-    <div className="site-container flex min-h-[70vh] flex-col items-center justify-center gap-6 py-20 text-center">
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
-      >
-        <StampBadge variant="gray" size={96} className="opacity-40" />
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.08, ease: EASE_OUT_EXPO }}
-      >
-        <h1 className="display-2 text-ink">仲未揀產品</h1>
-        <p className="mx-auto mt-3 max-w-[34em] text-ink-soft">
-          喺類別頁撳「+ 加入比較」，最多 3 份並排對照。
-        </p>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.16, ease: EASE_OUT_EXPO }}
-        className="flex flex-col items-center gap-4"
-      >
-        <Link to="/categories" className="btn-primary">
-          瀏覽所有保險類別
-          <ArrowRight size={17} />
-        </Link>
-        <button
-          type="button"
-          onClick={onDemo}
-          className="chip border bg-paper text-ink-soft transition-colors hover:border-red hover:text-red"
-          style={{ borderColor: "var(--line-strong)" }}
-        >
-          試用比較：AXA · MSIG · Zurich（操作示範，唔係推薦）
-        </button>
-      </motion.div>
-    </div>
-  );
-}
-
 /** 比較工具 `/compare`（design/compare.md S0–S5） */
 export default function Compare() {
   const { data, loading, error, generatedAt } = useInsuranceData();
@@ -243,10 +197,7 @@ export default function Compare() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [compare.items]);
 
-  const loadDemo = () => {
-    compare.clear();
-    DEMO_IDS.forEach((id) => compare.add(id));
-  };
+  const startPreset = (ids: string[]) => compare.replace(ids);
 
   const restoreSaved = (ids: string[]) => {
     setSearchParams({ ids: ids.join(",") });
@@ -279,7 +230,7 @@ export default function Compare() {
             onRestore={restoreSaved}
           />
         </div>
-        <EmptyStateView onDemo={loadDemo} />
+        <CompareStarter onStart={startPreset} />
         <ProductPicker
           open={pickerOpen}
           onOpenChange={setPickerOpen}

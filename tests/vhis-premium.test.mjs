@@ -1,27 +1,51 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseStandardPremium, standardPlanPremium } from '../src/lib/vhis-premium.ts';
+import { readFileSync } from 'node:fs';
+import { cellText, clampAge, flexiAt, flexiProductAt, scheduleAge, standardAt } from '../src/lib/vhis-premium.ts';
 
-test('parses explicit yearly standard-plan figures into a range', () => {
-  const r = parseStandardPremium('標準計劃年繳保費（30歲）：男性約 HK$1,993／女性約 HK$2,576（自願醫保官方標準保費一覽表）');
-  assert.deepEqual(r, { min: 1993, max: 2576, per: '年', basis: '30歲 · 男／女' });
+const data = JSON.parse(readFileSync('public/data/vhis-premiums.json', 'utf8'));
+const insurance = JSON.parse(readFileSync('public/data/insurance-data.json', 'utf8'));
+
+test('standard plan premiums agree with the 30-year-old figure already in the product snapshot', () => {
+  // build_vhis.py wrote "標準計劃年繳保費（30歲）：男性約 HK$1,993／女性約 HK$2,576" for S00012 from the same summary
+  const s = standardAt(data, 'S00012', 30);
+  assert.equal(s.male, 1993);
+  assert.equal(s.female, 2576);
+  const bolttech = insurance.products.find((p) => p.id === 'medical-bolttech');
+  assert.match(bolttech.premium_range, /男性約 HK\$1,993／女性約 HK\$2,576/);
 });
 
-test('parses explicit monthly standard-plan figures', () => {
-  const r = parseStandardPremium('標準計劃：30歲非吸煙男性約HK$138/月、女性約HK$175/月；靈活計劃（升級）：30歲非吸煙男性HK$453/月');
-  assert.deepEqual(r, { min: 138, max: 175, per: '月', basis: '30歲 · 男／女' });
+test('every active standard plan has a premium for a 30-year-old', () => {
+  for (const [cert, p] of Object.entries(data.standard)) {
+    assert.ok(p.male[30] != null || p.female[30] != null, cert);
+  }
 });
 
-test('refuses market quotes, flexi-only and promotional text', () => {
-  assert.equal(parseStandardPremium('30歲男性標準計劃保費換算約HK$147/月等值（市場公開資料引述）'), null);
-  assert.equal(parseStandardPremium('尊耀計劃（亞洲版，月繳）：30歲自付費HK$0約HK$1,504/月'), null);
-  assert.equal(parseStandardPremium('智尊守慧每日保費HKD 9/日起'), null);
+test('ages beyond the new-application range are flagged renewal-only and may be a range', () => {
+  const ctf = standardAt(data, 'S00028', 99);
+  assert.ok(ctf);
+  const aia = standardAt(data, 'S00013', 90);
+  assert.equal(aia.renewalOnly, true);
+  assert.equal(standardAt(data, 'S00013', 40).renewalOnly, false);
+  assert.equal(cellText([1000, 1500]), 'HK$1,000–1,500');
+  assert.equal(cellText(2324.8), 'HK$2,324.80');
 });
 
-test('only uses a product that cites the exact certification number', () => {
-  const p = (id, extra) => ({ id, category: 'medical', premium_available: true, premium_range: '標準計劃年繳保費（30歲）：男性約 HK$2,000／女性約 HK$3,000', ...extra });
-  const products = [p('a', { citations: [{ quote: 'S00099' }] }), p('b', { premium_available: false, citations: [{ quote: 'S00012' }] })];
-  assert.equal(standardPlanPremium('S00012', products), null);
-  assert.deepEqual(standardPlanPremium('S00099', products), { min: 2000, max: 3000, per: '年', basis: '30歲 · 男／女', productId: 'a' });
-  assert.equal(standardPlanPremium('S00100', products), null);
+test('flexi schedules map attained age to the schedule row (next-birthday schedules shift by one)', () => {
+  assert.equal(scheduleAge('next_birthday', 30), 31);
+  assert.equal(scheduleAge('attained', 30), 30);
+  // Cigna F00012 annual non-smoker / smoker at 30 = 6,126 / 7,134 (official schedule)
+  assert.deepEqual(flexiAt(data, 'F00012-01-000-03', 30), { min: 6126, max: 7134, currency: 'HKD' });
+  // Bowtie F00023: annual 6,966 at 30 — the monthly 645 column must not leak in
+  assert.deepEqual(flexiAt(data, 'F00023-01-000-02', 30), { min: 6966, max: 6966, currency: 'HKD' });
+  // AIA USD schedule with annual + half-yearly columns: annual only
+  assert.deepEqual(flexiAt(data, 'F00025-04-000-03', 30), { min: 2198, max: 2198, currency: 'USD' });
+});
+
+test('product range groups levels by currency and ignores unknown levels', () => {
+  const r = flexiProductAt(data, ['F00012-01-000-03', 'F00023-01-000-02', 'NOPE'], 30);
+  assert.deepEqual(r, [{ min: 6126, max: 7134, currency: 'HKD' }]);
+  assert.equal(clampAge(150), 99);
+  assert.equal(clampAge(-3), 0);
+  assert.equal(clampAge(Number.NaN), 30);
 });

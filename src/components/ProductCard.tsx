@@ -32,10 +32,16 @@ export default function ProductCard({
   product,
   className,
   match,
+  accent,
+  categoryLabel,
 }: {
   product: Product;
   className?: string;
   match?: FeatureMatchResult;
+  /** themed (hand-drawn) variant: card tint, edge, highlights all follow this colour, e.g. the category colour */
+  accent?: string;
+  /** small hand-cut tab naming the category (themed variant) */
+  categoryLabel?: string;
 }) {
   const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
@@ -46,7 +52,7 @@ export default function ProductCard({
   const title = product.product_name_zh || product.product_name;
   const historical = isReferenceOnlyProduct(product);
   const detailHref = `/product/${product.id}`;
-  const highlightColor = getInsurerColor(product.insurer || product.insurer_zh);
+  const highlightColor = accent ?? getInsurerColor(product.insurer || product.insurer_zh);
 
   // 1. 核心保障賣點（Selling Points）：清晰聚焦、即時掌握核心特色
   const sellingPoints = useMemo(() => deriveCardSellingPoints(product), [product]);
@@ -60,18 +66,36 @@ export default function ProductCard({
   return (
     <TiltCard max={10} glare className={cn("h-full rounded-card", className)}>
       <article
-        className="depth-surface group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-card border border-line bg-paper"
+        className={cn(
+          "depth-surface group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-card border border-line bg-paper",
+          accent && "card-accent",
+        )}
+        style={accent ? ({ "--accent": accent } as React.CSSProperties) : undefined}
         aria-label={`${product.insurer_zh} ${title}`}
         onClick={(e) => handleCardClickNavigation(e, detailHref, navigate)}
       >
-        {/* 頂部彩色品牌 Highlight 條 */}
-        <div
-          className="h-1.5 depth-z-bar"
-          style={{ background: highlightColor }}
-          aria-hidden="true"
-        />
+        {accent ? (
+          /* hand-drawn brush stroke in the category colour + a hand-cut category tab */
+          <div className="relative depth-z-bar" aria-hidden="true">
+            <svg viewBox="0 0 300 14" preserveAspectRatio="none" className="block h-3.5 w-full">
+              <path d="M0 6 C 40 2 80 10 130 6 S 220 2 300 7 L300 0 L0 0Z" fill={accent} />
+              <path d="M4 9 C 60 5 120 12 180 8 S 260 6 296 10" fill="none" stroke={accent} strokeOpacity=".45" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </div>
+        ) : (
+          /* 頂部彩色品牌 Highlight 條 */
+          <div className="h-1.5 depth-z-bar" style={{ background: highlightColor }} aria-hidden="true" />
+        )}
+        {accent && categoryLabel && (
+          <span
+            className="absolute left-4 top-[18px] z-[2] -rotate-2 rounded-md px-2 py-0.5 font-serif text-[12px] font-bold text-white shadow-[0_2px_0_rgba(0,0,0,.15)] md:left-5"
+            style={{ background: accent }}
+          >
+            {categoryLabel}
+          </span>
+        )}
 
-        <div className="flex flex-col gap-2.5 p-4 md:p-5">
+        <div className={cn("flex flex-col gap-2.5 p-4 md:p-5", accent && categoryLabel && "pt-11 md:pt-11")}>
           {/* 公司名稱與收藏按鈕 */}
           <div>
             <div className="flex items-start justify-between gap-2">

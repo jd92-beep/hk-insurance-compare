@@ -24,9 +24,10 @@ import type { Insurer } from "@/types/insurance";
  * an empty right gutter. Single products fill the row; 2+ use foldable cols.
  */
 function productGridClass(count: number): string {
-  if (count <= 1) return "grid grid-cols-1 items-start gap-6";
-  if (count === 2) return "grid grid-cols-1 items-start gap-6 fold:grid-cols-2";
-  return "grid grid-cols-1 items-start gap-6 fold:grid-cols-2 lg:grid-cols-3";
+  // items-stretch: every card in a row shares the row height, so the grid reads as neat columns
+  if (count <= 1) return "grid grid-cols-1 items-stretch gap-7";
+  if (count === 2) return "grid grid-cols-1 items-stretch gap-7 fold:grid-cols-2";
+  return "grid grid-cols-1 items-stretch gap-7 fold:grid-cols-2 lg:grid-cols-3";
 }
 
 function resolveInsurer(raw: string, insurers: Insurer[]): Insurer | undefined {
@@ -209,15 +210,11 @@ export default function InsurerDetail() {
               <div className={productGridClass(allProducts.length)}>
                 {allProducts.map((product) => (
                   <div key={`ov-${product.id}`} className="min-w-0">
-                    <p className="mb-2 flex items-center gap-2 text-small font-semibold text-ink-soft">
-                      <span
-                        className="h-2 w-2 rounded-full"
-                        style={{ background: categoryColor(product.category) }}
-                        aria-hidden="true"
-                      />
-                      {categoryName(categories, product.category)}
-                    </p>
-                    <ProductCard product={product} />
+                    <ProductCard
+                      product={product}
+                      accent={categoryColor(product.category)}
+                      categoryLabel={categoryName(categories, product.category)}
+                    />
                   </div>
                 ))}
               </div>
@@ -265,7 +262,7 @@ export default function InsurerDetail() {
                 </div>
                 <div className={productGridClass(section.products.length)}>
                   {section.products.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+                    <ProductCard key={product.id} product={product} accent={categoryColor(section.categoryId)} />
                   ))}
                 </div>
               </section>

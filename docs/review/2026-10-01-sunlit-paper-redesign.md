@@ -143,3 +143,37 @@ Boss asked to base the hand-drawn art on real holiday-destination and holiday-ac
 | `npm run build` | pass |
 | `npm run test:filters` | pass |
 | Playwright Chromium (SwiftShader) 1440×900 + 390×844 | all 7 hero themes, ring wheel behaviour, VHIS, insurers, nav |
+
+## Revision — VHIS premiums by age, themed insurer cards, compare starter kit (Build 20261002.02)
+
+1. **VHIS age filter.** New 投保歲數 control (0–99, default 30, −/＋ and typed input) beside the search box; the
+   table shows male / female annual premiums for that age and flexi products/levels show the annual range.
+   - Standard plans: `scripts/build_vhis_premiums.py` reads the government *Standard Plan Premium Summary*
+     (Male/Female xlsx, vhis.gov.hk, as of 2026年7月17日) → `public/data/vhis-premiums.json`; all 30 active
+     standard plans matched by exact company name (「前為…」 notes stripped). A number = new-application premium
+     at that age; ages past the new-application range are labelled 只限續保 and, where the provider bands renewal
+     premiums by entry age (CTF Life), shown as a range.
+   - Flexi plans: `scripts/build_vhis_flexi_premiums.py` downloads every active level's official Standard Premium
+     Schedule PDF (542) and extracts ANNUAL premiums only — each value is matched to the payment-mode label above
+     it (handles annual / half-yearly / quarterly / monthly side by side, continuation pages, two/three age columns,
+     next-birthday / nearest-birthday schedules, HKD/USD). Strict validation (contiguous ages, plausible values,
+     max/min ≤ 4× per age) — 523 / 542 levels pass; the other 19 keep the official PDF link. Random audit of 13
+     levels against the PDF text: all correct.
+   - The earlier snapshot-text range (17/33 rows) is replaced by the official data.
+2. **Insurer pages:** product cards take the category colour (brush-stroke header, hand-cut category tab, tinted
+   paper, dashed pencil frame, category-coloured paper-edge thickness, selling-point chips) and keep the 3D tilt;
+   grids use `items-stretch` so each row aligns.
+3. **Compare starter kit** (`/compare` with nothing selected): pick any of the 11 categories, preview three products
+   from three insurers side by side (premium snapshot, up to three canonical benefits, document count), cycle sets,
+   then 開始呢個比較 loads them. Sets come from `src/lib/compare-presets.ts`: the existing editorial 熱門組合 where
+   defined, otherwise public-evidence completeness, one product per insurer — labelled as not a sales/popularity
+   ranking. Fixed the editorial list (shared with /categories): `topup-aia-smm` did not exist → `topup-aia-extra-medic`;
+   discontinued `travel-aig` replaced by `travel-msig`.
+
+| Check | Result |
+| --- | --- |
+| `npm test` | 226 pass, 0 fail |
+| `npm run lint -- --max-warnings=0` | pass |
+| `npm run build` | pass |
+| `npm run test:filters` | pass |
+| Playwright Chromium 1440×900 + 390×844 | VHIS ages 30/65/90 + flexi chips, AXA insurer page, compare starter (switch category, cycle set, start comparison) |

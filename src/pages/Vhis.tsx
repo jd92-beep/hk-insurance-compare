@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
-import { ExternalLink, RotateCcw, Search } from "lucide-react";
+import { ExternalLink, Minus, Plus, RotateCcw, Search } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import EmptyState from "@/components/EmptyState";
 import {
@@ -23,7 +23,18 @@ import type { Insurer, Product } from "@/types/insurance";
 import type { VhisFlexiProduct, VhisStandardPlan, VhisStatus } from "@/types/vhis";
 import VhisSchemeFacts from "@/components/vhis/VhisSchemeFacts";
 import { cn } from "@/lib/utils";
-import { standardPlanPremium } from "@/lib/vhis-premium";
+import {
+  cellText,
+  clampAge,
+  DEFAULT_AGE,
+  flexiAt,
+  flexiProductAt,
+  MAX_AGE,
+  MIN_AGE,
+  money,
+  standardAt,
+  type VhisPremiumData,
+} from "@/lib/vhis-premium";
 import { Scribble } from "@/components/fx/Sketch";
 
 function cleanCompanyName(name: string): string {
@@ -155,45 +166,102 @@ function DocLinks({
   );
 }
 
-/** 保費範圍：只顯示本站快照入面明確寫明嘅標準計劃數字；否則指去官方保費表 */
-function PremiumCell({ certBase, premiumDocUrl, products }: { certBase: string; premiumDocUrl: string; products: Product[] }) {
-  const r = useMemo(() => standardPlanPremium(certBase, products), [certBase, products]);
-  if (!r) {
-    return premiumDocUrl ? (
-      <a
-        href={premiumDocUrl}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-dashed border-jade/50 px-2.5 py-1 text-[12.5px] font-bold text-jade transition-colors hover:bg-jade-wash"
-      >
-        睇官方保費表 <ExternalLink size={11} />
-      </a>
-    ) : (
-      <span className="text-small text-ink-faint">未有公開保費</span>
-    );
-  }
-  const fmt = (n: number) => n.toLocaleString("en-US");
+/** 官方保費（按歲數）：標準計劃 = 醫務衞生局標準保費一覽表；靈活計劃 = 各級別官方保費表 PDF 抽取 */
+function useVhisPremiums(): VhisPremiumData | null {
+  const [data, setData] = useState<VhisPremiumData | null>(null);
+  useEffect(() => {
+    let alive = true;
+    fetch(`${import.meta.env.BASE_URL}data/vhis-premiums.json`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => alive && setData(j))
+      .catch(() => undefined);
+    return () => {
+      alive = false;
+    };
+  }, []);
+  return data;
+}
+
+function OfficialTableLink({ url, label = "睇官方保費表" }: { url: string; label?: string }) {
+  if (!url) return <span className="text-small text-ink-faint">未有公開保費</span>;
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noreferrer"
+      className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-dashed border-jade/50 px-2.5 py-1 text-[12.5px] font-bold text-jade transition-colors hover:bg-jade-wash"
+    >
+      {label} <ExternalLink size={11} />
+    </a>
+  );
+}
+
+/** 標準計劃：男／女年繳保費（喺所揀歲數） */
+function StandardPremiumCell({ certBase, age, premiums, premiumDocUrl }: { certBase: string; age: number; premiums: VhisPremiumData | null; premiumDocUrl: string }) {
+  const r = standardAt(premiums, certBase, age);
+  if (!premiums) return <span className="text-small text-ink-faint">載入中…</span>;
+  if (!r) return <OfficialTableLink url={premiumDocUrl} label={`${age}歲唔適用 · 睇保費表`} />;
+  const rows: [string, string | null][] = [
+    ["男", cellText(r.male)],
+    ["女", cellText(r.female)],
+  ];
   return (
     <div className="relative inline-block">
-      <p className="whitespace-nowrap font-grotesk text-[17px] font-extrabold text-ink">
-        HK${fmt(r.min)}
-        {r.max !== r.min && (
-          <>
-            <span className="mx-1 font-hand text-[20px] text-ink-faint">→</span>
-            {fmt(r.max)}
-          </>
-        )}
-        <span className="ml-1 text-[12px] font-bold text-ink-soft">/ {r.per}</span>
-      </p>
-      <Scribble className="absolute -bottom-1.5 left-0 h-2.5 w-full" color="var(--amber)" delay={0.1} />
+      {rows.map(([sex, v]) => (
+        <p key={sex} className="flex items-baseline gap-2 whitespace-nowrap">
+          <span className={cn("inline-flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold text-white", sex === "男" ? "bg-sky" : "bg-red")}>{sex}</span>
+          <span className="font-grotesk text-[16px] font-extrabold text-ink">{v ?? "—"}</span>
+          <span className="text-[11px] font-bold text-ink-faint">/ 年</span>
+        </p>
+      ))}
+      <Scribble className="absolute -bottom-1 left-0 h-2.5 w-full" color="var(--amber)" delay={0.1} />
       <p className="mt-1.5 text-[11.5px] text-ink-faint">
-        {r.basis} · 本站快照
-        {premiumDocUrl && (
-          <a href={premiumDocUrl} target="_blank" rel="noreferrer" className="ml-1.5 font-bold text-jade hover:underline">
-            官方表 ↗
-          </a>
-        )}
+        {r.renewalOnly ? `${age}歲只限續保${Array.isArray(r.male) || Array.isArray(r.female) ? "（視乎投保年齡）" : ""}` : `${age}歲新投保`}
+        <a href={premiumDocUrl} target="_blank" rel="noreferrer" className="ml-1.5 font-bold text-jade hover:underline">
+          官方表 ↗
+        </a>
       </p>
+    </div>
+  );
+}
+
+/** 歲數輸入：− / ＋ 按鈕 + 數字欄 */
+function AgeInput({ age, onChange }: { age: number; onChange: (n: number) => void }) {
+  const [draft, setDraft] = useState(String(age));
+  const [shownAge, setShownAge] = useState(age);
+  if (shownAge !== age) {
+    // keep the text box in sync when the age changes from the −/＋ buttons or reset
+    setShownAge(age);
+    setDraft(String(age));
+  }
+  const commit = (v: string) => onChange(clampAge(Number(v)));
+  return (
+    <div className="flex h-[34px] items-center gap-1 rounded-full border-2 border-dashed border-amber/60 bg-amber-wash/60 pl-3 pr-1 text-ink">
+      <label htmlFor="vhis-age" className="whitespace-nowrap text-small font-bold">
+        投保歲數
+      </label>
+      <button type="button" onClick={() => onChange(clampAge(age - 1))} className="flex h-6 w-6 items-center justify-center rounded-full hover:bg-white" aria-label="減一歲">
+        <Minus size={13} />
+      </button>
+      <input
+        id="vhis-age"
+        type="number"
+        inputMode="numeric"
+        min={MIN_AGE}
+        max={MAX_AGE}
+        value={draft}
+        onChange={(e) => {
+          setDraft(e.target.value);
+          if (e.target.value !== "") commit(e.target.value);
+        }}
+        onBlur={() => commit(draft === "" ? String(DEFAULT_AGE) : draft)}
+        className="w-11 rounded-md bg-white text-center font-grotesk text-[15px] font-extrabold text-ink outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none"
+        aria-describedby="vhis-age-note"
+      />
+      <button type="button" onClick={() => onChange(clampAge(age + 1))} className="flex h-6 w-6 items-center justify-center rounded-full hover:bg-white" aria-label="加一歲">
+        <Plus size={13} />
+      </button>
+      <span className="pr-1.5 text-small text-ink-soft">歲</span>
     </div>
   );
 }
@@ -228,6 +296,8 @@ export default function Vhis() {
   const [planType, setPlanType] = useState<PlanTypeFilter>("all");
   const [company, setCompany] = useState<string>("all");
   const [query, setQuery] = useState("");
+  const [age, setAge] = useState(DEFAULT_AGE);
+  const premiums = useVhisPremiums();
 
   const companies = useMemo(() => {
     if (!data) return [];
@@ -263,11 +333,12 @@ export default function Vhis() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, planType, company, q]);
 
-  const hasActiveFilters = planType !== "all" || company !== "all" || q !== "";
+  const hasActiveFilters = planType !== "all" || company !== "all" || q !== "" || age !== DEFAULT_AGE;
   const resetFilters = () => {
     setPlanType("all");
     setCompany("all");
     setQuery("");
+    setAge(DEFAULT_AGE);
   };
 
   /* ── 未載入 ── */
@@ -499,6 +570,9 @@ export default function Vhis() {
             />
           </label>
 
+          {/* 歲數 → 下面保費跟住變 */}
+          <AgeInput age={age} onChange={setAge} />
+
           {/* 結果數 + 重設 */}
           <div className="ml-auto flex shrink-0 items-center gap-3 text-small">
             <span className="whitespace-nowrap text-ink-faint">
@@ -522,6 +596,12 @@ export default function Vhis() {
       {/* ── 名單 ─────────────────────────────────────────────── */}
       <section className="py-10 max-md:py-8">
         <div className="site-container flex flex-col gap-14">
+          <p id="vhis-age-note" className="-mb-8 rounded-2xl border border-dashed border-amber/50 bg-amber-wash/40 px-4 py-3 text-[12.5px] leading-relaxed text-ink-soft">
+            <span className="font-hand text-[18px] font-bold text-ink">note ✎ </span>
+            保費按 <b className="text-ink">{age} 歲</b>計（年繳，港元／美元按計劃）。標準計劃：醫務衞生局《自願醫保標準計劃標準保費一覽表》
+            {premiums?.source.as_of ? `（截至 ${premiums.source.as_of}）` : ""}；靈活計劃：由各級別官方標準保費表自動抽取，範圍涵蓋性別、吸煙習慣、基本計劃／附加契約等欄位，部分級別未能讀取則請睇官方表。
+            只供參考，未包括保費徵費、折扣或附加保費，以保險公司文件為準。
+          </p>
           {shown === 0 ? (
             <EmptyState
               title="呢個組合搵唔到認可產品"
@@ -553,7 +633,7 @@ export default function Vhis() {
                           {[
                             ["plan", "計劃名稱 / 認可編號"],
                             ["insurer", "保險公司"],
-                            ["premium", "保費範圍"],
+                            ["premium", `${age}歲年繳保費`],
                             ["documents", "官方文件"],
                           ].map(([en, zh], k) => (
                             <th key={en} className={cn("px-4 pb-3 pt-2 text-left align-bottom", k === 0 && "pl-16 max-md:pl-4")}>
@@ -610,7 +690,7 @@ export default function Vhis() {
                               </div>
                             </td>
                             <td className="px-4 py-4 align-top">
-                              <PremiumCell certBase={p.cert_base} premiumDocUrl={p.premium_doc_url} products={products} />
+                              <StandardPremiumCell certBase={p.cert_base} age={age} premiums={premiums} premiumDocUrl={p.premium_doc_url} />
                             </td>
                             <td className="px-4 py-4 align-top">
                               <DocLinks
@@ -656,6 +736,13 @@ export default function Vhis() {
                             <span className="chip bg-paper-3 text-ink-soft">
                               <span className="font-grotesk font-bold">{p.levels.length}</span> 個級別
                             </span>
+                            {flexiProductAt(premiums, p.levels.map((l) => l.cert_no), age).map((r) => (
+                              <span key={r.currency} className="chip bg-amber-wash font-bold text-ink">
+                                {age}歲 {money(r.min, r.currency)}
+                                {r.max !== r.min && <span>–{money(r.max, r.currency).replace(/^(HK|US)\$/, "")}</span>}
+                                <span className="font-medium text-ink-soft">/ 年</span>
+                              </span>
+                            ))}
                             <StatusBadge status={p.status} />
                           </span>
                         </AccordionTrigger>
@@ -674,7 +761,7 @@ export default function Vhis() {
                                 </span>
                               </div>
                               <div className="flex items-center gap-3">
-                                <span className="text-xs text-ink-faint">保費按級別及年齡，見各級別官方保費表</span>
+                                <span className="text-xs text-ink-faint">{age}歲年繳保費（各級別官方保費表；範圍涵蓋性別／吸煙／基本或附加等）</span>
                                 <Link
                                   to={findProductForVhis(p, products, true)}
                                   className="inline-flex items-center gap-1 rounded-lg border border-jade/40 bg-jade-wash px-3 py-1.5 text-xs font-bold text-jade hover:bg-jade hover:text-paper transition-all"
@@ -702,6 +789,18 @@ export default function Vhis() {
                                 <span className="font-grotesk text-[12px] text-ink-faint">
                                   {lv.cert_no}
                                 </span>
+                                {(() => {
+                                  const r = flexiAt(premiums, lv.cert_no, age);
+                                  return r ? (
+                                    <span className="whitespace-nowrap font-grotesk text-[15px] font-extrabold text-ink">
+                                      {money(r.min, r.currency)}
+                                      {r.max !== r.min && <span>–{money(r.max, r.currency).replace(/^(HK|US)\$/, "")}</span>}
+                                      <span className="ml-1 text-[11px] font-bold text-ink-faint">/ 年</span>
+                                    </span>
+                                  ) : (
+                                    <span className="text-[12px] text-ink-faint">{premiums ? "保費見官方表" : ""}</span>
+                                  );
+                                })()}
                                 <DocLinks
                                   planDocUrl={lv.plan_doc_url}
                                   premiumDocUrl={lv.premium_doc_url}

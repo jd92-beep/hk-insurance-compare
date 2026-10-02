@@ -16,17 +16,11 @@ import {
 import { useCompare, COMPARE_LIMIT } from "@/providers/CompareProvider";
 import { useSearch } from "@/providers/SearchProvider";
 import { CATEGORY_ORDER } from "@/lib/categories";
+import { POPULAR_COMBOS } from "@/lib/compare-presets";
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 /** 熱門比較組合（一撳直入比較工具） */
-const POPULAR_COMBOS: { label: string; ids: string[] }[] = [
-  { label: "旅遊保險：AIG · Blue Cross · AXA", ids: ["travel-aig", "travel-blue-cross", "travel-axa"] },
-  { label: "自願醫保：Bowtie · 保柏 · AIA", ids: ["medical-bowtie", "medical-bupa", "medical-aia"] },
-  { label: "高端醫療：保柏環球 · 友邦 · 信諾", ids: ["high-end-bupa-elite", "high-end-aia-ceo", "high-end-cigna-global"] },
-  { label: "Top-up 醫保：保柏 · 信諾 · 友邦", ids: ["topup-bupa-carepro", "topup-cigna-plus", "topup-aia-smm"] },
-  { label: "家居保險：AXA · Avo · 蘇黎世", ids: ["home-axa", "home-avo", "home-zurich"] },
-];
 
 /** h1 詞級／字級進場 */
 function AnimatedTitle({ text }: { text: string }) {

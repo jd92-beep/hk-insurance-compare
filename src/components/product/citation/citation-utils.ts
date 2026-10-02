@@ -21,11 +21,11 @@ export interface CitationGroupMeta {
 
 /** 分組顯示次序同顏色（跟全站 paper/ink/紅/jade/amber 色系） */
 export const CITATION_GROUPS: CitationGroupMeta[] = [
-  { key: "premium", label: "保費", color: "var(--red, #C8102E)" },
-  { key: "coverage", label: "保障", color: "var(--jade, #0E7C66)" },
-  { key: "terms", label: "條款", color: "var(--amber, #D98E04)" },
+  { key: "premium", label: "保費", color: "var(--red, #E4573D)" },
+  { key: "coverage", label: "保障", color: "var(--jade, #3F9A5B)" },
+  { key: "terms", label: "條款", color: "var(--amber, #F2A71B)" },
   { key: "exclusions", label: "不保事項", color: "#3C4A63" },
-  { key: "other", label: "其他", color: "var(--ink-faint, #8A8FA0)" },
+  { key: "other", label: "其他", color: "var(--ink-faint, #958FA3)" },
 ];
 
 export function groupKeyOf(claimField: string): CitationGroupKey {

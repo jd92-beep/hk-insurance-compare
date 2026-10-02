@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-
-const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
+import TiltCard from "@/components/fx/TiltCard";
+import { Parallax } from "@/components/fx/Depth";
 
 const drawVariants: Variants = {
   hidden: { pathLength: 0, opacity: 0 },
@@ -16,7 +16,7 @@ function DrawnIcon({ paths }: { paths: string[] }) {
   return (
     <motion.svg
       viewBox="0 0 24 24"
-      className="h-9 w-9 text-ink transition-transform duration-300 group-hover:rotate-3"
+      className="h-11 w-11 text-ink transition-transform duration-300 group-hover:-rotate-6"
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-18% 0px" }}
@@ -65,33 +65,62 @@ const PROMISES = [
   },
 ];
 
-/** S6 三大承諾 —「點解信得過？」 */
+const NOTES = [
+  { bg: "#FFF2C2", rot: -2.5 },
+  { bg: "#E4F3E1", rot: 1.8 },
+  { bg: "#FDE7DE", rot: -1.2 },
+];
+
+/** S6 三大承諾 — 三張便利貼 */
 export default function Promises() {
   return (
-    <section className="py-24 md:py-28">
+    <section className="relative py-24 md:py-28">
       <div className="site-container">
+        <p className="mb-2 text-center font-hand text-[26px] font-bold text-red">why trust us ♥</p>
+        <h2 className="display-2 mb-14 text-center text-ink">點解信得過？</h2>
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-18% 0px" }}
-          transition={{ staggerChildren: 0.1 }}
-          className="grid grid-cols-1 gap-6 fold:grid-cols-2 fold-wide:grid-cols-3"
+          transition={{ staggerChildren: 0.14 }}
+          className="grid grid-cols-1 gap-10 fold:grid-cols-2 fold-wide:grid-cols-3"
         >
-          {PROMISES.map((p) => (
+          {PROMISES.map((p, i) => (
+            <Parallax key={p.title} speed={[0.12, 0.3, 0.18][i]}>
+            <TiltCard className="h-full" max={14}>
+            <div className="relative h-full">
+            {/* a little pad of notes underneath = visible thickness */}
+            {[10, 6, 3].map((o) => (
+              <span
+                key={o}
+                aria-hidden="true"
+                className="absolute inset-0"
+                style={{ transform: `translate(${o * 0.4}px, ${o}px) rotate(${NOTES[i].rot + o * 0.15}deg)`, background: NOTES[i].bg, filter: "brightness(.94)", borderRadius: "4px 4px 22px 4px", boxShadow: "0 1px 0 rgba(0,0,0,.06)" }}
+              />
+            ))}
             <motion.div
-              key={p.title}
               variants={{
-                hidden: { opacity: 0, y: 32, rotateX: 10 },
-                show: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.7, ease: EASE_OUT_EXPO } },
+                hidden: { opacity: 0, y: -60, rotate: NOTES[i].rot * 4 },
+                show: { opacity: 1, y: 0, rotate: NOTES[i].rot, transition: { type: "spring", stiffness: 120, damping: 12 } },
               }}
-              style={{ transformPerspective: 800 }}
-              className="group relative pt-6"
+              whileHover={{ rotate: 0, y: -8, transition: { type: "spring", stiffness: 300, damping: 15 } }}
+              className="group relative h-full p-7 pt-10"
+              style={{
+                background: NOTES[i].bg,
+                backgroundImage: "url(/textures/paper-fiber.svg)",
+                backgroundBlendMode: "multiply",
+                boxShadow: "0 1px 1px rgba(120,80,30,.1), 0 18px 28px -16px rgba(120,80,30,.4)",
+                borderRadius: "4px 4px 22px 4px",
+              }}
             >
-              <span className="absolute left-0 top-0 h-[2px] w-full bg-red transition-all duration-300 group-hover:h-[4px]" aria-hidden="true" />
+              <span className="absolute left-1/2 top-3 h-3.5 w-3.5 -translate-x-1/2 rounded-full shadow-[0_2px_3px_rgba(0,0,0,.25)]" style={{ background: "radial-gradient(circle at 35% 35%, #ff9a7a, #E4573D)" }} aria-hidden="true" />
               <DrawnIcon paths={p.paths} />
-              <h3 className="mt-4 font-serif text-[22px] font-bold text-ink">{p.title}</h3>
+              <h3 className="mt-4 font-serif text-[24px] font-bold text-ink">{p.title}</h3>
               <p className="mt-2 max-w-[32em] text-[15px] leading-[1.75] text-ink-soft">{p.body}</p>
             </motion.div>
+            </div>
+            </TiltCard>
+            </Parallax>
           ))}
         </motion.div>
       </div>

@@ -72,7 +72,7 @@ export default function CoverageMatrix({
                     </span>
                     <span
                       className="h-2 w-2 rounded-full"
-                      style={{ background: meta?.color ?? "#181D2E" }}
+                      style={{ background: meta?.color ?? "#2E2A45" }}
                       aria-hidden="true"
                     />
                   </div>
@@ -94,7 +94,7 @@ export default function CoverageMatrix({
                 </th>
                 {orderedCats.map((c) => {
                   const n = row?.get(c.id) ?? 0;
-                  const color = CATEGORY_META[c.id]?.color ?? "#181D2E";
+                  const color = CATEGORY_META[c.id]?.color ?? "#2E2A45";
                   return (
                     <td key={c.id} className="px-1 py-2 text-center align-middle">
                       {n > 0 ? (

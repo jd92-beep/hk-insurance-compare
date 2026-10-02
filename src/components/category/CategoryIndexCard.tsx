@@ -29,7 +29,7 @@ export default function CategoryIndexCard({
   const navigate = useNavigate();
   const meta = CATEGORY_META[category.id];
   const copy = categoryCopy(category.id);
-  const color = meta?.color ?? "#181D2E";
+  const color = meta?.color ?? "#2E2A45";
   const noPremium = category.insurers_with_premium === 0;
   const detailHref = `/category/${category.id}`;
 

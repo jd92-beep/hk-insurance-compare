@@ -29,7 +29,8 @@
 # AGENTS.md
 
 Static React/TypeScript comparison site for Hong Kong insurance. Keep the
-Traditional Chinese (Hong Kong) UI and its existing paper/ink/jade/amber tokens.
+Traditional Chinese (Hong Kong) UI and its Sunlit Paper design tokens in
+`src/index.css` (paper/ink, red = coral, jade = leaf, amber = sun, sky).
 User instructions override this file and the global handbook owns generic workflow
 and skill routing.
 

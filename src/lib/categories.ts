@@ -41,74 +41,74 @@ export const DEFAULT_CATEGORIES: Category[] = [
 export const CATEGORY_META: Record<string, CategoryMeta> = {
   home: {
     id: "home",
-    color: "#B5533C",
+    color: "#D9733F",
     icon: "/cat-home.svg",
     tagline: "火險唔等於家居保——財物、責任、樓齡限制逐間睇。",
   },
   travel: {
     id: "travel",
-    color: "#2E6FDB",
+    color: "#3D8FD1",
     icon: "/cat-travel.svg",
     tagline: "單次定全年？醫療額、行程取消、高危活動保唔保？",
   },
   life: {
     id: "life",
-    color: "#5B4FA6",
+    color: "#8A6BC4",
     icon: "/cat-life.svg",
     tagline: "同一保額同年期，核對保費、健康申報及續保條款。",
   },
   "critical-illness": {
     id: "critical-illness",
-    color: "#C8102E",
+    color: "#E25B5B",
     icon: "/cat-critical-illness.svg",
     tagline: "三大危疾定義、多重賠償、等候期，條款差好遠。",
   },
   accident: {
     id: "accident",
-    color: "#D98E04",
+    color: "#E39A12",
     icon: "/cat-accident.svg",
     tagline: "意外醫療、永久傷殘賠償比例，邊份保障全？",
   },
   medical: {
     id: "medical",
-    color: "#0E7C66",
+    color: "#3F9A5B",
     icon: "/cat-medical.svg",
     tagline: "自願醫保標準計劃 vs 靈活計劃，自付費點揀？",
   },
   "high-end-medical": {
     id: "high-end-medical",
-    color: "#0F4C81",
+    color: "#2F6E8F",
     icon: "/cat-medical.svg",
     tagline: "先核對病房、保障地區、自付費及分項限制。",
   },
   "top-up-medical": {
     id: "top-up-medical",
-    color: "#0284C7",
+    color: "#3AA6A8",
     icon: "/cat-medical.svg",
     tagline: "核對現有醫保、自付費計法及轉工後保障安排。",
   },
   motor: {
     id: "motor",
-    color: "#3C4A63",
+    color: "#5A6680",
     icon: "/cat-motor.svg",
     tagline: "三保定全保？NCD、墊底費、維修限制逐間問。",
   },
   "domestic-helper": {
     id: "domestic-helper",
-    color: "#7A4FB5",
+    color: "#C46BA8",
     icon: "/cat-domestic-helper.svg",
     tagline: "法定要求之外，醫療同遣散費保障邊間足？",
   },
   pet: {
     id: "pet",
-    color: "#E0662B",
+    color: "#F0843F",
     icon: "/cat-pet.svg",
     tagline: "獸醫費用賠幾多？先天性疾病保唔保？",
   },
 };
 
 export function categoryColor(id: string): string {
-  return CATEGORY_META[id]?.color ?? "#181D2E";
+  return CATEGORY_META[id]?.color ?? "#2E2A45";
 }
 
 export function categoryName(categories: Category[], id: string): string {

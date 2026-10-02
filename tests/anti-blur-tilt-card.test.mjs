@@ -38,11 +38,10 @@ test('index.css depth cards retain physical 3D shadows and edges without resting
   // Must NOT have resting transform: translateZ(0) which degrades subpixel text antialiasing
   assert.ok(!indexCssSource.includes('transform: translateZ(0);'));
 
-  // Must preserve 3D physical depth: top rim highlight and multi-tier dropped shadows
-  assert.ok(indexCssSource.includes('inset 0 1px 0 rgba(255,255,255,.95)'));
-  assert.ok(indexCssSource.includes('0 2px 0 0 rgba(27,43,37,.08)'));
-  assert.ok(indexCssSource.includes('0 14px 28px -16px rgba(27,43,37,.38)'));
-  assert.ok(indexCssSource.includes('0 28px 56px -28px rgba(27,43,37,.32)'));
+  // Must preserve 3D physical depth: sunlit top rim highlight and a layered warm drop-shadow stack
+  assert.ok(indexCssSource.includes('inset 0 1px 0 rgba(255, 255, 255, 0.95)'));
+  assert.ok(indexCssSource.includes('0 18px 30px -16px rgba(var(--shadow-warm), 0.3)'));
+  assert.ok(indexCssSource.includes('0 34px 60px -30px rgba(var(--shadow-warm), 0.28)'));
 
   // Must enforce font smoothing and optimal legibility
   assert.ok(indexCssSource.includes('-webkit-font-smoothing: antialiased;'));
@@ -55,9 +54,9 @@ test('index.css depth cards retain physical 3D shadows and edges without resting
   assert.ok(indexCssSource.includes('.chip-3d'));
 
   // Crisp perimeter borders: depth-surface, depth-card, shadow-card have solid contrast rules
-  assert.ok(indexCssSource.includes('border-color: rgba(24, 29, 46, 0.22)'));
+  assert.ok(indexCssSource.includes('border-color: rgba(46, 42, 69, 0.16)'));
   assert.ok(indexCssSource.includes('border-top-color: rgba(255, 255, 255, 0.95)'));
-  assert.ok(indexCssSource.includes('border-bottom-color: rgba(24, 29, 46, 0.26)'));
+  assert.ok(indexCssSource.includes('border-bottom-color: rgba(46, 42, 69, 0.22)'));
 
   // depth-card is flat at rest and switches to preserve-3d when active/hover
   assert.ok(indexCssSource.includes('.depth-card { transform-style: flat; }'));

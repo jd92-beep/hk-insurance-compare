@@ -1,60 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 640" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" fill="none">
   <defs>
-    <filter id="gh-grain">
-      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
-      <feColorMatrix type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.53  0 0 0 0 0.48  0 0 0 0.05 0"/>
-    </filter>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#CDE7F6"/>
+      <stop offset="1" stop-color="#FFF3DC"/>
+    </linearGradient>
+    <filter id="wob"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="5"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#784F1E" flood-opacity=".25"/></filter>
   </defs>
-  <rect width="1920" height="640" fill="#F4F0E8"/>
-
-  <!-- 攤開嘅保單文件（紙雕層疊） -->
-  <g>
-    <rect x="180" y="120" width="460" height="400" rx="10" fill="#EFEAE0" stroke="#181D2E" stroke-opacity="0.25" transform="rotate(-5 410 320)"/>
-    <rect x="240" y="96" width="460" height="400" rx="10" fill="#F9F6F0" stroke="#181D2E" stroke-opacity="0.4" transform="rotate(2 470 296)"/>
-    <g transform="rotate(2 470 296)" stroke="#181D2E" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round">
-      <path d="M300 170 H610 M300 210 H640 M300 250 H560 M300 290 H630 M300 330 H590 M300 370 H620"/>
-    </g>
-    <!-- 紅色批註線 -->
-    <g transform="rotate(2 470 296)" stroke="#C8102E" stroke-width="5" stroke-linecap="round">
-      <path d="M296 216 q170 10 350 4"/>
-      <path d="M296 336 q160 8 300 2" opacity="0.85"/>
-    </g>
-    <g transform="rotate(2 470 296)">
-      <circle cx="650" cy="212" r="16" fill="none" stroke="#C8102E" stroke-width="4"/>
-    </g>
+  <rect width="640" height="400" fill="url(#sky)"/>
+  <!-- sun -->
+  <g transform="translate(520 82)">
+    <circle r="70" fill="#FFD36B" opacity=".35"/>
+    <g fill="#FFB547"><path d="M-6-52 0-74 6-52Z"/><path d="M-6-52 0-74 6-52Z" transform="rotate(45)"/><path d="M-6-52 0-74 6-52Z" transform="rotate(90)"/><path d="M-6-52 0-74 6-52Z" transform="rotate(135)"/><path d="M-6-52 0-74 6-52Z" transform="rotate(180)"/><path d="M-6-52 0-74 6-52Z" transform="rotate(225)"/><path d="M-6-52 0-74 6-52Z" transform="rotate(270)"/><path d="M-6-52 0-74 6-52Z" transform="rotate(315)"/></g>
+    <circle r="40" fill="#FFC93C" stroke="#2E2A45" stroke-opacity=".4" stroke-width="2" filter="url(#wob)"/>
   </g>
-
-  <!-- 放大鏡 -->
-  <g transform="translate(1050 250)">
-    <circle cx="0" cy="0" r="110" fill="#F7F4EE" fill-opacity="0.35" stroke="#181D2E" stroke-width="14"/>
-    <rect x="78" y="78" width="150" height="30" rx="15" fill="#181D2E" transform="rotate(45 78 78)"/>
-    <g stroke="#181D2E" stroke-opacity="0.45" stroke-width="6" stroke-linecap="round">
-      <path d="M-58 -26 H40 M-58 4 H58 M-58 34 H20"/>
+  <!-- hills -->
+  <path d="M0 290 C 120 250 220 280 330 262 C 440 244 540 276 640 258 V400 H0Z" fill="#A9D28F" filter="url(#sh)"/>
+  <path d="M0 330 C 160 300 300 340 460 316 C 540 304 600 318 640 312 V400 H0Z" fill="#6DB35E" filter="url(#sh)"/>
+  <path d="M0 290 C 120 250 220 280 330 262 C 440 244 540 276 640 258" stroke="#2E2A45" stroke-opacity=".3" stroke-width="2" filter="url(#wob)"/>
+  <!-- open guidebook -->
+  <g transform="translate(150 120) rotate(-4)" filter="url(#sh)">
+    <path d="M170 30 Q100 0 10 14 V214 Q100 200 170 226 Q240 200 330 214 V14 Q240 0 170 30Z" fill="#FFFDF7" stroke="#2E2A45" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M170 30 V226" stroke="#2E2A45" stroke-width="2.5"/>
+    <g stroke="#8A6BC4" stroke-opacity=".5" stroke-width="2" stroke-linecap="round">
+      <path d="M36 60 Q90 52 146 60"/><path d="M36 88 Q90 80 146 88"/><path d="M36 116 Q90 108 146 116"/><path d="M36 144 Q80 138 120 144"/>
+      <path d="M194 60 Q250 52 306 60"/><path d="M194 88 Q250 80 306 88"/>
     </g>
-  </g>
-
-  <!-- 第二疊文件 + 印章 -->
-  <g>
-    <rect x="1330" y="150" width="380" height="330" rx="10" fill="#EFEAE0" stroke="#181D2E" stroke-opacity="0.25" transform="rotate(4 1520 315)"/>
-    <rect x="1360" y="130" width="380" height="330" rx="10" fill="#F9F6F0" stroke="#181D2E" stroke-opacity="0.4" transform="rotate(-3 1550 295)"/>
-    <g transform="rotate(-3 1550 295)" stroke="#181D2E" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round">
-      <path d="M1420 190 H1690 M1420 230 H1660 M1420 270 H1700 M1420 310 H1650"/>
+    <path d="M36 88 Q90 80 146 88" stroke="#FFD36B" stroke-width="12" stroke-opacity=".7" stroke-linecap="round"/>
+    <!-- tick list -->
+    <g stroke="#3F9A5B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M200 124 l8 8 l16 -18"/><path d="M200 160 l8 8 l16 -18"/>
     </g>
-    <g transform="translate(1620 380) rotate(-12)">
-      <circle r="78" fill="none" stroke="#C8102E" stroke-width="5"/>
-      <circle r="44" fill="none" stroke="#C8102E" stroke-width="2.5"/>
-      <text fill="#C8102E" font-family="'Noto Serif TC', serif" font-weight="900" font-size="26" text-anchor="middle">
-        <tspan x="0" y="-4">官方</tspan><tspan x="0" y="26">文件</tspan>
-      </text>
-    </g>
+    <g stroke="#2E2A45" stroke-opacity=".55" stroke-width="2.5" stroke-linecap="round"><path d="M236 128 H300"/><path d="M236 164 H290"/></g>
+    <!-- heart doodle -->
+    <path d="M280 186 C 268 178 264 170 268 165 C 272 160 278 162 280 166 C 282 162 288 160 292 165 C 296 170 292 178 280 186Z" fill="#E4573D"/>
   </g>
-
-  <!-- 細碎點綴：小盾 + 菱形 -->
-  <path d="M850 120 l24 36 -24 36 -24 -36 Z" fill="#C8102E" opacity="0.85"/>
-  <path d="M1180 520 l18 28 -18 28 -18 -28 Z" fill="#0E7C66" opacity="0.85"/>
-  <g transform="translate(760 470) rotate(8) scale(0.7)">
-    <path d="M0 0 44 10.6v26c0 20-18.5 33-44 40-25.5-7-44-20-44-40v-26L0 0Z" fill="#0E7C66" opacity="0.9"/>
+  <!-- pencil -->
+  <g transform="translate(470 300) rotate(-30)" filter="url(#sh)">
+    <rect x="0" y="0" width="120" height="16" rx="3" fill="#F2A71B" stroke="#2E2A45" stroke-width="2"/>
+    <path d="M120 0 L142 8 L120 16Z" fill="#F6CBA2" stroke="#2E2A45" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M136 6 L142 8 L136 10Z" fill="#2E2A45"/>
+    <rect x="-14" y="0" width="14" height="16" rx="3" fill="#E4573D" stroke="#2E2A45" stroke-width="2"/>
   </g>
-
-  <rect width="1920" height="640" filter="url(#gh-grain)"/>
+  <!-- leaves -->
+  <path d="M70 360 C 70 330 90 312 120 312 C 120 340 100 360 70 360Z" fill="#5FA55A" stroke="#2E2A45" stroke-opacity=".35" stroke-width="1.5"/>
+  <path d="M96 372 C 100 346 122 332 148 336 C 144 360 122 374 96 372Z" fill="#82BE6D" stroke="#2E2A45" stroke-opacity=".35" stroke-width="1.5"/>
 </svg>

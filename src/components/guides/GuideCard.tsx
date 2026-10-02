@@ -15,7 +15,7 @@ const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
  */
 export default function GuideCard({ guide, index }: { guide: GuideEntry; index: number }) {
   const meta = CATEGORY_META[guide.id];
-  const color = meta?.color ?? "#181D2E";
+  const color = meta?.color ?? "#2E2A45";
   const navigate = useNavigate();
   const detailHref = `/category/${guide.id}`;
 

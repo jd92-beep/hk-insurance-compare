@@ -2,12 +2,14 @@ import PageErrorBoundary from "@/components/PageErrorBoundary";
 import { useInsuranceData } from "@/providers/InsuranceDataProvider";
 import { Suspense, lazy, useEffect, useState } from "react";
 import { useLocation, useOutlet } from "react-router";
-import { AnimatePresence, MotionConfig, motion, useScroll, useSpring, useReducedMotion } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion, useScroll, useSpring, useReducedMotion, useTransform } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CompareTray from "@/components/CompareTray";
 import RoutePrefetch from "@/components/RoutePrefetch";
 import { useCompare } from "@/providers/CompareProvider";
+import { PageBackdrop, RouteCurtain } from "@/components/fx/RouteFX";
+import { pageMotion } from "@/lib/route-theme";
 
 /** Search UI is idle-loaded; Cmd+K handler lives in SearchProvider. */
 const SearchPalette = lazy(() => import("@/components/SearchPalette"));
@@ -15,7 +17,13 @@ const SearchPalette = lazy(() => import("@/components/SearchPalette"));
 function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 26, mass: 0.4 });
-  return <motion.div className="fixed inset-x-0 top-0 z-[80] h-[3px] origin-left bg-red" style={{ scaleX }} aria-hidden="true" />;
+  const left = useTransform(scaleX, (v) => `calc(${v * 100}% - 9px)`);
+  return (
+    <div className="pointer-events-none fixed inset-x-0 top-0 z-[80] h-[3px]" aria-hidden="true">
+      <motion.div className="h-full origin-left" style={{ scaleX, background: "linear-gradient(90deg, #F2A71B, #E4573D)" }} />
+      <motion.span className="absolute -top-[7px] block h-[18px] w-[18px] rounded-full" style={{ left, background: "radial-gradient(circle, #FFD36B 40%, rgba(255,211,107,0) 72%)" }} />
+    </div>
+  );
 }
 
 type IdleHandle = number;
@@ -44,6 +52,18 @@ export default function Layout() {
   const outlet = useOutlet();
   const { items } = useCompare();
   const [paletteReady, setPaletteReady] = useState(false);
+  // Curtain plays on pathname change only (not on first paint / query-string updates)
+  const [curtainPath, setCurtainPath] = useState<string | null>(null);
+  const [lastPath, setLastPath] = useState(location.pathname);
+  if (lastPath !== location.pathname) {
+    setLastPath(location.pathname);
+    setCurtainPath(location.pathname);
+  }
+  useEffect(() => {
+    if (!curtainPath) return;
+    const t = window.setTimeout(() => setCurtainPath(null), 1150);
+    return () => window.clearTimeout(t);
+  }, [curtainPath]);
   const trayVisible = items.length > 0 && location.pathname !== "/compare";
 
   useEffect(() => {
@@ -113,12 +133,13 @@ export default function Layout() {
 
   return <MotionConfig reducedMotion="user"><div className="flex min-h-[100dvh] flex-col">
     <ScrollProgress />
-    <a href="#main-content" className="sr-only z-[100] bg-paper p-4 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">跳到主要內容</a>
+    <a href="#main-content" className="sr-only z-[100] rounded-full bg-paper p-4 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">跳到主要內容</a>
     <Navbar />
     {error && <div role="alert" className="site-container flex flex-wrap items-center gap-3 border-b border-amber py-3 text-sm"><span>{error}</span><button className="btn-ghost min-h-11" onClick={retry}>重新載入資料</button></div>}
-    <main id="main-content" tabIndex={-1} className="min-w-0 flex-1 outline-none">
+    <main id="main-content" tabIndex={-1} className="relative min-w-0 flex-1 outline-none">
+      <PageBackdrop pathname={location.pathname} />
       <AnimatePresence mode="wait" initial={false}>
-        <motion.div key={location.pathname} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12, transition: { duration: 0.22, ease: [0.76, 0, 0.24, 1] } }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}>
+        <motion.div key={location.pathname} className="relative z-[1]" {...pageMotion(location.pathname)} style={{ transformOrigin: "50% 0%" }}>
           <PageErrorBoundary key={location.pathname}><Suspense fallback={<div role="status" className="site-container min-h-[50vh] py-20">正在載入頁面…</div>}>{outlet}</Suspense></PageErrorBoundary>
         </motion.div>
       </AnimatePresence>
@@ -130,5 +151,6 @@ export default function Layout() {
       </Suspense>
     )}
     <RoutePrefetch />
+    <AnimatePresence>{curtainPath && <RouteCurtain key={curtainPath} pathname={curtainPath} />}</AnimatePresence>
   </div></MotionConfig>;
 }

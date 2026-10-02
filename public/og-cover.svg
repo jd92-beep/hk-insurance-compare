@@ -1,22 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
-  <rect width="1200" height="630" fill="#F7F4EE"/>
-  <rect x="24" y="24" width="1152" height="582" rx="20" fill="none" stroke="#181D2E" stroke-opacity="0.25" stroke-width="2"/>
-  <g transform="translate(90 200)">
-    <path d="M32 0 52 7.1v17.2c0 13.4-8.4 22.7-20 27.7-11.6-5-20-14.3-20-27.7V7.1L32 0Z" stroke="#181D2E" stroke-width="2.5" fill="none"/>
-    <rect x="20" y="14.5" width="11" height="11" rx="1.5" stroke="#181D2E" stroke-width="2" fill="none"/>
-    <rect x="33" y="14.5" width="11" height="11" rx="1.5" fill="#C8102E"/>
-    <rect x="20" y="27.5" width="11" height="11" rx="1.5" stroke="#181D2E" stroke-width="2" fill="none"/>
-    <rect x="33" y="27.5" width="11" height="11" rx="1.5" stroke="#181D2E" stroke-width="2" fill="none"/>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFE0F4"/><stop offset=".7" stop-color="#FFF3DC"/></linearGradient>
+    <filter id="sh" x="-5%" y="-30%" width="110%" height="160%"><feDropShadow dx="0" dy="-6" stdDeviation="8" flood-color="#784F1E" flood-opacity=".22"/></filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#sky)"/>
+  <circle cx="960" cy="150" r="130" fill="#FFD36B" opacity=".35"/>
+  <circle cx="960" cy="150" r="78" fill="#FFC93C" stroke="#2E2A45" stroke-opacity=".35" stroke-width="3"/>
+  <path d="M0 420 C 200 360 360 410 560 380 C 760 350 940 410 1200 370 V630 H0Z" fill="#A9D28F" filter="url(#sh)"/>
+  <path d="M0 490 C 260 450 480 510 720 470 C 920 440 1080 490 1200 470 V630 H0Z" fill="#5FA55A" filter="url(#sh)"/>
+  <path d="M0 560 C 300 540 600 575 900 552 C 1040 542 1140 556 1200 550 V630 H0Z" fill="#EDBB5C" filter="url(#sh)"/>
+  <!-- umbrella family -->
+  <g transform="translate(860 300)">
+    <path d="M-110 70 A110 100 0 0 1 110 70 Q88 56 66 70 Q44 56 22 70 Q0 56 -22 70 Q-44 56 -66 70 Q-88 56 -110 70Z" fill="#E4573D" stroke="#2E2A45" stroke-opacity=".4" stroke-width="3"/>
+    <path d="M0 70 V170" stroke="#5A3A2E" stroke-width="5"/>
+    <g fill="#2E2A45" fill-opacity=".85">
+      <circle cx="-50" cy="122" r="13"/><path d="M-68 196 L-62 140 Q-50 134 -38 140 L-32 196Z"/>
+      <circle cx="0" cy="128" r="12"/><path d="M-16 196 L-10 146 Q0 140 10 146 L16 196Z"/>
+      <circle cx="44" cy="152" r="9"/><path d="M32 196 L36 164 Q44 160 52 164 L56 196Z"/>
+    </g>
   </g>
-  <text x="90" y="330" font-family="'Noto Serif TC', serif" font-weight="900" font-size="72" fill="#181D2E">保險格價站</text>
-  <text x="90" y="400" font-family="'Noto Sans TC', sans-serif" font-weight="500" font-size="30" fill="#4B5165">逐份官方文件幫你睇</text>
-  <text x="90" y="470" font-family="'Space Grotesk', 'Noto Sans TC', sans-serif" font-weight="700" font-size="20" letter-spacing="2" fill="#8A8FA0">9 大類別 · 85 份保單 · 27 間保險公司</text>
-  <g transform="translate(950 160) rotate(-12)">
-    <circle r="120" fill="none" stroke="#C8102E" stroke-width="6"/>
-    <circle r="70" fill="none" stroke="#C8102E" stroke-width="3"/>
-    <text fill="#C8102E" font-family="'Noto Serif TC', serif" font-weight="900" font-size="40" text-anchor="middle">
-      <tspan x="0" y="-8">官方</tspan><tspan x="0" y="40">文件</tspan>
-    </text>
-  </g>
-  <circle cx="830" cy="480" r="120" fill="#C8102E" opacity="0.12"/>
+  <text x="90" y="200" font-family="'LXGW WenKai TC','Noto Sans TC',sans-serif" font-size="84" font-weight="700" fill="#2E2A45">保險格價站</text>
+  <text x="94" y="268" font-family="'Noto Sans TC',sans-serif" font-size="34" font-weight="500" fill="#5F5A72">陽光底下，為屋企人揀份安心</text>
+  <text x="94" y="318" font-family="Caveat, cursive" font-size="40" font-weight="700" fill="#E4573D">compare smarter, insure brighter ☀</text>
 </svg>

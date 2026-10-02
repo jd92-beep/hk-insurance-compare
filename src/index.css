@@ -2,64 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * 陽光紙本 Sunlit Paper — design system
+ * Theme: insurance comparison · healthy life · family love · sunshine.
+ * Realistic light & soft shadows  ×  hand-drawn pencil lines  ×  paper fibre texture.
+ * Token *names* (paper/ink/red/jade/amber) are kept so every page re-skins from here:
+ *   red = coral sunset (action) · jade = leaf (health) · amber = sunshine · sky = open sky.
+ */
 @layer base {
   :root {
-    /* ── 保險格價站 brand tokens ─────────────────────────── */
-    --paper: #F7F4EE;
-    --paper-2: #EFEAE0;
-    --paper-3: #E7E1D4;
-    --ink: #181D2E;
-    --ink-soft: #4B5165;
-    --ink-faint: #8A8FA0;
-    --line: rgba(24, 29, 46, 0.12);
-    --line-strong: rgba(24, 29, 46, 0.28);
-    --red: #C8102E;
-    --red-deep: #9E0C24;
-    --red-wash: #FBEAEC;
-    --jade: #0E7C66;
-    --jade-wash: #E4F2EE;
-    --amber: #D98E04;
-    --amber-wash: #FBF1DC;
+    --paper: #FCFCFA;
+    --paper-2: #F4F3EF;
+    --paper-3: #E9E6DF;
+    --ink: #2E2A45;
+    --ink-soft: #5F5A72;
+    --ink-faint: #958FA3;
+    --line: rgba(46, 42, 69, 0.12);
+    --line-strong: rgba(46, 42, 69, 0.26);
+    --red: #E4573D;
+    --red-deep: #C2412A;
+    --red-wash: #FDE7DE;
+    --jade: #3F9A5B;
+    --jade-wash: #E4F3E1;
+    --amber: #F2A71B;
+    --amber-wash: #FFF2D2;
+    --sky: #4E9EDB;
+    --sky-wash: #E2F0FB;
+    --sun-glow: #FFD36B;
 
-    --cat-home: #B5533C;
-    --cat-travel: #2E6FDB;
-    --cat-life: #5B4FA6;
-    --cat-critical-illness: #C8102E;
-    --cat-accident: #D98E04;
-    --cat-medical: #0E7C66;
-    --cat-motor: #3C4A63;
-    --cat-domestic-helper: #7A4FB5;
-    --cat-pet: #E0662B;
+    --cat-home: #D9733F;
+    --cat-travel: #3D8FD1;
+    --cat-life: #8A6BC4;
+    --cat-critical-illness: #E25B5B;
+    --cat-accident: #E39A12;
+    --cat-medical: #3F9A5B;
+    --cat-motor: #5A6680;
+    --cat-domestic-helper: #C46BA8;
+    --cat-pet: #F0843F;
 
-    /* ── shadcn/ui variables (remapped to brand) ────────── */
-    --background: 43 30% 95%;
-    --foreground: 229 32% 14%;
-    --card: 43 30% 95%;
-    --card-foreground: 229 32% 14%;
-    --popover: 43 30% 95%;
-    --popover-foreground: 229 32% 14%;
-    --primary: 349 86% 42%;
-    --primary-foreground: 43 30% 97%;
-    --secondary: 40 21% 91%;
-    --secondary-foreground: 229 32% 14%;
-    --muted: 40 21% 91%;
-    --muted-foreground: 229 14% 34%;
-    --accent: 40 21% 91%;
-    --accent-foreground: 229 32% 14%;
-    --destructive: 349 86% 42%;
-    --destructive-foreground: 43 30% 97%;
-    --border: 229 32% 14% / 0.12;
-    --input: 229 32% 14% / 0.2;
-    --ring: 349 86% 42%;
-    --radius: 0.625rem;
-    --sidebar-background: 43 30% 95%;
-    --sidebar-foreground: 229 32% 14%;
-    --sidebar-primary: 349 86% 42%;
-    --sidebar-primary-foreground: 43 30% 97%;
-    --sidebar-accent: 40 21% 91%;
-    --sidebar-accent-foreground: 229 32% 14%;
-    --sidebar-border: 229 32% 14% / 0.12;
-    --sidebar-ring: 349 86% 42%;
+    --ease-paper: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --shadow-warm: 120, 80, 30;
+
+    /* ── shadcn/ui variables (remapped) ─────────────────── */
+    --background: 60 14% 99%;
+    --foreground: 248 24% 22%;
+    --card: 0 0% 100%;
+    --card-foreground: 248 24% 22%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 248 24% 22%;
+    --primary: 9 75% 57%;
+    --primary-foreground: 39 100% 97%;
+    --secondary: 45 14% 95%;
+    --secondary-foreground: 248 24% 22%;
+    --muted: 45 14% 95%;
+    --muted-foreground: 252 10% 40%;
+    --accent: 41 100% 91%;
+    --accent-foreground: 248 24% 22%;
+    --destructive: 9 75% 50%;
+    --destructive-foreground: 39 100% 97%;
+    --border: 248 24% 22% / 0.12;
+    --input: 248 24% 22% / 0.22;
+    --ring: 38 89% 53%;
+    --radius: 0.9rem;
+    --sidebar-background: 60 14% 99%;
+    --sidebar-foreground: 248 24% 22%;
+    --sidebar-primary: 9 75% 57%;
+    --sidebar-primary-foreground: 39 100% 97%;
+    --sidebar-accent: 45 14% 95%;
+    --sidebar-accent-foreground: 248 24% 22%;
+    --sidebar-border: 248 24% 22% / 0.12;
+    --sidebar-ring: 38 89% 53%;
   }
 }
 
@@ -77,33 +90,40 @@
     font-size: 16px;
     line-height: 1.8;
     letter-spacing: 0.01em;
+    /* warm morning light that falls from the top-right corner */
+    background-image:
+      radial-gradient(1200px 700px at 100% -10%, rgba(255, 214, 120, 0.12), transparent 60%),
+      radial-gradient(900px 600px at -10% 110%, rgba(78, 158, 219, 0.05), transparent 60%);
+    background-attachment: fixed;
   }
 
-  /* 全站紙紋疊加 */
+  /* 全站紙纖維紋理：multiply 疊加，暖色調 */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 60;
     pointer-events: none;
-    background-image: url("/grain-texture.svg");
-    background-size: 512px 512px;
+    background-image: url("/textures/paper-fiber.svg");
+    background-size: 420px 420px;
     mix-blend-mode: multiply;
-    opacity: 0.5;
+    opacity: 0.16;
   }
 
   h1, h2, h3, h4 {
     @apply font-serif;
+    letter-spacing: 0.02em;
   }
 
   ::selection {
-    background: var(--red);
-    color: var(--paper);
+    background: var(--sun-glow);
+    color: var(--ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--red);
-    outline-offset: 2px;
+    outline: 2.5px solid var(--amber);
+    outline-offset: 3px;
+    border-radius: 8px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -121,8 +141,7 @@ html, body, #root {
 }
 
 @layer components {
-  /* 全站容器：max-width 1280px
-     padding 用 clamp(16px, 3.2vw, 48px)：foldable 中段寬度 (560–900) 保留 ≥92% 可用闊度 */
+  /* 全站容器：max-width 1280px；foldable 中段保留 ≥92% 可用闊度 */
   .site-container {
     @apply mx-auto w-full max-w-site;
     padding-left: clamp(16px, 3.2vw, 48px);
@@ -134,38 +153,37 @@ html, body, #root {
     padding-right: clamp(16px, 3.2vw, 48px);
   }
 
-  /* 比較表左標籤欄：中段寬度收細，desktop 仍可讀 */
   .compare-label-col {
     width: clamp(7.5rem, 18vw, 12.5rem);
   }
 
+  /* eyebrow：手寫膠紙標籤 */
   .eyebrow {
-    @apply font-grotesk font-bold uppercase;
+    @apply font-grotesk font-extrabold uppercase;
     font-size: 12px;
     line-height: 1;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.16em;
   }
   .eyebrow-zh {
-    letter-spacing: 0.3em;
+    letter-spacing: 0.28em;
   }
 
   .display-hero {
-    font-weight: 900;
-    font-size: clamp(46px, 7.5vw, 92px);
-    line-height: 1.08;
+    font-weight: 700;
+    font-size: clamp(42px, 6.6vw, 88px);
+    line-height: 1.12;
     letter-spacing: 0.02em;
   }
   .display-2 {
     font-weight: 700;
-    font-size: clamp(32px, 4.6vw, 54px);
-    line-height: 1.15;
+    font-size: clamp(30px, 4.4vw, 52px);
+    line-height: 1.2;
     letter-spacing: 0.02em;
   }
   .h3-style {
     font-weight: 700;
     font-size: 26px;
-    line-height: 1.25;
-    letter-spacing: 0.01em;
+    line-height: 1.3;
   }
   @media (max-width: 768px) {
     .h3-style { font-size: 22px; }
@@ -177,13 +195,13 @@ html, body, #root {
     letter-spacing: 0.02em;
   }
   .text-price {
-    @apply font-grotesk font-bold;
+    @apply font-grotesk font-extrabold;
     font-size: 20px;
     line-height: 1.2;
   }
   .text-stat {
-    @apply font-grotesk font-bold;
-    font-size: clamp(40px, 6vw, 72px);
+    @apply font-grotesk font-extrabold;
+    font-size: clamp(40px, 5.6vw, 68px);
     line-height: 1;
   }
 
@@ -191,20 +209,46 @@ html, body, #root {
   .hairline-t { border-top: 1px solid var(--line); }
 
   .paper-card {
-    @apply rounded-card border bg-paper shadow-card;
+    @apply relative rounded-card border bg-paper shadow-card;
     border-color: var(--line);
   }
 
+  /* 主按鈕：陽光漸變紙片，按落去有實體「壓紙」感 */
   .btn-primary {
-    @apply inline-flex h-[52px] items-center justify-center gap-2 rounded-[10px] bg-red px-8 font-sans font-bold text-paper transition-colors duration-300;
+    @apply relative inline-flex h-[52px] items-center justify-center gap-2 rounded-full px-8 font-sans font-extrabold text-white;
+    background: linear-gradient(135deg, #F7B733 0%, #F08A3E 48%, #E4573D 100%);
+    box-shadow:
+      inset 0 1.5px 0 rgba(255, 255, 255, 0.45),
+      inset 0 -3px 0 rgba(150, 50, 20, 0.25),
+      0 4px 0 #B8432B,
+      0 14px 26px -10px rgba(228, 87, 61, 0.6);
+    text-shadow: 0 1px 0 rgba(150, 50, 20, 0.35);
+    transition: transform 0.25s var(--ease-spring), box-shadow 0.25s ease, filter 0.25s ease;
   }
-  .btn-primary:hover { background: var(--red-deep); transform: translateY(-2px) scale(1.04); box-shadow: 0 10px 28px rgba(200, 16, 46, 0.28); }
-  .btn-primary:active { transform: translateY(0) scale(0.94); }
-  .btn-ghost {
-    @apply inline-flex h-[52px] items-center justify-center gap-2 rounded-[10px] border bg-transparent px-8 font-sans font-bold text-ink transition-colors duration-300;
-    border-color: var(--line-strong);
+  .btn-primary:hover {
+    transform: translateY(-2px) rotate(-0.6deg);
+    filter: saturate(1.08) brightness(1.03);
+    box-shadow:
+      inset 0 1.5px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -3px 0 rgba(150, 50, 20, 0.25),
+      0 6px 0 #B8432B,
+      0 22px 34px -12px rgba(228, 87, 61, 0.65);
   }
-  .btn-ghost:hover { background: var(--paper-3); }
+  .btn-primary:active {
+    transform: translateY(3px);
+    box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.4), 0 1px 0 #B8432B, 0 6px 12px -6px rgba(228, 87, 61, 0.5);
+  }
+  .btn-ghost,
+  .btn-outline {
+    @apply relative inline-flex h-[52px] items-center justify-center gap-2 rounded-full border-2 bg-paper/70 px-8 font-sans font-extrabold text-ink backdrop-blur-sm;
+    border-color: var(--ink);
+    box-shadow: 0 4px 0 var(--ink);
+    transition: transform 0.25s var(--ease-spring), box-shadow 0.25s ease, background-color 0.25s ease;
+  }
+  .btn-ghost:hover,
+  .btn-outline:hover { background: var(--amber-wash); transform: translateY(-2px) rotate(0.6deg); box-shadow: 0 6px 0 var(--ink); }
+  .btn-ghost:active,
+  .btn-outline:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ink); }
 
   .chip {
     @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-small font-medium;
@@ -223,25 +267,44 @@ html, body, #root {
   }
 
   .marquee-mask {
-    -webkit-mask-image: linear-gradient(to right, black 82%, transparent);
-    mask-image: linear-gradient(to right, black 82%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   }
-  .marquee-track:hover .animate-marquee {
+  .marquee-track:hover .animate-marquee,
+  .marquee-track:hover .animate-marquee-rev {
     animation-play-state: paused;
   }
+  @keyframes marquee-rev {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+  .animate-marquee-rev { animation: marquee-rev 46s linear infinite; }
 
-  /* 漂浮裝飾（hero 關鍵字 / 盾形慢速漂移） */
+  /* 漂浮（蒲公英／紙片慢速漂移） */
   @keyframes float-drift {
-    0% { transform: translate3d(0, 0, 0) rotate(-2deg); }
-    50% { transform: translate3d(6px, -14px, 0) rotate(2deg); }
+    0% { transform: translate3d(0, 0, 0) rotate(-3deg); }
+    50% { transform: translate3d(8px, -16px, 0) rotate(3deg); }
     100% { transform: translate3d(-6px, 8px, 0) rotate(-1deg); }
   }
   .animate-float {
     animation: float-drift 10s ease-in-out infinite alternate;
     will-change: transform;
   }
+  @keyframes sway {
+    0%, 100% { transform: rotate(-4deg); }
+    50% { transform: rotate(4deg); }
+  }
+  .animate-sway { animation: sway 5s ease-in-out infinite; transform-origin: 50% 100%; }
+  @keyframes sun-spin { to { transform: rotate(360deg); } }
+  .animate-sun { animation: sun-spin 60s linear infinite; }
+  @keyframes rise-fade {
+    0% { transform: translate3d(0, 0, 0) scale(0.7); opacity: 0; }
+    15% { opacity: 1; }
+    100% { transform: translate3d(var(--dx, 0px), -220px, 0) scale(1.1); opacity: 0; }
+  }
+  .animate-rise { animation: rise-fade 7s ease-in infinite; }
 
-  /* 卡片掃光（hover 時一道光掃過） */
+  /* 卡片掃光：暖陽光線掃過 */
   .shine-sweep {
     position: relative;
   }
@@ -252,46 +315,59 @@ html, body, #root {
     z-index: 1;
     pointer-events: none;
     border-radius: inherit;
-    background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.55) 50%, transparent 58%);
+    background: linear-gradient(105deg, transparent 40%, rgba(255, 236, 180, 0.6) 50%, transparent 60%);
     transform: translateX(-130%);
-    transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.9s var(--ease-paper);
   }
   .shine-sweep:hover::after {
     transform: translateX(130%);
   }
 
-  /* 連結 hover 底線掃入 */
+  /* 連結 hover：螢光筆劃過 */
   .link-sweep {
     position: relative;
+    background-image: linear-gradient(transparent 62%, rgba(255, 211, 107, 0.75) 62%, rgba(255, 211, 107, 0.75) 92%, transparent 92%);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-paper);
   }
-  .link-sweep::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    height: 1px;
-    width: 100%;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .link-sweep:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+  .link-sweep:hover {
+    background-size: 100% 100%;
   }
 
-  /* 圖片載入 fade-in */
+  /* 手寫螢光底線（標題重點字） */
+  .marker {
+    background-image: linear-gradient(100deg, transparent 2%, rgba(255, 211, 107, 0.85) 4%, rgba(255, 196, 80, 0.75) 94%, transparent 97%);
+    background-size: 100% 0.42em;
+    background-position: 0 88%;
+    background-repeat: no-repeat;
+    padding: 0 0.08em;
+  }
+
+  /* 手繪鉛筆框：用不規則圓角製造手畫感 */
+  .sketch-frame {
+    position: relative;
+  }
+  .sketch-frame::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 1.3px solid rgba(46, 42, 69, 0.16);
+    border-radius: 20px 14px 22px 12px / 12px 22px 14px 20px;
+    transform: rotate(-0.35deg);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .img-fade {
+    animation: img-fade 0.7s ease both;
+  }
   @keyframes img-fade {
     from { opacity: 0; }
     to { opacity: 1; }
   }
-  .img-fade {
-    animation: img-fade 0.7s ease both;
-  }
 
-  /* ── 極光背景 blob（AuroraBackground）────────────────── */
-  /* 三組位移/縮放/旋轉節奏錯開，全部 transform-only */
+  /* 極光 blob（暖陽光暈） */
   @keyframes aurora-drift-a {
     0%, 100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
     33% { transform: translate3d(6%, -4%, 0) scale(1.12) rotate(8deg); }
@@ -313,10 +389,24 @@ html, body, #root {
     will-change: transform;
   }
 
-  /* 3D 透視工具（TiltCard / 透視容器用） */
   .preserve-3d { transform-style: preserve-3d; }
   .perspective-1000 { perspective: 1000px; }
   .perspective-card { perspective: 1200px; }
+
+  /* depth cards get a pencil frame inside the paper sheet */
+  .depth-card,
+  .depth-surface {
+    position: relative;
+  }
+  .depth-card::before,
+  .depth-surface::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1.2px solid rgba(46, 42, 69, 0.1);
+    border-radius: 18px 13px 20px 12px / 12px 20px 13px 18px;
+    pointer-events: none;
+  }
 }
 
 :root {
@@ -327,26 +417,33 @@ html, body, #root {
   --depth-z-icon: 22px;
 }
 
-/* Optical depth / Web3D card shell — text stays 100% crisp and vector-sharp at rest */
+/* Paper sheet card shell — realistic warm shadow stack, fibre texture, text stays crisp at rest */
 .depth-surface,
 .depth-card,
 .shadow-card {
   background-image:
-    linear-gradient(145deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 42%),
-    linear-gradient(180deg, var(--paper, #F7F4EE) 0%, var(--paper-2, #EFEAE0) 100%);
+    linear-gradient(160deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 38%),
+    url("/textures/paper-fiber.svg"),
+    linear-gradient(180deg, #FFFFFF 0%, var(--paper, #FCFCFA) 100%);
+  background-size: auto, 420px 420px, auto;
+  background-blend-mode: normal, multiply, normal;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.95),
-    inset 0 -2px 0 rgba(27,43,37,.08),
-    0 2px 0 0 rgba(27,43,37,.08),
-    0 8px 0 -4px rgba(27,43,37,.06),
-    0 14px 28px -16px rgba(27,43,37,.38),
-    0 28px 56px -28px rgba(27,43,37,.32);
-  transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease;
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 1px 0 #EDEAE4,
+    0 2px 0 #E7E3DC,
+    0 3px 0 #E1DCD4,
+    0 4px 0 #DBD6CD,
+    0 5px 0 #D5CFC5,
+    0 1px 1px rgba(var(--shadow-warm), 0.08),
+    0 6px 10px -6px rgba(var(--shadow-warm), 0.18),
+    0 18px 30px -16px rgba(var(--shadow-warm), 0.3),
+    0 34px 60px -30px rgba(var(--shadow-warm), 0.28);
+  transition: transform 0.35s var(--ease-paper), box-shadow 0.35s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
-/* At rest: transform-style is flat to preserve 2D vector pixel snapping. Active: preserve-3d for layered accents */
+/* At rest: flat to keep 2D vector pixel snapping. Active: preserve-3d for layered accents */
 .depth-card { transform-style: flat; }
 .tilt-stage[data-tilt-settled="false"] .depth-card,
 .tilt-stage[data-tilt-active="true"] .depth-card,
@@ -358,20 +455,25 @@ html, body, #root {
 .group:hover > .depth-card,
 .depth-surface:hover,
 .depth-card:hover {
-  transform: translateY(-6px) scale(1.012);
+  transform: translateY(-6px) rotate(-0.25deg);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.98),
-    0 3px 0 0 rgba(27,43,37,.08),
-    0 14px 0 -6px rgba(27,43,37,.08),
-    0 22px 40px -18px rgba(27,43,37,.4),
-    0 40px 70px -32px rgba(27,43,37,.35);
-  border-top-color: rgba(255, 255, 255, 0.98) !important;
-  border-bottom-color: rgba(24, 29, 46, 0.28) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.98),
+    0 1px 0 #EDEAE4,
+    0 2px 0 #E7E3DC,
+    0 3px 0 #E1DCD4,
+    0 4px 0 #DBD6CD,
+    0 5px 0 #D5CFC5,
+    0 6px 0 #CFC9BE,
+    0 7px 0 #C9C2B6,
+    0 2px 2px rgba(var(--shadow-warm), 0.08),
+    0 12px 18px -10px rgba(var(--shadow-warm), 0.22),
+    0 30px 46px -20px rgba(var(--shadow-warm), 0.36),
+    0 50px 80px -40px rgba(242, 167, 27, 0.35);
 }
 .depth-z-bar { transform: translateZ(var(--depth-z-bar)); }
 .depth-z-icon { transform: translateZ(var(--depth-z-icon)); }
 .depth-z-chip { transform: translateZ(var(--depth-z-chip)); }
-.chip-3d { box-shadow: 0 2px 0 rgba(27,43,37,.08), 0 6px 12px -6px rgba(27,43,37,.25); }
+.chip-3d { box-shadow: 0 2px 0 rgba(var(--shadow-warm), 0.12), 0 6px 12px -6px rgba(var(--shadow-warm), 0.3); }
 .tilt-stage { isolation: isolate; }
 .tilt-face,
 .tilt-face-card {
@@ -380,29 +482,25 @@ html, body, #root {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
-/* Face chrome tracks the child card, never an empty stretched stage */
 .tilt-stage > .tilt-face { height: 100%; }
 .tilt-face-card > :is(.depth-card, .depth-surface, .shadow-card, article, a) {
   height: 100%;
   box-sizing: border-box;
 }
-/* Card perimeter rules: crisp physical border contrast on paper background */
+/* Card perimeter: soft ink edge with a sunlit top rim */
 .depth-surface,
 .depth-card,
 .shadow-card:not([data-saved-comparisons]) {
-  border-color: rgba(24, 29, 46, 0.22) !important;
+  border-color: rgba(46, 42, 69, 0.16) !important;
   border-top-color: rgba(255, 255, 255, 0.95) !important;
-  border-right-color: rgba(24, 29, 46, 0.22) !important;
-  border-bottom-color: rgba(24, 29, 46, 0.26) !important;
-  border-left-color: rgba(24, 29, 46, 0.22) !important;
+  border-bottom-color: rgba(46, 42, 69, 0.22) !important;
 }
 .tilt-stage:focus-within { z-index: 2; }
-/* Layered accent face for cards with category color bar */
 .depth-surface > [aria-hidden="true"].h-1,
 .depth-surface > div.h-1,
 .depth-surface > div.h-\[3px\] {
   transform: translateZ(18px);
-  box-shadow: 0 1px 0 rgba(255,255,255,.5);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 @media (prefers-reduced-motion: reduce), (pointer: coarse) {
   .tilt-face { transform: none !important; }
@@ -411,7 +509,46 @@ html, body, #root {
   .depth-z-bar, .depth-z-icon, .depth-z-chip, .chip-3d { transform: none !important; }
 }
 @media print {
+  body::before { display: none; }
   .tilt-face { transform: none !important; }
   .depth-surface, .shadow-card { box-shadow: none; background-image: none; }
   canvas[aria-hidden="true"] { display: none; }
+}
+
+/* ── 3D stickers: die-cut white border + vinyl thickness + soft cast shadow ── */
+.sticker { transform-style: preserve-3d; will-change: transform; }
+.sticker-cut {
+  filter:
+    drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff)
+    drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff)
+    drop-shadow(0 2px 0 #E2DED6) drop-shadow(0 2px 0 #D6D1C7)
+    drop-shadow(0 12px 10px rgba(40, 30, 20, 0.22));
+  transition: filter 0.3s ease;
+}
+.sticker:hover .sticker-cut {
+  filter:
+    drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff)
+    drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff)
+    drop-shadow(0 3px 0 #E2DED6) drop-shadow(0 3px 0 #D6D1C7)
+    drop-shadow(0 26px 18px rgba(40, 30, 20, 0.26));
+}
+.sticker-gloss {
+  background-image: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%);
+  background-size: 250% 100%;
+  mix-blend-mode: soft-light;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sticker { will-change: auto; }
+}
+
+/* thick "board" slab — for chunky interactive surfaces (clipboard, book, notes) */
+.slab-edge {
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.06),
+    0 2px 0 rgba(0, 0, 0, 0.07),
+    0 3px 0 rgba(0, 0, 0, 0.08),
+    0 4px 0 rgba(0, 0, 0, 0.09),
+    0 5px 0 rgba(0, 0, 0, 0.1),
+    0 6px 0 rgba(0, 0, 0, 0.11),
+    0 18px 30px -12px rgba(40, 30, 20, 0.35);
 }

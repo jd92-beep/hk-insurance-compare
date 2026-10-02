@@ -48,9 +48,9 @@ export default function DisclaimerToast() {
             className="pointer-events-none fixed bottom-3 left-0 right-0 z-[65] flex justify-center px-3 md:bottom-5 md:px-6"
             role="alert"
           >
-            <div className="pointer-events-auto flex w-full max-w-[760px] items-center gap-3 rounded-[14px] bg-ink p-3.5 pl-4 text-paper shadow-lift">
+            <div className="pointer-events-auto relative flex w-full max-w-[760px] items-center gap-3 rounded-[4px_4px_20px_4px] bg-amber-wash p-3.5 pl-4 text-ink shadow-lift" style={{ backgroundImage: "url(/textures/paper-fiber.svg)", backgroundBlendMode: "multiply", rotate: "-0.6deg" }}>
               <div className="flex min-w-0 flex-1 items-start gap-2.5">
-                <TriangleAlert size={17} className="mt-0.5 shrink-0 text-amber" aria-hidden="true" />
+                <TriangleAlert size={17} className="mt-0.5 shrink-0 text-red" aria-hidden="true" />
                 <p className="text-[13px] leading-[1.65]">
                   本網站資料僅供參考，所有保障、保費及條款以保險公司官方文件為準。
                 </p>
@@ -59,21 +59,21 @@ export default function DisclaimerToast() {
                 <Link
                   to="/about#disclaimer"
                   onClick={dismiss}
-                  className="hidden text-[13px] text-paper/80 underline underline-offset-4 transition-colors hover:text-paper min-[480px]:inline"
+                  className="hidden text-[13px] text-ink-soft underline underline-offset-4 transition-colors hover:text-ink min-[480px]:inline"
                 >
                   完整免責聲明
                 </Link>
                 <button
                   type="button"
                   onClick={dismiss}
-                  className="rounded-[10px] bg-red px-4 py-1.5 text-[13px] font-bold text-paper transition-colors hover:bg-red-deep"
+                  className="rounded-full bg-red px-4 py-1.5 text-[13px] font-bold text-white shadow-[0_3px_0_#B8432B] transition-transform hover:-translate-y-0.5 active:translate-y-0.5"
                 >
                   明白
                 </button>
                 <button
                   type="button"
                   onClick={() => setCollapsed(true)}
-                  className="rounded-full p-1.5 text-paper/60 transition-colors hover:bg-paper/10 hover:text-paper"
+                  className="rounded-full p-1.5 text-ink-faint transition-colors hover:bg-paper hover:text-ink"
                   aria-label="收埋免責聲明"
                 >
                   <ChevronDown size={15} />
@@ -91,10 +91,10 @@ export default function DisclaimerToast() {
             exit={{ y: 40, opacity: 0, scale: 0.9, transition: { duration: 0.25 } }}
             transition={{ type: "spring", stiffness: 380, damping: 26 }}
             onClick={() => setCollapsed(false)}
-            className="fixed bottom-3 right-3 z-[65] inline-flex items-center gap-1.5 rounded-full bg-ink px-3.5 py-2 text-[12px] font-bold text-paper shadow-lift transition-colors hover:bg-ink-soft md:bottom-5 md:right-5"
+            className="fixed bottom-3 right-3 z-[65] inline-flex items-center gap-1.5 rounded-full bg-amber-wash px-3.5 py-2 text-[12px] font-bold text-ink shadow-lift transition-colors hover:bg-paper md:bottom-5 md:right-5"
             aria-label="展開免責聲明"
           >
-            <TriangleAlert size={13} className="text-amber" aria-hidden="true" />
+            <TriangleAlert size={13} className="text-red" aria-hidden="true" />
             免責聲明
           </motion.button>
         )}

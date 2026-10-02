@@ -87,7 +87,7 @@ function getInsurerLink(
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 /** 醫療類別色（= tailwind jade） */
-const ACCENT = "#0E7C66";
+const ACCENT = "#3F9A5B";
 
 type PlanTypeFilter = "all" | "standard" | "flexi";
 

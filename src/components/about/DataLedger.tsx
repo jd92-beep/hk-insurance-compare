@@ -50,7 +50,7 @@ export default function DataLedger() {
       return {
         id: cat.id,
         name: cat.name_zh,
-        color: CATEGORY_META[cat.id]?.color ?? "#181D2E",
+        color: CATEGORY_META[cat.id]?.color ?? "#2E2A45",
         products: cat.count,
         withPremium: products.filter((p) => p.premium_available).length,
         insurers: new Set(products.map((p) => p.insurer)).size,

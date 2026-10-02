@@ -73,7 +73,7 @@ export default function Guides() {
             >
               <img
                 src="/guides-hero.svg"
-                alt="攤開嘅保單文件、放大鏡同紅色批註嘅紙雕拼貼插畫"
+                alt="陽光山丘上攤開嘅投保指南手帳、鉛筆同葉仔手繪插畫"
                 className="h-auto w-full rounded-[16px] border"
                 style={{ borderColor: "var(--line)" }}
               />

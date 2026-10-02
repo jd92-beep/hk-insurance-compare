@@ -8,6 +8,7 @@ import { useFavorites } from "@/providers/FavoritesProvider";
 import { useSearch } from "@/providers/SearchProvider";
 import { CATEGORY_META } from "@/lib/categories";
 import { cn } from "@/lib/utils";
+import { SunMark } from "@/components/fx/Sketch";
 
 interface MedicalSubcat {
   id: string;
@@ -23,21 +24,21 @@ const MEDICAL_SUBCATS: MedicalSubcat[] = [
     name_zh: "自願醫保",
     desc: "標準及靈活計劃 · 可扣稅",
     badge: "VHIS",
-    color: "#0E7C66",
+    color: "#3F9A5B",
   },
   {
     id: "high-end-medical",
     name_zh: "高端醫療",
     desc: "全數賠償 · 終身千萬保額",
     badge: "全數賠償",
-    color: "#0F4C81",
+    color: "#2F6E8F",
   },
   {
     id: "top-up-medical",
     name_zh: "Top-up 醫療",
     desc: "填補公司 Shortfall · 轉保權",
     badge: "打工仔",
-    color: "#0284C7",
+    color: "#3AA6A8",
   },
 ];
 
@@ -90,18 +91,27 @@ export default function Navbar() {
   }, [drawerOpen]);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 h-16 transition-all duration-300",
-        scrolled && "border-b bg-paper/80 backdrop-blur-[12px]",
-      )}
-      style={scrolled ? { borderColor: "var(--line)" } : { borderColor: "transparent" }}
-    >
-      <div className="site-container flex h-full items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 h-16 pt-2">
+      <div
+        className={cn(
+          "site-container-wide flex h-full items-center justify-between gap-4 transition-all duration-500",
+        )}
+      >
+       <div
+        className={cn(
+          "flex h-full w-full items-center justify-between gap-4 rounded-full border px-3 transition-all duration-500 sm:px-4",
+          scrolled
+            ? "border-[color:var(--line)] bg-paper/90 shadow-lift backdrop-blur-md"
+            : "border-transparent bg-paper/55 backdrop-blur-sm",
+        )}
+       >
         {/* 左：品牌 */}
-        <Link to="/" className="flex shrink-0 items-center gap-2.5" aria-label="保險格價站首頁">
-          <img src="/logo-mark.svg" alt="" width={28} height={28} />
-          <span className="font-serif text-[18px] font-bold text-ink">保險格價站</span>
+        <Link to="/" className="group flex shrink-0 items-center gap-2" aria-label="保險格價站首頁">
+          <img src="/brand/logo-mark-sm.png" alt="" width={36} height={36} className="h-9 w-9 object-contain transition-transform duration-500 group-hover:-rotate-12 group-hover:scale-110" />
+          <span className="leading-none">
+            <span className="block font-serif text-[18px] font-bold text-ink">保險格價站</span>
+            <span className="hidden font-hand text-[14px] font-bold text-red sm:block">insure brighter ☀</span>
+          </span>
         </Link>
 
         {/* 中：桌面導航 */}
@@ -112,8 +122,8 @@ export default function Navbar() {
               <Link
                 to={link.to}
                 className={cn(
-                  "relative flex items-center gap-1 px-3 py-2 text-[15px] font-medium transition-colors",
-                  active ? "text-red" : "text-ink-soft hover:text-ink",
+                  "relative flex items-center gap-1 rounded-full px-3 py-1.5 text-[15px] font-bold transition-colors",
+                  active ? "text-ink" : "text-ink-soft hover:bg-amber-wash hover:text-ink",
                 )}
               >
                 {link.label}
@@ -124,11 +134,16 @@ export default function Navbar() {
                   />
                 )}
                 {active && (
-                  <motion.span
+                  <motion.svg
                     layoutId="nav-underline"
-                    className="absolute inset-x-3 -bottom-0.5 h-0.5 bg-red"
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  />
+                    viewBox="0 0 100 12"
+                    preserveAspectRatio="none"
+                    className="absolute inset-x-2 -bottom-1 h-2.5"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    aria-hidden="true"
+                  >
+                    <path d="M2 8 C 25 3, 55 3, 98 6" fill="none" stroke="var(--red)" strokeWidth="4" strokeLinecap="round" />
+                  </motion.svg>
                 )}
               </Link>
             );
@@ -151,8 +166,7 @@ export default function Navbar() {
                       className="absolute left-1/2 top-full w-[640px] -translate-x-1/2 pt-3"
                     >
                       <div
-                        className="rounded-card border bg-paper p-4 shadow-lift"
-                        style={{ borderColor: "var(--line)" }}
+                        className="depth-card rounded-card border p-4"
                       >
                         {/* 醫療保險板塊（自願醫保／高端醫療／Top-up 醫療） */}
                         <div
@@ -217,7 +231,7 @@ export default function Navbar() {
                                   <span
                                     className="cat-icon h-5 w-5 shrink-0"
                                     style={{
-                                      color: meta?.color ?? "#181D2E",
+                                      color: meta?.color ?? "#2E2A45",
                                       WebkitMaskImage: `url(${meta?.icon ?? "/cat-home.svg"})`,
                                       maskImage: `url(${meta?.icon ?? "/cat-home.svg"})`,
                                     }}
@@ -261,7 +275,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={search.openSearch}
-            className="flex items-center gap-2 rounded-[10px] border px-3 py-2 text-ink-soft transition-colors hover:bg-paper-2 hover:text-ink"
+            className="flex items-center gap-2 rounded-full border bg-paper/70 px-3 py-2 text-ink-soft transition-all hover:-translate-y-0.5 hover:bg-amber-wash hover:text-ink"
             style={{ borderColor: "var(--line)" }}
             aria-label="全域搜尋（⌘K）"
           >
@@ -272,7 +286,7 @@ export default function Navbar() {
           </button>
           <Link
             to="/favorites"
-            className="relative flex items-center rounded-[10px] border px-3 py-2 text-ink-soft transition-colors hover:bg-paper-2 hover:text-ink"
+            className="relative flex items-center rounded-full border bg-paper/70 px-3 py-2 text-ink-soft transition-all hover:-translate-y-0.5 hover:bg-amber-wash hover:text-ink"
             style={{ borderColor: "var(--line)" }}
             aria-label={`我的最愛（已收藏 ${favorites.count} 份產品）`}
           >
@@ -294,7 +308,7 @@ export default function Navbar() {
           </Link>
           <Link
             to="/compare"
-            className="relative flex items-center rounded-[10px] border px-3 py-2 text-ink-soft transition-colors hover:bg-paper-2 hover:text-ink"
+            className="relative flex items-center rounded-full border bg-paper/70 px-3 py-2 text-ink-soft transition-all hover:-translate-y-0.5 hover:bg-amber-wash hover:text-ink"
             style={{ borderColor: "var(--line)" }}
             aria-label={`比較托盤（已選 ${compare.items.length} 份產品）`}
           >
@@ -317,13 +331,14 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setDrawerOpen(true)}
-            className="flex items-center rounded-[10px] border px-3 py-2 text-ink min-[1200px]:hidden"
+            className="flex items-center rounded-full border bg-paper/70 px-3 py-2 text-ink min-[1200px]:hidden"
             style={{ borderColor: "var(--line)" }}
             aria-label="開啟選單"
           >
             <Menu size={18} />
           </button>
         </div>
+       </div>
       </div>
 
       {/* Mobile 全屏抽屜 */}
@@ -331,28 +346,29 @@ export default function Navbar() {
         {drawerOpen && (
           <motion.div
             key="nav-drawer"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[70] flex flex-col bg-paper min-[1200px]:hidden"
+            initial={{ clipPath: "circle(0% at 94% 4%)" }}
+            animate={{ clipPath: "circle(150% at 94% 4%)" }}
+            exit={{ clipPath: "circle(0% at 94% 4%)" }}
+            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 z-[70] flex flex-col overflow-hidden bg-paper min-[1200px]:hidden"
           >
+            <SunMark className="absolute -right-8 bottom-24 h-32 w-32 opacity-80" />
             <div className="site-container flex h-16 shrink-0 items-center justify-between">
               <span className="flex items-center gap-2.5">
-                <img src="/logo-mark.svg" alt="" width={28} height={28} />
+                <img src="/brand/logo-mark-sm.png" alt="" width={36} height={36} className="h-9 w-9 object-contain" />
                 <span className="font-serif text-[18px] font-bold">保險格價站</span>
               </span>
               <button
                 type="button"
                 onClick={() => setDrawerOpen(false)}
-                className="rounded-[10px] border px-3 py-2"
+                className="rounded-full border px-3 py-2"
                 style={{ borderColor: "var(--line)" }}
                 aria-label="關閉選單"
               >
                 <X size={18} />
               </button>
             </div>
-            <nav className="site-container flex flex-1 flex-col gap-1 overflow-y-auto py-6" aria-label="流動導航">
+            <nav className="site-container relative flex flex-1 flex-col gap-1 overflow-y-auto py-6 pb-44" aria-label="流動導航">
               {NAV_LINKS.map((link, i) => (
                 <motion.div
                   key={link.to}
@@ -446,7 +462,7 @@ export default function Navbar() {
                                         <span
                                           className="cat-icon h-5 w-5 shrink-0"
                                           style={{
-                                            color: meta?.color ?? "#181D2E",
+                                            color: meta?.color ?? "#2E2A45",
                                             WebkitMaskImage: `url(${meta?.icon ?? "/cat-home.svg"})`,
                                             maskImage: `url(${meta?.icon ?? "/cat-home.svg"})`,
                                           }}

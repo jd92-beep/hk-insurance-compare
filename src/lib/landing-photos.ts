@@ -1,5 +1,5 @@
 /**
- * Landing-page photography — holiday destinations & holiday activities.
+ * Landing-page photography — one hero slide per insurance type, plus holiday activities.
  * All Unsplash License (free for commercial use; credited on the page anyway), served from
  * Unsplash's CORS-enabled CDN. Locations come from each photo's Unsplash location field.
  * The WebGL sketch shader re-draws every photo live as pencil + watercolour.
@@ -8,15 +8,27 @@ const u = (id: string, w: number) => `https://images.unsplash.com/${id}?w=${w}&q
 
 type Vec2 = [number, number];
 
-export interface Destination {
+/** sticker set shown on the hero for each theme */
+export type StickerKind = "plane" | "suitcase" | "sunglasses" | "camera" | "paw" | "fish" | "house" | "key" | "cross" | "heart" | "sun" | "car" | "helmet" | "shield";
+
+/**
+ * Hero slides — one per insurance type. Each slide swaps the painting, headline, copy,
+ * call-to-action and stickers together.
+ */
+export interface HeroSlide {
   id: string;
-  photo: string;
-  /** hand-lettered caption */
+  /** insurance category this slide sells */
+  category: string;
+  tab: string;
+  /** hand-lettered eyebrow */
   script: string;
-  /** nearest airport, for the passport-stamp sticker */
-  iata: string;
-  name: string;
-  place: string;
+  line1: string;
+  line2: [string, string, string];
+  sub: string;
+  cta: string;
+  stamp: string;
+  stickers: [StickerKind, StickerKind, StickerKind, StickerKind];
+  photo: string;
   alt: string;
   credit: string;
   /** image coordinate placed at the view centre (landscape screens put the subject right of the copy) */
@@ -24,70 +36,129 @@ export interface Destination {
   sun: Vec2;
 }
 
-export const DESTINATIONS: Destination[] = [
+export const HERO_SLIDES: HeroSlide[] = [
   {
-    id: "oia",
-    iata: "JTR",
+    id: "travel",
+    category: "travel",
+    tab: "旅遊",
+    script: "summer holiday",
+    line1: "去到邊度玩，",
+    line2: ["保障都", "跟住", "。"],
+    sub: "聖托里尼睇日落、夏威夷游水、峇里做瑜伽——出發之前，逐項比較旅遊保險嘅醫療、行程取消同高危活動保障，附官方文件。",
+    cta: "比較旅遊保險",
+    stamp: "HKG → JTR",
+    stickers: ["plane", "suitcase", "sunglasses", "camera"],
     photo: "photo-1563789031959-4c02bcb41319",
-    script: "Santorini",
-    name: "聖托里尼 · 伊亞",
-    place: "Oía, Greece",
-    alt: "聖托里尼伊亞嘅藍頂白教堂，望出愛琴海",
+    alt: "聖托里尼伊亞嘅藍頂白教堂，望出愛琴海（Oía, Greece）",
     credit: "Dan",
     focus: { landscape: [0.36, 0.5], portrait: [0.5, 0.74] },
     sun: [0.86, 0.86],
   },
   {
-    id: "positano",
-    iata: "NAP",
-    photo: "photo-1568282167464-cb0d811b05c2",
-    script: "Amalfi Coast",
-    name: "阿瑪菲海岸 · 波西塔諾",
-    place: "Positano, Italy",
-    alt: "波西塔諾依山而建嘅彩色小鎮同海灘",
-    credit: "Letizia Agosta",
-    focus: { landscape: [0.4, 0.5], portrait: [0.6, 0.74] },
+    id: "pet",
+    category: "pet",
+    tab: "寵物",
+    script: "purr-fect family",
+    line1: "毛孩係屋企人，",
+    line2: ["保障", "一齊", "諗。"],
+    sub: "英短金漸層定唐貓唐狗，都係心肝寶貝——獸醫費賠幾多、先天疾病保唔保，逐份寵物保險條款對清楚。",
+    cta: "比較寵物保險",
+    stamp: "MEOW ♥",
+    stickers: ["paw", "fish", "heart", "paw"],
+    photo: "photo-1765603952522-d519e0fb7730",
+    alt: "一隻金漸層英國短毛貓望住遠方",
+    credit: "Zhen Yao",
+    focus: { landscape: [0.3, 0.5], portrait: [0.45, 0.72] },
     sun: [0.88, 0.88],
   },
   {
-    id: "bannalpsee",
-    iata: "ZRH",
-    photo: "photo-1561963693-3099f378e3fa",
-    script: "Swiss Alps",
-    name: "瑞士阿爾卑斯 · 班納爾普湖",
-    place: "Bannalpsee, Switzerland",
-    alt: "瑞士班納爾普湖畔草坡上嘅小屋，背後係雪山",
-    credit: "Josip Ivanković",
-    focus: { landscape: [0.36, 0.5], portrait: [0.5, 0.74] },
-    sun: [0.8, 0.88],
+    id: "home",
+    category: "home",
+    tab: "家居",
+    script: "home sweet home",
+    line1: "安樂窩，",
+    line2: ["要保得", "穩陣", "。"],
+    sub: "火險唔等於家居保——財物、責任、樓齡限制逐間比較，搵份啱你屋企嘅家居保險。",
+    cta: "比較家居保險",
+    stamp: "HOME ✓",
+    stickers: ["house", "key", "sun", "heart"],
+    photo: "photo-1580587771525-78b9dba3b914",
+    alt: "陽光下有泳池嘅現代白色別墅",
+    credit: "Ярослав Алексеенко",
+    focus: { landscape: [0.34, 0.5], portrait: [0.5, 0.72] },
+    sun: [0.84, 0.9],
   },
   {
-    id: "waikiki",
-    iata: "HNL",
-    photo: "photo-1755170517016-92ab511cef0f",
-    script: "Hawai‘i",
-    name: "夏威夷 · 威基基海灘",
-    place: "Waikīkī Beach, Honolulu",
-    alt: "威基基海灘嘅碧藍海水同鑽石頭山",
-    credit: "Yu",
-    focus: { landscape: [0.42, 0.5], portrait: [0.6, 0.74] },
-    sun: [0.84, 0.88],
+    id: "medical",
+    category: "medical",
+    tab: "醫療",
+    script: "stay healthy",
+    line1: "健康第一，",
+    line2: ["醫療保障", "睇清", "。"],
+    sub: "自願醫保、高端醫療、Top-up 醫保——病房級別、自付費同分項限額並排對照，附官方文件。",
+    cta: "比較醫療保險",
+    stamp: "VHIS ✓",
+    stickers: ["cross", "heart", "shield", "sun"],
+    photo: "photo-1758691463331-2ac00e6f676f",
+    alt: "醫生喺診所同媽媽一齊幫小朋友睇症",
+    credit: "Vitaly Gariev",
+    focus: { landscape: [0.32, 0.5], portrait: [0.55, 0.72] },
+    sun: [0.86, 0.88],
   },
   {
-    id: "bratan",
-    iata: "DPS",
-    photo: "photo-1544644181-1484b3fdfc62",
-    script: "Bali",
-    name: "峇里 · 布拉坦湖水神廟",
-    place: "Pura Ulun Danu Bratan, Bali",
-    alt: "峇里布拉坦湖上嘅水神廟，岸邊開滿花",
-    credit: "Sebastian Pena Lambarri",
-    focus: { landscape: [0.36, 0.5], portrait: [0.5, 0.74] },
+    id: "life",
+    category: "life",
+    tab: "人壽",
+    script: "for the ones you love",
+    line1: "為最愛嘅人，",
+    line2: ["諗", "長遠", "啲。"],
+    sub: "同一保額同年期，核對人壽保險保費、健康申報同續保條款，為屋企人留一份安心。",
+    cta: "比較人壽保險",
+    stamp: "LOVE ♥",
+    stickers: ["heart", "sun", "house", "heart"],
+    photo: "photo-1767239650392-1f73d63b5652",
+    alt: "一家人喺公園草地上開心野餐",
+    credit: "Cuong Duyen Ceramics",
+    focus: { landscape: [0.34, 0.5], portrait: [0.5, 0.72] },
     sun: [0.82, 0.88],
+  },
+  {
+    id: "motor",
+    category: "motor",
+    tab: "汽車",
+    script: "on the road",
+    line1: "揸車去兜風，",
+    line2: ["保障要", "坐定", "定。"],
+    sub: "三保定全保？NCD、墊底費、維修限制，逐間汽車保險問清楚先上路。",
+    cta: "比較汽車保險",
+    stamp: "DRIVE ✓",
+    stickers: ["car", "key", "sun", "shield"],
+    photo: "photo-1785449890451-9208ec267582",
+    alt: "一架藍色古典車停喺海邊，背後係山",
+    credit: "Stepan",
+    focus: { landscape: [0.34, 0.5], portrait: [0.5, 0.72] },
+    sun: [0.84, 0.9],
+  },
+  {
+    id: "accident",
+    category: "accident",
+    tab: "意外",
+    script: "play safe",
+    line1: "放膽去玩，",
+    line2: ["意外", "有保障", "。"],
+    sub: "小朋友踩車、大人運動，難免碰碰撞撞——意外醫療、永久傷殘賠償比例，邊份保障最全？",
+    cta: "比較意外保險",
+    stamp: "SAFE ✓",
+    stickers: ["helmet", "shield", "heart", "sun"],
+    photo: "photo-1777480011184-b2c45f9d772a",
+    alt: "三個戴住頭盔嘅小朋友踩三輪車",
+    credit: "Anna Khromova",
+    focus: { landscape: [0.34, 0.5], portrait: [0.5, 0.72] },
+    sun: [0.86, 0.88],
   },
 ];
 
-export const destinationPhoto = (d: Destination, w = 1800) => u(d.photo, w);
+export const slidePhoto = (s: HeroSlide, w = 1800) => u(s.photo, w);
 
 export const SUNSET_PHOTO = {
   src: (w = 1800) => u("photo-1558005530-a7958896ec60", w),
@@ -122,7 +193,7 @@ export const activityPhoto = (a: Activity, w = 1000) => u(a.photo, w);
 
 /** everyone whose photo is re-drawn on the landing page */
 export const PHOTO_CREDITS = [
-  ...DESTINATIONS.map((d) => `${d.credit}（${d.place}）`),
+  ...HERO_SLIDES.map((d) => `${d.credit}（${d.tab}）`),
   ...ACTIVITIES.map((a) => `${a.credit}（${a.place}）`),
   `${SUNSET_PHOTO.credit}（${SUNSET_PHOTO.place}）`,
 ];

@@ -108,3 +108,38 @@ Boss asked to base the hand-drawn art on real holiday-destination and holiday-ac
 | `npm run build` | pass |
 | `npm run test:filters` | pass |
 | Playwright Chromium (SwiftShader) 1440×900 + 390×844 | inspected; `layered-3d-walkthrough.mp4` (not committed) |
+
+## Revision — themed hero, free-scroll ring, performance, VHIS premiums (Build 20261002.01)
+
+1. **Holiday Moments ring no longer pins the page.** Wheel over the photos turns one page per notch (320 ms
+   cooldown, ~60 px trackpad threshold) and releases the page at the first/last page; wheel anywhere else scrolls
+   normally; touch: horizontal swipe turns, vertical scrolls (`touch-action: pan-y`). Verified with Playwright:
+   3 notches over photos → page 4, scrollY unchanged; wheel at the left edge scrolls the page; at the last page the
+   wheel scrolls on.
+2. **Performance.** WebGL paintings and the ring now render on demand (intro/outro, pointer, brush fade, ≤2.5 s of
+   pencil "boil" after activity), never because of scrolling (parallax is CSS); DPR capped at 1.25; fbm 5→4 octaves;
+   removed `background-attachment: fixed`, the multiply-blended full-screen grain, hero/nav backdrop blurs and the
+   extra spring on hero scroll progress; Lenis lerp 0.14→0.2. SwiftShader (CPU WebGL) idle frame time:
+   hero 165→17 ms, ring 27→17 ms, lower page 173→20 ms (same as with canvases removed). Absolute numbers are
+   CPU-emulated, not real-GPU timings.
+3. **Hero = one slide per insurance type** (travel, pet — golden British Shorthair, home, medical, life, motor,
+   accident). Eyebrow, headline, sub-copy, primary CTA (`/category/<id>`), tint, passport stamp and sticker set all
+   change with the painting; copy cross-fades in one grid cell (CTA position constant: 520 px throughout a change at
+   1440×900). Pauses while the pointer is over the copy. New stickers: paw, fish, house, key, medical cross, car, helmet.
+4. **Nav:** 我的最愛 moved to the end (after 關於數據).
+5. **Insurer cards:** product-count figure removed from the top-right.
+6. **VHIS list:** hand-drawn notebook table (numbered pencil circles, dashed rows, highlighter hover, marker headers).
+   生效日期 / 狀態 columns replaced by 保費範圍. A range is shown only when the product that cites the exact
+   certification number states an explicit standard-plan figure (`標準計劃年繳保費（30歲）：男性約 HK$X／女性約 HK$Y`
+   or the monthly equivalent) — 17 of 33 standard plans; it is labelled "30歲 · 男／女 · 本站快照" with the official
+   table link. All other rows link to the official premium table; nothing is inferred. Non-active plans still carry a
+   small 已終止註冊 / 只供續保 note under the name so they are not mistaken for plans on sale.
+   `src/lib/vhis-premium.ts` + `tests/vhis-premium.test.mjs`.
+
+| Check | Result |
+| --- | --- |
+| `npm test` | 222 pass, 0 fail |
+| `npm run lint -- --max-warnings=0` | pass |
+| `npm run build` | pass |
+| `npm run test:filters` | pass |
+| Playwright Chromium (SwiftShader) 1440×900 + 390×844 | all 7 hero themes, ring wheel behaviour, VHIS, insurers, nav |

@@ -6,12 +6,46 @@ import type { MotionValue } from "framer-motion";
 import { useCategories, useInsurers, useProducts } from "@/providers/InsuranceDataProvider";
 import { useSearch } from "@/providers/SearchProvider";
 import { scrollToElement } from "@/lib/lenis";
-import { DESTINATIONS, destinationPhoto } from "@/lib/landing-photos";
+import { HERO_SLIDES, slidePhoto, type StickerKind } from "@/lib/landing-photos";
+import { CATEGORY_META } from "@/lib/categories";
 import { cn } from "@/lib/utils";
 import Magnetic from "@/components/Magnetic";
 import { PencilCircle, WashEdge } from "@/components/fx/Sketch";
 import { Sticker } from "@/components/fx/Depth";
-import { CameraArt, PlaneArt, StampArt, SuitcaseArt, SunglassesArt } from "@/components/fx/StickerArt";
+import {
+  CameraArt,
+  CarArt,
+  CrossArt,
+  FishArt,
+  HeartArt,
+  HelmetArt,
+  HouseArt,
+  KeyArt,
+  PawArt,
+  PlaneArt,
+  ShieldArt,
+  StampArt,
+  SuitcaseArt,
+  SunArt,
+  SunglassesArt,
+} from "@/components/fx/StickerArt";
+
+const STICKER_ART: Record<StickerKind, (p: { className?: string }) => React.ReactElement> = {
+  plane: PlaneArt,
+  suitcase: SuitcaseArt,
+  sunglasses: SunglassesArt,
+  camera: CameraArt,
+  paw: PawArt,
+  fish: FishArt,
+  house: HouseArt,
+  key: KeyArt,
+  cross: CrossArt,
+  heart: HeartArt,
+  sun: SunArt,
+  car: CarArt,
+  helmet: HelmetArt,
+  shield: ShieldArt,
+};
 
 /** three.js + the sketch shader live in their own chunk. */
 const PaintingCanvas = lazy(() => import("@/components/fx/three/PaintingCanvas"));
@@ -79,7 +113,7 @@ function HeroSticker({
   );
 }
 
-/** S1 Hero — 度假勝地輪播：真實相片即時畫成鉛筆 + 水彩；換景時舊畫褪走、新畫重新起稿上色 */
+/** S1 Hero — 保險主題輪播：每張真實相片即時畫成鉛筆 + 水彩，標題、文案、按鈕同 sticker 跟住一齊換 */
 export default function Hero() {
   const rootRef = useRef<HTMLElement>(null);
   const search = useSearch();
@@ -89,16 +123,20 @@ export default function Hero() {
   const reduced = useReducedMotion();
   const inView = useInView(rootRef, { amount: 0.3 });
   const [slide, setSlide] = useState(0);
-  const dest = DESTINATIONS[slide];
+  const [paused, setPaused] = useState(false);
+  const cur = HERO_SLIDES[slide];
+  const tint = CATEGORY_META[cur.category]?.color ?? "var(--red)";
+  const catName = categories.find((c) => c.id === cur.category)?.name_zh;
 
   useEffect(() => {
-    if (reduced || !inView) return;
-    const t = window.setTimeout(() => setSlide((i) => (i + 1) % DESTINATIONS.length), 8500);
+    if (reduced || !inView || paused) return;
+    const t = window.setTimeout(() => setSlide((i) => (i + 1) % HERO_SLIDES.length), 8500);
     return () => window.clearTimeout(t);
-  }, [slide, reduced, inView]);
+  }, [slide, reduced, inView, paused]);
 
   const { scrollYProgress } = useScroll({ target: rootRef, offset: ["start start", "end start"] });
-  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.4 });
+  // follow the (already Lenis-smoothed) scroll directly — a second spring here reads as lag
+  const progress = scrollYProgress;
   const copyY = useTransform(progress, [0, 1], [0, -120]);
   const copyO = useTransform(progress, [0, 0.7], [1, 0]);
   const artScale = useTransform(progress, [0, 1], [1, 1.08]);
@@ -122,6 +160,8 @@ export default function Hero() {
     { n: products.length || "—", label: "份官方產品檔案", color: "var(--jade)" },
     { n: insurers.length || "—", label: "間保險公司", color: "var(--sky)" },
   ];
+  const [Art1, Art2, Art3, Art4] = cur.stickers.map((k) => STICKER_ART[k]);
+  const title = `${cur.line1}${cur.line2.join("")}`;
 
   return (
     <section ref={rootRef} onPointerMove={onPointer} className="relative -mt-16 overflow-hidden" aria-labelledby="hero-title">
@@ -129,19 +169,18 @@ export default function Hero() {
       <motion.div className="absolute inset-0 bg-paper" style={reduced ? undefined : { scale: artScale, y: artY }}>
         <Suspense fallback={null}>
           <PaintingCanvas
-            src={destinationPhoto(dest)}
-            alt={dest.alt}
-            focus={dest.focus}
-            sun={dest.sun}
+            src={slidePhoto(cur)}
+            alt={cur.alt}
+            focus={cur.focus}
+            sun={cur.sun}
             washOrigin={[0.72, 0.45]}
             fade={{ landscape: [1, 0, 0.95], portrait: [0, -1, 0.55] }}
-            progress={progress}
           />
         </Suspense>
         {/* soft paper wash behind the copy so pencil lines never fight the text */}
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: "radial-gradient(70% 80% at 18% 45%, rgba(252,252,250,.82), rgba(252,252,250,.35) 55%, transparent 75%)" }}
+          style={{ background: "radial-gradient(70% 80% at 18% 45%, rgba(252,252,250,.85), rgba(252,252,250,.4) 55%, transparent 75%)" }}
           aria-hidden="true"
         />
         <div
@@ -155,41 +194,51 @@ export default function Hero() {
         style={reduced ? undefined : { y: copyY, opacity: copyO }}
         className="site-container relative z-10 flex min-h-[100svh] flex-col justify-start pb-36 pt-28 md:justify-center md:pb-28"
       >
-        <div className="max-w-[640px]">
-          <motion.p
-            initial={{ opacity: 0, x: -12 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1, duration: 0.6, ease: EASE }}
-            className="flex items-center gap-2 font-hand text-[24px] font-bold text-red"
-          >
-            <span aria-hidden="true">✈</span> summer holiday · 香港保險比較
-          </motion.p>
-          <motion.h1 style={reduced ? undefined : { y: headY }} id="hero-title" className="mt-3 font-serif text-[clamp(44px,6.2vw,92px)] font-bold leading-[1.08] text-ink" aria-label="去到邊度玩，保障都跟住。">
-            <Letters text="去到邊度玩，" delay={0.25} />
-            <br />
-            <span>
-              <Letters text="保障都" delay={0.6} />
-              <span className="relative inline-block">
-                <motion.span
-                  aria-hidden="true"
-                  className="absolute inset-x-[-0.08em] bottom-[0.08em] h-[0.42em] origin-left -rotate-1 rounded-[40%_60%_50%_50%] bg-amber/75"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 1.3, duration: 0.6, ease: EASE }}
-                />
-                <Letters text="跟住" delay={0.78} className="relative text-red" />
-              </span>
-              <Letters text="。" delay={0.9} />
-            </span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 0.7, ease: EASE }}
-            className="mt-6 max-w-[30em] text-[18px] font-medium leading-[1.75] text-ink-soft md:text-[20px]"
-          >
-            聖托里尼看日落、夏威夷游水、峇里做瑜伽——出發之前，旅遊到醫療逐項比較保障、價錢同限制，<span className="marker text-ink">附官方文件</span>。
-          </motion.p>
+        <div className="max-w-[660px]" onPointerEnter={() => setPaused(true)} onPointerLeave={() => setPaused(false)}>
+          {/* the whole message re-writes itself with each painting */}
+          {/* old and new copy share one grid cell and cross-fade, so the buttons below never jump */}
+          <div className="grid">
+          <AnimatePresence initial={false}>
+            <motion.div key={cur.id} className="[grid-area:1/1]" exit={{ opacity: 0, y: -14, filter: "blur(6px)", transition: { duration: 0.35 } }}>
+              <motion.p
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1, duration: 0.6, ease: EASE }}
+                className="flex items-center gap-2 font-hand text-[24px] font-bold"
+                style={{ color: tint }}
+              >
+                <span aria-hidden="true">✎</span> {cur.script} · {catName ?? "香港保險比較"}
+              </motion.p>
+              <motion.h1 style={reduced ? undefined : { y: headY }} id="hero-title" className="mt-3 font-serif text-[clamp(42px,6vw,88px)] font-bold leading-[1.08] text-ink" aria-label={title}>
+                <Letters text={cur.line1} delay={0.2} />
+                <br />
+                <span>
+                  <Letters text={cur.line2[0]} delay={0.5} />
+                  <span className="relative inline-block">
+                    <motion.span
+                      aria-hidden="true"
+                      className="absolute inset-x-[-0.08em] bottom-[0.08em] h-[0.42em] origin-left -rotate-1 rounded-[40%_60%_50%_50%] opacity-40"
+                      style={{ background: tint }}
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ delay: 1.1, duration: 0.6, ease: EASE }}
+                    />
+                    <Letters text={cur.line2[1]} delay={0.7} className="relative" />
+                  </span>
+                  <Letters text={cur.line2[2]} delay={0.85} />
+                </span>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9, duration: 0.7, ease: EASE }}
+                className="mt-6 max-w-[30em] text-[18px] font-medium leading-[1.75] text-ink-soft md:text-[20px]"
+              >
+                {cur.sub}
+              </motion.p>
+            </motion.div>
+          </AnimatePresence>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -199,12 +248,14 @@ export default function Hero() {
             className="mt-8 flex flex-wrap items-center gap-4"
           >
             <Magnetic>
-              <button type="button" onClick={() => scrollToElement("#categories-grid")} className="btn-primary group">
-                開始比較
+              <Link to={`/category/${cur.category}`} className="btn-primary group">
+                {cur.cta}
                 <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-              </button>
+              </Link>
             </Magnetic>
-            <Link to="/categories" className="btn-ghost">全部類別</Link>
+            <button type="button" onClick={() => scrollToElement("#categories-grid")} className="btn-ghost">
+              全部類別
+            </button>
           </motion.div>
           <motion.button
             type="button"
@@ -212,7 +263,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 0.6 }}
-            className="mt-5 flex h-12 w-full max-w-[460px] items-center gap-3 rounded-full border-2 border-dashed bg-paper/80 px-5 text-left backdrop-blur-sm transition-colors hover:border-solid hover:bg-white"
+            className="mt-5 flex h-12 w-full max-w-[460px] items-center gap-3 rounded-full border-2 border-dashed bg-paper/80 px-5 text-left transition-colors hover:border-solid hover:bg-white"
             style={{ borderColor: "var(--line-strong)" }}
           >
             <Search size={18} className="shrink-0 text-ink-faint" />
@@ -240,35 +291,39 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* sticker layer — drag them around; each sits at its own depth */}
-      <HeroSticker progress={progress} mx={mx} my={my} speed={520} driftX={420} depth={46} delay={2.0} tilt={-8} className="left-[44%] top-[13%] hidden w-28 md:block">
-        <PlaneArt className="h-auto w-full" />
-      </HeroSticker>
-      <HeroSticker progress={progress} mx={mx} my={my} speed={300} depth={26} delay={2.2} tilt={10} className="right-[6%] top-[74%] w-20 md:right-[22%] md:top-[58%] md:w-24">
-        <StampArt className="h-auto w-full" text={`HKG → ${dest.iata}`} />
-      </HeroSticker>
-      <HeroSticker progress={progress} mx={mx} my={my} speed={420} depth={36} delay={2.4} tilt={-12} className="bottom-[16%] left-[46%] hidden w-24 lg:block">
-        <SunglassesArt className="h-auto w-full" />
-      </HeroSticker>
-      <HeroSticker progress={progress} mx={mx} my={my} speed={220} depth={18} delay={2.6} tilt={6} className="right-[5%] top-[38%] hidden w-20 md:block">
-        <SuitcaseArt className="h-auto w-full" />
-      </HeroSticker>
-      <HeroSticker progress={progress} mx={mx} my={my} speed={360} depth={30} delay={2.8} tilt={-6} className="bottom-[8%] left-[8%] w-16 md:hidden">
-        <CameraArt className="h-auto w-full" />
-      </HeroSticker>
+      {/* sticker layer — re-slapped for every theme; drag them around; each sits at its own depth */}
+      <AnimatePresence mode="popLayout">
+        <motion.div key={cur.id} className="pointer-events-none absolute inset-0 z-20" exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.3 } }}>
+          <HeroSticker progress={progress} mx={mx} my={my} speed={520} driftX={420} depth={46} delay={1.2} tilt={-8} className="left-[44%] top-[13%] hidden w-24 md:block">
+            <Art1 className="h-auto w-full" />
+          </HeroSticker>
+          <HeroSticker progress={progress} mx={mx} my={my} speed={300} depth={26} delay={1.4} tilt={10} className="right-[6%] top-[74%] w-20 md:right-[22%] md:top-[58%] md:w-24">
+            <StampArt className="h-auto w-full" text={cur.stamp} />
+          </HeroSticker>
+          <HeroSticker progress={progress} mx={mx} my={my} speed={420} depth={36} delay={1.6} tilt={-12} className="bottom-[16%] left-[46%] hidden w-20 lg:block">
+            <Art3 className="h-auto w-full" />
+          </HeroSticker>
+          <HeroSticker progress={progress} mx={mx} my={my} speed={220} depth={18} delay={1.8} tilt={6} className="right-[5%] top-[38%] hidden w-20 md:block">
+            <Art2 className="h-auto w-full" />
+          </HeroSticker>
+          <HeroSticker progress={progress} mx={mx} my={my} speed={360} depth={30} delay={2.0} tilt={-6} className="bottom-[8%] left-[8%] w-16 md:hidden">
+            <Art4 className="h-auto w-full" />
+          </HeroSticker>
+        </motion.div>
+      </AnimatePresence>
 
-      {/* destination caption (hand-lettered) */}
+      {/* theme caption (hand-lettered) */}
       <motion.div style={reduced ? undefined : { y: capY }} className="absolute right-[clamp(16px,4vw,48px)] top-24 z-10 hidden text-right md:block" aria-live="polite">
         <AnimatePresence mode="wait">
           <motion.div
-            key={dest.id}
+            key={cur.id}
             initial={{ opacity: 0, y: 10, rotate: -4 }}
             animate={{ opacity: 1, y: 0, rotate: -3, transition: { delay: 0.9, duration: 0.6 } }}
             exit={{ opacity: 0, y: -8, transition: { duration: 0.3 } }}
-            className="inline-block rounded-2xl bg-paper/75 px-5 py-2 shadow-card backdrop-blur-sm"
+            className="inline-block rounded-2xl bg-paper/95 px-5 py-2 shadow-card"
           >
-            <p className="font-hand text-[40px] font-bold leading-none text-ink">{dest.script}</p>
-            <p className="mt-1 font-serif text-[15px] font-bold text-ink-soft">📍 {dest.name}</p>
+            <p className="font-hand text-[38px] font-bold leading-none" style={{ color: tint }}>{cur.script}</p>
+            <p className="mt-1 font-serif text-[15px] font-bold text-ink-soft">{catName ?? cur.tab}</p>
           </motion.div>
         </AnimatePresence>
       </motion.div>
@@ -278,29 +333,30 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 3.6 }}
-          className="pointer-events-none hidden rounded-full bg-paper/80 px-4 py-1 font-hand text-[21px] font-bold text-ink shadow-card backdrop-blur-sm md:block"
+          className="pointer-events-none hidden rounded-full bg-paper/95 px-4 py-1 font-hand text-[21px] font-bold text-ink shadow-card md:block"
           aria-hidden="true"
         >
           ✎ 移動滑鼠，幫幅畫上色
         </motion.p>
-        <div className="flex items-center gap-1.5 rounded-full bg-paper/80 px-2 py-1.5 shadow-card backdrop-blur-sm" role="tablist" aria-label="度假目的地">
-          {DESTINATIONS.map((d, i) => (
+        <div className="flex items-center gap-1 rounded-full bg-paper/95 px-1.5 py-1.5 shadow-card" role="tablist" aria-label="保險主題">
+          {HERO_SLIDES.map((d, i) => (
             <button
               key={d.id}
               type="button"
               role="tab"
               aria-selected={i === slide}
-              aria-label={d.name}
+              aria-label={`${d.tab}保險`}
               onClick={() => setSlide(i)}
-              className={cn("rounded-full px-2 py-1 font-hand text-[18px] font-bold transition-colors md:px-3", i === slide ? "bg-red text-white" : "text-ink-soft hover:bg-amber-wash")}
+              className={cn("rounded-full px-2 py-1 font-serif text-[14px] font-bold transition-colors md:px-2.5", i === slide ? "text-white" : "text-ink-soft hover:bg-amber-wash")}
+              style={i === slide ? { background: CATEGORY_META[d.category]?.color } : undefined}
             >
-              <span className="hidden md:inline">{d.script}</span>
-              <span className="md:hidden">{i === slide ? d.script : "•"}</span>
+              <span className="hidden sm:inline">{d.tab}</span>
+              <span className="sm:hidden">{i === slide ? d.tab : "•"}</span>
             </button>
           ))}
         </div>
         <p className="rounded-full bg-paper/70 px-2 text-[11px] text-ink-soft">
-          相片：{dest.credit} / Unsplash · 即時手繪水彩重繪
+          相片：{cur.credit} / Unsplash · 即時手繪水彩重繪
         </p>
       </div>
 

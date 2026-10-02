@@ -1,10 +1,7 @@
-import { lazy, Suspense, useCallback, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import { useCategories } from "@/providers/InsuranceDataProvider";
 import { CATEGORY_META, CATEGORY_ORDER, DEFAULT_CATEGORIES } from "@/lib/categories";
 import { ACTIVITIES, activityPhoto } from "@/lib/landing-photos";
@@ -13,14 +10,13 @@ import { Sticker } from "@/components/fx/Depth";
 import { BikeArt, PalmArt, ShellArt, SunArt, SurfboardArt } from "@/components/fx/StickerArt";
 import { cn } from "@/lib/utils";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const ActivityCarouselCanvas = lazy(() => import("@/components/fx/three/ActivityCarouselCanvas"));
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /**
  * S3 度假時刻 — a 3D ring of travel-sketchbook pages (cycling, surfing, swimming, hiking…).
- * Desktop: scroll turns the ring. Everywhere: arrows, dots or a click on a page.
+ * Wheel over the photos turns it (no scroll-jacking elsewhere); swipe, arrows, dots or a click also work.
  * Below it, every insurance category as a quick link.
  */
 export default function CategoryGrid() {
@@ -39,28 +35,75 @@ export default function CategoryGrid() {
 
   const go = useCallback((i: number) => setPos(i), []);
 
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference) and (pointer: fine)", () => {
-        ScrollTrigger.create({
-          trigger: rootRef.current,
-          start: "top top",
-          end: `+=${(n - 1) * 55}%`,
-          pin: ".moments-pin",
-          scrub: true,
-          anticipatePin: 1,
-          onUpdate: (self) => setPos(self.progress * (n - 1)),
-        });
-      });
-      return () => mm.revert();
-    },
-    { scope: rootRef },
-  );
+  // Wheel over the photos turns the ring (page stays put); at the first/last page the wheel is
+  // released so the page keeps scrolling. Wheel anywhere else scrolls the page as normal.
+  const ringRef = useRef<HTMLDivElement>(null);
+  const posRef = useRef(0);
+  useEffect(() => {
+    posRef.current = pos;
+  }, [pos]);
+  useEffect(() => {
+    const el = ringRef.current;
+    if (!el) return;
+    // one wheel notch (or a trackpad flick worth ~60px) = one page; short cooldown so inertia
+    // can't spin through the whole ring
+    let acc = 0;
+    let lockUntil = 0;
+    let idle = 0;
+    const onWheel = (e: WheelEvent) => {
+      const cur = Math.round(posRef.current);
+      const d = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      if ((d > 0 && cur >= n - 1) || (d < 0 && cur <= 0)) return; // release the page at either end
+      e.preventDefault();
+      e.stopPropagation();
+      acc += d;
+      window.clearTimeout(idle);
+      idle = window.setTimeout(() => (acc = 0), 220);
+      const now = performance.now();
+      if (Math.abs(acc) < 60 || now < lockUntil) return;
+      const next = Math.min(n - 1, Math.max(0, cur + Math.sign(acc)));
+      acc = 0;
+      lockUntil = now + 320;
+      posRef.current = next;
+      setPos(next);
+    };
+    // touch / pen: horizontal swipe turns the ring; vertical swipes still scroll the page (touch-action: pan-y)
+    let startX = 0;
+    let startPos = 0;
+    let dragging = false;
+    const onDown = (e: PointerEvent) => {
+      if (e.pointerType === "mouse") return;
+      dragging = true;
+      startX = e.clientX;
+      startPos = posRef.current;
+    };
+    const onMove = (e: PointerEvent) => {
+      if (!dragging) return;
+      const next = Math.min(n - 1, Math.max(0, startPos - (e.clientX - startX) / 220));
+      posRef.current = next;
+      setPos(next);
+    };
+    const onUp = () => {
+      if (!dragging) return;
+      dragging = false;
+      setPos(Math.round(posRef.current));
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    el.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    return () => {
+      window.clearTimeout(idle);
+      el.removeEventListener("wheel", onWheel);
+      el.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+    };
+  }, [n]);
 
   return (
     <section id="categories-grid" ref={rootRef} className="relative z-10">
-      <div className="moments-pin relative flex flex-col overflow-hidden py-16 lg:h-[100dvh] lg:justify-center lg:pb-4 lg:pt-20">
+      <div className="relative flex flex-col overflow-hidden py-16 lg:pt-24">
         <div className="site-container flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="font-hand text-[26px] font-bold text-jade">holiday moments ✿</p>
@@ -90,7 +133,10 @@ export default function CategoryGrid() {
         </div>
 
         {/* 3D ring */}
-        <div className="relative z-10 mt-4 h-[48vh] min-h-[300px] lg:h-[52vh]">
+        <div ref={ringRef} className="relative z-10 mx-auto mt-4 h-[48vh] min-h-[300px] w-full max-w-[1100px] touch-pan-y lg:h-[52vh]">
+          <p className="pointer-events-none absolute -top-2 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full bg-white/85 px-3 py-0.5 font-hand text-[18px] font-bold text-ink-soft shadow-card">
+            ↕ 喺相上面碌，轉一轉速寫簿
+          </p>
           <Suspense fallback={null}>
             <ActivityCarouselCanvas urls={urls} index={pos} onSelect={go} />
           </Suspense>
@@ -123,7 +169,7 @@ export default function CategoryGrid() {
             </motion.div>
           </AnimatePresence>
           <div className="mt-5 flex items-center gap-3">
-            <button type="button" onClick={() => go(Math.round(pos) - 1)} className="rounded-full border-2 border-ink/70 bg-paper p-2 transition-colors hover:bg-amber-wash" aria-label="上一個場景">
+            <button type="button" onClick={() => go(Math.max(0, Math.round(pos) - 1))} className="rounded-full border-2 border-ink/70 bg-paper p-2 transition-colors hover:bg-amber-wash" aria-label="上一個場景">
               <ArrowLeft size={16} />
             </button>
             {ACTIVITIES.map((a, i) => (
@@ -136,7 +182,7 @@ export default function CategoryGrid() {
                 className={cn("h-2.5 rounded-full transition-all duration-300", i === active ? "w-7 bg-red" : "w-2.5 bg-ink/25 hover:bg-ink/50")}
               />
             ))}
-            <button type="button" onClick={() => go(Math.round(pos) + 1)} className="rounded-full border-2 border-ink/70 bg-paper p-2 transition-colors hover:bg-amber-wash" aria-label="下一個場景">
+            <button type="button" onClick={() => go(Math.min(n - 1, Math.round(pos) + 1))} className="rounded-full border-2 border-ink/70 bg-paper p-2 transition-colors hover:bg-amber-wash" aria-label="下一個場景">
               <ArrowRight size={16} />
             </button>
           </div>

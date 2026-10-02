@@ -17,7 +17,6 @@ const TITLE_WORDS = ["投保之前，", "先格一格價。"];
 export default function FinalCTA() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
-  const progress = useTransform(scrollYProgress, [0, 1], [0.6, 0]);
   const reduced = useReducedMotion();
   // painting lags behind, copy rises faster: two depth planes
   const artY = useTransform(scrollYProgress, [0, 1], [-90, 40]);
@@ -36,7 +35,6 @@ export default function FinalCTA() {
             sun={[0.7, 0.62]}
             washOrigin={[0.6, 0.45]}
             fade={{ landscape: [0, -1, 0.45], portrait: [0, -1, 0.6] }}
-            progress={progress}
             playOnView
           />
         </Suspense>

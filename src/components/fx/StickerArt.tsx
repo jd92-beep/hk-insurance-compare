@@ -163,3 +163,87 @@ export function ShieldArt({ className }: P) {
     </svg>
   );
 }
+
+export function PawArt({ className }: P) {
+  return (
+    <svg viewBox="0 0 100 100" className={className}>
+      <path d="M50 54 C 32 54 22 72 28 82 C 34 92 44 86 50 86 C 56 86 66 92 72 82 C 78 72 68 54 50 54Z" fill="#F2A71B" {...S} />
+      <ellipse cx="24" cy="44" rx="9" ry="12" fill="#F2A71B" {...S} transform="rotate(-20 24 44)" />
+      <ellipse cx="40" cy="26" rx="9" ry="12" fill="#F2A71B" {...S} transform="rotate(-6 40 26)" />
+      <ellipse cx="60" cy="26" rx="9" ry="12" fill="#F2A71B" {...S} transform="rotate(6 60 26)" />
+      <ellipse cx="76" cy="44" rx="9" ry="12" fill="#F2A71B" {...S} transform="rotate(20 76 44)" />
+      <path d="M40 66 Q44 62 48 64" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" opacity=".7" />
+    </svg>
+  );
+}
+
+export function FishArt({ className }: P) {
+  return (
+    <svg viewBox="0 0 120 70" className={className}>
+      <path d="M14 35 Q40 6 78 20 Q92 26 98 35 Q92 44 78 50 Q40 64 14 35Z" fill="#7FB9E6" {...S} />
+      <path d="M96 35 L116 18 L114 52 Z" fill="#4E9EDB" {...S} />
+      <circle cx="34" cy="31" r="4" fill={INK} />
+      <path d="M52 22 Q60 35 52 48 M64 24 Q72 35 64 46" fill="none" {...S} strokeWidth="2" />
+      <path d="M22 44 Q28 46 34 44" fill="none" {...S} strokeWidth="2" />
+    </svg>
+  );
+}
+
+export function HouseArt({ className }: P) {
+  return (
+    <svg viewBox="0 0 110 100" className={className}>
+      <path d="M10 48 L55 10 L100 48" fill="#E4573D" {...S} />
+      <rect x="20" y="44" width="70" height="48" rx="4" fill="#FFFFFF" {...S} />
+      <rect x="46" y="62" width="18" height="30" rx="3" fill="#8A5A3B" {...S} />
+      <rect x="28" y="54" width="14" height="14" rx="2" fill="#FFD36B" {...S} />
+      <rect x="70" y="54" width="14" height="14" rx="2" fill="#FFD36B" {...S} />
+      <rect x="74" y="16" width="10" height="20" fill="#C2412A" {...S} />
+      <path d="M8 94 Q55 86 102 94" fill="none" stroke="#3F9A5B" strokeWidth="5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function KeyArt({ className }: P) {
+  return (
+    <svg viewBox="0 0 120 60" className={className}>
+      <circle cx="28" cy="30" r="20" fill="#F2A71B" {...S} />
+      <circle cx="28" cy="30" r="7" fill="#FFFFFF" {...S} />
+      <path d="M48 30 H110 V40 H100 V34 H90 V42 H80 V34 H48 Z" fill="#F2A71B" {...S} />
+    </svg>
+  );
+}
+
+export function CrossArt({ className }: P) {
+  return (
+    <svg viewBox="0 0 100 100" className={className}>
+      <rect x="8" y="8" width="84" height="84" rx="22" fill="#FFFFFF" {...S} />
+      <path d="M40 22 H60 V40 H78 V60 H60 V78 H40 V60 H22 V40 H40 Z" fill="#3F9A5B" {...S} />
+      <path d="M44 26 H50" stroke="#fff" strokeWidth="3" strokeLinecap="round" opacity=".7" />
+    </svg>
+  );
+}
+
+export function CarArt({ className }: P) {
+  return (
+    <svg viewBox="0 0 140 80" className={className}>
+      <path d="M10 56 V44 Q10 36 20 34 L36 30 L52 14 Q56 10 64 10 H92 Q100 10 106 16 L120 32 Q132 34 132 44 V56 Z" fill="#4E9EDB" {...S} />
+      <path d="M56 18 H72 V32 H44 Z M78 18 H96 L108 32 H78 Z" fill="#E2F0FB" {...S} strokeWidth="2" />
+      <circle cx="38" cy="58" r="12" fill={INK} />
+      <circle cx="38" cy="58" r="5" fill="#fff" />
+      <circle cx="104" cy="58" r="12" fill={INK} />
+      <circle cx="104" cy="58" r="5" fill="#fff" />
+      <rect x="122" y="40" width="10" height="6" rx="2" fill="#FFD36B" {...S} strokeWidth="2" />
+    </svg>
+  );
+}
+
+export function HelmetArt({ className }: P) {
+  return (
+    <svg viewBox="0 0 120 90" className={className}>
+      <path d="M12 62 Q12 14 62 12 Q110 14 110 58 L96 64 Q60 70 12 62Z" fill="#E4573D" {...S} />
+      <path d="M30 22 Q40 40 36 62 M62 12 V66 M92 22 Q84 40 88 64" fill="none" stroke="#fff" strokeWidth="5" strokeLinecap="round" opacity=".85" />
+      <path d="M12 62 Q12 14 62 12 Q110 14 110 58 L96 64 Q60 70 12 62Z" fill="none" {...S} />
+      <path d="M26 66 Q20 82 34 84 M96 64 Q102 80 88 84" fill="none" {...S} />
+    </svg>
+  );
+}

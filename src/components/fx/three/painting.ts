@@ -30,7 +30,8 @@ export interface PaintingHandle {
 /** Full-bleed photo → live pencil-and-watercolour painting. */
 export function createPainting(canvas: HTMLCanvasElement, opts: PaintingOptions): PaintingHandle {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false, powerPreference: "high-performance" });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+  // watercolour doesn't need retina density; 1.25 keeps pencil lines crisp at a fraction of the fill cost
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.25));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, 0, 1);
@@ -71,11 +72,27 @@ export function createPainting(canvas: HTMLCanvasElement, opts: PaintingOptions)
     if (mat) renderer.render(scene, camera);
   };
 
+  // render on demand: intro/outro, pointer, scroll, brush fading, or the 4 fps pencil "boil"
+  let lastScroll = -1;
+  let lastBoil = -1;
+  let paintEnergy = 0;
+  let lastActive = performance.now();
   const frame = (now: number) => {
     if (!mat) return;
     const t = (now - startAt) / 1000;
     const u = mat.uniforms;
-    u.uTime.value = now / 1000;
+    const boil = Math.floor(now / 250);
+    const animating = Boolean(outro) || (started && t < 3.8);
+    const pointerMoving = smooth.distanceToSquared(pointer) > 1e-7;
+    const scrolled = scroll !== lastScroll;
+    if (animating || pointerMoving || scrolled) lastActive = now;
+    // the pencil only "boils" for a moment after activity; a still page costs zero GPU
+    const boiling = boil !== lastBoil && now - lastActive < 2500;
+    const dirty = animating || pointerMoving || scrolled || paintEnergy > 0.002 || boiling;
+    if (!dirty) return;
+    lastBoil = boil;
+    lastScroll = scroll;
+    u.uTime.value = boil * 0.25;
     if (outro) {
       // the old painting dissolves: colour lifts first, then the pencil
       const k = Math.min(1, (now - outro.at) / 900);
@@ -91,7 +108,10 @@ export function createPainting(canvas: HTMLCanvasElement, opts: PaintingOptions)
     smooth.lerp(pointer, 0.06);
     u.uMouse.value.copy(smooth);
     u.uScroll.value = scroll;
-    mask.fade(0.008);
+    if (paintEnergy > 0.002) {
+      mask.fade(0.008);
+      paintEnergy *= 0.992;
+    }
     render();
   };
 
@@ -128,6 +148,7 @@ export function createPainting(canvas: HTMLCanvasElement, opts: PaintingOptions)
       }
     } else mask.stroke(x, y);
     lastPaint = p;
+    paintEnergy = 1;
   };
   window.addEventListener("pointermove", onMove, { passive: true });
 

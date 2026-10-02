@@ -65,7 +65,7 @@ export default function InsurerCard({
         />
       )}
 
-      {/* 頂行：公司名（點擊去公司頁）+ 產品數 */}
+      {/* 頂行：公司名（點擊去公司頁） */}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h2 className="break-words font-grotesk text-[22px] font-bold leading-tight text-ink">
@@ -81,12 +81,6 @@ export default function InsurerCard({
               {insurer.name_zh}
             </Link>
           </p>
-        </div>
-        <div className="shrink-0 text-right transition-transform duration-300 group-hover:scale-105">
-          <p className="font-grotesk text-[32px] font-bold leading-none text-red">
-            {insurer.productCount}
-          </p>
-          <p className="mt-1 text-[12px] text-ink-faint">份產品</p>
         </div>
       </div>
 

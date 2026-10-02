@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import type { MotionValue } from "framer-motion";
 import { useReducedMotion } from "framer-motion";
 import { createPainting, type PaintingHandle, type PaintingOptions } from "./painting";
 
@@ -18,13 +17,11 @@ function hasWebGL(): boolean {
 export default function PaintingCanvas({
   src,
   alt,
-  progress,
   playOnView = false,
   ...opts
 }: Omit<PaintingOptions, "reduced" | "autoplay" | "src"> & {
   src: string;
   alt: string;
-  progress?: MotionValue<number>;
   /** wait until the canvas is mostly on screen before drawing */
   playOnView?: boolean;
 }) {
@@ -47,15 +44,13 @@ export default function PaintingCanvas({
       ? new IntersectionObserver(([e]) => e.intersectionRatio > 0.35 && h.play(), { threshold: [0, 0.35, 0.6] })
       : null;
     io?.observe(canvas);
-    const unsub = progress?.on("change", (v) => h.setScroll(v));
     return () => {
       alive = false;
       io?.disconnect();
-      unsub?.();
       h.dispose();
       handle.current = null;
     };
-  }, [failed, reduced, playOnView, progress]);
+  }, [failed, reduced, playOnView]);
 
   // a new src (slideshow) repaints in place instead of rebuilding the renderer
   useEffect(() => {

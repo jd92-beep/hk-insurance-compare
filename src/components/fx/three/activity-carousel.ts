@@ -17,7 +17,7 @@ const CARD_H = 2.0;
  */
 export function createActivityCarousel(canvas: HTMLCanvasElement, urls: string[], reduced: boolean): CarouselHandle {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.25));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.setClearColor(0x000000, 0);
   const scene = new THREE.Scene();
@@ -115,7 +115,7 @@ export function createActivityCarousel(canvas: HTMLCanvasElement, urls: string[]
 
   const render = () => {
     ring.rotation.y = -(current / n) * Math.PI * 2;
-    const t = performance.now() / 1000;
+    const t = Math.floor(performance.now() / 250) * 0.25;
     cards.forEach((c, i) => {
       // angular distance from the front, in "cards"
       let d = ((i - current) % n + n) % n;
@@ -125,21 +125,28 @@ export function createActivityCarousel(canvas: HTMLCanvasElement, urls: string[]
         c.mat.uniforms.uDim.value = facing;
         c.mat.uniforms.uTime.value = t;
       }
-      c.g.position.y = Math.sin(t * 0.8 + i) * 0.04 * (1 - facing);
       c.g.scale.setScalar(1 + (1 - facing) * 0.06);
     });
     renderer.render(scene, camera);
   };
 
-  const loop = () => {
+  // render only while turning, plus the 4 fps pencil boil
+  let lastBoil = -1;
+  let lastMove = performance.now();
+  const loop = (now: number) => {
     raf = requestAnimationFrame(loop);
-    current += (target - current) * 0.08;
+    const moving = Math.abs(target - current) > 0.0005;
+    const boil = Math.floor(now / 250);
+    if (moving) lastMove = now;
+    if (!moving && (boil === lastBoil || now - lastMove > 2500)) return;
+    lastBoil = boil;
+    current = moving ? current + (target - current) * 0.1 : target;
     render();
   };
   const start = () => {
     if (running || reduced) return;
     running = true;
-    loop();
+    raf = requestAnimationFrame(loop);
   };
   const stop = () => {
     running = false;

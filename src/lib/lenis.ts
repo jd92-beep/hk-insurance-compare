@@ -9,7 +9,7 @@ export function initLenis(): Lenis | null {
   if (lenis) return lenis;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
   if (reduced.matches) return null;
-  const instance = new Lenis({ lerp: 0.14, syncTouch: false });
+  const instance = new Lenis({ lerp: 0.2, syncTouch: false });
   lenis = instance;
   const loop = createFrameLoop(time => instance.raf(time));
   const visibility = () => document.hidden ? loop.stop() : loop.start();

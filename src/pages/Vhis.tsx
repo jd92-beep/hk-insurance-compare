@@ -23,6 +23,8 @@ import type { Insurer, Product } from "@/types/insurance";
 import type { VhisFlexiProduct, VhisStandardPlan, VhisStatus } from "@/types/vhis";
 import VhisSchemeFacts from "@/components/vhis/VhisSchemeFacts";
 import { cn } from "@/lib/utils";
+import { standardPlanPremium } from "@/lib/vhis-premium";
+import { Scribble } from "@/components/fx/Sketch";
 
 function cleanCompanyName(name: string): string {
   return (name || "")
@@ -150,6 +152,49 @@ function DocLinks({
         </a>
       )}
     </span>
+  );
+}
+
+/** 保費範圍：只顯示本站快照入面明確寫明嘅標準計劃數字；否則指去官方保費表 */
+function PremiumCell({ certBase, premiumDocUrl, products }: { certBase: string; premiumDocUrl: string; products: Product[] }) {
+  const r = useMemo(() => standardPlanPremium(certBase, products), [certBase, products]);
+  if (!r) {
+    return premiumDocUrl ? (
+      <a
+        href={premiumDocUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-dashed border-jade/50 px-2.5 py-1 text-[12.5px] font-bold text-jade transition-colors hover:bg-jade-wash"
+      >
+        睇官方保費表 <ExternalLink size={11} />
+      </a>
+    ) : (
+      <span className="text-small text-ink-faint">未有公開保費</span>
+    );
+  }
+  const fmt = (n: number) => n.toLocaleString("en-US");
+  return (
+    <div className="relative inline-block">
+      <p className="whitespace-nowrap font-grotesk text-[17px] font-extrabold text-ink">
+        HK${fmt(r.min)}
+        {r.max !== r.min && (
+          <>
+            <span className="mx-1 font-hand text-[20px] text-ink-faint">→</span>
+            {fmt(r.max)}
+          </>
+        )}
+        <span className="ml-1 text-[12px] font-bold text-ink-soft">/ {r.per}</span>
+      </p>
+      <Scribble className="absolute -bottom-1.5 left-0 h-2.5 w-full" color="var(--amber)" delay={0.1} />
+      <p className="mt-1.5 text-[11.5px] text-ink-faint">
+        {r.basis} · 本站快照
+        {premiumDocUrl && (
+          <a href={premiumDocUrl} target="_blank" rel="noreferrer" className="ml-1.5 font-bold text-jade hover:underline">
+            官方表 ↗
+          </a>
+        )}
+      </p>
+    </div>
   );
 }
 
@@ -489,7 +534,7 @@ export default function Vhis() {
               {filteredStandard.length > 0 && (
                 <div>
                   <div className="mb-5 flex flex-wrap items-baseline gap-3">
-                    <h2 className="h3-style text-ink">標準計劃</h2>
+                    <h2 className="h3-style relative text-ink">標準計劃<Scribble className="absolute -bottom-2 left-0 h-3 w-full" color="var(--jade)" /></h2>
                     <span className="chip bg-jade-wash font-bold text-jade">
                       {filteredStandard.length} 份
                     </span>
@@ -498,40 +543,43 @@ export default function Vhis() {
                     </span>
                   </div>
                   <div
-                    className="rounded-card border bg-paper shadow-card max-lg:overflow-x-auto"
-                    style={{ borderColor: "var(--line)" }}
+                    className="depth-card sketch-frame relative rounded-[26px] border p-2 max-lg:overflow-x-auto md:p-3"
+                    style={{ backgroundImage: "repeating-linear-gradient(180deg, transparent 0 47px, rgba(78,158,219,.10) 47px 48px), linear-gradient(#fff,#fff)" }}
                   >
-                    <table className="w-full border-collapse text-left text-[14.5px] leading-[1.55] max-lg:min-w-[860px] max-md:text-[13.5px]">
+                    <span className="pointer-events-none absolute inset-y-3 left-[54px] w-px bg-red/25 max-md:hidden" aria-hidden="true" />
+                    <table className="relative w-full border-collapse text-left text-[14.5px] leading-[1.55] max-lg:min-w-[860px] max-md:text-[13.5px]">
                       <thead>
-                        <tr className="border-b" style={{ borderColor: "var(--line-strong)" }}>
-                          <th className="bg-paper-2 px-5 py-3.5 text-left text-small font-bold text-ink-soft">
-                            計劃名稱 / 認可編號
-                          </th>
-                          <th className="bg-paper-2 px-4 py-3.5 text-left text-small font-bold text-ink-soft">
-                            保險公司
-                          </th>
-                          <th className="bg-paper-2 px-4 py-3.5 text-left text-small font-bold text-ink-soft">
-                            生效日期
-                          </th>
-                          <th className="bg-paper-2 px-4 py-3.5 text-left text-small font-bold text-ink-soft">
-                            狀態
-                          </th>
-                          <th className="bg-paper-2 px-4 py-3.5 text-left text-small font-bold text-ink-soft">
-                            官方文件
-                          </th>
+                        <tr>
+                          {[
+                            ["plan", "計劃名稱 / 認可編號"],
+                            ["insurer", "保險公司"],
+                            ["premium", "保費範圍"],
+                            ["documents", "官方文件"],
+                          ].map(([en, zh], k) => (
+                            <th key={en} className={cn("px-4 pb-3 pt-2 text-left align-bottom", k === 0 && "pl-16 max-md:pl-4")}>
+                              <span className="block font-hand text-[18px] font-bold leading-none text-ink-faint">{en}</span>
+                              <span className="relative mt-1 inline-block text-small font-extrabold text-ink">
+                                <span className="absolute inset-x-[-4px] bottom-0 h-[0.55em] -rotate-1 rounded-sm bg-amber/35" aria-hidden="true" />
+                                <span className="relative">{zh}</span>
+                              </span>
+                            </th>
+                          ))}
                         </tr>
                       </thead>
                       <tbody>
                         {filteredStandard.map((p: VhisStandardPlan, i) => (
                           <motion.tr
                             key={p.cert_no}
-                            className="border-b transition-colors duration-200 hover:bg-paper-2"
-                            style={{ borderColor: "var(--line)" }}
+                            className="group border-t-2 border-dashed transition-[background-size] duration-500 [background-image:linear-gradient(100deg,rgba(255,211,107,.28),rgba(255,211,107,.12))] [background-repeat:no-repeat] [background-size:0%_100%] hover:[background-size:100%_100%]"
+                            style={{ borderColor: "rgba(46,42,69,.14)" }}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: p.status === "withdrawn" ? 0.6 : 1, y: 0 }}
                             transition={{ duration: 0.3, delay: i < 9 ? i * 0.04 : 0 }}
                           >
-                            <td className="px-5 py-4 align-top">
+                            <td className="relative py-4 pl-16 pr-4 align-top max-md:pl-4">
+                              <span className="absolute left-4 mt-0.5 hidden h-7 w-7 items-center justify-center rounded-full border-2 border-ink/30 font-hand text-[16px] font-bold text-ink-soft md:flex" aria-hidden="true">
+                                {i + 1}
+                              </span>
                               <Link
                                 to={findProductForVhis(p, products, false)}
                                 className="group inline-flex items-center gap-1 font-sans font-bold leading-snug text-ink hover:text-jade transition-colors"
@@ -542,6 +590,11 @@ export default function Vhis() {
                               <span className="mt-1 block font-grotesk text-[12px] text-ink-faint">
                                 {p.cert_no}
                               </span>
+                              {p.status !== "active" && (
+                                <span className="mt-1.5 block">
+                                  <StatusBadge status={p.status} />
+                                </span>
+                              )}
                             </td>
                             <td className="px-4 py-4 align-top text-ink-soft">
                               <div className="flex flex-col">
@@ -556,15 +609,8 @@ export default function Vhis() {
                                 </span>
                               </div>
                             </td>
-                            <td className="px-4 py-4 align-top whitespace-nowrap text-ink-soft">
-                              {p.effective_date_zh}
-                            </td>
                             <td className="px-4 py-4 align-top">
-                              {p.status === "active" ? (
-                                <span className="chip bg-jade-wash font-bold text-jade">在售</span>
-                              ) : (
-                                <StatusBadge status={p.status} />
-                              )}
+                              <PremiumCell certBase={p.cert_base} premiumDocUrl={p.premium_doc_url} products={products} />
                             </td>
                             <td className="px-4 py-4 align-top">
                               <DocLinks
@@ -584,7 +630,7 @@ export default function Vhis() {
               {filteredFlexi.length > 0 && (
                 <div>
                   <div className="mb-5 flex flex-wrap items-baseline gap-3">
-                    <h2 className="h3-style text-ink">靈活計劃</h2>
+                    <h2 className="h3-style relative text-ink">靈活計劃<Scribble className="absolute -bottom-2 left-0 h-3 w-full" color="var(--sky)" /></h2>
                     <span className="chip bg-jade-wash font-bold text-jade">
                       {filteredFlexi.length} 份
                     </span>
@@ -597,8 +643,7 @@ export default function Vhis() {
                       <AccordionItem
                         key={p.cert_base}
                         value={p.cert_base}
-                        style={{ borderColor: "var(--line)" }}
-                        className={cn(p.status === "withdrawn" && "opacity-60")}
+                        className={cn("depth-card mb-4 rounded-[22px] border px-5 last:mb-0", p.status === "withdrawn" && "opacity-60")}
                       >
                         <AccordionTrigger className="py-5 text-left hover:no-underline [&>svg]:shrink-0 [&>svg]:text-ink-faint">
                           <span className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-2 pr-2">
@@ -629,9 +674,7 @@ export default function Vhis() {
                                 </span>
                               </div>
                               <div className="flex items-center gap-3">
-                                <span className="text-xs text-ink-faint">
-                                  生效日期：{p.effective_date_zh}
-                                </span>
+                                <span className="text-xs text-ink-faint">保費按級別及年齡，見各級別官方保費表</span>
                                 <Link
                                   to={findProductForVhis(p, products, true)}
                                   className="inline-flex items-center gap-1 rounded-lg border border-jade/40 bg-jade-wash px-3 py-1.5 text-xs font-bold text-jade hover:bg-jade hover:text-paper transition-all"

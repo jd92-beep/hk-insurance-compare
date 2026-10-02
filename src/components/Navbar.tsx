@@ -46,12 +46,12 @@ const NAV_LINKS = [
   { label: "首頁", to: "/", match: (p: string) => p === "/" },
   { label: "保險類別", to: "/categories", match: (p: string) => p.startsWith("/categor"), mega: true },
   { label: "比較工具", to: "/compare", match: (p: string) => p.startsWith("/compare") },
-  { label: "我的最愛", to: "/favorites", match: (p: string) => p.startsWith("/favorites") },
   { label: "保險公司", to: "/insurers", match: (p: string) => p.startsWith("/insurers") },
   { label: "自願醫保名單", to: "/vhis", match: (p: string) => p.startsWith("/vhis") },
   { label: "PDF 中心", to: "/documents", match: (p: string) => p.startsWith("/documents") },
   { label: "投保指南", to: "/guides", match: (p: string) => p.startsWith("/guides") },
   { label: "關於數據", to: "/about", match: (p: string) => p.startsWith("/about") },
+  { label: "我的最愛", to: "/favorites", match: (p: string) => p.startsWith("/favorites") },
 ];
 
 /** 全站 Navbar（§7.1）：sticky top-0，普通文檔流，頁面唔使自己留位 */
@@ -101,8 +101,8 @@ export default function Navbar() {
         className={cn(
           "flex h-full w-full items-center justify-between gap-4 rounded-full border px-3 transition-all duration-500 sm:px-4",
           scrolled
-            ? "border-[color:var(--line)] bg-paper/90 shadow-lift backdrop-blur-md"
-            : "border-transparent bg-paper/55 backdrop-blur-sm",
+            ? "border-[color:var(--line)] bg-paper/95 shadow-lift"
+            : "border-transparent bg-paper/80",
         )}
        >
         {/* 左：品牌 */}

@@ -94,7 +94,6 @@
     background-image:
       radial-gradient(1200px 700px at 100% -10%, rgba(255, 214, 120, 0.12), transparent 60%),
       radial-gradient(900px 600px at -10% 110%, rgba(78, 158, 219, 0.05), transparent 60%);
-    background-attachment: fixed;
   }
 
   /* 全站紙纖維紋理：multiply 疊加，暖色調 */
@@ -106,8 +105,9 @@
     pointer-events: none;
     background-image: url("/textures/paper-fiber.svg");
     background-size: 420px 420px;
-    mix-blend-mode: multiply;
-    opacity: 0.16;
+    opacity: 0.1;
+    /* own compositor layer, no blending: scrolling never repaints the grain */
+    will-change: transform;
   }
 
   h1, h2, h3, h4 {

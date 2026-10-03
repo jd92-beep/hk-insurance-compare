@@ -56,6 +56,8 @@ test('public URL boundary fails closed for non-string callers without a TypeErro
 });
 test('optional lifecycle fields are accepted when valid and stay unknown when absent', () => {
   const raw = snapshot();
+  delete raw.products[1].record_status;
+  delete raw.products[1].last_verified_at;
   raw.products[0].record_status = 'discontinued';
   raw.products[0].last_verified_at = '2026-09-04';
   raw.products[0].source_document_version = 'PB 2025-11';

@@ -81,7 +81,7 @@ export default function SearchPalette() {
         <Dialog.Title className="sr-only">搜尋保險產品、公司與類別</Dialog.Title>
         <Dialog.Description className="sr-only">輸入產品或公司名稱，用上下方向鍵選擇，Enter 前往，Escape 關閉。</Dialog.Description>
         <Command label="全域搜尋" shouldFilter={false} loop>
-          <div className="flex items-center gap-3 border-b pl-4 pr-2">
+          <div className="sketch-search flex items-center gap-3 border-b pl-4 pr-2">
             <Search size={18} className="shrink-0 text-ink-faint" aria-hidden="true" />
             <Command.Input ref={input} value={query} onValueChange={setQuery} aria-label="搜尋保險產品或公司" placeholder="例如：旅遊保險、AXA、自願醫保…" className="h-14 min-w-0 flex-1 bg-transparent text-base text-ink outline-none placeholder:text-ink-faint" />
             <Dialog.Close className="flex min-h-11 min-w-11 items-center justify-center rounded-lg hover:bg-paper-2 focus-visible:ring-2 focus-visible:ring-jade" aria-label="關閉搜尋"><X size={18} /></Dialog.Close>

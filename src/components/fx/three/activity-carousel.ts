@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { createSketchMaterial, loadPhoto, makePaperTexture } from "./sketch-material";
 
 export interface CarouselHandle {
+  ready: Promise<void>;
   /** fractional index; the carousel eases towards it */
   setTarget(index: number): void;
   onSelect(cb: (index: number) => void): void;
@@ -60,6 +61,7 @@ export function createActivityCarousel(canvas: HTMLCanvasElement, urls: string[]
   const shadowGeo = new THREE.PlaneGeometry(CARD_W * 1.25, CARD_H * 1.3);
 
   const cards: { g: THREE.Group; mat?: THREE.ShaderMaterial; face: THREE.Mesh }[] = [];
+  const loads: Promise<void>[] = [];
   for (let i = 0; i < n; i++) {
     const a = (i / n) * Math.PI * 2;
     const g = new THREE.Group();
@@ -73,7 +75,7 @@ export function createActivityCarousel(canvas: HTMLCanvasElement, urls: string[]
     g.add(shadow, mount, face);
     ring.add(g);
     cards.push({ g, face });
-    loadPhoto(urls[i]).then((tex) => {
+    loads.push(loadPhoto(urls[i]).then((tex) => {
       if (disposed) return tex.dispose();
       const mat = createSketchMaterial(tex, paper, blank);
       const img = tex.image as HTMLImageElement;
@@ -91,7 +93,7 @@ export function createActivityCarousel(canvas: HTMLCanvasElement, urls: string[]
       face.material = mat;
       cards[i].mat = mat;
       if (reduced) render();
-    });
+    }));
   }
 
   let target = 0;
@@ -169,6 +171,7 @@ export function createActivityCarousel(canvas: HTMLCanvasElement, urls: string[]
   canvas.addEventListener("click", onClick);
 
   return {
+    ready: Promise.all(loads).then(() => undefined),
     setTarget(index) {
       target = index;
       if (reduced) {

@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useLayoutEffect, useState } from "react";
-import { createPortal } from "react-dom";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { useCallback, useLayoutEffect, useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
+import { AnimatePresence, motion } from "framer-motion";
 
 /** first-visit walkthrough of the PDF centre; targets are elements with `data-tour="<id>"` */
 export const TOUR_KEY = "pdf-center-tour-v1";
@@ -58,19 +59,6 @@ export default function PdfCenterTour({ force = false }: { force?: boolean }) {
     };
   }, [step, next, reduced]);
 
-  useEffect(() => {
-    if (step == null) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") finish();
-      else if (e.key === "Enter" || e.key === " " || e.key === "ArrowRight") {
-        e.preventDefault();
-        next();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [step, next, finish]);
-
   if (step == null || !rect) return null;
   const s = STEPS[step];
   const vw = window.innerWidth;
@@ -95,14 +83,13 @@ export default function PdfCenterTour({ force = false }: { force?: boolean }) {
   else place = { top: vh - CH - 16, left: clampX(16), arrow: "↑" };
   const spring = reduced ? { duration: 0 } : { type: "spring" as const, stiffness: 220, damping: 28 };
 
-  return createPortal(
-    <div
+  return (
+    <Dialog.Root open onOpenChange={open => { if (!open) finish(); }}>
+    <Dialog.Portal>
+    <Dialog.Content
       className="fixed inset-0 z-[90] cursor-pointer"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="pdf-tour-title"
-      aria-describedby="pdf-tour-body"
       onClick={next}
+      onKeyDown={e => { if (e.key === "ArrowRight") { e.preventDefault(); next(); } }}
     >
       <svg className="absolute inset-0 h-full w-full" aria-hidden="true">
         <defs>
@@ -138,12 +125,12 @@ export default function PdfCenterTour({ force = false }: { force?: boolean }) {
           <p className="font-hand text-[22px] font-bold text-amber">
             {place.arrow} 第 {step + 1} / {STEPS.length} 步
           </p>
-          <h2 id="pdf-tour-title" className="mt-1 font-serif text-[24px] font-bold leading-tight">
+          <Dialog.Title className="mt-1 font-serif text-[24px] font-bold leading-tight">
             {s.title}
-          </h2>
-          <p id="pdf-tour-body" className="mt-2 text-[15px] leading-relaxed text-white/90">
+          </Dialog.Title>
+          <Dialog.Description className="mt-2 text-[15px] leading-relaxed text-white/90">
             {s.body}
-          </p>
+          </Dialog.Description>
           <div className="mt-4 flex items-center gap-3">
             <span className="flex gap-1.5" aria-hidden="true">
               {STEPS.map((_, i) => (
@@ -160,7 +147,8 @@ export default function PdfCenterTour({ force = false }: { force?: boolean }) {
           <p className="mt-2 text-[12px] text-white/55">撳畫面任何位置繼續 · Esc 略過</p>
         </motion.div>
       </AnimatePresence>
-    </div>,
-    document.body,
+    </Dialog.Content>
+    </Dialog.Portal>
+    </Dialog.Root>
   );
 }

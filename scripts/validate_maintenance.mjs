@@ -234,6 +234,12 @@ for (const p of data.products) {
   if (!buyUrl || typeof buyUrl !== 'string' || !buyUrl.trim()) {
     // Historical/quarantined records must not be forced to invent a purchase link.
     if (p.record_status === 'archived' || p.record_status === 'discontinued') continue;
+    // The schema permits unknown destinations. Require explicit review state and
+    // a reason; never force maintainers to restore a confirmed broken URL.
+    if (p.record_status === 'unverified' && p.review_notes?.some(note => typeof note === 'string' && note.trim())) {
+      console.log(`${c('yellow', '待覆核')} ${p.id}: 未提供可用投保入口（保留缺口，不視為已修復網址）`);
+      continue;
+    }
     reportIssue(5, '官方報價鏈接缺失', p.id, 'official_buy_url', '缺少 official_buy_url 或為空');
     continue;
   }

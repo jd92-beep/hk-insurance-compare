@@ -23,6 +23,9 @@ export const INSURER_BRAND_COLORS: Record<string, string> = {
   'boc group insurance': '#B81C22', // 中銀集團保險 深紅
   'boc group': '#B81C22',
   'boc-group': '#B81C22',
+  'boc life': '#9D174D',
+  'boc-life': '#9D174D',
+  '中銀人壽': '#9D174D',
   'zurich': '#1B4D89',      // 蘇黎世 Zurich 經典藍
   'aig': '#00A3E0',         // 美亞 AIG 水天藍
   'blue cross': '#005596',  // 藍十字 海軍藍
@@ -106,11 +109,6 @@ export function getInsurerColor(insurer: string): string {
   const clean = insurer.toLowerCase().trim();
   if (INSURER_BRAND_COLORS[clean]) {
     return INSURER_BRAND_COLORS[clean];
-  }
-  for (const [key, color] of Object.entries(INSURER_BRAND_COLORS)) {
-    if (clean.includes(key) || key.includes(clean)) {
-      return color;
-    }
   }
   // Deterministic fallback by string hash
   let hash = 0;

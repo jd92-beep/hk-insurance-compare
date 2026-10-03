@@ -1,5 +1,6 @@
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { lazy, Suspense, useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import { scrollToElement } from "@/lib/lenis";
@@ -83,7 +84,7 @@ export default function FinalCTA() {
       </div>
       <WashEdge className="absolute inset-x-0 bottom-0 z-10" />
       <details className="site-container relative z-10 -mt-2 pb-6 text-[12px] text-ink-faint">
-        <summary className="cursor-pointer select-none">相片鳴謝（Unsplash，經本站即時手繪水彩重繪）</summary>
+        <summary className="cursor-pointer select-none">插畫創作及造型參考</summary>
         <p className="mt-2 leading-relaxed">{PHOTO_CREDITS.join(" · ")}</p>
       </details>
     </section>

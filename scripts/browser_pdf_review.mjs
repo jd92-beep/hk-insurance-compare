@@ -11,6 +11,16 @@ try {
     try {
       await page.goto(`${base}/documents?product=travel-aig`, { waitUntil: 'domcontentloaded' });
       await page.locator('[data-pdf-highlight]').first().waitFor({ timeout: 45000 });
+      const tour = page.getByRole('dialog', { name: '① 揀文件', exact: true });
+      if (await tour.isVisible()) {
+        for (let i = 0; i < 5; i++) {
+          await page.keyboard.press('Tab');
+          if (!await tour.evaluate(el => el.contains(document.activeElement))) throw new Error('Tour focus escaped');
+        }
+        await tour.getByRole('button', { name: '略過', exact: true }).focus();
+        await page.keyboard.press('Enter');
+        await tour.waitFor({ state: 'hidden' });
+      }
       const initialMarks = await page.locator('[data-pdf-highlight]').count();
       await page.getByRole('button', { name: '放大 PDF', exact: true }).click();
       await page.locator('[data-pdf-highlight]').first().waitFor({ timeout: 15000 });

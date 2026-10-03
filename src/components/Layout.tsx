@@ -1,8 +1,9 @@
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import PageErrorBoundary from "@/components/PageErrorBoundary";
 import { useInsuranceData } from "@/providers/InsuranceDataProvider";
 import { Suspense, lazy, useEffect, useState } from "react";
 import { useLocation, useOutlet } from "react-router";
-import { AnimatePresence, MotionConfig, motion, useScroll, useSpring, useReducedMotion, useTransform } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion, useScroll, useSpring, useTransform } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CompareTray from "@/components/CompareTray";
@@ -131,7 +132,7 @@ export default function Layout() {
     document.documentElement.lang = "zh-Hant-HK";
   }, [location.pathname, data]);
 
-  return <MotionConfig reducedMotion="user"><div className="flex min-h-[100dvh] flex-col">
+  return <MotionConfig reducedMotion={reduced ? "always" : "never"}><div className="flex min-h-[100dvh] flex-col">
     <ScrollProgress />
     <a href="#main-content" className="sr-only z-[100] rounded-full bg-paper p-4 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">跳到主要內容</a>
     <Navbar />

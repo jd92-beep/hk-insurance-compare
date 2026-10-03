@@ -36,7 +36,7 @@ export function InsuranceDataProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
-  const retry = useCallback(() => { setLoading(true); setError(null); setAttempt(n => n + 1); }, []);
+  const retry = useCallback(() => { sharedJsonPromise = null; setLoading(true); setError(null); setAttempt(n => n + 1); }, []);
   useEffect(() => {
     let cancelled = false;
     loadInsuranceJson()

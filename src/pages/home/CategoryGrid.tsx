@@ -15,7 +15,7 @@ const ActivityCarouselCanvas = lazy(() => import("@/components/fx/three/Activity
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /**
- * S3 度假時刻 — a 3D ring of travel-sketchbook pages (cycling, surfing, swimming, hiking…).
+ * S3 生活時刻 — a 3D ring with one original illustration per insurance category.
  * Wheel over the photos turns it (no scroll-jacking elsewhere); swipe, arrows, dots or a click also work.
  * Below it, every insurance category as a quick link.
  */
@@ -90,12 +90,14 @@ export default function CategoryGrid() {
     };
     el.addEventListener("wheel", onWheel, { passive: false });
     el.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointercancel", onUp);
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
     return () => {
       window.clearTimeout(idle);
       el.removeEventListener("wheel", onWheel);
       el.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointercancel", onUp);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
     };
@@ -106,13 +108,13 @@ export default function CategoryGrid() {
       <div className="relative flex flex-col overflow-hidden py-16 lg:pt-24">
         <div className="site-container flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="font-hand text-[26px] font-bold text-jade">holiday moments ✿</p>
+            <p className="font-hand text-[26px] font-bold text-jade">life moments ✿</p>
             <h2 className="display-2 relative inline-block text-ink">
-              度假玩樂嘅每一刻，都值得保障
+              生活每一刻，都有啱嘅保障
               <Scribble className="absolute -bottom-3 left-0 h-4 w-1/2" color="var(--jade)" />
             </h2>
           </div>
-          <p className="max-w-[24em] text-ink-soft">由馬略卡踩單車到夏威夷衝浪——轉一轉本旅行速寫簿，正面嗰頁會上色，揀個活動睇相關保障。</p>
+          <p className="max-w-[24em] text-ink-soft">由出發旅行、照顧毛孩到守護屋企——轉一轉生活速寫簿，每個場景都對應一類保險。</p>
         </div>
 
         {/* far layer: dotted flight path + clouds drift slowly as the ring turns */}
@@ -138,7 +140,7 @@ export default function CategoryGrid() {
             ↕ 喺相上面碌，轉一轉速寫簿
           </p>
           <Suspense fallback={null}>
-            <ActivityCarouselCanvas urls={urls} index={pos} onSelect={go} />
+            <ActivityCarouselCanvas urls={urls} index={pos} onSelect={go} alt={act.alt} />
           </Suspense>
         </div>
 
@@ -156,7 +158,7 @@ export default function CategoryGrid() {
             >
               <p className="font-hand text-[24px] font-bold text-red">{act.note}</p>
               <h3 className="font-serif text-[28px] font-bold text-ink">{act.title}</h3>
-              <p className="text-[13px] text-ink-faint">📍 {act.place} · 相片：{act.credit} / Unsplash</p>
+              <p className="text-[13px] text-ink-faint">AI 原創插畫 · {cat?.name_zh}</p>
               <p className="mt-1 max-w-[30em] text-ink-soft">{act.line}</p>
               <Link
                 to={`/category/${act.category}`}
@@ -168,8 +170,8 @@ export default function CategoryGrid() {
               </Link>
             </motion.div>
           </AnimatePresence>
-          <div className="mt-5 flex items-center gap-3">
-            <button type="button" onClick={() => go(Math.max(0, Math.round(pos) - 1))} className="rounded-full border-2 border-ink/70 bg-paper p-2 transition-colors hover:bg-amber-wash" aria-label="上一個場景">
+          <div className="mt-5 flex max-w-full flex-wrap items-center justify-center gap-1">
+            <button type="button" disabled={active === 0} onClick={() => go(Math.max(0, Math.round(pos) - 1))} className="rounded-full border-2 border-ink/70 bg-paper p-2 transition-colors hover:bg-amber-wash" aria-label="上一個場景">
               <ArrowLeft size={16} />
             </button>
             {ACTIVITIES.map((a, i) => (
@@ -179,10 +181,10 @@ export default function CategoryGrid() {
                 onClick={() => go(i)}
                 aria-label={a.title}
                 aria-current={i === active}
-                className={cn("h-2.5 rounded-full transition-all duration-300", i === active ? "w-7 bg-red" : "w-2.5 bg-ink/25 hover:bg-ink/50")}
+                className={cn("flex h-8 w-6 items-center justify-center rounded-full after:h-2.5 after:w-2.5 after:rounded-full", i === active ? "after:bg-red" : "after:bg-ink/25 hover:after:bg-ink/50")}
               />
             ))}
-            <button type="button" onClick={() => go(Math.min(n - 1, Math.round(pos) + 1))} className="rounded-full border-2 border-ink/70 bg-paper p-2 transition-colors hover:bg-amber-wash" aria-label="下一個場景">
+            <button type="button" disabled={active === n - 1} onClick={() => go(Math.min(n - 1, Math.round(pos) + 1))} className="rounded-full border-2 border-ink/70 bg-paper p-2 transition-colors hover:bg-amber-wash" aria-label="下一個場景">
               <ArrowRight size={16} />
             </button>
           </div>

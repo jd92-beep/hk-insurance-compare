@@ -1,0 +1,556 @@
+[
+  {
+    "id": "travel-aig",
+    "old": "https://www.aig.com.hk/zh/personal/travel-insurance/travelsafe",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "專案渠道 85 折",
+      "discount": "15% OFF",
+      "note": "特設中國內地及澳門專屬計劃；個人單現由保險代理及合作機構承接",
+      "original_price": 145,
+      "discounted_price": 123,
+      "buy_url": "https://www.aig.com.hk/zh/personal/travel-insurance/travelsafe"
+    }
+  },
+  {
+    "id": "travel-blue-cross",
+    "old": "https://www.bluecross.com.hk/ch/SmartGo-Travel/info",
+    "new": "https://www.bluecross.com.hk/ch/Travel-Smart/Application",
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "限時 65 折優惠",
+      "code": "PAYME65",
+      "discount": "35% OFF",
+      "note": "指定優惠碼單次 65 折、全年 75 折；全球單一收費不分亞洲全球，會員可疊加現金券",
+      "original_price": 175,
+      "discounted_price": 114,
+      "buy_url": "https://www.bluecross.com.hk/ch/SmartGo-Travel/info"
+    }
+  },
+  {
+    "id": "travel-hsbc",
+    "old": "https://www.hsbc.com.hk/zh-hk/insurance/products/travel/travelsurance/",
+    "new": "https://www.hsbc.com.hk/zh-hk/insurance/products/travel/",
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "網上理財尊享 8 折",
+      "discount": "20% OFF",
+      "note": "滙豐網上理財客戶尊享 8 折；由 AXA 安盛承保，公共交通意外雙倍賠償高達 240 萬",
+      "original_price": 198,
+      "discounted_price": 158,
+      "buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/travel/travelsurance/"
+    }
+  },
+  {
+    "id": "travel-hang-seng",
+    "old": "https://www.hangseng.com/zh-hk/personal/insurance-planning/travel-insurance/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "恒生信用卡 85 折",
+      "discount": "15% OFF",
+      "note": "恒生信用卡客戶網上投保享 85 折；安達保險 Chubb 承保，租車自負額高達 HK$5,000",
+      "original_price": 170,
+      "discounted_price": 145,
+      "buy_url": "https://www.hangseng.com/zh-hk/personal/insurance-planning/travel-insurance/"
+    }
+  },
+  {
+    "id": "travel-prudential",
+    "old": "https://www.prudential.com.hk/tc/general-insurance/travel-insurance/pruchoice-travel/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "網上減 $50 · 零自負額",
+      "discount": "立減 HK$50",
+      "note": "全線保障項目零自負金額 (Excess-free)，無隱藏自付門檻，滑雪水肺潛水全包",
+      "original_price": 235,
+      "discounted_price": 185,
+      "buy_url": "https://www.prudential.com.hk/tc/general-insurance/travel-insurance/pruchoice-travel/"
+    }
+  },
+  {
+    "id": "medical-asia-insurance",
+    "old": "https://www.asiainsurance.hk/tc/personal-insurance/medical-insurance",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "保證續保至 100 歲，設靈活自付費與優質私家診所網絡",
+      "buy_url": "https://www.asiainsurance.hk/tc/personal-insurance/medical-insurance"
+    }
+  },
+  {
+    "id": "medical-china-life-overseas",
+    "old": "https://www.chinalife.com.hk/zh-hk/products/insurance/medical-protection",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "大灣區跨境綠色就醫通道支援，指定醫院出院直付免找數",
+      "buy_url": "https://www.chinalife.com.hk/zh-hk/products/insurance/medical-protection"
+    }
+  },
+  {
+    "id": "medical-chow-tai-fook-life",
+    "old": "https://www.ctflife.com.hk/tc/products/health-protection/vhis/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "前富通人壽升級品牌，享家庭同行折扣及終身保證續保",
+      "buy_url": "https://www.ctflife.com.hk/tc/products/health-protection/vhis/"
+    }
+  },
+  {
+    "id": "medical-chubb-life",
+    "old": "https://www.chubb.com/hk-zh/personal/health-insurance/vhis.html",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "官方專享核保支援及健康管理計劃，享專屬保費回贈",
+      "buy_url": "https://www.chubb.com/hk-zh/personal/health-insurance/vhis.html"
+    }
+  },
+  {
+    "id": "medical-hsbc-life",
+    "old": "https://www.hsbc.com.hk/zh-hk/insurance/products/medical/vhis-flexi/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "滙豐銀行客戶專屬保費回贈，每年尊享高達 HK$8,000 扣稅額",
+      "buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/medical/vhis-flexi/"
+    }
+  },
+  {
+    "id": "medical-liberty-international",
+    "old": "https://www.libertyinsurance.com.hk/zh-hk/personal/vhis/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "設有自付額選項與無索償優惠，彈性兼顧預算與大病保障",
+      "buy_url": "https://www.libertyinsurance.com.hk/zh-hk/personal/vhis/"
+    }
+  },
+  {
+    "id": "medical-msig",
+    "old": "https://www.msig.com.hk/zh-hant/personal-insurance/vhis",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "官網報價享專屬核保及理賠綠通，日本三井住友信譽承保",
+      "buy_url": "https://www.msig.com.hk/zh-hant/personal-insurance/vhis"
+    }
+  },
+  {
+    "id": "medical-zurich",
+    "old": "https://www.zurich.com.hk/zh-hk/individuals/health-insurance/vhis",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "瑞士百年保險工藝，尊享專科醫療諮詢及國際緊急醫療支援",
+      "buy_url": "https://www.zurich.com.hk/zh-hk/individuals/health-insurance/vhis"
+    }
+  },
+  {
+    "id": "high-end-aia-ceo",
+    "old": "https://www.aia.com.hk/zh-hk/products/health/ceo-medical-plan-2",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": null
+  },
+  {
+    "id": "topup-aia-extra-medic",
+    "old": "https://www.aia.com.hk/zh-hk/products/health/extra-medic",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": null
+  },
+  {
+    "id": "home-dah-sing",
+    "old": "https://www.dahsing.com/html/tc/insurance/general_insurance/home_insurance.html",
+    "new": null,
+    "http_status": 200,
+    "soft_404": true,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "大新信用卡客戶投保享額外現金回贈及分期零利率",
+      "buy_url": "https://www.dahsing.com/html/tc/insurance/general_insurance/home_insurance.html"
+    }
+  },
+  {
+    "id": "home-liberty",
+    "old": "https://www.libertyinsurance.com.hk/zh-hk/personal/home/",
+    "new": "https://www.libertyinternational.com/hk-en/home-protector-plus",
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "官方網上報價，全面承保水浸、火災及個人法律責任",
+      "buy_url": "https://www.libertyinsurance.com.hk/zh-hk/personal/home/"
+    }
+  },
+  {
+    "id": "home-msig",
+    "old": "https://www.msig.com.hk/ihome",
+    "new": "https://www.msig.com.hk/zh-hant/node/6031",
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "網上投保輸入優惠碼享保費 7 折至 8 折優惠",
+      "buy_url": "https://www.msig.com.hk/ihome"
+    }
+  },
+  {
+    "id": "home-zurich",
+    "old": "https://buy.zurich.com.hk",
+    "new": "https://www.zurich.com.hk/zh-hk/products/home/breezy-home-insurance-plan-householder",
+    "http_status": 200,
+    "soft_404": true,
+    "old_promo": {
+      "tag": "首年保費 7 折",
+      "code": "HOME30",
+      "discount": "30% OFF",
+      "note": "輸入優惠碼享首年 7 折；24小時緊急水喉/開鎖/電力維修支援；第三者責任達 HK$1,000 萬",
+      "original_price": 800,
+      "discounted_price": 560,
+      "buy_url": "https://buy.zurich.com.hk"
+    }
+  },
+  {
+    "id": "life-fwd",
+    "old": "https://www.fwd.com.hk/online-insurance/myterm-term-life-insurance/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "網上投保專享限時折扣；簡易健康申報，極速批核",
+      "buy_url": "https://www.fwd.com.hk/online-insurance/myterm-term-life-insurance/"
+    }
+  },
+  {
+    "id": "life-hsbc-life",
+    "old": "https://www.hsbc.com.hk/zh-hk/insurance/products/life/term-express/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "線上即時投保享首年保費回贈，高額保障對沖按揭",
+      "buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/life/term-express/"
+    }
+  },
+  {
+    "id": "critical-illness-boc-life",
+    "old": "https://www.boclife.com.hk/tc/product/best-care-critical-illness-plan.html",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "涵蓋高達 197 種疾病狀況，投保享推廣期保費折扣",
+      "buy_url": "https://www.boclife.com.hk/tc/product/best-care-critical-illness-plan.html"
+    }
+  },
+  {
+    "id": "critical-illness-hsbc-life",
+    "old": "https://www.hsbc.com.hk/zh-hk/insurance/products/critical-illness/swift-guard/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "網上自主投保享 101% 保費回贈，滿期無索償保費全退",
+      "buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/critical-illness/swift-guard/"
+    }
+  },
+  {
+    "id": "accident-chubb",
+    "old": "https://www.chubb.com/hk-zh/personal/accident-insurance.html",
+    "new": "https://www.chubb.com/hk-en/personal/personal-accident-insurance.html",
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "門診、跌打、物理治療實報實銷，特設海外意外援助",
+      "buy_url": "https://www.chubb.com/hk-zh/personal/accident-insurance.html"
+    }
+  },
+  {
+    "id": "accident-msig",
+    "old": "https://www.msig.com.hk/isafe",
+    "new": "https://www.msig.com.hk/en/personal-insurance/isafe-accident-insurance",
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "純線上即時核保享 8 折優惠，特設業餘危險運動保障",
+      "buy_url": "https://www.msig.com.hk/isafe"
+    }
+  },
+  {
+    "id": "domestic-helper-axa",
+    "old": "https://www.axa.com.hk/zh/domestic-helper-insurance-protection",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "網上投保 2 年單享保費折扣，特設嚴重疾病及門診保障",
+      "buy_url": "https://www.axa.com.hk/zh/domestic-helper-insurance-protection"
+    }
+  },
+  {
+    "id": "domestic-helper-msig",
+    "old": "https://www.msig.com.hk/ihelper",
+    "new": "https://www.msig.com.hk/en/personal-insurance/domestic-helper-insurance",
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "輸入優惠碼 `MHERO` / `MSIG20` 享低至 55 折至 8 折",
+      "buy_url": "https://www.msig.com.hk/ihelper"
+    }
+  },
+  {
+    "id": "domestic-helper-zurich",
+    "old": "https://buy.zurich.com.hk",
+    "new": "https://www.zurich.com.hk/en/products/home/helpersafe-insurance-plan",
+    "http_status": 200,
+    "soft_404": true,
+    "old_promo": {
+      "tag": "輸入優惠碼享 8 折",
+      "code": "HELPER20",
+      "discount": "20% OFF",
+      "note": "輸入優惠碼享 8 折；網絡門診 0 自負額每年 20 次，住院手術每年高達 HK$80,000",
+      "original_price": 946,
+      "discounted_price": 757,
+      "buy_url": "https://buy.zurich.com.hk"
+    }
+  },
+  {
+    "id": "pet-zurich",
+    "old": "https://buy.zurich.com.hk",
+    "new": null,
+    "http_status": 200,
+    "soft_404": true,
+    "old_promo": {
+      "tag": "官方網上 8 折",
+      "discount": "20% OFF",
+      "note": "官方網上投保享 8 折；每年獸醫醫療最高 HK$75,000，第三者法律責任高達 HK$200 萬",
+      "original_price": 2480,
+      "discounted_price": 1984,
+      "buy_url": "https://buy.zurich.com.hk"
+    }
+  },
+  {
+    "id": "pet-avo",
+    "old": "https://www.heyavo.com/zh-hk/products/pet",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "數碼純線上投保，無自負額，涵蓋多種貓狗遺傳病",
+      "buy_url": "https://www.heyavo.com/zh-hk/products/pet"
+    }
+  },
+  {
+    "id": "domestic-helper-hsbc",
+    "old": "https://www.hsbc.com.hk/zh-hk/insurance/products/home/domestic-helper/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "滙豐客戶尊享保費折扣及信用卡積分回贈",
+      "buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/home/domestic-helper/"
+    }
+  },
+  {
+    "id": "accident-bowtie",
+    "old": "https://www.bowtie.com.hk/zh-hk/touchwood-accident-insurance",
+    "new": "https://www.bowtie.com.hk/zh/insurance/accidental",
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "首年 7 折最新代碼",
+      "code": "BLOGLEARNING2",
+      "discount": "30% OFF",
+      "note": "首年 7 折 + 次年 9 折；意外醫療每年高達 HK$420,000，中醫跌打針灸物理治療無需西醫轉介",
+      "original_price": 696,
+      "discounted_price": 487,
+      "buy_url": "https://www.bowtie.com.hk/zh-hk/touchwood-accident-insurance"
+    }
+  },
+  {
+    "id": "home-hsbc",
+    "old": "https://www.hsbc.com.hk/zh-hk/insurance/products/home/residencesurance/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "滙豐按揭客戶或卓越理財享額外保費回贈",
+      "buy_url": "https://www.hsbc.com.hk/zh-hk/insurance/products/home/residencesurance/"
+    }
+  },
+  {
+    "id": "home-prudential",
+    "old": "https://www.prudential.com.hk/tc/general-insurance/home/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "保誠精選官方優惠，全方位家居財物與全球法律責任",
+      "buy_url": "https://www.prudential.com.hk/tc/general-insurance/home/"
+    }
+  },
+  {
+    "id": "home-fwd",
+    "old": "https://www.fwd.com.hk/online-insurance/home-insurance/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "網上投保限時折扣，涵蓋高達百萬財物及臨時住宿津貼",
+      "buy_url": "https://www.fwd.com.hk/online-insurance/home-insurance/"
+    }
+  },
+  {
+    "id": "pet-prudential",
+    "old": "https://www.prudential.com.hk/tc/general-insurance/pet/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "保誠客戶尊享保費折扣，特設獸醫診治及住院津貼",
+      "buy_url": "https://www.prudential.com.hk/tc/general-insurance/pet/"
+    }
+  },
+  {
+    "id": "motor-fwd",
+    "old": "https://www.fwd.com.hk/online-insurance/car-insurance/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "富衛車險網上投保享限時折扣；設電動車尊享計劃",
+      "buy_url": "https://www.fwd.com.hk/online-insurance/car-insurance/"
+    }
+  },
+  {
+    "id": "motor-blue-cross",
+    "old": "https://www.bluecross.com.hk/ch/General/Motor/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "網上報價即享折扣，設 24 小時免費道路緊急救援服務",
+      "buy_url": "https://www.bluecross.com.hk/ch/General/Motor/"
+    }
+  },
+  {
+    "id": "domestic-helper-fwd",
+    "old": "https://www.fwd.com.hk/zh/general-insurance/domestic-helper-insurance/",
+    "new": null,
+    "http_status": 200,
+    "soft_404": true,
+    "old_promo": {
+      "tag": "網上投保 8 折",
+      "discount": "20% OFF",
+      "note": "網上投保享 8 折；僱主法定責任 1 億港元，住院手術每年 HK$60,000，包誠信盜竊及重新招聘津貼",
+      "original_price": 1380,
+      "discounted_price": 1104,
+      "buy_url": "https://www.fwd.com.hk/zh/general-insurance/domestic-helper-insurance/"
+    }
+  },
+  {
+    "id": "life-generali",
+    "old": "https://www.generali.com.hk/zh-hk/life-insurance/protection/term-life",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "純保障零儲蓄成分，專責對沖房貸及家庭負債",
+      "buy_url": "https://www.generali.com.hk/zh-hk/life-insurance/protection/term-life"
+    }
+  },
+  {
+    "id": "life-chubb-life",
+    "old": "https://www.chubb.com/hk-zh/personal/life-insurance/term-life.html",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "極低保費門檻，特設末期疾病提早支付撫恤金",
+      "buy_url": "https://www.chubb.com/hk-zh/personal/life-insurance/term-life.html"
+    }
+  },
+  {
+    "id": "critical-illness-chubb-life",
+    "old": "https://www.chubb.com/hk-zh/personal/life-insurance/critical-illness.html",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "分期年繳或月繳，涵蓋早期危疾及主要重症",
+      "buy_url": "https://www.chubb.com/hk-zh/personal/life-insurance/critical-illness.html"
+    }
+  },
+  {
+    "id": "accident-sun-life",
+    "old": "https://www.sunlife.com.hk/zh-hant/insurance/accident/",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "家庭計劃享特惠費率，涵蓋各類日常及運動意外",
+      "buy_url": "https://www.sunlife.com.hk/zh-hant/insurance/accident/"
+    }
+  },
+  {
+    "id": "high-end-zurich-medelite",
+    "old": "https://www.zurich.com.hk/zh-hk/individuals/health-insurance/medelite",
+    "new": null,
+    "http_status": 404,
+    "soft_404": false,
+    "old_promo": {
+      "tag": "最新優惠",
+      "note": "瑞士卓越醫療網絡，靈活自付費無縫銜接公司團體醫保",
+      "buy_url": "https://www.zurich.com.hk/zh-hk/individuals/health-insurance/medelite"
+    }
+  }
+]

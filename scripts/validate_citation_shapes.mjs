@@ -14,11 +14,20 @@ function normalize(s) {
   return String(s ?? "").normalize("NFKC").replace(/\s+/gu, "");
 }
 
+// Exact legacy defaults are known generated claims, not insurer evidence.
+const legacy = readFileSync(join(root, "scripts/data_other_enrich.py"), "utf8");
+const templates = new Set([...legacy.matchAll(/\{"item": "[^"\n]+", "limit": "[^"\n]+"\}/g)].map(match => {
+  const row = JSON.parse(match[0]);
+  return JSON.stringify([row.item, row.limit]);
+}));
 const fabricated = [];
 const emptyPageDefault = [];
 
 for (const product of raw.products ?? []) {
   for (const [index, row] of (product.coverage ?? []).entries()) {
+    if (templates.has(JSON.stringify([row.item, row.limit]))) {
+      fabricated.push({ product: product.id, index, quote: "Legacy template: " + row.item });
+    }
     const quote = normalize(row.quote);
     if (!quote) continue;
     const item = normalize(row.item);
@@ -30,7 +39,7 @@ for (const product of raw.products ?? []) {
       item + "-" + limit,
       item + "－" + limit,
     ]);
-    if (combos.has(quote)) {
+    if (combos.has(quote) || /參閱官方保障表第\d+頁/.test(quote)) {
       fabricated.push({ product: product.id, index, item: row.item, limit: row.limit, quote: row.quote });
     }
     if (row.page === 1 && quote.length < 8 && row.source_url) {

@@ -33,14 +33,11 @@ export default function ProductCard({
   product,
   className,
   match,
-  accent,
   categoryLabel,
 }: {
   product: Product;
   className?: string;
   match?: FeatureMatchResult;
-  /** themed (hand-drawn) variant: card tint, edge, highlights all follow this colour, e.g. the category colour */
-  accent?: string;
   /** small hand-cut tab naming the category (themed variant) */
   categoryLabel?: string;
 }) {
@@ -53,7 +50,7 @@ export default function ProductCard({
   const title = product.product_name_zh || product.product_name;
   const historical = isReferenceOnlyProduct(product);
   const detailHref = `/product/${product.id}`;
-  const highlightColor = accent ?? getInsurerColor(product.insurer || product.insurer_zh);
+  const highlightColor = getInsurerColor(product.insurer || product.insurer_zh);
 
   // 1. 核心保障賣點（Selling Points）：清晰聚焦、即時掌握核心特色
   const sellingPoints = useMemo(() => deriveCardSellingPoints(product), [product]);
@@ -100,7 +97,7 @@ export default function ProductCard({
                 </span>
                 {historical && (
                   <span className="rounded bg-amber-wash px-1.5 py-0.5 text-[10px] font-bold text-amber">
-                    歷史資料
+                    歸檔參考
                   </span>
                 )}
               </p>

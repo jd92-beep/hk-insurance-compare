@@ -8,7 +8,7 @@ import {
   getPlanTierById,
 } from "../src/components/product/plan-parser.ts";
 
-const dataset = () => JSON.parse(readFileSync("public/data/insurance-data.json", "utf8"));
+const dataset = () => JSON.parse(readFileSync("tests/fixtures/plan-parser-strings.json", "utf8"));
 
 test("AIA 自願醫保多級別子計劃成功解析並過濾純總結行", () => {
   const data = dataset();

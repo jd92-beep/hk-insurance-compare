@@ -135,33 +135,5 @@ CATEGORY_DEFAULTS = {
 }
 
 def enrich_other_category_product(product):
-    """Enrich products in non-medical categories so they have at least 13-16 structured coverage items."""
-    cat = product.get("category", "")
-    if cat not in CATEGORY_DEFAULTS:
-        return product
-        
-    existing_coverage = product.get("coverage", [])
-    existing_items_lower = {c["item"].strip().lower() for c in existing_coverage}
-    
-    # 找出尚未涵蓋的模板條款
-    defaults = CATEGORY_DEFAULTS[cat]
-    new_items = []
-    for d in defaults:
-        d_name = d["item"].strip()
-        # 簡易模糊匹配，若既有條目已有相似名稱則跳過
-        already_covered = any(
-            (d_name.lower() in ext) or (ext in d_name.lower())
-            for ext in existing_items_lower
-        )
-        if not already_covered:
-            new_items.append(dict(d))
-            
-    # 合併既有條目與新補充條款，確保總數達到 13-16 項
-    combined = list(existing_coverage)
-    for ni in new_items:
-        if len(combined) >= 15:
-            break
-        combined.append(ni)
-        
-    product["coverage"] = combined
-    return product
+    """Retired: category templates cannot establish product-specific benefits."""
+    raise RuntimeError("Automatic benefit enrichment is disabled; use reviewed official evidence.")

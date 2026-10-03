@@ -16,7 +16,7 @@
 |---|---|---|
 | `topup-aia-extra-medic` | 友邦保險 · AIA友邦「額外醫療保障」附加契約（Extra Medic） | 未全面核實現行條款 |
 | `topup-axa-smart-excess` | 安盛保險 · AXA安盛「守慧附加差額」醫療保險（Smart Excess） | 未全面核實現行條款 |
-| `topup-bowtie-combat` | 保泰人壽 · Bowtie「觸木保」個人意外醫療加強保障 | 未全面核實現行條款 |
+| `topup-bowtie-combat` | 保泰人壽 · Bowtie「觸木保」個人意外醫療加強保障 | 歸檔待覆核；產品身份／分類未成立，投保連結已停用 |
 | `topup-bupa-carepro` | 保柏（亞洲） · 保柏「保柏易增值」醫療保障計劃（Bupa Top-up） | 未全面核實現行條款 |
 | `topup-cigna-plus` | 信諾環球 · 信諾「附加醫療保障」SMM Plus | 未全面核實現行條款 |
 | `topup-fwd-supplementary` | 富衛保險 · FWD富衛「補足您」超額補充醫療（FWD Top-up） | 未全面核實現行條款 |

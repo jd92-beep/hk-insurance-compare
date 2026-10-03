@@ -21,7 +21,7 @@ export interface PaintingHandle {
   ready: Promise<void>;
   play(): void;
   /** wash the current painting off the page, then sketch & paint a new photo */
-  setScene(scene: PaintingScene): void;
+  setScene(scene: PaintingScene): Promise<void>;
   setPointer(x: number, y: number): void;
   setScroll(p: number): void;
   dispose(): void;
@@ -198,7 +198,7 @@ export function createPainting(canvas: HTMLCanvasElement, opts: PaintingOptions)
     },
     setScene(scene) {
       const token = ++sceneToken;
-      loadPhoto(scene.src).then((tex) => {
+      return ready.then(() => loadPhoto(scene.src)).then((tex) => {
         if (disposed || token !== sceneToken || !mat) return tex.dispose();
         if (opts.reduced || !running) {
           applyScene(tex, scene);
@@ -211,7 +211,7 @@ export function createPainting(canvas: HTMLCanvasElement, opts: PaintingOptions)
         }
         outro?.next.dispose();
         outro = { at: performance.now(), next: tex, scene, lines: mat.uniforms.uLines.value, wash: mat.uniforms.uWash.value };
-      }, () => undefined);
+      });
     },
     setPointer(x, y) {
       pointer.set(x, y);
@@ -230,6 +230,7 @@ export function createPainting(canvas: HTMLCanvasElement, opts: PaintingOptions)
         mat.uniforms.uImage.value.dispose();
         mat.dispose();
       }
+      outro?.next.dispose();
       quad.geometry.dispose();
       paper.dispose();
       mask.dispose();

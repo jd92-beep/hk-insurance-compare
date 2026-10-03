@@ -1,5 +1,6 @@
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useRef, useState } from "react";
-import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import type { MotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 

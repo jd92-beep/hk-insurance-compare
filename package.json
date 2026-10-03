@@ -12,7 +12,8 @@
     "test:filters": "node --experimental-strip-types scripts/verify_filter_combinations.ts && node --experimental-strip-types scripts/verify_filter_boundary_deep.ts",
     "check:maintenance": "node scripts/validate_maintenance.mjs && node scripts/validate_citation_shapes.mjs",
     "predev": "node scripts/copy_pdf_assets.mjs",
-    "prebuild": "node scripts/copy_pdf_assets.mjs"
+    "prebuild": "node scripts/copy_pdf_assets.mjs",
+    "audit:sources": "python3 scripts/check_official_sources.py"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

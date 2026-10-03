@@ -1,3 +1,4 @@
+import { productLifecycle } from "@/lib/product-lifecycle";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { ExternalLink, FileText } from "lucide-react";
@@ -36,6 +37,14 @@ export default function SourcesSection({ product }: { product: Product }) {
   return (
     <div>
       <SectionHeading index="07" title="官方來源" />
+      <div className="mb-5 rounded-xl border border-line bg-paper-2/50 p-4 text-sm text-ink-soft">
+        <p>{productLifecycle(product).statusLabel} · 文件版本：{product.source_document_version || "未提供"}</p>
+        {product.review_notes?.length ? <details className="mt-2">
+          <summary className="cursor-pointer font-semibold text-ink">查看資料覆核說明</summary>
+          {product.review_notes.map(note => <p className="mt-2" key={note}>{note}</p>)}
+        </details> : null}
+        <Link to={`/data-quality?product=${encodeURIComponent(product.id)}`} className="mt-2 inline-block text-jade underline">查看逐條證據狀態</Link>
+      </div>
       <Link to={`/documents?${new URLSearchParams({ product: product.id })}`} className="btn-ghost mb-5 min-h-11">到 PDF 中心逐條核對</Link>
       <motion.ul
         initial="hidden"

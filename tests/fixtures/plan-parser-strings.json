@@ -1,0 +1,999 @@
+{
+  "note": "Synthetic parser regression strings preserved from the former dataset. Not verified policy facts.",
+  "products": [
+    {
+      "id": "medical-aia",
+      "category": "medical",
+      "product_name": "AIA Voluntary Health Insurance Standard/Flexi Scheme, AIA VHIS Prestige, AIA VHIS SelectWise",
+      "product_name_zh": "AIA自願醫保標準計劃（S00013）／AIA自願醫保靈活計劃（F00022）／AIA自願醫保尊耀計劃（F00074）／AIA自願醫保睿選計劃（F00081）",
+      "plan_tiers": [
+        "自願醫保標準計劃",
+        "自願醫保靈活計劃（普通房／半私家房／標準私家房）",
+        "自願醫保靈活計劃（尊耀計劃，高端）",
+        "自願醫保靈活計劃（睿選計劃，網絡醫院導向）",
+        "自願醫保認可產品全覽（vhis.gov.hk認可產品名單）：標準計劃認可編號 S00013；靈活計劃認可編號 F00022、F00074、F00081（另 F00025、F00053、F00054 只供現有保單續保）"
+      ],
+      "coverage": [
+        {
+          "item": "每年保障限額",
+          "limit": "標準計劃 HK$420,000；睿選/尊耀計劃每保單年度 HK$12,000,000；至尊靈活不設限額",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=4",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 4,
+          "quote": "每年保障限額：標準計劃 HK$420,000；睿選/尊耀計劃每保單年度 HK$12,000,000；至尊靈活不設限額（參閱官方保障表第 4 頁）"
+        },
+        {
+          "item": "終身保障限額",
+          "limit": "標準計劃不設上限；睿選/尊耀計劃終身保障限額高達 HK$60,000,000",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=4",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 4,
+          "quote": "終身保障限額：標準計劃不設上限；睿選/尊耀計劃終身保障限額高達 HK$60,000,000（參閱官方保障表第 4 頁）"
+        },
+        {
+          "item": "病房及膳食",
+          "limit": "標準計劃每日 HK$750（最多180日）；睿選計劃半私家房全數賠償；尊耀計劃標準私家房全數賠償",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "病房及膳食：標準計劃每日 HK$750（最多180日）；睿選計劃半私家房全數賠償；尊耀計劃標準私家房全數賠償（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "主要醫療費用（住院及手術）",
+          "limit": "標準計劃按手術表賠償；尊耀/睿選全數賠償，手術費、巡房費及雜費無分項上限",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=1",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 1,
+          "quote": "主要醫療費用（住院及手術）：標準計劃按手術表賠償；尊耀/睿選全數賠償，手術費、巡房費及雜費無分項上限（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "雜項開支",
+          "limit": "標準計劃每年 HK$14,000；尊耀/睿選全數賠償",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "雜項開支：標準計劃每年 HK$14,000；尊耀/睿選全數賠償（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "主診醫生巡房費",
+          "limit": "標準計劃每日 HK$750；尊耀/睿選全數賠償",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "主診醫生巡房費：標準計劃每日 HK$750；尊耀/睿選全數賠償（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "專科醫生費",
+          "limit": "標準計劃每年 HK$4,300；尊耀/睿選全數賠償",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "專科醫生費：標準計劃每年 HK$4,300；尊耀/睿選全數賠償（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "外科醫生費",
+          "limit": "標準小型HK$5,000至複雜HK$50,000；尊耀/睿選全數賠償",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "外科醫生費：標準小型HK$5,000至複雜HK$50,000；尊耀/睿選全數賠償（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "麻醉科醫生費",
+          "limit": "標準外科35%最高HK$17,500；尊耀/睿選全數賠償",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "麻醉科醫生費：標準外科35%最高HK$17,500；尊耀/睿選全數賠償（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "手術室費",
+          "limit": "標準外科35%最高HK$17,500；尊耀/睿選全數賠償",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "手術室費：標準外科35%最高HK$17,500；尊耀/睿選全數賠償（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "深切治療",
+          "limit": "標準每日 HK$3,500；尊耀/睿選全數賠償",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "深切治療：標準每日 HK$3,500；尊耀/睿選全數賠償（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "出院前及入院前門診護理",
+          "limit": "標準每次 HK$580；尊耀/睿選全數賠償（入院前90日及出院後365日門診、物理治療、言語治療）",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "出院前及入院前門診護理：標準每次 HK$580；尊耀/睿選全數賠償（入院前90日及出院後365日門診、物理治療、言語治療）（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "日間手術",
+          "limit": "比照手術表最高 HK$50,000；尊耀/睿選全數賠償兼享日間手術現金保障",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "日間手術：比照手術表最高 HK$50,000；尊耀/睿選全數賠償兼享日間手術現金保障（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "訂明診斷成像檢測",
+          "limit": "標準每年 HK$20,000（30%共同保險）；尊耀/睿選實報實銷全數賠償（0%共同保險）",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "訂明診斷成像檢測：標準每年 HK$20,000（30%共同保險）；尊耀/睿選實報實銷全數賠償（0%共同保險）（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "訂明非手術癌症治療",
+          "limit": "標準每年 HK$80,000；尊耀/睿選全數賠償；尊耀特設臨床試驗藥物賠償每年高達 HK$50萬（市場首創）",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "訂明非手術癌症治療：標準每年 HK$80,000；尊耀/睿選全數賠償；尊耀特設臨床試驗藥物賠償每年高達 HK$50萬（市場首創）（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "門診透析（洗腎費用）",
+          "limit": "標準每年 HK$86,000；尊耀/睿選全數賠償",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "門診透析（洗腎費用）：標準每年 HK$86,000；尊耀/睿選全數賠償（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "精神科治療",
+          "limit": "標準每年 HK$30,000；尊耀/睿選本地及指定醫院高達 HK$50,000 至全數賠償",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "精神科治療：標準每年 HK$30,000；尊耀/睿選本地及指定醫院高達 HK$50,000 至全數賠償（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "意外急診門診治療",
+          "limit": "標準每年 HK$10,000；尊耀/睿選全數賠償",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "意外急診門診治療：標準每年 HK$10,000；尊耀/睿選全數賠償（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "陪床費 / 親屬陪床",
+          "limit": "標準每日 HK$600；尊耀/睿選全數賠償或每日 HK$1,500",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=6",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 6,
+          "quote": "陪床費 / 親屬陪床：標準每日 HK$600；尊耀/睿選全數賠償或每日 HK$1,500（參閱官方保障表第 6 頁）"
+        },
+        {
+          "item": "恩恤身故賠償",
+          "limit": "標準 HK$8,800 至 HK$10,000；尊耀 HK$80,000",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=7",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 7,
+          "quote": "恩恤身故賠償：標準 HK$8,800 至 HK$10,000；尊耀 HK$80,000（參閱官方保障表第 7 頁）"
+        },
+        {
+          "item": "全球出院免找數直付",
+          "limit": "友邦醫療網絡及覆蓋全球逾百個國家之指定醫院免找數直付",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=1",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 1,
+          "quote": "全球出院免找數直付：友邦醫療網絡及覆蓋全球逾百個國家之指定醫院免找數直付（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "自付費（墊底費）選項",
+          "limit": "設有 HK$0 / HK$16,000 / HK$25,000 / HK$50,000 / HK$80,000 多檔自負額選項",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=1",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 1,
+          "quote": "自付費（墊底費）選項：設有 HK$0 / HK$16,000 / HK$25,000 / HK$50,000 / HK$80,000 多檔自負額選項（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "保證續保年齡",
+          "limit": "保證續保至 100 歲",
+          "source_url": "/docs/brochures/aia-ceo-medical-brochure.pdf#page=4",
+          "document_name": "AIA 自願醫保系列（標準/靈活/尊耀）產品小冊子",
+          "page": 4,
+          "quote": "保證續保年齡：保證續保至 100 歲（參閱官方保障表第 4 頁）"
+        }
+      ]
+    },
+    {
+      "id": "medical-axa",
+      "category": "medical",
+      "product_name": "AXA WiseGuard Pro Medical Insurance Plan / AXA WiseGuard Medical Insurance Plan",
+      "product_name_zh": "AXA安盛智尊守慧醫療保障（自願醫保靈活計劃）／AXA安盛守慧醫療保障（自願醫保標準計劃）",
+      "plan_tiers": [
+        "自願醫保靈活計劃（智尊守慧：標準／卓越／優尚／尊貴保障級別）",
+        "自願醫保標準計劃（守慧醫療）",
+        "真智安心醫療保障（靈活計劃）",
+        "自願醫保認可產品全覽（vhis.gov.hk認可產品名單）：標準計劃認可編號 S00014、S00033、S00038；靈活計劃認可編號 F00017、F00018、F00034"
+      ],
+      "coverage": [
+        {
+          "item": "每年保障限額",
+          "limit": "標準計劃 HK$420,000；智尊守慧靈活計劃每保單年度高達 HK$20,000,000",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=14",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 14,
+          "quote": "每年保障限額：標準計劃 HK$420,000；智尊守慧靈活計劃每保單年度高達 HK$20,000,000（參閱官方保障表第 14 頁）"
+        },
+        {
+          "item": "終身保障限額",
+          "limit": "標準計劃不設上限；智尊守慧終身保障限額高達 HK$80,000,000",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=14",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 14,
+          "quote": "終身保障限額：標準計劃不設上限；智尊守慧終身保障限額高達 HK$80,000,000（參閱官方保障表第 14 頁）"
+        },
+        {
+          "item": "病房及膳食",
+          "limit": "標準計劃每日 HK$750；智尊守慧標準私家房或半私家房全數賠償",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=14",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 14,
+          "quote": "病房及膳食：標準計劃每日 HK$750；智尊守慧標準私家房或半私家房全數賠償（參閱官方保障表第 14 頁）"
+        },
+        {
+          "item": "主要醫療費用（住院及手術）",
+          "limit": "標準計劃按手術表賠償；智尊守慧手術費、深切治療及住院雜項全數賠償",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=1",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 1,
+          "quote": "主要醫療費用（住院及手術）：標準計劃按手術表賠償；智尊守慧手術費、深切治療及住院雜項全數賠償（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "雜項開支",
+          "limit": "標準計劃每年 HK$14,000；智尊守慧全數賠償",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=14",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 14,
+          "quote": "雜項開支：標準計劃每年 HK$14,000；智尊守慧全數賠償（參閱官方保障表第 14 頁）"
+        },
+        {
+          "item": "主診醫生巡房費",
+          "limit": "標準計劃每日 HK$750；智尊守慧全數賠償",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=14",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 14,
+          "quote": "主診醫生巡房費：標準計劃每日 HK$750；智尊守慧全數賠償（參閱官方保障表第 14 頁）"
+        },
+        {
+          "item": "專科醫生費",
+          "limit": "標準計劃每年 HK$4,300；智尊守慧全數賠償",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=14",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 14,
+          "quote": "專科醫生費：標準計劃每年 HK$4,300；智尊守慧全數賠償（參閱官方保障表第 14 頁）"
+        },
+        {
+          "item": "外科醫生費",
+          "limit": "標準小型HK$5,000至複雜HK$50,000；智尊守慧全數賠償",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=15",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 15,
+          "quote": "外科醫生費：標準小型HK$5,000至複雜HK$50,000；智尊守慧全數賠償（參閱官方保障表第 15 頁）"
+        },
+        {
+          "item": "麻醉科醫生費",
+          "limit": "標準外科35%最高HK$17,500；智尊守慧全數賠償",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=15",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 15,
+          "quote": "麻醉科醫生費：標準外科35%最高HK$17,500；智尊守慧全數賠償（參閱官方保障表第 15 頁）"
+        },
+        {
+          "item": "手術室費",
+          "limit": "標準外科35%最高HK$17,500；智尊守慧全數賠償",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=15",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 15,
+          "quote": "手術室費：標準外科35%最高HK$17,500；智尊守慧全數賠償（參閱官方保障表第 15 頁）"
+        },
+        {
+          "item": "深切治療",
+          "limit": "標準每日 HK$3,500；智尊守慧全數賠償不設天數上限",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=14",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 14,
+          "quote": "深切治療：標準每日 HK$3,500；智尊守慧全數賠償不設天數上限（參閱官方保障表第 14 頁）"
+        },
+        {
+          "item": "出院前及入院前門診護理",
+          "limit": "標準每次 HK$580；智尊守慧出院後護理及專科門診全數賠償",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=15",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 15,
+          "quote": "出院前及入院前門診護理：標準每次 HK$580；智尊守慧出院後護理及專科門診全數賠償（參閱官方保障表第 15 頁）"
+        },
+        {
+          "item": "日間手術",
+          "limit": "比照手術表最高 HK$50,000；智尊守慧全數賠償並享日間手術現金保障",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=15",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 15,
+          "quote": "日間手術：比照手術表最高 HK$50,000；智尊守慧全數賠償並享日間手術現金保障（參閱官方保障表第 15 頁）"
+        },
+        {
+          "item": "訂明診斷成像檢測",
+          "limit": "標準每年 HK$20,000（30%共同保險）；智尊守慧實報實銷全數賠償（0%共同保險）",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=15",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 15,
+          "quote": "訂明診斷成像檢測：標準每年 HK$20,000（30%共同保險）；智尊守慧實報實銷全數賠償（0%共同保險）（參閱官方保障表第 15 頁）"
+        },
+        {
+          "item": "訂明非手術癌症治療",
+          "limit": "標準每年 HK$80,000；智尊守慧放射治療、化療、標靶治療全數賠償",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=15",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 15,
+          "quote": "訂明非手術癌症治療：標準每年 HK$80,000；智尊守慧放射治療、化療、標靶治療全數賠償（參閱官方保障表第 15 頁）"
+        },
+        {
+          "item": "門診透析（洗腎費用）",
+          "limit": "標準每年 HK$86,000；智尊守慧全數賠償",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=15",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 15,
+          "quote": "門診透析（洗腎費用）：標準每年 HK$86,000；智尊守慧全數賠償（參閱官方保障表第 15 頁）"
+        },
+        {
+          "item": "精神科治療",
+          "limit": "標準每年 HK$30,000；智尊守慧全數賠償或高達 HK$50,000",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=15",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 15,
+          "quote": "精神科治療：標準每年 HK$30,000；智尊守慧全數賠償或高達 HK$50,000（參閱官方保障表第 15 頁）"
+        },
+        {
+          "item": "意外急診門診治療",
+          "limit": "標準每年 HK$10,000；智尊守慧全數賠償",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=15",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 15,
+          "quote": "意外急診門診治療：標準每年 HK$10,000；智尊守慧全數賠償（參閱官方保障表第 15 頁）"
+        },
+        {
+          "item": "陪床費 / 親屬陪床",
+          "limit": "標準每日 HK$600；智尊守慧每日高達 HK$1,500",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=15",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 15,
+          "quote": "陪床費 / 親屬陪床：標準每日 HK$600；智尊守慧每日高達 HK$1,500（參閱官方保障表第 15 頁）"
+        },
+        {
+          "item": "恩恤身故賠償",
+          "limit": "標準 HK$10,000；智尊守慧高達 HK$80,000",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=16",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 16,
+          "quote": "恩恤身故賠償：標準 HK$10,000；智尊守慧高達 HK$80,000（參閱官方保障表第 16 頁）"
+        },
+        {
+          "item": "全球出院免找數直付",
+          "limit": "AXA安盛環球醫療網絡直付及大灣區三甲醫院綠色通道免找數",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=1",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 1,
+          "quote": "全球出院免找數直付：AXA安盛環球醫療網絡直付及大灣區三甲醫院綠色通道免找數（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "自付費（墊底費）選項",
+          "limit": "智尊守慧設有 HK$0 / HK$15,000 / HK$25,000 / HK$50,000 / HK$80,000 自付費選項",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=1",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 1,
+          "quote": "自付費（墊底費）選項：智尊守慧設有 HK$0 / HK$15,000 / HK$25,000 / HK$50,000 / HK$80,000 自付費選項（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "保證續保年齡",
+          "limit": "保證續保至 100 歲",
+          "source_url": "/docs/brochures/axa-smart-medicare-smm.pdf#page=14",
+          "document_name": "AXA 安盛智尊守慧自願醫保保障表",
+          "page": 14,
+          "quote": "保證續保年齡：保證續保至 100 歲（參閱官方保障表第 14 頁）"
+        }
+      ]
+    },
+    {
+      "id": "medical-bowtie",
+      "category": "medical",
+      "product_name": "Bowtie VHIS (Standard Plan / Flexi Plan Basic & Upgrade / Bowtie Pink)",
+      "product_name_zh": "Bowtie 自願醫保（標準計劃／靈活計劃（基本及升級）／Bowtie Pink 自願醫保計劃）",
+      "plan_tiers": [
+        "自願醫保標準計劃",
+        "自願醫保靈活計劃（基本）",
+        "自願醫保靈活計劃（升級）",
+        "Bowtie Pink（高端靈活計劃，普通房/半私家房/私家房）",
+        "自願醫保認可產品全覽（vhis.gov.hk認可產品名單）：標準計劃認可編號 S00023；靈活計劃認可編號 F00031、F00060"
+      ],
+      "coverage": [
+        {
+          "item": "每年保障限額",
+          "limit": "標準計劃 HK$420,000；靈活計劃（升級）HK$1,000,000；Bowtie Pink 旗艦每年 HK$8,000,000 至 HK$20,000,000",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=2",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 2,
+          "quote": "每年保障限額：標準計劃 HK$420,000；靈活計劃（升級）HK$1,000,000；Bowtie Pink 旗艦每年 HK$8,000,000 至 HK$20,000,000（參閱官方保障表第 2 頁）"
+        },
+        {
+          "item": "終身保障限額",
+          "limit": "標準計劃不設上限；Bowtie Pink 終身高達 HK$4,000萬至 HK$8,000萬",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=2",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 2,
+          "quote": "終身保障限額：標準計劃不設上限；Bowtie Pink 終身高達 HK$4,000萬至 HK$8,000萬（參閱官方保障表第 2 頁）"
+        },
+        {
+          "item": "病房及膳食",
+          "limit": "標準計劃每日 HK$750（最多180日）；靈活計劃半私家房；Bowtie Pink 全數賠償（標準私家房或半私家房）",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "病房及膳食：標準計劃每日 HK$750（最多180日）；靈活計劃半私家房；Bowtie Pink 全數賠償（標準私家房或半私家房）（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "主要醫療費用（住院及手術）",
+          "limit": "標準計劃按手術表賠償；Bowtie Pink 住院醫療開支及手術費 100% 全數賠償，不設細項上限",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=1",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 1,
+          "quote": "主要醫療費用（住院及手術）：標準計劃按手術表賠償；Bowtie Pink 住院醫療開支及手術費 100% 全數賠償，不設細項上限（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "雜項開支",
+          "limit": "標準計劃每年 HK$14,000；Bowtie Pink 全數賠償實報實銷",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "雜項開支：標準計劃每年 HK$14,000；Bowtie Pink 全數賠償實報實銷（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "主診醫生巡房費",
+          "limit": "標準計劃每日 HK$750；Bowtie Pink 全數賠償",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "主診醫生巡房費：標準計劃每日 HK$750；Bowtie Pink 全數賠償（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "專科醫生費",
+          "limit": "標準計劃每年 HK$4,300；Bowtie Pink 全數賠償",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "專科醫生費：標準計劃每年 HK$4,300；Bowtie Pink 全數賠償（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "外科醫生費",
+          "limit": "標準小型HK$5,000至複雜HK$50,000；靈活計劃提升保額；Bowtie Pink 全數賠償",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "外科醫生費：標準小型HK$5,000至複雜HK$50,000；靈活計劃提升保額；Bowtie Pink 全數賠償（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "麻醉科醫生費",
+          "limit": "標準外科35%（最高HK$17,500）；Bowtie Pink 全數賠償",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "麻醉科醫生費：標準外科35%（最高HK$17,500）；Bowtie Pink 全數賠償（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "手術室費",
+          "limit": "標準外科35%（最高HK$17,500）；Bowtie Pink 全數賠償",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "手術室費：標準外科35%（最高HK$17,500）；Bowtie Pink 全數賠償（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "深切治療",
+          "limit": "標準每日 HK$3,500；Bowtie Pink 全數賠償不設天數上限",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "深切治療：標準每日 HK$3,500；Bowtie Pink 全數賠償不設天數上限（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "出院前及入院前門診護理",
+          "limit": "標準每次 HK$580（上限HK$3,000）；Bowtie Pink 入院前90天及出院後365天全數賠償",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "出院前及入院前門診護理：標準每次 HK$580（上限HK$3,000）；Bowtie Pink 入院前90天及出院後365天全數賠償（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "日間手術",
+          "limit": "比照手術表最高 HK$50,000；Bowtie Pink 全數賠償兼享日間手術現金保障每宗高達 HK$2,000",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "日間手術：比照手術表最高 HK$50,000；Bowtie Pink 全數賠償兼享日間手術現金保障每宗高達 HK$2,000（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "訂明診斷成像檢測",
+          "limit": "標準每年 HK$20,000（30%共同保險）；Bowtie Pink 實報實銷全數賠償（0%共同保險）",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "訂明診斷成像檢測：標準每年 HK$20,000（30%共同保險）；Bowtie Pink 實報實銷全數賠償（0%共同保險）（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "訂明非手術癌症治療",
+          "limit": "標準每年 HK$80,000；Bowtie Pink 全數賠償（包含質子治療、標靶藥物、免疫治療）",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "訂明非手術癌症治療：標準每年 HK$80,000；Bowtie Pink 全數賠償（包含質子治療、標靶藥物、免疫治療）（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "門診透析（洗腎費用）",
+          "limit": "標準每年 HK$86,000；Bowtie Pink 全數賠償",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "門診透析（洗腎費用）：標準每年 HK$86,000；Bowtie Pink 全數賠償（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "精神科治療",
+          "limit": "標準每年 HK$30,000；Bowtie Pink 全數賠償",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "精神科治療：標準每年 HK$30,000；Bowtie Pink 全數賠償（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "意外急診門診治療",
+          "limit": "標準每年 HK$10,000；Bowtie Pink 全數賠償",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "意外急診門診治療：標準每年 HK$10,000；Bowtie Pink 全數賠償（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "陪床費 / 親屬陪床",
+          "limit": "標準每日 HK$600；Bowtie Pink 每日 HK$1,000 或全數賠償",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "陪床費 / 親屬陪床：標準每日 HK$600；Bowtie Pink 每日 HK$1,000 或全數賠償（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "恩恤身故賠償",
+          "limit": "標準 HK$10,000；Bowtie Pink 高達 HK$80,000",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=3",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 3,
+          "quote": "恩恤身故賠償：標準 HK$10,000；Bowtie Pink 高達 HK$80,000（參閱官方保障表第 3 頁）"
+        },
+        {
+          "item": "全球出院免找數直付",
+          "limit": "Bowtie 出院免找數服務覆蓋香港全數私家醫院及港怡等指定醫療機構",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=1",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 1,
+          "quote": "全球出院免找數直付：Bowtie 出院免找數服務覆蓋香港全數私家醫院及港怡等指定醫療機構（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "自付費（墊底費）選項",
+          "limit": "HK$0 / HK$16,000 / HK$20,000 / HK$50,000 / HK$80,000 自選墊底費",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=1",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 1,
+          "quote": "自付費（墊底費）選項：HK$0 / HK$16,000 / HK$20,000 / HK$50,000 / HK$80,000 自選墊底費（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "保證續保年齡",
+          "limit": "保證續保至 100 歲（全線產品標準）",
+          "source_url": "/docs/brochures/bowtie-pink-vhis.pdf#page=2",
+          "document_name": "Bowtie 自願醫保系列（標準/靈活/Pink）條款保障表",
+          "page": 2,
+          "quote": "保證續保年齡：保證續保至 100 歲（全線產品標準）（參閱官方保障表第 2 頁）"
+        }
+      ]
+    },
+    {
+      "id": "medical-bupa",
+      "category": "medical",
+      "product_name": "Bupa Hero VHIS Plan / Bupa Flexi VHIS / Bupa VHIS Standard Plan / Bupa Global Prestige VHIS",
+      "product_name_zh": "Bupa Hero 保柏非凡自願醫保計劃（靈活計劃，認可編號F00040）／保柏靈活配自願醫保計劃（靈活計劃）／保柏自願醫保計劃（標準計劃）／環球優越自願醫保計劃（靈活計劃）",
+      "plan_tiers": [
+        "自願醫保標準計劃",
+        "自願醫保靈活計劃（靈活配）",
+        "自願醫保靈活計劃（Bupa Hero 非凡：精選/倍精選/智選/倍智選/尊尚/倍尊尚6大計劃）",
+        "自願醫保靈活計劃（環球優越，高端）",
+        "自願醫保認可產品全覽（vhis.gov.hk認可產品名單）：標準計劃認可編號 S00020；靈活計劃認可編號 F00029、F00040（另 F00035 只供現有保單續保）"
+      ],
+      "coverage": [
+        {
+          "item": "每年保障限額",
+          "limit": "標準計劃 HK$420,000；Bupa Hero 靈活計劃每年高達 HK$40,000,000；環球優越每年 HK$4,000萬",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "每年保障限額：標準計劃 HK$420,000；Bupa Hero 靈活計劃每年高達 HK$40,000,000；環球優越每年 HK$4,000萬（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "終身保障限額",
+          "limit": "標準計劃與 Bupa Hero 靈活計劃均不設終身保障限額（無上限賠償）",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "終身保障限額：標準計劃與 Bupa Hero 靈活計劃均不設終身保障限額（無上限賠償）（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "病房及膳食",
+          "limit": "標準計劃每日 HK$750；Bupa Hero 標準私家單人房或半私家房全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "病房及膳食：標準計劃每日 HK$750；Bupa Hero 標準私家單人房或半私家房全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "主要醫療費用（住院及手術）",
+          "limit": "標準計劃按手術表賠償；Bupa Hero 外科手術費、麻醉科、手術室及巡房費全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=1",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 1,
+          "quote": "主要醫療費用（住院及手術）：標準計劃按手術表賠償；Bupa Hero 外科手術費、麻醉科、手術室及巡房費全數賠償（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "雜項開支",
+          "limit": "標準計劃每年 HK$14,000；Bupa Hero 全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "雜項開支：標準計劃每年 HK$14,000；Bupa Hero 全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "主診醫生巡房費",
+          "limit": "標準計劃每日 HK$750；Bupa Hero 全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "主診醫生巡房費：標準計劃每日 HK$750；Bupa Hero 全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "專科醫生費",
+          "limit": "標準計劃每年 HK$4,300；Bupa Hero 全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "專科醫生費：標準計劃每年 HK$4,300；Bupa Hero 全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "外科醫生費",
+          "limit": "標準小型HK$5,000至複雜HK$50,000；Bupa Hero 全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "外科醫生費：標準小型HK$5,000至複雜HK$50,000；Bupa Hero 全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "麻醉科醫生費",
+          "limit": "標準外科35%最高HK$17,500；Bupa Hero 全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "麻醉科醫生費：標準外科35%最高HK$17,500；Bupa Hero 全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "手術室費",
+          "limit": "標準外科35%最高HK$17,500；Bupa Hero 全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "手術室費：標準外科35%最高HK$17,500；Bupa Hero 全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "深切治療",
+          "limit": "標準每日 HK$3,500；Bupa Hero 全數賠償不設天數上限",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "深切治療：標準每日 HK$3,500；Bupa Hero 全數賠償不設天數上限（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "出院前及入院前門診護理",
+          "limit": "標準每次 HK$580；Bupa Hero 出院後護理、物理治療及專科門診全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "出院前及入院前門診護理：標準每次 HK$580；Bupa Hero 出院後護理、物理治療及專科門診全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "日間手術",
+          "limit": "比照手術表最高 HK$50,000；Bupa Hero 全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "日間手術：比照手術表最高 HK$50,000；Bupa Hero 全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "訂明診斷成像檢測",
+          "limit": "標準每年 HK$20,000（30%共同保險）；Bupa Hero 實報實銷全數賠償（0%共同保險）",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "訂明診斷成像檢測：標準每年 HK$20,000（30%共同保險）；Bupa Hero 實報實銷全數賠償（0%共同保險）（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "訂明非手術癌症治療",
+          "limit": "標準每年 HK$80,000；Bupa Hero 標靶治療、化療、放療全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "訂明非手術癌症治療：標準每年 HK$80,000；Bupa Hero 標靶治療、化療、放療全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "門診透析（洗腎費用）",
+          "limit": "標準每年 HK$86,000；Bupa Hero 全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "門診透析（洗腎費用）：標準每年 HK$86,000；Bupa Hero 全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "精神科治療",
+          "limit": "標準每年 HK$30,000；Bupa Hero 全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "精神科治療：標準每年 HK$30,000；Bupa Hero 全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "意外急診門診治療",
+          "limit": "標準每年 HK$10,000；Bupa Hero 全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "意外急診門診治療：標準每年 HK$10,000；Bupa Hero 全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "陪床費 / 親屬陪床",
+          "limit": "標準每日 HK$600；Bupa Hero 每日高達 HK$1,500 或全數賠償",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "陪床費 / 親屬陪床：標準每日 HK$600；Bupa Hero 每日高達 HK$1,500 或全數賠償（參閱官方保障表第 8 頁）"
+        },
+        {
+          "item": "恩恤身故賠償",
+          "limit": "標準 HK$10,000；Bupa Hero 高達 HK$80,000",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=9",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 9,
+          "quote": "恩恤身故賠償：標準 HK$10,000；Bupa Hero 高達 HK$80,000（參閱官方保障表第 9 頁）"
+        },
+        {
+          "item": "全球出院免找數直付",
+          "limit": "保柏專屬醫療網絡，香港及全球指定私家醫院免找數直付",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=1",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 1,
+          "quote": "全球出院免找數直付：保柏專屬醫療網絡，香港及全球指定私家醫院免找數直付（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "自付費（墊底費）選項",
+          "limit": "Bupa Hero 設有 HK$0 / HK$12,000 / HK$15,000 / HK$40,000 / HK$50,000 / HK$80,000 自付費選項",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=1",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 1,
+          "quote": "自付費（墊底費）選項：Bupa Hero 設有 HK$0 / HK$12,000 / HK$15,000 / HK$40,000 / HK$50,000 / HK$80,000 自付費選項（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "保證續保年齡",
+          "limit": "保證續保至 100 歲",
+          "source_url": "/docs/brochures/bupa-elite-brochure.pdf#page=8",
+          "document_name": "Bupa 非凡自願醫保 Hero 計劃手冊",
+          "page": 8,
+          "quote": "保證續保年齡：保證續保至 100 歲（參閱官方保障表第 8 頁）"
+        }
+      ]
+    },
+    {
+      "id": "medical-fwd",
+      "category": "medical",
+      "product_name": "FWD vPrime Medical Plan / FWD vCare Medical Plan",
+      "product_name_zh": "尊衛您醫療計劃（自願醫保靈活計劃，認可編號F00045）／更衛您醫療計劃（自願醫保靈活計劃，認可編號F00015）",
+      "plan_tiers": [
+        "自願醫保靈活計劃（尊衛您，半私家房）",
+        "自願醫保靈活計劃（更衛您）",
+        "自願醫保標準計劃",
+        "醫家保醫療計劃（vFamily）",
+        "自願醫保認可產品全覽（vhis.gov.hk認可產品名單）：標準計劃認可編號 S00036；靈活計劃認可編號 F00015、F00032、F00045、F00051、F00067、F00069、F00070、F00072"
+      ],
+      "coverage": [
+        {
+          "item": "每年保障限額",
+          "limit": "標準計劃 HK$420,000；更衛您 HK$520,000；尊衛您靈活計劃每保單年度高達 HK$16,500,000",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=22",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 22,
+          "quote": "每年保障限額：標準計劃 HK$420,000；更衛您 HK$520,000；尊衛您靈活計劃每保單年度高達 HK$16,500,000（參閱官方保障表第 22 頁）"
+        },
+        {
+          "item": "終身保障限額",
+          "limit": "標準及尊衛您均不設終身保障限額（無上限賠償）",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=22",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 22,
+          "quote": "終身保障限額：標準及尊衛您均不設終身保障限額（無上限賠償）（參閱官方保障表第 22 頁）"
+        },
+        {
+          "item": "病房及膳食",
+          "limit": "標準計劃每日 HK$750；尊衛您標準私家單人房或半私家房全數賠償",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "病房及膳食：標準計劃每日 HK$750；尊衛您標準私家單人房或半私家房全數賠償（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "主要醫療費用（住院及手術）",
+          "limit": "標準計劃按手術表賠償；尊衛您一系列住院及手術費用全數保障，無分項上限",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=1",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 1,
+          "quote": "主要醫療費用（住院及手術）：標準計劃按手術表賠償；尊衛您一系列住院及手術費用全數保障，無分項上限（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "雜項開支",
+          "limit": "標準計劃每年 HK$14,000；尊衛您全數賠償",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "雜項開支：標準計劃每年 HK$14,000；尊衛您全數賠償（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "主診醫生巡房費",
+          "limit": "標準計劃每日 HK$750；尊衛您全數賠償",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "主診醫生巡房費：標準計劃每日 HK$750；尊衛您全數賠償（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "專科醫生費",
+          "limit": "標準計劃每年 HK$4,300；尊衛您全數賠償",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "專科醫生費：標準計劃每年 HK$4,300；尊衛您全數賠償（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "外科醫生費",
+          "limit": "標準小型HK$5,000至複雜HK$50,000；尊衛您全數賠償",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "外科醫生費：標準小型HK$5,000至複雜HK$50,000；尊衛您全數賠償（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "麻醉科醫生費",
+          "limit": "標準外科35%最高HK$17,500；尊衛您全數賠償",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "麻醉科醫生費：標準外科35%最高HK$17,500；尊衛您全數賠償（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "手術室費",
+          "limit": "標準外科35%最高HK$17,500；尊衛您全數賠償",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "手術室費：標準外科35%最高HK$17,500；尊衛您全數賠償（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "深切治療",
+          "limit": "標準每日 HK$3,500；尊衛您全數賠償，另加深切治療部每次住院 HK$12,000 現金津貼",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "深切治療：標準每日 HK$3,500；尊衛您全數賠償，另加深切治療部每次住院 HK$12,000 現金津貼（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "出院前及入院前門診護理",
+          "limit": "標準每次 HK$580；尊衛您全數賠償",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=24",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 24,
+          "quote": "出院前及入院前門診護理：標準每次 HK$580；尊衛您全數賠償（參閱官方保障表第 24 頁）"
+        },
+        {
+          "item": "日間手術",
+          "limit": "尊衛您全數賠償，兼享日間手術現金保障每宗 HK$1,800 至 HK$3,600",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "日間手術：尊衛您全數賠償，兼享日間手術現金保障每宗 HK$1,800 至 HK$3,600（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "訂明診斷成像檢測",
+          "limit": "標準每年 HK$20,000（30%共同保險）；尊衛您實報實銷全數賠償（0%共同保險）",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "訂明診斷成像檢測：標準每年 HK$20,000（30%共同保險）；尊衛您實報實銷全數賠償（0%共同保險）（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "訂明非手術癌症治療",
+          "limit": "標準每年 HK$80,000；尊衛您標靶藥物、化療、放療全數賠償",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "訂明非手術癌症治療：標準每年 HK$80,000；尊衛您標靶藥物、化療、放療全數賠償（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "門診透析（洗腎費用）",
+          "limit": "標準每年 HK$86,000；尊衛您全數賠償",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "門診透析（洗腎費用）：標準每年 HK$86,000；尊衛您全數賠償（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "精神科治療",
+          "limit": "標準每年 HK$30,000；尊衛您全數保障",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=24",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 24,
+          "quote": "精神科治療：標準每年 HK$30,000；尊衛您全數保障（參閱官方保障表第 24 頁）"
+        },
+        {
+          "item": "意外急診門診治療",
+          "limit": "標準每年 HK$10,000；尊衛您全數賠償",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "意外急診門診治療：標準每年 HK$10,000；尊衛您全數賠償（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "陪床費 / 親屬陪床",
+          "limit": "標準每日 HK$600；尊衛您全數賠償或每日 HK$1,200",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=23",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 23,
+          "quote": "陪床費 / 親屬陪床：標準每日 HK$600；尊衛您全數賠償或每日 HK$1,200（參閱官方保障表第 23 頁）"
+        },
+        {
+          "item": "恩恤身故賠償",
+          "limit": "標準 HK$10,000；尊衛您高達 HK$80,000",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=26",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 26,
+          "quote": "恩恤身故賠償：標準 HK$10,000；尊衛您高達 HK$80,000（參閱官方保障表第 26 頁）"
+        },
+        {
+          "item": "全球出院免找數直付",
+          "limit": "臻一尊貴醫護團隊一站式出院免找數直付服務",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=1",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 1,
+          "quote": "全球出院免找數直付：臻一尊貴醫護團隊一站式出院免找數直付服務（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "自付費（墊底費）選項",
+          "limit": "尊衛您設有 HK$0 / HK$16,000 / HK$25,000 / HK$50,000 / HK$100,000 / HK$250,000（6種自負額選項，市場最多）",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=1",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 1,
+          "quote": "自付費（墊底費）選項：尊衛您設有 HK$0 / HK$16,000 / HK$25,000 / HK$50,000 / HK$100,000 / HK$250,000（6種自負額選項，市場最多）（參閱官方保障表第 1 頁）"
+        },
+        {
+          "item": "保證續保年齡",
+          "limit": "保證續保至 100 歲",
+          "source_url": "/docs/brochures/fwd-vprime-premier.pdf#page=22",
+          "document_name": "FWD 富衛尊衛您醫療計劃保障表及條款",
+          "page": 22,
+          "quote": "保證續保年齡：保證續保至 100 歲（參閱官方保障表第 22 頁）"
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,8 @@
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { ArrowRight, Search } from "lucide-react";
 import { Link } from "react-router";
-import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useInView, useScroll, useSpring, useTransform } from "framer-motion";
 import type { MotionValue } from "framer-motion";
 import { useCategories, useInsurers, useProducts } from "@/providers/InsuranceDataProvider";
 import { useSearch } from "@/providers/SearchProvider";
@@ -53,6 +54,8 @@ const PaintingCanvas = lazy(() => import("@/components/fx/three/PaintingCanvas")
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 function Letters({ text, delay, className }: { text: string; delay: number; className?: string }) {
+  const reduced = useReducedMotion();
+  if (reduced) return <span className={className} aria-hidden="true">{text}</span>;
   return (
     <span className={className} aria-hidden="true">
       {[...text].map((ch, i) => (
@@ -113,7 +116,7 @@ function HeroSticker({
   );
 }
 
-/** S1 Hero — 保險主題輪播：每張真實相片即時畫成鉛筆 + 水彩，標題、文案、按鈕同 sticker 跟住一齊換 */
+/** Insurance illustration, copy, CTA and stickers switch as one theme. */
 export default function Hero() {
   const rootRef = useRef<HTMLElement>(null);
   const search = useSearch();
@@ -157,7 +160,7 @@ export default function Hero() {
 
   const stats = [
     { n: categories.length || "—", label: "大保險類別", color: "var(--red)" },
-    { n: products.length || "—", label: "份官方產品檔案", color: "var(--jade)" },
+    { n: products.length || "—", label: "份產品資料檔案", color: "var(--jade)" },
     { n: insurers.length || "—", label: "間保險公司", color: "var(--sky)" },
   ];
   const [Art1, Art2, Art3, Art4] = cur.stickers.map((k) => STICKER_ART[k]);
@@ -166,7 +169,7 @@ export default function Hero() {
   return (
     <section ref={rootRef} onPointerMove={onPointer} className="relative -mt-16 overflow-hidden" aria-labelledby="hero-title">
       {/* the painting */}
-      <motion.div className="absolute inset-0 bg-paper" style={reduced ? undefined : { scale: artScale, y: artY }}>
+      <motion.div className="absolute inset-x-0 bottom-0 h-[48svh] bg-paper md:inset-0 md:h-auto" style={reduced ? undefined : { scale: artScale, y: artY }}>
         <Suspense fallback={null}>
           <PaintingCanvas
             src={slidePhoto(cur)}
@@ -179,13 +182,13 @@ export default function Hero() {
         </Suspense>
         {/* soft paper wash behind the copy so pencil lines never fight the text */}
         <div
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 hidden md:block"
           style={{ background: "radial-gradient(70% 80% at 18% 45%, rgba(252,252,250,.85), rgba(252,252,250,.4) 55%, transparent 75%)" }}
           aria-hidden="true"
         />
         <div
           className="pointer-events-none absolute inset-0 md:hidden"
-          style={{ background: "linear-gradient(180deg, rgba(252,252,250,.92) 0%, rgba(252,252,250,.8) 48%, transparent 70%)" }}
+          style={{ background: "linear-gradient(180deg, rgba(252,252,250,.92) 0%, rgba(252,252,250,.15) 24%, transparent 44%)" }}
           aria-hidden="true"
         />
       </motion.div>
@@ -194,12 +197,12 @@ export default function Hero() {
         style={reduced ? undefined : { y: copyY, opacity: copyO }}
         className="site-container relative z-10 flex min-h-[100svh] flex-col justify-start pb-36 pt-28 md:justify-center md:pb-28"
       >
-        <div className="max-w-[660px]" onPointerEnter={() => setPaused(true)} onPointerLeave={() => setPaused(false)}>
+        <div className="max-w-[660px]" onPointerEnter={() => setPaused(true)} onFocusCapture={() => setPaused(true)}>
           {/* the whole message re-writes itself with each painting */}
           {/* old and new copy share one grid cell and cross-fade, so the buttons below never jump */}
           <div className="grid">
           <AnimatePresence initial={false}>
-            <motion.div key={cur.id} className="[grid-area:1/1]" exit={{ opacity: 0, y: -14, filter: "blur(6px)", transition: { duration: 0.35 } }}>
+            <motion.div key={cur.id} className="[grid-area:1/1]" exit={{ opacity: 0, y: reduced ? 0 : -14, filter: reduced ? "none" : "blur(6px)", transition: { duration: reduced ? 0 : 0.35 } }}>
               <motion.p
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -259,6 +262,7 @@ export default function Hero() {
           </motion.div>
           <motion.button
             type="button"
+            data-sketch-search
             onClick={search.openSearch}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -338,16 +342,15 @@ export default function Hero() {
         >
           ✎ 移動滑鼠，幫幅畫上色
         </motion.p>
-        <div className="flex items-center gap-1 rounded-full bg-paper/95 px-1.5 py-1.5 shadow-card" role="tablist" aria-label="保險主題">
+        <div className="flex items-center gap-1 rounded-full bg-paper/95 px-1.5 py-1.5 shadow-card" role="group" aria-label="保險主題">
           {HERO_SLIDES.map((d, i) => (
             <button
               key={d.id}
               type="button"
-              role="tab"
-              aria-selected={i === slide}
+              aria-pressed={i === slide}
               aria-label={`${d.tab}保險`}
-              onClick={() => setSlide(i)}
-              className={cn("rounded-full px-2 py-1 font-serif text-[14px] font-bold transition-colors md:px-2.5", i === slide ? "text-white" : "text-ink-soft hover:bg-amber-wash")}
+              onClick={() => { setPaused(true); setSlide(i); }}
+              className={cn("min-h-11 min-w-8 rounded-full px-2 py-1 font-serif text-[14px] font-bold transition-colors md:px-2.5", i === slide ? "text-white" : "text-ink-soft hover:bg-amber-wash")}
               style={i === slide ? { background: CATEGORY_META[d.category]?.color } : undefined}
             >
               <span className="hidden sm:inline">{d.tab}</span>
@@ -355,8 +358,11 @@ export default function Hero() {
             </button>
           ))}
         </div>
+        {!reduced && <button type="button" onClick={() => setPaused(value => !value)} className="min-h-11 rounded-full border border-line bg-paper/95 px-3 text-sm font-semibold text-ink" aria-label={paused ? "播放主題輪播" : "暫停主題輪播"}>
+          {paused ? "播放輪播 ▷" : "暫停輪播 Ⅱ"}
+        </button>}
         <p className="rounded-full bg-paper/70 px-2 text-[11px] text-ink-soft">
-          相片：{cur.credit} / Unsplash · 即時手繪水彩重繪
+          {cur.credit} · 互動水彩
         </p>
       </div>
 

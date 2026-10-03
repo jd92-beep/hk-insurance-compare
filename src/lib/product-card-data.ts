@@ -34,8 +34,8 @@ function cleanText(str?: string | null): string {
  */
 export function deriveCardSellingPoints(product: Product): CardSellingPoint[] {
   const points: CardSellingPoint[] = [];
-  const cov = product.coverage || [];
-  const terms = product.key_terms || [];
+  const cov = (product.coverage || []).filter(row => !/未核實|待核實|未提供|未收錄|不(?:保|涵蓋|包括|承保|適用)/.test(row.limit));
+  const terms = (product.key_terms || []).filter(term => !/未核實|待核實|未提供|未收錄|不(?:保|涵蓋|包括|承保|適用)/.test(term));
   const cat = product.category;
 
   // 1. 保額 / 每年限額 / 身故賠償 / 醫療費用
@@ -43,12 +43,7 @@ export function deriveCardSellingPoints(product: Product): CardSellingPoint[] {
     /每年保障限額|終身保障限額|保額|醫療費用|身故賠償|家居財物/i.test(c.item)
   );
   if (maxLimit && maxLimit.limit && !/未提供|未收錄/i.test(maxLimit.limit)) {
-    let text = cleanText(maxLimit.limit);
-    if (text.includes("；")) {
-      const parts = text.split("；").map((s) => s.trim()).filter(Boolean);
-      text = parts[parts.length - 1]; // 取最高或靈活層級
-    }
-    if (text.length > 38) text = text.slice(0, 36) + "…";
+    const text = cleanText(maxLimit.limit);
     const label = maxLimit.item.includes("每年")
       ? "每年保額"
       : maxLimit.item.includes("身故")
@@ -64,8 +59,7 @@ export function deriveCardSellingPoints(product: Product): CardSellingPoint[] {
     /病房|手術|緊急醫療|業餘及休閒運動|嚴重危疾|公眾責任|第三者/i.test(c.item)
   );
   if (feature && feature.limit && !/未提供|未收錄/i.test(feature.limit)) {
-    let text = cleanText(feature.limit);
-    if (text.length > 40) text = text.slice(0, 38) + "…";
+    const text = cleanText(feature.limit);
     const label = feature.item.includes("病房")
       ? "病房手術"
       : feature.item.includes("運動")
@@ -83,8 +77,7 @@ export function deriveCardSellingPoints(product: Product): CardSellingPoint[] {
     /全數賠償|不設自付|不設終身|免驗身|免體檢|保證.*續保|多重賠償|深切治療|實報實銷|未知的投保前/i.test(t)
   );
   if (highlightTerm) {
-    let text = cleanText(highlightTerm);
-    if (text.length > 40) text = text.slice(0, 38) + "…";
+    const text = cleanText(highlightTerm);
     points.push({ label: "條款亮點", text });
   }
 
@@ -102,7 +95,7 @@ export function deriveCardSellingPoints(product: Product): CardSellingPoint[] {
     if (delay && delay.limit && !/未提供|未收錄/i.test(delay.limit)) {
       points.push({
         label: "行程保障",
-        text: cleanText(delay.limit).slice(0, 36),
+        text: cleanText(delay.limit),
       });
     }
   }
@@ -111,8 +104,7 @@ export function deriveCardSellingPoints(product: Product): CardSellingPoint[] {
   for (const c of cov) {
     if (points.length >= 3) break;
     if (c.item && c.limit && !/未提供|未收錄|依細項上限/i.test(c.limit)) {
-      let text = cleanText(c.limit);
-      if (text.length > 38) text = text.slice(0, 36) + "…";
+      const text = cleanText(c.limit);
       const label = c.item.slice(0, 5);
       if (!points.some((p) => p.label === label)) {
         points.push({ label, text });
@@ -194,7 +186,7 @@ export function deriveCompactPremium(product: Product): CompactPremiumInfo {
       return {
         text: `單次每日約 HK$${dayMatch[1]} 起`,
         isQuoteOnly: false,
-        subtext: "官方標準",
+        subtext: "資料快照",
       };
     }
   }
@@ -207,7 +199,7 @@ export function deriveCompactPremium(product: Product): CompactPremiumInfo {
     return {
       text: `每月約 HK$${monthMatch[1]} 起`,
       isQuoteOnly: false,
-      subtext: "官方標準",
+      subtext: "資料快照",
     };
   }
 
@@ -219,8 +211,13 @@ export function deriveCompactPremium(product: Product): CompactPremiumInfo {
     return {
       text: `每日約 HK$${dayMatch[1]} 起`,
       isQuoteOnly: false,
-      subtext: "官方標準",
+      subtext: "資料快照",
     };
+  }
+
+  // A bare amount has no billing period; never relabel a trip/package as annual.
+  if (product.category === "travel" || !/每年|年繳|年費|年保費|\/年|一年/i.test(range)) {
+    return { text: "查看保費及計劃條件", isQuoteOnly: false, subtext: "資料快照" };
   }
 
   // 匹配年費
@@ -231,7 +228,7 @@ export function deriveCompactPremium(product: Product): CompactPremiumInfo {
     return {
       text: `每年約 HK$${yearMatch[1]} 起`,
       isQuoteOnly: false,
-      subtext: "官方標準",
+      subtext: "資料快照",
     };
   }
 

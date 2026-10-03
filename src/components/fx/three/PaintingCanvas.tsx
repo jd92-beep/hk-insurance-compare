@@ -1,5 +1,6 @@
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "framer-motion";
+
 import { createPainting, type PaintingHandle, type PaintingOptions } from "./painting";
 
 function hasWebGL(): boolean {
@@ -36,18 +37,28 @@ export default function PaintingCanvas({
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas || failed) return;
-    const h = createPainting(canvas, { ...optsRef.current, src: shown.current, reduced, autoplay: !playOnView });
-    handle.current = h;
     let alive = true;
-    h.ready.then(() => alive && setReady(true)).catch(() => alive && setFailed(true));
-    const io = playOnView
-      ? new IntersectionObserver(([e]) => e.intersectionRatio > 0.35 && h.play(), { threshold: [0, 0.35, 0.6] })
-      : null;
-    io?.observe(canvas);
+    let h: PaintingHandle | undefined;
+    let io: IntersectionObserver | undefined;
+    const onLost = () => setFailed(true);
+    canvas.addEventListener("webglcontextlost", onLost);
+    void Promise.resolve().then(async () => {
+      if (!alive) return;
+      setReady(false);
+      h = createPainting(canvas, { ...optsRef.current, src: shown.current, reduced, autoplay: !playOnView });
+      handle.current = h;
+      if (playOnView) {
+        io = new IntersectionObserver(([e]) => { if (e.intersectionRatio > 0.35) h?.play(); }, { threshold: [0, 0.35, 0.6] });
+        io.observe(canvas);
+      }
+      await h.ready;
+      if (alive) setReady(true);
+    }).catch(() => { if (alive) setFailed(true); });
     return () => {
       alive = false;
       io?.disconnect();
-      h.dispose();
+      canvas.removeEventListener("webglcontextlost", onLost);
+      h?.dispose();
       handle.current = null;
     };
   }, [failed, reduced, playOnView]);
@@ -57,7 +68,10 @@ export default function PaintingCanvas({
     optsRef.current = opts;
     if (src === shown.current) return;
     shown.current = src;
-    handle.current?.setScene({ src, focus: opts.focus, sun: opts.sun, washOrigin: opts.washOrigin });
+    const current = handle.current;
+    void current?.setScene({ src, focus: opts.focus, sun: opts.sun, washOrigin: opts.washOrigin }).catch(() => {
+      if (handle.current === current && shown.current === src) setFailed(true);
+    });
   });
 
   if (failed) {

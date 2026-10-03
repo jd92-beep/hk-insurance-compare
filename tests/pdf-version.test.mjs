@@ -23,7 +23,7 @@ test('unchanged bytes pass while replaced or non-PDF payloads fail closed',async
 });
 test('manifest exactly covers the current checked-in mirror corpus',()=>{
  execFileSync(process.execPath,['scripts/build_pdf_manifest.mjs','--check']);
- assert.equal(Object.keys(PDF_DOCUMENT_HASHES).length,81);
+ assert.equal(Object.keys(PDF_DOCUMENT_HASHES).length,83);
 });
 test('network loading returns the exact verified bytes and forwards cancellation',async t=>{
  const [url,hash]=Object.entries(PDF_DOCUMENT_HASHES)[0];

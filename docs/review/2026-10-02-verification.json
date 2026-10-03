@@ -1,0 +1,160 @@
+{
+  "checked_at": "2026-10-02T16:16:45.261194+00:00",
+  "head": "9187450ca004bd03c631680a84892af5b48dacc5",
+  "branch": "review/20261001-sunshine-redesign",
+  "working_tree": "uncommitted reviewed changes; unrelated original files preserved",
+  "build": "20261003.01",
+  "node": "v22.22.3",
+  "deployment": "not deployed",
+  "browser": "local Chromium; emulated 1440 and 390px viewports; not physical devices",
+  "checks": [
+    {
+      "command": "npm ci",
+      "result": "passed",
+      "log": "artifacts/review-20261002/checks/npm-ci.log"
+    },
+    {
+      "command": "npm test",
+      "result": "237 passed, 0 failed",
+      "log": "artifacts/review-20261002/checks/tests.log"
+    },
+    {
+      "command": "npm run lint -- --max-warnings=0",
+      "result": "passed; exit 0",
+      "log": "artifacts/review-20261002/checks/lint.log"
+    },
+    {
+      "command": "npm run build",
+      "result": "passed; exit 0; 83 PDF manifests checked",
+      "log": "artifacts/review-20261002/checks/build.log"
+    },
+    {
+      "command": "npm run test:filters",
+      "result": "passed; 114755 deep boundary assertions",
+      "log": "artifacts/review-20261002/checks/filters.log"
+    },
+    {
+      "command": "npm run check:maintenance",
+      "result": "passed; schema and citation guard, not policy-currentness certification",
+      "log": "artifacts/review-20261002/checks/maintenance.log"
+    },
+    {
+      "command": "python3 tests/test_official_sources.py",
+      "result": "3 passed",
+      "log": "artifacts/review-20261002/checks/sources-python.log"
+    },
+    {
+      "command": "python3 scripts/audit_evidence.py --as-of 2026-10-03",
+      "result": "completed; remaining evidence gaps documented",
+      "log": "artifacts/review-20261002/checks/evidence.log"
+    },
+    {
+      "command": "PLAYWRIGHT_MODULE=<installed playwright>/index.mjs node scripts/browser_oct02_review.mjs",
+      "result": "286 passed: 122 desktop/mobile routes + 162 product identities + 2 recovery checks",
+      "log": "artifacts/review-20261002/checks/browser-routes.log"
+    },
+    {
+      "command": "PLAYWRIGHT_MODULE=<installed playwright>/index.mjs node --experimental-strip-types scripts/browser_oct02_interactions.mjs",
+      "result": "6 passed: both viewports plus 4 failure/motion scenarios",
+      "log": "artifacts/review-20261002/checks/browser-interactions.log"
+    },
+    {
+      "command": "PLAYWRIGHT_MODULE=<installed playwright>/index.mjs AUDIT_BASE_URL=http://127.0.0.1:5192 node scripts/browser_search_review.mjs",
+      "result": "passed on both viewports",
+      "log": "artifacts/review-20261002/checks/browser-search.log"
+    },
+    {
+      "command": "PLAYWRIGHT_MODULE=<installed playwright>/index.mjs AUDIT_BASE_URL=http://127.0.0.1:5192 node scripts/browser_pdf_review.mjs",
+      "result": "passed on both viewports",
+      "log": "artifacts/review-20261002/checks/browser-pdf.log"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "final_visual_change": "Mobile hero wash opacity only, followed by 390px viewport screenshots and lint/build rerun; browser functional suites precede this CSS-only tweak.",
+  "warnings": [
+    "Browserslist bundled browser data is 10 months old; no dependency upgrade performed.",
+    "Existing Three.js and PDF.js lazy chunks remain large.",
+    "36 products lack readable official HTML; complete policy semantic/currentness verification is not certified.",
+    "Image generator did not expose its model version; GPT Image 2 cannot be confirmed."
+  ],
+  "tracked_diff_sha256": "a1a8a7e70201bddfeae039f90ef57b0afea5f11623560bb7603ea1e76ae9d37f",
+  "changed_file_sha256": {
+    "docs/maintenance/2026-10-02-update-workflow.md": "cfc6d3b922ca14a92f5d07922ed1800077584fec038deb509df7dce3bf8b65f5",
+    "docs/maintenance/README.md": "809a617fbd4e37bd4632d9b439535f2c97df8a86316e76ad9418d79b1718de8a",
+    "docs/maintenance/categories/01-travel.md": "90ee1a091cfed53d4298f2b28046cee9aaad6058487651515b199779c0eb9ff2",
+    "docs/maintenance/categories/04-top-up-medical.md": "247245930973a73b0ee93bc35f875b2711f1c533050204588b8a757bd6161be1",
+    "docs/maintenance/categories/09-pet.md": "84018d1f3dc475bc4a10bc48dfe83a88602ad0010efd0d56fbc0cda8d3bde150",
+    "docs/maintenance/categories/10-motor.md": "f6a822dca063abfd7480559d40a92b9eedcd843db4071e963b2f7197e67a064b",
+    "docs/review/05-evidence-audit.md": "48f00051d1d765b78f4cf0b8da0e90e1cbe6aa239a7409076e41d229cb980dba",
+    "docs/review/2026-10-02-illustrations.md": "b47e6cdea72e4d89d4bf19fb87937210ac72bc47e918a855b118314c300454de",
+    "docs/review/2026-10-02-purchase-links.json": "8f183bf563655472df0c221cff1515647dea2b157528fd8a6405c9c789a74f57",
+    "docs/review/2026-10-02-quarantined-claims.json": "7e55f72381fd26fe349c79cddb1d4c23df7530c171d58a2000d464e9b3ab2fce",
+    "docs/review/2026-10-02-review.md": "3eafe39443ef8bc8c98a2d2d2ccd5b11c96b5ea74874c1a1daa653b82caf3757",
+    "docs/review/2026-10-02-source-report.json": "1825cf0553cf9b35b82b8d7e32eb9f306cf531b7456336e2d2218cc2bd09746f",
+    "docs/review/2026-10-02-source-review.md": "cdac92ddd3eff5e8bdcf960cbd7d867022066bb916caf3b722c36f89ed5dbbec",
+    "docs/review/2026-10-02-targeted-before.json": "d6f0d17b976ab49c181f23aeaff1ee0d2981109bd042070de36904725585c6fe",
+    "docs/review/problem-register-2026-09-06.md": "7e9fc56e5f2cdb215143fbf8044e6323d78edc6df3a274b2f073d5e680a4a49c",
+    "package.json": "e6f1df4593cc8ae8db0ac2dd744963cc5021c2721ebdd5670b3348304d8f8c3d",
+    "public/data/evidence-audit.json": "6cd6f7b8073737e290c8ca7c0126cae0a0c7c336eef91823f983ab5a5dfb1fe3",
+    "public/data/insurance-data.json": "8d1fd89c7051983e5de94a2eddd15a20224e9774a9667232bc6104955f9f983c",
+    "public/docs/brochures/dah-sing-petsure-pet042026.pdf": "317c9cdc31ea622d4148fa96a5a5be62ed2ce9e17e850cb496ba6dd82067fe55",
+    "public/docs/brochures/fwd-mytravel-reviewed-20261002.pdf": "9b9081b71b5be57009faffd5ee7156a0d1cbf657d5f3466773df665d0dcafc4a",
+    "public/illustrations/accident.webp": "29720abe29a16a7654a86ede1fe283089ee352328a45123a69c8ced5c31c7963",
+    "public/illustrations/critical-illness.webp": "e48bacece7a3086bf8fc244e04e08e50d7222a8d39168bcc7f9abe6951cea3cc",
+    "public/illustrations/domestic-helper.webp": "d248f7234b4d82d03fac7649061b2f18728f3899eeced9369ac8abfd4eefefb3",
+    "public/illustrations/high-end-medical.webp": "28a6a065822018e35cfe9e67ecc7fd6dab409e88899c832cf6a0f04514d37fca",
+    "public/illustrations/home.webp": "00f7295c78a2090a3db8821342a9cf318ec072018536692ecdad9d81969fdbc2",
+    "public/illustrations/life.webp": "52be63d3ebeff8ffe9aec0ba0f439b64d9feb40138d3d5e7408c84d96e73973f",
+    "public/illustrations/medical.webp": "41c2548c6fbc3f90b3eb40c6c1316466e18ac235a8702d30b7a03c30735665d8",
+    "public/illustrations/motor.webp": "d514d3718bf962084db721ce0c6b87d5b2aab3307f5632b331477def67aac39c",
+    "public/illustrations/pet.webp": "ab0c14fdf44e9660472f58c9152d910e86a2a728eaa1eb15fe9f4d5d0518527c",
+    "public/illustrations/top-up-medical.webp": "dbc9bee4c88ae5bcc59138efdc3a4c8d487005f822ddad2ac67deb0de8f8b66e",
+    "public/illustrations/travel.webp": "5a54b676afc2cb87baf69d2c45e96211fc9c11302f1c70dc91978e7c8fbe353e",
+    "scripts/browser_oct02_interactions.mjs": "c69fef13e9130a6c00b963b0ca43e9dcd337e78e1f9239eec3abf7481548ea33",
+    "scripts/browser_oct02_review.mjs": "b62f3c8263b574a7aecd85601992fbcd98ff50a0808db5f9ee03b1b9e0ae1e85",
+    "scripts/browser_pdf_review.mjs": "4c2c56d81dd686e581b7b4ee4ebae315b73428c3790c947900dfa0cbdcf54f54",
+    "scripts/check_official_sources.py": "1e113eabcfbe9d2fc2f36b9eb24a0ac3277cc3277791419b0f57061f284fd954",
+    "scripts/data_other_enrich.py": "5414b54c386e21992cd58d7170fe22fb0ae94446f2b4f373a3cbb768ed5bfe3c",
+    "scripts/data_vhis_enrich.py": "ec3de16bc4cdf45f42cced337865955bb86be90cc829e76c128fdd8d6bfd8024",
+    "scripts/validate_citation_shapes.mjs": "e24a918b7a55929a910e7085cbdcd83f6f17ff211bc0d7b5109f470feead0fcb",
+    "scripts/validate_maintenance.mjs": "be172c8cf20e6292584d16d5673835685920b351633d30de5638cc043e3f3fe7",
+    "src/components/Layout.tsx": "8f3110844c840a9218d78e04d946d0efffc97dfc6b76b6e72c5a86eec2df8ff3",
+    "src/components/Navbar.tsx": "ed06a3229ae9059122925f3fd09e5c808ec6e2f8b32d1278eb6e111b5bb653f1",
+    "src/components/ProductCard.tsx": "9d3509aad66fc0ce59a82e3524f5cec1384c80fac42d82d19bf5a6a23f913511",
+    "src/components/SearchPalette.tsx": "3b9cda5bbdf79ea59e69e302cc8b0b41019c8bccf436dd49b0f006461736fe46",
+    "src/components/documents/PdfCenterTour.tsx": "6bb444c4f003e1458a56e280764dce36e2e6ba0ba8d17a5d20e4dbaa7ffb7d85",
+    "src/components/fx/Depth.tsx": "e44e0c5ec58f18559e6ccf61ee79459ec07b044e96998a812c3bf9cdddf7329c",
+    "src/components/fx/RouteFX.tsx": "4d3e66cca3aaeaee71d9003c3c2b4b90a18dc372d72719bc2553a4485c7ea9e5",
+    "src/components/fx/three/ActivityCarouselCanvas.tsx": "6ce86feeea8a6d1d61e6e0c94925d7d5dd18fd97a0420c7df56108d0fc7e4fd0",
+    "src/components/fx/three/PaintingCanvas.tsx": "06fe4548a104467484370023447e376feb1c1592a87270d1dc395f00ab30f38d",
+    "src/components/fx/three/activity-carousel.ts": "ec4586786f68bc12d3fd0ffa1e3bb3abe5501175d2f7c4025c2b8fb198543242",
+    "src/components/fx/three/painting.ts": "52feb3ac41bcd711ffc657ff658b1f0f8635ec73de87225da8eb52b5d8900811",
+    "src/components/fx/three/sketch-material.ts": "193d83dfad0876b9832290d261c3d55ab3001250e30bd5de368f6e51288d78ec",
+    "src/components/product/SourcesSection.tsx": "5c4dfa85502eb5d54bbf05261ab34f2562d25c128f0430e993da1de692bccc4e",
+    "src/hooks/use-reduced-motion.ts": "bb461bcb9e33793bb9dd90e33a1b36eba22652e534fe0631492cd80ea76131b6",
+    "src/index.css": "48c4c70a1fc5b13d7efcc582a7d4d0b6b5e04bbf2e1639fea111b71873f0fd80",
+    "src/lib/generated/pdf-manifest.ts": "cf4cc19ef283c109af907bcd83f6528cf256a2f562d95da262b30075d75bef96",
+    "src/lib/insurer-colors.ts": "399c7fbcb1e26e7c94722d5d0790fa27374d0059dfe58989019bf2f23fd40ad7",
+    "src/lib/landing-photos.ts": "36a6ac7a7f77f12f7a4d59c707d3979f9a9199ab03f3a35d0edba714161f4261",
+    "src/lib/product-card-data.ts": "f1080565a5def62445d8d2210ef54049fb7fa3cded44f4df853f456ab276a552",
+    "src/lib/quote-pathway.ts": "e72013ce9776372aa983e1d7a03fab9972acf614a3cc58e67b7b2c8a15b51f6a",
+    "src/lib/version.ts": "abad24bbd253c91c2812ad3e0cb1b78719de286b43c0fe55f8ffb6e8a0412de2",
+    "src/pages/CategoryDetail.tsx": "2d749626c896078e6022720444fecbb5b0d52bcff603d357f02fe9afae49d9c7",
+    "src/pages/Documents.tsx": "4ac1bcf300afc23887a78eb5ceaf2967ee773ce9cf3a0427ad01fca77f9155e8",
+    "src/pages/InsurerDetail.tsx": "a5407ad807329a645ded99b461605eff3e56877d5f523a1a4f2af2d517cddd7c",
+    "src/pages/home/CategoryGrid.tsx": "0b05b8c91c0e737175aea3601ada3a9d1e6b44532c6e62da04955fe6df6037a7",
+    "src/pages/home/FinalCTA.tsx": "50c2c9241203793fc7d9ac1c01b08ea1261def6c5d0cb1805ae876efc4905a5f",
+    "src/pages/home/Hero.tsx": "53ca800d9e584e2cdf4df9dbbe5fecbeb333096a7673c1194702760fd61adce2",
+    "src/providers/FavoritesProvider.tsx": "113da06338b47e00164b8d944d8f35d55ccf3abb9c0f5a75bc4859879006cc1c",
+    "src/providers/InsuranceDataProvider.tsx": "718d288e4d4fff2c916274610c4262960621ec3d5cef45cdad7c29774e383ee3",
+    "tests/evidence-boundary.test.mjs": "85f0dc14606e53704aabd441a5c4cb2013947d120c85c85b1c413fb3fc7667fa",
+    "tests/fixtures/plan-parser-strings.json": "cf5b0beacf1db9aa94ce3f3b34980a8a0461f8de450b473db622fb79e125609d",
+    "tests/oct02-regressions.test.mjs": "42151619a405eae42eee181f816646985d1d1d05825c9ed6039e051f6c576ab1",
+    "tests/pdf-version.test.mjs": "1a911930b27494e1a389411d9dfb9ad08f054b59e3b4f428d7399af5e58bb434",
+    "tests/plan-parser.test.mjs": "1d8beb8cc5f62516d34503f3a2c3b04cb15c30c264d799a0efa926d47fb408bf",
+    "tests/test_official_sources.py": "a23e776d44aeac20a83c09e6ad287daed412611756e9add85f73888de245e154"
+  }
+}

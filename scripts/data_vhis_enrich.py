@@ -330,47 +330,5 @@ FLEXI_UPGRADES_BY_ID = {
 }
 
 def enrich_medical_product(product):
-    """Enrich a medical product with complete 18-20 coverage items."""
-    pid = product.get("id", "")
-    
-    # 1. 若為 12 個既有知名品牌產品之一，使用其專屬靈活升級與標準對齊數據
-    if pid in FLEXI_UPGRADES_BY_ID:
-        product["coverage"] = list(FLEXI_UPGRADES_BY_ID[pid])
-        return product
-
-    # 2. 對於其他 16 個由官方生成的自願醫保產品（標準計劃／靈活計劃併行）
-    # 檢查是否有靈活計劃
-    has_flexi = any("靈活" in t for t in product.get("plan_tiers", []))
-    name_zh = product.get("product_name_zh", "")
-    
-    enriched_cov = []
-    for std_item in STANDARD_18_BENEFITS:
-        item_name = std_item["item"]
-        std_limit = std_item["limit"]
-        
-        if has_flexi:
-            if item_name == "每年保障限額":
-                limit_text = f"標準計劃每保單年度 HK$420,000；靈活計劃每年保額高達 HK$800,000 至 HK$5,000,000"
-            elif item_name == "病房及膳食":
-                limit_text = f"標準計劃每日 HK$750（最多180日）；靈活計劃半私家房／私家房全數賠償或每日 HK$1,500"
-            elif item_name == "主要醫療費用（住院及手術）" or item_name == "外科醫生費":
-                limit_text = f"標準計劃按手術分類賠償（最高HK$50,000）；靈活計劃實報實銷全數賠償或提升至200%保額"
-            elif item_name == "訂明非手術癌症治療":
-                limit_text = f"標準計劃每保單年度 HK$80,000；靈活計劃提升至每年 HK$250,000 至全數賠償"
-            elif item_name == "訂明診斷成像檢測":
-                limit_text = f"標準計劃每年 HK$20,000（30%共同保險）；靈活計劃全數賠償或每年 HK$40,000（0%共同保險）"
-            else:
-                limit_text = std_limit
-        else:
-            limit_text = std_limit
-            
-        enriched_cov.append({"item": item_name, "limit": limit_text})
-
-    if has_flexi:
-        enriched_cov.append({
-            "item": "自付費（墊底費）選項",
-            "limit": "靈活計劃設有 HK$0 / HK$16,000 / HK$25,000 / HK$50,000 多檔自付額選項"
-        })
-
-    product["coverage"] = enriched_cov
-    return product
+    """Retired: category templates cannot establish product-specific benefits."""
+    raise RuntimeError("Automatic benefit enrichment is disabled; use reviewed official evidence.")

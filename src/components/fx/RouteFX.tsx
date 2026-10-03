@@ -1,4 +1,6 @@
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ACTIVITIES } from "@/lib/landing-photos";
 import { CATEGORY_META } from "@/lib/categories";
 import { themeFor, type Theme } from "@/lib/route-theme";
 import { DoodleCloud, DoodleHeart, DoodleLeaf, SunMark, WashEdge } from "@/components/fx/Sketch";
@@ -235,6 +237,7 @@ function Backdrop({ theme }: { theme: Theme }) {
 /** Decorative header scenery behind each page (parallax on scroll, faded at the bottom). */
 export function PageBackdrop({ pathname }: { pathname: string }) {
   const theme = themeFor(pathname);
+  const scene = ACTIVITIES.find(a => a.category === (pathname.startsWith("/category/") ? pathname.split("/")[2] : pathname === "/vhis" ? "medical" : ""));
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 600], [0, 140]);
   const opacity = useTransform(scrollY, [0, 500], [1, 0.2]);
@@ -250,6 +253,7 @@ export function PageBackdrop({ pathname }: { pathname: string }) {
     >
       <motion.div className="absolute inset-0" style={{ y, opacity }}>
         <Backdrop theme={theme} />
+        {scene && <img src={scene.photo} alt="" className="absolute right-0 top-12 hidden h-72 w-[40%] object-contain opacity-35 md:block" />}
       </motion.div>
     </motion.div>
   );

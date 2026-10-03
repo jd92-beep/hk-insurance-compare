@@ -541,7 +541,7 @@ html, body, #root {
 }
 @media (prefers-reduced-motion: reduce), (pointer: coarse) {
   .tilt-face { transform: none !important; }
-  .depth-surface, .depth-card, .shadow-card { transform: none !important; }
+  .depth-surface, .depth-card { transform: none !important; }
   .tilt-face > div,
   .depth-z-bar, .depth-z-icon, .depth-z-chip, .chip-3d { transform: none !important; }
 }
@@ -627,4 +627,17 @@ html, body, #root {
     0 8px 0 color-mix(in srgb, var(--accent) 66%, #ffffff),
     0 28px 44px -18px rgba(40, 30, 20, 0.4),
     0 50px 80px -40px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+/* Shared pencil frame: native search controls keep their keyboard/clear behavior. */
+input[type="search"], .sketch-search, [data-sketch-search] {
+  border: 2px solid var(--ink-soft);
+  border-radius: 14px 18px 12px 16px / 17px 12px 18px 13px;
+  background-color: var(--paper);
+  background-image: url('/textures/paper-fiber.svg');
+  box-shadow: 2px 3px 0 color-mix(in srgb, var(--jade) 18%, transparent);
+}
+input[type="search"]:focus-visible, .sketch-search:focus-within, [data-sketch-search]:focus-visible {
+  outline: 3px solid var(--jade);
+  outline-offset: 3px;
 }

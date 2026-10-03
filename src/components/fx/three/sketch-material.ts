@@ -98,7 +98,10 @@ void main() {
   wc *= 0.9 + 0.22 * bloom;                                             // backruns / blooms
   wc = mix(wc, vec3(1.0), 0.1 + 0.08 * grain);                          // transparent wash lets paper glow
 
-  // the visitor's brush brings the scene closer to the real photo
+  // Originals already contain watercolor and pencil; preserve faces and pigment detail.
+  wc = mix(wc, sharp, 0.82);
+
+  // the visitor's brush brings the scene closer to the original illustration
   float painted = texture2D(uPaint, vUv).r;
   vec3 realish = mix(sharp, soft, 0.2) * vec3(1.03, 1.0, 0.95);
   wc = mix(wc, realish, smoothstep(0.0, 1.0, painted) * 0.9);
@@ -134,13 +137,13 @@ void main() {
   vec3 paper = texture2D(uPaper, gl_FragCoord.xy / 512.0).rgb;
   vec3 c = mix(paper, paper * wc * 1.03, washMask);
   float ink = pencil * drawn * area * study * (1.0 - washMask * 0.3) * (1.0 - painted * 0.7);
-  c = mix(c, vec3(0.2, 0.18, 0.24), ink * 0.85);
+  c = mix(c, vec3(0.2, 0.18, 0.24), ink * mix(0.16, 0.65, uDim));
   c *= 1.0 - hatch * drawn * 0.14 * study;
 
   // sunlight bloom
   vec2 sp = (vUv - uSun) * vec2(uAspect, 1.0);
   float sun = exp(-dot(sp, sp) * 4.0);
-  c += vec3(1.0, 0.8, 0.45) * sun * (0.2 + 0.04 * sin(uTime * 1.3)) * (0.5 + 0.5 * washMask);
+  c += vec3(1.0, 0.8, 0.45) * sun * (0.04 + 0.01 * sin(uTime * 1.3)) * (0.5 + 0.5 * washMask);
 
   gl_FragColor = vec4(c, 1.0);
 }

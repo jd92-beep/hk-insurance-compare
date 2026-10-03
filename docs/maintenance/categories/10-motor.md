@@ -24,7 +24,7 @@
 | `motor-qbe` | 昆士蘭保險 · 汽車超級保險 | 未全面核實現行條款 |
 | `motor-zurich` | 蘇黎世保險 · 「車護保」汽車保險計劃 | 未全面核實現行條款 |
 | `motor-directasia` | DirectAsia 達信保險 · DirectAsia 私家車保險 | 未全面核實現行條款 |
-| `motor-bowtie` | 保泰人壽 · Bowtie 汽車保險 | 未全面核實現行條款 |
+| `motor-bowtie` | 保泰人壽 · Bowtie 汽車保險 | 歸檔待覆核；產品身份／分類未成立，投保連結已停用 |
 | `motor-fwd` | 富衛保險 · 富衛「私家車保險」 | 未全面核實現行條款 |
 | `motor-blue-cross` | 藍十字保險 · 藍十字「車護寶」私家車保險 | 未全面核實現行條款 |
 

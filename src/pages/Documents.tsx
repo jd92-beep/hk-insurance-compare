@@ -201,6 +201,7 @@ export default function Documents() {
             </label>
             <input
               id="document-search"
+              type="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="min-h-10 w-full rounded-lg border border-line bg-paper px-3 text-xs outline-none focus:border-jade"

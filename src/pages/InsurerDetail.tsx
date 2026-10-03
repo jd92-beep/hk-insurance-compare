@@ -212,7 +212,6 @@ export default function InsurerDetail() {
                   <div key={`ov-${product.id}`} className="min-w-0">
                     <ProductCard
                       product={product}
-                      accent={categoryColor(product.category)}
                       categoryLabel={categoryName(categories, product.category)}
                     />
                   </div>
@@ -262,7 +261,7 @@ export default function InsurerDetail() {
                 </div>
                 <div className={productGridClass(section.products.length)}>
                   {section.products.map((product) => (
-                    <ProductCard key={product.id} product={product} accent={categoryColor(section.categoryId)} />
+                    <ProductCard key={product.id} product={product} />
                   ))}
                 </div>
               </section>

@@ -274,6 +274,7 @@ export default function Navbar() {
         <div className="flex items-center gap-1.5">
           <button
             type="button"
+            data-sketch-search
             onClick={search.openSearch}
             className="flex items-center gap-2 rounded-full border bg-paper/70 px-3 py-2 text-ink-soft transition-all hover:-translate-y-0.5 hover:bg-amber-wash hover:text-ink"
             style={{ borderColor: "var(--line)" }}

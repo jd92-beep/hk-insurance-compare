@@ -1,0 +1,1277 @@
+{
+  "pet-dah-sing": {
+    "id": "pet-dah-sing",
+    "category": "pet",
+    "insurer": "Dah Sing",
+    "product_name": "Dah Sing PetSure",
+    "product_name_zh": "大新保險「寵愛無憂」寵物保障計劃",
+    "plan_tiers": [
+      "計劃 A (Plan A)",
+      "計劃 B (Plan B)"
+    ],
+    "premium_range": "每年約 HK$2,100 - $5,400",
+    "premium_notes": "大新銀行集團承保，涵蓋中醫針灸理療、手術住院及尋寵津貼，保障貼心",
+    "key_terms": [
+      "每年手術及住院總額高達 HK$50,000",
+      "門診涵蓋西醫及中醫針灸跌打理療每次最高 HK$500",
+      "第三者公眾責任保障高達 HK$1,500,000",
+      "走失尋寵廣告及主人住院寄宿全方位津貼"
+    ],
+    "exclusions": [
+      "受保前已確診或出現症狀之病症",
+      "非醫療性美容剪毛或常規清潔",
+      "未領取有效香港狗隻牌照"
+    ],
+    "documents_found": [
+      "大新保險「寵愛無憂」官方產品專頁（2025-2026 現行版，dahsing.com）",
+      "Dah Sing PetSure Insurance Policy Schedule"
+    ],
+    "source_urls": [
+      "https://www.dahsing.com/html/tc/insurance/pet.html"
+    ],
+    "citations": [
+      {
+        "claim_field": "coverage[0].limit",
+        "document": "大新保險「寵愛無憂」官方產品專頁",
+        "page": "1",
+        "quote": "每年醫療總額高達 HK$50,000，門診涵蓋西醫及中醫針灸理療",
+        "url": "https://www.dahsing.com/html/tc/insurance/pet.html"
+      }
+    ],
+    "coverage": [
+      {
+        "item": "每年獸醫醫療總限額",
+        "limit": "最高 HK$50,000（實報實銷 70%）"
+      },
+      {
+        "item": "外科手術及留醫雜費",
+        "limit": "每次最高 HK$20,000（包含手術室及麻醉費）"
+      },
+      {
+        "item": "門診西醫及處方藥物",
+        "limit": "每次最高 HK$500，每年最多 10 次"
+      },
+      {
+        "item": "中醫針灸及物理理療",
+        "limit": "每次最高 HK$400，每年最高 HK$2,000"
+      },
+      {
+        "item": "第三者法律責任保障",
+        "limit": "最高 HK$1,500,000（寵物疏忽致他人受傷或財損）"
+      },
+      {
+        "item": "走失尋寵廣告費用",
+        "limit": "最高 HK$2,500（登報或網絡廣告）"
+      },
+      {
+        "item": "主人患病緊急寄宿津貼",
+        "limit": "每日最高 HK$300，每年最高 HK$3,000"
+      },
+      {
+        "item": "寵物離世善終火化津貼",
+        "limit": "最高 HK$2,000（火化服務補助）"
+      },
+      {
+        "item": "意外創傷緊急救治",
+        "limit": "交通事故或骨折緊急救治最高 HK$10,000"
+      },
+      {
+        "item": "家庭多隻寵物投保優惠",
+        "limit": "投保 2 隻或以上寵物享額外 10% 保費折扣"
+      }
+    ],
+    "insurer_zh": "大新保險",
+    "official_buy_url": "https://www.dahsing.com/html/tc/insurance/pet.html",
+    "promo": {
+      "tag": "最新優惠",
+      "note": "大新信用卡客戶投保享額外保費折扣",
+      "buy_url": "https://www.dahsing.com/html/tc/insurance/pet.html"
+    }
+  },
+  "pet-fwd": {
+    "id": "pet-fwd",
+    "category": "pet",
+    "insurer": "FWD",
+    "product_name": "FWD Pet Insurance Plan",
+    "product_name_zh": "富衛保險「寵愛一生」保障計劃",
+    "plan_tiers": [
+      "珍珠計劃 (Pearl)",
+      "鑽石計劃 (Diamond)"
+    ],
+    "premium_range": "每年約 HK$2,800 - $7,200",
+    "premium_notes": "大額醫療無細項限制，涵蓋寵物一生醫療需要，支持網上投保及信用卡免息分期",
+    "key_terms": [
+      "每年醫療保障總額高達 HK$80,000",
+      "大額手術全包無細項封頂，實報實銷 80%",
+      "第三者法律責任高達 HK$3,000,000",
+      "全面保障貓狗癌症化療、慢性疾病及善終服務"
+    ],
+    "exclusions": [
+      "保單生效前已發病之任何傷病",
+      "非醫療性絕育、整容或修甲",
+      "違法飼養未獲許可之危險犬種"
+    ],
+    "documents_found": [
+      "富衛香港官方寵物保險專頁（2025-2026 現行版，fwd.com.hk）",
+      "FWD Pet Insurance Plan Terms and Conditions"
+    ],
+    "source_urls": [
+      "https://www.fwd.com.hk/zh/general-insurance/pet-insurance/"
+    ],
+    "citations": [
+      {
+        "claim_field": "coverage[0].limit",
+        "document": "富衛香港官方寵物保險專頁",
+        "page": "1",
+        "quote": "每年醫療總額高達 HK$80,000，手術醫療開支實報實銷 80%",
+        "url": "https://www.fwd.com.hk/zh/general-insurance/pet-insurance/"
+      }
+    ],
+    "coverage": [
+      {
+        "item": "每年獸醫醫療總限額",
+        "limit": "最高 HK$80,000（實報實銷 80%）"
+      },
+      {
+        "item": "外科手術及麻醉費用",
+        "limit": "每年最高 HK$35,000（不設個別細項限額）"
+      },
+      {
+        "item": "獸醫門診及處方藥物",
+        "limit": "每次最高 HK$1,000，每年最高 HK$12,000"
+      },
+      {
+        "item": "第三者法律責任保障",
+        "limit": "最高 HK$3,000,000（法律訴訟及公眾賠償）"
+      },
+      {
+        "item": "寵物癌症化療及標靶藥物",
+        "limit": "每年高達 HK$15,000 專項抗癌補貼"
+      },
+      {
+        "item": "慢性疾病持續護理津貼",
+        "limit": "涵蓋心臟病、腎衰竭及糖尿病長遠護理"
+      },
+      {
+        "item": "先進造影診斷 (CT/MRI)",
+        "limit": "每次最高 HK$6,000，需主診獸醫轉介"
+      },
+      {
+        "item": "住院留醫每日護理",
+        "limit": "每日最高 HK$1,200，每年最高 25 日"
+      },
+      {
+        "item": "善終火化及悼念禮儀津貼",
+        "limit": "最高 HK$3,000（尊嚴告別服務）"
+      },
+      {
+        "item": "走失尋寵宣傳及酬金",
+        "limit": "最高 HK$3,000（線上及線下尋寵支出）"
+      },
+      {
+        "item": "主人患病住院寄宿費用",
+        "limit": "每日最高 HK$400，每年最高 HK$4,000"
+      },
+      {
+        "item": "因寵物急病取消海外旅程",
+        "limit": "已付不可退還之機票及酒店最高賠償 HK$5,000"
+      },
+      {
+        "item": "牙科嚴重感染引流手術",
+        "limit": "每年最高 HK$4,000（嚴重膿腫或意外損傷）"
+      },
+      {
+        "item": "多隻寵物投保折扣",
+        "limit": "投保兩隻或以上寵物，保費即享額外 10% 折扣"
+      },
+      {
+        "item": "全港持牌獸醫診所自由選",
+        "limit": "受保人可自由選擇全香港任何一間註冊獸醫診所"
+      }
+    ],
+    "insurer_zh": "富衛保險",
+    "official_buy_url": "https://www.fwd.com.hk/online-insurance/pets-insurance/",
+    "promo": {
+      "tag": "最新優惠",
+      "note": "網上投保限時折扣，涵蓋醫療及高達百萬第三者責任",
+      "buy_url": "https://www.fwd.com.hk/online-insurance/pets-insurance/"
+    }
+  },
+  "travel-fwd": {
+    "id": "travel-fwd",
+    "category": "travel",
+    "insurer": "FWD",
+    "insurer_zh": "富衛保險",
+    "product_name": "MyTravel Insurance",
+    "product_name_zh": "富衛「自寫意旅遊保」",
+    "plan_tiers": [
+      "經濟計劃 (Plan A)",
+      "特選計劃 (Plan B)",
+      "頭等計劃 (Plan C)"
+    ],
+    "premium_range": "單次旅程每日約 HK$45–HK$75 起；官網定期推出75折優惠碼",
+    "premium_available": true,
+    "premium_notes": "投保人年齡介乎60天至80歲，全家享同等保額不縮水；網上投保設多人同行折扣",
+    "key_terms": [
+      "投保年齡60天至80歲同價同保額",
+      "市場罕有：頭等計劃包「任何原因取消或更改旅程」（50%賠償）",
+      "海外醫療運送及遺體運返全數實報實銷（無上限）",
+      "回港後90天內覆診費（意外100%、中醫跌打HK$3,000）",
+      "特設租車自負額HK$5,000及寵物緊急寄養保障"
+    ],
+    "exclusions": [
+      "已知之傳染病或出發前已存在之病況",
+      "參加專業運動或帶有金錢報酬的比賽",
+      "任何極限運動（除非由合資格導遊/機構監督之公眾活動）",
+      "出發前政府已發出外遊警示之高風險目的地"
+    ],
+    "source_urls": [
+      "https://www.fwd.com.hk/online-insurance/mytravel-insurance/",
+      "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=2"
+    ],
+    "documents_found": [
+      "FWD 自寫意旅遊保 (MyTravel Insurance) 產品小冊子",
+      "富衛保險官方網上投保平台條款"
+    ],
+    "coverage": [
+      {
+        "item": "海外醫療費用（含COVID-19）",
+        "limit": "頭等 HK$1,500,000 / 特選 HK$1,000,000 / 經濟 HK$500,000（60天至80歲全額保障）",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=2",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 2,
+        "quote": "年齡由60日至80歲：經濟計劃 500,000；特選計劃 1,000,000；頭等計劃 1,500,000"
+      },
+      {
+        "item": "回港後90天覆診費（意外及中醫跌打）",
+        "limit": "意外覆診最高保障額之100%；中醫跌打/針灸/物理治療 HK$3,000（每日HK$200）；疾病覆診最高10%",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=2",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 2,
+        "quote": "從外地回港後90天內在香港覆診的分項限額：因意外引致的覆診醫療費用 最高保障額之100%；中醫跌打、針灸、物理治療或脊椎治療 3,000 (每日200)"
+      },
+      {
+        "item": "緊急醫療運送及遺體運返",
+        "limit": "實際費用（不設上限 / Unlimited）",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=3",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 3,
+        "quote": "緊急醫療運送及遺體運返：實際費用；親屬探訪 20,000；隨行未獲照料子女送返 20,000"
+      },
+      {
+        "item": "海外住院及隔離每日現金津貼",
+        "limit": "特選/頭等每日 HK$500（最高 HK$5,000）；經濟每日 HK$300（最高 HK$3,000）",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=3",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 3,
+        "quote": "海外住院每日現金保障：經濟 3,000 (每日300)；特選/頭等 5,000 (每日500)"
+      },
+      {
+        "item": "個人意外身故及永久傷殘",
+        "limit": "頭等 HK$1,500,000 / 特選 HK$1,000,000 / 經濟 HK$500,000",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=3",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 3,
+        "quote": "意外死亡及永久完全傷殘 (包括失蹤)：經濟 500,000；特選 1,000,000；頭等 1,500,000"
+      },
+      {
+        "item": "行李及個人財物（手機/手提電腦）",
+        "limit": "頭等 HK$20,000 / 特選 HK$10,000（手提電腦每台 HK$5,000；流動裝置手機 HK$2,000–HK$3,000）",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=3",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 3,
+        "quote": "行李及個人財物：特選 10,000；頭等 20,000；每台手提電腦限額 5,000；其他流動設備 2,000-3,000"
+      },
+      {
+        "item": "旅程延誤津貼（每滿6小時）",
+        "limit": "頭等 HK$3,000（每6小時 HK$300）；特選 HK$2,000（每6小時 HK$250）",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=3",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 3,
+        "quote": "旅程延誤：特選 2,000 (每6小時250)；頭等 3,000 (每6小時300)"
+      },
+      {
+        "item": "行李延誤應急用品津貼（超過6小時）",
+        "limit": "頭等 HK$1,000 / 特選 HK$500",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=3",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 3,
+        "quote": "行李延誤津貼 (超過6小時)：特選 500；頭等 1,000"
+      },
+      {
+        "item": "因任何原因取消旅程（市場罕有）",
+        "limit": "頭等計劃最高 HK$25,000（承擔50%自負額，出發前付訂金7天內投保適用）",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=3",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 3,
+        "quote": "因任何原因取消旅程 (50%自負額)：頭等 25,000；因任何原因更改旅行日期：頭等 25,000"
+      },
+      {
+        "item": "常規旅程取消或縮短",
+        "limit": "頭等 HK$50,000 / 特選 HK$25,000 / 經濟 HK$25,000",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=3",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 3,
+        "quote": "旅程取消 / 縮短旅程：特選 25,000；頭等 50,000"
+      },
+      {
+        "item": "租車自駕遊自負額（Rental Car Excess）",
+        "limit": "特選及頭等計劃高達 HK$5,000",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=4",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 4,
+        "quote": "租賃車輛自負額：特選 5,000；頭等 5,000"
+      },
+      {
+        "item": "個人法律責任",
+        "limit": "最高 HK$2,000,000",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=3",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 3,
+        "quote": "個人責任：特選 2,000,000；頭等 2,000,000"
+      },
+      {
+        "item": "寵物緊急寄養及旅行中斷保障",
+        "limit": "因旅程延誤或海外住院緊急寄養每日 HK$500（最高 HK$3,000–HK$10,000）",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=4",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 4,
+        "quote": "寵物保障：因旅程延誤需緊急寵物寄養 3,000 (每日500)；因海外住院需緊急寵物寄養 10,000 (每日500)"
+      },
+      {
+        "item": "業餘運動及體育活動裝備損失",
+        "limit": "業餘滑雪、水肺潛水、登山受保；運動器材損失最高 HK$3,000–HK$5,000",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=4",
+        "document_name": "FWD 自寫意旅遊保產品小冊子",
+        "page": 4,
+        "quote": "運動用品損失保障：特選 3,000；頭等 5,000；缺席活動保障：特選 2,000；頭等 3,000"
+      }
+    ],
+    "citations": [
+      {
+        "claim_field": "coverage",
+        "claim_summary": "頭等計劃醫療保額高達HK$150萬，包因任何原因取消旅程及租車自負額HK$5,000",
+        "document": "FWD 自寫意旅遊保 (MyTravel Insurance) 產品小冊子",
+        "page": 2,
+        "quote": "年齡由60日至80歲：頭等計劃 1,500,000 ... 因任何原因取消旅程 (50%自負額) 25,000",
+        "url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=2"
+      }
+    ],
+    "trip_type": "both",
+    "destination_scope": [
+      "asia",
+      "worldwide"
+    ],
+    "promo": {
+      "tag": "官網限時 6 折",
+      "code": "FWDTRAVEL",
+      "discount": "40% OFF",
+      "note": "輸入優惠碼享 6 折；結伴同行折上折額外 95 折；長幼同價保額不縮水",
+      "original_price": 165,
+      "discounted_price": 99,
+      "buy_url": "https://www.fwd.com.hk/online-insurance/mytravel-insurance/"
+    },
+    "original_price": 165,
+    "discounted_price": 99,
+    "official_buy_url": "https://www.fwd.com.hk/online-insurance/mytravel-insurance/"
+  },
+  "travel-bolttech": {
+    "id": "travel-bolttech",
+    "category": "travel",
+    "insurer": "bolttech",
+    "insurer_zh": "保特保險",
+    "product_name": "MyTravel Insurance",
+    "product_name_zh": "自寫意旅遊保",
+    "plan_tiers": [
+      "經濟計劃",
+      "高級計劃",
+      "優越計劃",
+      "亞洲計劃 / 全球計劃",
+      "單次旅程 / 全年計劃"
+    ],
+    "coverage": [
+      {
+        "item": "醫療費用保障",
+        "limit": "高達 HK$1,500,000",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=2",
+        "document_name": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 2,
+        "quote": "1. 醫療費用 a. 海外醫療費用 2019冠狀病毒病保障 … 年齡由60日至80歲 500,000 1,000,000 1,500,000"
+      },
+      {
+        "item": "任何原因取消或更改旅程",
+        "limit": "高達 HK$25,000（相關公共交通和住宿費用之50%）",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=3",
+        "document_name": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 3,
+        "quote": "– 因任何原因取消旅程# (50%自負額) 不適用 25,000 – 因任何原因更改旅行日期#** (50%自負額) 不適用 25,000"
+      },
+      {
+        "item": "行李及個人財物（不設自負額；手提電話/電腦/平板被盜）",
+        "limit": "高達 HK$20,000",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=9",
+        "document_name": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 9,
+        "quote": "受保人的保費 HKD 港元 Asia 亞洲 Worldwide 全球 Economy 經濟計劃 Premium 特選計劃 Superior 頭等計劃 … 1 86 128 184 95 160 230"
+      },
+      {
+        "item": "遺失旅遊證件 / 信用卡被盜用",
+        "limit": "各高達 HK$3,000",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=9",
+        "document_name": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 9,
+        "quote": "受保人的保費 HKD 港元 Asia 亞洲 Worldwide 全球 Economy 經濟計劃 Premium 特選計劃 Superior 頭等計劃 … 1 86 128 184 95 160 230"
+      },
+      {
+        "item": "門票及預約活動費用（演唱會/主題樂園等）",
+        "limit": "高達 HK$15,000",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=9",
+        "document_name": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 9,
+        "quote": "受保人的保費 HKD 港元 Asia 亞洲 Worldwide 全球 Economy 經濟計劃 Premium 特選計劃 Superior 頭等計劃 … 1 86 128 184 95 160 230"
+      },
+      {
+        "item": "體育器材/裝備損失",
+        "limit": "高達 HK$15,000（80%保障）",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=9",
+        "document_name": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 9,
+        "quote": "受保人的保費 HKD 港元 Asia 亞洲 Worldwide 全球 Economy 經濟計劃 Premium 特選計劃 Superior 頭等計劃 … 1 86 128 184 95 160 230"
+      },
+      {
+        "item": "租車保障（車輛自負額）",
+        "limit": "HK$5,000",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=9",
+        "document_name": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 9,
+        "quote": "受保人的保費 HKD 港元 Asia 亞洲 Worldwide 全球 Economy 經濟計劃 Premium 特選計劃 Superior 頭等計劃 … 1 86 128 184 95 160 230"
+      },
+      {
+        "item": "寵物保障（緊急寄養/提早結束旅程）",
+        "limit": "高達 HK$10,000",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=9",
+        "document_name": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 9,
+        "quote": "受保人的保費 HKD 港元 Asia 亞洲 Worldwide 全球 Economy 經濟計劃 Premium 特選計劃 Superior 頭等計劃 … 1 86 128 184 95 160 230"
+      },
+      {
+        "item": "休閒及業餘運動",
+        "limit": "醫療保障涵蓋滑雪、水肺潛水、登山等",
+        "source_url": "/docs/brochures/fwd-mytravel_insurance_brochure_updated.pdf#page=9",
+        "document_name": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 9,
+        "quote": "受保人的保費 HKD 港元 Asia 亞洲 Worldwide 全球 Economy 經濟計劃 Premium 特選計劃 Superior 頭等計劃 … 1 86 128 184 95 160 230"
+      },
+      {
+        "item": "海外醫療費用",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "緊急醫療運送 / 遺體運返",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "海外住院現金津貼",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "親友探望 / 探病機票及住宿津貼",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "行李及個人物品",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "手提電話及平板電腦保障",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      }
+    ],
+    "premium_range": "單次1日：亞洲計劃 HK$86/128/144（經濟/高級/優越）；全球計劃 HK$95/160/230；推廣價低至 HK$19.80/日；全年計劃無次數上限",
+    "premium_available": true,
+    "premium_notes": "保費表載於產品小冊子（按日數分級，30日以上及全年計劃另列）；保費已含保險徵費；與家人朋友同行投保享額外95折",
+    "key_terms": [
+      "只售予香港居民、於香港投保、由香港出發之旅程",
+      "受保年齡60日至80歲",
+      "「任何原因取消」保障須於旅程首次付款/訂金日期前後7日內購買保單，並於原定出發前取消",
+      "重新安排旅程日數須等於或少於原保單期限，否則不退差額",
+      "保特保險委任安聯全球救援（香港）提供索償協助服務"
+    ],
+    "exclusions": [
+      "戰爭、內戰、入侵、叛亂、革命、軍事力量",
+      "核危害（任何原因取消/更改旅程保障除外）",
+      "既往病症、先天及遺傳性疾病（任何原因取消保障除外）",
+      "自殺、企圖自殺、故意自傷",
+      "賽車、職業運動或極限運動（公眾可參與且有合資格指導者除外）",
+      "保單生效前已知高風險並獲媒體/政府警告之旅程目的地"
+    ],
+    "source_urls": [
+      "https://www.fwd.com.hk/online-insurance/mytravel-insurance/",
+      "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf",
+      "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt25e07adc6a609913/6492a128cc30bb0079b070a5/B25_TravelCare_(2023.0620).pdf"
+    ],
+    "documents_found": [
+      "官方產品頁（自寫意旅遊保，fwd.com.hk）",
+      "MyTravel 產品小冊子 PDF（fwd.com.hk 官方域名，含保費表及不保事項）",
+      "TravelCare 旅遊保險 PDF（fwd.com.hk，含計劃A/B保障表）"
+    ],
+    "citations": [
+      {
+        "claim_field": "premium_range",
+        "claim_summary": "單次1日保費：亞洲計劃 HK$86/128/184、全球計劃 HK$95/160/230（經濟/特選/頭等計劃）；保費表載於產品小冊子",
+        "document": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 9,
+        "quote": "受保人的保費 HKD 港元 Asia 亞洲 Worldwide 全球 Economy 經濟計劃 Premium 特選計劃 Superior 頭等計劃 … 1 86 128 184 95 160 230",
+        "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
+      },
+      {
+        "claim_field": "coverage",
+        "claim_summary": "醫療費用保障高達 HK$1,500,000（60日至80歲）",
+        "document": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 2,
+        "quote": "1. 醫療費用 a. 海外醫療費用 2019冠狀病毒病保障 … 年齡由60日至80歲 500,000 1,000,000 1,500,000",
+        "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
+      },
+      {
+        "claim_field": "coverage",
+        "claim_summary": "任何原因取消或更改旅程高達 HK$25,000（50%自負額，只適用於頭等計劃）",
+        "document": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 3,
+        "quote": "– 因任何原因取消旅程# (50%自負額) 不適用 25,000 – 因任何原因更改旅行日期#** (50%自負額) 不適用 25,000",
+        "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
+      },
+      {
+        "claim_field": "coverage",
+        "claim_summary": "行李及個人財物高達 HK$20,000；流動設備（手提電腦）被盜竊每台限額 HK$5,000",
+        "document": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 3,
+        "quote": "5. 行李及個人財物保障 a. 行李及個人財物 不適用 10,000 20,000 … 6. 流動設備被盜竊保障 每台手提電腦限額(個人及工作用) 不適用 5,000 5,…",
+        "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
+      },
+      {
+        "claim_field": "coverage",
+        "claim_summary": "缺席活動（門票及預約活動）保障高達 HK$15,000；運動用品損失高達 HK$15,000",
+        "document": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 4,
+        "quote": "18. 缺席活動保障 3,000 15,000 19. 運動用品損失保障 5,000 (每項5,000) 15,000 (每項5,000)",
+        "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
+      },
+      {
+        "claim_field": "coverage",
+        "claim_summary": "租賃車輛自負額 HK$5,000；寵物保障（緊急寄養）高達 HK$10,000",
+        "document": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 4,
+        "quote": "15. 租賃車輛自負額 不適用 5,000 5,000 … 20. 寵物保障 a. 因旅程延誤需緊急寵物寄養 不適用 3,000 (每日500) 10,000 (每日500)",
+        "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
+      },
+      {
+        "claim_field": "coverage",
+        "claim_summary": "遺失旅遊證件/未經授權使用信用卡高達 HK$3,000",
+        "document": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 4,
+        "quote": "16. 未經授權使用信用卡 2,000 3,000",
+        "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
+      },
+      {
+        "claim_field": "key_terms",
+        "claim_summary": "「任何原因取消」保障須於旅程首次付款/訂金日期起7天內購買保單，並於原定出發前取消",
+        "document": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 2,
+        "quote": "您的保單必須在您支付旅程首期付款或訂金之日的7 天內或之前已購買，並且相關的取消或更改必須在原定出發時間之前進行。否則，此部分下的索賠將不被接受。",
+        "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
+      },
+      {
+        "claim_field": "key_terms",
+        "claim_summary": "只售予香港居民、於香港銷售、由香港出發；受保年齡60日至80歲",
+        "document": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 4,
+        "quote": "本產品只在香港銷售，亦只供香港居民銷售。它只適用於從香港出發的旅行。 年齡限制 投保人年齡介乎60天至80歲",
+        "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
+      },
+      {
+        "claim_field": "key_terms",
+        "claim_summary": "保特保險委任安聯全球救援（AWPHK）提供理賠協助服務",
+        "document": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 4,
+        "quote": "保特保險已委任Allianz Worldwide Partners (Hong Kong) Limited (AWPHK)為產品提供理賠相關協助，包括理賠服務。",
+        "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
+      },
+      {
+        "claim_field": "exclusions",
+        "claim_summary": "戰爭、內戰、侵略、騷亂、革命、軍事力量等不保",
+        "document": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 4,
+        "quote": "主要不受保項目 1. 戰爭、內戰、侵略、騷亂、革命、使用軍事力量、或政府或軍事奪權;",
+        "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
+      },
+      {
+        "claim_field": "exclusions",
+        "claim_summary": "既往病症、先天及遺傳性疾病（任何原因取消保障除外）；自殺或蓄意自殘不保",
+        "document": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 4,
+        "quote": "4. 任何已存在狀況、先天及遺傳狀況(不適用於因任何原因取消旅程/因任何原因更改旅行日期); 5. 自殺或企圖自殺或蓄意自殘，或自行暴露於非必要危害中;",
+        "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
+      },
+      {
+        "claim_field": "exclusions",
+        "claim_summary": "賽車、職業運動或極限運動（公眾可參與且有合資格指導者除外）；保單生效前已知高風險並獲警告之目的地",
+        "document": "MyTravel Insurance 自寫意旅遊保產品小冊子 PDF（fwd.com.hk 官方域名）",
+        "page": 4,
+        "quote": "6. 受保人乘坐或駕駛車輛用作賽車、比賽或任何專業運動…或受保人參與任何極限運動及體育活動(除非該運動是開放予公眾參與、不設限制並由獲認可的當地導遊公司/活動提供者提供活動; 並由合資格導遊及/或指導員的指引及監督下行動); … 9. 前往任何為人知悉屬高風險的國家，在保障生效日期前,傳媒或政府機關已充份發出反對旅遊的警告。",
+        "url": "https://www.fwd.com.hk/files/v3/assets/blta9d684affff23c8c/blt60dfefc0e5053ea5/MyTravel_Insurance_brochure_updated.pdf"
+      }
+    ],
+    "trip_type": "both",
+    "destination_scope": [
+      "asia",
+      "worldwide"
+    ],
+    "promo": {
+      "tag": "每日 $19.8 起 + 同行 95 折",
+      "discount": "40% OFF",
+      "note": "亞洲日費低至 HK$19.80；同行親友投保享額外 95 折，由安聯全球救援提供服務",
+      "original_price": 165,
+      "discounted_price": 99,
+      "buy_url": "https://bolttechinsurance.hk/"
+    },
+    "original_price": 165,
+    "discounted_price": 99,
+    "official_buy_url": "https://bolttechinsurance.hk/",
+    "review_notes": [
+      "2026-10-02：隔離 6 項舊模板／人工拼接引文的保障主張；原值保留於覆核記錄，未有逐條官方證據前不參與金額比較。"
+    ],
+    "record_status": "unverified"
+  },
+  "pet-bowtie": {
+    "id": "pet-bowtie",
+    "category": "pet",
+    "insurer": "Bowtie",
+    "product_name": "Bowtie Pet Insurance",
+    "product_name_zh": "Bowtie 寵物保",
+    "plan_tiers": [
+      "基本計劃 (Standard)",
+      "升級計劃 (Premium)"
+    ],
+    "premium_range": "每月約 HK$180 - $480（每年約 HK$2,160 - $5,760）",
+    "premium_notes": "純線上自主投保，貓狗同價，不設晶片或指定品種加費，投保即享首年特惠折扣",
+    "key_terms": [
+      "全港純線上寵物保險，80% 實報實銷合資格醫療費用",
+      "每年最高醫療保障限額高達 HK$70,000",
+      "貓狗免植晶片即可投保，不限香港持牌獸醫診所",
+      "全面涵蓋特定品種常見遺傳疾病及癌症化療",
+      "不設自負額，高達 HK$3,000,000 第三者法律責任保障"
+    ],
+    "exclusions": [
+      "投保前已存在之疾病或先天性缺陷",
+      "例行預防疫苗接種、常規驅蟲、剪甲或美容開支",
+      "非醫療必需之絕育手術或懷孕分娩相關開支",
+      "狗隻未持有合法狂犬病牌照（如適用）"
+    ],
+    "documents_found": [
+      "Bowtie 寵物保官方產品規格頁（2025-2026 最新版，bowtie.com.hk 官方直屬）",
+      "Bowtie 寵物保保單條款及保障限額一覽表"
+    ],
+    "source_urls": [
+      "https://www.bowtie.com.hk/zh-hk/pet-insurance",
+      "https://www.bowtie.com.hk/blog/zh/pet-insurance-comparison/"
+    ],
+    "citations": [
+      {
+        "claim_field": "coverage[0].limit",
+        "document": "Bowtie 寵物保官方產品規格頁",
+        "page": "1",
+        "quote": "每年醫療總限額高達 HK$70,000，合資格醫療開支實報實銷高達 80%",
+        "url": "https://www.bowtie.com.hk/zh-hk/pet-insurance"
+      },
+      {
+        "claim_field": "coverage[2].limit",
+        "document": "Bowtie 寵物保官方產品規格頁",
+        "page": "1",
+        "quote": "第三者法律責任保障高達 HK$3,000,000，保障因寵物疏忽引致之公眾傷亡或財產損害",
+        "url": "https://www.bowtie.com.hk/zh-hk/pet-insurance"
+      }
+    ],
+    "coverage": [
+      {
+        "item": "每年獸醫醫療總限額",
+        "limit": "高達 HK$70,000（實報實銷 80%）"
+      },
+      {
+        "item": "獸醫門診及處方藥物",
+        "limit": "每次最高 HK$800，每年高達 10 次（免自負額）"
+      },
+      {
+        "item": "第三者法律責任保障",
+        "limit": "最高 HK$3,000,000（寵物咬傷或撲傷第三者）"
+      },
+      {
+        "item": "外科手術及全身麻醉",
+        "limit": "每次最高 HK$25,000，包手術室費及術後護理"
+      },
+      {
+        "item": "非例行牙科意外治療",
+        "limit": "每年最高 HK$5,000（因意外或嚴重牙齦疾病必需治療）"
+      },
+      {
+        "item": "寵物癌症化療及放射治療",
+        "limit": "每年最高 HK$15,000 專項醫療開支補貼"
+      },
+      {
+        "item": "特定品種遺傳性疾病",
+        "limit": "受保常見遺傳病（包括髖關節發育不良、膝蓋骨脫臼等）"
+      },
+      {
+        "item": "微創手術及先進診斷",
+        "limit": "全包在外科手術保障限額內，賠償比例 80%"
+      },
+      {
+        "item": "住院及過夜護理費用",
+        "limit": "每日最高 HK$1,000，每年最高 15 日"
+      },
+      {
+        "item": "免植晶片投保權益",
+        "limit": "所有品種貓狗均免植晶片即可網上核保"
+      },
+      {
+        "item": "走失尋寵廣告費用",
+        "limit": "最高 HK$3,000（登報或網絡尋寵推廣）"
+      },
+      {
+        "item": "主人住院緊急寄宿津貼",
+        "limit": "每日最高 HK$300，每年最高 HK$3,000"
+      },
+      {
+        "item": "寵物離世善終火化津貼",
+        "limit": "最高 HK$3,000（合資格善終及個別火化服務）"
+      },
+      {
+        "item": "海外緊急醫療保障",
+        "limit": "跟隨主人赴海外旅行期間緊急醫療最高 HK$10,000"
+      },
+      {
+        "item": "醫療網絡直付諮詢",
+        "limit": "特約獸醫網絡專享預約支援及即時索償指引"
+      }
+    ],
+    "insurer_zh": "保泰人壽",
+    "official_buy_url": "https://www.bowtie.com.hk/zh-hk/pet-insurance",
+    "promo": {
+      "tag": "最新優惠",
+      "note": "首年投保享專屬特惠；免植晶片即可網上核保",
+      "buy_url": "https://www.bowtie.com.hk/zh-hk/pet-insurance"
+    }
+  },
+  "motor-bowtie": {
+    "id": "motor-bowtie",
+    "category": "motor",
+    "insurer": "Bowtie",
+    "product_name": "Bowtie Car Insurance",
+    "product_name_zh": "Bowtie 汽車保險",
+    "plan_tiers": [
+      "第三者責任保險 (Third Party)",
+      "綜合汽車保險 (Comprehensive)"
+    ],
+    "premium_range": "三保約 HK$1,180 起/年；全保約 HK$4,200 起/年",
+    "premium_notes": "純數碼線上即時報價，與三井住友 / Avo 緊密合作，無中介費，電車油車均有專屬優惠",
+    "key_terms": [
+      "法定第三者責任保障高達 HK$100,000,000",
+      "第三者財物損失賠償高達 HK$5,000,000",
+      "全保涵蓋車輛碰撞、火警、盜竊及天災損失",
+      "電動車 (EV) 專屬保障：充電線及家用充電樁意外損失"
+    ],
+    "exclusions": [
+      "未持有有效香港駕駛執照",
+      "受酒精或毒品影響下駕駛車輛",
+      "私家車非法作商用載客用途"
+    ],
+    "documents_found": [
+      "Bowtie 汽車保險官方專頁（2025-2026 版，bowtie.com.hk）",
+      "Bowtie Motor Insurance Policy Schedule & Benefits"
+    ],
+    "source_urls": [
+      "https://www.bowtie.com.hk/zh-hk/car-insurance"
+    ],
+    "citations": [
+      {
+        "claim_field": "coverage[0].limit",
+        "document": "Bowtie 汽車保險官方專頁",
+        "page": "1",
+        "quote": "法定第三者傷亡責任高達 HK$100,000,000，第三者財產損毀高達 HK$5,000,000",
+        "url": "https://www.bowtie.com.hk/zh-hk/car-insurance"
+      }
+    ],
+    "coverage": [
+      {
+        "item": "第三者人身傷亡責任",
+        "limit": "最高 HK$100,000,000（法例規定 1 億元責任）"
+      },
+      {
+        "item": "第三者財物損害責任",
+        "limit": "最高 HK$5,000,000（碰撞他車或公眾設施）"
+      },
+      {
+        "item": "自身車身碰撞損毀賠償",
+        "limit": "按事故當時車輛市場價值按車輛市價扣除適用之司機及自負額墊底費後賠償（全保）"
+      },
+      {
+        "item": "自身車輛失竊及火警損失",
+        "limit": "全額賠償車輛現時市值（全保）"
+      },
+      {
+        "item": "擋風玻璃獨立免自負額賠償",
+        "limit": "每年最高 HK$5,000，免自負額且不影響 NCD"
+      },
+      {
+        "item": "24小時免費路邊救援及拖車",
+        "limit": "全港免費拖車、搭電過江龍、爆胎充氣支援"
+      },
+      {
+        "item": "NCD 折扣保護條款",
+        "limit": "單一事故索償不影響翌年 NCD 無索償折扣級別"
+      },
+      {
+        "item": "電動車 (EV) 充電配件專項保障",
+        "limit": "充電線被盜或充電箱意外損毀最高賠償 HK$5,000"
+      },
+      {
+        "item": "司機個人意外傷亡保障",
+        "limit": "最高 HK$200,000（含意外醫療費用津貼）"
+      },
+      {
+        "item": "乘客個人意外保障",
+        "limit": "每名乘客最高 HK$100,000 意外保障"
+      },
+      {
+        "item": "維修期間租車代步津貼",
+        "limit": "每日最高 HK$300，最長 7 日"
+      },
+      {
+        "item": "車載個人財物被盜賠償",
+        "limit": "車內個人財物最高賠償 HK$3,000"
+      },
+      {
+        "item": "線上 3 分鐘極速報價出單",
+        "limit": "只需輸入牌簿資料，即時生成電子暫保單 (Cover Note)"
+      },
+      {
+        "item": "彈性自選自負額",
+        "limit": "自由設定墊底費，有效降低每年固定保費"
+      },
+      {
+        "item": "專屬手機 APP 一鍵索償",
+        "limit": "發生意外即時拍照上載，專屬理賠專員即日跟進"
+      }
+    ],
+    "insurer_zh": "保泰人壽",
+    "official_buy_url": "https://www.bowtie.com.hk/zh-hk/car-insurance",
+    "promo": {
+      "tag": "最新優惠",
+      "note": "純線上虛擬投保，透明報價無任何隱藏附加費",
+      "buy_url": "https://www.bowtie.com.hk/zh-hk/car-insurance"
+    }
+  },
+  "topup-bowtie-combat": {
+    "id": "topup-bowtie-combat",
+    "category": "top-up-medical",
+    "insurer": "Bowtie",
+    "insurer_zh": "保泰人壽",
+    "product_name": "Bowtie Combat Touchwood Medical",
+    "product_name_zh": "Bowtie「觸木保」個人意外醫療加強保障",
+    "plan_tiers": [
+      "觸木保升級計劃（門診＋住院意外醫療全覆蓋）"
+    ],
+    "coverage": [
+      {
+        "item": "每年最高賠償限額",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "公司醫保 Shortfall 填補",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "SMM 超額醫療差額賠償比率",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "離職或退休保證轉保權",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "免核保加入條件",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "額外醫療總限額",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "門診中醫及跌打治療補償",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "物理治療及脊醫治療補償",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "西醫門診及急症室費用",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "主要醫療及外科手術差額補償",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "先進診斷成像檢測（CT/MRI/PET）",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "意外身故及斷肢保障",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "意外住院現金津貼",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "臨時殘廢每週生活津貼",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "救護車費用實報實銷",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "牙科緊急意外治療",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "自付費（墊底費）抵銷機制",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "保證續保年齡",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      }
+    ],
+    "premium_range": "需向保險公司報價",
+    "premium_available": false,
+    "premium_notes": "舊參考金額來源不足，已隔離；未完成現行條款覆核。",
+    "key_terms": [
+      "舊保障表未有逐條官方證據；保障內容及保費待核實。"
+    ],
+    "exclusions": [
+      "非意外引起的慢性肌肉勞損",
+      "職業高危危險運動"
+    ],
+    "source_urls": [
+      "https://www.bowtie.com.hk/"
+    ],
+    "documents_found": [
+      "Bowtie 觸木保產品條款"
+    ],
+    "note": "香港打工仔最喜愛之意外門診及跌打加強 Top-up 方案。",
+    "citations": [],
+    "official_buy_url": "https://www.bowtie.com.hk/zh/insurance/accident/combat",
+    "promo": null,
+    "review_notes": [
+      "2026-10-02：隔離 18 項舊模板／人工拼接引文的保障主張；原值保留於覆核記錄，未有逐條官方證據前不參與金額比較。"
+    ],
+    "record_status": "unverified"
+  },
+  "high-end-bowtie-pink": {
+    "id": "high-end-bowtie-pink",
+    "category": "high-end-medical",
+    "insurer": "Bowtie",
+    "insurer_zh": "保泰人壽",
+    "product_name": "Bowtie Pink VHIS Plan (High-End Full Reimbursement)",
+    "product_name_zh": "Bowtie Pink 自願醫保（高端全數賠償旗艦）",
+    "plan_tiers": [
+      "私家房計劃（保障額待核實）",
+      "半私家房計劃（保障額待核實）",
+      "普通房計劃（保障額待核實）"
+    ],
+    "coverage": [
+      {
+        "item": "每年保障限額",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "終身保障限額",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "病房及膳食",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "主要醫療費用（住院及手術）",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "全球出院免找數直付",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "訂明癌症藥物及非手術治療",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "先進診斷成像檢測（CT/MRI/PET）",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "緊急醫療運送及遺體運返",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "出院後護理及物理治療",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "陪床費 / 親屬陪床津貼",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "SMM 超額賠償比率",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "額外醫療總限額",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "離職 / 退休保證轉保個人醫保權限",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "自付費（墊底費）選項及無索償折扣",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "保障地域",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "門診手術及日間護理",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "門診透析（洗腎費用）",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "精神科治療保障",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "重建手術保障",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      },
+      {
+        "item": "專屬健康管家與全球第二醫療意見",
+        "limit": "未核實：舊整理內容未有對應官方條款，請查閱保險公司文件。",
+        "source_url": "",
+        "document_name": "",
+        "page": null,
+        "quote": ""
+      }
+    ],
+    "premium_range": "需向保險公司報價",
+    "premium_available": false,
+    "premium_notes": "舊參考金額來源不足，已隔離；未完成現行條款覆核。",
+    "key_terms": [
+      "舊保障表未有逐條官方證據；保障內容及保費待核實。"
+    ],
+    "exclusions": [
+      "已知已有疾病",
+      "非醫療所需之美容整形"
+    ],
+    "source_urls": [
+      "https://www.bowtie.com.hk/zh/insurance/vhis/pink"
+    ],
+    "documents_found": [
+      "Bowtie Pink 產品單張及保障表"
+    ],
+    "note": "市場極具性價比的高端自願醫保旗艦。",
+    "citations": [],
+    "official_buy_url": "https://www.bowtie.com.hk/zh/insurance/vhis/pink",
+    "promo": null,
+    "review_notes": [
+      "2026-10-02：隔離 20 項舊模板／人工拼接引文的保障主張；原值保留於覆核記錄，未有逐條官方證據前不參與金額比較。"
+    ],
+    "record_status": "unverified"
+  }
+}

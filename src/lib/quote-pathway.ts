@@ -64,7 +64,7 @@ export function quotePathway(product: Product): QuotePathway {
   if (reference) {
     return {
       mode: "reference-only",
-      headline: "歷史／停售參考",
+      headline: "歸檔／待覆核參考",
       snapshotText,
       hasAgeTable: Boolean(curve),
       ageTableRowCount: curve?.rows.length ?? 0,

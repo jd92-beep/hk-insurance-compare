@@ -31,11 +31,8 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
           ? null
           : window.localStorage.getItem(FAVORITES_STORAGE_KEY),
       write: (raw) => {
-        try {
-          window.localStorage.setItem(FAVORITES_STORAGE_KEY, raw);
-        } catch {
-          // 靜默處理 Safari 無痕模式或 QuotaExceededError
-        }
+        // Let the store retain its in-memory fallback when persistence is denied.
+        window.localStorage.setItem(FAVORITES_STORAGE_KEY, raw);
       },
       listen: (receive) => {
         if (typeof window === "undefined") return () => {};

@@ -25,6 +25,9 @@
 <!-- review-2026-09-22-comprehensive-category-filters -->
 > **2026-09-22 Comprehensive Category Filters delivery:** Expanded 66 high-value filter tags across all 11 categories, FilterBar quick pills, and 117k deep boundary verification Build `20260922.03` — [delivery review](docs/review/2026-09-22-comprehensive-category-filters.md).
 <!-- /review-2026-09-22-comprehensive-category-filters -->
+<!-- review-2026-10-29-official-pdf-refresh -->
+> **2026-10-29 Official PDF Corpus Refresh delivery:** Replaced 25 outdated/duplicate/misassigned PDFs with 22 latest official HK insurer PDFs, wired all 80 PDFs with zero orphans Build `20261029.01` — [delivery review](docs/review/2026-10-29-official-pdf-refresh-and-audit.md).
+<!-- /review-2026-10-29-official-pdf-refresh -->
 
 # GEMINI.md — current project memory, not a completion certificate
 
